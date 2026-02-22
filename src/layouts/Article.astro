@@ -7,13 +7,12 @@ import Analytics from '@vercel/analytics/astro';
 interface Props {
   title: string;
   description?: string;
-  readTime?: string;
   series?: string;
   backHref: string;
   backLabel: string;
 }
 
-const { title, description, readTime, series, backHref, backLabel } = Astro.props;
+const { title, description, series, backHref, backLabel } = Astro.props;
 ---
 
 <!doctype html>
@@ -37,14 +36,13 @@ const { title, description, readTime, series, backHref, backLabel } = Astro.prop
       <div class="article-container">
         <a href={backHref} class="back-link">← {backLabel}</a>
 
-        <header class="article-header">
-          <h1 class="article-title">{title}</h1>
-          <div class="article-meta">
-            {series && <span class="label">{series}</span>}
-            {series && readTime && <span class="meta-sep">·</span>}
-            {readTime && <span class="muted">{readTime}</span>}
-          </div>
-        </header>
+        {series && (
+          <header class="article-header">
+            <div class="article-meta">
+              <span class="label">{series}</span>
+            </div>
+          </header>
+        )}
 
         <div class="article-body">
           <slot />
@@ -166,13 +164,6 @@ const { title, description, readTime, series, backHref, backLabel } = Astro.prop
     border-bottom: 1px solid var(--border);
   }
 
-  .article-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4vw, var(--size-3xl));
-    line-height: 1.15;
-    margin-bottom: var(--space-sm);
-  }
-
   .article-meta {
     display: flex;
     align-items: center;
@@ -180,10 +171,6 @@ const { title, description, readTime, series, backHref, backLabel } = Astro.prop
     font-family: var(--font-ui);
     font-size: var(--size-sm);
     color: var(--text-muted);
-  }
-
-  .meta-sep {
-    color: var(--border);
   }
 
   .article-end {
