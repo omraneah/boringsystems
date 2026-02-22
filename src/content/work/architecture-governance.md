@@ -46,7 +46,7 @@ At the beginning:
 
 By the end of the first phase:
 
-- **10+ authoritative boundary documents** in a dedicated GitHub repository
+- a dozen canonical, cross-stack, authoritative, principle-level architectural documents in a dedicated GitHub repository
 - complete alignment across all five stacks
 - cross-referenced, cohesive documentation applied consistently by engineers and AI tools
 - validated against technical debt, owned and maintained by the CTO
@@ -109,17 +109,19 @@ From this phase, the scope of the governance layer was defined.
 
 The second phase produced the authoritative boundary documents.
 
-Each document addressed a distinct architectural concern — cross-stack, principle-level, with no code and no stack-specific references. Documents covered:
+Each document addressed a distinct architectural concern — cross-stack, principle-level, with no code and no stack-specific references. Areas covered included:
 
-- authentication boundaries and provider isolation,
-- multi-tenancy and tenant scoping,
-- organisation and user profile constraints,
-- module communication patterns and circular dependency rules,
-- quality and security enforcement gates.
+- production rules and operational constraints,
+- domain design and relationships between core entities,
+- provider isolation and authentication boundaries,
+- API contracts,
+- quality and security gates.
+
+The full list is available in the [cross-stack-architecture](https://github.com/omraneah/cross-stack-architecture) repository.
 
 All documents followed a consistent structure: purpose, core model, non-negotiables, allowed versus forbidden zones, responsibility boundaries, and related boundaries. Cross-references between documents created a coherent graph — no boundary existed in isolation.
 
-All documents were published to a dedicated GitHub repository: [omraneah/cross-stack-architecture](https://github.com/omraneah/cross-stack-architecture).
+All documents were published to that same dedicated repository.
 
 Ownership was assigned to the CTO. Non-negotiable.
 
@@ -172,7 +174,7 @@ Maintenance cadence: updated during the first phase monthly, then once every two
 
 After one quarter:
 
-- **10+ authoritative cross-stack boundary documents** maintained in a dedicated GitHub repository,
+- a dozen canonical, cross-stack, authoritative, principle-level architectural documents maintained in a dedicated GitHub repository,
 - same conventions, naming, and jargon applied consistently across all five stacks — engineers moving between surfaces faced no additional friction,
 - AI tools and engineers applied the same constraints during development and review,
 - fewer back-and-forth cycles between engineers and the CTO, and between authors and reviewers,
