@@ -1,0 +1,198 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  readTime?: string;
+  series?: string;
+  backHref: string;
+  backLabel: string;
+}
+
+const { title, description, readTime, series, backHref, backLabel } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description ?? title} />
+    <title>{title} — Boring Systems</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Nav />
+    <main class="article-main">
+      <div class="article-container">
+        <a href={backHref} class="back-link">← {backLabel}</a>
+
+        <header class="article-header">
+          <h1 class="article-title">{title}</h1>
+          <div class="article-meta">
+            {series && <span class="label">{series}</span>}
+            {series && readTime && <span class="meta-sep">·</span>}
+            {readTime && <span class="muted">{readTime}</span>}
+          </div>
+        </header>
+
+        <div class="article-body">
+          <slot />
+        </div>
+
+        <div class="article-end">
+          <a href={backHref} class="back-link">← {backLabel}</a>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  /* Article body content styles */
+  .article-body h1,
+  .article-body h2,
+  .article-body h3,
+  .article-body h4 {
+    font-family: var(--font-display);
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-body h1 { font-size: var(--size-2xl); }
+  .article-body h2 { font-size: var(--size-xl); }
+  .article-body h3 { font-size: var(--size-lg); }
+
+  .article-body p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .article-body ul,
+  .article-body ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .article-body li {
+    margin-bottom: 0.4rem;
+    line-height: 1.65;
+  }
+
+  .article-body hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: var(--space-lg) 0;
+  }
+
+  .article-body strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .article-body a {
+    color: var(--accent);
+  }
+
+  .article-body a:hover {
+    color: var(--text);
+  }
+
+  .article-body blockquote {
+    border-left: 2px solid var(--accent-dim);
+    padding-left: var(--space-md);
+    color: var(--text-muted);
+    margin: var(--space-md) 0;
+  }
+
+  .article-body code {
+    font-family: var(--font-body);
+    font-size: 0.85em;
+    background: var(--bg-elevated);
+    padding: 0.15em 0.4em;
+    border-radius: 2px;
+  }
+</style>
+
+<style>
+  .article-main {
+    padding: var(--space-lg) var(--space-lg);
+  }
+
+  .article-container {
+    max-width: var(--max-content);
+    margin: 0 auto;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    color: var(--text-muted);
+    margin-bottom: var(--space-lg);
+    transition: color 0.15s;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  .article-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .article-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, var(--size-3xl));
+    line-height: 1.15;
+    margin-bottom: var(--space-sm);
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    color: var(--text-muted);
+  }
+
+  .meta-sep {
+    color: var(--border);
+  }
+
+  .article-end {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .article-main {
+      padding: var(--space-md);
+    }
+  }
+</style>

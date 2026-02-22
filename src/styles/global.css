@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap');
+
+:root {
+  --bg:           #0a0a0a;
+  --bg-elevated:  #111111;
+  --border:       #1e1e1e;
+  --text:         #e8e6e1;
+  --text-muted:   #6b6b6b;
+  --accent:       #c8a96e;
+  --accent-dim:   #8a7248;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'IBM Plex Mono', 'Courier New', monospace;
+  --font-ui:      'Inter', system-ui, sans-serif;
+
+  --size-xs:   0.75rem;
+  --size-sm:   0.875rem;
+  --size-base: 1rem;
+  --size-lg:   1.25rem;
+  --size-xl:   1.75rem;
+  --size-2xl:  2.5rem;
+  --size-3xl:  3.5rem;
+
+  --space-sm:  0.75rem;
+  --space-md:  1.5rem;
+  --space-lg:  3rem;
+  --space-xl:  6rem;
+
+  --max-content: 680px;
+  --max-wide:    1100px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+p {
+  font-family: var(--font-body);
+  color: var(--text);
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  font-family: var(--font-body);
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--space-lg) 0;
+}
+
+code {
+  font-family: var(--font-body);
+  font-size: var(--size-sm);
+  background: var(--bg-elevated);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+}
+
+strong {
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Utility classes */
+.label {
+  font-family: var(--font-ui);
+  font-size: var(--size-xs);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.accent {
+  color: var(--accent);
+}

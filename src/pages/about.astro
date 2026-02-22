@@ -1,0 +1,116 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About" description="Ahmed Omrane — CTO-level operator specializing in constraint-to-scale engineering.">
+  <div class="page">
+    <div class="page-inner">
+      <header class="page-header">
+        <p class="label">About</p>
+        <h1 class="page-title">Ahmed Omrane</h1>
+      </header>
+
+      <div class="bio">
+        <p>
+          I build and govern technical systems at the intersection of constraint and scale — the place where engineering decisions have direct P&amp;L consequences and where the wrong move compounds for years. My background is in CTO-level operator work across early-stage and growth-phase companies: building engineering organisations from scratch, navigating founder-driven environments, and transitioning live platforms without downtime.
+        </p>
+        <p>
+          My practice is constraint-to-scale engineering: establishing governance-fit systems under resource, organisational, and technical constraints. This means sequencing correctly before building, treating architecture as a business decision, and designing for the system to run without me. The case files and playbooks on this site document how that looks in practice.
+        </p>
+        <p>
+          I use AI systems architecturally, not as acceleration tools — as a second cognitive layer with explicit governance, a structured retrieval corpus, and strict separation between long-term knowledge and live context. This shapes how I think about both my own leverage and the systems I build for teams.
+        </p>
+        <p>
+          Based in France, with a European market focus and an international operating background.
+        </p>
+      </div>
+
+      <div class="contact">
+        <p class="label">Contact</p>
+        <div class="contact-links">
+          <a href="mailto:ahmed@boringsystems.ai">ahmed@boringsystems.ai</a>
+          <a href="https://github.com/ahmedomrane" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+
+  .page-inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+    display: block;
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--size-2xl);
+  }
+
+  .bio {
+    margin-bottom: var(--space-xl);
+  }
+
+  .bio p {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: var(--space-md);
+  }
+
+  .bio p:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact {
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-links {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-top: var(--space-sm);
+  }
+
+  .contact-links a {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    color: var(--accent);
+    transition: color 0.15s;
+  }
+
+  .contact-links a:hover {
+    color: var(--text);
+  }
+
+  @media (max-width: 768px) {
+    .page-inner {
+      padding: 0 var(--space-md);
+    }
+  }
+</style>

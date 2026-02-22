@@ -1,0 +1,64 @@
+---
+const pathname = Astro.url.pathname;
+---
+
+<nav class="site-nav">
+  <a href="/" class="nav-logo" aria-label="Home">
+    <img src="/logo.png" alt="Boring Systems" height="32" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="/work" class:list={[{ active: pathname.startsWith('/work') }]}>Work</a></li>
+    <li><a href="/writing" class:list={[{ active: pathname.startsWith('/writing') }]}>Writing</a></li>
+    <li><a href="/about" class:list={[{ active: pathname === '/about' }]}>About</a></li>
+  </ul>
+</nav>
+
+<style>
+  .site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+
+  .nav-logo img {
+    height: 32px;
+    width: auto;
+    opacity: 0.9;
+    transition: opacity 0.15s;
+  }
+
+  .nav-logo:hover img {
+    opacity: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--space-md);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-links a {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--text);
+  }
+
+  @media (max-width: 768px) {
+    .site-nav {
+      padding: var(--space-md);
+    }
+  }
+</style>
