@@ -1,43 +1,38 @@
-# Astro Starter Kit: Minimal
+# Boring Systems
+
+Personal site for Ahmed Omrane — engineering leadership case files and frameworks.
+
+Built with [Astro](https://astro.build). Deployed on [Vercel](https://vercel.com).
+
+## Commands
+
+| Command           | Action                                      |
+| :---------------- | :------------------------------------------ |
+| `npm install`     | Install dependencies                        |
+| `npm run dev`     | Start local dev server at `localhost:4321`  |
+| `npm run build`   | Build production site to `./dist/`          |
+| `npm run preview` | Preview build locally before deploying      |
+
+## Deployment
+
+Deployments are done manually via CLI (no auto-deploy from GitHub):
 
 ```sh
-npm create astro@latest -- --template minimal
+npx vercel --prod
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Color Palette
 
-## 🚀 Project Structure
+All colors are defined as CSS custom properties in `src/styles/global.css`.
 
-Inside of your Astro project, you'll see the following folders and files:
+| Variable        | Hex       | Usage                                      |
+| :-------------- | :-------- | :----------------------------------------- |
+| `--bg`          | `#0a0a0a` | Page background                            |
+| `--bg-elevated` | `#111111` | Cards, code blocks                         |
+| `--border`      | `#1e1e1e` | Dividers, borders, footer separators       |
+| `--text`        | `#e8e6e1` | Primary text                               |
+| `--text-muted`  | `#6b6b6b` | Secondary text (nav links, meta, footer)   |
+| `--accent`      | `#c8a96e` | Links, highlights, card hover borders      |
+| `--accent-dim`  | `#8a7248` | Card left border (default state)           |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+To change the color scheme, update these variables in `src/styles/global.css`. Make sure all seven values are consistent with each other — changing the background requires revisiting all other tokens.

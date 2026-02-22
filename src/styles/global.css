@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap');
 
 :root {
-  --bg:           #2596be;
-  --bg-elevated:  #1e80a5;
-  --border:       #4ab0d4;
-  --text:         #ffffff;
-  --text-muted:   #b8ddef;
-  --accent:       #fde68a;
-  --accent-dim:   #d4a83c;
+  --bg:           #0a0a0a;
+  --bg-elevated:  #111111;
+  --border:       #1e1e1e;
+  --text:         #e8e6e1;
+  --text-muted:   #6b6b6b;
+  --accent:       #c8a96e;
+  --accent-dim:   #8a7248;
 
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body:    'IBM Plex Mono', 'Courier New', monospace;
