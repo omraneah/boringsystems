@@ -8,7 +8,7 @@ const pathname = Astro.url.pathname;
       <a href="/" class:list={[{ active: pathname === '/' }]}>Home</a>
     </li>
     <li><a href="/case-files" class:list={[{ active: pathname.startsWith('/case-files') }]}>Case Files</a></li>
-    <li><a href="/operating-playbooks" class:list={[{ active: pathname.startsWith('/operating-playbooks') }]}>Operating Playbooks</a></li>
+    <li><a href="/operating-playbooks" class:list={[{ active: pathname.startsWith('/operating-playbooks') }]}><span class="label-full">Operating Playbooks</span><span class="label-short">Playbooks</span></a></li>
     <li><a href="/about" class:list={[{ active: pathname === '/about' }]}>About</a></li>
   </ul>
 </nav>
@@ -40,6 +40,10 @@ const pathname = Astro.url.pathname;
     transition: color 0.15s;
   }
 
+  .label-short {
+    display: none;
+  }
+
   .nav-links a:hover,
   .nav-links a.active {
     color: var(--text);
@@ -47,7 +51,19 @@ const pathname = Astro.url.pathname;
 
 @media (max-width: 768px) {
     .site-nav {
-      padding: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .nav-links {
+      gap: var(--space-sm);
+    }
+
+    .label-full {
+      display: none;
+    }
+
+    .label-short {
+      display: inline;
     }
   }
 </style>
