@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- Black background -->
+  <rect width="500" height="500" fill="black"/>
+
+  <!-- Outer ring (thin) -->
+  <circle cx="250" cy="250" r="175" fill="none" stroke="white" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Inner ring (slightly thicker) -->
+  <circle cx="250" cy="250" r="148" fill="none" stroke="white" stroke-width="2" opacity="0.9"/>
+
+  <!-- Center circle -->
+  <circle cx="250" cy="250" r="18" fill="white"/>
+
+  <!-- 6 rounded squares at clock positions on the ring (r≈162 between the two circles) -->
+  <!-- Square size: 38x38, corner radius: 7 -->
+  <!-- Positions at 0°(top), 60°, 120°, 180°, 240°, 300° -->
+
+  <!-- 12 o'clock (top): 250, 250-162 = 88 -->
+  <rect x="231" y="69" width="38" height="38" rx="7" ry="7" fill="white"/>
+
+  <!-- 2 o'clock (60°): x=250+162*sin60, y=250-162*cos60 => x=250+140.3, y=250-81 => 390.3, 169 -->
+  <rect x="371" y="150" width="38" height="38" rx="7" ry="7" fill="white"/>
+
+  <!-- 4 o'clock (120°): x=250+162*sin120=390.3, y=250+81=331 -->
+  <rect x="371" y="312" width="38" height="38" rx="7" ry="7" fill="white"/>
+
+  <!-- 6 o'clock (bottom): 250, 250+162=412 -->
+  <rect x="231" y="393" width="38" height="38" rx="7" ry="7" fill="white"/>
+
+  <!-- 8 o'clock (240°): x=250-162*sin60=109.7, y=250+81=331 -->
+  <rect x="91" y="312" width="38" height="38" rx="7" ry="7" fill="white"/>
+
+  <!-- 10 o'clock (300°): x=250-162*sin60=109.7, y=250-81=169 -->
+  <rect x="91" y="150" width="38" height="38" rx="7" ry="7" fill="white"/>
+</svg>
