@@ -5,7 +5,7 @@ pubDate: "2024-07-01"
 series: "Series 2 — Operating Under Pressure"
 seriesNum: 2
 playbook: 2
-featured: true
+featured: false
 ---
 
 # Playbook 2 — Change Injection: Shaping Systems Without Collapse

@@ -18,20 +18,20 @@ for (const key of Object.keys(grouped)) {
   grouped[key].sort((a, b) => (a.data.playbook ?? 0) - (b.data.playbook ?? 0));
 }
 
-// Sort series: highest seriesNum first
+// Sort series: Series 1 first, then 2, then 3
 const sortedSeries = Object.entries(grouped).sort(([, a], [, b]) => {
   const snA = a[0]?.data.seriesNum ?? 0;
   const snB = b[0]?.data.seriesNum ?? 0;
-  return snB - snA;
+  return snA - snB;
 });
 ---
 
-<Base title="Writing" description="Frameworks and playbooks for engineering leadership under constraint.">
+<Base title="Operating Playbooks" description="Operating playbooks for engineering leadership under constraint.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Frameworks & Playbooks</p>
-        <h1 class="page-title">Writing</h1>
+        <p class="label">Operating Playbooks</p>
+        <h1 class="page-title">Operating Playbooks</h1>
         <p class="page-description muted">
           Operational frameworks distilled from constraint-to-scale practice. Each playbook is principle-level, immediately applicable, and designed for engineering leaders who build systems that outlast their presence.
         </p>
@@ -45,7 +45,7 @@ const sortedSeries = Object.entries(grouped).sort(([, a], [, b]) => {
               <ArticleCard
                 title={item.data.title}
                 description={item.data.description}
-                href={`/writing/${item.slug}`}
+                href={`/operating-playbooks/${item.slug}`}
                 meta={item.data.playbook !== undefined ? `Playbook ${item.data.playbook}` : undefined}
               />
             ))}

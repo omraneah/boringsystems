@@ -12,12 +12,12 @@ function readTime(body: string) {
 }
 ---
 
-<Base title="Work" description="Engineering case files — real systems, real constraints, real decisions.">
+<Base title="Case Files" description="Engineering case files — real systems, real constraints, real decisions.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
         <p class="label">Case Files</p>
-        <h1 class="page-title">Work</h1>
+        <h1 class="page-title">Engineering Case Files</h1>
         <p class="page-description muted">
           Real systems. Real constraints. Real decisions. Each file documents an engineering leadership challenge navigated from the inside.
         </p>
@@ -28,7 +28,7 @@ function readTime(body: string) {
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/work/${item.slug}`}
+            href={`/case-files/${item.slug}`}
             meta={readTime(item.body)}
           />
         ))}

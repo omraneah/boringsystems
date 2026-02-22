@@ -3,12 +3,12 @@ const pathname = Astro.url.pathname;
 ---
 
 <nav class="site-nav">
-  <a href="/" class="nav-logo" aria-label="Home">
-    <img src="/logo.png" alt="Boring Systems" height="32" />
-  </a>
   <ul class="nav-links">
-    <li><a href="/work" class:list={[{ active: pathname.startsWith('/work') }]}>Work</a></li>
-    <li><a href="/writing" class:list={[{ active: pathname.startsWith('/writing') }]}>Writing</a></li>
+    <li>
+      <a href="/" class:list={[{ active: pathname === '/' }]}>Home</a>
+    </li>
+    <li><a href="/case-files" class:list={[{ active: pathname.startsWith('/case-files') }]}>Case Files</a></li>
+    <li><a href="/operating-playbooks" class:list={[{ active: pathname.startsWith('/operating-playbooks') }]}>Operating Playbooks</a></li>
     <li><a href="/about" class:list={[{ active: pathname === '/about' }]}>About</a></li>
   </ul>
 </nav>
@@ -16,26 +16,15 @@ const pathname = Astro.url.pathname;
 <style>
   .site-nav {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-md) var(--space-lg) var(--space-md) var(--space-sm);
+    justify-content: flex-end;
+    padding: var(--space-md) var(--space-lg);
     max-width: var(--max-wide);
     margin: 0 auto;
   }
 
-  .nav-logo img {
-    height: 56px;
-    width: auto;
-    opacity: 0.9;
-    transition: opacity 0.15s;
-  }
-
-  .nav-logo:hover img {
-    opacity: 1;
-  }
-
   .nav-links {
     display: flex;
+    align-items: center;
     gap: var(--space-md);
     list-style: none;
     padding: 0;
@@ -56,7 +45,7 @@ const pathname = Astro.url.pathname;
     color: var(--text);
   }
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .site-nav {
       padding: var(--space-md);
     }

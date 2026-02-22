@@ -8,7 +8,7 @@ const featuredWork = (await getCollection('work', ({ data }) => data.featured))
 
 const featuredWriting = (await getCollection('writing', ({ data }) => data.featured))
   .sort((a, b) => {
-    const sn = (b.data.seriesNum ?? 0) - (a.data.seriesNum ?? 0);
+    const sn = (a.data.seriesNum ?? 0) - (b.data.seriesNum ?? 0);
     if (sn !== 0) return sn;
     return (a.data.playbook ?? 0) - (b.data.playbook ?? 0);
   })
@@ -21,6 +21,9 @@ const featuredWriting = (await getCollection('writing', ({ data }) => data.featu
       <h1 class="hero-heading">Systems that scale.<br />Judgment that holds.</h1>
       <p class="hero-sub">Engineering leadership under constraint. Case files and frameworks from the inside.</p>
     </div>
+    <div class="hero-visual">
+      <img src="/logo.png" alt="" aria-hidden="true" class="hero-logo" />
+    </div>
     <div class="hero-rule"></div>
   </div>
 
@@ -32,38 +35,40 @@ const featuredWriting = (await getCollection('writing', ({ data }) => data.featu
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/work/${item.slug}`}
+            href={`/case-files/${item.slug}`}
           />
         ))}
       </div>
-      <a href="/work" class="see-all">All case files →</a>
+      <a href="/case-files" class="see-all">All case files →</a>
     </div>
   </section>
 
   <section class="section">
     <div class="section-inner">
-      <p class="label section-label">Frameworks & Playbooks</p>
+      <p class="label section-label">Operating Playbooks</p>
       <div class="cards">
         {featuredWriting.map(item => (
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/writing/${item.slug}`}
+            href={`/operating-playbooks/${item.slug}`}
             meta={item.data.series}
           />
         ))}
       </div>
-      <a href="/writing" class="see-all">All playbooks →</a>
+      <a href="/operating-playbooks" class="see-all">All playbooks →</a>
     </div>
   </section>
 </Base>
 
 <style>
   .hero {
-    min-height: calc(100vh - 72px);
+    min-height: calc(100vh - 68px);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-xl);
     max-width: var(--max-wide);
     margin: 0 auto;
     padding: 0 var(--space-lg);
@@ -71,7 +76,8 @@ const featuredWriting = (await getCollection('writing', ({ data }) => data.featu
   }
 
   .hero-content {
-    max-width: 700px;
+    flex: 1 1 0;
+    min-width: 0;
   }
 
   .hero-heading {
@@ -86,8 +92,22 @@ const featuredWriting = (await getCollection('writing', ({ data }) => data.featu
     font-family: var(--font-body);
     font-size: var(--size-base);
     color: var(--text-muted);
-    max-width: 520px;
+    max-width: 480px;
     line-height: 1.7;
+  }
+
+  .hero-visual {
+    flex: 0 0 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-logo {
+    width: 300px;
+    height: auto;
+    opacity: 0.85;
+    display: block;
   }
 
   .hero-rule {
@@ -136,8 +156,15 @@ const featuredWriting = (await getCollection('writing', ({ data }) => data.featu
 
   @media (max-width: 768px) {
     .hero {
+      flex-direction: column;
+      align-items: flex-start;
       min-height: calc(100svh - 64px);
-      padding: 0 var(--space-md);
+      padding: var(--space-xl) var(--space-md) 0;
+      gap: var(--space-lg);
+    }
+
+    .hero-visual {
+      display: none;
     }
 
     .hero-rule {
