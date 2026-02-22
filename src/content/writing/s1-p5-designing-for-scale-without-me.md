@@ -2,7 +2,7 @@
 title: "Designing for Scale Without Me"
 description: "Leadership is proven in your absence — how to build teams and systems that compound beyond individual presence."
 pubDate: "2024-03-01"
-series: "Series 1 — Constraint to Scale"
+series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 5
 featured: false

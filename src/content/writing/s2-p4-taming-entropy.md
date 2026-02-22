@@ -2,7 +2,7 @@
 title: "Taming Entropy: Process as Discipline"
 description: "Turning change into clarity — how to install process that absorbs entropy without draining trust or creating bureaucracy."
 pubDate: "2024-09-01"
-series: "Series 2 — Operating Under Pressure"
+series: "Series 2 — Judgement"
 seriesNum: 2
 playbook: 4
 featured: false

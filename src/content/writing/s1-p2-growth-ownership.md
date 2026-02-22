@@ -2,7 +2,7 @@
 title: "Growth Ownership System"
 description: "Growth is claimed, not granted — how individuals own their development inside a scaling system."
 pubDate: "2024-02-01"
-series: "Series 1 — Constraint to Scale"
+series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 2
 featured: false

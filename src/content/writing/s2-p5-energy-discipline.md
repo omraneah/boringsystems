@@ -2,7 +2,7 @@
 title: "Energy Discipline"
 description: "The system collapses when the leader burns out — how to protect cognitive capacity as a strategic constraint."
 pubDate: "2024-10-01"
-series: "Series 2 — Operating Under Pressure"
+series: "Series 2 — Judgement"
 seriesNum: 2
 playbook: 5
 featured: false

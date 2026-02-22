@@ -2,7 +2,7 @@
 title: "Incentive Systems That Scale"
 description: "Alignment through clarity and design — how to build compensation frameworks that are simple, predictable, and self-reinforcing."
 pubDate: "2024-02-15"
-series: "Series 1 — Constraint to Scale"
+series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 3
 featured: false

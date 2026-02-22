@@ -2,7 +2,7 @@
 title: "Product as an Engineering Discipline"
 description: "Value is the only feature worth shipping — how to embed product discipline directly into engineering habits."
 pubDate: "2024-04-15"
-series: "Series 1 — Constraint to Scale"
+series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 7
 featured: false

@@ -2,7 +2,7 @@
 title: "Debt You Control vs Debt That Controls You"
 description: "Every startup is built on debt — the question is whether you own it or it owns you."
 pubDate: "2024-05-15"
-series: "Series 1 — Constraint to Scale"
+series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 10
 featured: false

@@ -2,7 +2,7 @@
 title: "Signal vs. Noise"
 description: "How engineering leaders separate verifiable reality from narrative — and why only one of them scales."
 pubDate: "2024-06-01"
-series: "Series 2 — Operating Under Pressure"
+series: "Series 2 — Judgement"
 seriesNum: 2
 playbook: 1
 featured: true

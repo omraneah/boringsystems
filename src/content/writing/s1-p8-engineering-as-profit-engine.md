@@ -2,7 +2,7 @@
 title: "Engineering as a Profit Engine"
 description: "How engineering directly drives margin, retention, and revenue reliability — and why the cost center framing kills momentum."
 pubDate: "2024-04-01"
-series: "Series 1 — Constraint to Scale"
+series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 8
 featured: false

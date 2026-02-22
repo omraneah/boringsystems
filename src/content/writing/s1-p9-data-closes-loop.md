@@ -2,7 +2,7 @@
 title: "Data That Closes the Loop"
 description: "Trustworthy data is the veins of the system — how to build data discipline that becomes a competitive moat, not a liability."
 pubDate: "2024-05-01"
-series: "Series 1 — Constraint to Scale"
+series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 9
 featured: false

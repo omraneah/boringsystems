@@ -2,7 +2,7 @@
 title: "How We Run"
 description: "The non-negotiable operating system — keeping momentum high under constraint and scaling without dependency on any single person."
 pubDate: "2024-01-01"
-series: "Series 1 — Constraint to Scale"
+series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 0
 featured: true
