@@ -3,11 +3,11 @@
 :root {
   --bg:           #2596be;
   --bg-elevated:  #1e80a5;
-  --border:       #176585;
-  --text:         #e8e6e1;
-  --text-muted:   #6b6b6b;
-  --accent:       #c8a96e;
-  --accent-dim:   #8a7248;
+  --border:       #4ab0d4;
+  --text:         #ffffff;
+  --text-muted:   #b8ddef;
+  --accent:       #fde68a;
+  --accent-dim:   #d4a83c;
 
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body:    'IBM Plex Mono', 'Courier New', monospace;
