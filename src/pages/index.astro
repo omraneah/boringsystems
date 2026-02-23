@@ -3,10 +3,10 @@ import Base from '../layouts/Base.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 
-const featuredWork = (await getCollection('work', ({ data }) => data.featured))
+const featuredWork = (await getCollection('case-files', ({ data }) => data.featured))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
-const featuredWriting = (await getCollection('writing', ({ data }) => data.featured))
+const featuredWriting = (await getCollection('operating-playbooks', ({ data }) => data.featured))
   .sort((a, b) => {
     const sn = (a.data.seriesNum ?? 0) - (b.data.seriesNum ?? 0);
     if (sn !== 0) return sn;

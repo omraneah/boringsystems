@@ -3,7 +3,7 @@ import Article from '../../layouts/Article.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('work');
+  const entries = await getCollection('case-files');
   return entries.map(entry => ({
     params: { slug: entry.slug },
     props: { entry },

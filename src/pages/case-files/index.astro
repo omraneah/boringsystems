@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 
-const allWork = (await getCollection('work'))
+const allWork = (await getCollection('case-files'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 function readTime(body: string) {
