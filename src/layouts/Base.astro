@@ -11,6 +11,7 @@ interface Props {
 }
 
 const { title, description = 'Systems that scale. Judgment that holds.' } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -19,6 +20,7 @@ const { title, description = 'Systems that scale. Judgment that holds.' } = Astr
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl.href} />
     <title>{title} — Boring Systems</title>
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
