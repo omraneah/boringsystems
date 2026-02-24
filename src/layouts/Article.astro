@@ -4,7 +4,6 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import LinkedInTracker from '../components/LinkedInTracker.astro';
 
 interface Props {
   title: string;
@@ -60,7 +59,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <Footer />
     <Analytics />
     <SpeedInsights />
-    <LinkedInTracker />
   </body>
 </html>
 
