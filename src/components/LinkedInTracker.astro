@@ -1,0 +1,30 @@
+---
+---
+
+<script>
+  import { track } from '@vercel/analytics';
+
+  function detectAndTrackLinkedIn() {
+    const SESSION_KEY = 'li_tracked';
+
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const utmSource = (params.get('utm_source') ?? '').toLowerCase();
+    const isLinkedInUtm = utmSource === 'linkedin';
+    const isLinkedInReferrer = document.referrer.includes('linkedin.com');
+
+    if (!isLinkedInUtm && !isLinkedInReferrer) return;
+
+    track('linkedin_visit', {
+      signal: isLinkedInUtm ? 'utm' : 'referrer',
+      medium: params.get('utm_medium') ?? (isLinkedInUtm ? 'social' : 'organic'),
+      campaign: params.get('utm_campaign') ?? 'profile',
+      landing_page: window.location.pathname,
+    });
+
+    sessionStorage.setItem(SESSION_KEY, '1');
+  }
+
+  detectAndTrackLinkedIn();
+</script>
