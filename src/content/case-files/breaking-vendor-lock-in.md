@@ -1,7 +1,6 @@
 ---
 title: "Reclaiming System Ownership Under Vendor Lock-In"
 description: "A sequenced transition away from an opaque external core while protecting continuity and internalizing control."
-pubDate: "2025-01-01"
 featured: true
 order: 1
 ---

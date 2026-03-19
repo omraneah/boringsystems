@@ -1,7 +1,6 @@
 ---
 title: "Principle-Driven Oversight"
 description: "Principles scale, tasks don't — how to maintain executive altitude without slipping into fixer mode."
-pubDate: "2024-04-01"
 series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 6

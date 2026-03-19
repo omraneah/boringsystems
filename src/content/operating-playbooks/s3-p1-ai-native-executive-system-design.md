@@ -1,7 +1,6 @@
 ---
 title: "AI-Native Executive System Design"
 description: "How to architect AI as a cognitive operating system — governance, retrieval, and context separation that compounds across months."
-pubDate: "2025-01-01"
 series: "Series 3 — AI Native"
 seriesNum: 3
 playbook: 1
