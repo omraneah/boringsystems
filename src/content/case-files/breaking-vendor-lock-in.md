@@ -1,237 +1,189 @@
 ---
-title: "Breaking Vendor Lock-In in a Live Production System"
-description: "A real-world migration off a black-box mobility platform — 18 months, zero downtime, 10x scale."
+title: "Reclaiming System Ownership Under Vendor Lock-In"
+description: "A sequenced transition away from an opaque external core while protecting continuity and internalizing control."
 pubDate: "2025-01-01"
 featured: true
 order: 1
 ---
 
-# Breaking Vendor Lock-In in a Live Production System
-A real-world migration off a black-box mobility platform.
+# Reclaiming System Ownership Under Vendor Lock-In
+A sequenced transition away from an opaque external core.
 
 ---
 
 ## Context
 
-I joined an early-stage, VC-backed tech mobility company as its first technical leader.
+I entered an environment where the core operating system was delivered by an external provider.
 
-The company operated daily transportation services using a third-party Transportation Management System (TMS).
-This system was white-labeled at the interface level only.
+The business could run on top of that platform, but it did not control the software, the underlying data, or the pace at which the system could evolve.
 
-The provider:
+The provider relationship created a hard dependency:
 
-- did not provide access to source code,
-- did not provide access to databases,
-- did not provide infrastructure control,
-- did not provide technical documentation,
-- did not allow customization beyond standard client configuration.
+- no access to source systems,
+- no meaningful control over infrastructure or underlying state,
+- no ability to shape the product beyond standard configuration,
+- and no reliable technical visibility into how critical workflows were implemented.
 
-The company interacted with the platform only through the same interfaces available to any external client.
+The organization depended on the platform every day, but ownership sat elsewhere.
 
-Internally, the company managed routes, drivers, customer support, and operations, but did not own or control the software systems enabling those activities.
+That created the central tension:
 
-The vendor system was therefore:
+- the system was usable enough to keep operations moving,
+- but too opaque and too rigid to support long-term control.
 
-- operationally usable,
-- technically opaque,
-- and structurally rigid with respect to the company's specific use cases.
-
-At the time I joined, the organization had no internal technical DNA.
-The focus was entirely operational and business-driven, with no existing engineering culture, internal systems ownership, or long-term technical roadmap.
-
-The company was positioning itself as a growth-oriented technology platform, with the objective of owning its technology as a differentiating asset over time.
+The objective was therefore not to replace technology for its own sake.
+It was to turn dependency into control without interrupting the business.
 
 ---
 
-## Scale at Entry
+## Constraint Pattern
 
-At the beginning of the transition:
+At the start, the environment carried the following constraints:
 
-- ~10 bus lines
-- ~100 daily riders
+- live production usage,
+- no acceptable downtime,
+- no acceptable data loss,
+- no access to provider internals,
+- no ability to pause operations while rebuilding,
+- and limited internal capacity to absorb parallel complexity.
 
-By the end of the migration:
-
-- 100+ bus lines
-- ~1,000 daily riders
-
-The system scaled during the in-housing effort.
-
----
-
-## Constraints
-
-- Live production system with daily bookings
-- No acceptable downtime
-- No acceptable data loss
-- No access to vendor source code, databases, or infrastructure
-- No vendor-side customization or documentation
-- No internal backend or infrastructure to extend
-- Engineering team hired from scratch:
-	- 5 engineers total
-	- new country, new hiring market
-	- budget constrained to one senior engineer initially
-- No dedicated infrastructure or operations engineering roles
-
-The system could not pause.
-The organization could not absorb shock.
+The system could not stop while ownership was being rebuilt.
 
 ---
 
 ## Objective
 
-Progressively internalize the core technical stack while maintaining uninterrupted operations.
+Progressively internalize the critical system surfaces while keeping the business continuously operational.
 
-The effort was treated as sequenced in-housing, not a rewrite.
+The effort was approached as sequenced in-housing, not as a rewrite.
 
 ---
 
 ## Execution Overview
 
-The transition unfolded over ~18 months through incremental steps, each designed to reduce dependency without increasing operational risk.
+The transition was broken into irreversible steps, each one reducing external dependency while preserving continuity.
 
 ---
 
-### Phase 1 — System, Business, and Landscape Understanding
+### Phase 1 — Understand the Dependency Before Touching It
 
-The first phase focused on building a complete understanding of the environment before making structural changes.
+The first move was not implementation.
+It was understanding.
 
-This included:
+That meant:
 
-- analyzing how the third-party TMS was used in practice,
-- identifying rigidity points caused by the lack of customization,
-- understanding the business model and go-to-market strategy,
-- reviewing fundraising materials and positioning,
-- studying the competitive landscape to understand:
-- what comparable players owned internally,
-- what they outsourced,
-- and how platform ownership evolved as they scaled.
+- mapping how the external platform was used in reality,
+- identifying where rigidity created business drag,
+- observing which workflows were truly core,
+- and distinguishing between what needed to be owned versus what only needed to be tolerated temporarily.
 
-Because no code, data, or documentation was accessible from the provider, this analysis was necessarily external and behavioral, based on:
+Because internals were inaccessible, the system had to be understood from the outside in:
 
+- observed behavior,
+- workflow boundaries,
 - system outputs,
-- operational workflows,
-- and observed constraints.
+- and operational failure points.
 
-Based on this analysis, the decision to progressively in-house the platform was made and sequenced.
-
-No development occurred during this phase.
+Only once the dependency pattern was clear was the sequencing decision made.
 
 ---
 
-### Phase 2 — Owning the Rider Application
+### Phase 2 — Own a Critical Surface Early
 
-The first system to be rebuilt internally was the rider mobile application.
+The first internalized surface was a user-facing one.
 
-Although the backend logic and data remained external at this stage, this was the first part of the stack to become fully owned by the company.
+This created two advantages:
 
-This served two purposes:
+- it established real ownership over a production-critical entry point,
+- and it proved that internal control could expand without destabilizing the rest of the system.
 
-- establishing internal ownership over a production-critical surface,
-- creating early internal momentum by demonstrating that ownership was possible without disrupting operations.
-
-The application remained compatible with the external provider interfaces (API endpoints).
-
----
-
-### Phase 3 — Internal Authority Over Identity, Users, and Access
-
-Internal backend services were introduced for:
-
-- authentication,
-- authorization,
-- user management,
-- booking creation.
-
-From this point:
-
-Users were created internally first, then propagated to the external TMS through its API.
-
-Authentication and authorization decisions were made internally first, then validated again on the provider side to satisfy legacy execution constraints.
-
-Bookings followed the same pattern:
-
-- created internally,
-- then created on the provider system for execution.
-
-Internal systems replicated:
-
-- the data layer,
-- and the business logic inferred from observed behavior of the external platform.
-
-The provider system continued to execute operational flows, but internal systems became authoritative for identity, user state, and access control.
-
-Payments, wallets and promotion logic were subsequently internalized.
-
-This resulted in:
-
-- internal authority over identity, users, access control, and pricing,
-- mirrored state and logic across internal and external systems,
-- progressive reduction of dependency without disrupting operations.
+Compatibility with the external platform remained in place.
+The goal at this stage was not separation everywhere.
+It was controlled foothold.
 
 ---
 
-### Phase 4 — Progressive Internal Adoption
+### Phase 3 — Move System Authority Inward
 
-Internal capabilities were exposed to teams incrementally using lightweight internal tooling.
+Once an owned surface existed, internal services were introduced around the decision layer of the system:
 
-Adoption followed a staged sequence:
+- identity,
+- permissions,
+- user state,
+- and transaction creation.
 
-- customer support,
-- operations,
-- broader internal teams.
+From that point on, key decisions were made internally first, then synchronized outward where legacy execution still required it.
 
-This minimized friction and avoided forcing workflow changes prematurely.
+This changed the architecture materially.
+The external provider still participated in execution, but internal systems began to hold authority over the rules that mattered most.
 
-Custom back-office interfaces were introduced only after internal usage patterns stabilized.
+The pattern was deliberate:
 
----
-
-### Phase 5 — Parallel Operations for Core Operational Modules
-
-Operational modules were migrated using parallel execution.
-
-This included:
-
-- stops,
-- line and trip management,
-- supply and supplier management,
-- driver-related operational logic.
-
-Two systems ran simultaneously:
-
-- the internal system,
-- the external TMS.
-
-Routing rules determined which system handled a given request based on context and operation type.
-
-Modules were migrated only once they could be unplugged without fallback.
+- make internal systems authoritative before making them exclusive,
+- mirror state where needed,
+- and reduce dependence only when the internal path had become reliable.
 
 ---
 
-### Phase 6 — Driver Application In-Housing
+### Phase 4 — Shift Internal Adoption Gradually
 
-The driver application was rebuilt after identity, authorization, booking, payment, and operational logic were already internalized.
+New internal capabilities were not pushed everywhere at once.
 
-This removed the final externally dependent surface of the platform.
+They were introduced incrementally across internal users and workflows so the organization could adapt without a forced process shock.
+
+This mattered because operational change can fail even when technical change succeeds.
+
+The rollout sequence favored:
+
+- low-friction adoption,
+- observation before expansion,
+- and interface investment only after usage patterns stabilized.
+
+---
+
+### Phase 5 — Run Parallel Paths for Core Modules
+
+As deeper operational modules moved inward, the old and new paths ran in parallel.
+
+The key principle was simple:
+
+- do not unplug a dependency because the replacement exists,
+- unplug it only when the replacement can operate without fallback.
+
+Parallel execution created space to migrate one capability at a time while preserving system continuity.
+
+Routing and responsibility were managed explicitly so the business never depended on a cutover event to stay functional.
+
+---
+
+### Phase 6 — Remove the Final External Surface
+
+Only after identity, permissions, transactions, and operational logic were already under internal control was the last external-facing dependency removed.
+
+By that point, the final transition was not a leap.
+It was the closing step in a sequence that had already shifted authority inward.
 
 ---
 
 ## Result
 
-After ~18 months:
+The system moved from dependence on an opaque provider toward internal ownership through controlled, staged transitions.
 
-- full ownership of rider and driver applications,
-- full ownership of identity, authorization, booking, payment, and operational logic,
-- dependency on the external TMS removed progressively,
-- zero downtime throughout the transition,
-- zero data loss,
-- operations scaled from ~10 to 100+ bus lines and from ~100 to ~1,000 daily riders without increasing operational cost.
+The material outcomes were:
 
-The system evolved from reliance on an opaque third-party platform to an internally owned, interoperable ecosystem while remaining continuously operational.
+- core user-facing surfaces brought under internal control,
+- decision authority moved inward before execution dependency was removed,
+- external reliance reduced progressively instead of through a single migration event,
+- continuity preserved throughout the transition,
+- and the organization left with a system it could shape directly rather than merely operate around.
+
+The key outcome was not migration itself.
+It was sovereignty gained without operational shock.
 
 ---
 
 ## Closing Note
 
-This case illustrates how technical sovereignty can be established incrementally under live operational constraints even when no vendor code, data, or documentation is accessible, through careful sequencing, parallel systems, and controlled exposure.
+This case illustrates that reclaiming control from a deeply embedded external dependency is less about speed than sequencing.
+
+When internals are inaccessible, the path forward is to observe precisely, move authority inward in stages, and remove dependencies only after the owned path has become dependable.
