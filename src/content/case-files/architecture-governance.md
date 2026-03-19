@@ -1,194 +1,183 @@
 ---
-title: "Establishing Cross-Stack Architecture Governance"
-description: "Scaffolding architectural boundaries across five stacks — from scattered Confluence notes to 10+ authoritative, AI-accessible documents owned by the CTO and applied by everyone."
-pubDate: "2025-12-31"
+title: "Establishing Cross-Surface Architecture Governance"
+description: "Building an authoritative governance layer that aligned multiple product surfaces and reduced divergence."
 featured: true
 order: 3
 ---
 
-# Establishing Cross-Stack Architecture Governance
-Scaffolding a shared governance layer for a team operating without one.
+# Establishing Cross-Surface Architecture Governance
+Scaffolding a shared governance layer for an environment operating without one.
 
 ---
 
 ## Context
 
-After completing a full vendor exit and establishing internal ownership of the platform, the organization operated under a new constraint: **no architectural governance layer**.
+Once platform ownership had been established, a different structural weakness became obvious:
 
-The company ran five technical surfaces:
+- architectural knowledge existed,
+- but architectural governance did not.
 
-- **Backend API** (NestJS/TypeScript)
-- **Backoffice** (Next.js/React)
-- **Rider App** (Flutter/Dart)
-- **Driver App** (Flutter/Dart)
-- **Infrastructure** (Terraform/AWS)
+Multiple technical surfaces were evolving in parallel.
+Each one carried its own local assumptions, terminology, and design habits.
 
-Each surface was owned by a different engineer working in a specialized, contained context. With no architecture lead and no boundary documents, architectural knowledge lived entirely in Confluence to-dos, project cards, and the codebases themselves. There was no authoritative source for cross-stack constraints.
+Without a shared boundary layer, divergence was inevitable:
 
-The result was predictable: engineers diverged. Not intentionally — but without a shared reference, each surface evolved under its own assumptions. Patterns drifted, terminology split, and decisions that should have been consistent became inconsistent.
+- similar problems were solved differently,
+- naming drifted,
+- cross-surface decisions became inconsistent,
+- and coordination overhead kept rising.
 
-The company was also moving toward a **multi-tenancy SaaS model**, which required every surface to align on strict isolation patterns, tenant scoping, and provider replaceability. Without architectural governance, that transition would accumulate coordination overhead and generate compounding technical debt.
+The challenge was not the absence of smart people.
+It was the absence of an authoritative source for system-level constraints.
 
-Scaffolding this layer was the decision — not to produce documentation, but to give engineers and AI tools the same clear guidance so they could work in parallel, reliably and without ambiguity.
+This became more urgent as the platform moved toward stricter separation patterns and a more demanding operating model.
+Without governance, every future transition would become harder than it needed to be.
 
----
-
-## Scale at Entry
-
-At the beginning:
-
-- **5 engineers**, each owning a portion of the stack
-- **1 senior engineer**, no architecture lead
-- **0 boundary documents**
-- all architectural context scattered across Confluence to-dos, project cards, and codebases
-- no authoritative source for cross-stack constraints
-- engineers diverging across surfaces, each working within their own specialized context
-
-By the end of the first phase:
-
-- a dozen canonical, cross-stack, authoritative, principle-level architectural documents in a dedicated GitHub repository
-- complete alignment across all five stacks
-- cross-referenced, cohesive documentation applied consistently by engineers and AI tools
-- validated against technical debt, owned and maintained by the CTO
+The decision, then, was not to "write documentation."
+It was to create a governance layer that both people and tools could apply consistently.
 
 ---
 
-## Constraints
+## Constraint Pattern
 
-- live production systems across all surfaces
-- no acceptable disruption to ongoing development
-- team operating under constraint with no architecture lead
-- documents must serve both **humans and AI tools**
-- documents must be **principle-level** — not implementation guides
-- documents must be **cross-stack** — no code, no stack-specific references
-- must be **future-proof** against the upcoming multi-tenancy transition
-- Confluence remained in use for to-dos and operational notes — the governance layer had to coexist without displacing it
+At the beginning, the environment carried these constraints:
+
+- live development across multiple surfaces,
+- no room for process-heavy intervention,
+- no dedicated architecture function,
+- fragmented architectural context,
+- and a need for guidance that worked both for humans and for AI-assisted workflows.
 
 The governance layer had to be immediately usable.
-
-It had to work without adding process overhead.
+It also had to reduce coordination cost rather than add to it.
 
 ---
 
 ## Objective
 
-Scaffold a cross-stack governance layer that:
+Create a cross-surface governance layer that:
 
-- serves as the **authoritative source of truth** for architectural boundaries across all surfaces,
-- gives engineers and AI tools the **same guidance**, applied consistently,
-- reduces divergence without requiring constant senior oversight,
-- guides the team through the **multi-tenancy transition** without ambiguity,
-- is owned by the CTO, maintained at a sustainable cadence, and durable enough to stay relevant.
+- serves as the authoritative source of architectural boundaries,
+- gives people and tools the same guidance,
+- reduces divergence without constant senior intervention,
+- supports future structural transitions without ambiguity,
+- and remains maintainable over time.
 
 ---
 
 ## Execution Overview
 
-The effort unfolded incrementally — from discovery through tooling — without disrupting development.
+The work unfolded incrementally, from discovery through integration, so that governance could improve delivery without disrupting it.
 
 ---
 
-### Phase 1 — Discovery and Mapping
+### Phase 1 — Map the Existing Boundary Gaps
 
-The first phase mapped the current state of architectural knowledge across all surfaces.
+The first step was to understand how architectural knowledge was currently distributed.
 
-This included:
+That meant reviewing:
 
-- auditing all Confluence documents for architectural decisions,
-- reviewing project cards, to-dos, and codebase conventions,
-- identifying where engineers had diverged across surfaces,
-- documenting missing boundaries — especially for multi-tenancy, authentication, and module communication.
+- scattered notes,
+- open work items,
+- recurring patterns in active systems,
+- and places where similar concerns had been resolved inconsistently.
 
-The analysis confirmed the problem: every surface had its own assumptions. There was no single answer to basic cross-stack questions. Engineers had no shared reference to point to.
+The goal was not to capture every decision ever made.
+It was to identify which boundaries needed to become explicit because their ambiguity was already creating drift.
 
-From this phase, the scope of the governance layer was defined.
-
----
-
-### Phase 2 — Boundary Document Creation
-
-The second phase produced the authoritative boundary documents.
-
-Each document addressed a distinct architectural concern — cross-stack, principle-level, with no code and no stack-specific references. Areas covered included:
-
-- production rules and operational constraints,
-- domain design and relationships between core entities,
-- provider isolation and authentication boundaries,
-- API contracts,
-- quality and security gates.
-
-The full list is available in the [cross-stack-architecture](https://github.com/omraneah/cross-stack-architecture) repository.
-
-All documents followed a consistent structure: purpose, core model, non-negotiables, allowed versus forbidden zones, responsibility boundaries, and related boundaries. Cross-references between documents created a coherent graph — no boundary existed in isolation.
-
-All documents were published to that same dedicated repository.
-
-Ownership was assigned to the CTO. Non-negotiable.
+This phase established the scope of the governance layer.
 
 ---
 
-### Phase 3 — Integration and Distribution
+### Phase 2 — Write Principle-Level Boundary Documents
 
-The third phase made the boundary documents accessible everywhere they were needed — for humans and for tools.
+Once the gaps were clear, the next step was to turn implicit assumptions into explicit rules.
 
-The architecture repository was linked to all project repositories via **GitHub submodules**, ensuring a single source of truth with no duplication.
+Each document focused on a distinct architectural concern and stayed above implementation detail.
 
-Agent configuration files in each repository directed AI tools to the architecture repository, ensuring boundaries were checked during planning, implementation, and review. Higher-level governance rules were extracted and made available across the tooling layer.
+The documents defined:
 
-From this point:
+- purpose,
+- invariants,
+- allowed and forbidden zones,
+- responsibility boundaries,
+- and relationships to adjacent constraints.
 
-- engineers had a shared reference accessible directly in their development context,
-- AI tools applied the same boundaries during code generation, planning, and review,
-- no surface could diverge without surfacing a visible gap.
-
----
-
-### Phase 4 — Governance Tooling
-
-The fourth phase codified the governance layer into reusable commands and skills.
-
-This included:
-
-- **architectural review commands** — anyone on the team can invoke a standardized boundary review, reliably and consistently,
-- **tech analysis codification** — structured analysis that follows the same principles every time,
-- **card creation tooling** — issues surfaced during development or review can be captured and routed directly to the CTO's roadmap,
-- **weekly metrics** — critical technical debt tracked against objectives, managed by the CTO, visible at cadence.
-
-The tooling removed the need for seniors to explain architectural decisions repeatedly. The answer became: read the documents. If there is a violation, flag it — the command exists for that.
+That structure mattered.
+Governance fails when documents become narrative, local, or obsolete.
+It becomes durable when the content stays principle-level and cross-cutting.
 
 ---
 
-### Phase 5 — Alignment and Maintenance
+### Phase 3 — Put the Guidance Where Work Happens
 
-The fifth phase established the ongoing maintenance model and validated the documents against known technical debt.
+The documents only became governance once they were accessible in the flow of execution.
 
-Gaps were identified, surfaced, and folded into the roadmap. As engineers and AI tools developed new features, newly uncovered debt was surfaced through the same commands and captured for the CTO. The architectural documents were kept aligned with the roadmap direction — including the multi-tenancy transition — ensuring they remained future-proof, not just descriptive.
+That required distributing the same boundary layer into the environments where planning, implementation, and review already happened.
 
-Confluence remained in use for to-dos and operational notes. Whenever a conflict arose between Confluence content and the architectural documents, the architectural documents were the source of truth.
+From that point:
 
-Maintenance cadence: updated during the first phase monthly, then once every two months. Audited once a quarter.
+- contributors had a shared reference inside their normal workflow,
+- tools could apply the same constraints during analysis and review,
+- and divergence became visible instead of silent.
+
+The gain was not more reading.
+It was a shared reference available at the moment of decision.
+
+---
+
+### Phase 4 — Turn Governance Into Reusable Mechanisms
+
+To keep governance from depending on repeated explanation, the boundary layer was codified into reusable mechanisms.
+
+That allowed the same review logic to be applied repeatedly without relying on memory or ad hoc interpretation.
+
+This changed the operating pattern:
+
+- violations could be surfaced consistently,
+- gaps could be routed into the roadmap,
+- and architectural guidance stopped depending on synchronous intervention from one person.
+
+Governance became operational, not advisory.
+
+---
+
+### Phase 5 — Maintain It as a Living System
+
+The final step was to treat the governance layer as something maintained, not published once.
+
+As new work exposed new gaps, those gaps were folded back into the same system.
+
+This kept the documents aligned with real delivery pressure rather than allowing them to drift into static reference material.
+
+The maintenance principle was simple:
+
+- if reality changes, the boundary layer must be updated,
+- and if local notes conflict with governance, governance remains authoritative.
 
 ---
 
 ## Result
 
-After one quarter:
+The environment moved from fragmented architectural knowledge toward an explicit, shared governance layer.
 
-- a dozen canonical, cross-stack, authoritative, principle-level architectural documents maintained in a dedicated GitHub repository,
-- same conventions, naming, and jargon applied consistently across all five stacks — engineers moving between surfaces faced no additional friction,
-- AI tools and engineers applied the same constraints during development and review,
-- fewer back-and-forth cycles between engineers and the CTO, and between authors and reviewers,
-- new technical debt surfaced and routed to the roadmap directly through commands,
-- new engineers onboarded against a single, maintained reference — not scattered, outdated Confluence pages,
-- throughput increased across the team: less friction, less ambiguity, less coordination overhead,
-- architectural review commands available to everyone, applied reliably.
+The material outcomes were:
+
+- a canonical set of principle-level boundary documents,
+- more consistent conventions across product surfaces,
+- shared constraints applied by both people and tools,
+- lower coordination overhead during planning and review,
+- faster onboarding into system-level expectations,
+- and clearer routing of architectural gaps into future work.
+
+The key result was not the existence of documents.
+It was the reduction of divergence.
 
 ---
 
 ## Closing Note
 
-This case illustrates that architectural governance does not require an architecture team. It requires a decision: make the constraints explicit, make them accessible, and make them the source of truth for everyone — including the tools.
+This case illustrates that architecture governance does not require a large architecture function.
+It requires explicit boundaries, accessible guidance, and enough operational discipline to keep that guidance authoritative.
 
-When engineers and AI agents apply the same principles from the same document, divergence shrinks. Coordination overhead drops. Throughput increases — not by speeding things up, but by removing the friction that was slowing everything down.
-
-The discipline is not in the number of documents. It is in making them authoritative.
+Once the same principles are applied from the same source, coordination overhead drops and parallel execution becomes safer.

@@ -1,7 +1,6 @@
 ---
 title: "First 30 Days Onboarding"
 description: "Onboarding isn't orientation — it's organizational design. How new hires prove the system scales without supervision."
-pubDate: "2024-01-15"
 series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 1

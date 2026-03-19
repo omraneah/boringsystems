@@ -1,7 +1,6 @@
 ---
 title: "Change Injection: Shaping Systems Without Collapse"
 description: "How to engineer change in high-entropy environments — when to act, how to anchor, and what to protect."
-pubDate: "2024-07-01"
 series: "Series 2 — Judgement"
 seriesNum: 2
 playbook: 2

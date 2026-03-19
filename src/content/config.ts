@@ -5,7 +5,6 @@ const caseFiles = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.string().optional(),
     featured: z.boolean().optional().default(false),
     order: z.number().optional().default(99),
   }),
@@ -16,7 +15,6 @@ const operatingPlaybooks = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.string().optional(),
     series: z.string().optional(),
     seriesNum: z.number().optional(),
     playbook: z.number().optional(),

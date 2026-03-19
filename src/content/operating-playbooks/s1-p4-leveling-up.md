@@ -1,7 +1,6 @@
 ---
 title: "Leveling Up: Senior IC to Lead"
 description: "Leaders aren't hired, they're built — how to bridge the gap from execution to leadership inside a scaling team."
-pubDate: "2024-03-01"
 series: "Series 1 — Foundations"
 seriesNum: 1
 playbook: 4

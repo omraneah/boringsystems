@@ -1,7 +1,6 @@
 ---
 title: "Influence-First Cross-Functional Leadership"
 description: "Alignment beyond egos — how to create durable cross-functional alignment through psychology, timing, and trust."
-pubDate: "2024-08-01"
 series: "Series 2 — Judgement"
 seriesNum: 2
 playbook: 3

@@ -1,7 +1,6 @@
 ---
 title: "AI-Native Executive System Design"
 description: "How to architect AI as a cognitive operating system — governance, retrieval, and context separation that compounds across months."
-pubDate: "2025-01-01"
 series: "Series 3 — AI Native"
 seriesNum: 3
 playbook: 1
@@ -13,11 +12,11 @@ ChatGPT as a second brain.
 
 ## Purpose
 
-At my current CTO role, I use ChatGPT and other AI systems 2–4 hours a day.
+In an executive operating context, I use ChatGPT and other AI systems as part of the daily decision stack.
 
 Result:
 
-I've 5–10×ed my cognitive throughput and impact on the same time and energy budget.
+They materially increased my cognitive throughput and sharpened how I structure decisions under pressure.
 
 This playbook describes the meta-system that made that possible.
 
@@ -204,10 +203,6 @@ I externalize and refine frameworks faster.
 I make fewer reactive decisions.
 
 I can revisit complex topics months later with full context, without redoing the work.
-
-In other words:
-
-I increased my cognitive throughput and impact by 5–10× without increasing my hours.
 
 The constraint-to-scale lesson is simple:
 
