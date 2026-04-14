@@ -1,0 +1,287 @@
+---
+interface Props {
+  articleTitle: string;
+  articleUrl: string;
+}
+const { articleTitle, articleUrl } = Astro.props;
+---
+
+<div class="feedback-wrap">
+  <div class="feedback-section" id="feedback-section">
+    <p class="feedback-heading">Have a reaction?</p>
+    <textarea
+      id="feedback-text"
+      class="feedback-textarea"
+      placeholder="Leave a thought — press Enter to send."
+      rows="3"
+      aria-label="Feedback"
+    ></textarea>
+    <p class="feedback-hint">Shift + Enter for a new line</p>
+  </div>
+
+  <div id="feedback-success" class="feedback-success" aria-live="polite" hidden>
+    <p>Sent. Thank you.</p>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="feedback-modal" class="modal-overlay" aria-hidden="true" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <p class="modal-title" id="modal-title">Want to hear back?</p>
+    <p class="modal-sub">Add your email if you'd like a reply. Completely optional.</p>
+    <input
+      id="feedback-email"
+      type="email"
+      class="modal-email"
+      placeholder="your@email.com"
+      autocomplete="email"
+    />
+    <div class="modal-actions">
+      <button id="modal-skip" class="modal-btn modal-btn--skip" type="button">Skip</button>
+      <button id="modal-send" class="modal-btn modal-btn--send" type="button">Send</button>
+    </div>
+    <p id="modal-error" class="modal-error" hidden>Something went wrong. Try again.</p>
+  </div>
+</div>
+
+<script define:vars={{ articleTitle, articleUrl }}>
+  const textarea = document.getElementById('feedback-text');
+  const modal = document.getElementById('feedback-modal');
+  const skipBtn = document.getElementById('modal-skip');
+  const sendBtn = document.getElementById('modal-send');
+  const emailInput = document.getElementById('feedback-email');
+  const section = document.getElementById('feedback-section');
+  const success = document.getElementById('feedback-success');
+  const modalError = document.getElementById('modal-error');
+
+  function openModal() {
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    emailInput.value = '';
+    emailInput.focus();
+    modalError.hidden = true;
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  function showSuccess() {
+    closeModal();
+    section.hidden = true;
+    success.hidden = false;
+  }
+
+  async function submit(email) {
+    sendBtn.disabled = true;
+    skipBtn.disabled = true;
+    sendBtn.textContent = 'Sending…';
+    modalError.hidden = true;
+
+    try {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: textarea.value.trim(),
+          email: email || undefined,
+          articleTitle,
+          articleUrl,
+        }),
+      });
+
+      if (res.ok) {
+        showSuccess();
+      } else {
+        modalError.hidden = false;
+        sendBtn.disabled = false;
+        skipBtn.disabled = false;
+        sendBtn.textContent = 'Send';
+      }
+    } catch {
+      modalError.hidden = false;
+      sendBtn.disabled = false;
+      skipBtn.disabled = false;
+      sendBtn.textContent = 'Send';
+    }
+  }
+
+  // Enter submits, Shift+Enter adds newline
+  textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (textarea.value.trim().length > 0) openModal();
+    }
+  });
+
+  // Close modal on overlay click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+
+  skipBtn.addEventListener('click', () => submit(''));
+  sendBtn.addEventListener('click', () => submit(emailInput.value.trim()));
+
+  // Allow Enter in email field to trigger send
+  emailInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') submit(emailInput.value.trim());
+  });
+</script>
+
+<style>
+  .feedback-wrap {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .feedback-heading {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .feedback-textarea {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: var(--size-sm);
+    color: var(--text);
+    background: var(--bg-elevated);
+    border: 1px solid var(--accent-dim);
+    padding: 0.75rem;
+    resize: none;
+    outline: none;
+    transition: border-color 0.15s;
+    box-sizing: border-box;
+    line-height: 1.65;
+  }
+
+  .feedback-textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .feedback-hint {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    opacity: 0.6;
+  }
+
+  .feedback-success p {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    color: var(--accent);
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: var(--space-md);
+  }
+
+  .modal-box {
+    background: var(--bg-elevated);
+    border: 1px solid var(--accent-dim);
+    padding: var(--space-lg);
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .modal-title {
+    font-family: var(--font-display);
+    font-size: var(--size-lg);
+    color: var(--text);
+  }
+
+  .modal-sub {
+    font-family: var(--font-body);
+    font-size: var(--size-sm);
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .modal-email {
+    font-family: var(--font-body);
+    font-size: var(--size-sm);
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--accent-dim);
+    padding: 0.6rem 0.75rem;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: var(--space-sm);
+  }
+
+  .modal-email:focus {
+    border-color: var(--accent);
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+  }
+
+  .modal-btn {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    font-weight: 500;
+    padding: 0.55rem 1.25rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .modal-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .modal-btn--skip {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  .modal-btn--skip:hover:not(:disabled) {
+    color: var(--text);
+    border-color: var(--text-muted);
+  }
+
+  .modal-btn--send {
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .modal-btn--send:hover:not(:disabled) {
+    background: var(--accent);
+  }
+
+  .modal-error {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    color: #e05252;
+  }
+</style>
