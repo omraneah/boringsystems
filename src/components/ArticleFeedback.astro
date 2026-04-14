@@ -25,7 +25,7 @@ const { articleTitle, articleUrl } = Astro.props;
 </div>
 
 <!-- Modal -->
-<div id="feedback-modal" class="modal-overlay" aria-hidden="true" hidden>
+<div id="feedback-modal" class="modal-overlay" aria-hidden="true">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <p class="modal-title" id="modal-title">Want to hear back?</p>
     <p class="modal-sub">Add your email if you'd like a reply. Completely optional.</p>
@@ -55,7 +55,7 @@ const { articleTitle, articleUrl } = Astro.props;
   const modalError = document.getElementById('modal-error');
 
   function openModal() {
-    modal.hidden = false;
+    modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     emailInput.value = '';
     emailInput.focus();
@@ -63,7 +63,7 @@ const { articleTitle, articleUrl } = Astro.props;
   }
 
   function closeModal() {
-    modal.hidden = true;
+    modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
   }
 
@@ -186,6 +186,10 @@ const { articleTitle, articleUrl } = Astro.props;
 
   /* Modal */
   .modal-overlay {
+    display: none;
+  }
+
+  .modal-overlay.is-open {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.75);
