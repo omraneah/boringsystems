@@ -13,6 +13,8 @@ const featuredWriting = (await getCollection('operating-playbooks', ({ data }) =
     return (a.data.playbook ?? 0) - (b.data.playbook ?? 0);
   })
   .slice(0, 4);
+
+const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) => data.highlight))[0] ?? null;
 ---
 
 <Base title="Ahmed Omrane">
@@ -26,6 +28,23 @@ const featuredWriting = (await getCollection('operating-playbooks', ({ data }) =
     </div>
     <div class="hero-rule"></div>
   </div>
+
+  {highlightedPiece && (
+    <section class="section highlight-section">
+      <div class="section-inner">
+        <p class="label section-label">Now Reading</p>
+        <a href={`/operating-playbooks/${highlightedPiece.slug}`} class="highlight-card">
+          <div class="highlight-meta">
+            <span class="highlight-series">{highlightedPiece.data.series}</span>
+            <span class="highlight-canonical">Canonical source</span>
+          </div>
+          <h2 class="highlight-title">{highlightedPiece.data.title}</h2>
+          <p class="highlight-description">{highlightedPiece.data.description}</p>
+          <span class="highlight-read accent">Read →</span>
+        </a>
+      </div>
+    </section>
+  )}
 
   <section class="section">
     <div class="section-inner">
@@ -118,6 +137,70 @@ const featuredWriting = (await getCollection('operating-playbooks', ({ data }) =
     height: 1px;
     background: var(--accent);
     opacity: 0.4;
+  }
+
+  .highlight-section {
+    padding-bottom: 0;
+  }
+
+  .highlight-card {
+    display: block;
+    border-left: 2px solid var(--accent);
+    background: var(--bg-elevated);
+    padding: var(--space-lg);
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+
+  .highlight-card:hover {
+    border-left-color: var(--text);
+  }
+
+  .highlight-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+
+  .highlight-series {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .highlight-canonical {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 0.1em 0.5em;
+  }
+
+  .highlight-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, var(--size-2xl));
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .highlight-description {
+    font-size: var(--size-base);
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 640px;
+    margin-bottom: var(--space-md);
+  }
+
+  .highlight-read {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    font-weight: 500;
   }
 
   .section {

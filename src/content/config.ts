@@ -19,6 +19,7 @@ const operatingPlaybooks = defineCollection({
     seriesNum: z.number().optional(),
     playbook: z.number().optional(),
     featured: z.boolean().optional().default(false),
+    highlight: z.boolean().optional().default(false),
   }),
 });
 

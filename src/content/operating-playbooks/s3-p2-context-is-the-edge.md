@@ -4,11 +4,16 @@ description: "The AI harness commoditizes. The only advantage that compounds wit
 series: "Series 3 — AI Native"
 seriesNum: 3
 playbook: 2
-featured: false
+featured: true
+highlight: true
 ---
 
 # Playbook 2 — Context is the Edge
 The only thing the labs can't ship for you.
+
+*Canonical source. This piece is cross-posted to Substack — this page is the reference version. Revisions and updates happen here first.*
+
+---
 
 ## Purpose
 
