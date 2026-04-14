@@ -53,7 +53,69 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     </div>
   </section>
 
+  <section class="section contact-section">
+    <div class="section-inner">
+      <p class="label section-label">Get in Touch</p>
+      <div class="contact-box">
+        <p class="contact-cta">Interested in working together or have feedback? Reach out.</p>
+        <form id="contact-form" class="contact-form" novalidate>
+        <div class="field">
+          <label for="email" class="field-label">Your email</label>
+          <input id="email" name="email" type="email" class="field-input" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="message" class="field-label">Message</label>
+          <textarea id="message" name="message" class="field-input field-textarea" placeholder="What's on your mind?" required rows="5"></textarea>
+        </div>
+        <div class="form-footer">
+          <button type="submit" class="submit-btn">Send message</button>
+          <p id="form-status" class="form-status" aria-live="polite"></p>
+        </div>
+        </form>
+      </div>
+    </div>
+  </section>
 </Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('form-status') as HTMLParagraphElement;
+  const btn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim();
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.textContent = '';
+    status.className = 'form-status';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, message }),
+      });
+
+      if (res.ok) {
+        status.textContent = 'Message sent. I\'ll get back to you.';
+        status.classList.add('form-status--ok');
+        form.reset();
+      } else {
+        status.textContent = 'Something went wrong. Try again.';
+        status.classList.add('form-status--err');
+      }
+    } catch {
+      status.textContent = 'Could not send. Check your connection.';
+      status.classList.add('form-status--err');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    }
+  });
+</script>
 
 <style>
   .hero {
@@ -127,8 +189,8 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     transition: border-color 0.15s;
   }
 
-  .highlight-card:hover {
-    border-left-color: var(--text);
+  .highlight-card:hover .highlight-title {
+    color: var(--accent);
   }
 
   .highlight-meta {
@@ -152,6 +214,7 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     line-height: 1.2;
     color: var(--text);
     margin-bottom: var(--space-sm);
+    transition: color 0.15s;
   }
 
   .highlight-description {
@@ -200,6 +263,108 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
 
   .see-all:hover {
     color: var(--accent);
+  }
+
+  .contact-section {
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-box {
+    border: 1px solid var(--accent-dim);
+    background: var(--bg-elevated);
+    padding: var(--space-lg);
+  }
+
+  .contact-cta {
+    font-size: var(--size-base);
+    color: var(--text);
+    margin-bottom: var(--space-lg);
+    line-height: 1.65;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .field-label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .field-input {
+    font-family: var(--font-body);
+    font-size: var(--size-sm);
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--accent-dim);
+    padding: 0.6rem 0.75rem;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .field-input:focus {
+    border-color: var(--accent);
+  }
+
+  .field-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .submit-btn {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    font-weight: 500;
+    color: var(--bg);
+    background: var(--text);
+    border: none;
+    padding: 0.6rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background: var(--accent);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .form-status {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    color: var(--text-muted);
+  }
+
+  .form-status--ok {
+    color: var(--accent);
+  }
+
+  .form-status--err {
+    color: #e05252;
   }
 
   @media (max-width: 768px) {
