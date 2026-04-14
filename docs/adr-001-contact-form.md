@@ -64,16 +64,11 @@ Resend is a third-party dependency for the sending path. This is mitigated by th
 |---|---|---|
 | `RESEND_API_KEY` | Authenticates with Resend | Set in Vercel |
 | `CONTACT_TO_EMAIL` | Destination inbox | Set in Vercel |
-| `CONTACT_FROM_EMAIL` | Sending address | Unset — defaults to `onboarding@resend.dev` |
+| `CONTACT_FROM_EMAIL` | Sending address | `contact@boringsystems.app` |
 
-### Domain verification path (deferred)
+### Domain verification
 
-Sending from `contact@boringsystems.app` requires adding two DNS records to verify the domain on Resend. This has no functional impact today — messages arrive and are replyable regardless. When the domain is verified:
-
-1. Add `CONTACT_FROM_EMAIL=contact@boringsystems.app` to Vercel environment variables
-2. Redeploy
-
-No code changes needed.
+`boringsystems.app` is verified on Resend. All three env vars are required — the function throws if any is missing.
 
 ---
 
