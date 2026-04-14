@@ -56,8 +56,9 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
   <section class="section contact-section">
     <div class="section-inner">
       <p class="label section-label">Get in Touch</p>
-      <p class="contact-cta">Interested in working together or have feedback? Reach out.</p>
-      <form id="contact-form" class="contact-form" novalidate>
+      <div class="contact-box">
+        <p class="contact-cta">Interested in working together or have feedback? Reach out.</p>
+        <form id="contact-form" class="contact-form" novalidate>
         <div class="field">
           <label for="email" class="field-label">Your email</label>
           <input id="email" name="email" type="email" class="field-input" placeholder="you@example.com" required />
@@ -70,7 +71,8 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
           <button type="submit" class="submit-btn">Send message</button>
           <p id="form-status" class="form-status" aria-live="polite"></p>
         </div>
-      </form>
+        </form>
+      </div>
     </div>
   </section>
 </Base>
@@ -187,8 +189,8 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     transition: border-color 0.15s;
   }
 
-  .highlight-card:hover {
-    border-left-color: var(--text);
+  .highlight-card:hover .highlight-title {
+    color: var(--accent);
   }
 
   .highlight-meta {
@@ -212,6 +214,7 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     line-height: 1.2;
     color: var(--text);
     margin-bottom: var(--space-sm);
+    transition: color 0.15s;
   }
 
   .highlight-description {
@@ -266,11 +269,16 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     border-top: 1px solid var(--border);
   }
 
+  .contact-box {
+    border: 1px solid var(--accent-dim);
+    background: var(--bg-elevated);
+    padding: var(--space-lg);
+  }
+
   .contact-cta {
     font-size: var(--size-base);
-    color: var(--text-muted);
+    color: var(--text);
     margin-bottom: var(--space-lg);
-    max-width: 480px;
     line-height: 1.65;
   }
 
@@ -278,7 +286,6 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    max-width: 520px;
   }
 
   .field {
@@ -292,15 +299,15 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     font-size: var(--size-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--text);
   }
 
   .field-input {
     font-family: var(--font-body);
     font-size: var(--size-sm);
     color: var(--text);
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
+    background: var(--bg);
+    border: 1px solid var(--accent-dim);
     padding: 0.6rem 0.75rem;
     outline: none;
     transition: border-color 0.15s;
