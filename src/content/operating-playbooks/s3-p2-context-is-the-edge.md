@@ -11,10 +11,6 @@ highlight: true
 # Playbook 2 — Context is the Edge
 The only thing the labs can't ship for you.
 
-*Canonical source. This piece is cross-posted to Substack — this page is the reference version. Revisions and updates happen here first.*
-
----
-
 ## Purpose
 
 The AI ecosystem is in a race to improve the harness: connections, tools, reasoning loops, memory systems, orchestrators.

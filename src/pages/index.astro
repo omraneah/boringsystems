@@ -32,11 +32,10 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
   {highlightedPiece && (
     <section class="section highlight-section">
       <div class="section-inner">
-        <p class="label section-label">Now Reading</p>
+        <p class="label section-label">Highlights</p>
         <a href={`/operating-playbooks/${highlightedPiece.slug}`} class="highlight-card">
           <div class="highlight-meta">
             <span class="highlight-series">{highlightedPiece.data.series}</span>
-            <span class="highlight-canonical">Canonical source</span>
           </div>
           <h2 class="highlight-title">{highlightedPiece.data.title}</h2>
           <p class="highlight-description">{highlightedPiece.data.description}</p>
@@ -169,16 +168,6 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
-  }
-
-  .highlight-canonical {
-    font-family: var(--font-ui);
-    font-size: var(--size-xs);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid var(--accent-dim);
-    padding: 0.1em 0.5em;
   }
 
   .highlight-title {
