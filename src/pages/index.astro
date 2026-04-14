@@ -6,14 +6,6 @@ import { getCollection } from 'astro:content';
 const featuredWork = (await getCollection('case-files', ({ data }) => data.featured))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
-const featuredWriting = (await getCollection('operating-playbooks', ({ data }) => data.featured))
-  .sort((a, b) => {
-    const sn = (a.data.seriesNum ?? 0) - (b.data.seriesNum ?? 0);
-    if (sn !== 0) return sn;
-    return (a.data.playbook ?? 0) - (b.data.playbook ?? 0);
-  })
-  .slice(0, 4);
-
 const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) => data.highlight))[0] ?? null;
 ---
 
@@ -61,22 +53,6 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-inner">
-      <p class="label section-label">Operating Playbooks</p>
-      <div class="cards">
-        {featuredWriting.map(item => (
-          <ArticleCard
-            title={item.data.title}
-            description={item.data.description}
-            href={`/operating-playbooks/${item.slug}`}
-            meta={item.data.series}
-          />
-        ))}
-      </div>
-      <a href="/operating-playbooks" class="see-all">All playbooks →</a>
-    </div>
-  </section>
 </Base>
 
 <style>

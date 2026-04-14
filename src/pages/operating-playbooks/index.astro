@@ -22,7 +22,7 @@ for (const key of Object.keys(grouped)) {
 const sortedSeries = Object.entries(grouped).sort(([, a], [, b]) => {
   const snA = a[0]?.data.seriesNum ?? 0;
   const snB = b[0]?.data.seriesNum ?? 0;
-  return snA - snB;
+  return snB - snA;
 });
 ---
 
