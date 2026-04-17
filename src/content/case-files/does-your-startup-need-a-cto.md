@@ -24,9 +24,9 @@ Three traps appear consistently. Each one is expensive in a different way.
 
 Two versions of this mistake exist, old and new.
 
-The old version: non-technical founders assumed they could outsource everything to freelance developers and skip internal technical ownership entirely. The logic felt sound. Hire skills on demand. Pay only for what you need. Keep headcount low.
+The old version: founders outsourced to freelancers or small agencies and tried to minimize cost while offloading all technical judgment along with it. The logic felt sound. Hire skills on demand. Pay only for what you need. Keep headcount low.
 
-The structural problem is invisible until it is expensive. Freelancers are optimized for delivery, not product thinking. They build what they can bill. They do not manage ambiguity. They do not ask whether a feature should exist. They do not absorb the messy middle between specifications and reality — the place where judgment matters most. The result is a codebase that technically works and strategically drifts. No one owns the system. No one carries it forward.
+The fallacy is structural. Freelancers and agencies bill for functional code. They do not bill for judgment, long-term ownership, or commitment beyond what they deliver. That is not a critique — it is simply what the engagement model is. They build what they were told. And what they were told came from specifications written by non-technical founders who may not have known what to ask for, or who described the wrong thing with confidence. The result is a codebase that does what the spec said and does not do what the business actually needed. No one owns the system. No one carries it forward. And the cost of that gap — the uncharged cost of absent judgment — surfaces later, when it is much more expensive to fix.
 
 The new version: founders now believe AI closes this gap. It reduces it, genuinely. The cost of production has dropped. Execution cycles are faster. One person with strong judgment can now build what previously required a small team. For a prototype, the risk is materially lower than it was three years ago.
 
@@ -40,9 +40,11 @@ The question is not whether you can build without technical ownership. The quest
 
 Some founders solve the ownership problem correctly. They recognize they need someone genuinely committed, not just available. Then they structure it wrong.
 
-The pattern is consistent. A technically strong candidate is brought in as a co-founder or early technical lead, then given an equity stake that does not reflect the role. Three percent. Five percent. Sometimes structured as options rather than equity. Sometimes with cliff and vesting terms that look like employment terms dressed as founder terms.
+The pattern is consistent. A technically strong candidate is brought in as a co-founder or early technical lead, then given an equity stake that does not reflect the role. Peanut equity — 0.5%, one percent, two, three — paired with founder-level responsibility and a below-market salary framed as a trade-off for upside. The upside that does not exist at that number.
 
-This is a ticking structure. Investors who have seen early-stage teams fail recognize it immediately. A technical co-founder holding less than ten percent in a company where technical execution is central is a signal, not a detail. It predicts the outcome before the product ships: this person will eventually question why they are carrying founder-level responsibility on employee-level economics. And they will be right to question it.
+The worst version of this pattern goes further. The person brought in is given responsibility with no agency at all — not over their equity, not over technical decisions, not over the direction of the product. Their exit optionality is fully controlled by the non-technical founders. They cannot leave cleanly. They cannot stay with leverage. They are structurally trapped in a role that asks for founder-level commitment and gives back neither founder-level reward nor founder-level authority. That is not a co-founder. It is something else that has been mislabeled, and the mislabeling costs both parties.
+
+This is a ticking structure. The equation is simple and there are only two honest versions of it. You either bring in a founder — in which case the terms are founder terms: real equity reflecting real contribution, long-term alignment, decision-making authority, genuine co-ownership. Or you bring in an executive — in which case you pay market value, you compensate properly for the role, and you can layer in equity incentives with a clean vesting plan that reflects the employment relationship for what it is. Both are legitimate. Mixing them is not. When you mix them, you get the worst of both structures: the cost exposure of a founder without the commitment, and the accountability of an employee without the compensation.
 
 The damage is not only about the person leaving. It is about what happens before they leave. Misaligned incentives create political drag from the beginning. Decisions get made with one eye on the personal calculus. Trust corrodes before it compounds. When the misalignment finally surfaces — and it always does — realigning incentives under pressure is expensive, disruptive, and often impossible. The company pays twice: once for the misalignment, once for the repair.
 
@@ -82,7 +84,7 @@ The question is not when you need a CTO. It is what you actually need right now 
 
 ## Closing Note
 
-These are not edge cases. They appeared in direct conversation with multiple founders in the same room, on the same evening.
+These are not edge cases. They recur across different companies, different stages, different founders.
 
 The misconceptions are not born from laziness. They come from solving a real problem — technical ownership — with a borrowed frame that does not fit the current reality. The cost of the frame mismatch is paid later: when the system cannot hold, when the person leaves, or when the role cannot be filled again at the level the company now needs.
 
