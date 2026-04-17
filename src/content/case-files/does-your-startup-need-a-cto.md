@@ -12,11 +12,11 @@ Three structural traps that cost founders more than the hire itself.
 
 ## Context
 
-This piece comes from a direct source: a Paris tech event, multiple conversations, the same evening.
+Fifteen years in the industry. Time spent as a CTO at early-stage companies, alongside CTOs at startups of different shapes — funded, bootstrapped, product-led, services-adjacent. The patterns in this piece are not theoretical.
 
-The founders in the room were at different stages — some pre-product, some post-funding, some with a working prototype and a team forming around it. What they shared was a fixation on one question. Not "what do I need technically right now?" but "do I need a CTO?" They had already named the hire before diagnosing the need.
+The question "do I need a CTO?" is one of the more reliably mishandled ones in early-stage companies. Not because founders are careless, but because the mental models most people bring to it are wrong. The question gets answered before the underlying problem gets diagnosed. Shortcuts get taken. Structures get built on assumptions that feel sound and turn out not to hold.
 
-Three patterns repeated across those conversations. Each one is a trap. Each one is expensive in a different way.
+Three traps appear consistently. Each one is expensive in a different way.
 
 ---
 
