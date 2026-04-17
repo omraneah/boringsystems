@@ -7,6 +7,7 @@ const featuredWork = (await getCollection('case-files', ({ data }) => data.featu
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) => data.highlight))[0] ?? null;
+const highlightedCaseFile = (await getCollection('case-files', ({ data }) => data.highlight))[0] ?? null;
 ---
 
 <Base title="Ahmed Omrane">
@@ -21,18 +22,32 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
     <div class="hero-rule"></div>
   </div>
 
-  {highlightedPiece && (
+  {(highlightedPiece || highlightedCaseFile) && (
     <section class="section highlight-section">
       <div class="section-inner">
         <p class="label section-label">Highlights</p>
-        <a href={`/operating-playbooks/${highlightedPiece.slug}`} class="highlight-card">
-          <div class="highlight-meta">
-            <span class="highlight-series">{highlightedPiece.data.series}</span>
-          </div>
-          <h2 class="highlight-title">{highlightedPiece.data.title}</h2>
-          <p class="highlight-description">{highlightedPiece.data.description}</p>
-          <span class="highlight-read accent">Read →</span>
-        </a>
+        <div class="highlight-grid">
+          {highlightedPiece && (
+            <a href={`/operating-playbooks/${highlightedPiece.slug}`} class="highlight-card">
+              <div class="highlight-meta">
+                <span class="highlight-series">{highlightedPiece.data.series}</span>
+              </div>
+              <h2 class="highlight-title">{highlightedPiece.data.title}</h2>
+              <p class="highlight-description">{highlightedPiece.data.description}</p>
+              <span class="highlight-read accent">Read →</span>
+            </a>
+          )}
+          {highlightedCaseFile && (
+            <a href={`/case-files/${highlightedCaseFile.slug}`} class="highlight-card">
+              <div class="highlight-meta">
+                <span class="highlight-series">Case File</span>
+              </div>
+              <h2 class="highlight-title">{highlightedCaseFile.data.title}</h2>
+              <p class="highlight-description">{highlightedCaseFile.data.description}</p>
+              <span class="highlight-read accent">Read →</span>
+            </a>
+          )}
+        </div>
       </div>
     </section>
   )}
@@ -178,6 +193,12 @@ const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) 
 
   .highlight-section {
     padding-bottom: 0;
+  }
+
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-md);
   }
 
   .highlight-card {
