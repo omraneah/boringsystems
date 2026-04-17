@@ -6,6 +6,7 @@ const caseFiles = defineCollection({
     title: z.string(),
     description: z.string(),
     featured: z.boolean().optional().default(false),
+    highlight: z.boolean().optional().default(false),
     order: z.number().optional().default(99),
   }),
 });

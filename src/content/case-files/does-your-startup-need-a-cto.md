@@ -2,6 +2,7 @@
 title: "Does Your Early-Stage Startup Actually Need a CTO?"
 description: "Most founders asking this question are solving the wrong problem. A field diagnosis of the three misconceptions that cost startups the most — before they've built anything worth protecting."
 featured: true
+highlight: true
 order: 4
 ---
 
