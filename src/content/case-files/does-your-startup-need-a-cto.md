@@ -78,6 +78,10 @@ Slightly later, when the system is real and the team is forming: someone who can
 
 Between those two stages, the right instrument is often: an initial build done well, a retainer relationship with someone whose judgment is trusted, and a clear-eyed decision about when the executive mandate actually becomes necessary.
 
+There is a specific version of this worth naming directly. A non-technical founder who is outsourcing execution — to an agency, a freelancer, an AI-augmented small team, or some combination — does not necessarily need a CTO. What they need is someone who can hold technical judgment on their behalf while that execution happens. A fractional CTO or a technical advisor can do exactly that: review what is being built, ask the right questions, catch the structural decisions before they become expensive, and help the founder understand what they are actually getting. That engagement is not about technical leadership at scale. It is about not being blind during the phase when the foundations are being laid.
+
+That is a different call from hiring a CTO — whether as an employee with a mandate or as a founder with equity. Conflating the two is another version of the same underlying mistake: reaching for a label before diagnosing the need.
+
 The question is not when you need a CTO. It is what you actually need right now — and whether the structure you are building reflects that honestly.
 
 ---
