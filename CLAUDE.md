@@ -68,9 +68,53 @@ He is a sovereign explorer. Depth-oriented. France-based.
 - When uncertain about architectural decisions, reference `cross-stack-architecture-starter-pack/`.
 
 ### Git Workflow (Non-Negotiable)
-- **Never push to `main`, `master`, or `development`** — or any default branch.
+- **Never push to `main`, `master`, `development`, `dev`, or `production`.**
 - Always create a feature branch, push to it, and open a PR.
+- Auto-commit runs at end of each task turn (Stop hook) — this is automatic, no need to ask.
+- Protected branch push is blocked at hook level — not just instruction level.
 - No exceptions, no urgency overrides.
+
+---
+
+## Workspace Infrastructure
+
+### Skills available
+| Skill | Scope | Invoke |
+|---|---|---|
+| `/commit` | Personal (all projects) | Manual or auto |
+| `/pr` | Personal (all projects) | Manual only |
+| `/log-decision` | Personal (all projects) | Claude auto-invokes after decisions |
+| `/arch-review` | Personal (all projects) | Manual or auto |
+| `/new-post` | boringsystems only | Manual only |
+| `/content-research` | boringsystems only | Manual or auto |
+
+### Hooks active
+| Hook | Event | Effect |
+|---|---|---|
+| `block-protected-push.sh` | PreToolUse (Bash) | Blocks any `git push origin main/master/dev/...` |
+| `auto-commit.sh` | Stop (async) | Auto-commits + pushes if dirty, on feature branches only |
+| `session-start.sh` | SessionStart (async) | Pulls latest on `main` or `development` if session opens on base branch |
+
+### New machine setup
+Run once after cloning:
+```bash
+bash /Users/ahmedomrane/Workspace/.claude/setup.sh
+```
+This creates three symlinks:
+- `~/.claude/skills` → `personal-skills/` (all personal skills, globally available)
+- `~/.claude/settings.json` → `.claude/settings.json` (hooks, permissions, plugins — version controlled)
+- `~/.claude/projects/.../memory` → `.claude/projects/.../memory` (workspace memory in git)
+
+`settings.local.json` is gitignored — it is Claude's runtime permission cache, not config.
+
+### Decision Registry
+`.claude/decisions/DECISIONS.md` — chronological log of architectural and workflow decisions.
+Updated automatically via `log-decision` skill after significant changes.
+
+### cross-stack-architecture-starter-pack — Calibration Note
+This repo contains full SaaS-grade patterns (multi-tenancy, OIDC, tenant scoping).
+**Most projects here do not need all of it.** Use `arch-review` skill for lightweight checks.
+Only pull full ARDs for explicitly multi-tenant or enterprise-grade work.
 
 ---
 
