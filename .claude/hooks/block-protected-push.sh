@@ -7,7 +7,10 @@ COMMAND=$(echo "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); p
 
 PROTECTED="main|master|development|dev|production"
 
-if echo "$COMMAND" | grep -qE "git push" && echo "$COMMAND" | grep -qE "origin ($PROTECTED)"; then
+# Only check the first line — avoids false positives from heredoc bodies
+FIRST_LINE=$(echo "$COMMAND" | head -1)
+
+if echo "$FIRST_LINE" | grep -qE "^\s*git push" && echo "$FIRST_LINE" | grep -qE "origin\s+($PROTECTED)\b"; then
   echo '{"decision":"block","reason":"Direct push to protected branch is forbidden. Create a feature branch and open a PR instead."}'
   exit 2
 fi
