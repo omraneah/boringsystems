@@ -14,6 +14,3 @@
 	path = personal-apps
 	url = git@github.com:omraneah/personal-apps.git
 
-[submodule "resume_app"]
-	path = resume_app
-	url = git@github.com:omraneah/resume_app.git
