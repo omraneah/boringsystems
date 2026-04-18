@@ -1,0 +1,19 @@
+[submodule "boringsystems"]
+	path = boringsystems
+	url = git@github.com:omraneah/boringsystems.git
+
+[submodule "cross-stack-architecture-starter-pack"]
+	path = cross-stack-architecture-starter-pack
+	url = git@github.com:omraneah/cross-stack-architecture-starter-pack.git
+
+[submodule "llm-context-2026"]
+	path = llm-context-2026
+	url = git@github.com:omraneah/llm-context-2026.git
+
+[submodule "personal-apps"]
+	path = personal-apps
+	url = git@github.com:omraneah/personal-apps.git
+
+[submodule "resume_app"]
+	path = resume_app
+	url = git@github.com:omraneah/resume_app.git
