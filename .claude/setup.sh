@@ -22,7 +22,22 @@ else
   echo "Created: ~/.claude/skills → personal-skills/"
 fi
 
-# 2. Memory: symlink for workspace project memory
+# 2. Settings: symlink ~/.claude/settings.json to workspace canonical
+SETTINGS_SRC="$WORKSPACE_DIR/.claude/settings.json"
+SETTINGS_DST="$CLAUDE_DIR/settings.json"
+if [ -L "$SETTINGS_DST" ]; then
+  echo "settings symlink already exists — skipping"
+elif [ -f "$SETTINGS_DST" ]; then
+  echo "Backing up existing settings.json → settings.json.bak"
+  mv "$SETTINGS_DST" "$SETTINGS_DST.bak"
+  ln -s "$SETTINGS_SRC" "$SETTINGS_DST"
+  echo "Created: ~/.claude/settings.json → .claude/settings.json"
+else
+  ln -s "$SETTINGS_SRC" "$SETTINGS_DST"
+  echo "Created: ~/.claude/settings.json → .claude/settings.json"
+fi
+
+# 3. Memory: symlink for workspace project memory
 if [ -L "$MEMORY_DST" ]; then
   echo "memory symlink already exists — skipping"
 elif [ -d "$MEMORY_DST" ]; then

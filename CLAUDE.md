@@ -100,7 +100,12 @@ Run once after cloning:
 ```bash
 bash /Users/ahmedomrane/Workspace/.claude/setup.sh
 ```
-This creates: `~/.claude/skills` → `personal-skills/` symlink + workspace memory symlink.
+This creates three symlinks:
+- `~/.claude/skills` → `personal-skills/` (all personal skills, globally available)
+- `~/.claude/settings.json` → `.claude/settings.json` (hooks, permissions, plugins — version controlled)
+- `~/.claude/projects/.../memory` → `.claude/projects/.../memory` (workspace memory in git)
+
+`settings.local.json` is gitignored — it is Claude's runtime permission cache, not config.
 
 ### Decision Registry
 `.claude/decisions/DECISIONS.md` — chronological log of architectural and workflow decisions.
