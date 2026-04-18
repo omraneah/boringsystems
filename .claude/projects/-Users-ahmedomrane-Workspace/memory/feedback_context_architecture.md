@@ -4,21 +4,19 @@ description: How context flows from workspace to submodules — design decision 
 type: feedback
 ---
 
-Context architecture is intentionally layered and minimal:
+Context architecture is intentionally simple:
 
-1. `~/.claude/CLAUDE.md` (symlink → `/Workspace/.claude/global-claude.md`) — always loaded, every session, every project. Carries identity, collaboration rules, git rule, strategic context pointer.
-2. `/Workspace/CLAUDE.md` — loaded when in workspace or any submodule (CLAUDE.md loads by walking up the directory tree). Carries workspace structure map.
-3. Submodule `CLAUDE.md` — project-specific only. Lean.
-4. Memory — project-specific per git repo. No cross-project symlinks.
+1. `/Workspace/CLAUDE.md` — the primary context file. Always opened from the workspace root, so always loaded. Carries identity, rules, workspace structure, git workflow.
+2. Submodule `CLAUDE.md` — project-specific only, lean. The workspace CLAUDE.md loads automatically via directory walk-up when Claude opens in a submodule.
+3. Memory — project-specific per git repo. No cross-project symlinks.
 
-**Why:** Symlinked submodule memory would push workspace-structure noise into focused submodule sessions. The global CLAUDE.md handles "distilled bigger picture" without the map. Going deeper into a submodule intentionally narrows context.
+**Why no `~/.claude/CLAUDE.md`:** Ahmed always opens Claude from the workspace root. A global file would be redundant and adds a machine-level setup step with no real benefit. Avoided as unnecessary complexity.
 
-**Why:** Documented Anthropic approach — `~/.claude/CLAUDE.md` is the official mechanism for global context. `.claude/rules/` with symlinks is the official mechanism for sharing rules across projects.
+**Why no memory symlinks:** Symlinked submodule memory would push workspace-structure noise into focused submodule sessions. Going deeper into a submodule intentionally narrows context — that's the point.
 
 **Revisit if:**
-- Submodule sessions lack critical context that can't be covered by the global CLAUDE.md
-- A submodule develops enough project-specific memory that it needs its own profile
+- Ahmed starts opening Claude from outside the workspace root regularly
+- A submodule needs context that the workspace CLAUDE.md doesn't cover via walk-up
 - The relationship between boringsystems and personal-apps grows complex enough to warrant shared rules via `.claude/rules/` symlinks
-- A new submodule is added that needs different global context behavior
 
-**How to apply:** When opening a new submodule as a primary work context, check whether a project-level CLAUDE.md exists there. If not, suggest creating one focused on that project. Do not suggest adding workspace-level context there — it loads automatically.
+**How to apply:** When opening a new submodule as a primary work context, check whether a project-level CLAUDE.md exists there. If not, suggest creating one focused on that project only. The workspace context loads automatically via directory walk-up.
