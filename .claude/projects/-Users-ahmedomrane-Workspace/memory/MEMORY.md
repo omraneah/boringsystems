@@ -1,3 +1,6 @@
-# Memory Index
+# MEMORY INDEX
 
-- [cross-stack-architecture-starter-pack](project_starter_pack.md) — Agent-ready architecture starter pack built on ARDs; 33 new files across AGENT-GUIDES, DECISION-TREES, PATTERNS, ANTI-PATTERNS; includes GAP-NOTES and CLARIFICATION-NEEDED
+- [Ahmed Omrane — Profile](user_profile.md) — Who Ahmed is, his background, capabilities, and operating context in France 2026
+- [Collaboration Preferences](feedback_collaboration.md) — Tone, code style, what to avoid: terse, no summaries, surgical changes only
+- [Workspace Structure & Project Map](project_workspace_structure.md) — Folder-by-folder breakdown of `/Users/ahmedomrane/Workspace/` with access rules and tech stacks
+- [Ahmed — Strategic Context 2026](user_strategic_context.md) — Transition phase, positioning philosophy, French market specifics, work hygiene doctrine

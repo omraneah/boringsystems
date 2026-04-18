@@ -28,7 +28,6 @@ He is a sovereign explorer. Depth-oriented. France-based.
 | `cross-stack-architecture-starter-pack/` | Distilled architectural principles and agent guides. Ahmed's opinionated system for starting projects correctly. | Read-only. These are non-negotiable boundaries. |
 | `boringsystems/` | Ahmed's personal site — engineering leadership case files. Built with Astro, deployed on Vercel. | Active project. |
 | `personal-apps/` | Subdomain apps on boringsystems domain. Next.js 16 + React 19 + Tailwind 4. First app: pollen-tracker. | Active project. |
-| `resume_app/` | Outdated app for resume work. | Low priority. |
 
 ---
 
@@ -67,6 +66,11 @@ He is a sovereign explorer. Depth-oriented. France-based.
 - **Do not add comments or docstrings** to code you didn't touch.
 - When working in any project, read the relevant existing code before suggesting changes.
 - When uncertain about architectural decisions, reference `cross-stack-architecture-starter-pack/`.
+
+### Git Workflow (Non-Negotiable)
+- **Never push to `main`, `master`, or `development`** — or any default branch.
+- Always create a feature branch, push to it, and open a PR.
+- No exceptions, no urgency overrides.
 
 ---
 
