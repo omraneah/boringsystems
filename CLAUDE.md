@@ -84,7 +84,7 @@ He is a sovereign explorer. Depth-oriented. France-based.
 | `/commit` | Personal (all projects) | Manual or auto |
 | `/pr` | Personal (all projects) | Manual only |
 | `/log-decision` | Personal (all projects) | Claude auto-invokes after decisions |
-| `/arch-review` | Workspace | Manual or auto |
+| `/arch-review` | Personal (all projects) | Manual or auto |
 | `/new-post` | boringsystems only | Manual only |
 | `/content-research` | boringsystems only | Manual or auto |
 
@@ -93,6 +93,14 @@ He is a sovereign explorer. Depth-oriented. France-based.
 |---|---|---|
 | `block-protected-push.sh` | PreToolUse (Bash) | Blocks any `git push origin main/master/dev/...` |
 | `auto-commit.sh` | Stop (async) | Auto-commits + pushes if dirty, on feature branches only |
+| `session-start.sh` | SessionStart (async) | Pulls latest on `main` or `development` if session opens on base branch |
+
+### New machine setup
+Run once after cloning:
+```bash
+bash /Users/ahmedomrane/Workspace/.claude/setup.sh
+```
+This creates: `~/.claude/skills` → `personal-skills/` symlink + workspace memory symlink.
 
 ### Decision Registry
 `.claude/decisions/DECISIONS.md` — chronological log of architectural and workflow decisions.
