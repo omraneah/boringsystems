@@ -1,0 +1,115 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="À propos" description="Ahmed Omrane — opérateur de niveau CTO spécialisé dans l'ingénierie contrainte-à-scale." lang="fr">
+  <div class="page">
+    <div class="page-inner">
+      <header class="page-header">
+        <p class="label">À propos</p>
+        <h1 class="page-title">Ahmed Omrane</h1>
+      </header>
+
+      <div class="bio">
+        <p>
+          Je construis et gouverne des systèmes techniques à l'intersection de la contrainte et de la scale — là où les décisions d'ingénierie ont des conséquences directes sur le P&amp;L et où le mauvais mouvement se compose pendant des années. Mon parcours est dans le travail d'opérateur de niveau CTO dans des entreprises en phase précoce et de croissance : construire des organisations d'ingénierie de zéro, naviguer dans des environnements à forte présence fondateur, et faire évoluer des plateformes en production sans interruption.
+        </p>
+        <p>
+          Ma pratique est l'ingénierie contrainte-à-scale : établir des systèmes adaptés à la gouvernance sous contraintes de ressources, organisationnelles et techniques. Cela signifie séquencer correctement avant de construire, traiter l'architecture comme une décision business, et concevoir pour que le système fonctionne sans moi. Les études de cas et guides sur ce site documentent à quoi ça ressemble en pratique.
+        </p>
+        <p>
+          J'utilise les systèmes IA architecturalement, pas comme des outils d'accélération — comme une seconde couche cognitive avec une gouvernance explicite, un corpus de récupération structuré, et une séparation stricte entre la connaissance à long terme et le contexte en direct. Cela façonne la façon dont je pense à la fois à mon propre levier et aux systèmes que je construis pour les équipes.
+        </p>
+        <p>
+          Basé en France, avec un focus marché européen et un parcours opérationnel international.
+        </p>
+      </div>
+
+      <div class="contact">
+        <p class="label">Contact</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/omrane-ahmed/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+
+  .page-inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+    display: block;
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--size-2xl);
+  }
+
+  .bio {
+    margin-bottom: var(--space-xl);
+  }
+
+  .bio p {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: var(--space-md);
+  }
+
+  .bio p:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact {
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-links {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-top: var(--space-sm);
+  }
+
+  .contact-links a {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    color: var(--accent);
+    transition: color 0.15s;
+  }
+
+  .contact-links a:hover {
+    color: var(--text);
+  }
+
+  @media (max-width: 768px) {
+    .page-inner {
+      padding: 0 var(--space-md);
+    }
+  }
+</style>

@@ -1,25 +1,87 @@
 ---
 const pathname = Astro.url.pathname;
+const isFrench = pathname.startsWith('/fr');
+
+const isHome = isFrench ? (pathname === '/fr' || pathname === '/fr/') : pathname === '/';
+const isCaseFiles = pathname.includes('/case-files');
+const isPlaybooks = pathname.includes('/operating-playbooks');
+const isAbout = pathname.endsWith('/about');
+
+const base = isFrench ? '/fr' : '';
+
+const langHref = isFrench
+  ? (pathname.replace(/^\/fr/, '') || '/')
+  : (pathname === '/' ? '/fr' : '/fr' + pathname);
 ---
 
 <nav class="site-nav">
   <ul class="nav-links">
     <li>
-      <a href="/" class:list={[{ active: pathname === '/' }]}>Home</a>
+      <a href={isFrench ? '/fr' : '/'} class:list={[{ active: isHome }]}>
+        {isFrench ? 'Accueil' : 'Home'}
+      </a>
     </li>
-    <li><a href="/case-files" class:list={[{ active: pathname.startsWith('/case-files') }]}>Case Files</a></li>
-    <li><a href="/operating-playbooks" class:list={[{ active: pathname.startsWith('/operating-playbooks') }]}><span class="label-full">Operating Playbooks</span><span class="label-short">Playbooks</span></a></li>
-    <li><a href="/about" class:list={[{ active: pathname === '/about' }]}>About</a></li>
+    <li>
+      <a href={`${base}/case-files`} class:list={[{ active: isCaseFiles }]}>
+        {isFrench ? 'Études de cas' : 'Case Files'}
+      </a>
+    </li>
+    <li>
+      <a href={`${base}/operating-playbooks`} class:list={[{ active: isPlaybooks }]}>
+        <span class="label-full">{isFrench ? 'Guides opérationnels' : 'Operating Playbooks'}</span>
+        <span class="label-short">{isFrench ? 'Guides' : 'Playbooks'}</span>
+      </a>
+    </li>
+    <li>
+      <a href={`${base}/about`} class:list={[{ active: isAbout }]}>
+        {isFrench ? 'À propos' : 'About'}
+      </a>
+    </li>
   </ul>
+
+  <div class="nav-controls">
+    <a href={langHref} class="lang-toggle" title={isFrench ? 'Switch to English' : 'Passer en français'}>
+      {isFrench ? 'EN' : 'FR'}
+    </a>
+    <span class="nav-sep" aria-hidden="true">·</span>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+      <span class="icon-dark" aria-hidden="true">☾</span>
+      <span class="icon-light" aria-hidden="true">☀</span>
+    </button>
+  </div>
 </nav>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    }
+
+    btn.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+      try { localStorage.setItem('bs-theme', next); } catch (e) {}
+    });
+  })();
+</script>
 
 <style>
   .site-nav {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding: var(--space-md) var(--space-lg);
     max-width: var(--max-wide);
     margin: 0 auto;
+    gap: var(--space-md);
   }
 
   .nav-links {
@@ -29,6 +91,8 @@ const pathname = Astro.url.pathname;
     list-style: none;
     padding: 0;
     margin: 0;
+    flex: 1;
+    justify-content: flex-end;
   }
 
   .nav-links a {
@@ -49,7 +113,72 @@ const pathname = Astro.url.pathname;
     color: var(--text);
   }
 
-@media (max-width: 768px) {
+  /* Controls: language + theme */
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: var(--space-sm);
+    border-left: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .nav-sep {
+    color: var(--border);
+    font-size: var(--size-xs);
+    user-select: none;
+  }
+
+  .lang-toggle {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.45rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .lang-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+  }
+
+  .theme-toggle {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    color: var(--text-muted);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.45rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+  }
+
+  .theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+  }
+
+  /* In dark mode, show moon (clicking switches to light) */
+  .icon-dark { display: inline; }
+  .icon-light { display: none; }
+
+  /* In light mode, show sun (clicking switches to dark) */
+  [data-theme="light"] .icon-dark { display: none; }
+  [data-theme="light"] .icon-light { display: inline; }
+
+  @media (max-width: 768px) {
     .site-nav {
       padding: var(--space-sm) var(--space-md);
     }
@@ -64,6 +193,11 @@ const pathname = Astro.url.pathname;
 
     .label-short {
       display: inline;
+    }
+
+    .nav-controls {
+      gap: 0.4rem;
+      padding-left: var(--space-sm);
     }
   }
 </style>

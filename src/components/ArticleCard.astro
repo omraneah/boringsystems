@@ -4,9 +4,10 @@ interface Props {
   description: string;
   href: string;
   meta?: string;
+  readLabel?: string;
 }
 
-const { title, description, href, meta } = Astro.props;
+const { title, description, href, meta, readLabel = 'Read →' } = Astro.props;
 ---
 
 <article class="article-card">
@@ -14,7 +15,7 @@ const { title, description, href, meta } = Astro.props;
     {meta && <p class="card-meta muted">{meta}</p>}
     <h3 class="card-title"><a href={href}>{title}</a></h3>
     <p class="card-excerpt muted">{description}</p>
-    <a href={href} class="card-read accent">Read →</a>
+    <a href={href} class="card-read accent">{readLabel}</a>
   </div>
 </article>
 

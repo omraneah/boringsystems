@@ -30,6 +30,16 @@
   --max-wide:    1100px;
 }
 
+[data-theme="light"] {
+  --bg:           #faf9f7;
+  --bg-elevated:  #f0ede8;
+  --border:       #d4cfc9;
+  --text:         #1a1917;
+  --text-muted:   #706e6a;
+  --accent:       #8b6914;
+  --accent-dim:   #b09050;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -43,6 +53,7 @@ html {
   font-size: 16px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 body {
