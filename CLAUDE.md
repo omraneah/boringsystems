@@ -111,6 +111,16 @@ This creates three symlinks:
 `.claude/decisions/DECISIONS.md` — chronological log of architectural and workflow decisions.
 Updated automatically via `log-decision` skill after significant changes.
 
+### MCP Integrations — Non-Negotiable Protocol
+
+Before setting up any MCP server manually (.mcp.json, API keys, env vars):
+1. **Check claude.ai Settings → Connectors first.** If a direct connector exists, use it. Stop.
+2. Only do manual setup if no direct connector exists and the need is confirmed.
+
+Services with direct connectors (never set up manually): **Linear, GitHub, Gmail** — and any others added to claude.ai Connectors going forward. These are OAuth-managed by Anthropic, account-scoped, and work in every session including cloud and mobile automatically.
+
+---
+
 ### cross-stack-architecture-starter-pack — Calibration Note
 This repo contains full SaaS-grade patterns (multi-tenancy, OIDC, tenant scoping).
 **Most projects here do not need all of it.** Use `arch-review` skill for lightweight checks.
