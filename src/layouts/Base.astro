@@ -8,14 +8,15 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 interface Props {
   title: string;
   description?: string;
+  lang?: 'en' | 'fr';
 }
 
-const { title, description = 'Systems that scale. Judgment that holds.' } = Astro.props;
+const { title, description = 'Systems that scale. Judgment that holds.', lang = 'en' } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,6 +30,14 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('bs-theme');
+          if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <Nav />
