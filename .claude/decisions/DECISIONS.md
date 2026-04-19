@@ -94,6 +94,23 @@ Claude updates this file automatically after any session where architectural, wo
 
 ---
 
+## 2026-04-19 — MCP Connector Protocol: Built-in OAuth First, Never Manual API Keys
+
+**Context:** Wasted a session setting up Linear MCP manually (.mcp.json + LINEAR_API_KEY env var) when Linear (and GitHub, Gmail) already have direct OAuth connectors through claude.ai. These connectors are account-bound: Anthropic holds the OAuth token server-side, so they work automatically in every session — local desktop, cloud web UI, phone — without any configuration on the machine or in the repo.
+
+**Decision:** Non-negotiable protocol for any MCP integration going forward:
+1. Check claude.ai Settings → Connectors first. If a direct connector exists, use it. Done.
+2. Only proceed to manual MCP setup (.mcp.json, API keys, env vars) if no direct connector exists and the need is confirmed.
+3. Never set up a manual MCP for: Linear, GitHub, Gmail, or any other service that has a direct claude.ai connector.
+
+**Why:** Built-in connectors are: zero-config, account-scoped (survive machine changes and cloud sessions), OAuth-managed by Anthropic (no token rotation, no secrets in files), and work identically on desktop/web/mobile. Manual setups are none of these things. The manual route is a maintenance burden with no upside when a connector exists.
+
+**Expected outcome:** No manual MCP setup ever conflicts with an existing connector. Time is not wasted on API key plumbing for services Anthropic already integrates.
+
+**Actual outcome:** *(pending)*
+
+---
+
 ## 2026-04-18 — Workspace Infrastructure: Hooks, Skills, Decision Registry
 
 **Context:** Working from a configured-user baseline. No automated git enforcement, no skills, no auto-commit behavior, no decision tracking.
