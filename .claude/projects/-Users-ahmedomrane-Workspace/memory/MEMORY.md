@@ -6,3 +6,4 @@
 - [Ahmed — Strategic Context 2026](user_strategic_context.md) — Transition phase, positioning philosophy, French market specifics, work hygiene doctrine
 - [Context Inheritance Architecture](feedback_context_architecture.md) — How context flows across workspace/submodules; revisit triggers documented
 - [MCP Connector Protocol](feedback_mcp_connectors.md) — Check claude.ai Connectors first; never set up manual MCP for Linear/GitHub/Gmail or any service with a direct connector
+- [Article Capture Behavior](feedback_article_capture.md) — Proactively suggest `/article-capture` when a conversation produces deep technical + business model insight worth publishing on boringsystems
