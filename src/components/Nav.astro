@@ -45,7 +45,7 @@ const langHref = isFrench
       <span class:list={["opt", { active: isFrench }]}>FR</span>
     </a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
-      <span class="icon-dark" aria-hidden="true">☾</span>
+      <span class="icon-dark" aria-hidden="true">🌙</span>
       <span class="icon-light" aria-hidden="true">☀️</span>
     </button>
   </div>
@@ -178,8 +178,8 @@ const langHref = isFrench
     transition: color 0.15s, background-color 0.15s;
   }
 
-  /* dark mode: croissant active */
-  .icon-dark { background: var(--bg-elevated); color: var(--text); }
+  /* dark mode: moon active */
+  .icon-dark { background: var(--bg-elevated); color: var(--text); filter: grayscale(1); }
   .icon-light { background: none; }
 
   /* light mode: sun active */
