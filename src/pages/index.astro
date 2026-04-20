@@ -35,19 +35,19 @@ const highlightedCaseFile = (await getCollection('case-files', ({ data }) => dat
           )}
         </div>
         <div class="highlight-carousel">
-          {highlightedPiece && (
-            <a href={`/operating-playbooks/${highlightedPiece.slug}`} class="highlight-card is-active">
-              <span class="highlight-series">{highlightedPiece.data.series}</span>
-              <h2 class="highlight-title">{highlightedPiece.data.title}</h2>
-              <p class="highlight-description">{highlightedPiece.data.description}</p>
-              <span class="highlight-read accent">Read →</span>
-            </a>
-          )}
           {highlightedCaseFile && (
-            <a href={`/case-files/${highlightedCaseFile.slug}`} class="highlight-card">
+            <a href={`/case-files/${highlightedCaseFile.slug}`} class="highlight-card is-active">
               <span class="highlight-series">Case File</span>
               <h2 class="highlight-title">{highlightedCaseFile.data.title}</h2>
               <p class="highlight-description">{highlightedCaseFile.data.description}</p>
+              <span class="highlight-read accent">Read →</span>
+            </a>
+          )}
+          {highlightedPiece && (
+            <a href={`/operating-playbooks/${highlightedPiece.slug}`} class="highlight-card">
+              <span class="highlight-series">{highlightedPiece.data.series}</span>
+              <h2 class="highlight-title">{highlightedPiece.data.title}</h2>
+              <p class="highlight-description">{highlightedPiece.data.description}</p>
               <span class="highlight-read accent">Read →</span>
             </a>
           )}
