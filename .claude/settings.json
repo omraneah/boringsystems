@@ -1,5 +1,4 @@
 {
-  "skipDangerousModePermissionPrompt": true,
   "permissions": {
     "allow": [
       "Agent",
@@ -8,17 +7,14 @@
       "Bash"
     ]
   },
-  "enabledPlugins": {
-    "vercel-plugin@vercel": true
-  },
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "async": true,
-            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/session-start.sh"
+            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/session-start.sh",
+            "async": true
           }
         ]
       }
@@ -39,11 +35,20 @@
         "hooks": [
           {
             "type": "command",
-            "async": true,
-            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/auto-commit.sh"
+            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/auto-commit.sh",
+            "async": true
           }
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "vercel-plugin@vercel": true
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "voiceEnabled": true,
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
   }
 }

@@ -94,6 +94,40 @@ Claude updates this file automatically after any session where architectural, wo
 
 ---
 
+## 2026-04-20 — Full Stack Decision: boringsystems + personal-apps
+
+**Context:** Two active hobby projects deploying on Vercel — boringsystems (Astro) and personal-apps/pollen-tracker (Next.js 16 / React 19 / Tailwind 4). Need database, analytics, auth, project management, and AI tooling choices locked in before implementation starts.
+
+**Decision:** Adopted stack:
+
+| Layer | Tool |
+|---|---|
+| Deployment | Vercel |
+| Main site | Astro (boringsystems.app) |
+| Portfolio app | Next.js 16 / React 19 / Tailwind 4 (portfolio.boringsystems.app) |
+| Database | Neon — one instance per project |
+| Auth | Clerk — only if personal-apps needs user accounts |
+| Analytics | Mixpanel — both properties |
+| Version control | GitHub |
+| CI/CD | Vercel + GitHub (preview per PR, deploy gates) |
+| Project management | Linear (boringsystems workspace) |
+| AI coding | Claude Code (desktop + cloud) |
+| Connectors | claude.ai OAuth — Linear, GitHub (account-bound, zero config) |
+
+**Why Neon over Supabase:**
+- Supabase Auth has a real migration problem: password hashes can't be exported via API, JWT secrets change on migration, users must re-login. This was a concern 3 years ago and is still valid.
+- Neon is pure serverless Postgres — no auth/storage overhead, no lock-in beyond standard SQL.
+- Neon's Vercel integration creates a copy-on-write database branch per preview deployment. Supabase's Vercel integration routes all preview deploys to the production database — a broken CI/CD story.
+- If auth is ever needed, Clerk handles it independently with no database lock-in.
+
+**Why not Supabase at all:** Could use it as a plain Postgres host (bypassing its auth), but Neon does that better with a cleaner Vercel integration and no unused surface area.
+
+**Expected outcome:** Both projects have independent, portable Postgres databases. No vendor lock-in on auth. Preview deployments are isolated from production. Analytics centralized in Mixpanel.
+
+**Actual outcome:** *(pending)*
+
+---
+
 ## 2026-04-19 — MCP Connector Protocol: Built-in OAuth First, Never Manual API Keys
 
 **Context:** Wasted a session setting up Linear MCP manually (.mcp.json + LINEAR_API_KEY env var) when Linear (and GitHub, Gmail) already have direct OAuth connectors through claude.ai. These connectors are account-bound: Anthropic holds the OAuth token server-side, so they work automatically in every session — local desktop, cloud web UI, phone — without any configuration on the machine or in the repo.
