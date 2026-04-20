@@ -181,6 +181,10 @@ const highlightedCaseFile = (await getCollection('case-files', ({ data }) => dat
     display: block;
   }
 
+  :global([data-theme="light"]) .hero-logo {
+    filter: invert(1);
+  }
+
   .hero-rule {
     position: absolute;
     bottom: 0;
