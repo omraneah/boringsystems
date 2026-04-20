@@ -2,6 +2,8 @@
 
 This is Ahmed Omrane's primary workspace. All projects live here.
 
+Routing map across projects → `WORKSPACE_MAP.md` (load before exploring unfamiliar folders).
+
 ---
 
 ## Who Ahmed Is

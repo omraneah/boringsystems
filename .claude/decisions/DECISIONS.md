@@ -161,3 +161,14 @@ Claude updates this file automatically after any session where architectural, wo
 **Expected outcome:** Git discipline is machine-enforced. Sessions auto-commit. Recurring workflows invocable by slash command. Decisions tracked without manual intervention.
 
 **Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-20 — Add WORKSPACE_MAP.md routing index
+**Context:** Token-expensive folder exploration every session. Only `llm-context-2026` had a routing map (Strategic Index). No single entry point describing top-level structure of the workspace.
+**Decision:** Add hand-maintained `WORKSPACE_MAP.md` at workspace root — one-hop index pointing to each project's own routing entry (Strategic Index, AGENTS.md, ARDs) where one exists; references-only for projects without an index. Single-line pointer added to `CLAUDE.md` so it's discovered automatically. Explicitly NOT building a hook for updates — SessionStart/Stop can't reliably diff structural drift; maintenance is inline, same discipline as `/log-decision`.
+**Why:** Routing index compresses the first-touch cost of a session. Auto-generation is fragile at the right abstraction level (project purpose, not file inventory). Keeping it hand-maintained and shallow (top-level only) prevents drift and overreach. Not forcing submodule maps respects the rule: don't overdo it.
+**Expected outcome:** Future sessions route to the right project in one hop. Structural changes (project added/removed/renamed) update the map inline. No hook complexity to maintain.
+**Actual outcome:** *(pending)*
+
+---
