@@ -19,7 +19,6 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
     <div class="hero-visual">
       <img src="/flywheel-logo.svg" alt="" aria-hidden="true" class="hero-logo" />
     </div>
-    <div class="hero-rule"></div>
   </div>
 
   {(highlightedPiece || highlightedCaseFile) && (
@@ -162,7 +161,6 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
 
 <style>
   .hero {
-    min-height: calc(100vh - 68px);
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -170,8 +168,7 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
     gap: var(--space-xl);
     max-width: var(--max-wide);
     margin: 0 auto;
-    padding: 0 var(--space-lg);
-    position: relative;
+    padding: var(--space-xl) var(--space-lg) var(--space-md);
   }
 
   .hero-content {
@@ -213,18 +210,8 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
     filter: invert(1);
   }
 
-  .hero-rule {
-    position: absolute;
-    bottom: 0;
-    left: var(--space-lg);
-    right: var(--space-lg);
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.4;
-  }
-
   .highlight-section {
-    padding: var(--space-lg) 0;
+    padding: var(--space-md) 0;
   }
 
   .highlight-header {
@@ -335,7 +322,7 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
   }
 
   .section {
-    padding: var(--space-xl) 0;
+    padding: var(--space-lg) 0;
   }
 
   .section-inner {
@@ -369,7 +356,6 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
   }
 
   .contact-section {
-    border-top: 1px solid var(--border);
   }
 
   .contact-box {
@@ -489,10 +475,6 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
       width: 240px;
     }
 
-    .hero-rule {
-      left: var(--space-md);
-      right: var(--space-md);
-    }
 
     .section {
       padding: var(--space-lg) 0;
