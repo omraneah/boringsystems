@@ -18,15 +18,22 @@ One of:
 
 ## Process
 
-1. **Load the guide.** Read `boringsystems/docs/french-guide.md`. Extract the do-not-translate list, banned register phrases list, and register rules. This is the source of truth — do not substitute general knowledge.
+1. **Load the guide.** Read `boringsystems/docs/french-guide.md`. Extract the two rules (re-voice, don't translate; default to English for technical/business terms), the do-not-translate list (illustrative, not exhaustive), the banned register phrases list, and the register rules. This is the source of truth — do not substitute general knowledge.
 
-2. **Scan for do-not-translate violations.** For each term in the list, grep the FR file(s) for common French translations that should have been left in English. Examples:
-   - "démarrage" where "startup" should have been used
-   - "déploiement" is fine as infrastructure term, but "déployer une startup" for "launch a startup" is wrong — it should be "lancer une startup"
-   - "sans serveur" → "serverless"
-   - "cadre de travail" → "framework"
-   - "agent conversationnel" → "chatbot" or "agent"
-   - "modèle de langage" used where "LLM" is standard
+2. **Scan for over-translation (the primary violation).** The default is that English technical and business terms stay in English. Flag any case where a professional English term was translated when it shouldn't have been.
+   - Start with the do-not-translate list as an anchor, but the scan is **not limited to the list** — any English tech or business term with common professional usage that was translated is a violation.
+   - Common failure patterns to grep for:
+     - "démarrage" where "startup" should have been used
+     - "cadre de travail" → should be "framework"
+     - "sans serveur" → should be "serverless"
+     - "agent conversationnel" → should be "chatbot" or "agent"
+     - "modèle de langage" → should be "LLM"
+     - "ingénierie" as a discipline/role label → should be "engineering"
+     - "produit" as a function/discipline → should be "product"
+     - "marketing/ventes/opérations/croissance/conception" as role labels when "marketing / sales / operations / growth / design" should be kept
+     - "intégration" where "onboarding" is standard
+     - "pré-lancement / amorçage" where "early-stage / bootstrap" are standard
+   - **Negative rule (critical): never flag an English term that was left in English as a missing translation.** That is correct behavior, not a violation. Both boringsystems audiences (technical + operator) are English-savvy. Sentences like *"L'équipe product valide la roadmap avant le prochain sprint."* are perfectly normal professional French and must pass clean.
 
 3. **Scan for banned register phrases.** Grep for each banned phrase from the guide. Report every occurrence with line number. Do not judge severity — every occurrence is a flag.
 
@@ -45,9 +52,10 @@ Structured markdown report, written to stdout (not a file). Sections:
 ```
 # French Audit — <file path>
 
-## Blockers — do-not-translate violations
+## Blockers — over-translation (English term translated when it shouldn't have been)
 - L42: "cadre de travail" should be "framework"
 - L87: "agent conversationnel" should be "chatbot" or "agent"
+- L103: "ingénierie" used as role label should be "engineering"
 
 ## Warnings — banned register
 - L12: "Il convient de noter que" — state the thing directly
