@@ -194,3 +194,73 @@ Applied immediately: moved `article-capture`, `article-review`, `french-audit` f
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-04-21 — Strict `/en` + `/fr` i18n on boringsystems, no implicit default
+
+**Context:** Site had `/fr/*` but no `/en/*`; English was the unprefixed default. Asymmetric structure made "proper two languages from the start" impossible and forced language detection into Nav logic.
+**Decision:** Move every EN page under `src/pages/en/*`. Rename content collections to `case-files-en` + `operating-playbooks-en` (`-fr` counterparts already existed). Add `astro.config.mjs` redirects so `/`, `/case-files/*`, `/engineering`, `/entrepreneurs`, `/essays`, `/operating-playbooks/*`, and `/about` 301 to their `/en/*` equivalents. Rewrite `Nav.astro` so prefix logic works symmetrically for both locales.
+**Why:** Two languages that are structurally equal is the only stable shape for a bilingual site. Any "default" locale forces the nav toggle to asymmetric logic and breaks when a third locale ever lands. The 301 layer protects every existing backlink.
+**Expected outcome:** Adding a third locale (or rotating the default) becomes a mirror operation, not a refactor. FR and EN pages develop at the same rate because they share a shape.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Mandatory `date` frontmatter + meta strip on case files
+
+**Context:** Articles had no persistent publish date — read time was derived per page, but dates were ad-hoc. The design charter called for a metadata strip at the top of every piece.
+**Decision:** Add `date: YYYY-MM-DD` as a required field in the `case-files` schema (both `-en` and `-fr`). Seed all existing articles from `git log --follow --diff-filter=A --format=%aI | tail -1` (first-merge date). Extend `src/lib/article-meta.ts` with `readTime()` + `formatDate()` + `articleMeta()`. Render the meta strip (`Feb 22, 2026 · 5 min read`) on every card and under every article subtitle. Update `article-review` skill to block if `date` is missing.
+**Why:** Date is a permanent property of the piece, not a runtime concern — it belongs in frontmatter where the schema enforces it. Rendering it consistently on card and article page cements the design-charter intent ("metadata strip at the top") without per-page code.
+**Expected outcome:** Every future case file gets both pieces of meta rendered automatically. Readers get signal about recency and length before clicking.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Typed content registry pattern for reusable UI assets
+
+**Context:** Lead magnets will multiply over time (starter prompts, prompt packs, templates, cohort offers). Each needs title/description/confirmation email content in EN + FR. Inlining any of this per-article creates a drift farm.
+**Decision:** Establish the "typed content registry" pattern on boringsystems. The canonical example is `src/lib/lead-magnets.ts`: a `Record<slug, Asset>` where each asset has locale-indexed fields (`title`, `description`, `buttonLabel`, `prompt`, `confirmation`), accessed via a single `getEntry(slug)` helper that throws on unknown slugs. The reusable `<LeadMagnet />` component + `/api/lead-magnet` route both resolve through the registry. Adding a new asset = one registry entry; no component, route, or mail code changes.
+**Why:** This shape matches how Ahmed thinks about reusable artefacts — abstract where reuse is likely, keep the abstraction surgical, single file, explicit types. It also sidesteps the next-gen temptation (a generic `<ContentRegistry />` with reflection) — one short typed file is more legible than any metaframework we could build over it.
+**Expected outcome:** The next reusable UI artefact that needs locale content (testimonials, CTAs, stack cards, pricing tiers) follows this shape without an argument. Drift between locales becomes visible at the type level, not at render time.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Mermaid via inline remark plugin + client-side render (reject playwright)
+
+**Context:** Article B needed a rendered architecture diagram. `rehype-mermaid` is the obvious pick, but its non-`pre-mermaid` strategies depend on `mermaid-isomorphic` which pulls in `playwright` at module scope — which broke `astro build` even with `strategy: 'pre-mermaid'` selected. Installing playwright + chromium into the build chain adds ~150MB and a chromium browser dependency in every CI environment.
+**Decision:** Drop `rehype-mermaid`. Write a ~12-line inline remark plugin in `astro.config.mjs` that rewrites `mermaid` code fences into raw `<pre class="mermaid">` HTML nodes before Shiki can touch them. Load mermaid.js client-side in `Article.astro`, running only when `pre.mermaid` blocks are present. Zero build-time browser dependency.
+**Why:** The playwright dependency on a mostly-static content site is an asymmetric cost for the feature's value. Client-side render with a progressive-enhancement loading placeholder is indistinguishable in UX from SSR for the reader, and it keeps the build chain portable.
+**Expected outcome:** Mermaid diagrams work on Vercel build without special setup. Future mermaid blocks in any `.md` or `.mdx` article render automatically with zoom + pan. If SSR mermaid ever becomes necessary (heavy static-export cases), revisit with the lighter `@mermaid-js/mermaid-cli` or server-side headless chromium at that time.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Vector-clean mermaid zoom via SVG width/height, not CSS transform
+
+**Context:** First zoom implementation used `transform: scale()` on the stage. The browser rasterised the SVG at its natural size first and upscaled the bitmap, producing visible pixelation at anything above 1.5×. Flex-centering on the stage also silently shrank the SVG back to fit the container, so zoom buttons had no visible effect at all.
+**Decision:** Capture the SVG's viewBox aspect on init, compute a base display size that fits the viewport at scale=1, then scale via `svg.style.width/height` (in pixels, driven by `base × scale`). Absolutely-position the stage (no flex), center via `transform: translate(-50%, -50%)`, and append pan offsets to that transform. ResizeObserver recomputes the base on viewport changes.
+**Why:** SVGs are vector — browsers re-render them at the requested width/height. Scaling the intrinsic size bypasses the rasterise-then-scale path of CSS transforms entirely. Dropping flex-centering was necessary because flex shrinks children below the container on overflow.
+**Expected outcome:** Diagrams stay sharp at any zoom from 0.3× to 6×, pan cost stays cheap (CSS translate is compositor-only), and the pattern applies to any future zoomable SVG without modification.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Home highlights as an ordered vertical stack (no carousel)
+
+**Context:** Home page had a two-slot rotating carousel (one case-file + one playbook). Ahmed wanted all three featured articles visible at once without requiring interaction, and wanted the "Selected Articles" grid constrained to the engineering lane (plus one explicitly pinned playbook).
+**Decision:** Replace the carousel with a vertical stack of three large highlight cards, sorted by the `order` flag, capped via `slice(0, 3)`. "Selected Articles" section (renamed from "Selected Case Files") now sources from technical-persona `featured` case files plus `getEntry('operating-playbooks-*', 's3-p2-context-is-the-edge')` — the playbook is pinned by explicit slug so rotation is a one-line edit, not a flag toggle. "All case files" link removed. Carousel JS + CSS + dots deleted.
+**Why:** The carousel hid two of three entries behind interaction. A stack matches the "dense, no decorative motion" side of the design charter and maximises scroll as the primary navigation signal. Pinning the playbook by slug (instead of a flag) keeps one playbook visible on home without giving every `featured` playbook a home slot it shouldn't have.
+**Expected outcome:** Readers see the three highlighted articles immediately. Ahmed can rotate which playbook sits alongside the engineering pieces by changing a single line. Adding a 4th highlight requires removing one — the `slice(0,3)` is deliberate, not a bug.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Create `/wrap-session` skill + auto-trigger behaviour
+
+**Context:** Every merge-pull-delete cycle this session ended with Claude doing the git mechanics on demand but missing the post-merge reflection (what compounded, what should become a skill, what needs an ADR). The lessons evaporated across session boundaries.
+**Decision:** Create cross-project skill `/wrap-session` in `personal-skills/wrap-session/` that runs git cleanup + produces a structured recap with improvement proposals (skills / hooks / ADRs / docs / memory / decisions). Save a feedback memory (`feedback_wrap_session.md`) so Claude auto-invokes it on natural-language triggers ("merged, pull and delete", "wrap this up", etc.) without requiring the slash command. The skill explicitly does NOT use a shell hook — hooks run deterministic commands, the recap needs Claude's reasoning.
+**Why:** System improvement is itself a capability. Without a codified closing ritual, every session's lessons live or die by the next prompt. With one, the compound interest of skill and doc investment accumulates.
+**Expected outcome:** Every future merge produces a recap that either (a) identifies durable patterns to codify or (b) honestly reports "nothing new, session was small" — both outcomes are information. The registry of skills and decisions grows at the rate of actual leverage, not activity.
+**Actual outcome:** *(pending)*
+
+---
