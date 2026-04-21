@@ -6,6 +6,22 @@ Routing map across projects → `WORKSPACE_MAP.md` (load before exploring unfami
 
 ---
 
+## Top architectural constraint — Laptop-Agnostic by Default
+
+**Everything here must survive a fresh-machine clone + the documented setup script.** No local-only state, no "works on my laptop" shortcuts, no hidden config, no manual auth tokens.
+
+Tests every change must pass:
+
+1. **Fresh-machine test.** Clone + `bash .claude/setup.sh` + `git submodule update --init --recursive` reproduces the full working state.
+2. **Cloud-agent test.** A claude.ai agent running against any project repo has everything it needs *in the checkout* — skills, docs, config.
+3. **No-token test.** No `gh auth login`, no API keys, no manual MCP setup when a claude.ai connector exists. GitHub/Linear/Gmail go through connectors, always.
+4. **Commit-or-it-doesn't-exist.** Hooks, skills, settings, memory, decisions, CLAUDE.md — version-controlled or it isn't real.
+5. **Symlink hygiene.** Symlinks from `~/` into a tracked workspace path are fine (reproducible via setup.sh). Symlinks from the repo out to the host are not.
+
+If a change can't pass these tests, surface the issue immediately — do not treat "manual step on new machine" as acceptable. Full memory entry: `memory/feedback_laptop_agnostic.md`.
+
+---
+
 ## Who Ahmed Is
 
 Ahmed is a senior engineering leader (CTO-equivalent scope) currently in a transition period — exiting Enakl after 3 years, re-entering on his own terms in France 2026.
