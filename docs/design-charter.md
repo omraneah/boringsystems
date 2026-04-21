@@ -109,6 +109,9 @@ Same register, different framing. Read the persona, then pick the opener:
 | Background | Skip — assume vocabulary | Define central terms once |
 | Trade-offs | Assume the reader will weigh them | Take a position on the common case |
 | Closing | Crystallized insight | "What to do now" clarity |
+| English jargon in FR | Keep every English technical term in English | Keep every English business/tech term in English |
+
+**French edition note.** Both audiences are English-savvy. Engineers in France work in English-tinted French; entrepreneurs and operators read English business/tech content daily. The FR editions of articles in **both** lanes keep English terms in English — translating `startup`, `MVP`, `pipeline`, `framework`, `engineering`, `product`, `growth`, `onboarding`, etc., is the single most common quality failure and reads as written for a general audience rather than a professional one. Full rule lives in [`french-guide.md`](./french-guide.md).
 
 ---
 

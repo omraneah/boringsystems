@@ -43,6 +43,8 @@ Use these IDs verbatim in content frontmatter and when the `article-review` skil
 - Invoking named incidents or references (Knight Capital, the S3 outage, CAP, etc.) is load-bearing for them — use them deliberately, not as flavor.
 - Lives primarily in the **Engineering** lane.
 
+**French edition (FR).** Engineers in France work in English-tinted French. They read English tech daily, and their working vocabulary for frameworks, infrastructure, tooling, and practice is English. FR content for this persona must **keep English terms in English** — translating `deploy`, `pipeline`, `framework`, `runtime`, `engineering`, `rollout`, `observability`, `webhook`, etc., makes the content feel written for a general audience, not a peer. See [`french-guide.md`](./french-guide.md) for the full rule.
+
 ---
 
 ## P2 — `operator` — Entrepreneurs, intrapreneurs, operators
@@ -71,8 +73,9 @@ Use these IDs verbatim in content frontmatter and when the `article-review` skil
 - Open with the business stake or the decision framing in the first paragraph.
 - Code blocks, file trees, and architecture diagrams are allowed — but must be framed with "why this matters to you" before and after.
 - Explicit "what this means for you" or "what to do now" sections near the end.
-- Safe to use English infrastructure and business terms (deploy, pipeline, startup, framework, MVP, etc.) — they hear these already. Define them *once* per article only if central.
 - Lives in the **Entrepreneurs** lane.
+
+**French edition (FR).** Entrepreneurs, intrapreneurs, and operators in France are English-savvy. They read English business and tech content as a normal part of their work — newsletters, product docs, Twitter/LinkedIn, investor decks. They expect to see `startup`, `MVP`, `pipeline`, `SaaS`, `onboarding`, `growth`, `product`, `marketing`, `sales` in English, and translating those terms reads as condescending — as if the writer assumed they couldn't handle professional vocabulary. **Keep English terms in English.** A brief gloss on first mention is only appropriate for genuinely niche terms — never for common professional vocabulary. See [`french-guide.md`](./french-guide.md) for the full rule.
 
 ---
 

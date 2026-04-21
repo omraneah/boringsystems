@@ -8,19 +8,28 @@ Personas (`technical`, `operator`) are defined in [`target-audiences.md`](./targ
 
 ---
 
-## The one rule
+## The two rules
 
-**Re-voice, don't translate.**
+**1. Re-voice, don't translate.**
 
 Work paragraph by paragraph, not sentence by sentence. Read the English paragraph, understand the argument, write the French paragraph the way a French operator would write it if they had the same thought.
 
 Literal translation of English sentence structure into French is the single largest quality failure on the current site.
 
+**2. Default to English for technical and business terms.**
+
+The bar to translate an English technical or business term is high. The default is to keep it in English. This applies across **both audiences** — `technical` and `operator`:
+
+- Engineers in France work in English-tinted French every day. Code, tooling, frameworks, practices, and roles are discussed in English — they do not think in `cadre de travail`, they think in `framework`.
+- Entrepreneurs, intrapreneurs, and operators in France are English-savvy. They read English tech and business content daily. They expect to see `startup`, `MVP`, `pipeline`, `SaaS`, `onboarding`, `growth`, `product` in their original form.
+
+Translating these terms when they don't need it makes the content feel like it was written for a general audience rather than a professional one — and both boringsystems audiences are professional. The do-not-translate lists below are **illustrative, not exhaustive**. When in doubt: keep the English term. The only time to translate is when the French has genuine, common professional usage that's stronger than the English (rare for the vocabulary this site uses).
+
 ---
 
-## Do NOT translate these terms
+## Do NOT translate these terms (illustrative list)
 
-These are used as-is in professional French and translating them signals naïveté.
+These are used as-is in professional French and translating them signals naïveté. **The list is not exhaustive** — it anchors the pattern. Any English technical or business term with common professional usage follows the same rule, even if not listed here. When in doubt, keep English.
 
 **Business / startup vocabulary.**
 startup · early stage · bootstrap · scale · scaling · roadmap · sprint · backlog · framework · pitch · funding · SaaS · MVP · product-market fit · churn · burn rate · runway · pivot · go-to-market · onboarding · stakeholder · lead · deal · growth · retention
@@ -43,7 +52,7 @@ LLM · prompt · token · context window · fine-tuning · embedding · RAG · a
 
 If a term appears in both lists and in French dictionaries, the do-not-translate rule wins. French operators use these words in English every day.
 
-**Exception.** When explaining a term to `operator` persona at first introduction, a brief parenthetical gloss is acceptable: `serverless (exécution à la demande sans gestion de serveurs)`. Use it once per article, not every mention.
+**Exception (use sparingly).** When introducing a term that is genuinely niche even for an English-savvy audience (rare), a brief parenthetical gloss is acceptable on first mention only: `serverless (exécution à la demande sans gestion de serveurs)`. Do not gloss common terms — `startup`, `pipeline`, `framework`, `MVP`, `SaaS`, `product`, `engineering`, `onboarding` never need a gloss. Both audiences know them.
 
 ---
 
@@ -93,9 +102,14 @@ The `french-audit` skill flags paragraphs where FR exceeds EN by more than 25% a
 
 ## Anglicisms: which are fine, which are not
 
-**Fine.**
-- All the do-not-translate list above.
-- Mixing English technical terms into French sentences is natural and expected: *"Le pipeline de déploiement tombe si le webhook ne répond pas dans les 30 secondes."*
+**Fine (and expected).**
+- All the do-not-translate list above, and any English technical or business term the site uses.
+- Mixing English technical terms into French sentences is natural and expected. Examples that should read as perfectly normal professional French:
+  - *"Le pipeline de déploiement tombe si le webhook ne répond pas dans les 30 secondes."*
+  - *"L'équipe product valide la roadmap avant le prochain sprint."*
+  - *"Un MVP pour une startup early-stage doit tenir sans serverless complexe."*
+  - *"Le growth dépend du onboarding plus que du funnel lui-même."*
+- If the sentence reads naturally when an English term stays in English, keep it. Do not "fix" it.
 
 **Not fine.**
 - False cognates forced into French meaning: "éventuellement" means "possibly", not "eventually".
@@ -106,13 +120,13 @@ The `french-audit` skill flags paragraphs where FR exceeds EN by more than 25% a
 
 ## Review checklist
 
-Before marking a French article ready, the `french-audit` skill checks:
+Before marking a French article ready, the `french-audit` skill checks (in order of severity):
 
-1. No do-not-translate term was translated.
-2. No banned register phrase survived the draft.
-3. No paragraph exceeds EN length by >25% without justification.
-4. Headlines, nav labels, CTAs were rewritten, not translated.
-5. Active voice dominates; passive constructions are deliberate.
-6. Sentences that exceed 25 words without a strong reason are flagged for splitting.
+1. **Over-translation (blocker)** — any English technical or business term that was translated when it shouldn't have been. This is the single most common quality failure. The do-not-translate lists above anchor what to look for, but the skill flags any translated term that has common English-language professional usage, even if not listed.
+2. **Banned register phrases (warning)** — every occurrence flagged.
+3. **Over-length paragraphs (warning)** — FR paragraph >25% longer than EN.
+4. **Headlines / nav labels / CTAs** — these must be *rewritten*, not translated.
+5. **Passive voice clusters (nit)** — paragraphs dominated by passive constructions.
+6. **Long sentences (nit)** — >25 words without a strong reason.
 
-The skill outputs a structured list. Ahmed decides per flag — this is not auto-fix.
+The skill outputs a structured list. Ahmed decides per flag — this is not auto-fix. **The skill never flags an English term left in English as a missing translation** — that is the desired behavior, not a violation.
