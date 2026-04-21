@@ -1,0 +1,156 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const CANONICAL_SERIES: Record<string, string> = {
+  'Series 1 — Foundations': 'Series 1 — Foundations',
+  'Series 2 — Judgement': 'Series 2 — Leadership and Judgment',
+  'Series 3 — AI Native': 'Series 3 — AI Edge',
+};
+
+const allPlaybooks = await getCollection('operating-playbooks-fr');
+
+const grouped: Record<string, typeof allPlaybooks> = {};
+const seriesNum: Record<string, number> = {};
+for (const item of allPlaybooks) {
+  const rawSeries = item.data.series ?? 'Other';
+  const seriesLabel = CANONICAL_SERIES[rawSeries] ?? rawSeries;
+  if (!grouped[seriesLabel]) grouped[seriesLabel] = [];
+  grouped[seriesLabel].push(item);
+  if (item.data.seriesNum !== undefined) {
+    seriesNum[seriesLabel] = item.data.seriesNum;
+  }
+}
+
+for (const key of Object.keys(grouped)) {
+  grouped[key].sort((a, b) => (a.data.playbook ?? 0) - (b.data.playbook ?? 0));
+}
+
+const sortedSeries = Object.entries(grouped).sort(
+  ([a], [b]) => (seriesNum[a] ?? 0) - (seriesNum[b] ?? 0)
+);
+---
+
+<Base title="Essais" description="Essais, principes et playbooks vus de l'intérieur.">
+  <div class="page">
+    <div class="page-inner">
+      <header class="page-header">
+        <p class="label">Essais</p>
+        <h1 class="page-title">Essais</h1>
+        <p class="page-description muted">
+          Réflexions libres sur l'AI, la macroéconomie, le futur du travail et le cadre plus large. Ainsi que les principes et playbooks qui sous-tendent la réflexion ici.
+        </p>
+      </header>
+
+      <section class="band">
+        <p class="label band-label">Essais</p>
+        <p class="band-empty muted">Réflexions libres à venir.</p>
+      </section>
+
+      <section class="band">
+        <p class="label band-label">Principles &amp; Playbooks</p>
+        {sortedSeries.map(([seriesName, items]) => (
+          <div class="series-group">
+            <p class="label series-label">{seriesName}</p>
+            <div class="writing-grid">
+              {items.map(item => (
+                <ArticleCard
+                  title={item.data.title}
+                  description={item.data.description}
+                  href={`/fr/operating-playbooks/${item.slug}`}
+                  meta={item.data.playbook !== undefined ? `Playbook ${item.data.playbook}` : undefined}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+
+  .page-inner {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--size-3xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-description {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    max-width: 560px;
+    line-height: 1.65;
+  }
+
+  .band {
+    margin-bottom: var(--space-xl);
+  }
+
+  .band-label {
+    font-size: var(--size-sm);
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+  }
+
+  .band-empty {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+  }
+
+  .series-group {
+    margin-bottom: var(--space-lg);
+  }
+
+  .series-label {
+    margin-bottom: var(--space-md);
+  }
+
+  .writing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 768px) {
+    .page-inner {
+      padding: 0 var(--space-md);
+    }
+
+    .page-title {
+      font-size: var(--size-2xl);
+    }
+
+    .writing-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
