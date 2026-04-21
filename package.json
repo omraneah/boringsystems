@@ -6,7 +6,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "verify": "tsx scripts/verify-structure.ts",
+    "precommit": "astro check && npm run verify && astro build",
+    "postinstall": "simple-git-hooks || true"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npm run precommit"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
@@ -19,6 +26,10 @@
     "resend": "^6.11.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "simple-git-hooks": "^2.11.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
     "unist-util-visit": "^5.1.0"
   }
 }

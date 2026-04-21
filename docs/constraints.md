@@ -15,6 +15,10 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 - **Never deploy without `npx astro build` passing locally.** The Stop hook at workspace level runs `astro check` after every turn on a feature branch; its summary surfaces in the next SessionStart. No silent drift.
 
+- **Enforcement is local-first by design.** No GitHub Actions, no CI runner, no PR-workflow gates. The merge gate is the pre-commit hook (`astro check` + `scripts/verify-structure.ts` + `astro build`), wired via `simple-git-hooks` and installed by `npm install`. See `docs/adr-003-enforcement-tier.md` for the principle reconciliation against `quality-security-boundaries.md` and the upgrade trigger. `--no-verify` is forbidden.
+
+- **No unit tests by design at this tier.** The structural-integrity script replaces the class of tests a SaaS codebase would write. Unit coverage on `mailer.ts` or `toLocalePath` would test the standard library, not the domain. Re-evaluate when the ADR-003 upgrade trigger fires.
+
 ## Routing & i18n
 
 - **Every page lives under `/en/` or `/fr/`.** No implicit default locale. The root `/` and all legacy flat URLs 301-redirect to their `/en/` equivalents via the `redirects` map in `astro.config.mjs`. See DECISIONS.md `2026-04-21 — Strict /en + /fr i18n`.
@@ -24,6 +28,12 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 - **Every page-level head emits hreflang tags.** `Base.astro` and `Article.astro` both call `hreflangsForPath()` from `src/lib/i18n.ts`. If you add a new layout, wire hreflang in — do not ship a page without the `<link rel="alternate">` pairs, or SEO silently bleeds.
 
 - **Every case file and playbook must exist in both EN and FR.** The hreflang logic assumes mirror content. If a locale-specific piece is ever added, update `src/lib/i18n.ts`'s SLUG_ALIASES and document in DECISIONS.md; do not add orphan content.
+
+## API surface
+
+- **Every API route lives under `/api/v{N}/`.** Current version is `v1`. Per `cross-stack-architecture-starter-pack/api-boundaries.md`, unversioned routes are forbidden. Breaking changes introduce a new version segment; additive changes land within the current version. Form clients point at the versioned base URL.
+
+- **Shared `json()` response helper.** All API routes use `src/lib/http.ts`'s `json()` — do not re-implement `new Response(JSON.stringify(...))` inline. Single source of truth for content-type headers and status shape.
 
 ## Content
 

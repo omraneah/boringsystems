@@ -17,6 +17,8 @@ All code is authored through Claude Code. No manual editing.
 - **`date` frontmatter mandatory on case files.** Seed from first-merge git date.
 - **Typed content registries** for reusable UI content. Canonical: `src/lib/lead-magnets.ts`. Do not build a generic wrapper.
 - **FR = re-voiced, not translated.** Run `/french-audit` before committing any FR content. Keep English jargon per `docs/french-guide.md`.
+- **Local-first enforcement.** No CI. The pre-commit hook (`astro check` + structural script + `astro build`) is the gate. `--no-verify` forbidden. See `docs/adr-003-enforcement-tier.md` and its upgrade trigger.
+- **All API routes under `/api/v1/`.** Unversioned routes are forbidden. Use `src/lib/http.ts`'s `json()` helper.
 
 ## Detail docs
 
@@ -25,6 +27,7 @@ All code is authored through Claude Code. No manual editing.
 | Full constraints list + rationale | `docs/constraints.md` |
 | Architecture + toolchain + typed-registry pattern | `docs/architecture-and-toolchain.md` |
 | Home-page selection contract (featured/highlight/order) | `docs/adr-002-home-selection.md` |
+| Local-first enforcement tier (no CI, pre-commit hook, upgrade trigger) | `docs/adr-003-enforcement-tier.md` |
 | Design charter (voice, layout, persona alignment) | `docs/design-charter.md` |
 | Target audiences (technical vs operator persona) | `docs/target-audiences.md` |
 | French voice guide + do-not-translate list | `docs/french-guide.md` |
@@ -44,9 +47,10 @@ Cross-project skills (`/commit`, `/pr`, `/log-decision`, `/wrap-session`, `/sess
 ## Dev workflow
 
 ```bash
-npm install
+npm install           # Installs deps + pre-commit hook via simple-git-hooks
 npm run dev           # http://localhost:4321
 npm run build         # Production build — must pass before commit
+npm run verify        # Structural-integrity script (also runs in pre-commit)
 ```
 
-Deploy is automatic on push to `main` (Vercel → GitHub integration). Never push to `main` directly — feature branch + PR.
+Deploy is automatic on push to `main` (Vercel → GitHub integration). Never push to `main` directly — feature branch + PR. The pre-commit hook runs `astro check`, `npm run verify`, and `astro build` on every commit.
