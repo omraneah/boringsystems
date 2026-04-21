@@ -334,3 +334,12 @@ Applied immediately: moved `article-capture`, `article-review`, `french-audit` f
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-04-21 — Enforcement tiered below CI for solo/pre-revenue repos
+**Context:** Cross-stack ARD `quality-security-boundaries.md` demands "CI is the only authority." boringsystems is solo, pre-revenue, on the free GitHub plan. Literal compliance requires paid Actions minutes that aren't justified today.
+**Decision:** Honor the ARD *principle* ("enforcement is systemic, not human") at a local-first tier. Pre-commit hook (`astro check` + structural verify + `astro build`) + pre-push hook (`npm audit --audit-level=high`) in boringsystems. Workspace-level pre-push at `.claude/git-hooks/pre-push` iterates npm submodules for pointer bumps. No GitHub Actions. Codified in `docs/patterns/local-first-enforcement.md` + `docs/ard-tier-map.md`. Anchored per-project by `boringsystems/docs/adr-003-enforcement-tier.md` with named upgrade trigger.
+**Why:** Keeps every line of code and every dependency a deliberate liability (ARD §5 simplicity clause). Gates catch what author memory won't. Upgrade trigger (first paid subscriber, public repo, second committer, prod state layer) is named, so the exemption isn't silent — it's a tier with an exit condition.
+**Expected outcome:** Type safety + structural integrity + dependency safety enforced at the commit/push boundary. Zero reliance on "remembering to run X." When a trigger fires, a superseding ADR lifts the tier to T2 with an Actions workflow running the same commands the hooks run.
+**Actual outcome:** *(pending)*
+
+---

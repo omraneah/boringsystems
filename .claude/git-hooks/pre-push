@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# pre-push — block workspace push when any npm-capable submodule reports
+# high/critical vulnerabilities.
+#
+# Wired via `git config core.hooksPath .claude/git-hooks` (installed by
+# .claude/setup.sh). Tracked in-repo so hook config travels with clones.
+#
+# Per-submodule simple-git-hooks pre-push already protects each subproject's
+# own push. This hook catches the case where the workspace is pointer-bumping
+# to an already-pushed submodule SHA that should not be adopted because it
+# carries unresolved high vulns.
+
+set -u
+
+workspace_root="$(git rev-parse --show-toplevel)"
+failed=0
+
+for pkg in "$workspace_root"/*/package.json; do
+  [ -e "$pkg" ] || continue
+  dir="$(dirname "$pkg")"
+  name="$(basename "$dir")"
+
+  # Skip if submodule isn't initialised (no node_modules) — nothing to audit.
+  if [ ! -d "$dir/node_modules" ]; then
+    echo "[pre-push] skipping $name (no node_modules — run npm install in submodule first)"
+    continue
+  fi
+
+  echo "[pre-push] auditing $name (high/critical)..."
+  if ! (cd "$dir" && npm audit --audit-level=high >/dev/null 2>&1); then
+    echo "[pre-push] ✗ $name has high/critical vulnerabilities."
+    echo "           Run \`cd $name && npm audit\` to inspect."
+    echo "           Fix before pushing. See audit-fix skill for the triage flow."
+    failed=1
+  else
+    echo "[pre-push] ✓ $name clean at --audit-level=high"
+  fi
+done
+
+if [ $failed -ne 0 ]; then
+  echo ""
+  echo "[pre-push] blocked. Resolve the findings above, then re-push."
+  echo "           Bypass forbidden by policy (workspace CLAUDE.md)."
+  exit 1
+fi
+
+exit 0

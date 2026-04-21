@@ -51,7 +51,7 @@
   "enabledPlugins": {
     "vercel-plugin@vercel": true
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "voice": {
     "enabled": true,
     "mode": "hold"

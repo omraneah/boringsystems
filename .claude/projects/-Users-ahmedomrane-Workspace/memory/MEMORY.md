@@ -15,3 +15,4 @@
 - [Twice-Is-A-Pattern Rule](feedback_twice_is_a_pattern.md) — Same manual task twice in a session → codify before the third. Prevents pattern-codification lag.
 - [Max Three Concerns Per Session](feedback_scope_discipline.md) — Wide-scope sessions degrade quality; split into branches when a 4th concern appears.
 - [Platform Features First](feedback_platform_features_first.md) — Check framework native support before reimplementing i18n/auth/routing/caching/redirects. Custom reimplementation is a recurring failure mode.
+- [Audit-Fix Isolation](feedback_audit_fix_isolation.md) — npm audit work lives in its own PR, never bundled with structural/feature changes. Rollback + reviewer triage reasons.
