@@ -304,3 +304,33 @@ Applied immediately: moved `article-capture`, `article-review`, `french-audit` f
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-04-21 — Adopt Astro's native i18n; replace manual routing
+
+**Context:** Previous session built `/en` + `/fr` structure manually — hand-written redirects in `astro.config.mjs`, hardcoded locale prefixes in every page, custom Nav logic. Astro 5 has a built-in `i18n` config block (`defaultLocale`, `locales`, `routing.prefixDefaultLocale`) that does exactly this natively, plus exports `getRelativeLocaleUrl`/`getAbsoluteLocaleUrl` helpers. The manual version was ~80% of what Astro does for free.
+**Decision:** Enable Astro's native i18n: `defaultLocale: 'en'`, `locales: ['en', 'fr']`, `routing: { prefixDefaultLocale: true }`. Retain the `redirects` map for legacy flat URLs (`/about` → `/en/about`, etc.) and root redirect (`/` → `/en/`, 301) because `redirectToDefaultLocale: true` requires a root `index.astro` and emits a meta-refresh fallback on static builds. Refactor `Nav.astro` to use `getRelativeLocaleUrl` instead of hardcoded strings. Extract a small `src/lib/i18n.ts` helper for the essays/essais slug alias table and hreflang URL generation — Astro's native `getRelativeLocaleUrl` does not know about per-locale slug aliases.
+**Why:** Platform-native features age with the platform. Custom implementations do not. Future Astro releases will improve native i18n; our code will inherit the improvements. Also unlocks proper hreflang support (see next entry) and cleaner call sites.
+**Expected outcome:** Astro upgrades carry forward cleanly. Any third locale is a one-line addition. `getRelativeLocaleUrl` used consistently, not reinvented.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — hreflang tags on every page + sitemap i18n metadata
+
+**Context:** Prior to this change, no page on boringsystems emitted `<link rel="alternate" hreflang=…>` tags. Both the Astro i18n docs and the general SEO guidance consider these mandatory for bilingual sites — without them, Google cannot disambiguate which language version to serve to which searcher, and EN/FR pages compete against each other for the same queries.
+**Decision:** Add `hreflangsForPath()` to `src/lib/i18n.ts` — returns `[{hreflang: 'en-US', href}, {hreflang: 'fr-FR', href}, {hreflang: 'x-default', href}]` for any `/en/*` or `/fr/*` path, respecting the essays/essais slug alias. Wire into `Base.astro` and `Article.astro` head blocks. Also pass i18n locale config to `@astrojs/sitemap` so the generated sitemap includes per-page alternate links. `/verify-home` skill updated to assert hreflang presence as a build-time smoke check.
+**Why:** SEO payoff is immediate and durable — correct hreflang prevents keyword cannibalization and routes users to the right-language page. Wiring via a single helper + layout makes it impossible to ship a new page without hreflang going forward.
+**Expected outcome:** Search engines serve `/en/…` to English queries and `/fr/…` to French queries without confusion. No SEO regression from the bilingual split. Adding a third locale requires only updating `LOCALES` in `src/lib/i18n.ts`.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — boringsystems CLAUDE.md split + docs/constraints.md
+
+**Context:** Project-level CLAUDE.md was empty (`0 lines`). All project rules lived implicitly — in conversation, in the session memories, in the workspace-level CLAUDE.md. Constraints like "no build-time browser deps" and "no CSS transform for vector zoom" had been discovered through failure, logged in DECISIONS.md, but not surfaced anywhere Claude would reliably see them at session start.
+**Decision:** Create a lean `boringsystems/CLAUDE.md` (~40 lines) with only the non-negotiable rules + a pointer table to `docs/*.md`. Create `boringsystems/docs/constraints.md` — the "never do X" list with the reasoning behind each constraint. Create `/check-constraints` skill which loads `docs/constraints.md` and vets any planned structural change against it before execution. Workspace-level memory `feedback_platform_features_first.md` makes the cross-project principle explicit: always check framework-native support before custom implementation.
+**Why:** Constraints discovered through failure are expensive — each rediscovery is another iteration, another PR, another review cycle. Codifying them in a short doc that Claude reads automatically (at session start via CLAUDE.md pointer, and explicitly via `/check-constraints` before structural work) converts discovered friction into upfront discipline.
+**Expected outcome:** Future sessions do not rediscover already-known constraints. New constraints discovered in a session land in `docs/constraints.md` immediately, not after two more failures. `/check-constraints` becomes the reflex for any structural change.
+**Actual outcome:** *(pending)*
+
+---
