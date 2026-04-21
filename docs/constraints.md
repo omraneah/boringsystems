@@ -19,6 +19,8 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 - **No unit tests by design at this tier.** The structural-integrity script replaces the class of tests a SaaS codebase would write. Unit coverage on `mailer.ts` or `toLocalePath` would test the standard library, not the domain. Re-evaluate when the ADR-003 upgrade trigger fires.
 
+- **Pre-push hook blocks high/critical npm vulnerabilities.** `npm audit --audit-level=high` must exit clean before a push is accepted. Fix path: `npm audit fix` (non-breaking), npm `overrides` for transitive patches, or — when a CVE is not exploitable in this project's context — an entry in `docs/adr-003-enforcement-tier.md` documenting the accepted risk. Never `--no-verify`.
+
 ## Routing & i18n
 
 - **Every page lives under `/en/` or `/fr/`.** No implicit default locale. The root `/` and all legacy flat URLs 301-redirect to their `/en/` equivalents via the `redirects` map in `astro.config.mjs`. See DECISIONS.md `2026-04-21 — Strict /en + /fr i18n`.

@@ -68,7 +68,7 @@ Resend is the only outbound email dependency. It is fully encapsulated in `src/l
 
 ### Lead magnets
 
-Lead-magnet assets are declared in `src/lib/lead-magnets.ts` as a typed registry (`slug`, `title`, `description`, `buttonLabel`, `prompt`, `confirmation` — each indexed by `en` / `fr`). The reusable `<LeadMagnet />` component (`src/components/LeadMagnet.astro`) takes an `assetSlug` and drops the capture form anywhere on the site. The `POST /api/lead-magnet` endpoint (`src/pages/api/lead-magnet.ts`) notifies Ahmed and sends the subscriber the asset body from the registry. To add a new lead magnet, add one entry to the registry — nothing else needs to change.
+Lead-magnet assets are declared in `src/lib/lead-magnets.ts` as a typed registry (`slug`, `title`, `description`, `buttonLabel`, `prompt`, `confirmation` — each indexed by `en` / `fr`). The reusable `<LeadMagnet />` component (`src/components/LeadMagnet.astro`) takes an `assetSlug` and drops the capture form anywhere on the site. The `POST /api/v1/lead-magnet` endpoint (`src/pages/api/v1/lead-magnet.ts`) notifies the operator and sends the subscriber the asset body from the registry. To add a new lead magnet, add one entry to the registry — nothing else needs to change.
 
 ---
 
@@ -148,7 +148,7 @@ export function getAsset(slug: string): AssetShape {
 
 - Single file, explicit types, no reflection or metaframework.
 - One record keyed by slug; every asset has a matching locale record for every `Lang` member. TypeScript catches missing locales at build time.
-- Consumer components (`<LeadMagnet />`) and API routes (`/api/lead-magnet`) both resolve through the registry. Adding a new asset is one registry entry — **no component, route, or mail changes**.
+- Consumer components (`<LeadMagnet />`) and API routes (`/api/v1/lead-magnet`) both resolve through the registry. Adding a new asset is one registry entry — **no component, route, or mail changes**.
 - Renaming an asset is a slug rename; search is reliable.
 
 **When to use this instead of a content collection:** Content collections are for Markdown-bodied documents (articles, playbooks). The registry pattern is for structured UI content — email bodies, form copy, CTA text, testimonials, stack-item cards — where the "body" is short, structured, and consumed by components.

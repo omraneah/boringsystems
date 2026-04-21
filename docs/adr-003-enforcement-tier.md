@@ -81,6 +81,17 @@ When any of the above occurs: open an issue referencing this ADR, add `.github/w
 - Builds that fail locally cannot become commits.
 - No reliance on "remembering to run X" — the hook is the memory.
 
+## Appendix — Accepted advisories
+
+Moderate-severity `npm audit` findings that are documented rather than fixed. The pre-push hook runs at `--audit-level=high`, so these do not block pushes. Re-evaluate when their upstream fixes land in Astro-compatible versions.
+
+| CVE / advisory | Package chain | Reach | Accepted because | Revisit |
+|---|---|---|---|---|
+| GHSA-48c2-rrv3-qjmp (yaml stack overflow) | `yaml` ← `yaml-language-server` ← `volar-service-yaml` ← `@astrojs/language-server` ← `@astrojs/check` | Dev-tool only (runs during `astro check`). Never bundled. | Fix path downgrades `@astrojs/check` below our pinned version. Upstream fix pending. | When `@astrojs/check` ships a transitive with `yaml@>=2.8.3`. |
+| GHSA-mr6q-rp88-fx84 (Astro unauthenticated path override via `x-astro-path`) | `@astrojs/vercel@9.0.5` | Runtime adapter. Path routing. | Fix requires `@astrojs/vercel@10`, which requires `astro@^6`. Current Astro is 5.18. Site has no path-based auth — every route is public — so header-spoofed path access yields no privilege escalation. Public pages remain public. | When Astro 6 migration branch ships. |
+
+Additions to this table require a one-line rationale in the same row and are not a substitute for fixing — they are documented deferrals with revisit triggers.
+
 ## Appendix — IaC surface
 
 Vercel platform config lives in `vercel.json` (framework pin + security headers). The Astro Vercel adapter emits the rest (build command, function routing, redirects from `astro.config.mjs`) at build time. `vercel.ts` with `@vercel/config` is the newer platform-recommended surface; revisit adoption when the package matures or when we need dynamic config (env-gated headers, cron declarations).

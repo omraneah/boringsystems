@@ -19,6 +19,7 @@ All code is authored through Claude Code. No manual editing.
 - **FR = re-voiced, not translated.** Run `/french-audit` before committing any FR content. Keep English jargon per `docs/french-guide.md`.
 - **Local-first enforcement.** No CI. The pre-commit hook (`astro check` + structural script + `astro build`) is the gate. `--no-verify` forbidden. See `docs/adr-003-enforcement-tier.md` and its upgrade trigger.
 - **All API routes under `/api/v1/`.** Unversioned routes are forbidden. Use `src/lib/http.ts`'s `json()` helper.
+- **Never push with high or critical npm vulnerabilities.** The `pre-push` hook runs `npm audit --audit-level=high` and blocks the push on any high/critical finding. Fix first — `npm audit fix`, npm `overrides`, or a documented advisory-specific acceptance. Never `--no-verify`.
 
 ## Detail docs
 
