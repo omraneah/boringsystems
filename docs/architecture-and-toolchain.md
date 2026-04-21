@@ -112,3 +112,47 @@ client-side. No build-time browser dependency is needed.
 
 docs/                  ← Architecture decisions and toolchain documentation
 ```
+
+---
+
+## Reusable UI Content — the typed-registry pattern
+
+When UI content needs to live in more than one place and carry locale variants, use the "typed content registry" pattern rather than inlining or creating an ad-hoc abstraction.
+
+**Canonical example:** `src/lib/lead-magnets.ts`.
+
+**The shape:**
+
+```ts
+export type Lang = 'en' | 'fr';
+
+export interface AssetShape {
+  slug: string;
+  title: Record<Lang, string>;
+  description: Record<Lang, string>;
+  // ... other per-locale fields specific to the asset type
+}
+
+export const ASSETS: Record<string, AssetShape> = {
+  'some-slug': { /* ... */ },
+};
+
+export function getAsset(slug: string): AssetShape {
+  const a = ASSETS[slug];
+  if (!a) throw new Error(`Unknown asset: ${slug}`);
+  return a;
+}
+```
+
+**Rules:**
+
+- Single file, explicit types, no reflection or metaframework.
+- One record keyed by slug; every asset has a matching locale record for every `Lang` member. TypeScript catches missing locales at build time.
+- Consumer components (`<LeadMagnet />`) and API routes (`/api/lead-magnet`) both resolve through the registry. Adding a new asset is one registry entry — **no component, route, or mail changes**.
+- Renaming an asset is a slug rename; search is reliable.
+
+**When to use this instead of a content collection:** Content collections are for Markdown-bodied documents (articles, playbooks). The registry pattern is for structured UI content — email bodies, form copy, CTA text, testimonials, stack-item cards — where the "body" is short, structured, and consumed by components.
+
+**Candidates as they come up:** testimonials, stack item cards, inline CTAs, pricing tiers, FAQ entries, contact-form presets. Each follows the same shape. Do not introduce a generic `<ContentRegistry />` wrapper — the value is in the explicit types, not in a shared abstraction.
+
+---
