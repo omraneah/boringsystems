@@ -7,6 +7,7 @@ const caseFiles = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    date: z.coerce.date(),
     featured: z.boolean().optional().default(false),
     highlight: z.boolean().optional().default(false),
     order: z.number().optional().default(99),
@@ -29,8 +30,8 @@ const operatingPlaybooks = defineCollection({
 });
 
 export const collections = {
-  'case-files': caseFiles,
-  'operating-playbooks': operatingPlaybooks,
+  'case-files-en': caseFiles,
+  'operating-playbooks-en': operatingPlaybooks,
   'case-files-fr': caseFiles,
   'operating-playbooks-fr': operatingPlaybooks,
 };

@@ -1,38 +1,38 @@
 ---
-import Base from '../../layouts/Base.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
+import { articleMeta } from '../../../lib/article-meta';
 
-const technicalWork = (await getCollection('case-files', ({ data }) => data.persona !== 'operator'))
+const operatorWork = (await getCollection('case-files-en', ({ data }) => data.persona === 'operator'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
-
-function readTime(body: string) {
-  const words = body.split(/\s+/).length;
-  return `${Math.ceil(words / 200)} min read`;
-}
 ---
 
-<Base title="Engineering" description="Engineering case files — real systems, real constraints, real decisions.">
+<Base title="Entrepreneurs" description="Decision guides and field diagnoses for entrepreneurs, intrapreneurs, and founders making technical calls.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Engineering</p>
-        <h1 class="page-title">Engineering</h1>
+        <p class="label">Entrepreneurs</p>
+        <h1 class="page-title">Entrepreneurs</h1>
         <p class="page-description muted">
-          Real systems. Real constraints. Real decisions. Case files from the inside for engineering leaders navigating constraint-to-scale environments.
+          Decision guides and field diagnoses for entrepreneurs, intrapreneurs, solopreneurs, and founders making technical calls without a deep engineering background.
         </p>
       </header>
 
-      <div class="work-list">
-        {technicalWork.map(item => (
-          <ArticleCard
-            title={item.data.title}
-            description={item.data.description}
-            href={`/case-files/${item.slug}`}
-            meta={readTime(item.body)}
-          />
-        ))}
-      </div>
+      {operatorWork.length > 0 ? (
+        <div class="work-list">
+          {operatorWork.map(item => (
+            <ArticleCard
+              title={item.data.title}
+              description={item.data.description}
+              href={`/en/case-files/${item.slug}`}
+              meta={articleMeta(item.body, item.data.date, 'en')}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty-state muted">More field notes for entrepreneurs coming soon.</p>
+      )}
     </div>
   </div>
 </Base>
@@ -81,6 +81,11 @@ function readTime(body: string) {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+  }
+
+  .empty-state {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
   }
 
   @media (max-width: 768px) {

@@ -4,11 +4,7 @@ description: "Une transition séquencée qui a renforcé l'identité, les périm
 featured: true
 order: 2
 persona: technical
----
-
-# Renforcer une plateforme en production pour l'entreprise
-Une transition séquencée pendant que la livraison de fonctionnalités continuait.
-
+date: 2026-04-19
 ---
 
 ## Contexte

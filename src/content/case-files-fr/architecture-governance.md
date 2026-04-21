@@ -4,11 +4,7 @@ description: "Mise en place d'une couche de gouvernance faisant autorité, align
 featured: true
 order: 3
 persona: technical
----
-
-# Établir une gouvernance d'architecture transversale
-Structurer une couche de gouvernance partagée dans un environnement qui en était dépourvu.
-
+date: 2026-04-19
 ---
 
 ## Contexte

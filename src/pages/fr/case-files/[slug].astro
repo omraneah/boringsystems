@@ -1,6 +1,7 @@
 ---
 import Article from '../../../layouts/Article.astro';
 import { getCollection } from 'astro:content';
+import { readTime, formatDate } from '../../../lib/article-meta';
 
 export async function getStaticPaths() {
   const entries = await getCollection('case-files-fr');
@@ -20,6 +21,8 @@ const { Content } = await entry.render();
   backHref="/fr/case-files"
   backLabel="Études de cas"
   lang="fr"
+  date={formatDate(entry.data.date, 'fr') ?? undefined}
+  readTime={readTime(entry.body, 'fr')}
 >
   <Content />
 </Article>

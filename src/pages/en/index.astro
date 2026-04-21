@@ -1,13 +1,14 @@
 ---
-import Base from '../layouts/Base.astro';
-import ArticleCard from '../components/ArticleCard.astro';
+import Base from '../../layouts/Base.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
+import { articleMeta } from '../../lib/article-meta';
 
-const featuredWork = (await getCollection('case-files', ({ data }) => data.featured))
+const featuredWork = (await getCollection('case-files-en', ({ data }) => data.featured))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
-const highlightedPiece = (await getCollection('operating-playbooks', ({ data }) => data.highlight))[0] ?? null;
-const highlightedCaseFile = (await getCollection('case-files', ({ data }) => data.highlight))[0] ?? null;
+const highlightedPiece = (await getCollection('operating-playbooks-en', ({ data }) => data.highlight))[0] ?? null;
+const highlightedCaseFile = (await getCollection('case-files-en', ({ data }) => data.highlight))[0] ?? null;
 ---
 
 <Base title="Ahmed Omrane">
@@ -35,7 +36,7 @@ const highlightedCaseFile = (await getCollection('case-files', ({ data }) => dat
         </div>
         <div class="highlight-carousel">
           {highlightedCaseFile && (
-            <a href={`/case-files/${highlightedCaseFile.slug}`} class="highlight-card is-active">
+            <a href={`/en/case-files/${highlightedCaseFile.slug}`} class="highlight-card is-active">
               <span class="highlight-series">Case File</span>
               <h2 class="highlight-title">{highlightedCaseFile.data.title}</h2>
               <p class="highlight-description">{highlightedCaseFile.data.description}</p>
@@ -43,7 +44,7 @@ const highlightedCaseFile = (await getCollection('case-files', ({ data }) => dat
             </a>
           )}
           {highlightedPiece && (
-            <a href={`/operating-playbooks/${highlightedPiece.slug}`} class="highlight-card">
+            <a href={`/en/operating-playbooks/${highlightedPiece.slug}`} class="highlight-card">
               <span class="highlight-series">{highlightedPiece.data.series}</span>
               <h2 class="highlight-title">{highlightedPiece.data.title}</h2>
               <p class="highlight-description">{highlightedPiece.data.description}</p>
@@ -69,11 +70,12 @@ const highlightedCaseFile = (await getCollection('case-files', ({ data }) => dat
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/case-files/${item.slug}`}
+            href={`/en/case-files/${item.slug}`}
+            meta={articleMeta(item.body, item.data.date, 'en')}
           />
         ))}
       </div>
-      <a href="/case-files" class="see-all">All case files →</a>
+      <a href="/en/case-files" class="see-all">All case files →</a>
     </div>
   </section>
 

@@ -1,35 +1,31 @@
 ---
-import Base from '../../layouts/Base.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
+import { articleMeta } from '../../../lib/article-meta';
 
-const allWork = (await getCollection('case-files'))
+const technicalWork = (await getCollection('case-files-en', ({ data }) => data.persona !== 'operator'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
-
-function readTime(body: string) {
-  const words = body.split(/\s+/).length;
-  return `${Math.ceil(words / 200)} min read`;
-}
 ---
 
-<Base title="Case Files" description="Engineering case files — real systems, real constraints, real decisions.">
+<Base title="Engineering" description="Engineering case files — real systems, real constraints, real decisions.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Case Files</p>
-        <h1 class="page-title">Engineering Case Files</h1>
+        <p class="label">Engineering</p>
+        <h1 class="page-title">Engineering</h1>
         <p class="page-description muted">
-          Real systems. Real constraints. Real decisions. Each file documents an engineering leadership challenge navigated from the inside.
+          Real systems. Real constraints. Real decisions. Case files from the inside for engineering leaders navigating constraint-to-scale environments.
         </p>
       </header>
 
       <div class="work-list">
-        {allWork.map(item => (
+        {technicalWork.map(item => (
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/case-files/${item.slug}`}
-            meta={readTime(item.body)}
+            href={`/en/case-files/${item.slug}`}
+            meta={articleMeta(item.body, item.data.date, 'en')}
           />
         ))}
       </div>

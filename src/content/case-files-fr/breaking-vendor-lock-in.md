@@ -4,11 +4,7 @@ description: "Une transition séquencée s'éloignant d'un noyau externe opaque,
 featured: true
 order: 1
 persona: technical
----
-
-# Reprendre la maîtrise du système face au verrouillage fournisseur
-Une transition séquencée s'éloignant d'un noyau externe opaque.
-
+date: 2026-04-19
 ---
 
 ## Contexte

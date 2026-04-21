@@ -4,11 +4,7 @@ description: "La plupart des fondateurs qui se posent cette question résolvent 
 highlight: true
 order: 4
 persona: operator
----
-
-# Votre startup en phase précoce a-t-elle vraiment besoin d'un CTO ?
-Trois pièges structurels qui coûtent aux fondateurs plus que le recrutement lui-même.
-
+date: 2026-04-19
 ---
 
 ## Contexte

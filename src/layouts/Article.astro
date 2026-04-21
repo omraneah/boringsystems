@@ -13,9 +13,12 @@ interface Props {
   backHref: string;
   backLabel: string;
   lang?: 'en' | 'fr';
+  date?: string;
+  readTime?: string;
 }
 
-const { title, description, series, backHref, backLabel, lang = 'en' } = Astro.props;
+const { title, description, series, backHref, backLabel, lang = 'en', date, readTime } = Astro.props;
+const showHeader = Boolean(date || readTime);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -58,6 +61,18 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
             <div class="article-meta">
               <span class="label">{series}</span>
             </div>
+          </header>
+        )}
+
+        {showHeader && (
+          <header class="article-intro">
+            <h1 class="article-title">{title}</h1>
+            {description && <p class="article-subtitle">{description}</p>}
+            <p class="article-metaline">
+              {date && <span>{date}</span>}
+              {date && readTime && <span class="dot">·</span>}
+              {readTime && <span>{readTime}</span>}
+            </p>
           </header>
         )}
 
@@ -191,6 +206,43 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     font-family: var(--font-ui);
     font-size: var(--size-sm);
     color: var(--text-muted);
+  }
+
+  .article-intro {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .article-title {
+    font-family: var(--font-display);
+    font-size: var(--size-2xl);
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+    color: var(--text);
+  }
+
+  .article-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .article-metaline {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .article-metaline .dot {
+    opacity: 0.6;
   }
 
   .article-end {

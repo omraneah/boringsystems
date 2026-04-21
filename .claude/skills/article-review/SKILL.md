@@ -12,7 +12,7 @@ Review the article at $ARGUMENTS before it ships. Load the three governance docs
 ## Inputs
 
 One of:
-- A slug like `case-files/architecture-governance` or `operating-playbooks/s1-p0-how-we-run` — resolve to the EN file under `src/content/<slug>.md(x)` and the FR file under `src/content/<collection>-fr/<rest>`.
+- A slug like `case-files/architecture-governance` or `operating-playbooks/s1-p0-how-we-run` — resolve to the EN file under `src/content/<collection>-en/<rest>.md(x)` and the FR file under `src/content/<collection>-fr/<rest>.md(x)`.
 - A full path to an EN file — derive the FR pair by inserting `-fr` into the collection name.
 - If no FR file exists yet, proceed EN-only and note that FR is missing.
 
@@ -31,6 +31,7 @@ If any of these is missing, stop and tell Ahmed to check the repo state — do n
 
 - `title` present and non-empty.
 - `description` present and non-empty.
+- `date` present for `case-files` (EN + FR). Must be an ISO date (`YYYY-MM-DD`). Absent = **blocker** — the layout relies on it to render the meta strip and the cards. Seed from the file's first-merge git date (`git log --follow --diff-filter=A --format=%aI -- <path> | tail -1`).
 - `persona` present. Must be one of `technical`, `operator`. If absent, this is a **blocker** unless the content predates the schema change (then warning).
 - If frontmatter contains `featured: true` or `highlight: true`, cross-check that the article is actually a representative piece — flag for human review.
 
@@ -86,7 +87,7 @@ If FR is missing and the article is in a collection that has existing FR sibling
 - File is in the correct collection directory.
 - File extension matches collection (`.md` vs `.mdx`).
 - Images referenced are in `public/` or use absolute URLs — no broken paths.
-- Internal links use site-relative paths (`/case-files/...`, `/engineering`, `/entrepreneurs`, `/essays`), not full domain URLs.
+- Internal links use site-relative, **language-prefixed** paths: `/en/case-files/...`, `/en/engineering`, `/en/entrepreneurs`, `/en/essays` for EN articles; `/fr/case-files/...`, `/fr/engineering`, `/fr/entrepreneurs`, `/fr/essais` for FR. Never full domain URLs, never unprefixed paths — the root `/` now 301-redirects to `/en/` and the old unprefixed routes are legacy.
 
 ## Output format
 

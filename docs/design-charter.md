@@ -73,17 +73,17 @@ Palette from `src/styles/global.css`:
 
 The site has three navigation lanes, each with its own voice calibration and layout conventions. Lane is an **audience** distinction; layout expectations follow.
 
-### Engineering lane (`/engineering`) — peer-facing
+### Engineering lane (`/en/engineering`, `/fr/engineering`) — peer-facing
 
 Technical case files and engineering-leadership pieces for `technical` readers. Dense, peer-to-peer, no hand-holding.
 - Playfair throughout body prose. Dense body, no decorative spacing.
 - Inline code in mono; code blocks used sparingly — these pieces are about *reasoning*, not walkthroughs.
-- Metadata strip at the top: primary persona, read time, publish date.
+- Metadata strip at the top: primary persona, read time, publish date. **Publish date and read time are mandatory** for every `case-files` article (EN + FR) — surfaced in frontmatter (`date:` ISO field), rendered in the article header under the subtitle, and also shown on every card that references the piece (home-page featured, `/{lang}/engineering`, `/{lang}/entrepreneurs`, `/{lang}/case-files`, where `{lang}` is `en` or `fr`). Format in-page: `MMM D, YYYY · N min read` (EN) / `D MMM YYYY · N min de lecture` (FR). Read time is derived from the body; the publish date is the first-merge git date.
 - No tables of contents for short pieces (under ~2000 words).
 - End with a **one-paragraph crisp takeaway**, not a bulleted summary.
 - Voice: skip background paragraphs a general reader would need. Assume vocabulary.
 
-### Entrepreneurs lane (`/entrepreneurs`) — prospect-facing
+### Entrepreneurs lane (`/en/entrepreneurs`, `/fr/entrepreneurs`) — prospect-facing
 
 Decision guides, founder case files, and operator-framed pieces for `operator` readers. This is the **conversion lane** — reads here are the target audience for consulting engagements and lead-magnet tails.
 - Same typography rules as Engineering, but voice calibration is different: open with the business stake or the decision, not the technical tension.
@@ -92,12 +92,12 @@ Decision guides, founder case files, and operator-framed pieces for `operator` r
 - Article tail (email-gated prompt pack, setup guide) lives most naturally here when it fits (see "Article tail" section below).
 - Voice: decisive, no both-sides-ism. If trade-offs exist, name them and take a position on the common case.
 
-### Essays lane (`/essays`) — editorial voice
+### Essays lane (`/en/essays`, `/fr/essais`) — editorial voice
 
 Freestyle, curiosity-driven pieces on AI, macro, future-of-work, and the larger frame. Cross-cuts both personas — readers come here for voice, not for decisions.
 - Longer-form allowed; typography and spacing can breathe more than peer-facing pieces.
 - Personal register permitted — still no hedging, still no filler.
-- This lane also surfaces **Principles & Playbooks** as a secondary band: the long-living operating playbooks that underpin the site's thinking. Playbooks live at `/operating-playbooks/*` URLs and are linked from the Essays index.
+- This lane also surfaces **Principles & Playbooks** as a secondary band: the long-living operating playbooks that underpin the site's thinking. Playbooks live at `/{lang}/operating-playbooks/*` URLs (`{lang}` = `en` | `fr`) and are linked from the Essays index.
 
 ### Voice calibration: peer-facing vs prospect-facing
 
