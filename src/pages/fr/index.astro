@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
+import { articleMeta } from '../../lib/article-meta';
 
 const featuredWork = (await getCollection('case-files-fr', ({ data }) => data.featured))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
@@ -70,6 +71,7 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
             title={item.data.title}
             description={item.data.description}
             href={`/fr/case-files/${item.slug}`}
+            meta={articleMeta(item.body, item.data.date, 'fr')}
             readLabel="Lire →"
           />
         ))}

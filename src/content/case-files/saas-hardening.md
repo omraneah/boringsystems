@@ -1,14 +1,10 @@
 ---
 title: "Hardening a Live Platform for Enterprise Readiness"
 description: "A sequenced transition that strengthened identity, boundaries, and release discipline while feature delivery continued."
+date: 2026-02-22
 featured: true
 order: 2
 persona: technical
----
-
-# Hardening a Live Platform for Enterprise Readiness
-A sequenced transition while feature delivery continued.
-
 ---
 
 ## Context

@@ -78,7 +78,7 @@ The site has three navigation lanes, each with its own voice calibration and lay
 Technical case files and engineering-leadership pieces for `technical` readers. Dense, peer-to-peer, no hand-holding.
 - Playfair throughout body prose. Dense body, no decorative spacing.
 - Inline code in mono; code blocks used sparingly — these pieces are about *reasoning*, not walkthroughs.
-- Metadata strip at the top: primary persona, read time, publish date.
+- Metadata strip at the top: primary persona, read time, publish date. **Publish date and read time are mandatory** for every `case-files` article (EN + FR) — surfaced in frontmatter (`date:` ISO field), rendered in the article header under the subtitle, and also shown on every card that references the piece (home-page featured, `/engineering`, `/entrepreneurs`, `/case-files`, and the FR equivalents). Format in-page: `MMM D, YYYY · N min read` (EN) / `D MMM YYYY · N min de lecture` (FR). Read time is derived from the body; the publish date is the first-merge git date.
 - No tables of contents for short pieces (under ~2000 words).
 - End with a **one-paragraph crisp takeaway**, not a bulleted summary.
 - Voice: skip background paragraphs a general reader would need. Assume vocabulary.

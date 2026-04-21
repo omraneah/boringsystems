@@ -1,14 +1,10 @@
 ---
 title: "Establishing Cross-Surface Architecture Governance"
 description: "Building an authoritative governance layer that aligned multiple product surfaces and reduced divergence."
+date: 2026-02-22
 featured: true
 order: 3
 persona: technical
----
-
-# Establishing Cross-Surface Architecture Governance
-Scaffolding a shared governance layer for an environment operating without one.
-
 ---
 
 ## Context

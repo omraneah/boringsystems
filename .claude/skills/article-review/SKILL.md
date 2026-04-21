@@ -31,6 +31,7 @@ If any of these is missing, stop and tell Ahmed to check the repo state — do n
 
 - `title` present and non-empty.
 - `description` present and non-empty.
+- `date` present for `case-files` (EN + FR). Must be an ISO date (`YYYY-MM-DD`). Absent = **blocker** — the layout relies on it to render the meta strip and the cards. Seed from the file's first-merge git date (`git log --follow --diff-filter=A --format=%aI -- <path> | tail -1`).
 - `persona` present. Must be one of `technical`, `operator`. If absent, this is a **blocker** unless the content predates the schema change (then warning).
 - If frontmatter contains `featured: true` or `highlight: true`, cross-check that the article is actually a representative piece — flag for human review.
 
