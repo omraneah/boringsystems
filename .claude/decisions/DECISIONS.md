@@ -164,6 +164,28 @@ Claude updates this file automatically after any session where architectural, wo
 
 ---
 
+## 2026-04-21 — Skills Architecture: Project-Scoped + Cross-Project Split
+
+**Context:** Two active workflows create a skills-location tension. (1) Locally, Claude Code is launched from the workspace root (`~/Workspace/`) so Ahmed can move between projects in one session — skills under `~/.claude/skills/` (symlinked from `.claude/personal-skills/`) load globally. (2) Cloud agents (claude.ai platform) run against a single GitHub repo and only see that repo's checkout — they never see workspace-level skills. Putting boringsystems-specific skills (`article-capture`, `article-review`, `french-audit`) at workspace root meant the cloud agent couldn't use them; putting them only in boringsystems meant local workspace-root sessions couldn't use them. Skills were in the wrong place for at least one of the two workflows.
+
+**Decision:** Adopt a two-layer skills architecture with no duplication and no sync script:
+
+1. **Cross-project skills** live at `~/.claude/skills/` (via the `.claude/personal-skills/` symlink). These apply regardless of repo: `commit`, `pr`, `log-decision`, `arch-review`.
+2. **Project-scoped skills** live at `<project>/.claude/skills/`. They travel with the repo and are only active when Claude Code is launched from inside that project. Cloud agents on that repo see them natively via the checkout.
+3. **Governance docs stay in the project** (`<project>/docs/*.md`). Any agent with the repo checked out can read them with or without the skills — the skills are convenience wrappers around "read docs, then act."
+4. **Workflow rule:** always launch Claude from the project you're working on. The workspace root launch is only for cross-project navigation, routing, and WORKSPACE_MAP-level work.
+5. **Redundancy is rejected by default.** If a specific skill genuinely needs both scopes later, prefer hoisting it up rather than duplicating down. Duplication invites drift.
+
+Applied immediately: moved `article-capture`, `article-review`, `french-audit` from `.claude/personal-skills/` to `boringsystems/.claude/skills/`.
+
+**Why:** Skill discovery in Claude Code is based on launch directory, not file-touch heuristics. There is no inheritance across nested `.claude/skills/` folders. The only ways to make a skill available in two scopes are (a) duplicate the files and sync them, or (b) accept that workflow discipline chooses the scope. Option (a) has drift risk for no real upside. Option (b) aligns with the tool's design — Claude Code is meant to be launched per-project — and puts cloud-agent viability on equal footing with local work. The governance docs at `<project>/docs/` give agents a reliable fallback even if skills aren't loaded: "read this file, then do X" is a valid substitute for "invoke /X."
+
+**Expected outcome:** Cloud agents working on a single repo have full capability from the checkout alone (skills + docs both present, no external dependencies). Local workspace-root sessions stay lean — no noise from skills that don't apply to the current task. Project-specific skills are version-controlled with the code they govern and visible in the project PR when they change. Drift between "global" and "project" copies becomes structurally impossible because there is only one copy.
+
+**Actual outcome:** *(pending)*
+
+---
+
 ## 2026-04-20 — Add WORKSPACE_MAP.md routing index
 **Context:** Token-expensive folder exploration every session. Only `llm-context-2026` had a routing map (Strategic Index). No single entry point describing top-level structure of the workspace.
 **Decision:** Add hand-maintained `WORKSPACE_MAP.md` at workspace root — one-hop index pointing to each project's own routing entry (Strategic Index, AGENTS.md, ARDs) where one exists; references-only for projects without an index. Single-line pointer added to `CLAUDE.md` so it's discovered automatically. Explicitly NOT building a hook for updates — SessionStart/Stop can't reliably diff structural drift; maintenance is inline, same discipline as `/log-decision`.

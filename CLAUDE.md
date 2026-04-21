@@ -83,12 +83,17 @@ He is a sovereign explorer. Depth-oriented. France-based.
 ### Skills available
 | Skill | Scope | Invoke |
 |---|---|---|
-| `/commit` | Personal (all projects) | Manual or auto |
-| `/pr` | Personal (all projects) | Manual only |
-| `/log-decision` | Personal (all projects) | Claude auto-invokes after decisions |
-| `/arch-review` | Personal (all projects) | Manual or auto |
-| `/new-post` | boringsystems only | Manual only |
-| `/content-research` | boringsystems only | Manual or auto |
+| `/commit` | Cross-project (user-level) | Manual or auto |
+| `/pr` | Cross-project (user-level) | Manual only |
+| `/log-decision` | Cross-project (user-level) | Claude auto-invokes after decisions |
+| `/arch-review` | Cross-project (user-level) | Manual or auto |
+| `/article-capture` | boringsystems (project-scoped) | Manual or auto-suggested |
+| `/article-review` | boringsystems (project-scoped) | Manual before publish |
+| `/french-audit` | boringsystems (project-scoped) | Manual, or invoked by `/article-review` |
+| `/new-post` | boringsystems (project-scoped, planned) | Manual only |
+| `/content-research` | boringsystems (project-scoped) | Manual or auto |
+
+**Skill-scope rule** (per `.claude/decisions/DECISIONS.md` 2026-04-21): cross-project skills live at `~/.claude/skills/` (via the `personal-skills/` symlink); project-scoped skills live at `<project>/.claude/skills/` and travel with the repo. No duplication. Launch Claude from the project you're working on — that determines which skills load. Full architecture: `boringsystems/.claude/README.md`.
 
 ### Hooks active
 | Hook | Event | Effect |
