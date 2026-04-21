@@ -109,7 +109,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           const svg = pre.querySelector('svg');
           if (!svg) continue;
 
-          // Let our CSS size the svg — strip the intrinsic size mermaid sets.
+          // Strip mermaid's intrinsic sizing so we can drive width/height ourselves.
           svg.removeAttribute('height');
           svg.removeAttribute('style');
 
@@ -130,6 +130,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           pre.appendChild(viewport);
           pre.appendChild(toolbar);
 
+          // Capture the natural rendered size so we can scale the SVG via
+          // width/height — not CSS transform — which keeps the SVG
+          // vector-sharp at any zoom level.
+          const base = svg.getBoundingClientRect();
+          const baseW = base.width;
+          const baseH = base.height;
+
           let scale = 1;
           let tx = 0;
           let ty = 0;
@@ -137,8 +144,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           const MAX = 4;
 
           function apply() {
-            stage.style.transform =
-              'translate(' + tx + 'px, ' + ty + 'px) scale(' + scale + ')';
+            stage.style.transform = 'translate(' + tx + 'px, ' + ty + 'px)';
+            svg.style.width = (baseW * scale) + 'px';
+            svg.style.height = (baseH * scale) + 'px';
           }
 
           function zoom(factor) {
@@ -147,6 +155,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
             scale = next;
             apply();
           }
+
+          apply();
 
           toolbar.addEventListener('click', (event) => {
             const target = event.target instanceof Element ? event.target.closest('button') : null;
@@ -329,12 +339,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     display: none;
   }
 
-  /* Rendered state — fills vertical space, zoomable + pannable. */
+  /* Rendered state — zoomable + pannable, moderate vertical footprint. */
   .article-body pre.mermaid[data-processed="true"] {
     padding: 0;
-    min-height: 520px;
-    height: 70vh;
-    max-height: 720px;
+    min-height: 260px;
+    height: 35vh;
+    max-height: 360px;
   }
 
   .article-body .mermaid-viewport {
@@ -357,17 +367,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     display: flex;
     align-items: center;
     justify-content: center;
-    transform-origin: center center;
     will-change: transform;
-    padding: var(--space-md);
+    padding: var(--space-sm);
   }
 
   .article-body .mermaid-stage svg {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
     display: block;
+    /* width + height are set inline by the zoom controller */
   }
 
   .article-body .mermaid-toolbar {
