@@ -264,3 +264,73 @@ Applied immediately: moved `article-capture`, `article-review`, `french-audit` f
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-04-21 — CLAUDE.md split: lean top-level + docs/ for detail
+
+**Context:** Workspace CLAUDE.md was 170 lines — approaching the documented 200-line soft cap and over the community-recommended ~100-line sweet spot. Every line costs context that competes with actual work; community research (DEV Community, obviousworks.ch, Anthropic docs) is consistent: keep it short or lose attention.
+**Decision:** Reduce workspace CLAUDE.md to ~65 lines containing only (a) the laptop-agnostic constraint, (b) who Ahmed is, (c) workspace structure table, (d) non-negotiable rules, (e) pointer table to `docs/*.md`. Move collaboration style, git workflow detail, infrastructure tables, and MCP protocol to `docs/collaboration.md`, `docs/git-workflow.md`, `docs/infrastructure.md`. Same pattern to apply at project level (`boringsystems/CLAUDE.md` + `boringsystems/docs/`).
+**Why:** Community research says Claude attends ~150 instructions reliably; system prompts + tool schemas already consume 30-40k tokens before user input. CLAUDE.md bloat directly trades against usable context. The pointer structure gives Claude a deterministic "read `docs/X.md` if topic is X" routing instead of forcing everything into a single file read.
+**Expected outcome:** Context window stays leaner, attention stays sharper on the rules that matter, detail remains a one-file-read away when relevant. Each new project's CLAUDE.md follows the same shape.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Codify pattern-capture lag as a named discipline: twice-is-a-pattern
+
+**Context:** Every improvement this week landed 2-3 PRs after the pattern appeared. `/wrap-session` was run manually 3× before becoming a skill. `/verify-home` came after 4× manual HTML greps. The insight was always there; codification was always late. This is pattern-codification lag — the systemic friction that prevents the system from compounding.
+**Decision:** Create the "twice-is-a-pattern" rule: when the same manual task happens twice in a session, stop before the third time and propose codification (skill, hook, doc, memory, or ADR — one of five). Encoded as: (a) memory entry `feedback_twice_is_a_pattern.md`, (b) one-line rule in CLAUDE.md, (c) trigger in `/session-pulse` skill which fires mid-session on pattern detection. `/session-pulse` is the mid-session mirror of `/wrap-session` — meta-cognition during the work, not only after.
+**Why:** Hook-level automation can't detect patterns — only Claude can. Skill-level meta-cognition can. The rule's power is in naming it: once Claude knows "pattern repetition = codify before third time", the reaction becomes automatic even when no skill is invoked.
+**Expected outcome:** Codification latency drops from 2-3 PRs to 0-1 PRs. The skill registry grows at the rate of real pattern discovery. The compound interest of the system starts accumulating meaningfully.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Stop hook: background type-check on every feature-branch turn
+
+**Context:** Claude can ship code that compiles locally but has type errors, or breaks the Astro build, or fails `tsc --noEmit`. Auto-commit fires on Stop regardless. Errors surface late — usually at the next `npx astro build` or on a CI failure.
+**Decision:** Add a Stop hook `post-edit-typecheck.sh` that runs after auto-commit, detects the right check command (`astro check`, `tsc --noEmit`) based on `package.json`, runs it async, writes failures to `/tmp/claude-typecheck-<repo>.summary`. The existing `session-start.sh` hook is extended to surface that summary at the next session start.
+**Why:** Hooks enforce; CLAUDE.md advises. Type errors are the exact kind of thing that should fail loudly and deterministically, not be discovered mid-conversation in the next session. Async means no added latency on the visible response path.
+**Expected outcome:** Type errors introduced in session N are surfaced at the start of session N+1 (or caught by the user before then). No silent type-error accumulation between sessions.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — /session-pulse: mid-session meta-cognition skill
+
+**Context:** The `/wrap-session` skill does post-merge reflection. But reflection at session end is too late for patterns that should be codified mid-session (to benefit the rest of the same session). Pattern-codification lag could be 0-hours instead of 2-3 PRs if meta-cognition happens during the work.
+**Decision:** Create `/session-pulse` as the mid-session mirror of `/wrap-session`. Auto-triggers on: (a) pattern repetition, (b) user correction repetition, (c) scope drift past 3 concerns, (d) framework-feature reinvention, (e) decisions made without logging. Produces a terse structured report naming patterns, reinvention flags, scope verdict, and one "codify now" recommendation. User-invocable for manual check-ins.
+**Why:** The meta-cognition skill closes the loop between pattern recognition and pattern codification within the same session. Combined with the "twice-is-a-pattern" memory rule, Claude now has both the trigger and the named discipline.
+**Expected outcome:** Patterns caught and codified mid-session rather than three PRs later. Session scope policed actively. Fewer "we should have named this pattern earlier" moments in `/wrap-session` recaps.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Adopt Astro's native i18n; replace manual routing
+
+**Context:** Previous session built `/en` + `/fr` structure manually — hand-written redirects in `astro.config.mjs`, hardcoded locale prefixes in every page, custom Nav logic. Astro 5 has a built-in `i18n` config block (`defaultLocale`, `locales`, `routing.prefixDefaultLocale`) that does exactly this natively, plus exports `getRelativeLocaleUrl`/`getAbsoluteLocaleUrl` helpers. The manual version was ~80% of what Astro does for free.
+**Decision:** Enable Astro's native i18n: `defaultLocale: 'en'`, `locales: ['en', 'fr']`, `routing: { prefixDefaultLocale: true }`. Retain the `redirects` map for legacy flat URLs (`/about` → `/en/about`, etc.) and root redirect (`/` → `/en/`, 301) because `redirectToDefaultLocale: true` requires a root `index.astro` and emits a meta-refresh fallback on static builds. Refactor `Nav.astro` to use `getRelativeLocaleUrl` instead of hardcoded strings. Extract a small `src/lib/i18n.ts` helper for the essays/essais slug alias table and hreflang URL generation — Astro's native `getRelativeLocaleUrl` does not know about per-locale slug aliases.
+**Why:** Platform-native features age with the platform. Custom implementations do not. Future Astro releases will improve native i18n; our code will inherit the improvements. Also unlocks proper hreflang support (see next entry) and cleaner call sites.
+**Expected outcome:** Astro upgrades carry forward cleanly. Any third locale is a one-line addition. `getRelativeLocaleUrl` used consistently, not reinvented.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — hreflang tags on every page + sitemap i18n metadata
+
+**Context:** Prior to this change, no page on boringsystems emitted `<link rel="alternate" hreflang=…>` tags. Both the Astro i18n docs and the general SEO guidance consider these mandatory for bilingual sites — without them, Google cannot disambiguate which language version to serve to which searcher, and EN/FR pages compete against each other for the same queries.
+**Decision:** Add `hreflangsForPath()` to `src/lib/i18n.ts` — returns `[{hreflang: 'en-US', href}, {hreflang: 'fr-FR', href}, {hreflang: 'x-default', href}]` for any `/en/*` or `/fr/*` path, respecting the essays/essais slug alias. Wire into `Base.astro` and `Article.astro` head blocks. Also pass i18n locale config to `@astrojs/sitemap` so the generated sitemap includes per-page alternate links. `/verify-home` skill updated to assert hreflang presence as a build-time smoke check.
+**Why:** SEO payoff is immediate and durable — correct hreflang prevents keyword cannibalization and routes users to the right-language page. Wiring via a single helper + layout makes it impossible to ship a new page without hreflang going forward.
+**Expected outcome:** Search engines serve `/en/…` to English queries and `/fr/…` to French queries without confusion. No SEO regression from the bilingual split. Adding a third locale requires only updating `LOCALES` in `src/lib/i18n.ts`.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — boringsystems CLAUDE.md split + docs/constraints.md
+
+**Context:** Project-level CLAUDE.md was empty (`0 lines`). All project rules lived implicitly — in conversation, in the session memories, in the workspace-level CLAUDE.md. Constraints like "no build-time browser deps" and "no CSS transform for vector zoom" had been discovered through failure, logged in DECISIONS.md, but not surfaced anywhere Claude would reliably see them at session start.
+**Decision:** Create a lean `boringsystems/CLAUDE.md` (~40 lines) with only the non-negotiable rules + a pointer table to `docs/*.md`. Create `boringsystems/docs/constraints.md` — the "never do X" list with the reasoning behind each constraint. Create `/check-constraints` skill which loads `docs/constraints.md` and vets any planned structural change against it before execution. Workspace-level memory `feedback_platform_features_first.md` makes the cross-project principle explicit: always check framework-native support before custom implementation.
+**Why:** Constraints discovered through failure are expensive — each rediscovery is another iteration, another PR, another review cycle. Codifying them in a short doc that Claude reads automatically (at session start via CLAUDE.md pointer, and explicitly via `/check-constraints` before structural work) converts discovered friction into upfront discipline.
+**Expected outcome:** Future sessions do not rediscover already-known constraints. New constraints discovered in a session land in `docs/constraints.md` immediately, not after two more failures. `/check-constraints` becomes the reflex for any structural change.
+**Actual outcome:** *(pending)*
+
+---
