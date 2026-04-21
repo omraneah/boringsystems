@@ -7,6 +7,7 @@
       "Bash"
     ]
   },
+  "model": "opus[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -45,10 +46,11 @@
   "enabledPlugins": {
     "vercel-plugin@vercel": true
   },
-  "skipDangerousModePermissionPrompt": true,
-  "voiceEnabled": true,
   "voice": {
     "enabled": true,
     "mode": "hold"
-  }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "voiceEnabled": true,
+  "effortLevel": "medium"
 }
