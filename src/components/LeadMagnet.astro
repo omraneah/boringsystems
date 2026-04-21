@@ -67,7 +67,7 @@ const t = {
       status.classList.remove('lm-status--ok', 'lm-status--err');
 
       try {
-        const res = await fetch('/api/lead-magnet', {
+        const res = await fetch('/api/v1/lead-magnet', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

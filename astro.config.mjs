@@ -10,6 +10,7 @@ import { visit } from 'unist-util-visit';
 // (loaded in Article.astro) renders them at view time. Avoids rehype-mermaid's
 // playwright dependency chain.
 function remarkMermaidFences() {
+  /** @param {import('mdast').Root} tree */
   return (tree) => {
     visit(tree, 'code', (node, index, parent) => {
       if (node.lang !== 'mermaid') return;

@@ -98,7 +98,7 @@ const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) 
     <script>
       // Render mermaid code blocks (if any) and wrap each one with a
       // zoom + pan controller so readers can explore the diagram.
-      const nodes = document.querySelectorAll('pre.mermaid');
+      const nodes = document.querySelectorAll<HTMLElement>('pre.mermaid');
       if (nodes.length > 0) {
         const { default: mermaid } = await import('mermaid');
         const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'default' : 'dark';
@@ -111,7 +111,7 @@ const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) 
         await mermaid.run({ nodes });
 
         for (const pre of nodes) {
-          const svg = pre.querySelector('svg');
+          const svg = pre.querySelector<SVGSVGElement>('svg');
           if (!svg) continue;
 
           // Strip mermaid's intrinsic sizing so we can drive width/height ourselves.
@@ -167,11 +167,12 @@ const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) 
           function apply() {
             stage.style.transform =
               'translate(-50%, -50%) translate(' + tx + 'px, ' + ty + 'px)';
+            if (!svg) return;
             svg.style.width = (baseW * scale) + 'px';
             svg.style.height = (baseH * scale) + 'px';
           }
 
-          function zoom(factor) {
+          function zoom(factor: number) {
             const next = Math.max(MIN, Math.min(MAX, scale * factor));
             if (next === scale) return;
             scale = next;
@@ -219,7 +220,7 @@ const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) 
             apply();
           });
 
-          const stopDrag = (event) => {
+          const stopDrag = (event: PointerEvent) => {
             if (!dragging) return;
             dragging = false;
             viewport.classList.remove('is-dragging');
