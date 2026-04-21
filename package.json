@@ -13,12 +13,16 @@
     "postinstall": "simple-git-hooks || true"
   },
   "simple-git-hooks": {
-    "pre-commit": "npm run precommit"
+    "pre-commit": "npm run precommit",
+    "pre-push": "npm audit --audit-level=high"
+  },
+  "overrides": {
+    "path-to-regexp": "^6.3.0"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/sitemap": "^3.7.0",
-    "@astrojs/vercel": "^8.2.11",
+    "@astrojs/vercel": "^9.0.5",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
     "astro": "^5.17.1",
