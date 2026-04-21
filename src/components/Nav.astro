@@ -1,7 +1,11 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { toLocalePath } from '../lib/i18n';
+
 const pathname = Astro.url.pathname;
 const isFrench = pathname.startsWith('/fr');
 const base = isFrench ? '/fr' : '/en';
+const lang = isFrench ? 'fr' : 'en';
 
 const isHome = pathname === `${base}` || pathname === `${base}/`;
 const isEngineering = pathname.startsWith(`${base}/engineering`);
@@ -9,27 +13,31 @@ const isEntrepreneurs = pathname.startsWith(`${base}/entrepreneurs`);
 const isEssays = pathname.startsWith(`${base}/essays`) || pathname.startsWith(`${base}/essais`);
 const isAbout = pathname === `${base}/about` || pathname === `${base}/about/`;
 
+// Use Astro's native locale-aware URL helper. Essays has a locale-specific
+// slug (essays/essais) handled by `toLocalePath` from src/lib/i18n.
+const homeHref = getRelativeLocaleUrl(lang, '');
+const engineeringHref = getRelativeLocaleUrl(lang, 'engineering');
+const entrepreneursHref = getRelativeLocaleUrl(lang, 'entrepreneurs');
+const aboutHref = getRelativeLocaleUrl(lang, 'about');
 const essaysPath = isFrench ? '/fr/essais' : '/en/essays';
 
-const langHref = isFrench
-  ? (pathname.replace(/^\/fr/, '/en') || '/en/').replace('/essais', '/essays')
-  : (pathname.replace(/^\/en/, '/fr') || '/fr/').replace('/essays', '/essais');
+const langHref = toLocalePath(pathname, isFrench ? 'en' : 'fr');
 ---
 
 <nav class="site-nav">
   <ul class="nav-links">
     <li>
-      <a href={isFrench ? '/fr/' : '/en/'} class:list={[{ active: isHome }]}>
+      <a href={homeHref} class:list={[{ active: isHome }]}>
         {isFrench ? 'Accueil' : 'Home'}
       </a>
     </li>
     <li>
-      <a href={`${base}/engineering`} class:list={[{ active: isEngineering }]}>
+      <a href={engineeringHref} class:list={[{ active: isEngineering }]}>
         Engineering
       </a>
     </li>
     <li>
-      <a href={`${base}/entrepreneurs`} class:list={[{ active: isEntrepreneurs }]}>
+      <a href={entrepreneursHref} class:list={[{ active: isEntrepreneurs }]}>
         Entrepreneurs
       </a>
     </li>
@@ -39,7 +47,7 @@ const langHref = isFrench
       </a>
     </li>
     <li>
-      <a href={`${base}/about`} class:list={[{ active: isAbout }]}>
+      <a href={aboutHref} class:list={[{ active: isAbout }]}>
         {isFrench ? 'À propos' : 'About'}
       </a>
     </li>

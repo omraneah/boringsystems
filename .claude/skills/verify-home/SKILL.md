@@ -26,6 +26,8 @@ Post-change smoke test for the boringsystems home page. Validates the surface-le
    - **"All case files" link is absent** on both home pages.
    - **Lead magnet presence.** Both new article pages (`/en/case-files/solo-founder-new-baseline`, `/en/case-files/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
    - **Mermaid block present** on `/en/case-files/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.
+   - **Hreflang present on every page.** Check that `dist/client/en/index.html`, `dist/client/fr/index.html`, one case-file page, and one essays page all include three `<link rel="alternate" hreflang=…>` tags: `en-US`, `fr-FR`, and `x-default`. Verify the essays ↔ essais slug aliasing: the EN essays page's `fr-FR` link must point to `/fr/essais`, and vice versa.
+   - **Root `/` redirects to `/en/` with 301.** Inspect `.vercel/output/config.json` for a route `{"src":"^/$", "status":301, "headers":{"Location":"/en/"}}`.
 
 3. Run each assertion with a short Python one-liner using stdlib `re`. Example pattern:
    ```bash
