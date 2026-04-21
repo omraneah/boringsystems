@@ -30,26 +30,36 @@ Otherwise, scan the conversation and identify:
 
 ## Step 2 — Draft the card
 
+Before drafting, read `boringsystems/docs/design-charter.md` for tone calibration and `boringsystems/docs/target-audiences.md` for persona IDs and entry points. Do not rely on memory — the docs are the source of truth.
+
 Structure the Linear card as follows:
 
 ```
 ## What this article is about
 [One paragraph. The angle, not the topic. What makes this worth reading for a senior operator.]
 
+## Primary persona
+[One of: senior-peer, operator, early-builder — from target-audiences.md. Name the entry point that matches: tension/architecture decision (senior-peer), business implication (operator), or decision guide with next steps (early-builder).]
+
 ## The intellectual thread to follow
 [Numbered sections, each a building block of the argument. Include the technical layer AND the business/positioning layer. Don't separate them.]
 
 ## Tone and format guidance
-- boringsystems voice: constraint-first, short sentences, no hedging, operator-to-operator
-- [Specific notes on what to avoid — the clichés, the obvious takes]
-- Target length
-- English first, then French (re-voiced, not literally translated)
+- boringsystems voice per design-charter.md: constraint-first, short sentences, no hedging, operator-to-operator
+- [Specific notes on what to avoid — the clichés, the obvious takes for this topic]
+- Target length (per charter: under 400 words = incomplete, over 5000 = unfocused)
+- English first, then French — re-voiced per french-guide.md, not literally translated
 
 ## Before drafting
-[What to read/check first: existing articles, i18n setup, content-research run]
+- Read design-charter.md and target-audiences.md
+- Read existing articles in the same collection for voice continuity
+- Decide whether an email-gated tail fits (prompt pack, setup guide) — optional, article must stand alone either way
 
 ## Success criteria
-[What a reader should feel/understand after finishing. Be specific.]
+[What the primary persona should feel/understand after finishing. Be specific to the persona's entry point.]
+
+## Pre-publish
+- Invoke /article-review before opening the PR — it loads all three governance docs and produces a pass/flag report including the FR audit.
 ```
 
 ## Step 3 — Create the card on Linear
