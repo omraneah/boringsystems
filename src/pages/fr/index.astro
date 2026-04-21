@@ -7,8 +7,25 @@ import { articleMeta } from '../../lib/article-meta';
 const featuredWork = (await getCollection('case-files-fr', ({ data }) => data.featured))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
-const highlightedPiece = (await getCollection('operating-playbooks-fr', ({ data }) => data.highlight))[0] ?? null;
-const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => data.highlight))[0] ?? null;
+const highlightedCaseFiles = (await getCollection('case-files-fr', ({ data }) => data.highlight))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const highlightedPlaybooks = (await getCollection('operating-playbooks-fr', ({ data }) => data.highlight))
+  .sort((a, b) => (a.data.playbook ?? 0) - (b.data.playbook ?? 0));
+
+const highlights = [
+  ...highlightedCaseFiles.map((entry) => ({
+    kind: 'case-file' as const,
+    series: 'Étude de cas',
+    href: `/fr/case-files/${entry.slug}`,
+    data: entry.data,
+  })),
+  ...highlightedPlaybooks.map((entry) => ({
+    kind: 'playbook' as const,
+    series: entry.data.series ?? 'Playbook',
+    href: `/fr/operating-playbooks/${entry.slug}`,
+    data: entry.data,
+  })),
+];
 ---
 
 <Base title="Ahmed Omrane" description="Des systèmes qui scalent. Un jugement qui tient." lang="fr">
@@ -22,12 +39,12 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
     </div>
   </div>
 
-  {(highlightedPiece || highlightedCaseFile) && (
+  {highlights.length > 0 && (
     <section class="section highlight-section">
       <div class="section-inner">
         <div class="highlight-header">
           <p class="label section-label">À la une</p>
-          {(highlightedPiece && highlightedCaseFile) && (
+          {highlights.length > 1 && (
             <div class="carousel-controls">
               <button class="carousel-btn" id="carousel-prev" aria-label="Précédent">←</button>
               <button class="carousel-btn" id="carousel-next" aria-label="Suivant">→</button>
@@ -35,27 +52,24 @@ const highlightedCaseFile = (await getCollection('case-files-fr', ({ data }) => 
           )}
         </div>
         <div class="highlight-carousel">
-          {highlightedCaseFile && (
-            <a href={`/fr/case-files/${highlightedCaseFile.slug}`} class="highlight-card is-active">
-              <span class="highlight-series">Étude de cas</span>
-              <h2 class="highlight-title">{highlightedCaseFile.data.title}</h2>
-              <p class="highlight-description">{highlightedCaseFile.data.description}</p>
+          {highlights.map((item, i) => (
+            <a href={item.href} class:list={["highlight-card", { "is-active": i === 0 }]}>
+              <span class="highlight-series">{item.series}</span>
+              <h2 class="highlight-title">{item.data.title}</h2>
+              <p class="highlight-description">{item.data.description}</p>
               <span class="highlight-read accent">Lire →</span>
             </a>
-          )}
-          {highlightedPiece && (
-            <a href={`/fr/operating-playbooks/${highlightedPiece.slug}`} class="highlight-card">
-              <span class="highlight-series">{highlightedPiece.data.series}</span>
-              <h2 class="highlight-title">{highlightedPiece.data.title}</h2>
-              <p class="highlight-description">{highlightedPiece.data.description}</p>
-              <span class="highlight-read accent">Lire →</span>
-            </a>
-          )}
+          ))}
         </div>
-        {(highlightedPiece && highlightedCaseFile) && (
+        {highlights.length > 1 && (
           <div class="carousel-dots">
-            <button class="carousel-dot is-active" data-index="0" aria-label="Mise en avant 1"></button>
-            <button class="carousel-dot" data-index="1" aria-label="Mise en avant 2"></button>
+            {highlights.map((_, i) => (
+              <button
+                class:list={["carousel-dot", { "is-active": i === 0 }]}
+                data-index={i}
+                aria-label={`À la une ${i + 1}`}
+              ></button>
+            ))}
           </div>
         )}
       </div>

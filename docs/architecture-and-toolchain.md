@@ -61,10 +61,14 @@ Bought and managed on Vercel. DNS is handled there.
 
 | Tool | Role |
 |---|---|
-| Resend | Transactional email for contact form and article feedback |
+| Resend | Transactional email for contact form, article feedback, and lead magnets |
 | `contact@boringsystems.app` | Sending address (domain verified on Resend) |
 
-Resend is the only outbound email dependency. It is fully encapsulated in `src/lib/mailer.ts` — swapping providers requires changes to that file only. See `docs/adr-001-contact-form.md` for the decision rationale.
+Resend is the only outbound email dependency. It is fully encapsulated in `src/lib/mailer.ts`, which exposes a single internal `sendEmail()` helper plus four named exports (`sendContactEmail`, `sendFeedbackEmail`, `sendLeadMagnetNotification`, `sendLeadMagnetConfirmation`). Swapping providers requires changes to that file only. See `docs/adr-001-contact-form.md` for the original decision rationale.
+
+### Lead magnets
+
+Lead-magnet assets are declared in `src/lib/lead-magnets.ts` as a typed registry (`slug`, `title`, `description`, `buttonLabel`, `prompt`, `confirmation` — each indexed by `en` / `fr`). The reusable `<LeadMagnet />` component (`src/components/LeadMagnet.astro`) takes an `assetSlug` and drops the capture form anywhere on the site. The `POST /api/lead-magnet` endpoint (`src/pages/api/lead-magnet.ts`) notifies Ahmed and sends the subscriber the asset body from the registry. To add a new lead magnet, add one entry to the registry — nothing else needs to change.
 
 ---
 
@@ -75,8 +79,8 @@ Managed in Vercel project settings. For local development, copy to `.env.local` 
 | Variable | Purpose |
 |---|---|
 | `RESEND_API_KEY` | Resend authentication |
-| `CONTACT_TO_EMAIL` | Destination inbox for contact and feedback emails |
-| `CONTACT_FROM_EMAIL` | Sending address (`contact@boringsystems.app`) |
+| `CONTACT_TO_EMAIL` | Destination inbox for contact, feedback, and lead-magnet notification emails |
+| `CONTACT_FROM_EMAIL` | Sending address (`contact@boringsystems.app`); also used as the "from" for lead-magnet confirmations to subscribers |
 
 ---
 
@@ -84,17 +88,27 @@ Managed in Vercel project settings. For local development, copy to `.env.local` 
 
 ```
 src/
-├── components/        ← Reusable UI components (including ArticleFeedback)
-├── content/           ← Markdown articles, symmetric per language:
+├── components/        ← Reusable UI: ArticleCard, ArticleFeedback, LeadMagnet, Nav, Footer
+├── content/           ← Markdown + MDX articles, symmetric per language:
 │                       case-files-en/, case-files-fr/,
-│                       operating-playbooks-en/, operating-playbooks-fr/
-├── layouts/           ← Page layouts (Base.astro, Article.astro)
-├── lib/               ← Backend abstractions (mailer.ts, article-meta.ts)
+│                       operating-playbooks-en/, operating-playbooks-fr/.
+│                       Articles are .md by default; use .mdx when a piece needs
+│                       embedded components (e.g. <LeadMagnet />) or mermaid diagrams.
+├── layouts/           ← Page layouts (Base.astro, Article.astro).
+│                       Article.astro loads mermaid.js client-side when any
+│                       <pre class="mermaid"> blocks are present on the page.
+├── lib/               ← Backend + typed registries (mailer.ts, article-meta.ts,
+│                       lead-magnets.ts)
 ├── pages/             ← Routes, strict two-language tree:
 │                       en/* and fr/* mirror each other; api/* is language-neutral.
 │                       No content lives at the root — astro.config.mjs 301-redirects
 │                       `/`, `/case-files/*`, `/engineering`, etc. to `/en/...`.
 └── styles/            ← Global CSS and design tokens
+
+Mermaid diagrams: write a ```mermaid code fence inside a .md or .mdx article.
+A small remark plugin in astro.config.mjs rewrites the fence into a
+<pre class="mermaid"> HTML block at build time; mermaid.js renders it
+client-side. No build-time browser dependency is needed.
 
 docs/                  ← Architecture decisions and toolchain documentation
 ```

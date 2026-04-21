@@ -2,7 +2,7 @@
 title: "Votre startup en phase précoce a-t-elle vraiment besoin d'un CTO ?"
 description: "La plupart des fondateurs qui se posent cette question résolvent le mauvais problème. Un diagnostic de terrain des trois idées reçues qui coûtent le plus aux startups — avant même qu'elles aient construit quelque chose qui mérite d'être protégé."
 highlight: true
-order: 4
+order: 6
 persona: operator
 date: 2026-04-19
 ---

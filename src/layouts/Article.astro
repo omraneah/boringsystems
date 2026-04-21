@@ -90,6 +90,22 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <Footer />
     <Analytics />
     <SpeedInsights />
+    <script>
+      // Render mermaid code blocks if any are present on the page.
+      // rehype-mermaid emits <pre class="mermaid"> blocks at build time.
+      const nodes = document.querySelectorAll('pre.mermaid');
+      if (nodes.length > 0) {
+        const { default: mermaid } = await import('mermaid');
+        const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'default' : 'dark';
+        mermaid.initialize({
+          startOnLoad: false,
+          theme,
+          securityLevel: 'strict',
+          fontFamily: 'var(--font-ui), system-ui, sans-serif',
+        });
+        await mermaid.run({ nodes });
+      }
+    </script>
   </body>
 </html>
 
@@ -167,6 +183,65 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     background: var(--bg-elevated);
     padding: 0.15em 0.4em;
     border-radius: 2px;
+  }
+
+  .article-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-md) 0;
+    font-size: var(--size-sm);
+  }
+
+  .article-body th,
+  .article-body td {
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .article-body th {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--accent-dim);
+  }
+
+  .article-body pre.mermaid {
+    background: var(--bg-elevated);
+    padding: var(--space-lg) var(--space-md);
+    text-align: center;
+    border-left: 2px solid var(--accent-dim);
+    margin: var(--space-lg) 0;
+    overflow-x: auto;
+    min-height: 120px;
+  }
+
+  /* Before mermaid.js runs, show placeholder text instead of raw graph source. */
+  .article-body pre.mermaid:not([data-processed="true"]) {
+    color: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    white-space: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .article-body pre.mermaid:not([data-processed="true"])::before {
+    content: "Rendering diagram…";
+  }
+
+  .article-body pre.mermaid:not([data-processed="true"]) > * {
+    display: none;
+  }
+
+  .article-body pre.mermaid[data-processed="true"] svg {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
   }
 </style>
 

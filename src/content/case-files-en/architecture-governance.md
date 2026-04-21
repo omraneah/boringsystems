@@ -3,7 +3,7 @@ title: "Establishing Cross-Surface Architecture Governance"
 description: "Building an authoritative governance layer that aligned multiple product surfaces and reduced divergence."
 date: 2026-02-22
 featured: true
-order: 3
+order: 5
 persona: technical
 ---
 

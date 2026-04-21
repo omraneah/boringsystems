@@ -2,7 +2,7 @@
 title: "Renforcer une plateforme en production pour l'entreprise"
 description: "Une transition séquencée qui a renforcé l'identité, les périmètres et la discipline de mise en production pendant que la livraison de fonctionnalités continuait."
 featured: true
-order: 2
+order: 4
 persona: technical
 date: 2026-04-19
 ---
