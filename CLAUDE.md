@@ -87,7 +87,7 @@ He is a sovereign explorer. Depth-oriented. France-based.
 
 ### Git Workflow (Non-Negotiable)
 - **Never push to `main`, `master`, `development`, `dev`, or `production`.**
-- Always create a feature branch, push to it, and open a PR.
+- Always create a feature branch and push to it. **Claude never opens the PR itself** — Claude pushes the branch and surfaces the GitHub PR-creation URL; Ahmed opens the PR manually. Never invoke `gh pr create` or `mcp__github__create_pull_request`. See `memory/feedback_pr_creation.md`.
 - Auto-commit runs at end of each task turn (Stop hook) — this is automatic, no need to ask.
 - Protected branch push is blocked at hook level — not just instruction level.
 - No exceptions, no urgency overrides.
