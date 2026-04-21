@@ -110,6 +110,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           if (!svg) continue;
 
           // Strip mermaid's intrinsic sizing so we can drive width/height ourselves.
+          svg.removeAttribute('width');
           svg.removeAttribute('height');
           svg.removeAttribute('style');
 
@@ -130,21 +131,37 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           pre.appendChild(viewport);
           pre.appendChild(toolbar);
 
-          // Capture the natural rendered size so we can scale the SVG via
-          // width/height — not CSS transform — which keeps the SVG
-          // vector-sharp at any zoom level.
-          const base = svg.getBoundingClientRect();
-          const baseW = base.width;
-          const baseH = base.height;
+          // Compute a base size that fits the viewport at scale=1, preserving
+          // the SVG's aspect ratio (read from its viewBox). Scaling the SVG
+          // via width/height keeps the vectors sharp at any zoom level.
+          const vb = svg.viewBox && svg.viewBox.baseVal;
+          const ratio = (vb && vb.width && vb.height) ? (vb.width / vb.height) : (16 / 9);
+
+          let baseW = 0;
+          let baseH = 0;
+
+          function computeBase() {
+            const r = viewport.getBoundingClientRect();
+            const availW = Math.max(1, r.width - 16);
+            const availH = Math.max(1, r.height - 16);
+            if (availW / availH > ratio) {
+              baseH = availH;
+              baseW = availH * ratio;
+            } else {
+              baseW = availW;
+              baseH = availW / ratio;
+            }
+          }
 
           let scale = 1;
           let tx = 0;
           let ty = 0;
-          const MIN = 0.5;
-          const MAX = 4;
+          const MIN = 0.3;
+          const MAX = 6;
 
           function apply() {
-            stage.style.transform = 'translate(' + tx + 'px, ' + ty + 'px)';
+            stage.style.transform =
+              'translate(-50%, -50%) translate(' + tx + 'px, ' + ty + 'px)';
             svg.style.width = (baseW * scale) + 'px';
             svg.style.height = (baseH * scale) + 'px';
           }
@@ -156,7 +173,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
             apply();
           }
 
+          computeBase();
           apply();
+
+          const ro = new ResizeObserver(() => { computeBase(); apply(); });
+          ro.observe(viewport);
 
           toolbar.addEventListener('click', (event) => {
             const target = event.target instanceof Element ? event.target.closest('button') : null;
@@ -363,12 +384,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
   .article-body .mermaid-stage {
     position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     will-change: transform;
-    padding: var(--space-sm);
   }
 
   .article-body .mermaid-stage svg {
