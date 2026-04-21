@@ -2,7 +2,7 @@
 title: "Reprendre la maîtrise du système face au verrouillage fournisseur"
 description: "Une transition séquencée s'éloignant d'un noyau externe opaque, tout en préservant la continuité et en internalisant le contrôle."
 featured: true
-order: 1
+order: 3
 persona: technical
 date: 2026-04-19
 ---

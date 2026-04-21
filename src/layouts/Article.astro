@@ -90,6 +90,143 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <Footer />
     <Analytics />
     <SpeedInsights />
+    <script>
+      // Render mermaid code blocks (if any) and wrap each one with a
+      // zoom + pan controller so readers can explore the diagram.
+      const nodes = document.querySelectorAll('pre.mermaid');
+      if (nodes.length > 0) {
+        const { default: mermaid } = await import('mermaid');
+        const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'default' : 'dark';
+        mermaid.initialize({
+          startOnLoad: false,
+          theme,
+          securityLevel: 'strict',
+          fontFamily: 'var(--font-ui), system-ui, sans-serif',
+        });
+        await mermaid.run({ nodes });
+
+        for (const pre of nodes) {
+          const svg = pre.querySelector('svg');
+          if (!svg) continue;
+
+          // Strip mermaid's intrinsic sizing so we can drive width/height ourselves.
+          svg.removeAttribute('width');
+          svg.removeAttribute('height');
+          svg.removeAttribute('style');
+
+          const viewport = document.createElement('div');
+          viewport.className = 'mermaid-viewport';
+          const stage = document.createElement('div');
+          stage.className = 'mermaid-stage';
+          stage.appendChild(svg);
+          viewport.appendChild(stage);
+
+          const toolbar = document.createElement('div');
+          toolbar.className = 'mermaid-toolbar';
+          toolbar.innerHTML =
+            '<button type="button" data-action="zoom-in" aria-label="Zoom in">+</button>' +
+            '<button type="button" data-action="zoom-out" aria-label="Zoom out">−</button>' +
+            '<button type="button" data-action="reset" aria-label="Reset view">↺</button>';
+
+          pre.appendChild(viewport);
+          pre.appendChild(toolbar);
+
+          // Compute a base size that fits the viewport at scale=1, preserving
+          // the SVG's aspect ratio (read from its viewBox). Scaling the SVG
+          // via width/height keeps the vectors sharp at any zoom level.
+          const vb = svg.viewBox && svg.viewBox.baseVal;
+          const ratio = (vb && vb.width && vb.height) ? (vb.width / vb.height) : (16 / 9);
+
+          let baseW = 0;
+          let baseH = 0;
+
+          function computeBase() {
+            const r = viewport.getBoundingClientRect();
+            const availW = Math.max(1, r.width - 16);
+            const availH = Math.max(1, r.height - 16);
+            if (availW / availH > ratio) {
+              baseH = availH;
+              baseW = availH * ratio;
+            } else {
+              baseW = availW;
+              baseH = availW / ratio;
+            }
+          }
+
+          let scale = 1;
+          let tx = 0;
+          let ty = 0;
+          const MIN = 0.3;
+          const MAX = 6;
+
+          function apply() {
+            stage.style.transform =
+              'translate(-50%, -50%) translate(' + tx + 'px, ' + ty + 'px)';
+            svg.style.width = (baseW * scale) + 'px';
+            svg.style.height = (baseH * scale) + 'px';
+          }
+
+          function zoom(factor) {
+            const next = Math.max(MIN, Math.min(MAX, scale * factor));
+            if (next === scale) return;
+            scale = next;
+            apply();
+          }
+
+          computeBase();
+          apply();
+
+          const ro = new ResizeObserver(() => { computeBase(); apply(); });
+          ro.observe(viewport);
+
+          toolbar.addEventListener('click', (event) => {
+            const target = event.target instanceof Element ? event.target.closest('button') : null;
+            if (!target) return;
+            const action = target.getAttribute('data-action');
+            if (action === 'zoom-in') zoom(1.25);
+            else if (action === 'zoom-out') zoom(1 / 1.25);
+            else if (action === 'reset') { scale = 1; tx = 0; ty = 0; apply(); }
+          });
+
+          viewport.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            zoom(event.deltaY < 0 ? 1.1 : 1 / 1.1);
+          }, { passive: false });
+
+          let dragging = false;
+          let lastX = 0;
+          let lastY = 0;
+
+          viewport.addEventListener('pointerdown', (event) => {
+            dragging = true;
+            lastX = event.clientX;
+            lastY = event.clientY;
+            viewport.setPointerCapture(event.pointerId);
+            viewport.classList.add('is-dragging');
+          });
+
+          viewport.addEventListener('pointermove', (event) => {
+            if (!dragging) return;
+            tx += event.clientX - lastX;
+            ty += event.clientY - lastY;
+            lastX = event.clientX;
+            lastY = event.clientY;
+            apply();
+          });
+
+          const stopDrag = (event) => {
+            if (!dragging) return;
+            dragging = false;
+            viewport.classList.remove('is-dragging');
+            try { viewport.releasePointerCapture(event.pointerId); } catch {}
+          };
+
+          viewport.addEventListener('pointerup', stopDrag);
+          viewport.addEventListener('pointercancel', stopDrag);
+          viewport.addEventListener('pointerleave', stopDrag);
+        }
+      }
+    </script>
   </body>
 </html>
 
@@ -167,6 +304,124 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     background: var(--bg-elevated);
     padding: 0.15em 0.4em;
     border-radius: 2px;
+  }
+
+  .article-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-md) 0;
+    font-size: var(--size-sm);
+  }
+
+  .article-body th,
+  .article-body td {
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .article-body th {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--accent-dim);
+  }
+
+  .article-body pre.mermaid {
+    position: relative;
+    background: var(--bg-elevated);
+    border-left: 2px solid var(--accent-dim);
+    margin: var(--space-lg) 0;
+    min-height: 160px;
+    overflow: hidden;
+  }
+
+  /* Before mermaid.js runs, show placeholder text instead of raw graph source. */
+  .article-body pre.mermaid:not([data-processed="true"]) {
+    padding: var(--space-lg) var(--space-md);
+    color: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    white-space: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .article-body pre.mermaid:not([data-processed="true"])::before {
+    content: "Rendering diagram…";
+  }
+
+  .article-body pre.mermaid:not([data-processed="true"]) > * {
+    display: none;
+  }
+
+  /* Rendered state — zoomable + pannable, moderate vertical footprint. */
+  .article-body pre.mermaid[data-processed="true"] {
+    padding: 0;
+    min-height: 260px;
+    height: 35vh;
+    max-height: 360px;
+  }
+
+  .article-body .mermaid-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+  }
+
+  .article-body .mermaid-viewport.is-dragging {
+    cursor: grabbing;
+  }
+
+  .article-body .mermaid-stage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+  }
+
+  .article-body .mermaid-stage svg {
+    display: block;
+    /* width + height are set inline by the zoom controller */
+  }
+
+  .article-body .mermaid-toolbar {
+    position: absolute;
+    right: 0.6rem;
+    bottom: 0.6rem;
+    display: flex;
+    gap: 0.25rem;
+    z-index: 2;
+  }
+
+  .article-body .mermaid-toolbar button {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    line-height: 1;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--accent-dim);
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+
+  .article-body .mermaid-toolbar button:hover {
+    background: var(--bg-elevated);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 </style>
 

@@ -1,0 +1,216 @@
+---
+import { getLeadMagnet, type Lang } from '../lib/lead-magnets';
+
+interface Props {
+  assetSlug: string;
+  lang?: Lang;
+  articleTitle?: string;
+  articleUrl?: string;
+}
+
+const { assetSlug, lang = 'en', articleTitle, articleUrl } = Astro.props;
+const asset = getLeadMagnet(assetSlug);
+
+const t = {
+  emailPlaceholder: lang === 'fr' ? 'vous@exemple.com' : 'you@example.com',
+  success: lang === 'fr'
+    ? 'Merci. Vérifiez votre boîte — une confirmation vient de partir.'
+    : 'Thanks. Check your inbox — a confirmation is on its way.',
+  error: lang === 'fr'
+    ? 'Une erreur est survenue. Réessayez.'
+    : 'Something went wrong. Try again.',
+  sending: lang === 'fr' ? 'Envoi…' : 'Sending…',
+};
+---
+
+<section class="lead-magnet">
+  <div class="lm-inner">
+    <p class="lm-label">{lang === 'fr' ? 'Ressource' : 'Free resource'}</p>
+    <h3 class="lm-title">{asset.title[lang]}</h3>
+    <p class="lm-description">{asset.description[lang]}</p>
+    <p class="lm-prompt">{asset.prompt[lang]}</p>
+
+    <form class="lm-form" novalidate data-asset={asset.slug} data-lang={lang}
+      data-article-title={articleTitle ?? ''}
+      data-article-url={articleUrl ?? ''}>
+      <input
+        type="email"
+        name="email"
+        class="lm-input"
+        placeholder={t.emailPlaceholder}
+        required
+        autocomplete="email"
+        aria-label="Email"
+      />
+      <button type="submit" class="lm-button">{asset.buttonLabel[lang]}</button>
+      <p class="lm-status" aria-live="polite" data-success={t.success} data-error={t.error} data-sending={t.sending}></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>('form.lm-form');
+  for (const form of forms) {
+    const input = form.querySelector<HTMLInputElement>('input[name="email"]')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const status = form.querySelector<HTMLParagraphElement>('.lm-status')!;
+    const initialLabel = button.textContent ?? '';
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const email = input.value.trim();
+      if (!email || !email.includes('@')) return;
+
+      button.disabled = true;
+      button.textContent = status.dataset.sending ?? '…';
+      status.textContent = '';
+      status.classList.remove('lm-status--ok', 'lm-status--err');
+
+      try {
+        const res = await fetch('/api/lead-magnet', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            assetSlug: form.dataset.asset,
+            lang: form.dataset.lang,
+            articleTitle: form.dataset.articleTitle || undefined,
+            articleUrl: form.dataset.articleUrl || undefined,
+          }),
+        });
+        if (res.ok) {
+          status.textContent = status.dataset.success ?? '';
+          status.classList.add('lm-status--ok');
+          input.value = '';
+          button.disabled = true;
+          button.textContent = initialLabel;
+        } else {
+          status.textContent = status.dataset.error ?? '';
+          status.classList.add('lm-status--err');
+          button.disabled = false;
+          button.textContent = initialLabel;
+        }
+      } catch {
+        status.textContent = status.dataset.error ?? '';
+        status.classList.add('lm-status--err');
+        button.disabled = false;
+        button.textContent = initialLabel;
+      }
+    });
+  }
+</script>
+
+<style>
+  .lead-magnet {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    border-left: 2px solid var(--accent);
+    background: var(--bg-elevated);
+  }
+
+  .lm-inner {
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .lm-label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  .lm-title {
+    font-family: var(--font-display);
+    font-size: var(--size-lg);
+    color: var(--text);
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .lm-description {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    color: var(--text);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .lm-prompt {
+    font-family: var(--font-body);
+    font-size: var(--size-sm);
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .lm-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-top: var(--space-xs);
+  }
+
+  .lm-input {
+    flex: 1 1 240px;
+    font-family: var(--font-body);
+    font-size: var(--size-sm);
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--accent-dim);
+    padding: 0.6rem 0.75rem;
+    outline: none;
+    transition: border-color 0.15s;
+    box-sizing: border-box;
+  }
+
+  .lm-input:focus {
+    border-color: var(--accent);
+  }
+
+  .lm-button {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    font-weight: 500;
+    color: var(--bg);
+    background: var(--text);
+    border: none;
+    padding: 0.6rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+    white-space: nowrap;
+  }
+
+  .lm-button:hover:not(:disabled) {
+    background: var(--accent);
+  }
+
+  .lm-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .lm-status {
+    flex-basis: 100%;
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    color: var(--text-muted);
+    margin: 0;
+    min-height: 1em;
+  }
+
+  .lm-status--ok { color: var(--accent); }
+  .lm-status--err { color: #e05252; }
+
+  @media (max-width: 520px) {
+    .lm-button {
+      width: 100%;
+    }
+  }
+</style>
