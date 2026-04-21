@@ -22,3 +22,15 @@ fi
 if [ "$CURRENT" = "$BASE" ]; then
   git fetch origin "$BASE" --quiet 2>/dev/null && git pull origin "$BASE" --ff-only --quiet 2>/dev/null || true
 fi
+
+# Surface any type-check failures logged by the previous Stop hook.
+# The post-edit-typecheck.sh hook writes /tmp/claude-typecheck-<repo>.summary
+# only when the last build failed. If it exists, echo it so Claude sees it
+# in the SessionStart context.
+REPO_NAME=$(basename "$PROJ_DIR")
+SUMMARY="/tmp/claude-typecheck-${REPO_NAME}.summary"
+if [ -f "$SUMMARY" ]; then
+  echo "── type-check issues from last session ──"
+  cat "$SUMMARY"
+  echo "────────────────────────────────────────"
+fi

@@ -38,6 +38,11 @@
             "type": "command",
             "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/auto-commit.sh",
             "async": true
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/post-edit-typecheck.sh",
+            "async": true
           }
         ]
       }
@@ -46,7 +51,7 @@
   "enabledPlugins": {
     "vercel-plugin@vercel": true
   },
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "voice": {
     "enabled": true,
     "mode": "hold"

@@ -264,3 +264,43 @@ Applied immediately: moved `article-capture`, `article-review`, `french-audit` f
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-04-21 — CLAUDE.md split: lean top-level + docs/ for detail
+
+**Context:** Workspace CLAUDE.md was 170 lines — approaching the documented 200-line soft cap and over the community-recommended ~100-line sweet spot. Every line costs context that competes with actual work; community research (DEV Community, obviousworks.ch, Anthropic docs) is consistent: keep it short or lose attention.
+**Decision:** Reduce workspace CLAUDE.md to ~65 lines containing only (a) the laptop-agnostic constraint, (b) who Ahmed is, (c) workspace structure table, (d) non-negotiable rules, (e) pointer table to `docs/*.md`. Move collaboration style, git workflow detail, infrastructure tables, and MCP protocol to `docs/collaboration.md`, `docs/git-workflow.md`, `docs/infrastructure.md`. Same pattern to apply at project level (`boringsystems/CLAUDE.md` + `boringsystems/docs/`).
+**Why:** Community research says Claude attends ~150 instructions reliably; system prompts + tool schemas already consume 30-40k tokens before user input. CLAUDE.md bloat directly trades against usable context. The pointer structure gives Claude a deterministic "read `docs/X.md` if topic is X" routing instead of forcing everything into a single file read.
+**Expected outcome:** Context window stays leaner, attention stays sharper on the rules that matter, detail remains a one-file-read away when relevant. Each new project's CLAUDE.md follows the same shape.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Codify pattern-capture lag as a named discipline: twice-is-a-pattern
+
+**Context:** Every improvement this week landed 2-3 PRs after the pattern appeared. `/wrap-session` was run manually 3× before becoming a skill. `/verify-home` came after 4× manual HTML greps. The insight was always there; codification was always late. This is pattern-codification lag — the systemic friction that prevents the system from compounding.
+**Decision:** Create the "twice-is-a-pattern" rule: when the same manual task happens twice in a session, stop before the third time and propose codification (skill, hook, doc, memory, or ADR — one of five). Encoded as: (a) memory entry `feedback_twice_is_a_pattern.md`, (b) one-line rule in CLAUDE.md, (c) trigger in `/session-pulse` skill which fires mid-session on pattern detection. `/session-pulse` is the mid-session mirror of `/wrap-session` — meta-cognition during the work, not only after.
+**Why:** Hook-level automation can't detect patterns — only Claude can. Skill-level meta-cognition can. The rule's power is in naming it: once Claude knows "pattern repetition = codify before third time", the reaction becomes automatic even when no skill is invoked.
+**Expected outcome:** Codification latency drops from 2-3 PRs to 0-1 PRs. The skill registry grows at the rate of real pattern discovery. The compound interest of the system starts accumulating meaningfully.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — Stop hook: background type-check on every feature-branch turn
+
+**Context:** Claude can ship code that compiles locally but has type errors, or breaks the Astro build, or fails `tsc --noEmit`. Auto-commit fires on Stop regardless. Errors surface late — usually at the next `npx astro build` or on a CI failure.
+**Decision:** Add a Stop hook `post-edit-typecheck.sh` that runs after auto-commit, detects the right check command (`astro check`, `tsc --noEmit`) based on `package.json`, runs it async, writes failures to `/tmp/claude-typecheck-<repo>.summary`. The existing `session-start.sh` hook is extended to surface that summary at the next session start.
+**Why:** Hooks enforce; CLAUDE.md advises. Type errors are the exact kind of thing that should fail loudly and deterministically, not be discovered mid-conversation in the next session. Async means no added latency on the visible response path.
+**Expected outcome:** Type errors introduced in session N are surfaced at the start of session N+1 (or caught by the user before then). No silent type-error accumulation between sessions.
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-21 — /session-pulse: mid-session meta-cognition skill
+
+**Context:** The `/wrap-session` skill does post-merge reflection. But reflection at session end is too late for patterns that should be codified mid-session (to benefit the rest of the same session). Pattern-codification lag could be 0-hours instead of 2-3 PRs if meta-cognition happens during the work.
+**Decision:** Create `/session-pulse` as the mid-session mirror of `/wrap-session`. Auto-triggers on: (a) pattern repetition, (b) user correction repetition, (c) scope drift past 3 concerns, (d) framework-feature reinvention, (e) decisions made without logging. Produces a terse structured report naming patterns, reinvention flags, scope verdict, and one "codify now" recommendation. User-invocable for manual check-ins.
+**Why:** The meta-cognition skill closes the loop between pattern recognition and pattern codification within the same session. Combined with the "twice-is-a-pattern" memory rule, Claude now has both the trigger and the named discipline.
+**Expected outcome:** Patterns caught and codified mid-session rather than three PRs later. Session scope policed actively. Fewer "we should have named this pattern earlier" moments in `/wrap-session` recaps.
+**Actual outcome:** *(pending)*
+
+---

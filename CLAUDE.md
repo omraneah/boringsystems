@@ -1,170 +1,64 @@
-# CLAUDE.md — Workspace Context
+# Workspace Context
 
-This is Ahmed Omrane's primary workspace. All projects live here.
+Ahmed Omrane's primary workspace. All projects live here.
 
-Routing map across projects → `WORKSPACE_MAP.md` (load before exploring unfamiliar folders).
+Start-of-session routing: `WORKSPACE_MAP.md` (project map). Detail docs under `docs/`.
 
----
+## Top constraint — Laptop-agnostic by default
 
-## Top architectural constraint — Laptop-Agnostic by Default
-
-**Everything here must survive a fresh-machine clone + the documented setup script.** No local-only state, no "works on my laptop" shortcuts, no hidden config, no manual auth tokens.
+Everything here must survive a fresh-machine clone + `bash .claude/setup.sh`. No local-only state, no tokens, no manual MCP setup when a claude.ai connector exists.
 
 Tests every change must pass:
 
-1. **Fresh-machine test.** Clone + `bash .claude/setup.sh` + `git submodule update --init --recursive` reproduces the full working state.
-2. **Cloud-agent test.** A claude.ai agent running against any project repo has everything it needs *in the checkout* — skills, docs, config.
-3. **No-token test.** No `gh auth login`, no API keys, no manual MCP setup when a claude.ai connector exists. GitHub/Linear/Gmail go through connectors, always.
-4. **Commit-or-it-doesn't-exist.** Hooks, skills, settings, memory, decisions, CLAUDE.md — version-controlled or it isn't real.
+1. **Fresh-machine.** Clone + setup.sh + `git submodule update --init --recursive` = full working state.
+2. **Cloud-agent.** A claude.ai agent has everything it needs *in the checkout* — skills, docs, config.
+3. **No-token.** No `gh auth login`, no API keys, no manual MCP. GitHub/Linear/Gmail via claude.ai connectors.
+4. **Committed-or-it-doesn't-exist.** Hooks, skills, settings, memory, decisions — version-controlled or it isn't real.
 5. **Symlink hygiene.** Symlinks from `~/` into a tracked workspace path are fine (reproducible via setup.sh). Symlinks from the repo out to the host are not.
 
-If a change can't pass these tests, surface the issue immediately — do not treat "manual step on new machine" as acceptable. Full memory entry: `memory/feedback_laptop_agnostic.md`.
+Full rule: `memory/feedback_laptop_agnostic.md`.
 
----
+## Who Ahmed is
 
-## Who Ahmed Is
+Senior engineering leader (CTO-equivalent scope). Currently in transition — exiting Enakl after 3 years, re-entering on his own terms in France 2026. His leverage is capability-based and portable: rapid navigation of ambiguous systems, crisp judgment under constraint, cross-functional system thinking, AI-native execution that compresses cycles without outsourcing judgment. France-based. Depth-oriented.
 
-Ahmed is a senior engineering leader (CTO-equivalent scope) currently in a transition period — exiting Enakl after 3 years, re-entering on his own terms in France 2026.
+Full profile: `memory/user_profile.md`, `memory/user_strategic_context.md`.
 
-His leverage is **capability-based and portable**, not title-based:
-- Rapid navigation of complex, ambiguous systems
-- Crisp judgment under constraint — no over-analysis
-- Cross-functional system thinking (tech, product, ops)
-- Operational system design (how work flows, not just org charts)
-- AI-native edge: compresses execution cycles with AI, does not outsource judgment
-
-He is a sovereign explorer. Depth-oriented. France-based.
-
----
-
-## Workspace Structure
+## Workspace structure
 
 | Folder | Purpose | Access |
 |--------|---------|--------|
-| `llm-context-2026/` | **Main brain** — identity, strategy, transition, market positioning. Living documents. | Read-only by default. Handle with care. |
-| `Enakl/` | 3 years of TMS work, moving to SaaS. Past company context. | Read-only. Never modify without explicit permission. |
-| `cross-stack-architecture-starter-pack/` | Distilled architectural principles and agent guides. Ahmed's opinionated system for starting projects correctly. | Read-only. These are non-negotiable boundaries. |
-| `boringsystems/` | Ahmed's personal site — engineering leadership case files. Built with Astro, deployed on Vercel. | Active project. |
-| `personal-apps/` | Subdomain apps on boringsystems domain. Next.js 16 + React 19 + Tailwind 4. First app: pollen-tracker. | Active project. |
+| `llm-context-2026/` | Strategic brain — identity, strategy, transition, market positioning. | Read-only. Never modify without explicit instruction. |
+| `Enakl/` | 3 years of TMS work. Past company context. | Read-only. Never modify. |
+| `cross-stack-architecture-starter-pack/` | Distilled architectural principles. ARDs are non-negotiable boundaries. | Read-only. Consult before structural decisions. |
+| `boringsystems/` | Personal site — engineering leadership case files. Astro, Vercel. | Active project. |
+| `personal-apps/` | Subdomain apps. Next.js 16, React 19, Tailwind 4. | Active project. Read `AGENTS.md` first. |
 
----
+## Non-negotiable rules
 
-## Rules for This Workspace
+- **Never push to protected branches.** `main`, `master`, `development`, `dev`, `production`. Enforced by hook.
+- **Never open PRs.** Claude pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request`.
+- **Connector-first MCP.** Linear, GitHub, Gmail, Notion always via claude.ai connectors. Never manual auth.
+- **Platform features first, custom code second.** Before reimplementing anything structural (i18n, auth, redirects, caching), check framework docs for native support.
+- **Never modify `llm-context-2026/`, `Enakl/`, or `cross-stack-architecture-starter-pack/`** without explicit instruction.
+- **Twice-is-a-pattern.** When the same manual task happens twice in a session, stop and propose codifying it before the third time.
+- **Max three concerns per session.** Wider scope → split into separate branches.
 
-### Enakl folder
-- **Never modify** anything without explicit per-session permission.
-- Read-only context for understanding how Ahmed builds systems.
+## Detail — read these when the topic matters
 
-### llm-context-2026 folder
-- This is the strategic brain. Read it when context matters for decisions.
-- **Never modify** without explicit instruction.
-- The `_SYSTEM PROMPT` and `STRATEGIC INDEX` are the routing map — use them to navigate.
+| Topic | File |
+|---|---|
+| Collaboration tone, scope discipline, code comment rules | `docs/collaboration.md` |
+| Git workflow, branch rules, PR handoff, post-merge cleanup | `docs/git-workflow.md` |
+| Skills, hooks, setup, MCP, decisions, memory | `docs/infrastructure.md` |
+| Per-project stack + conventions | `<project>/CLAUDE.md` and `<project>/docs/` |
 
-### cross-stack-architecture-starter-pack
-- These are Ahmed's architectural principles extracted from real production work.
-- ARDs (root-level `.md` files) are **non-negotiable boundaries**.
-- Read before generating any architecture code for new projects.
+## Strategic routing (from `llm-context-2026/`)
 
-### boringsystems (Astro site)
-- Deployed manually via `npx vercel --prod` — no auto-deploy.
-- Color palette is defined in `src/styles/global.css` — do not touch without reading it.
+Use the Strategic Index to navigate. Never read everything — route precisely.
 
-### personal-apps (Next.js monorepo)
-- Next.js 16 / React 19 / Tailwind 4 — these are newer than most training data.
-- Always read `node_modules/next/dist/docs/` or official docs before writing Next.js code.
-- Read `AGENTS.md` at the root before coding here.
-
----
-
-## How to Collaborate With Ahmed
-
-- **Be direct and terse.** No trailing summaries. No "here's what I did" recap after tool use.
-- **No emojis** unless explicitly asked.
-- **Do not refactor or add features beyond what was asked.** Surgical only.
-- **Do not add comments or docstrings** to code you didn't touch.
-- When working in any project, read the relevant existing code before suggesting changes.
-- When uncertain about architectural decisions, reference `cross-stack-architecture-starter-pack/`.
-
-### Git Workflow (Non-Negotiable)
-- **Never push to `main`, `master`, `development`, `dev`, or `production`.**
-- Always create a feature branch and push to it. **Claude never opens the PR itself** — Claude pushes the branch and surfaces the GitHub PR-creation URL; Ahmed opens the PR manually. Never invoke `gh pr create` or `mcp__github__create_pull_request`. See `memory/feedback_pr_creation.md`.
-- Auto-commit runs at end of each task turn (Stop hook) — this is automatic, no need to ask.
-- Protected branch push is blocked at hook level — not just instruction level.
-- No exceptions, no urgency overrides.
-
----
-
-## Workspace Infrastructure
-
-### Skills available
-| Skill | Scope | Invoke |
-|---|---|---|
-| `/commit` | Cross-project (user-level) | Manual or auto |
-| `/pr` | Cross-project (user-level) | Manual only |
-| `/log-decision` | Cross-project (user-level) | Claude auto-invokes after decisions |
-| `/arch-review` | Cross-project (user-level) | Manual or auto |
-| `/article-capture` | boringsystems (project-scoped) | Manual or auto-suggested |
-| `/article-review` | boringsystems (project-scoped) | Manual before publish |
-| `/french-audit` | boringsystems (project-scoped) | Manual, or invoked by `/article-review` |
-| `/new-post` | boringsystems (project-scoped, planned) | Manual only |
-| `/content-research` | boringsystems (project-scoped) | Manual or auto |
-
-**Skill-scope rule** (per `.claude/decisions/DECISIONS.md` 2026-04-21): cross-project skills live at `~/.claude/skills/` (via the `personal-skills/` symlink); project-scoped skills live at `<project>/.claude/skills/` and travel with the repo. No duplication. Launch Claude from the project you're working on — that determines which skills load. Full architecture: `boringsystems/.claude/README.md`.
-
-### Hooks active
-| Hook | Event | Effect |
-|---|---|---|
-| `block-protected-push.sh` | PreToolUse (Bash) | Blocks any `git push origin main/master/dev/...` |
-| `auto-commit.sh` | Stop (async) | Auto-commits + pushes if dirty, on feature branches only |
-| `session-start.sh` | SessionStart (async) | Pulls latest on `main` or `development` if session opens on base branch |
-
-### New machine setup
-Run once after cloning:
-```bash
-bash /Users/ahmedomrane/Workspace/.claude/setup.sh
-```
-This creates three symlinks:
-- `~/.claude/skills` → `personal-skills/` (all personal skills, globally available)
-- `~/.claude/settings.json` → `.claude/settings.json` (hooks, permissions, plugins — version controlled)
-- `~/.claude/projects/.../memory` → `.claude/projects/.../memory` (workspace memory in git)
-
-`settings.local.json` is gitignored — it is Claude's runtime permission cache, not config.
-
-### Decision Registry
-`.claude/decisions/DECISIONS.md` — chronological log of architectural and workflow decisions.
-Updated automatically via `log-decision` skill after significant changes.
-
-### MCP Integrations — Non-Negotiable Protocol
-
-Before setting up any MCP server manually (.mcp.json, API keys, env vars):
-1. **Check claude.ai Settings → Connectors first.** If a direct connector exists, use it. Stop.
-2. Only do manual setup if no direct connector exists and the need is confirmed.
-
-Services with direct connectors (never set up manually): **Linear, GitHub, Gmail** — and any others added to claude.ai Connectors going forward. These are OAuth-managed by Anthropic, account-scoped, and work in every session including cloud and mobile automatically.
-
----
-
-### cross-stack-architecture-starter-pack — Calibration Note
-This repo contains full SaaS-grade patterns (multi-tenancy, OIDC, tenant scoping).
-**Most projects here do not need all of it.** Use `arch-review` skill for lightweight checks.
-Only pull full ARDs for explicitly multi-tenant or enterprise-grade work.
-
----
-
-## Key Tech Stack References
-
-- **boringsystems**: Astro, Vercel
-- **personal-apps**: Next.js 16.2, React 19, Tailwind 4, TypeScript, Vercel Analytics
-- **Enakl** (historical context): TMS → SaaS transition, complex multi-tenant system
-
----
-
-## LLM Context Routing (from llm-context-2026)
-
-Use the Strategic Index to navigate the context documents:
-- Transition + emotion → `transition/` set
-- Opportunity evaluation → `market/Leverage Profile & Market Lens.md` first
-- External action / positioning → `market/AI-Native-Builder-Positioning.md`
-- Identity drift → `inner-game/Meta-Identity-Constitution.md`
-- Work confusion → `inner-game/Work-Hygiene-Doctrine.md`
-- Never read everything — route precisely.
+- Transition + emotion → `llm-context-2026/transition/`
+- Opportunity evaluation → `llm-context-2026/market/Leverage Profile & Market Lens.md`
+- External action / positioning → `llm-context-2026/market/AI-Native-Builder-Positioning.md`
+- Identity drift → `llm-context-2026/inner-game/Meta-Identity-Constitution.md`
+- Work confusion → `llm-context-2026/inner-game/Work-Hygiene-Doctrine.md`

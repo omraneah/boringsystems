@@ -12,3 +12,6 @@
 - [Wrap-Session Auto-Trigger](feedback_wrap_session.md) — When Ahmed signals a merged PR, auto-invoke `/wrap-session` — git sync + reflective recap + improvement proposals
 - [Infrastructure-First Pattern](feedback_infrastructure_first.md) — Build typed registries/helpers/plugins before the content that uses them, when reuse is likely
 - [boringsystems Lead-Magnet Status](project_boringsystems_lead_magnet.md) — Capture pipeline live; first asset (Starter Prompt) unfinalised, tracked in Linear BOR-16
+- [Twice-Is-A-Pattern Rule](feedback_twice_is_a_pattern.md) — Same manual task twice in a session → codify before the third. Prevents pattern-codification lag.
+- [Max Three Concerns Per Session](feedback_scope_discipline.md) — Wide-scope sessions degrade quality; split into branches when a 4th concern appears.
+- [Platform Features First](feedback_platform_features_first.md) — Check framework native support before reimplementing i18n/auth/routing/caching/redirects. Custom reimplementation is a recurring failure mode.
