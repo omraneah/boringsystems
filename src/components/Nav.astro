@@ -3,15 +3,17 @@ const pathname = Astro.url.pathname;
 const isFrench = pathname.startsWith('/fr');
 
 const isHome = isFrench ? (pathname === '/fr' || pathname === '/fr/') : pathname === '/';
-const isCaseFiles = pathname.includes('/case-files');
-const isPlaybooks = pathname.includes('/operating-playbooks');
+const isEngineering = pathname.includes('/engineering');
+const isEntrepreneurs = pathname.includes('/entrepreneurs');
+const isEssays = pathname.includes('/essays') || pathname.includes('/essais');
 const isAbout = pathname.endsWith('/about');
 
 const base = isFrench ? '/fr' : '';
+const essaysPath = isFrench ? '/fr/essais' : '/essays';
 
 const langHref = isFrench
-  ? (pathname.replace(/^\/fr/, '') || '/')
-  : (pathname === '/' ? '/fr' : '/fr' + pathname);
+  ? (pathname.replace(/^\/fr/, '') || '/').replace('/essais', '/essays')
+  : (pathname === '/' ? '/fr' : '/fr' + pathname.replace('/essays', '/essais'));
 ---
 
 <nav class="site-nav">
@@ -22,14 +24,18 @@ const langHref = isFrench
       </a>
     </li>
     <li>
-      <a href={`${base}/case-files`} class:list={[{ active: isCaseFiles }]}>
-        {isFrench ? 'Études de cas' : 'Case Files'}
+      <a href={`${base}/engineering`} class:list={[{ active: isEngineering }]}>
+        Engineering
       </a>
     </li>
     <li>
-      <a href={`${base}/operating-playbooks`} class:list={[{ active: isPlaybooks }]}>
-        <span class="label-full">{isFrench ? 'Guides opérationnels' : 'Operating Playbooks'}</span>
-        <span class="label-short">{isFrench ? 'Guides' : 'Playbooks'}</span>
+      <a href={`${base}/entrepreneurs`} class:list={[{ active: isEntrepreneurs }]}>
+        Entrepreneurs
+      </a>
+    </li>
+    <li>
+      <a href={essaysPath} class:list={[{ active: isEssays }]}>
+        {isFrench ? 'Essais' : 'Essays'}
       </a>
     </li>
     <li>
@@ -102,10 +108,6 @@ const langHref = isFrench
     color: var(--text-muted);
     letter-spacing: 0.02em;
     transition: color 0.15s;
-  }
-
-  .label-short {
-    display: none;
   }
 
   .nav-links a:hover,
@@ -193,14 +195,6 @@ const langHref = isFrench
 
     .nav-links {
       gap: var(--space-sm);
-    }
-
-    .label-full {
-      display: none;
-    }
-
-    .label-short {
-      display: inline;
     }
 
     .nav-controls {

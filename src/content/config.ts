@@ -1,5 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 
+const persona = z.enum(['technical', 'operator']).optional();
+
 const caseFiles = defineCollection({
   type: 'content',
   schema: z.object({
@@ -8,6 +10,7 @@ const caseFiles = defineCollection({
     featured: z.boolean().optional().default(false),
     highlight: z.boolean().optional().default(false),
     order: z.number().optional().default(99),
+    persona,
   }),
 });
 
@@ -21,6 +24,7 @@ const operatingPlaybooks = defineCollection({
     playbook: z.number().optional(),
     featured: z.boolean().optional().default(false),
     highlight: z.boolean().optional().default(false),
+    persona,
   }),
 });
 

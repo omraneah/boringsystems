@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const operatorWork = (await getCollection('case-files', ({ data }) => data.persona === 'operator'))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+function readTime(body: string) {
+  const words = body.split(/\s+/).length;
+  return `${Math.ceil(words / 200)} min read`;
+}
+---
+
+<Base title="Entrepreneurs" description="Decision guides and field diagnoses for entrepreneurs, intrapreneurs, and founders making technical calls.">
+  <div class="page">
+    <div class="page-inner">
+      <header class="page-header">
+        <p class="label">Entrepreneurs</p>
+        <h1 class="page-title">Entrepreneurs</h1>
+        <p class="page-description muted">
+          Decision guides and field diagnoses for entrepreneurs, intrapreneurs, solopreneurs, and founders making technical calls without a deep engineering background.
+        </p>
+      </header>
+
+      {operatorWork.length > 0 ? (
+        <div class="work-list">
+          {operatorWork.map(item => (
+            <ArticleCard
+              title={item.data.title}
+              description={item.data.description}
+              href={`/case-files/${item.slug}`}
+              meta={readTime(item.body)}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty-state muted">More field notes for entrepreneurs coming soon.</p>
+      )}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+
+  .page-inner {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--size-3xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-description {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    max-width: 560px;
+    line-height: 1.65;
+  }
+
+  .work-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .empty-state {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+  }
+
+  @media (max-width: 768px) {
+    .page-inner {
+      padding: 0 var(--space-md);
+    }
+
+    .page-title {
+      font-size: var(--size-2xl);
+    }
+  }
+</style>

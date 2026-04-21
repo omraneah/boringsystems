@@ -1,0 +1,95 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const technicalWork = (await getCollection('case-files-fr', ({ data }) => data.persona !== 'operator'))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+function readTime(body: string) {
+  const words = body.split(/\s+/).length;
+  return `${Math.ceil(words / 200)} min de lecture`;
+}
+---
+
+<Base title="Engineering" description="Études de cas engineering — systèmes réels, contraintes réelles, décisions réelles.">
+  <div class="page">
+    <div class="page-inner">
+      <header class="page-header">
+        <p class="label">Engineering</p>
+        <h1 class="page-title">Engineering</h1>
+        <p class="page-description muted">
+          Systèmes réels. Contraintes réelles. Décisions réelles. Études de cas vues de l'intérieur, pour les responsables engineering qui naviguent des environnements contrainte-à-l'échelle.
+        </p>
+      </header>
+
+      <div class="work-list">
+        {technicalWork.map(item => (
+          <ArticleCard
+            title={item.data.title}
+            description={item.data.description}
+            href={`/fr/case-files/${item.slug}`}
+            meta={readTime(item.body)}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+
+  .page-inner {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--size-3xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-description {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    max-width: 560px;
+    line-height: 1.65;
+  }
+
+  .work-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 768px) {
+    .page-inner {
+      padding: 0 var(--space-md);
+    }
+
+    .page-title {
+      font-size: var(--size-2xl);
+    }
+  }
+</style>

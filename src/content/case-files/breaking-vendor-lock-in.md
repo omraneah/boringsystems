@@ -3,6 +3,7 @@ title: "Reclaiming System Ownership Under Vendor Lock-In"
 description: "A sequenced transition away from an opaque external core while protecting continuity and internalizing control."
 featured: true
 order: 1
+persona: technical
 ---
 
 # Reclaiming System Ownership Under Vendor Lock-In
