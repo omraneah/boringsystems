@@ -1,6 +1,6 @@
 ---
-import Base from '../../layouts/Base.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 
 const CANONICAL_SERIES: Record<string, string> = {
@@ -9,7 +9,7 @@ const CANONICAL_SERIES: Record<string, string> = {
   'Series 3 — AI Native': 'Series 3 — AI Edge',
 };
 
-const allPlaybooks = await getCollection('operating-playbooks');
+const allPlaybooks = await getCollection('operating-playbooks-en');
 
 const grouped: Record<string, typeof allPlaybooks> = {};
 const seriesNum: Record<string, number> = {};
@@ -58,7 +58,7 @@ const sortedSeries = Object.entries(grouped).sort(
                 <ArticleCard
                   title={item.data.title}
                   description={item.data.description}
-                  href={`/operating-playbooks/${item.slug}`}
+                  href={`/en/operating-playbooks/${item.slug}`}
                   meta={item.data.playbook !== undefined ? `Playbook ${item.data.playbook}` : undefined}
                 />
               ))}

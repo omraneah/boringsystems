@@ -1,25 +1,25 @@
 ---
 const pathname = Astro.url.pathname;
 const isFrench = pathname.startsWith('/fr');
+const base = isFrench ? '/fr' : '/en';
 
-const isHome = isFrench ? (pathname === '/fr' || pathname === '/fr/') : pathname === '/';
-const isEngineering = pathname.includes('/engineering');
-const isEntrepreneurs = pathname.includes('/entrepreneurs');
-const isEssays = pathname.includes('/essays') || pathname.includes('/essais');
-const isAbout = pathname.endsWith('/about');
+const isHome = pathname === `${base}` || pathname === `${base}/`;
+const isEngineering = pathname.startsWith(`${base}/engineering`);
+const isEntrepreneurs = pathname.startsWith(`${base}/entrepreneurs`);
+const isEssays = pathname.startsWith(`${base}/essays`) || pathname.startsWith(`${base}/essais`);
+const isAbout = pathname === `${base}/about` || pathname === `${base}/about/`;
 
-const base = isFrench ? '/fr' : '';
-const essaysPath = isFrench ? '/fr/essais' : '/essays';
+const essaysPath = isFrench ? '/fr/essais' : '/en/essays';
 
 const langHref = isFrench
-  ? (pathname.replace(/^\/fr/, '') || '/').replace('/essais', '/essays')
-  : (pathname === '/' ? '/fr' : '/fr' + pathname.replace('/essays', '/essais'));
+  ? (pathname.replace(/^\/fr/, '/en') || '/en/').replace('/essais', '/essays')
+  : (pathname.replace(/^\/en/, '/fr') || '/fr/').replace('/essays', '/essais');
 ---
 
 <nav class="site-nav">
   <ul class="nav-links">
     <li>
-      <a href={isFrench ? '/fr' : '/'} class:list={[{ active: isHome }]}>
+      <a href={isFrench ? '/fr/' : '/en/'} class:list={[{ active: isHome }]}>
         {isFrench ? 'Accueil' : 'Home'}
       </a>
     </li>

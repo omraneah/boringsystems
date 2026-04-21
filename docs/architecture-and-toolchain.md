@@ -85,10 +85,15 @@ Managed in Vercel project settings. For local development, copy to `.env.local` 
 ```
 src/
 ├── components/        ← Reusable UI components (including ArticleFeedback)
-├── content/           ← Markdown articles (operating-playbooks, case-files)
+├── content/           ← Markdown articles, symmetric per language:
+│                       case-files-en/, case-files-fr/,
+│                       operating-playbooks-en/, operating-playbooks-fr/
 ├── layouts/           ← Page layouts (Base.astro, Article.astro)
-├── lib/               ← Backend abstractions (mailer.ts)
-├── pages/             ← Routes; api/ subfolder = serverless functions
+├── lib/               ← Backend abstractions (mailer.ts, article-meta.ts)
+├── pages/             ← Routes, strict two-language tree:
+│                       en/* and fr/* mirror each other; api/* is language-neutral.
+│                       No content lives at the root — astro.config.mjs 301-redirects
+│                       `/`, `/case-files/*`, `/engineering`, etc. to `/en/...`.
 └── styles/            ← Global CSS and design tokens
 
 docs/                  ← Architecture decisions and toolchain documentation

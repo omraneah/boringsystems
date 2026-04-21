@@ -1,9 +1,9 @@
 ---
-import Base from '../../layouts/Base.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 
-const allWriting = await getCollection('operating-playbooks');
+const allWriting = await getCollection('operating-playbooks-en');
 
 // Group by series, ordered: Series 3 first, then 2, then 1
 const grouped: Record<string, typeof allWriting> = {};
@@ -45,7 +45,7 @@ const sortedSeries = Object.entries(grouped).sort(([, a], [, b]) => {
               <ArticleCard
                 title={item.data.title}
                 description={item.data.description}
-                href={`/operating-playbooks/${item.slug}`}
+                href={`/en/operating-playbooks/${item.slug}`}
                 meta={item.data.playbook !== undefined ? `Playbook ${item.data.playbook}` : undefined}
               />
             ))}

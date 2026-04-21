@@ -30,8 +30,8 @@ const operatingPlaybooks = defineCollection({
 });
 
 export const collections = {
-  'case-files': caseFiles,
-  'operating-playbooks': operatingPlaybooks,
+  'case-files-en': caseFiles,
+  'operating-playbooks-en': operatingPlaybooks,
   'case-files-fr': caseFiles,
   'operating-playbooks-fr': operatingPlaybooks,
 };

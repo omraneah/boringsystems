@@ -1,10 +1,10 @@
 ---
-import Base from '../../layouts/Base.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
-import { articleMeta } from '../../lib/article-meta';
+import { articleMeta } from '../../../lib/article-meta';
 
-const allWork = (await getCollection('case-files'))
+const allWork = (await getCollection('case-files-en'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
@@ -24,7 +24,7 @@ const allWork = (await getCollection('case-files'))
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/case-files/${item.slug}`}
+            href={`/en/case-files/${item.slug}`}
             meta={articleMeta(item.body, item.data.date, 'en')}
           />
         ))}

@@ -12,7 +12,7 @@ Review the article at $ARGUMENTS before it ships. Load the three governance docs
 ## Inputs
 
 One of:
-- A slug like `case-files/architecture-governance` or `operating-playbooks/s1-p0-how-we-run` — resolve to the EN file under `src/content/<slug>.md(x)` and the FR file under `src/content/<collection>-fr/<rest>`.
+- A slug like `case-files/architecture-governance` or `operating-playbooks/s1-p0-how-we-run` — resolve to the EN file under `src/content/<collection>-en/<rest>.md(x)` and the FR file under `src/content/<collection>-fr/<rest>.md(x)`.
 - A full path to an EN file — derive the FR pair by inserting `-fr` into the collection name.
 - If no FR file exists yet, proceed EN-only and note that FR is missing.
 
@@ -87,7 +87,7 @@ If FR is missing and the article is in a collection that has existing FR sibling
 - File is in the correct collection directory.
 - File extension matches collection (`.md` vs `.mdx`).
 - Images referenced are in `public/` or use absolute URLs — no broken paths.
-- Internal links use site-relative paths (`/case-files/...`, `/engineering`, `/entrepreneurs`, `/essays`), not full domain URLs.
+- Internal links use site-relative, **language-prefixed** paths: `/en/case-files/...`, `/en/engineering`, `/en/entrepreneurs`, `/en/essays` for EN articles; `/fr/case-files/...`, `/fr/engineering`, `/fr/entrepreneurs`, `/fr/essais` for FR. Never full domain URLs, never unprefixed paths — the root `/` now 301-redirects to `/en/` and the old unprefixed routes are legacy.
 
 ## Output format
 
