@@ -6,6 +6,22 @@ Routing map across projects → `WORKSPACE_MAP.md` (load before exploring unfami
 
 ---
 
+## Top architectural constraint — Laptop-Agnostic by Default
+
+**Everything here must survive a fresh-machine clone + the documented setup script.** No local-only state, no "works on my laptop" shortcuts, no hidden config, no manual auth tokens.
+
+Tests every change must pass:
+
+1. **Fresh-machine test.** Clone + `bash .claude/setup.sh` + `git submodule update --init --recursive` reproduces the full working state.
+2. **Cloud-agent test.** A claude.ai agent running against any project repo has everything it needs *in the checkout* — skills, docs, config.
+3. **No-token test.** No `gh auth login`, no API keys, no manual MCP setup when a claude.ai connector exists. GitHub/Linear/Gmail go through connectors, always.
+4. **Commit-or-it-doesn't-exist.** Hooks, skills, settings, memory, decisions, CLAUDE.md — version-controlled or it isn't real.
+5. **Symlink hygiene.** Symlinks from `~/` into a tracked workspace path are fine (reproducible via setup.sh). Symlinks from the repo out to the host are not.
+
+If a change can't pass these tests, surface the issue immediately — do not treat "manual step on new machine" as acceptable. Full memory entry: `memory/feedback_laptop_agnostic.md`.
+
+---
+
 ## Who Ahmed Is
 
 Ahmed is a senior engineering leader (CTO-equivalent scope) currently in a transition period — exiting Enakl after 3 years, re-entering on his own terms in France 2026.
@@ -71,7 +87,7 @@ He is a sovereign explorer. Depth-oriented. France-based.
 
 ### Git Workflow (Non-Negotiable)
 - **Never push to `main`, `master`, `development`, `dev`, or `production`.**
-- Always create a feature branch, push to it, and open a PR.
+- Always create a feature branch and push to it. **Claude never opens the PR itself** — Claude pushes the branch and surfaces the GitHub PR-creation URL; Ahmed opens the PR manually. Never invoke `gh pr create` or `mcp__github__create_pull_request`. See `memory/feedback_pr_creation.md`.
 - Auto-commit runs at end of each task turn (Stop hook) — this is automatic, no need to ask.
 - Protected branch push is blocked at hook level — not just instruction level.
 - No exceptions, no urgency overrides.
@@ -83,12 +99,17 @@ He is a sovereign explorer. Depth-oriented. France-based.
 ### Skills available
 | Skill | Scope | Invoke |
 |---|---|---|
-| `/commit` | Personal (all projects) | Manual or auto |
-| `/pr` | Personal (all projects) | Manual only |
-| `/log-decision` | Personal (all projects) | Claude auto-invokes after decisions |
-| `/arch-review` | Personal (all projects) | Manual or auto |
-| `/new-post` | boringsystems only | Manual only |
-| `/content-research` | boringsystems only | Manual or auto |
+| `/commit` | Cross-project (user-level) | Manual or auto |
+| `/pr` | Cross-project (user-level) | Manual only |
+| `/log-decision` | Cross-project (user-level) | Claude auto-invokes after decisions |
+| `/arch-review` | Cross-project (user-level) | Manual or auto |
+| `/article-capture` | boringsystems (project-scoped) | Manual or auto-suggested |
+| `/article-review` | boringsystems (project-scoped) | Manual before publish |
+| `/french-audit` | boringsystems (project-scoped) | Manual, or invoked by `/article-review` |
+| `/new-post` | boringsystems (project-scoped, planned) | Manual only |
+| `/content-research` | boringsystems (project-scoped) | Manual or auto |
+
+**Skill-scope rule** (per `.claude/decisions/DECISIONS.md` 2026-04-21): cross-project skills live at `~/.claude/skills/` (via the `personal-skills/` symlink); project-scoped skills live at `<project>/.claude/skills/` and travel with the repo. No duplication. Launch Claude from the project you're working on — that determines which skills load. Full architecture: `boringsystems/.claude/README.md`.
 
 ### Hooks active
 | Hook | Event | Effect |

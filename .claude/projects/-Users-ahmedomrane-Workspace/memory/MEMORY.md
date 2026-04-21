@@ -5,5 +5,7 @@
 - [Workspace Structure & Project Map](project_workspace_structure.md) — Folder-by-folder breakdown of `/Users/ahmedomrane/Workspace/` with access rules and tech stacks
 - [Ahmed — Strategic Context 2026](user_strategic_context.md) — Transition phase, positioning philosophy, French market specifics, work hygiene doctrine
 - [Context Inheritance Architecture](feedback_context_architecture.md) — How context flows across workspace/submodules; revisit triggers documented
-- [MCP Connector Protocol](feedback_mcp_connectors.md) — Check claude.ai Connectors first; never set up manual MCP for Linear/GitHub/Gmail or any service with a direct connector
+- [Laptop-Agnostic Architecture Principle](feedback_laptop_agnostic.md) — Highest-priority constraint: everything must survive fresh-machine clone + documented setup. No local-only state.
+- [Cloud-Connector-Only Tool Auth](feedback_mcp_connectors.md) — Never suggest `gh auth login`, manual MCP keys, or any token flow. GitHub/Linear/Gmail/etc. always via claude.ai connectors.
+- [PR Creation Division of Labor](feedback_pr_creation.md) — Claude pushes branches + announces the PR URL. Ahmed opens the PR himself. Never `gh pr create` or `mcp__github__create_pull_request`.
 - [Article Capture Behavior](feedback_article_capture.md) — Proactively suggest `/article-capture` when a conversation produces deep technical + business model insight worth publishing on boringsystems
