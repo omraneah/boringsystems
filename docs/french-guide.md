@@ -4,7 +4,7 @@ The French content on boringsystems is not a translation layer. It is the same w
 
 If an article reads as machine-translated, it fails. The `french-audit` skill loads this file and flags violations at line level.
 
-Personas (`senior-peer`, `operator`, `early-builder`) are defined in [`target-audiences.md`](./target-audiences.md). The register below applies across all three — persona changes the framing, not the register.
+Personas (`technical`, `operator`) are defined in [`target-audiences.md`](./target-audiences.md). The register below applies across both — persona changes the framing, not the register.
 
 ---
 
@@ -24,6 +24,13 @@ These are used as-is in professional French and translating them signals naïvet
 
 **Business / startup vocabulary.**
 startup · early stage · bootstrap · scale · scaling · roadmap · sprint · backlog · framework · pitch · funding · SaaS · MVP · product-market fit · churn · burn rate · runway · pivot · go-to-market · onboarding · stakeholder · lead · deal · growth · retention
+
+**Disciplines and role nouns.**
+engineering · product · marketing · sales · operations · growth · design · branding · HR · finance
+
+These are the disciplines a company is organized around. When they appear as labels, categories, page titles, nav items, or job descriptions, keep them in English — translating them signals naïveté. This is why the site's Engineering lane is labeled `Engineering` in both EN and FR, and why `Entrepreneurs` works identically in both languages.
+
+The same rule applies when these nouns appear in prose as the name of a function ("l'équipe engineering", "le responsable product"). Translate them only when they are used as generic common nouns in a non-company context (e.g. `ingénierie mécanique` for mechanical engineering as a field of study).
 
 **Engineering / infrastructure.**
 deploy · deployment · pipeline · serverless · container · runtime · edge · middleware · proxy · cache · caching · queue · stream · streaming · endpoint · API · SDK · CLI · repo · commit · branch · merge · rollback · rollout · feature flag · observability · logging · monitoring · tracing · backup · failover · throughput · latency · payload · timeout · webhook

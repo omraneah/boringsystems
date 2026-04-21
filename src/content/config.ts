@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 
-const persona = z.enum(['senior-peer', 'operator', 'early-builder']).optional();
+const persona = z.enum(['technical', 'operator']).optional();
 
 const caseFiles = defineCollection({
   type: 'content',

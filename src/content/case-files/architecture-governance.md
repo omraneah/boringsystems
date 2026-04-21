@@ -3,6 +3,7 @@ title: "Establishing Cross-Surface Architecture Governance"
 description: "Building an authoritative governance layer that aligned multiple product surfaces and reduced divergence."
 featured: true
 order: 3
+persona: technical
 ---
 
 # Establishing Cross-Surface Architecture Governance

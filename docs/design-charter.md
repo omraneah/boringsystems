@@ -2,7 +2,7 @@
 
 The visual, structural, and voice standard for boringsystems. Every article, page, and component is reviewed against this document. The `article-review` skill loads this file before flagging issues.
 
-Personas referenced here (`senior-peer`, `operator`, `early-builder`) are defined in [`target-audiences.md`](./target-audiences.md).
+Personas referenced here (`technical`, `operator`) are defined in [`target-audiences.md`](./target-audiences.md). The site surfaces them as three navigation lanes: **Engineering** (serves `technical`), **Entrepreneurs** (serves `operator`), and **Essays** (cross-cuts).
 
 ---
 
@@ -69,30 +69,46 @@ Palette from `src/styles/global.css`:
 
 ---
 
-## Layout tiers
+## Lanes and layout
 
-Three content types, three layout tiers. Mixing them makes the site feel like a CMS dump.
+The site has three navigation lanes, each with its own voice calibration and layout conventions. Lane is an **audience** distinction; layout expectations follow.
 
-### Tier 1 — Case files (`/case-files/*`)
+### Engineering lane (`/engineering`) — peer-facing
 
-Real engineering or leadership incidents with constraint → decision → outcome arcs.
-- Dense body prose, Playfair throughout.
-- Inline code in mono, but code blocks are used sparingly — case files are about *reasoning*, not walkthroughs.
+Technical case files and engineering-leadership pieces for `technical` readers. Dense, peer-to-peer, no hand-holding.
+- Playfair throughout body prose. Dense body, no decorative spacing.
+- Inline code in mono; code blocks used sparingly — these pieces are about *reasoning*, not walkthroughs.
 - Metadata strip at the top: primary persona, read time, publish date.
 - No tables of contents for short pieces (under ~2000 words).
 - End with a **one-paragraph crisp takeaway**, not a bulleted summary.
+- Voice: skip background paragraphs a general reader would need. Assume vocabulary.
 
-### Tier 2 — Operating playbooks (`/operating-playbooks/*`)
+### Entrepreneurs lane (`/entrepreneurs`) — prospect-facing
 
-Framework-style guides organized in series.
-- Headings are load-bearing. The page should be usable by jumping to a heading.
-- Code blocks and command blocks are welcome and expected.
-- File trees, diagrams, and step lists are allowed when they carry information that prose cannot.
-- Cross-references to other playbooks in the same series are encouraged.
+Decision guides, founder case files, and operator-framed pieces for `operator` readers. This is the **conversion lane** — reads here are the target audience for consulting engagements and lead-magnet tails.
+- Same typography rules as Engineering, but voice calibration is different: open with the business stake or the decision, not the technical tension.
+- Code blocks and architecture diagrams are allowed but must be framed with "why this matters to you" before and after.
+- Explicit "what this means for you" or "what to do now" sections near the end.
+- Article tail (email-gated prompt pack, setup guide) lives most naturally here when it fits (see "Article tail" section below).
+- Voice: decisive, no both-sides-ism. If trade-offs exist, name them and take a position on the common case.
 
-### Tier 3 — Essays (future, not yet in IA)
+### Essays lane (`/essays`) — editorial voice
 
-Longer-form thinking pieces when boringsystems grows that direction. Reserved for a future card; mentioned here so new content doesn't accidentally define the tier.
+Freestyle, curiosity-driven pieces on AI, macro, future-of-work, and the larger frame. Cross-cuts both personas — readers come here for voice, not for decisions.
+- Longer-form allowed; typography and spacing can breathe more than peer-facing pieces.
+- Personal register permitted — still no hedging, still no filler.
+- This lane also surfaces **Principles & Playbooks** as a secondary band: the long-living operating playbooks that underpin the site's thinking. Playbooks live at `/operating-playbooks/*` URLs and are linked from the Essays index.
+
+### Voice calibration: peer-facing vs prospect-facing
+
+Same register, different framing. Read the persona, then pick the opener:
+
+| | Peer-facing (`technical`) | Prospect-facing (`operator`) |
+|---|---|---|
+| Opener | Names the technical tension | Names the business stake or decision |
+| Background | Skip — assume vocabulary | Define central terms once |
+| Trade-offs | Assume the reader will weigh them | Take a position on the common case |
+| Closing | Crystallized insight | "What to do now" clarity |
 
 ---
 

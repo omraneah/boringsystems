@@ -3,6 +3,7 @@ title: "Établir une gouvernance d'architecture transversale"
 description: "Mise en place d'une couche de gouvernance faisant autorité, alignant plusieurs surfaces produit et réduisant la divergence."
 featured: true
 order: 3
+persona: technical
 ---
 
 # Établir une gouvernance d'architecture transversale
