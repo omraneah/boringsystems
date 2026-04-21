@@ -5,7 +5,6 @@ series: "Série 3 — Natif IA"
 seriesNum: 3
 playbook: 2
 featured: true
-highlight: true
 ---
 
 # Guide 2 — Le contexte est l'avantage

@@ -5,7 +5,6 @@ series: "Series 3 — AI Native"
 seriesNum: 3
 playbook: 2
 featured: true
-highlight: true
 ---
 
 # Playbook 2 — Context is the Edge
