@@ -146,6 +146,8 @@ pieces with no meaningful overlap to existing articles.]
 
 ## Tone and format guidance
 - boringsystems voice per design-charter.md: constraint-first, short sentences, no hedging, operator-to-operator
+- **Title must pass the teenager test.** A reasonably bright 16–18 year old who doesn't know the field should be able to guess what the article is about from the title alone. No abstract nouns without a concrete anchor. No clever-at-the-expense-of-clear. Technical words are fine when a smart non-expert can still extract the shape of the promise.
+- **Non-technical prose must read at the same level.** Technical jargon is allowed where the target reader has it. The English *around* the jargon — the connective tissue — must be plain. No ornamental vocabulary when a common word works. If a non-technical word can be swapped for a simpler word without changing meaning, the simpler word wins.
 - [Specific notes on what to avoid — the clichés, the obvious takes for this topic]
 - Target length (per charter: under 400 words = incomplete, over 5000 = unfocused)
 - English first, then French — re-voiced per french-guide.md, not literally translated. Keep English technical and business terms in English in the FR edition.

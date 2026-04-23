@@ -1,6 +1,6 @@
 ---
-title: "The Architecture of Disposable State"
-description: "Snowflake did it for analytics in 2012. Neon is doing it for transactions in 2026. The reason Databricks paid a billion dollars for Neon is that the agent layer needs disposable state — and the old assumption that data persists is now the constraint, not the feature."
+title: "Why AI Agents Need Disposable Databases"
+description: "Traditional databases assume data is permanent and charge you for it. AI agents don't need permanent data — they need databases that spin up, run, and disappear. Snowflake and Neon saw this coming; Databricks paid a billion dollars for the proof."
 date: 2026-04-23
 featured: true
 order: 3

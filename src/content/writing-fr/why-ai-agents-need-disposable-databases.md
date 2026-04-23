@@ -1,6 +1,6 @@
 ---
-title: "L'architecture de l'état jetable"
-description: "Snowflake l'a fait pour l'analytics en 2012. Neon le fait pour les transactions en 2026. La raison pour laquelle Databricks a payé un milliard pour Neon : la couche agent a besoin d'un état jetable — et l'ancienne hypothèse selon laquelle la donnée persiste est devenue la contrainte, pas la feature."
+title: "Pourquoi les AI agents ont besoin de databases jetables"
+description: "Les databases traditionnelles partent du principe que la donnée est permanente et vous la facturent comme telle. Les AI agents n'ont pas besoin de données permanentes — ils ont besoin de databases qui spin up, tournent, puis disparaissent. Snowflake et Neon l'ont vu venir ; Databricks a payé un milliard pour la preuve."
 date: 2026-04-23
 featured: true
 order: 3

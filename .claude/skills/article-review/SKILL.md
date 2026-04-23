@@ -44,6 +44,41 @@ Check against the design charter:
 - **Takeaway.** For case files, flag if there is no closing paragraph that crystallizes the insight. A bulleted summary does not count.
 - **Length sanity.** Flag if article is under 400 words (likely incomplete) or over 5000 words (likely unfocused).
 
+### 3a. Title clarity check
+
+The title must pass the **teenager test**: a reasonably bright 16–18 year old who doesn't know the field should be able to guess what the article is about *from the title alone*. Flag as a **warning** if the title:
+
+- Relies on abstract nouns the reader would need the article to decode (e.g. "The Architecture of X" where X is also abstract).
+- Is clever or witty at the expense of clarity. Wit is earned by the body, not by the headline.
+- Requires field expertise to even parse the subject. Technical terms in the title are fine *if* a smart non-expert can still extract the shape of the promise ("Why AI Agents Need Disposable Databases" — passes; "The Architecture of Disposable State" — fails).
+- Leads with a metaphor before the subject ("The Ship of Theseus of Kubernetes" — fails until rewritten with the subject up front).
+
+Pass-criteria:
+- Names the subject concretely.
+- Signals the promise of the piece (what the reader will understand / decide after finishing).
+- Uses plain words for the non-technical connective tissue.
+
+Report the title as a quoted string, state whether it passes, and if it fails propose 2–3 concrete alternatives.
+
+### 3b. Prose clarity check
+
+The **non-technical** English in the article should be readable by the same 16–18 year old reader — not *technically* literate, but linguistically unhindered. Technical jargon is allowed where the target reader has it; dense prose built out of ornamental English is never allowed.
+
+Flag as **warnings** (cite line + quote):
+
+- **Pompous / ornate phrasing** where plain English works: *"it can be posited that"*, *"one might observe"*, *"what is worth noting here"*, *"the fact of the matter is"*. Cut or rewrite.
+- **Unnecessarily academic vocabulary** outside the domain: *"adumbrate"*, *"heretofore"*, *"concomitant"*, *"qua"*, *"ipso facto"*. Replace with the everyday word unless the reader-audience specifically expects it.
+- **Long subordinate-clause sentences** where two short sentences work. If a sentence has three or more commas and no colon, it's probably a rewrite candidate.
+- **Archaic or legalese constructions**: *"wherein"*, *"whereby"*, *"hereinafter"*, *"thereof"*. Almost never earned outside quoted policy text.
+- **Inflated connectors**: *"furthermore"*, *"moreover"*, *"notwithstanding"*, *"inasmuch as"*. The charter already bans filler; these are filler with extra syllables.
+
+What NOT to flag:
+- Technical domain vocabulary that the intended reader has (*"disaggregated compute"*, *"copy-on-write"*, *"WAL replication"*, *"hyperscaler"*). These stay.
+- Named incidents and field references that a technical peer recognizes (*"CAP"*, *"the S3 outage"*, *"Knight Capital"*).
+- Deliberate short idioms or callback phrases the voice allows.
+
+Rule of thumb: if a non-technical English word can be swapped for a simpler one without changing meaning, the simpler word wins.
+
 ### 4. Lane / voice alignment
 
 - Resolve the article's lane from its collection path (`writing` / `work` / `building` / `archive`).
@@ -117,10 +152,21 @@ Single markdown report to stdout, with sections:
 ```
 # Article Review — <slug>
 
-**Lane**: <Writing | Work | Building | Archive>
-**Voice target**: <technical | builder>
-**EN path**: <path>
-**FR path**: <path or "missing">
+## Planning snapshot
+
+So Ahmed can catch a miscall before reading the flag list:
+
+- **Lane**: <Writing | Work | Building | Archive> (from folder path)
+- **Voice target (inferred)**: <technical | builder>
+- **What the reviewer reads this article as trying to do**: <one sentence describing
+  the article's intent as inferred from title + description + opening paragraphs.
+  e.g. "Frame why AI agent workloads make ephemeral databases economically rational,
+  using the Snowflake/Neon parallel as the setup." — If this sentence does not
+  match what Ahmed thinks the article is for, the review is reviewing the wrong
+  piece. Catch it here.>
+- **Title clarity verdict**: <pass | fail, with proposed alternatives if fail>
+- **EN path**: <path>
+- **FR path**: <path or "missing">
 
 ## Blockers
 - [category] L<n>: <issue>

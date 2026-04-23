@@ -17,18 +17,18 @@ Each flag has one surface it drives. Surfaces and their sources are listed below
 
 | Flag | Type | Default | Purpose |
 |---|---|---|---|
-| `featured` | boolean | `false` | Include in grid listings: each lane index page (`/writing`, `/work`, `/building`). Does **not** drive any home-page surface today. |
+| `featured` | boolean | `false` | Currently dormant. Was used by the removed Selected Articles band; re-activates if it's reintroduced. |
 | `highlight` | boolean | `false` | Include in the home *Highlights* stack. Union across Writing + Work + Building. Capped at three — if more are flagged, only the first three (by `order`) render. |
-| `order` | number | `99` | Sort key across all surfaces. Lower numbers surface first. |
+| `order` | number | `99` | Sort key for the home *Highlights* band only. Not used by lane index pages (those sort by `date`). |
 
 ### Surfaces
 
 | Surface | Source query | Sort | Cap |
 |---|---|---|---|
-| Home *Highlights* | union of `writing-{lang}`, `work-{lang}`, `building-{lang}` where `highlight: true` | `order` asc | `.slice(0, 3)` |
-| `/writing` | all `writing-{lang}` | `order` asc | — |
-| `/work` | all `work-{lang}` | `order` asc | — |
-| `/building` | all `building-{lang}` | `order` asc | — |
+| Home *Highlights* | union of `writing-{lang}`, `work-{lang}`, `building-{lang}` where `highlight: true` | `order` asc (editorial curation) | `.slice(0, 3)` |
+| `/writing` | all `writing-{lang}` | `date` desc (newest first) | — |
+| `/work` | all `work-{lang}` | `date` desc (newest first) | — |
+| `/building` | all `building-{lang}` | `date` desc (newest first) | — |
 | `/archive` | all `archive-{lang}`, grouped by `series` frontmatter field | `seriesNum` desc, `playbook` asc within series | — |
 
 ### Why only Highlights on home
@@ -43,8 +43,9 @@ The design charter calls for density without decorative motion. Three is the poi
 
 ## Consequences
 
+- **Lane indexes are chronological.** Newest article appears first on `/writing`, `/work`, `/building`. Publishing a new article automatically promotes it to the top of its lane. No flag to set.
+- **Home Highlights are editorial.** Ahmed curates — flip `highlight: true` on the three pieces worth surfacing to cold visitors, set a low `order` to control placement. Lane position (which piece leads the lane) is driven by date, independent of this choice.
 - Adding a new highlight = set `highlight: true` and a low `order` on an article in any of Writing / Work / Building. Previous highlights either drop out (if their `order` is now higher than three others) or stay.
-- `featured` still marks articles that should appear prominently on lane index pages. The flag is dormant on home today; it will re-activate if Selected Articles is reintroduced.
 - Legacy `homePinned`, `showOnHome`, or any similar flag MUST NOT be added to the schema. Widen the home selection logic instead of adding flags.
 - The `verify-home` skill asserts that the current Highlights expectations still hold after any change. Run it after touching frontmatter flags, `order` values, or selection logic.
 

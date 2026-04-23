@@ -4,8 +4,11 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
+// Chronological, newest first. The `order` field still exists on the schema
+// (used by highlights / home selection) but lane indexes are date-driven:
+// the most recent piece always surfaces first. See docs/adr-002-home-selection.md.
 const entries = (await getCollection('writing-en'))
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Base title="Writing" description="Decision guides, frameworks, and tactical advice for founders, operators, and builders making the technical calls that compound.">
