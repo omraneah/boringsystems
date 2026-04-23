@@ -15,8 +15,8 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { LEAD_MAGNETS, type LeadMagnetAsset } from '../src/lib/lead-magnets.ts';
-import { LOCALES, type Lang } from '../src/lib/i18n.ts';
+import { LEAD_MAGNETS, type LeadMagnetAsset } from '@/lib/lead-magnets';
+import { LOCALES, type Lang } from '@/lib/i18n';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const CONTENT = join(ROOT, 'src/content');

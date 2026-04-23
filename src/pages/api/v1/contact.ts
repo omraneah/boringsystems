@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
-import { sendContactEmail } from '../../../lib/mailer';
-import { json, jsonError } from '../../../lib/http';
+import { sendContactEmail } from '@/lib/mailer';
+import { json, jsonError } from '@/lib/http';
 
 export const prerender = false;
 

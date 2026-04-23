@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
-import { sendLeadMagnetNotification, sendLeadMagnetConfirmation } from '../../../lib/mailer';
-import { LEAD_MAGNETS } from '../../../lib/lead-magnets';
-import { json, jsonError } from '../../../lib/http';
+import { sendLeadMagnetNotification, sendLeadMagnetConfirmation } from '@/lib/mailer';
+import { LEAD_MAGNETS } from '@/lib/lead-magnets';
+import { json, jsonError } from '@/lib/http';
 
 export const prerender = false;
 

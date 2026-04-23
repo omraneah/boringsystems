@@ -31,6 +31,10 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 - **Every article must exist in both EN and FR.** Applies to all four lanes (Writing, Work, Building, Archive). The hreflang logic assumes mirror content. If a locale-specific piece is ever added, update `src/lib/i18n.ts`'s SLUG_ALIASES and document in DECISIONS.md; do not add orphan content.
 
+## Imports
+
+- **Use the `@/` path alias for all imports from `src/`.** `@/*` maps to `./src/*` via `tsconfig.json`. No `../../../lib/x` in any `.astro`, `.ts`, or `.mdx` file — always `@/lib/x`. Applies to pages, components, layouts, content MDX imports, and `scripts/*.ts` (the `tsx`-run structural-verify script honours the same alias). Moving a file under `src/` should not require import edits elsewhere; relative-depth paths make that false.
+
 ## API surface
 
 - **Every API route lives under `/api/v{N}/`.** Current version is `v1`. Per `cross-stack-architecture-starter-pack/api-boundaries.md`, unversioned routes are forbidden. Breaking changes introduce a new version segment; additive changes land within the current version. Form clients point at the versioned base URL.

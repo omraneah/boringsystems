@@ -1,7 +1,7 @@
 ---
-import Article from '../../../layouts/Article.astro';
+import Article from '@/layouts/Article.astro';
 import { getCollection } from 'astro:content';
-import { readTime, formatDate } from '../../../lib/article-meta';
+import { readTime, formatDate } from '@/lib/article-meta';
 
 export async function getStaticPaths() {
   const entries = await getCollection('building-en');

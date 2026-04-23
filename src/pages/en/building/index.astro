@@ -1,8 +1,8 @@
 ---
-import Base from '../../../layouts/Base.astro';
-import ArticleCard from '../../../components/ArticleCard.astro';
+import Base from '@/layouts/Base.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
-import { articleMeta } from '../../../lib/article-meta';
+import { articleMeta } from '@/lib/article-meta';
 
 // Chronological, newest first. See docs/adr-002-home-selection.md.
 const entries = (await getCollection('building-en'))
