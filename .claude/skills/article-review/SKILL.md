@@ -58,14 +58,29 @@ Check against the design charter:
   - `archive` → principle or framing stated up-front, not buried.
 - Flag mismatches as **warnings**. This check is judgment-heavy — report the discrepancy with quoted text, don't autofix.
 
-### 5. Typography / structural signals
+### 5. Cross-link scan
+
+Check whether this article connects to already-published pieces it should be linking to.
+
+- Extract the article's main named entities: companies, products, frameworks, architectural patterns, concrete tools. Limit to the 3–5 that actually carry weight in the piece.
+- Grep the four content collections (`src/content/{writing,work,building,archive}-en/`) for each entity. Ignore the article being reviewed itself.
+- For each match, judge load-bearing:
+  - Does the other article explain *why* this entity / pattern matters in a way that extends the current piece? → link opportunity.
+  - Does the other article use the entity as evidence for a parallel argument? → link opportunity.
+  - Is the match a passing mention that wouldn't give the reader new context? → skip, not a miss.
+- For each **load-bearing match that is not already linked** in the article body, flag as a **nit**: name the target article, quote the sentence in the current article that should carry the link, and propose anchor text.
+- Also flag the **reverse direction**: if the target article would clearly benefit from linking back to this new piece, note it in the cross-link section as a follow-up task. This is a nit too — Ahmed decides per-link.
+- Do not flag more than 3 missed cross-links. If more are candidates, pick the 3 most load-bearing; the rest are editorial noise, not invariants.
+- Cross-links are always nits, never blockers. Cross-linking is a quality lever; an article with no cross-links can still ship.
+
+### 6. Typography / structural signals
 
 - Flag mono-font blocks (`\`\`\``) that contain prose (not code, paths, commands, or identifiers) — mono is signal, not texture.
 - Flag bold runs longer than 4 words (bold is for the one scannable word).
 - Flag more than one `h1` in the body (the title is the h1).
 - Flag heading gaps (jumping from `h2` to `h4`).
 
-### 6. Anti-pattern check
+### 7. Anti-pattern check
 
 Grep the article text for explicit anti-patterns from the charter:
 - Emoji characters (outside quoted content) → blocker.
@@ -74,7 +89,7 @@ Grep the article text for explicit anti-patterns from the charter:
 - "Subscribe to our newsletter", popup/modal hooks → blocker.
 - Exit-intent, fake-urgency language — blocker.
 
-### 7. Article tail check (optional)
+### 8. Article tail check (optional)
 
 If the article has a trailing email-gated section (detected by a marker like `{/* email-gate */}` or a component like `<EmailGate />`):
 - Must come **after** the takeaway, not before.
@@ -82,13 +97,13 @@ If the article has a trailing email-gated section (detected by a marker like `{/
 - Only one tail per article.
 - Flag violations as blockers.
 
-### 8. FR pair review
+### 9. FR pair review
 
 If the FR pair exists, invoke the `french-audit` skill on the pair (pass `<en-path>:<fr-path>` so length comparison runs). Embed its report inline under a `## French audit` section.
 
 If FR is missing and the article is in a collection that has existing FR siblings, flag as a warning: "FR version expected but missing."
 
-### 9. Schema-level sanity
+### 10. Schema-level sanity
 
 - File is in the correct collection directory.
 - File extension matches collection (`.md` vs `.mdx`).

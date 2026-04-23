@@ -64,6 +64,8 @@ Le swing de coût dix-pour-un est tout l'argument économique. C'est aussi la ra
 
 Ce site tourne sur ce pattern. La database de production de boringsystems, c'est Neon. Le path CI spin up des branches par feature pour les boucles de review agent-assisted ; les branches qui ne survivent pas au review sont supprimées. Celles qui survivent sont mergées back et promues. Faire tourner des experiments se mesure en centimes par mois, pas en dollars par instance par heure. Si l'architecture était encore couplée — storage lié à l'instance compute, les deux provisionnés ensemble, les deux payés ensemble — le workflow aurait un coût qui me forcerait à être prudent sur l'expérimentation, ce qui est exactement le mauvais endroit pour mettre un cost ceiling quand les agents font la plupart de l'exploration.
 
+La stack complète — Claude Code, Vercel, Neon, Resend — et le raisonnement derrière chaque pièce sont détaillés dans *[The Operator's AI Stack: April 2026](/fr/building/operator-ai-stack-april-2026)*. Neon est un composant de cette stack ; l'argument plus long sur pourquoi le pari architectural de Neon vaut la peine d'être regardé, *c'est* ce piece.
+
 ## Le fil rouge
 
 La séparation des concerns compose. Snowflake a séparé storage et compute pour l'analytics en 2012. Neon les a séparés pour les transactions en 2021. Ce qui viendra ensuite séparera quelque chose d'autre qui était couplé depuis des décennies — et les workloads qui étaient économiquement inviables sous l'ancienne hypothèse deviendront triviaux sous la nouvelle.

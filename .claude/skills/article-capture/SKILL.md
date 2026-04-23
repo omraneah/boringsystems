@@ -83,7 +83,33 @@ Otherwise, scan the conversation and identify:
 
 ---
 
-## Step 4 — Draft the card
+## Step 4 — Scan for cross-link opportunities
+
+Before drafting, check whether this piece naturally connects to any **already-published** article. The site is a connected body of work, not a pile of posts — cross-links compound (SEO, reader context, editorial coherence).
+
+### How to scan
+
+1. List the article's main named entities — companies, products, frameworks, architectural patterns, concrete tools. Keep it to the 3–5 that actually carry weight in the piece; a casual mention doesn't qualify.
+2. Grep the four content collections for each entity: `src/content/{writing,work,building,archive}-en/`. Ignore FR mirrors — the same cross-link plan applies to both locales.
+3. For each hit in another article, judge whether the connection is **load-bearing**:
+   - Does the other article explain *why* this entity / pattern matters? Load-bearing — link.
+   - Does the other article use the same entity as evidence for a parallel argument? Load-bearing — link.
+   - Does the other article merely mention it in passing? **Not load-bearing — skip.**
+
+### Rules to prevent bloat
+
+- **Max 3 cross-links per article.** If there are more candidates, keep the 3 that best extend the argument.
+- **Prefer bidirectional pairs.** When an existing article could also benefit from linking *to* the new piece, plan both directions. Capture the reverse-link as a follow-up task in the Linear card.
+- **Inline prose links only.** No footnote-style "see also" boxes, no sidebar callouts. The link sits inside the sentence that introduces the connection.
+- **Name the target piece in the sentence.** Don't use opaque anchors like "this piece". Use the article's actual title so the reader knows what they're clicking.
+
+### Output
+
+Capture the cross-link plan in the Linear card under `## Cross-links` (see Step 5). If none qualify (genuinely — rare for non-first articles), write `None load-bearing` so the reviewer knows the scan ran.
+
+---
+
+## Step 5 — Draft the card
 
 Before drafting, read `docs/design-charter.md` for tone calibration and `docs/target-audiences.md` for voice-target entry points. Do not rely on memory — the docs are the source of truth.
 
@@ -109,6 +135,15 @@ URL: /{lang}/<lane>/<slug>
 [Numbered sections, each a building block of the argument. Include the technical layer
 AND the business/positioning layer. Don't separate them.]
 
+## Cross-links
+[From Step 4. List each load-bearing cross-link as:
+  - Direction: from <this article slug> → <target article slug>
+  - Why it earns the link: one-line reason
+  - Proposed anchor text / sentence placement
+If a reverse link (target → this piece) is warranted, note it here as a follow-up to add
+AFTER this article ships. Max 3 per direction. "None load-bearing" is a valid answer for
+pieces with no meaningful overlap to existing articles.]
+
 ## Tone and format guidance
 - boringsystems voice per design-charter.md: constraint-first, short sentences, no hedging, operator-to-operator
 - [Specific notes on what to avoid — the clichés, the obvious takes for this topic]
@@ -133,14 +168,14 @@ AND the business/positioning layer. Don't separate them.]
 
 ---
 
-## Step 5 — Create the card on Linear
+## Step 6 — Create the card on Linear
 
 - Team: Boringsystems
 - Status: Backlog
 - Title format: `Article: [Punchy title] — [Subhead that names the tension]`
 - Priority: Normal
-- Include the Lane line (from Step 4) in the description so the drafting session knows where the file goes.
+- Include the Lane line and the Cross-links list in the description so the drafting session knows where the file goes and which pieces to link.
 
-## Step 6 — Confirm
+## Step 7 — Confirm
 
 Tell Ahmed the card was created, link it, and state the lane decision in one sentence so he can catch a miscall before drafting starts.
