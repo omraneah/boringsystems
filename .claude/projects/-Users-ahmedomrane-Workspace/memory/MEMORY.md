@@ -16,3 +16,4 @@
 - [Max Three Concerns Per Session](feedback_scope_discipline.md) — Wide-scope sessions degrade quality; split into branches when a 4th concern appears.
 - [Platform Features First](feedback_platform_features_first.md) — Check framework native support before reimplementing i18n/auth/routing/caching/redirects. Custom reimplementation is a recurring failure mode.
 - [Audit-Fix Isolation](feedback_audit_fix_isolation.md) — npm audit work lives in its own PR, never bundled with structural/feature changes. Rollback + reviewer triage reasons.
+- [Planning Snapshot Before Flags](feedback_planning_snapshot_before_flags.md) — Every pre-publish review skill opens with an inferred-intent statement (placement + audience + one-sentence read + up-front verdicts) before the flag list. Catches miscalls fast.

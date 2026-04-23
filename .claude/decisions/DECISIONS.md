@@ -343,3 +343,17 @@ Applied immediately: moved `article-capture`, `article-review`, `french-audit` f
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-04-23 — Lane indexes sort by date; `order` scoped to Highlights
+
+**Context:** boringsystems lane index pages (`/writing`, `/work`, `/building`) sorted by the `order` frontmatter field — an editorial curation knob — inherited from when the `featured` + `highlight` + `order` flags were introduced for home-page selection (ADR-002). When BOR-7 shipped ("Why AI Agents Need Disposable Databases"), the newest piece buried behind older articles with lower `order` values. Publishing should auto-promote the newest article to the top of its lane without the author remembering to set `order`.
+
+**Decision:** Lane indexes sort by `date` descending (newest first). `order` is now scoped to the home *Highlights* band only — editorial curation of what sits in the three home slots. `featured` remains dormant (was tied to the now-removed Selected Articles band; will re-activate if that band is ever reintroduced). Archive is unchanged — groups by `series` with `seriesNum` desc + `playbook` asc within series. ADR-002 amended on the same commit (773a35c in boringsystems PR #25).
+
+**Why:** Publishing semantics should be automatic. The author's only structural decision when shipping a new article is the file's lane (folder placement); freshness ordering within the lane is a property of the date, not an editorial choice. Keeping `order` alive but scoping it to Highlights preserves the curation lever where it's needed (home page) without letting it silently bury new content on lane indexes.
+
+**Expected outcome:** Every new article surfaces first on its lane index automatically. No author action required beyond correct frontmatter `date`. Home Highlights stays curated — Ahmed flips `highlight: true` + low `order` on the three pieces worth promoting, independent of what each lane is currently leading with.
+
+**Actual outcome:** *(pending)*
+
+---
