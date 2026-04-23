@@ -1,6 +1,6 @@
 ---
-title: "The Architecture of Disposable State"
-description: "Snowflake did it for analytics in 2012. Neon is doing it for transactions in 2026. The reason Databricks paid a billion dollars for Neon is that the agent layer needs disposable state — and the old assumption that data persists is now the constraint, not the feature."
+title: "Why AI Agents Need Disposable Databases"
+description: "Traditional databases assume data is permanent and charge you for it. AI agents don't need permanent data — they need databases that spin up, run, and disappear. Snowflake and Neon saw this coming; Databricks paid a billion dollars for the proof."
 date: 2026-04-23
 featured: true
 order: 3
@@ -63,6 +63,8 @@ The ten-to-one cost swing is the entire economic argument. It's also the reason 
 ## A small note on where I'm using this
 
 This site runs on that pattern. boringsystems' production database is Neon. The CI path spawns branches per feature for agent-assisted review loops; the branches that don't survive review get deleted. The ones that do get merged back and promoted. Running experiments is measured in cents per month, not dollars per instance per hour. If the architecture was still coupled, the same workflow would cost enough to force me to be careful about experimentation — which is exactly the wrong lever to put a cost ceiling on when agents are doing most of the exploring.
+
+The full stack — Claude Code, Vercel, Neon, Resend — and the reasoning behind each piece is laid out in *[The Operator's AI Stack: April 2026](/en/building/operator-ai-stack-april-2026)*. Neon is one component of that stack; the longer argument for why its architectural bet is worth paying attention to *is* this piece.
 
 ## The through-line
 

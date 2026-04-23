@@ -4,8 +4,9 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
+// Chronological, newest first. See docs/adr-002-home-selection.md.
 const entries = (await getCollection('building-en'))
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Base title="Building" description="Live AI-native builds — what I'm shipping right now, and why. Commentary on the stack, the agent orchestration, and the trade-offs I'm making as I go.">

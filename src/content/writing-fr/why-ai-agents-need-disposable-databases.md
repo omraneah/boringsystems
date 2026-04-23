@@ -1,6 +1,6 @@
 ---
-title: "L'architecture de l'état jetable"
-description: "Snowflake l'a fait pour l'analytics en 2012. Neon le fait pour les transactions en 2026. La raison pour laquelle Databricks a payé un milliard pour Neon : la couche agent a besoin d'un état jetable — et l'ancienne hypothèse selon laquelle la donnée persiste est devenue la contrainte, pas la feature."
+title: "Pourquoi les AI agents ont besoin de databases jetables"
+description: "Les databases traditionnelles partent du principe que la donnée est permanente et vous la facturent comme telle. Les AI agents n'ont pas besoin de données permanentes — ils ont besoin de databases qui spin up, tournent, puis disparaissent. Snowflake et Neon l'ont vu venir ; Databricks a payé un milliard pour la preuve."
 date: 2026-04-23
 featured: true
 order: 3
@@ -63,6 +63,8 @@ Le swing de coût dix-pour-un est tout l'argument économique. C'est aussi la ra
 ## Une petite note sur où je m'en sers
 
 Ce site tourne sur ce pattern. La database de production de boringsystems, c'est Neon. Le path CI spin up des branches par feature pour les boucles de review agent-assisted ; les branches qui ne survivent pas au review sont supprimées. Celles qui survivent sont mergées back et promues. Faire tourner des experiments se mesure en centimes par mois, pas en dollars par instance par heure. Si l'architecture était encore couplée — storage lié à l'instance compute, les deux provisionnés ensemble, les deux payés ensemble — le workflow aurait un coût qui me forcerait à être prudent sur l'expérimentation, ce qui est exactement le mauvais endroit pour mettre un cost ceiling quand les agents font la plupart de l'exploration.
+
+La stack complète — Claude Code, Vercel, Neon, Resend — et le raisonnement derrière chaque pièce sont détaillés dans *[The Operator's AI Stack: April 2026](/fr/building/operator-ai-stack-april-2026)*. Neon est un composant de cette stack ; l'argument plus long sur pourquoi le pari architectural de Neon vaut la peine d'être regardé, *c'est* ce piece.
 
 ## Le fil rouge
 
