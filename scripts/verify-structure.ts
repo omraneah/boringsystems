@@ -31,17 +31,44 @@ function fail(where: string, why: string): void {
 
 // --- helpers -----------------------------------------------------------
 
+// Walk a collection root and return every content file as a path relative
+// to `dir` (subfolders preserved). Collections may nest — archive groups
+// playbooks under `operating-playbooks/series-*/` — but subfolders are
+// organizational only and never appear in URLs; see docs/constraints.md.
+// Flat collections (system-design, builders, technology) still work: if a
+// collection has no subdirs, `listFiles` just returns basenames.
 function listFiles(dir: string): string[] {
-  try {
-    return readdirSync(dir).filter((name) => {
-      const full = join(dir, name);
-      if (!statSync(full).isFile()) return false;
-      // Only content files — ignore `.gitkeep`, `.DS_Store`, etc.
-      return /\.(md|mdx)$/i.test(name);
-    });
-  } catch {
-    return [];
+  const out: string[] = [];
+  function walk(current: string, prefix: string): void {
+    let entries: string[];
+    try {
+      entries = readdirSync(current);
+    } catch {
+      return;
+    }
+    for (const name of entries) {
+      const full = join(current, name);
+      const rel = prefix ? `${prefix}/${name}` : name;
+      let s;
+      try {
+        s = statSync(full);
+      } catch {
+        continue;
+      }
+      if (s.isDirectory()) {
+        walk(full, rel);
+      } else if (s.isFile() && /\.(md|mdx)$/i.test(name)) {
+        out.push(rel);
+      }
+    }
   }
+  walk(dir, '');
+  return out;
+}
+
+function basename(relPath: string): string {
+  const idx = relPath.lastIndexOf('/');
+  return idx === -1 ? relPath : relPath.slice(idx + 1);
 }
 
 function stripExt(name: string): string {
@@ -77,6 +104,8 @@ function parseFrontmatter(filePath: string): Record<string, string> {
 function verifyContentMirror(collection: string): void {
   const enDir = join(CONTENT, `${collection}-en`);
   const frDir = join(CONTENT, `${collection}-fr`);
+  // Compare full relative paths (subfolders included) — EN/FR must mirror
+  // exactly, including the on-disk grouping structure.
   const en = new Set(listFiles(enDir).map(stripExt));
   const fr = new Set(listFiles(frDir).map(stripExt));
 
@@ -98,9 +127,34 @@ function verifyContentMirror(collection: string): void {
   }
 }
 
+// Basenames are URL slugs (subfolders are grouping-only; see
+// docs/constraints.md). Two files with the same basename in the same
+// collection — even in different subfolders — would collide at the same URL.
+// Check EN and FR independently.
+function verifyBasenameUniqueness(collection: string): void {
+  for (const lang of LOCALES) {
+    const dir = join(CONTENT, `${collection}-${lang}`);
+    const seen = new Map<string, string>();
+    for (const rel of listFiles(dir)) {
+      const key = stripExt(basename(rel));
+      const prior = seen.get(key);
+      if (prior) {
+        fail(
+          `${collection}-${lang}`,
+          `basename collision at URL slug "${key}": "${prior}" and "${rel}" — subfolders don't disambiguate URLs`,
+        );
+      } else {
+        seen.set(key, rel);
+      }
+    }
+  }
+}
+
 function verifyFrontmatter(collection: string, requireDate: boolean): void {
   for (const lang of LOCALES) {
     const dir = join(CONTENT, `${collection}-${lang}`);
+    // `listFiles` now walks recursively and returns paths relative to `dir`
+    // (subfolders preserved) — `join(dir, relPath)` still resolves correctly.
     for (const file of listFiles(dir)) {
       const full = join(dir, file);
       const rel = relative(ROOT, full);
@@ -259,6 +313,10 @@ verifyContentMirror('system-design');
 verifyContentMirror('builders');
 verifyContentMirror('technology');
 verifyContentMirror('archive');
+verifyBasenameUniqueness('system-design');
+verifyBasenameUniqueness('builders');
+verifyBasenameUniqueness('technology');
+verifyBasenameUniqueness('archive');
 verifyFrontmatter('system-design', /* requireDate */ true);
 verifyFrontmatter('builders', /* requireDate */ true);
 verifyFrontmatter('technology', /* requireDate */ true);

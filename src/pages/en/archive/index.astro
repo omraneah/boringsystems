@@ -52,7 +52,7 @@ const sortedSeries = Object.entries(grouped).sort(
                 <ArticleCard
                   title={item.data.title}
                   description={item.data.description}
-                  href={`/en/archive/${item.slug}`}
+                  href={`/en/archive/${item.slug.split('/').pop()}`}
                   meta={item.data.playbook !== undefined ? `Playbook ${item.data.playbook}` : undefined}
                 />
               ))}

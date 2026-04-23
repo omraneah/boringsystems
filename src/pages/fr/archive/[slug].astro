@@ -5,7 +5,11 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
   const entries = await getCollection('archive-fr');
   return entries.map(entry => ({
-    params: { slug: entry.slug },
+    // `entry.slug` includes any on-disk subfolders (e.g.
+    // `operating-playbooks/series-1-foundations/s1-p0-how-we-run`).
+    // Those folders are Ahmed's grouping play — never part of the URL.
+    // URL slug = file basename only. See docs/constraints.md "Content".
+    params: { slug: entry.slug.split('/').pop() },
     props: { entry },
   }));
 }

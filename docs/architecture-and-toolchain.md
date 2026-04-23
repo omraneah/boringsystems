@@ -90,13 +90,25 @@ Managed in Vercel project settings. For local development, copy to `.env.local` 
 src/
 ├── components/        ← Reusable UI: ArticleCard, ArticleFeedback, LeadMagnet, Nav, Footer
 ├── content/           ← Markdown + MDX articles, one collection per lane × locale:
-│                       system-design-en/, system-design-fr/,
-│                       builders-en/, builders-fr/,
-│                       technology-en/, technology-fr/,
-│                       archive-en/, archive-fr/.
-│                       Folder name = URL path = collection name (minus locale).
+│                       system-design-{en,fr}/, builders-{en,fr}/,
+│                       technology-{en,fr}/, archive-{en,fr}/.
+│                       Lane folder = URL path. File basename = URL slug.
+│                       Any subfolders in between are grouping-only and never
+│                       appear in URLs (see docs/constraints.md "Content").
 │                       Articles are .md by default; use .mdx when a piece needs
 │                       embedded components (e.g. <LeadMagnet />) or mermaid diagrams.
+│
+│                       Archive is grouped on disk by series; URLs stay flat:
+│                         archive-{en,fr}/operating-playbooks/
+│                           series-1-foundations/s1-p0-how-we-run.md
+│                           series-1-foundations/s1-p1-first-30-days.md
+│                           ...
+│                           series-2-leadership-and-judgment/s2-p1-*.md
+│                           series-3-ai-edge/s3-p1-*.md
+│                         → /{lang}/archive/<basename>
+│                       Basename uniqueness per collection is enforced by
+│                       scripts/verify-structure.ts so grouping never causes
+│                       URL collisions.
 ├── layouts/           ← Page layouts (Base.astro, Article.astro).
 │                       Article.astro loads mermaid.js client-side when any
 │                       <pre class="mermaid"> blocks are present on the page.

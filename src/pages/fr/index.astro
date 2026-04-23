@@ -23,7 +23,12 @@ const systemDesignFeatured = systemDesign
   .filter((entry) => entry.data.featured)
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
-const pinnedArchive = await getEntry('archive-fr', 's3-p2-context-is-the-edge');
+// Archive entries live under on-disk grouping folders; slug includes the
+// full path relative to the collection root. See docs/constraints.md.
+const pinnedArchive = await getEntry(
+  'archive-fr',
+  'operating-playbooks/series-3-ai-edge/s3-p2-context-is-the-edge',
+);
 
 const laneLabelsFr: Record<'system-design' | 'builders' | 'technology', string> = {
   'system-design': 'System Design',
@@ -42,7 +47,7 @@ const selectedArticles = [
     ? [{
         title: pinnedArchive.data.title,
         description: pinnedArchive.data.description,
-        href: `/fr/archive/${pinnedArchive.slug}`,
+        href: `/fr/archive/${pinnedArchive.slug.split('/').pop()}`,
         meta: readTime(pinnedArchive.body, 'fr'),
       }]
     : []),

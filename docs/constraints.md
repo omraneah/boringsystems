@@ -41,6 +41,8 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 - **Frontmatter `date` is mandatory on case files.** First-merge git date via `git log --follow --diff-filter=A --format=%aI -- <path> | tail -1`. Article-review skill blocks missing dates.
 
+- **Lane folder + filename = URL. Subfolders in between are free.** For every content collection, the first-level folder (`archive-en/`, `system-design-fr/`, …) is the URL lane and the file basename (no extension) is the URL slug. Any subfolders between them are organizational grouping only and **must not appear in URLs**. Canonical example: archive playbooks are grouped on disk as `archive-{lang}/operating-playbooks/series-{N}-{name}/s{N}-p{M}-<slug>.md` but render at `/{lang}/archive/s{N}-p{M}-<slug>`. The `[slug].astro` route maps `entry.slug.split('/').pop()` back to the param, and `scripts/verify-structure.ts` enforces per-collection basename uniqueness so two files in different subfolders can't collide at the same URL.
+
 - **Home selection flags are pinned by ADR-002.** `featured` = grid listings; `highlight` = home highlights stack; `order` = sort key. Do not add new flags (`homePinned`, `showOnHome`, etc.) — widen the selection logic instead. See `docs/adr-002-home-selection.md`.
 
 - **FR content is re-voiced, not translated.** Per `docs/french-guide.md`: same meaning, French operator register, keep English jargon (startup, MVP, pipeline, deploy, etc.). Run `/french-audit` before committing FR content.
