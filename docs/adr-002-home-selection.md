@@ -15,26 +15,24 @@ Each flag has one surface it drives. Surfaces and their sources are listed below
 
 | Flag | Type | Default | Purpose |
 |---|---|---|---|
-| `featured` | boolean | `false` | Include in grid listings: home *Selected Articles* (when persona is technical), `/case-files` lane index, `/builders`, `/system-design`. |
-| `highlight` | boolean | `false` | Include in the home *Highlights* stack. Capped at three — if more are flagged, only the first three (by `order`) render. |
+| `featured` | boolean | `false` | Include in grid listings: home *Selected Articles* (System Design only), and each lane index page (`/system-design`, `/builders`, `/technology`). |
+| `highlight` | boolean | `false` | Include in the home *Highlights* stack. Union across System Design, Builders, and Technology. Capped at three — if more are flagged, only the first three (by `order`) render. |
 | `order` | number | `99` | Sort key across all surfaces. Lower numbers surface first. |
 
 ### Surfaces
 
 | Surface | Source query | Sort | Cap |
 |---|---|---|---|
-| Home *Highlights* | `case-files-{lang}` where `highlight: true` | `order` asc | `.slice(0, 3)` |
-| Home *Selected Articles* | `case-files-{lang}` where `featured: true && persona !== 'builder'`, plus `getEntry('operating-playbooks-{lang}', 's3-p2-context-is-the-edge')` | `order` asc for case files, playbook appended last | — |
-| `/system-design` | `case-files-{lang}` where `persona !== 'builder'` | `order` asc | — |
-| `/builders` | `case-files-{lang}` where `persona === 'builder'` | `order` asc | — |
+| Home *Highlights* | union of `system-design-{lang}`, `builders-{lang}`, `technology-{lang}` where `highlight: true` | `order` asc | `.slice(0, 3)` |
+| Home *Selected Articles* | `system-design-{lang}` where `featured: true`, plus `getEntry('archive-{lang}', 's3-p2-context-is-the-edge')` | `order` asc for articles, archive entry appended last | — |
+| `/system-design` | all `system-design-{lang}` | `order` asc | — |
+| `/builders` | all `builders-{lang}` | `order` asc | — |
 | `/technology` | all `technology-{lang}` | `order` asc | — |
-| `/archive` | all `operating-playbooks-{lang}`, grouped by series | `seriesNum` desc, `playbook` asc within series | — |
-| `/case-files` lane index | all `case-files-{lang}` | `order` asc | — |
-| `/operating-playbooks` | all `operating-playbooks-{lang}`, grouped by series | `seriesNum` desc, `playbook` asc within series | — |
+| `/archive` | all `archive-{lang}`, grouped by series | `seriesNum` desc, `playbook` asc within series | — |
 
-### Why the pinned playbook is pinned by slug, not by flag
+### Why the pinned archive entry is pinned by slug, not by flag
 
-Only one playbook is meant to appear in *Selected Articles* at any given time. A hypothetical `homePinned` flag would scale linearly with playbooks (one flag per doc), would need to be exactly-one-true, and would require either a custom schema validation or a convention everyone has to remember. Pinning by explicit slug in `src/pages/{en,fr}/index.astro` gives a single source of truth — to rotate, edit one line — and keeps the schema lean.
+Only one archive entry is meant to appear in *Selected Articles* at any given time. A hypothetical `homePinned` flag would scale linearly with entries (one flag per doc), would need to be exactly-one-true, and would require either a custom schema validation or a convention everyone has to remember. Pinning by explicit slug in `src/pages/{en,fr}/index.astro` gives a single source of truth — to rotate, edit one line — and keeps the schema lean.
 
 ### Why three highlights, not N
 
@@ -42,15 +40,15 @@ The design charter calls for density without decorative motion. Three is the poi
 
 ## Consequences
 
-- Adding a new highlight = add the article with `highlight: true` and a low `order`. Previous highlights either drop out (if their `order` is now higher than three others) or stay.
-- Adding a new *Selected Articles* case file = set `featured: true`, `persona: technical`, appropriate `order`.
-- Rotating the pinned playbook = change the slug string in `src/pages/en/index.astro` and `src/pages/fr/index.astro`.
-- Legacy `homePinned`, `showOnHome`, or any similar flag MUST NOT be added to the schema. If a second playbook ever needs a home slot, widen the home selection logic to accept multiple slugs — do not introduce a new flag.
+- Adding a new highlight = add the article with `highlight: true` and a low `order` in any of the three article lanes. Previous highlights either drop out (if their `order` is now higher than three others) or stay.
+- Adding a new *Selected Articles* piece = place the article under `src/content/system-design-{lang}/`, set `featured: true`, appropriate `order`.
+- Rotating the pinned archive entry = change the slug string in `src/pages/en/index.astro` and `src/pages/fr/index.astro`.
+- Legacy `homePinned`, `showOnHome`, or any similar flag MUST NOT be added to the schema. If a second archive entry ever needs a home slot, widen the home selection logic to accept multiple slugs — do not introduce a new flag.
 - The `verify-home` skill asserts that the current highlight and Selected Articles expectations still hold after any change. Run it after touching frontmatter flags, `order` values, or selection logic.
 
 ## Alternatives considered
 
-- **Single `home-featured` boolean across both sections.** Rejected — the two sections have different visual weight and different content-type constraints (Selected Articles excludes builder-persona; Highlights doesn't).
+- **Single `home-featured` boolean across both sections.** Rejected — the two sections have different visual weight and different content-type constraints (Selected Articles pulls only from System Design; Highlights pulls from all three article lanes).
 - **Explicit arrays in config.** Rejected — would externalise the sort+select logic from the article's own frontmatter, creating a second source of truth to keep in sync.
 - **A custom collection for home-page picks.** Rejected — we want the article to carry its own fate; nothing should need to know about home in a second place.
 

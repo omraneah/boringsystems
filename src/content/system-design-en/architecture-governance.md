@@ -4,7 +4,6 @@ description: "Building an authoritative governance layer that aligned multiple p
 date: 2026-02-22
 featured: true
 order: 5
-persona: technical
 ---
 
 ## Context

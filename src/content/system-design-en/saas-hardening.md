@@ -4,7 +4,6 @@ description: "A sequenced transition that strengthened identity, boundaries, and
 date: 2026-02-22
 featured: true
 order: 4
-persona: technical
 ---
 
 ## Context

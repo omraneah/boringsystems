@@ -3,38 +3,53 @@ import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { articleMeta, readTime } from '../../lib/article-meta';
-import { PERSONA } from '../../lib/personas';
 
-// Highlights: case files explicitly flagged `highlight: true`, ordered,
-// capped at 3. Rendered as a stack of large cards, not a carousel.
-const highlights = (await getCollection('case-files-en', ({ data }) => data.highlight))
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+// Highlights: articles across all three lane collections flagged
+// `highlight: true`, sorted by `order`, capped at 3. Rendered as a stack
+// of large cards, not a carousel. Each entry carries its lane slug so the
+// card can link back to the correct URL.
+const systemDesign = await getCollection('system-design-en');
+const builders = await getCollection('builders-en');
+const technology = await getCollection('technology-en');
+
+const allArticles = [
+  ...systemDesign.map((e) => ({ entry: e, lane: 'system-design' as const })),
+  ...builders.map((e) => ({ entry: e, lane: 'builders' as const })),
+  ...technology.map((e) => ({ entry: e, lane: 'technology' as const })),
+];
+
+const highlights = allArticles
+  .filter(({ entry }) => entry.data.highlight)
+  .sort((a, b) => (a.entry.data.order ?? 99) - (b.entry.data.order ?? 99))
   .slice(0, 3);
 
-// Selected Articles: technical-persona case files marked featured, plus
-// "Context is the Edge" pulled in specifically by slug so it sits next to
-// them as a peer piece. If you want to rotate the playbook pick, change
-// the slug below.
-const technicalFeatured = (await getCollection(
-  'case-files-en',
-  ({ data }) => data.featured && data.persona !== PERSONA.BUILDER,
-)).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+// Selected Articles: System Design featured pieces + one pinned archive
+// entry appended last. To rotate the pinned entry, change the slug below.
+const systemDesignFeatured = systemDesign
+  .filter((entry) => entry.data.featured)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
-const pinnedPlaybook = await getEntry('operating-playbooks-en', 's3-p2-context-is-the-edge');
+const pinnedArchive = await getEntry('archive-en', 's3-p2-context-is-the-edge');
+
+const laneLabels: Record<'system-design' | 'builders' | 'technology', string> = {
+  'system-design': 'System Design',
+  'builders': 'Builders',
+  'technology': 'Technology',
+};
 
 const selectedArticles = [
-  ...technicalFeatured.map((entry) => ({
+  ...systemDesignFeatured.map((entry) => ({
     title: entry.data.title,
     description: entry.data.description,
-    href: `/en/case-files/${entry.slug}`,
+    href: `/en/system-design/${entry.slug}`,
     meta: articleMeta(entry.body, entry.data.date, 'en'),
   })),
-  ...(pinnedPlaybook
+  ...(pinnedArchive
     ? [{
-        title: pinnedPlaybook.data.title,
-        description: pinnedPlaybook.data.description,
-        href: `/en/operating-playbooks/${pinnedPlaybook.slug}`,
-        meta: readTime(pinnedPlaybook.body, 'en'),
+        title: pinnedArchive.data.title,
+        description: pinnedArchive.data.description,
+        href: `/en/archive/${pinnedArchive.slug}`,
+        meta: readTime(pinnedArchive.body, 'en'),
       }]
     : []),
 ];
@@ -56,9 +71,9 @@ const selectedArticles = [
       <div class="section-inner">
         <p class="label section-label">Highlights</p>
         <div class="highlight-stack">
-          {highlights.map((entry) => (
-            <a href={`/en/case-files/${entry.slug}`} class="highlight-card">
-              <span class="highlight-series">Case File</span>
+          {highlights.map(({ entry, lane }) => (
+            <a href={`/en/${lane}/${entry.slug}`} class="highlight-card">
+              <span class="highlight-series">{laneLabels[lane]}</span>
               <h2 class="highlight-title">{entry.data.title}</h2>
               <p class="highlight-description">{entry.data.description}</p>
               <span class="highlight-read accent">Read →</span>

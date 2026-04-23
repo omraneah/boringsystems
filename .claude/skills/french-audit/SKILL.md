@@ -14,7 +14,7 @@ Audit French content at $ARGUMENTS against `docs/french-guide.md`.
 One of:
 - A single FR file path (skips length comparison).
 - A colon-separated pair `<en-path>:<fr-path>` (enables length comparison).
-- No argument — scan all FR content collections (`src/content/case-files-fr/`, `src/content/operating-playbooks-fr/`, `src/pages/fr/`) and pick the most-recently-modified file.
+- No argument — scan all FR content collections (`src/content/system-design-fr/`, `src/content/builders-fr/`, `src/content/technology-fr/`, `src/content/archive-fr/`, `src/pages/fr/`) and pick the most-recently-modified file.
 
 ## Process
 

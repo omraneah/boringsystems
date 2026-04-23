@@ -35,7 +35,9 @@ function listFiles(dir: string): string[] {
   try {
     return readdirSync(dir).filter((name) => {
       const full = join(dir, name);
-      return statSync(full).isFile();
+      if (!statSync(full).isFile()) return false;
+      // Only content files — ignore `.gitkeep`, `.DS_Store`, etc.
+      return /\.(md|mdx)$/i.test(name);
     });
   } catch {
     return [];
@@ -253,10 +255,14 @@ function verifyPageMirror(): void {
 
 // --- run ---------------------------------------------------------------
 
-verifyContentMirror('case-files');
-verifyContentMirror('operating-playbooks');
-verifyFrontmatter('case-files', /* requireDate */ true);
-verifyFrontmatter('operating-playbooks', /* requireDate */ false);
+verifyContentMirror('system-design');
+verifyContentMirror('builders');
+verifyContentMirror('technology');
+verifyContentMirror('archive');
+verifyFrontmatter('system-design', /* requireDate */ true);
+verifyFrontmatter('builders', /* requireDate */ true);
+verifyFrontmatter('technology', /* requireDate */ true);
+verifyFrontmatter('archive', /* requireDate */ false);
 verifySlugAliases();
 verifyLeadMagnets();
 verifyPageMirror();

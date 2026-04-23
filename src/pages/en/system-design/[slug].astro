@@ -1,9 +1,10 @@
 ---
 import Article from '../../../layouts/Article.astro';
 import { getCollection } from 'astro:content';
+import { readTime, formatDate } from '../../../lib/article-meta';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('operating-playbooks-fr');
+  const entries = await getCollection('system-design-en');
   return entries.map(entry => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -17,10 +18,10 @@ const { Content } = await entry.render();
 <Article
   title={entry.data.title}
   description={entry.data.description}
-  series={entry.data.series}
-  backHref="/fr/operating-playbooks"
-  backLabel="Guides opérationnels"
-  lang="fr"
+  backHref="/en/system-design"
+  backLabel="System Design"
+  date={formatDate(entry.data.date, 'en') ?? undefined}
+  readTime={readTime(entry.body, 'en')}
 >
   <Content />
 </Article>

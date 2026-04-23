@@ -89,9 +89,12 @@ Managed in Vercel project settings. For local development, copy to `.env.local` 
 ```
 src/
 ├── components/        ← Reusable UI: ArticleCard, ArticleFeedback, LeadMagnet, Nav, Footer
-├── content/           ← Markdown + MDX articles, symmetric per language:
-│                       case-files-en/, case-files-fr/,
-│                       operating-playbooks-en/, operating-playbooks-fr/.
+├── content/           ← Markdown + MDX articles, one collection per lane × locale:
+│                       system-design-en/, system-design-fr/,
+│                       builders-en/, builders-fr/,
+│                       technology-en/, technology-fr/,
+│                       archive-en/, archive-fr/.
+│                       Folder name = URL path = collection name (minus locale).
 │                       Articles are .md by default; use .mdx when a piece needs
 │                       embedded components (e.g. <LeadMagnet />) or mermaid diagrams.
 ├── layouts/           ← Page layouts (Base.astro, Article.astro).
@@ -100,9 +103,11 @@ src/
 ├── lib/               ← Backend + typed registries (mailer.ts, article-meta.ts,
 │                       lead-magnets.ts)
 ├── pages/             ← Routes, strict two-language tree:
-│                       en/* and fr/* mirror each other; api/* is language-neutral.
+│                       en/{system-design,builders,technology,archive}/* and
+│                       fr/{system-design,builders,technology,archive}/* mirror each
+│                       other; api/* is language-neutral.
 │                       No content lives at the root — astro.config.mjs 301-redirects
-│                       `/`, `/case-files/*`, `/engineering`, etc. to `/en/...`.
+│                       `/` to `/en/`. No other redirects: folder = URL.
 └── styles/            ← Global CSS and design tokens
 
 Mermaid diagrams: write a ```mermaid code fence inside a .md or .mdx article.

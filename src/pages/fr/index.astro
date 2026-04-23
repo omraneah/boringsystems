@@ -3,32 +3,47 @@ import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { articleMeta, readTime } from '../../lib/article-meta';
-import { PERSONA } from '../../lib/personas';
 
-const highlights = (await getCollection('case-files-fr', ({ data }) => data.highlight))
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+const systemDesign = await getCollection('system-design-fr');
+const builders = await getCollection('builders-fr');
+const technology = await getCollection('technology-fr');
+
+const allArticles = [
+  ...systemDesign.map((e) => ({ entry: e, lane: 'system-design' as const })),
+  ...builders.map((e) => ({ entry: e, lane: 'builders' as const })),
+  ...technology.map((e) => ({ entry: e, lane: 'technology' as const })),
+];
+
+const highlights = allArticles
+  .filter(({ entry }) => entry.data.highlight)
+  .sort((a, b) => (a.entry.data.order ?? 99) - (b.entry.data.order ?? 99))
   .slice(0, 3);
 
-const technicalFeatured = (await getCollection(
-  'case-files-fr',
-  ({ data }) => data.featured && data.persona !== PERSONA.BUILDER,
-)).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const systemDesignFeatured = systemDesign
+  .filter((entry) => entry.data.featured)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
-const pinnedPlaybook = await getEntry('operating-playbooks-fr', 's3-p2-context-is-the-edge');
+const pinnedArchive = await getEntry('archive-fr', 's3-p2-context-is-the-edge');
+
+const laneLabelsFr: Record<'system-design' | 'builders' | 'technology', string> = {
+  'system-design': 'System Design',
+  'builders': 'Builders',
+  'technology': 'Technology',
+};
 
 const selectedArticles = [
-  ...technicalFeatured.map((entry) => ({
+  ...systemDesignFeatured.map((entry) => ({
     title: entry.data.title,
     description: entry.data.description,
-    href: `/fr/case-files/${entry.slug}`,
+    href: `/fr/system-design/${entry.slug}`,
     meta: articleMeta(entry.body, entry.data.date, 'fr'),
   })),
-  ...(pinnedPlaybook
+  ...(pinnedArchive
     ? [{
-        title: pinnedPlaybook.data.title,
-        description: pinnedPlaybook.data.description,
-        href: `/fr/operating-playbooks/${pinnedPlaybook.slug}`,
-        meta: readTime(pinnedPlaybook.body, 'fr'),
+        title: pinnedArchive.data.title,
+        description: pinnedArchive.data.description,
+        href: `/fr/archive/${pinnedArchive.slug}`,
+        meta: readTime(pinnedArchive.body, 'fr'),
       }]
     : []),
 ];
@@ -50,9 +65,9 @@ const selectedArticles = [
       <div class="section-inner">
         <p class="label section-label">À la une</p>
         <div class="highlight-stack">
-          {highlights.map((entry) => (
-            <a href={`/fr/case-files/${entry.slug}`} class="highlight-card">
-              <span class="highlight-series">Étude de cas</span>
+          {highlights.map(({ entry, lane }) => (
+            <a href={`/fr/${lane}/${entry.slug}`} class="highlight-card">
+              <span class="highlight-series">{laneLabelsFr[lane]}</span>
               <h2 class="highlight-title">{entry.data.title}</h2>
               <p class="highlight-description">{entry.data.description}</p>
               <span class="highlight-read accent">Lire →</span>

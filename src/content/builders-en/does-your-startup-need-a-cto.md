@@ -4,7 +4,6 @@ description: "Most founders asking this question are solving the wrong problem. 
 date: 2026-04-17
 highlight: true
 order: 6
-persona: builder
 ---
 
 ## Context

@@ -30,7 +30,7 @@ Otherwise, scan the conversation and identify:
 
 ## Step 2 — Draft the card
 
-Before drafting, read `docs/design-charter.md` for tone calibration and `docs/target-audiences.md` for persona IDs and entry points. Do not rely on memory — the docs are the source of truth.
+Before drafting, read `docs/design-charter.md` for tone calibration and `docs/target-audiences.md` for lane mapping and voice-target entry points. Do not rely on memory — the docs are the source of truth.
 
 Structure the Linear card as follows:
 
@@ -38,10 +38,12 @@ Structure the Linear card as follows:
 ## What this article is about
 [One paragraph. The angle, not the topic. What makes this worth reading for a senior operator.]
 
-## Primary persona
-[One of: technical, builder — from target-audiences.md. Name the entry point that matches:
-  - technical: tension/architecture decision (System Design lane)
-  - builder: business implication or decision guide with next steps (Builders lane)]
+## Target lane
+[One of: system-design, builders, technology, archive — lane = URL path = content-collection folder. Voice target follows:
+  - system-design: tension/architecture decision for `technical` readers.
+  - builders: business implication or decision guide with next steps for `builder` readers.
+  - technology: stack/tooling/pattern piece, topic-led.
+  - archive: long-living principle or playbook.]
 
 ## The intellectual thread to follow
 [Numbered sections, each a building block of the argument. Include the technical layer AND the business/positioning layer. Don't separate them.]
@@ -58,7 +60,7 @@ Structure the Linear card as follows:
 - Decide whether an email-gated tail fits (prompt pack, setup guide) — optional, article must stand alone either way
 
 ## Success criteria
-[What the primary persona should feel/understand after finishing. Be specific to the persona's entry point.]
+[What the target reader should feel/understand after finishing. Be specific to the lane's entry point.]
 
 ## Pre-publish
 - Invoke /article-review before opening the PR — it loads all three governance docs and produces a pass/flag report including the FR audit.

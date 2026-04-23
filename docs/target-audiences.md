@@ -1,21 +1,28 @@
 # Target Audiences
 
-Every article on boringsystems is written for a **primary** persona and is readable by the other without condescension. If an article doesn't have a primary persona in mind, it isn't ready to draft.
+Every article on boringsystems is written for a **primary** voice target and is readable by adjacent readers without condescension. If an article doesn't have a primary voice target in mind, it isn't ready to draft.
 
-This document is the source of truth for persona tagging. The `persona` field in content frontmatter uses the IDs defined here. The site's navigation lanes (`System Design`, `Builders`, `Technology`, `Archive`) are the visible expression of the site's structure — `System Design` serves `technical`, `Builders` serves `builder`, `Technology` cross-cuts, and `Archive` holds long-living playbooks.
+This document is the source of truth for voice targeting. **Lane = voice target = folder path = URL.** An article's target is implicit in the content-collection folder it lives in — there is no `persona` frontmatter field. Placing `foo.md` under `src/content/system-design-en/` is the assertion that it's written for the `technical` voice; placing it under `builders-en/` asserts `builder`.
+
+The site has four navigation lanes, each with its own voice calibration:
+
+- **System Design** serves `technical` readers.
+- **Builders** serves `builder` readers.
+- **Technology** cross-cuts — topic-led, no single voice target.
+- **Archive** holds long-living playbooks — principle-led, cross-cuts.
 
 The ID `builder` replaced `operator` on the 2026-04-22 layout restructure. Underlying audience (entrepreneurs, intrapreneurs, solopreneurs, non-technical founders, business operators) is unchanged — only the label shifted to emphasise build-posture over job title.
 
 ---
 
-## Persona IDs
+## Voice target IDs
 
-| ID | Short name | Lane | Role sketch |
+| ID | Short name | Lane (folder = URL) | Role sketch |
 |---|---|---|---|
-| `technical` | Technical peers | System Design | CTO, VP Eng, Staff engineers, technical founders |
-| `builder` | Builders & entrepreneurs | Builders | Entrepreneurs, intrapreneurs, solopreneurs, non-technical founders, business operators — people who ship |
+| `technical` | Technical peers | `system-design` | CTO, VP Eng, Staff engineers, technical founders |
+| `builder` | Builders & entrepreneurs | `builders` | Entrepreneurs, intrapreneurs, solopreneurs, non-technical founders, business operators — people who ship |
 
-Use these IDs verbatim in content frontmatter and when the `article-review` skill asks which persona an article targets.
+Use these IDs as vocabulary when discussing voice in reviews, skill prompts, and the `article-review` report. They do **not** appear in frontmatter — lane assignment (folder) carries the same information with less drift.
 
 ---
 
@@ -83,8 +90,7 @@ Use these IDs verbatim in content frontmatter and when the `article-review` skil
 
 ## Cross-persona rules
 
-- **Primary persona is mandatory.** No article ships without one in frontmatter. The `article-review` skill enforces this.
-- **Lane assignment follows persona.** `technical` → System Design lane; `builder` → Builders lane. An article can only sit in one lane (case files). Technology pieces cross-cut and live in their own lane; Archive holds long-living playbooks regardless of persona.
-- **Technology cross-cuts.** Stack, tooling, and pattern pieces don't need a persona assignment — they serve the topic. If a Technology piece has a clear primary audience, tag it; otherwise leave `persona` unset and it stays in the Technology lane only.
-- **Never write for both personas simultaneously.** An article that tries to serve a CTO and a non-technical founder in the same voice will fail both. Pick one. Secondary audience is a bonus, not a constraint.
-- **Persona does not dictate topic.** A French-market article on European cloud sovereignty can be framed for either persona — the framing changes, the topic doesn't.
+- **Lane placement is the assignment.** An article lives in exactly one content collection, which determines its URL, its lane, and its voice target. Moving the file between folders is how you change the assignment — there is no frontmatter flag to set.
+- **Technology and Archive don't carry a voice target.** Technology serves the topic; Archive holds principles. If a Technology piece has a clear primary audience, it probably belongs in System Design or Builders instead.
+- **Never write for both voice targets simultaneously.** An article that tries to serve a CTO and a non-technical founder in the same voice will fail both. Pick one lane. Secondary audience is a bonus, not a constraint.
+- **Voice target does not dictate topic.** A French-market article on European cloud sovereignty can be framed for either target — the framing changes, the topic doesn't.

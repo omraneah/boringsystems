@@ -3,7 +3,6 @@ title: "Établir une gouvernance d'architecture transversale"
 description: "Mise en place d'une couche de gouvernance faisant autorité, alignant plusieurs surfaces produit et réduisant la divergence."
 featured: true
 order: 5
-persona: technical
 date: 2026-04-19
 ---
 

@@ -3,9 +3,8 @@ import Base from '../../../layouts/Base.astro';
 import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
-import { PERSONA } from '../../../lib/personas';
 
-const systemDesign = (await getCollection('case-files-en', ({ data }) => data.persona !== PERSONA.BUILDER))
+const systemDesign = (await getCollection('system-design-en'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
@@ -25,7 +24,7 @@ const systemDesign = (await getCollection('case-files-en', ({ data }) => data.pe
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/en/case-files/${item.slug}`}
+            href={`/en/system-design/${item.slug}`}
             meta={articleMeta(item.body, item.data.date, 'en')}
           />
         ))}

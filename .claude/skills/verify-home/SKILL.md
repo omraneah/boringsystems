@@ -14,8 +14,7 @@ Post-change smoke test for the boringsystems home page. Validates the surface-le
 1. Run `npx astro build` from the project root. If it fails, stop and report the error — no other checks make sense against a broken build.
 2. Extract text from the generated HTML and assert:
    - **Root redirect.** `.vercel/output/config.json` contains a route that redirects `^/$` → `/en/` with status 301 (or 308).
-   - **Legacy unprefixed redirects.** `.vercel/output/config.json` contains 301s for `/about`, `/engineering` → `/en/system-design`, `/entrepreneurs` → `/en/builders`, `/essays` → `/en/archive`, `/case-files`, `/operating-playbooks`, and the case-files + operating-playbooks `/[slug]` variants pointing to their `/en/` equivalents.
-   - **Lane-rename redirects (2026-04-22).** 301s for `/en/engineering` → `/en/system-design`, `/fr/engineering` → `/fr/system-design`, `/en/entrepreneurs` → `/en/builders`, `/fr/entrepreneurs` → `/fr/builders`, `/en/essays` → `/en/archive`, `/fr/essais` → `/fr/archive`.
+   - **Only redirect.** `.vercel/output/config.json` contains exactly one 301: `^/$` → `/en/`. No legacy aliases, no cross-lane forwards. Folder = URL is authoritative.
    - **Highlights — EN** (`dist/client/en/index.html`): three `.highlight-title` elements, in order:
      1. `The Solo Founder's New Baseline: Command an Agent, Own the Build`
      2. `The Operator's AI Stack: April 2026`
@@ -25,8 +24,8 @@ Post-change smoke test for the boringsystems home page. Validates the surface-le
    - **Selected Articles — EN**: four `.card-title` elements under the section labelled `Selected Articles`. Three technical case files (Vendor Lock-In, SaaS Hardening, Architecture Governance) + one playbook (`Context is the Edge`).
    - **Selected Articles — FR**: four cards under `Articles sélectionnés` matching the FR titles of the same pieces.
    - **"All case files" link is absent** on both home pages.
-   - **Lead magnet presence.** Both new article pages (`/en/case-files/solo-founder-new-baseline`, `/en/case-files/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
-   - **Mermaid block present** on `/en/case-files/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.
+   - **Lead magnet presence.** The two builder articles that expose a lead magnet (`/en/builders/solo-founder-new-baseline`, `/en/builders/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
+   - **Mermaid block present** on `/en/builders/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.
    - **Hreflang present on every page.** Check that `dist/client/en/index.html`, `dist/client/fr/index.html`, one case-file page, and one archive page all include three `<link rel="alternate" hreflang=…>` tags: `en-US`, `fr-FR`, and `x-default`. After the 2026-04-22 lane restructure, all lanes use identical slugs across locales — hreflang pairs should point at symmetric paths (`/en/system-design` ↔ `/fr/system-design`, `/en/archive` ↔ `/fr/archive`, etc.).
    - **Root `/` redirects to `/en/` with 301.** Inspect `.vercel/output/config.json` for a route `{"src":"^/$", "status":301, "headers":{"Location":"/en/"}}`.
 

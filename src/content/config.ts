@@ -1,41 +1,39 @@
 import { defineCollection, z } from 'astro:content';
-import { PERSONAS } from '../lib/personas';
-
-// Persona drives lane filtering on /system-design and /builders.
-// `technical` → System Design lane; `builder` → Builders lane.
-// Values are sourced from `src/lib/personas.ts` — do not inline string
-// literals here or in any page filter. The ID `builder` replaced `operator`
-// on the 2026-04-22 layout restructure; underlying audience is unchanged.
-const persona = z.enum(PERSONAS).optional();
 
 // Flag semantics — see docs/adr-002-home-selection.md for the full contract.
 //
-//   featured  — include in grid listings (home "Selected Articles" when
-//               persona is technical, lane index pages).
+//   featured  — include in grid listings (home "Selected Articles" and lane
+//               index pages).
 //   highlight — include in the home "Highlights" stack (capped at three,
 //               sorted by `order`).
 //   order     — sort key across every surface. Lower = earlier.
 //
-// Never add ad-hoc flags (homePinned, showOnHome, etc.). Widen selection
-// logic in `src/pages/{en,fr}/index.astro` instead.
+// Lane is implicit in the collection: system-design, builders, technology, archive.
+// Folder path = URL path = collection name (minus locale suffix). No persona
+// field: articles live under the lane that matches their voice.
+//
+// Adding a lane: create new collection dirs and a matching schema block here.
+// Never add ad-hoc frontmatter flags (homePinned, showOnHome, etc.) — widen
+// selection logic in `src/pages/{en,fr}/index.astro` instead.
 
-const caseFiles = defineCollection({
+const article = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string(),
     // First-merge git date, ISO (YYYY-MM-DD). Mandatory — renders in the
-    // meta strip on cards and under every article subtitle. Seeded via:
+    // meta strip on cards and under every article subtitle. Seed via:
     //   git log --follow --diff-filter=A --format=%aI <path> | tail -1
     date: z.coerce.date(),
     featured: z.boolean().optional().default(false),
     highlight: z.boolean().optional().default(false),
     order: z.number().optional().default(99),
-    persona,
   }),
 });
 
-const operatingPlaybooks = defineCollection({
+// Archive: long-living playbooks. No `date` — these are principles, not
+// time-stamped pieces. Series metadata drives grouping on the Archive index.
+const archive = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -43,37 +41,19 @@ const operatingPlaybooks = defineCollection({
     series: z.string().optional(),
     seriesNum: z.number().optional(),
     playbook: z.number().optional(),
-    // `featured` and `highlight` exist for symmetry with case files, but
-    // the home page currently pins exactly one playbook slug by explicit
-    // getEntry() rather than via these flags. See ADR-002.
-    featured: z.boolean().optional().default(false),
-    highlight: z.boolean().optional().default(false),
-    persona,
-  }),
-});
-
-// Technology lane — empty at creation (2026-04-22). Reserved for stack /
-// tooling / pattern pieces (SaaS architecture primitives, AI-native stacks,
-// etc.) that don't fit neatly in System Design or Builders. Schema mirrors
-// case files so the same ArticleCard + article-meta plumbing works.
-const technology = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
     featured: z.boolean().optional().default(false),
     highlight: z.boolean().optional().default(false),
     order: z.number().optional().default(99),
-    persona,
   }),
 });
 
 export const collections = {
-  'case-files-en': caseFiles,
-  'operating-playbooks-en': operatingPlaybooks,
-  'case-files-fr': caseFiles,
-  'operating-playbooks-fr': operatingPlaybooks,
-  'technology-en': technology,
-  'technology-fr': technology,
+  'system-design-en': article,
+  'system-design-fr': article,
+  'builders-en': article,
+  'builders-fr': article,
+  'technology-en': article,
+  'technology-fr': article,
+  'archive-en': archive,
+  'archive-fr': archive,
 };

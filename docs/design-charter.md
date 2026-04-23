@@ -78,7 +78,7 @@ The site has four navigation lanes, each with its own voice calibration and layo
 Technical case files and system-design pieces for `technical` readers. Dense, peer-to-peer, no hand-holding.
 - Playfair throughout body prose. Dense body, no decorative spacing.
 - Inline code in mono; code blocks used sparingly — these pieces are about *reasoning*, not walkthroughs.
-- Metadata strip at the top: primary persona, read time, publish date. **Publish date and read time are mandatory** for every `case-files` article (EN + FR) — surfaced in frontmatter (`date:` ISO field), rendered in the article header under the subtitle, and also shown on every card that references the piece (home-page featured, `/{lang}/system-design`, `/{lang}/builders`, `/{lang}/case-files`, where `{lang}` is `en` or `fr`). Format in-page: `MMM D, YYYY · N min read` (EN) / `D MMM YYYY · N min de lecture` (FR). Read time is derived from the body; the publish date is the first-merge git date.
+- Metadata strip at the top: read time, publish date. **Publish date and read time are mandatory** for every article in System Design, Builders, and Technology collections (EN + FR) — surfaced in frontmatter (`date:` ISO field), rendered in the article header under the subtitle, and also shown on every card that references the piece (home-page featured, `/{lang}/system-design`, `/{lang}/builders`, `/{lang}/technology`, where `{lang}` is `en` or `fr`). Format in-page: `MMM D, YYYY · N min read` (EN) / `D MMM YYYY · N min de lecture` (FR). Read time is derived from the body; the publish date is the first-merge git date. Archive (playbooks) does not require `date`.
 - No tables of contents for short pieces (under ~2000 words).
 - End with a **one-paragraph crisp takeaway**, not a bulleted summary.
 - Voice: skip background paragraphs a general reader would need. Assume vocabulary.
@@ -97,11 +97,11 @@ Decision guides, founder case files, and builder-framed pieces for `builder` rea
 Tech, stack, and tooling pieces — SaaS primitives, AI-native stacks, pattern breakdowns. Cross-cuts `technical` and `builder` readers when the topic serves both.
 - Voice is closer to the metal than System Design, and more opinionated than the case files.
 - Code blocks and diagrams are first-class here, not rationed.
-- Persona assignment is optional — `persona` frontmatter may be left unset when a piece is genuinely topic-led.
+- No voice-target tag — pieces in this lane are topic-led by placement.
 
 ### Archive lane (`/en/archive`, `/fr/archive`) — long-living material
 
-The long-living **Principles & Playbooks** band. Playbooks live at `/{lang}/operating-playbooks/*` URLs (`{lang}` = `en` | `fr`) and are linked from the Archive index. Reads here are for readers returning to source material, not arriving for the first time.
+The long-living **Principles & Playbooks** band. Playbooks live at `/{lang}/archive/*` URLs (`{lang}` = `en` | `fr`) and are the only content in this lane. Reads here are for readers returning to source material, not arriving for the first time.
 - Longer-form allowed; typography and spacing can breathe more than peer-facing pieces.
 - Personal register permitted — still no hedging, still no filler.
 

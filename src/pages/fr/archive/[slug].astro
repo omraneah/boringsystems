@@ -3,7 +3,7 @@ import Article from '../../../layouts/Article.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('operating-playbooks-en');
+  const entries = await getCollection('archive-fr');
   return entries.map(entry => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -18,8 +18,9 @@ const { Content } = await entry.render();
   title={entry.data.title}
   description={entry.data.description}
   series={entry.data.series}
-  backHref="/en/operating-playbooks"
-  backLabel="Operating Playbooks"
+  backHref="/fr/archive"
+  backLabel="Archive"
+  lang="fr"
 >
   <Content />
 </Article>

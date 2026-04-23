@@ -9,7 +9,7 @@ const CANONICAL_SERIES: Record<string, string> = {
   'Series 3 — AI Native': 'Series 3 — AI Edge',
 };
 
-const allPlaybooks = await getCollection('operating-playbooks-fr');
+const allPlaybooks = await getCollection('archive-fr');
 
 const grouped: Record<string, typeof allPlaybooks> = {};
 const seriesNum: Record<string, number> = {};
@@ -52,7 +52,7 @@ const sortedSeries = Object.entries(grouped).sort(
                 <ArticleCard
                   title={item.data.title}
                   description={item.data.description}
-                  href={`/fr/operating-playbooks/${item.slug}`}
+                  href={`/fr/archive/${item.slug}`}
                   meta={item.data.playbook !== undefined ? `Playbook ${item.data.playbook}` : undefined}
                 />
               ))}

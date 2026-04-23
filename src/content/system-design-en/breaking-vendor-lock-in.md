@@ -4,7 +4,6 @@ description: "A sequenced transition away from an opaque external core while pro
 date: 2026-02-22
 featured: true
 order: 3
-persona: technical
 ---
 
 ## Context
