@@ -33,7 +33,7 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 ## Imports
 
-- **Use the `@/` path alias for all imports from `src/`.** `@/*` maps to `./src/*` via `tsconfig.json`. No `../../../lib/x` in any `.astro`, `.ts`, or `.mdx` file — always `@/lib/x`. Applies to pages, components, layouts, content MDX imports, and `scripts/*.ts` (the `tsx`-run structural-verify script honours the same alias). Moving a file under `src/` should not require import edits elsewhere; relative-depth paths make that false.
+- **Use the `@/` path alias for all imports from `src/`.** `@/*` maps to `./src/*` via `tsconfig.json`. No `../../../lib/x` in any `.astro`, `.ts`, or `.mdx` file — always `@/lib/x`. Applies to pages, components, layouts, content MDX imports, and `scripts/*.ts` (the `tsx`-run structural-verify script honours the same alias). Moving a file under `src/` should not require import edits elsewhere; relative-depth paths make that false. **Enforced by `scripts/verify-structure.ts` → `verifyImportsConvention()`** — the pre-commit hook fails on any `from '../...'` under `src/` or `scripts/`, pointing at the line with the violation.
 
 ## API surface
 
