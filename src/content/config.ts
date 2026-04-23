@@ -1,11 +1,12 @@
 import { defineCollection, z } from 'astro:content';
+import { PERSONAS } from '../lib/personas';
 
 // Persona drives lane filtering on /system-design and /builders.
 // `technical` → System Design lane; `builder` → Builders lane.
-// The ID `builder` replaced `operator` on the 2026-04-22 layout restructure;
-// the underlying persona (entrepreneurs, intrapreneurs, solopreneurs) is
-// unchanged — only the label shifted to match the build-posture framing.
-const persona = z.enum(['technical', 'builder']).optional();
+// Values are sourced from `src/lib/personas.ts` — do not inline string
+// literals here or in any page filter. The ID `builder` replaced `operator`
+// on the 2026-04-22 layout restructure; underlying audience is unchanged.
+const persona = z.enum(PERSONAS).optional();
 
 // Flag semantics — see docs/adr-002-home-selection.md for the full contract.
 //

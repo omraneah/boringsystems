@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { articleMeta, readTime } from '../../lib/article-meta';
+import { PERSONA } from '../../lib/personas';
 
 const highlights = (await getCollection('case-files-fr', ({ data }) => data.highlight))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
@@ -10,7 +11,7 @@ const highlights = (await getCollection('case-files-fr', ({ data }) => data.high
 
 const technicalFeatured = (await getCollection(
   'case-files-fr',
-  ({ data }) => data.featured && data.persona !== 'builder',
+  ({ data }) => data.featured && data.persona !== PERSONA.BUILDER,
 )).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const pinnedPlaybook = await getEntry('operating-playbooks-fr', 's3-p2-context-is-the-edge');
