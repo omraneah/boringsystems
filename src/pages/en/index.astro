@@ -4,18 +4,18 @@ import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { articleMeta, readTime } from '../../lib/article-meta';
 
-// Highlights: articles across all three lane collections flagged
+// Highlights: articles across Writing + Work + Building flagged
 // `highlight: true`, sorted by `order`, capped at 3. Rendered as a stack
 // of large cards, not a carousel. Each entry carries its lane slug so the
-// card can link back to the correct URL.
-const systemDesign = await getCollection('system-design-en');
-const builders = await getCollection('builders-en');
-const technology = await getCollection('technology-en');
+// card links back to the correct URL.
+const writing = await getCollection('writing-en');
+const work = await getCollection('work-en');
+const building = await getCollection('building-en');
 
 const allArticles = [
-  ...systemDesign.map((e) => ({ entry: e, lane: 'system-design' as const })),
-  ...builders.map((e) => ({ entry: e, lane: 'builders' as const })),
-  ...technology.map((e) => ({ entry: e, lane: 'technology' as const })),
+  ...writing.map((e) => ({ entry: e, lane: 'writing' as const })),
+  ...work.map((e) => ({ entry: e, lane: 'work' as const })),
+  ...building.map((e) => ({ entry: e, lane: 'building' as const })),
 ];
 
 const highlights = allArticles
@@ -23,9 +23,11 @@ const highlights = allArticles
   .sort((a, b) => (a.entry.data.order ?? 99) - (b.entry.data.order ?? 99))
   .slice(0, 3);
 
-// Selected Articles: System Design featured pieces + one pinned archive
-// entry appended last. To rotate the pinned entry, change the slug below.
-const systemDesignFeatured = systemDesign
+// Selected Articles: Writing lane featured pieces + one pinned archive
+// entry appended last. Writing is the primary conversion lane — Selected
+// Articles surfaces it directly. To rotate the pinned archive entry,
+// change the slug below.
+const writingFeatured = writing
   .filter((entry) => entry.data.featured)
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
@@ -36,17 +38,17 @@ const pinnedArchive = await getEntry(
   'operating-playbooks/series-3-ai-edge/s3-p2-context-is-the-edge',
 );
 
-const laneLabels: Record<'system-design' | 'builders' | 'technology', string> = {
-  'system-design': 'System Design',
-  'builders': 'Builders',
-  'technology': 'Technology',
+const laneLabels: Record<'writing' | 'work' | 'building', string> = {
+  'writing': 'Writing',
+  'work': 'Work',
+  'building': 'Building',
 };
 
 const selectedArticles = [
-  ...systemDesignFeatured.map((entry) => ({
+  ...writingFeatured.map((entry) => ({
     title: entry.data.title,
     description: entry.data.description,
-    href: `/en/system-design/${entry.slug}`,
+    href: `/en/writing/${entry.slug.split('/').pop()}`,
     meta: articleMeta(entry.body, entry.data.date, 'en'),
   })),
   ...(pinnedArchive
@@ -77,7 +79,7 @@ const selectedArticles = [
         <p class="label section-label">Highlights</p>
         <div class="highlight-stack">
           {highlights.map(({ entry, lane }) => (
-            <a href={`/en/${lane}/${entry.slug}`} class="highlight-card">
+            <a href={`/en/${lane}/${entry.slug.split('/').pop()}`} class="highlight-card">
               <span class="highlight-series">{laneLabels[lane]}</span>
               <h2 class="highlight-title">{entry.data.title}</h2>
               <p class="highlight-description">{entry.data.description}</p>

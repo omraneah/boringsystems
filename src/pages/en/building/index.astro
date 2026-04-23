@@ -4,34 +4,34 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
-const technologyWork = (await getCollection('technology-en'))
+const entries = (await getCollection('building-en'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="Technology" description="Tech, stack, and tooling — SaaS primitives, AI-native stacks, and the patterns behind them.">
+<Base title="Building" description="Live AI-native builds — what I'm shipping right now, and why. Commentary on the stack, the agent orchestration, and the trade-offs I'm making as I go.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Technology</p>
-        <h1 class="page-title">Technology</h1>
+        <p class="label">Building</p>
+        <h1 class="page-title">Building</h1>
         <p class="page-description muted">
-          Tech, stack, and tooling. SaaS primitives, AI-native stacks, and the patterns behind them — pieces that are closer to the metal than System Design, and more opinionated than the case files.
+          Live work. What I'm shipping right now — AI-native, end-to-end, with the decisions documented as I make them. For builders who want to see the craft, not just the finished artifact.
         </p>
       </header>
 
-      {technologyWork.length > 0 ? (
+      {entries.length > 0 ? (
         <div class="work-list">
-          {technologyWork.map(item => (
+          {entries.map(item => (
             <ArticleCard
               title={item.data.title}
               description={item.data.description}
-              href={`/en/technology/${item.slug}`}
+              href={`/en/building/${item.slug.split('/').pop()}`}
               meta={articleMeta(item.body, item.data.date, 'en')}
             />
           ))}
         </div>
       ) : (
-        <p class="empty-state muted">Technology pieces coming soon.</p>
+        <p class="empty-state muted">Live builds coming soon.</p>
       )}
     </div>
   </div>

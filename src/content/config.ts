@@ -1,18 +1,21 @@
 import { defineCollection, z } from 'astro:content';
 
-// Flag semantics — see docs/adr-002-home-selection.md for the full contract.
+// Four content lanes — see README.md and docs/target-audiences.md for the
+// editorial taxonomy. Folder name = URL path = collection name (minus the
+// locale suffix). Lane placement is the content-type decision; voice target
+// per piece is a writer-side concern that does not show up here.
 //
-//   featured  — include in grid listings (home "Selected Articles" and lane
-//               index pages).
-//   highlight — include in the home "Highlights" stack (capped at three,
-//               sorted by `order`).
+//   writing   — thinking pieces, decision guides, frameworks, tactical advice.
+//                Most articles land here by default.
+//   work      — past case studies of real engagements. Proof pieces.
+//   building  — current AI-native builds shown live. Live work + commentary.
+//   archive   — long-living playbooks and principles. Doctrine layer.
+//
+// Flag semantics — see docs/adr-002-home-selection.md for the full contract.
+//   featured  — include in grid listings (home "Selected Articles" and lane indexes).
+//   highlight — include in the home "Highlights" stack (capped at three, sorted by order).
 //   order     — sort key across every surface. Lower = earlier.
 //
-// Lane is implicit in the collection: system-design, builders, technology, archive.
-// Folder path = URL path = collection name (minus locale suffix). No persona
-// field: articles live under the lane that matches their voice.
-//
-// Adding a lane: create new collection dirs and a matching schema block here.
 // Never add ad-hoc frontmatter flags (homePinned, showOnHome, etc.) — widen
 // selection logic in `src/pages/{en,fr}/index.astro` instead.
 
@@ -48,12 +51,12 @@ const archive = defineCollection({
 });
 
 export const collections = {
-  'system-design-en': article,
-  'system-design-fr': article,
-  'builders-en': article,
-  'builders-fr': article,
-  'technology-en': article,
-  'technology-fr': article,
+  'writing-en': article,
+  'writing-fr': article,
+  'work-en': article,
+  'work-fr': article,
+  'building-en': article,
+  'building-fr': article,
   'archive-en': archive,
   'archive-fr': archive,
 };

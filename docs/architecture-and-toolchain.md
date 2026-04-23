@@ -90,8 +90,10 @@ Managed in Vercel project settings. For local development, copy to `.env.local` 
 src/
 ├── components/        ← Reusable UI: ArticleCard, ArticleFeedback, LeadMagnet, Nav, Footer
 ├── content/           ← Markdown + MDX articles, one collection per lane × locale:
-│                       system-design-{en,fr}/, builders-{en,fr}/,
-│                       technology-{en,fr}/, archive-{en,fr}/.
+│                       writing-{en,fr}/   — thinking pieces + decision guides (primary)
+│                       work-{en,fr}/      — past case studies of real engagements
+│                       building-{en,fr}/  — current AI-native builds shown live
+│                       archive-{en,fr}/   — long-living playbooks and principles
 │                       Lane folder = URL path. File basename = URL slug.
 │                       Any subfolders in between are grouping-only and never
 │                       appear in URLs (see docs/constraints.md "Content").
@@ -115,9 +117,9 @@ src/
 ├── lib/               ← Backend + typed registries (mailer.ts, article-meta.ts,
 │                       lead-magnets.ts)
 ├── pages/             ← Routes, strict two-language tree:
-│                       en/{system-design,builders,technology,archive}/* and
-│                       fr/{system-design,builders,technology,archive}/* mirror each
-│                       other; api/* is language-neutral.
+│                       en/{writing,work,building,archive}/* and
+│                       fr/{writing,work,building,archive}/* mirror each other.
+│                       api/* is language-neutral.
 │                       No content lives at the root — astro.config.mjs 301-redirects
 │                       `/` to `/en/`. No other redirects: folder = URL.
 └── styles/            ← Global CSS and design tokens

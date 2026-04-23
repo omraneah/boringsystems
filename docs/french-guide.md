@@ -37,7 +37,7 @@ startup · early stage · bootstrap · scale · scaling · roadmap · sprint · 
 **Disciplines and role nouns.**
 engineering · product · marketing · sales · operations · growth · design · branding · HR · finance
 
-These are the disciplines a company is organized around. When they appear as labels, categories, page titles, nav items, or job descriptions, keep them in English — translating them signals naïveté. This is why the site's lane labels (`System Design`, `Builders`, `Technology`, `Archive`) stay in English across both locales.
+These are the disciplines a company is organized around. When they appear as labels, categories, page titles, nav items, or job descriptions, keep them in English — translating them signals naïveté. This is why the site's lane labels (`Writing`, `Work`, `Building`, `Archive`) stay in English across both locales.
 
 The same rule applies when these nouns appear in prose as the name of a function ("l'équipe engineering", "le responsable product"). Translate them only when they are used as generic common nouns in a non-company context (e.g. `ingénierie mécanique` for mechanical engineering as a field of study).
 

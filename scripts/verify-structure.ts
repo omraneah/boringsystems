@@ -309,17 +309,17 @@ function verifyPageMirror(): void {
 
 // --- run ---------------------------------------------------------------
 
-verifyContentMirror('system-design');
-verifyContentMirror('builders');
-verifyContentMirror('technology');
+verifyContentMirror('writing');
+verifyContentMirror('work');
+verifyContentMirror('building');
 verifyContentMirror('archive');
-verifyBasenameUniqueness('system-design');
-verifyBasenameUniqueness('builders');
-verifyBasenameUniqueness('technology');
+verifyBasenameUniqueness('writing');
+verifyBasenameUniqueness('work');
+verifyBasenameUniqueness('building');
 verifyBasenameUniqueness('archive');
-verifyFrontmatter('system-design', /* requireDate */ true);
-verifyFrontmatter('builders', /* requireDate */ true);
-verifyFrontmatter('technology', /* requireDate */ true);
+verifyFrontmatter('writing', /* requireDate */ true);
+verifyFrontmatter('work', /* requireDate */ true);
+verifyFrontmatter('building', /* requireDate */ true);
 verifyFrontmatter('archive', /* requireDate */ false);
 verifySlugAliases();
 verifyLeadMagnets();

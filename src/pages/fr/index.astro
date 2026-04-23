@@ -4,14 +4,14 @@ import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { articleMeta, readTime } from '../../lib/article-meta';
 
-const systemDesign = await getCollection('system-design-fr');
-const builders = await getCollection('builders-fr');
-const technology = await getCollection('technology-fr');
+const writing = await getCollection('writing-fr');
+const work = await getCollection('work-fr');
+const building = await getCollection('building-fr');
 
 const allArticles = [
-  ...systemDesign.map((e) => ({ entry: e, lane: 'system-design' as const })),
-  ...builders.map((e) => ({ entry: e, lane: 'builders' as const })),
-  ...technology.map((e) => ({ entry: e, lane: 'technology' as const })),
+  ...writing.map((e) => ({ entry: e, lane: 'writing' as const })),
+  ...work.map((e) => ({ entry: e, lane: 'work' as const })),
+  ...building.map((e) => ({ entry: e, lane: 'building' as const })),
 ];
 
 const highlights = allArticles
@@ -19,7 +19,7 @@ const highlights = allArticles
   .sort((a, b) => (a.entry.data.order ?? 99) - (b.entry.data.order ?? 99))
   .slice(0, 3);
 
-const systemDesignFeatured = systemDesign
+const writingFeatured = writing
   .filter((entry) => entry.data.featured)
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
@@ -30,17 +30,17 @@ const pinnedArchive = await getEntry(
   'operating-playbooks/series-3-ai-edge/s3-p2-context-is-the-edge',
 );
 
-const laneLabelsFr: Record<'system-design' | 'builders' | 'technology', string> = {
-  'system-design': 'System Design',
-  'builders': 'Builders',
-  'technology': 'Technology',
+const laneLabelsFr: Record<'writing' | 'work' | 'building', string> = {
+  'writing': 'Writing',
+  'work': 'Work',
+  'building': 'Building',
 };
 
 const selectedArticles = [
-  ...systemDesignFeatured.map((entry) => ({
+  ...writingFeatured.map((entry) => ({
     title: entry.data.title,
     description: entry.data.description,
-    href: `/fr/system-design/${entry.slug}`,
+    href: `/fr/writing/${entry.slug.split('/').pop()}`,
     meta: articleMeta(entry.body, entry.data.date, 'fr'),
   })),
   ...(pinnedArchive
@@ -71,7 +71,7 @@ const selectedArticles = [
         <p class="label section-label">À la une</p>
         <div class="highlight-stack">
           {highlights.map(({ entry, lane }) => (
-            <a href={`/fr/${lane}/${entry.slug}`} class="highlight-card">
+            <a href={`/fr/${lane}/${entry.slug.split('/').pop()}`} class="highlight-card">
               <span class="highlight-series">{laneLabelsFr[lane]}</span>
               <h2 class="highlight-title">{entry.data.title}</h2>
               <p class="highlight-description">{entry.data.description}</p>

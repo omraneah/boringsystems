@@ -4,9 +4,11 @@ import { getCollection } from 'astro:content';
 import { readTime, formatDate } from '../../../lib/article-meta';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('system-design-fr');
+  const entries = await getCollection('writing-fr');
   return entries.map(entry => ({
-    params: { slug: entry.slug },
+    // Subfolders under the collection root are grouping-only; URL slug is
+    // the file basename only. See docs/constraints.md "Content".
+    params: { slug: entry.slug.split('/').pop() },
     props: { entry },
   }));
 }
@@ -18,8 +20,8 @@ const { Content } = await entry.render();
 <Article
   title={entry.data.title}
   description={entry.data.description}
-  backHref="/fr/system-design"
-  backLabel="System Design"
+  backHref="/fr/writing"
+  backLabel="Writing"
   date={formatDate(entry.data.date, 'fr') ?? undefined}
   readTime={readTime(entry.body, 'fr')}
   lang="fr"

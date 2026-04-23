@@ -4,27 +4,27 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
-const systemDesign = (await getCollection('system-design-fr'))
+const entries = (await getCollection('writing-fr'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="System Design" description="Études de cas system design — architecture, trade-offs, et le raisonnement derrière des décisions qui tiennent à l'échelle.">
+<Base title="Writing" description="Guides de décision, frameworks et advice tactique pour fondateurs, operators et builders qui font les calls techniques qui composent." lang="fr">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">System Design</p>
-        <h1 class="page-title">System Design</h1>
+        <p class="label">Writing</p>
+        <h1 class="page-title">Writing</h1>
         <p class="page-description muted">
-          Architecture. Trade-offs. Contraintes réelles, décisions réelles, et le raisonnement derrière les systèmes qui tiennent quand ça monte en charge.
+          Réflexions et guides de décision. Les calls que fondateurs, operators et builders doivent trancher — diagnostiqués et résolus de l'intérieur. Commencez ici.
         </p>
       </header>
 
       <div class="work-list">
-        {systemDesign.map(item => (
+        {entries.map(item => (
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/fr/system-design/${item.slug}`}
+            href={`/fr/writing/${item.slug.split('/').pop()}`}
             meta={articleMeta(item.body, item.data.date, 'fr')}
           />
         ))}

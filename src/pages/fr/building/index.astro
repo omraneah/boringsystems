@@ -4,31 +4,35 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
-const systemDesign = (await getCollection('system-design-en'))
+const entries = (await getCollection('building-fr'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="System Design" description="System design case files — architecture, trade-offs, and the reasoning behind decisions that scale.">
+<Base title="Building" description="Builds AI-native en cours — ce que je ship maintenant, avec les décisions documentées au fur et à mesure." lang="fr">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">System Design</p>
-        <h1 class="page-title">System Design</h1>
+        <p class="label">Building</p>
+        <h1 class="page-title">Building</h1>
         <p class="page-description muted">
-          Architecture. Trade-offs. Real constraints, real decisions, and the reasoning behind systems that hold up under scale.
+          Le travail en direct. Ce que je ship maintenant — AI-native, end-to-end, avec les décisions documentées au fur et à mesure. Pour les builders qui veulent voir le craft, pas seulement le produit fini.
         </p>
       </header>
 
-      <div class="work-list">
-        {systemDesign.map(item => (
-          <ArticleCard
-            title={item.data.title}
-            description={item.data.description}
-            href={`/en/system-design/${item.slug}`}
-            meta={articleMeta(item.body, item.data.date, 'en')}
-          />
-        ))}
-      </div>
+      {entries.length > 0 ? (
+        <div class="work-list">
+          {entries.map(item => (
+            <ArticleCard
+              title={item.data.title}
+              description={item.data.description}
+              href={`/fr/building/${item.slug.split('/').pop()}`}
+              meta={articleMeta(item.body, item.data.date, 'fr')}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty-state muted">Builds en direct bientôt.</p>
+      )}
     </div>
   </div>
 </Base>
@@ -77,6 +81,11 @@ const systemDesign = (await getCollection('system-design-en'))
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+  }
+
+  .empty-state {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
   }
 
   @media (max-width: 768px) {

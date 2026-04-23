@@ -4,35 +4,31 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
-const technologyWork = (await getCollection('technology-fr'))
+const entries = (await getCollection('writing-en'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="Technology" description="Tech, stack, tooling — primitives SaaS, stacks AI-native et les patterns qui les sous-tendent." lang="fr">
+<Base title="Writing" description="Decision guides, frameworks, and tactical advice for founders, operators, and builders making the technical calls that compound.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Technology</p>
-        <h1 class="page-title">Technology</h1>
+        <p class="label">Writing</p>
+        <h1 class="page-title">Writing</h1>
         <p class="page-description muted">
-          Tech, stack, tooling. Primitives SaaS, stacks AI-native, et les patterns qui les sous-tendent — des pièces plus proches du métal que System Design, et plus opinionated que les case files.
+          Thinking pieces and decision guides. The calls founders, operators, and builders face — framed, diagnosed, and answered from the inside. Start here.
         </p>
       </header>
 
-      {technologyWork.length > 0 ? (
-        <div class="work-list">
-          {technologyWork.map(item => (
-            <ArticleCard
-              title={item.data.title}
-              description={item.data.description}
-              href={`/fr/technology/${item.slug}`}
-              meta={articleMeta(item.body, item.data.date, 'fr')}
-            />
-          ))}
-        </div>
-      ) : (
-        <p class="empty-state muted">Pièces technology à venir.</p>
-      )}
+      <div class="work-list">
+        {entries.map(item => (
+          <ArticleCard
+            title={item.data.title}
+            description={item.data.description}
+            href={`/en/writing/${item.slug.split('/').pop()}`}
+            meta={articleMeta(item.body, item.data.date, 'en')}
+          />
+        ))}
+      </div>
     </div>
   </div>
 </Base>
@@ -81,11 +77,6 @@ const technologyWork = (await getCollection('technology-fr'))
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-  }
-
-  .empty-state {
-    font-family: var(--font-body);
-    font-size: var(--size-base);
   }
 
   @media (max-width: 768px) {

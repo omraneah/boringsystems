@@ -24,9 +24,9 @@ Post-change smoke test for the boringsystems home page. Validates the surface-le
    - **Selected Articles — EN**: four `.card-title` elements under the section labelled `Selected Articles`. Three technical case files (Vendor Lock-In, SaaS Hardening, Architecture Governance) + one playbook (`Context is the Edge`).
    - **Selected Articles — FR**: four cards under `Articles sélectionnés` matching the FR titles of the same pieces.
    - **"All case files" link is absent** on both home pages.
-   - **Lead magnet presence.** The two builder articles that expose a lead magnet (`/en/builders/solo-founder-new-baseline`, `/en/builders/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
-   - **Mermaid block present** on `/en/builders/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.
-   - **Hreflang present on every page.** Check that `dist/client/en/index.html`, `dist/client/fr/index.html`, one case-file page, and one archive page all include three `<link rel="alternate" hreflang=…>` tags: `en-US`, `fr-FR`, and `x-default`. After the 2026-04-22 lane restructure, all lanes use identical slugs across locales — hreflang pairs should point at symmetric paths (`/en/system-design` ↔ `/fr/system-design`, `/en/archive` ↔ `/fr/archive`, etc.).
+   - **Lead magnet presence.** The two Writing-lane articles that expose a lead magnet (`/en/writing/solo-founder-new-baseline`, `/en/writing/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
+   - **Mermaid block present** on `/en/writing/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.
+   - **Hreflang present on every page.** Check that `dist/client/en/index.html`, `dist/client/fr/index.html`, one Writing page, one Work page, and one Archive page all include three `<link rel="alternate" hreflang=…>` tags: `en-US`, `fr-FR`, and `x-default`. All lanes use identical slugs across locales — hreflang pairs should point at symmetric paths (`/en/writing` ↔ `/fr/writing`, `/en/work` ↔ `/fr/work`, `/en/archive` ↔ `/fr/archive`, etc.).
    - **Root `/` redirects to `/en/` with 301.** Inspect `.vercel/output/config.json` for a route `{"src":"^/$", "status":301, "headers":{"Location":"/en/"}}`.
 
 3. Run each assertion with a short Python one-liner using stdlib `re`. Example pattern:

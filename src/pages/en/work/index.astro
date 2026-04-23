@@ -4,35 +4,31 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
-const builderWork = (await getCollection('builders-en'))
+const entries = (await getCollection('work-en'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="Builders" description="Decision guides and field diagnoses for builders — entrepreneurs, intrapreneurs, and founders making technical calls without a deep engineering background.">
+<Base title="Work" description="Case studies from real engagements — the architecture decisions, migrations, and transformations that shipped under constraint.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Builders</p>
-        <h1 class="page-title">Builders</h1>
+        <p class="label">Work</p>
+        <h1 class="page-title">Work</h1>
         <p class="page-description muted">
-          For people who ship. Entrepreneurs, intrapreneurs, solopreneurs, and founders making technical calls without a deep engineering background — decision guides and field diagnoses from the inside.
+          Case studies from the inside. Real constraints, real decisions, and the architecture trade-offs that shipped. Not testimonials — the work itself.
         </p>
       </header>
 
-      {builderWork.length > 0 ? (
-        <div class="work-list">
-          {builderWork.map(item => (
-            <ArticleCard
-              title={item.data.title}
-              description={item.data.description}
-              href={`/en/builders/${item.slug}`}
-              meta={articleMeta(item.body, item.data.date, 'en')}
-            />
-          ))}
-        </div>
-      ) : (
-        <p class="empty-state muted">More field notes for builders coming soon.</p>
-      )}
+      <div class="work-list">
+        {entries.map(item => (
+          <ArticleCard
+            title={item.data.title}
+            description={item.data.description}
+            href={`/en/work/${item.slug.split('/').pop()}`}
+            meta={articleMeta(item.body, item.data.date, 'en')}
+          />
+        ))}
+      </div>
     </div>
   </div>
 </Base>
@@ -81,11 +77,6 @@ const builderWork = (await getCollection('builders-en'))
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-  }
-
-  .empty-state {
-    font-family: var(--font-body);
-    font-size: var(--size-base);
   }
 
   @media (max-width: 768px) {

@@ -8,18 +8,18 @@ const base = isFrench ? '/fr' : '/en';
 const lang = isFrench ? 'fr' : 'en';
 
 const isHome = pathname === `${base}` || pathname === `${base}/`;
-const isSystemDesign = pathname.startsWith(`${base}/system-design`);
-const isBuilders = pathname.startsWith(`${base}/builders`);
-const isTechnology = pathname.startsWith(`${base}/technology`);
+const isWriting = pathname.startsWith(`${base}/writing`);
+const isWork = pathname.startsWith(`${base}/work`);
+const isBuilding = pathname.startsWith(`${base}/building`);
 const isArchive = pathname.startsWith(`${base}/archive`);
 const isAbout = pathname === `${base}/about` || pathname === `${base}/about/`;
 
-// Lanes use identical slugs in both locales (2026-04-22 restructure),
-// so `getRelativeLocaleUrl` is sufficient — no slug-alias table needed.
+// Lanes use identical slugs in both locales — `getRelativeLocaleUrl` is
+// sufficient, no slug-alias table needed.
 const homeHref = getRelativeLocaleUrl(lang, '');
-const systemDesignHref = getRelativeLocaleUrl(lang, 'system-design');
-const buildersHref = getRelativeLocaleUrl(lang, 'builders');
-const technologyHref = getRelativeLocaleUrl(lang, 'technology');
+const writingHref = getRelativeLocaleUrl(lang, 'writing');
+const workHref = getRelativeLocaleUrl(lang, 'work');
+const buildingHref = getRelativeLocaleUrl(lang, 'building');
 const archiveHref = getRelativeLocaleUrl(lang, 'archive');
 const aboutHref = getRelativeLocaleUrl(lang, 'about');
 
@@ -34,18 +34,18 @@ const langHref = toLocalePath(pathname, isFrench ? 'en' : 'fr');
       </a>
     </li>
     <li>
-      <a href={systemDesignHref} class:list={[{ active: isSystemDesign }]}>
-        System Design
+      <a href={writingHref} class:list={[{ active: isWriting }]}>
+        Writing
       </a>
     </li>
     <li>
-      <a href={buildersHref} class:list={[{ active: isBuilders }]}>
-        Builders
+      <a href={workHref} class:list={[{ active: isWork }]}>
+        Work
       </a>
     </li>
     <li>
-      <a href={technologyHref} class:list={[{ active: isTechnology }]}>
-        Technology
+      <a href={buildingHref} class:list={[{ active: isBuilding }]}>
+        Building
       </a>
     </li>
     <li>
