@@ -1,8 +1,8 @@
 ---
-import Base from '../../../layouts/Base.astro';
-import ArticleCard from '../../../components/ArticleCard.astro';
+import Base from '@/layouts/Base.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
-import { articleMeta } from '../../../lib/article-meta';
+import { articleMeta } from '@/lib/article-meta';
 
 // Chronologique, plus récent en premier. Le champ `order` reste utilisé par
 // les highlights / la sélection home. Les index de lane sont date-driven :

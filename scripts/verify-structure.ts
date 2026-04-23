@@ -15,8 +15,8 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { LEAD_MAGNETS, type LeadMagnetAsset } from '../src/lib/lead-magnets.ts';
-import { LOCALES, type Lang } from '../src/lib/i18n.ts';
+import { LEAD_MAGNETS, type LeadMagnetAsset } from '@/lib/lead-magnets';
+import { LOCALES, type Lang } from '@/lib/i18n';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const CONTENT = join(ROOT, 'src/content');
@@ -307,6 +307,54 @@ function verifyPageMirror(): void {
   }
 }
 
+// Enforce the `@/*` import convention (see docs/constraints.md > Imports).
+// No relative `from '../...'` imports in `.astro`, `.ts`, or `.mdx` files
+// under src/ or scripts/. The alias keeps moving a file from rewriting
+// every import elsewhere, and this check keeps the convention from drifting.
+function verifyImportsConvention(): void {
+  const roots = [join(ROOT, 'src'), join(ROOT, 'scripts')];
+  const relativeImport = /^\s*import\s[^'"\n]*?from\s+['"]\.\.\//;
+
+  function walk(dir: string): string[] {
+    const out: string[] = [];
+    let entries: string[];
+    try {
+      entries = readdirSync(dir);
+    } catch {
+      return out;
+    }
+    for (const name of entries) {
+      const full = join(dir, name);
+      let s;
+      try {
+        s = statSync(full);
+      } catch {
+        continue;
+      }
+      if (s.isDirectory()) {
+        out.push(...walk(full));
+      } else if (s.isFile() && /\.(astro|ts|mdx)$/i.test(name)) {
+        out.push(full);
+      }
+    }
+    return out;
+  }
+
+  for (const root of roots) {
+    for (const file of walk(root)) {
+      const lines = readFileSync(file, 'utf8').split(/\r?\n/);
+      lines.forEach((line, i) => {
+        if (relativeImport.test(line)) {
+          fail(
+            `${relative(ROOT, file)}:${i + 1}`,
+            `relative import \`${line.trim()}\` — use \`@/*\` alias instead (see docs/constraints.md > Imports)`,
+          );
+        }
+      });
+    }
+  }
+}
+
 // --- run ---------------------------------------------------------------
 
 verifyContentMirror('writing');
@@ -324,6 +372,7 @@ verifyFrontmatter('archive', /* requireDate */ false);
 verifySlugAliases();
 verifyLeadMagnets();
 verifyPageMirror();
+verifyImportsConvention();
 
 if (failures.length === 0) {
   console.log('verify-structure: all invariants hold.');
