@@ -198,9 +198,10 @@ function verifyLeadMagnets(): void {
 
 function verifyPageMirror(): void {
   // Every page file under pages/en should have a counterpart under pages/fr,
-  // respecting SLUG_ALIASES for top-level lane renames (essays ↔ essais).
-  const aliasesFromEnToFr: Record<string, string> = { essays: 'essais' };
-  const aliasesFromFrToEn: Record<string, string> = { essais: 'essays' };
+  // respecting SLUG_ALIASES for any top-level lane renames. Empty after
+  // the 2026-04-22 restructure — all lanes use identical slugs now.
+  const aliasesFromEnToFr: Record<string, string> = {};
+  const aliasesFromFrToEn: Record<string, string> = {};
 
   function relToFirstSeg(rel: string): { first: string; tail: string } {
     const segs = rel.split('/');

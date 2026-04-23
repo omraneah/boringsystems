@@ -33,7 +33,7 @@ One of:
      - "marketing/ventes/opérations/croissance/conception" as role labels when "marketing / sales / operations / growth / design" should be kept
      - "intégration" where "onboarding" is standard
      - "pré-lancement / amorçage" where "early-stage / bootstrap" are standard
-   - **Negative rule (critical): never flag an English term that was left in English as a missing translation.** That is correct behavior, not a violation. Both boringsystems audiences (technical + operator) are English-savvy. Sentences like *"L'équipe product valide la roadmap avant le prochain sprint."* are perfectly normal professional French and must pass clean.
+   - **Negative rule (critical): never flag an English term that was left in English as a missing translation.** That is correct behavior, not a violation. Both boringsystems audiences (technical + builder) are English-savvy. Sentences like *"L'équipe product valide la roadmap avant le prochain sprint."* are perfectly normal professional French and must pass clean.
 
 3. **Scan for banned register phrases.** Grep for each banned phrase from the guide. Report every occurrence with line number. Do not judge severity — every occurrence is a flag.
 

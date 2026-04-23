@@ -2,7 +2,9 @@
 
 Every article on boringsystems is written for a **primary** persona and is readable by the other without condescension. If an article doesn't have a primary persona in mind, it isn't ready to draft.
 
-This document is the source of truth for persona tagging. The `persona` field in content frontmatter uses the IDs defined here. The site's navigation lanes (`Engineering`, `Entrepreneurs`, `Essays`) are the visible expression of these personas — `Engineering` serves `technical`, `Entrepreneurs` serves `operator`, and `Essays` cross-cuts.
+This document is the source of truth for persona tagging. The `persona` field in content frontmatter uses the IDs defined here. The site's navigation lanes (`System Design`, `Builders`, `Technology`, `Archive`) are the visible expression of the site's structure — `System Design` serves `technical`, `Builders` serves `builder`, `Technology` cross-cuts, and `Archive` holds long-living playbooks.
+
+The ID `builder` replaced `operator` on the 2026-04-22 layout restructure. Underlying audience (entrepreneurs, intrapreneurs, solopreneurs, non-technical founders, business operators) is unchanged — only the label shifted to emphasise build-posture over job title.
 
 ---
 
@@ -10,8 +12,8 @@ This document is the source of truth for persona tagging. The `persona` field in
 
 | ID | Short name | Lane | Role sketch |
 |---|---|---|---|
-| `technical` | Technical peers | Engineering | CTO, VP Eng, Staff engineers, technical founders |
-| `operator` | Entrepreneurs & operators | Entrepreneurs | Entrepreneurs, intrapreneurs, solopreneurs, non-technical founders, business operators |
+| `technical` | Technical peers | System Design | CTO, VP Eng, Staff engineers, technical founders |
+| `builder` | Builders & entrepreneurs | Builders | Entrepreneurs, intrapreneurs, solopreneurs, non-technical founders, business operators — people who ship |
 
 Use these IDs verbatim in content frontmatter and when the `article-review` skill asks which persona an article targets.
 
@@ -41,13 +43,13 @@ Use these IDs verbatim in content frontmatter and when the `article-review` skil
 - Can skip background paragraphs a general reader would need.
 - Safe to assume they know what "blast radius", "eventual consistency", "backpressure" mean without restating.
 - Invoking named incidents or references (Knight Capital, the S3 outage, CAP, etc.) is load-bearing for them — use them deliberately, not as flavor.
-- Lives primarily in the **Engineering** lane.
+- Lives primarily in the **System Design** lane.
 
 **French edition (FR).** Engineers in France work in English-tinted French. They read English tech daily, and their working vocabulary for frameworks, infrastructure, tooling, and practice is English. FR content for this persona must **keep English terms in English** — translating `deploy`, `pipeline`, `framework`, `runtime`, `engineering`, `rollout`, `observability`, `webhook`, etc., makes the content feel written for a general audience, not a peer. See [`french-guide.md`](./french-guide.md) for the full rule.
 
 ---
 
-## P2 — `operator` — Entrepreneurs, intrapreneurs, operators
+## P2 — `builder` — Entrepreneurs, intrapreneurs, builders
 
 **Profile.** Entrepreneurs, intrapreneurs, solopreneurs, founders without deep engineering background, COOs, Heads of Operations, fractional executives. Makes purchasing, hiring, and stack decisions about technology without writing it every day. Some write code; many don't. What they share is that they *ship and operate* — they run the thing, not just staff a function inside it.
 
@@ -67,13 +69,13 @@ Use these IDs verbatim in content frontmatter and when the `article-review` skil
 - Jargon dumps that feel like gatekeeping.
 - Condescension disguised as teaching.
 
-**Conversion path.** Highest-value for consulting engagements, advisory work, and referrals. An operator who reads two boringsystems articles and forms the "this person is trustworthy on technology calls" impression is the target reader for the consulting funnel. This is also where lead-magnet tails (prompt packs, setup guides, Claude skills) land most naturally.
+**Conversion path.** Highest-value for consulting engagements, advisory work, and referrals. A builder who reads two boringsystems articles and forms the "this person is trustworthy on technology calls" impression is the target reader for the consulting funnel. This is also where lead-magnet tails (prompt packs, setup guides, Claude skills) land most naturally.
 
 **Writing implications.**
 - Open with the business stake or the decision framing in the first paragraph.
 - Code blocks, file trees, and architecture diagrams are allowed — but must be framed with "why this matters to you" before and after.
 - Explicit "what this means for you" or "what to do now" sections near the end.
-- Lives in the **Entrepreneurs** lane.
+- Lives in the **Builders** lane.
 
 **French edition (FR).** Entrepreneurs, intrapreneurs, and operators in France are English-savvy. They read English business and tech content as a normal part of their work — newsletters, product docs, Twitter/LinkedIn, investor decks. They expect to see `startup`, `MVP`, `pipeline`, `SaaS`, `onboarding`, `growth`, `product`, `marketing`, `sales` in English, and translating those terms reads as condescending — as if the writer assumed they couldn't handle professional vocabulary. **Keep English terms in English.** A brief gloss on first mention is only appropriate for genuinely niche terms — never for common professional vocabulary. See [`french-guide.md`](./french-guide.md) for the full rule.
 
@@ -82,7 +84,7 @@ Use these IDs verbatim in content frontmatter and when the `article-review` skil
 ## Cross-persona rules
 
 - **Primary persona is mandatory.** No article ships without one in frontmatter. The `article-review` skill enforces this.
-- **Lane assignment follows persona.** `technical` → Engineering lane; `operator` → Entrepreneurs lane. An article can only sit in one lane.
-- **Essays cross-cut.** Freestyle, curiosity-driven pieces (AI, macro, future-of-work) do not need a persona assignment — they serve voice rather than audience. If an essay has a clear primary audience, tag it; otherwise leave `persona` unset and it stays in the Essays lane only.
+- **Lane assignment follows persona.** `technical` → System Design lane; `builder` → Builders lane. An article can only sit in one lane (case files). Technology pieces cross-cut and live in their own lane; Archive holds long-living playbooks regardless of persona.
+- **Technology cross-cuts.** Stack, tooling, and pattern pieces don't need a persona assignment — they serve the topic. If a Technology piece has a clear primary audience, tag it; otherwise leave `persona` unset and it stays in the Technology lane only.
 - **Never write for both personas simultaneously.** An article that tries to serve a CTO and a non-technical founder in the same voice will fail both. Pick one. Secondary audience is a bonus, not a constraint.
 - **Persona does not dictate topic.** A French-market article on European cloud sovereignty can be framed for either persona — the framing changes, the topic doesn't.

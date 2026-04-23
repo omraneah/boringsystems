@@ -4,7 +4,7 @@ The French content on boringsystems is not a translation layer. It is the same w
 
 If an article reads as machine-translated, it fails. The `french-audit` skill loads this file and flags violations at line level.
 
-Personas (`technical`, `operator`) are defined in [`target-audiences.md`](./target-audiences.md). The register below applies across both — persona changes the framing, not the register.
+Personas (`technical`, `builder`) are defined in [`target-audiences.md`](./target-audiences.md). The register below applies across both — persona changes the framing, not the register.
 
 ---
 
@@ -18,10 +18,10 @@ Literal translation of English sentence structure into French is the single larg
 
 **2. Default to English for technical and business terms.**
 
-The bar to translate an English technical or business term is high. The default is to keep it in English. This applies across **both audiences** — `technical` and `operator`:
+The bar to translate an English technical or business term is high. The default is to keep it in English. This applies across **both audiences** — `technical` and `builder`:
 
 - Engineers in France work in English-tinted French every day. Code, tooling, frameworks, practices, and roles are discussed in English — they do not think in `cadre de travail`, they think in `framework`.
-- Entrepreneurs, intrapreneurs, and operators in France are English-savvy. They read English tech and business content daily. They expect to see `startup`, `MVP`, `pipeline`, `SaaS`, `onboarding`, `growth`, `product` in their original form.
+- Entrepreneurs, intrapreneurs, and builders in France are English-savvy. They read English tech and business content daily. They expect to see `startup`, `MVP`, `pipeline`, `SaaS`, `onboarding`, `growth`, `product` in their original form.
 
 Translating these terms when they don't need it makes the content feel like it was written for a general audience rather than a professional one — and both boringsystems audiences are professional. The do-not-translate lists below are **illustrative, not exhaustive**. When in doubt: keep the English term. The only time to translate is when the French has genuine, common professional usage that's stronger than the English (rare for the vocabulary this site uses).
 
@@ -37,7 +37,7 @@ startup · early stage · bootstrap · scale · scaling · roadmap · sprint · 
 **Disciplines and role nouns.**
 engineering · product · marketing · sales · operations · growth · design · branding · HR · finance
 
-These are the disciplines a company is organized around. When they appear as labels, categories, page titles, nav items, or job descriptions, keep them in English — translating them signals naïveté. This is why the site's Engineering lane is labeled `Engineering` in both EN and FR, and why `Entrepreneurs` works identically in both languages.
+These are the disciplines a company is organized around. When they appear as labels, categories, page titles, nav items, or job descriptions, keep them in English — translating them signals naïveté. This is why the site's lane labels (`System Design`, `Builders`, `Technology`, `Archive`) stay in English across both locales.
 
 The same rule applies when these nouns appear in prose as the name of a function ("l'équipe engineering", "le responsable product"). Translate them only when they are used as generic common nouns in a non-company context (e.g. `ingénierie mécanique` for mechanical engineering as a field of study).
 

@@ -25,7 +25,7 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 - **Every page lives under `/en/` or `/fr/`.** No implicit default locale. The root `/` and all legacy flat URLs 301-redirect to their `/en/` equivalents via the `redirects` map in `astro.config.mjs`. See DECISIONS.md `2026-04-21 — Strict /en + /fr i18n`.
 
-- **Use Astro's native i18n primitives for locale-aware URLs.** Import `getRelativeLocaleUrl` from `astro:i18n` instead of hardcoding `/en/foo`. For slugs that differ per locale (currently only `essays` ↔ `essais`), use `toLocalePath` from `src/lib/i18n.ts` which knows the slug alias table. Never reimplement locale routing by hand.
+- **Use Astro's native i18n primitives for locale-aware URLs.** Import `getRelativeLocaleUrl` from `astro:i18n` instead of hardcoding `/en/foo`. For slugs that differ per locale, use `toLocalePath` from `src/lib/i18n.ts` which knows the slug alias table (empty after the 2026-04-22 restructure — all lanes now share identical slugs across locales). Never reimplement locale routing by hand.
 
 - **Every page-level head emits hreflang tags.** `Base.astro` and `Article.astro` both call `hreflangsForPath()` from `src/lib/i18n.ts`. If you add a new layout, wire hreflang in — do not ship a page without the `<link rel="alternate">` pairs, or SEO silently bleeds.
 

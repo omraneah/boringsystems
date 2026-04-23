@@ -30,7 +30,7 @@ All code is authored through Claude Code. No manual editing.
 | Home-page selection contract (featured/highlight/order) | `docs/adr-002-home-selection.md` |
 | Local-first enforcement tier (no CI, pre-commit hook, upgrade trigger) | `docs/adr-003-enforcement-tier.md` |
 | Design charter (voice, layout, persona alignment) | `docs/design-charter.md` |
-| Target audiences (technical vs operator persona) | `docs/target-audiences.md` |
+| Target audiences (technical vs builder persona) | `docs/target-audiences.md` |
 | French voice guide + do-not-translate list | `docs/french-guide.md` |
 
 ## Project-scoped skills

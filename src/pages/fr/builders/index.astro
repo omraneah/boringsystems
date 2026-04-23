@@ -4,24 +4,24 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
-const operatorWork = (await getCollection('case-files-fr', ({ data }) => data.persona === 'operator'))
+const builderWork = (await getCollection('case-files-fr', ({ data }) => data.persona === 'builder'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="Entrepreneurs" description="Guides de décision et diagnostics de terrain pour entrepreneurs, intrapreneurs et fondateurs.">
+<Base title="Builders" description="Guides de décision et diagnostics de terrain pour les builders — entrepreneurs, intrapreneurs et fondateurs qui prennent des décisions techniques sans background engineering poussé.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Entrepreneurs</p>
-        <h1 class="page-title">Entrepreneurs</h1>
+        <p class="label">Builders</p>
+        <h1 class="page-title">Builders</h1>
         <p class="page-description muted">
-          Guides de décision et diagnostics de terrain pour entrepreneurs, intrapreneurs, solopreneurs et fondateurs qui prennent des décisions techniques sans background engineering poussé.
+          Pour ceux qui shippent. Entrepreneurs, intrapreneurs, solopreneurs et fondateurs qui prennent des décisions techniques sans background engineering poussé — guides de décision et diagnostics de terrain vus de l'intérieur.
         </p>
       </header>
 
-      {operatorWork.length > 0 ? (
+      {builderWork.length > 0 ? (
         <div class="work-list">
-          {operatorWork.map(item => (
+          {builderWork.map(item => (
             <ArticleCard
               title={item.data.title}
               description={item.data.description}
@@ -31,7 +31,7 @@ const operatorWork = (await getCollection('case-files-fr', ({ data }) => data.pe
           ))}
         </div>
       ) : (
-        <p class="empty-state muted">D'autres notes de terrain pour entrepreneurs à venir.</p>
+        <p class="empty-state muted">D'autres notes de terrain pour les builders à venir.</p>
       )}
     </div>
   </div>

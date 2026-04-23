@@ -4,28 +4,28 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
-const technicalWork = (await getCollection('case-files-fr', ({ data }) => data.persona !== 'operator'))
+const systemDesign = (await getCollection('case-files-en', ({ data }) => data.persona !== 'builder'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="Engineering" description="Études de cas engineering — systèmes réels, contraintes réelles, décisions réelles.">
+<Base title="System Design" description="System design case files — architecture, trade-offs, and the reasoning behind decisions that scale.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Engineering</p>
-        <h1 class="page-title">Engineering</h1>
+        <p class="label">System Design</p>
+        <h1 class="page-title">System Design</h1>
         <p class="page-description muted">
-          Systèmes réels. Contraintes réelles. Décisions réelles. Études de cas vues de l'intérieur, pour les responsables engineering qui naviguent des environnements contrainte-à-l'échelle.
+          Architecture. Trade-offs. Real constraints, real decisions, and the reasoning behind systems that hold up under scale.
         </p>
       </header>
 
       <div class="work-list">
-        {technicalWork.map(item => (
+        {systemDesign.map(item => (
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/fr/case-files/${item.slug}`}
-            meta={articleMeta(item.body, item.data.date, 'fr')}
+            href={`/en/case-files/${item.slug}`}
+            meta={articleMeta(item.body, item.data.date, 'en')}
           />
         ))}
       </div>

@@ -4,31 +4,35 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
-const technicalWork = (await getCollection('case-files-en', ({ data }) => data.persona !== 'operator'))
+const technologyWork = (await getCollection('technology-en'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="Engineering" description="Engineering case files — real systems, real constraints, real decisions.">
+<Base title="Technology" description="Tech, stack, and tooling — SaaS primitives, AI-native stacks, and the patterns behind them.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Engineering</p>
-        <h1 class="page-title">Engineering</h1>
+        <p class="label">Technology</p>
+        <h1 class="page-title">Technology</h1>
         <p class="page-description muted">
-          Real systems. Real constraints. Real decisions. Case files from the inside for engineering leaders navigating constraint-to-scale environments.
+          Tech, stack, and tooling. SaaS primitives, AI-native stacks, and the patterns behind them — pieces that are closer to the metal than System Design, and more opinionated than the case files.
         </p>
       </header>
 
-      <div class="work-list">
-        {technicalWork.map(item => (
-          <ArticleCard
-            title={item.data.title}
-            description={item.data.description}
-            href={`/en/case-files/${item.slug}`}
-            meta={articleMeta(item.body, item.data.date, 'en')}
-          />
-        ))}
-      </div>
+      {technologyWork.length > 0 ? (
+        <div class="work-list">
+          {technologyWork.map(item => (
+            <ArticleCard
+              title={item.data.title}
+              description={item.data.description}
+              href={`/en/technology/${item.slug}`}
+              meta={articleMeta(item.body, item.data.date, 'en')}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty-state muted">Technology pieces coming soon.</p>
+      )}
     </div>
   </div>
 </Base>
@@ -77,6 +81,11 @@ const technicalWork = (await getCollection('case-files-en', ({ data }) => data.p
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+  }
+
+  .empty-state {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
   }
 
   @media (max-width: 768px) {

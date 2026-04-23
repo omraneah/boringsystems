@@ -36,7 +36,7 @@ Live at `docs/` in this repo. Agents read them even when the skills above aren't
 
 | Doc | Purpose |
 |---|---|
-| `docs/target-audiences.md` | Two personas (`technical`, `operator`) and their lane assignments. |
+| `docs/target-audiences.md` | Two personas (`technical`, `builder`) and their lane assignments. |
 | `docs/design-charter.md` | Voice, typography, color discipline, lanes, anti-patterns. |
 | `docs/french-guide.md` | FR voice rules. English-default for technical/business terms. |
 

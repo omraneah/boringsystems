@@ -1,8 +1,11 @@
 import { defineCollection, z } from 'astro:content';
 
-// Persona drives lane filtering on /engineering and /entrepreneurs.
-// `technical` → engineering lane; `operator` → entrepreneurs lane.
-const persona = z.enum(['technical', 'operator']).optional();
+// Persona drives lane filtering on /system-design and /builders.
+// `technical` → System Design lane; `builder` → Builders lane.
+// The ID `builder` replaced `operator` on the 2026-04-22 layout restructure;
+// the underlying persona (entrepreneurs, intrapreneurs, solopreneurs) is
+// unchanged — only the label shifted to match the build-posture framing.
+const persona = z.enum(['technical', 'builder']).optional();
 
 // Flag semantics — see docs/adr-002-home-selection.md for the full contract.
 //
@@ -48,9 +51,28 @@ const operatingPlaybooks = defineCollection({
   }),
 });
 
+// Technology lane — empty at creation (2026-04-22). Reserved for stack /
+// tooling / pattern pieces (SaaS architecture primitives, AI-native stacks,
+// etc.) that don't fit neatly in System Design or Builders. Schema mirrors
+// case files so the same ArticleCard + article-meta plumbing works.
+const technology = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.coerce.date(),
+    featured: z.boolean().optional().default(false),
+    highlight: z.boolean().optional().default(false),
+    order: z.number().optional().default(99),
+    persona,
+  }),
+});
+
 export const collections = {
   'case-files-en': caseFiles,
   'operating-playbooks-en': operatingPlaybooks,
   'case-files-fr': caseFiles,
   'operating-playbooks-fr': operatingPlaybooks,
+  'technology-en': technology,
+  'technology-fr': technology,
 };

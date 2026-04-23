@@ -2,7 +2,7 @@
 
 The visual, structural, and voice standard for boringsystems. Every article, page, and component is reviewed against this document. The `article-review` skill loads this file before flagging issues.
 
-Personas referenced here (`technical`, `operator`) are defined in [`target-audiences.md`](./target-audiences.md). The site surfaces them as three navigation lanes: **Engineering** (serves `technical`), **Entrepreneurs** (serves `operator`), and **Essays** (cross-cuts).
+Personas referenced here (`technical`, `builder`) are defined in [`target-audiences.md`](./target-audiences.md). The site surfaces them through four navigation lanes: **System Design** (serves `technical`), **Builders** (serves `builder`), **Technology** (cross-cuts, topic-led), and **Archive** (long-living playbooks).
 
 ---
 
@@ -71,39 +71,45 @@ Palette from `src/styles/global.css`:
 
 ## Lanes and layout
 
-The site has three navigation lanes, each with its own voice calibration and layout conventions. Lane is an **audience** distinction; layout expectations follow.
+The site has four navigation lanes, each with its own voice calibration and layout conventions. Lane is an **audience** or **topic** distinction; layout expectations follow.
 
-### Engineering lane (`/en/engineering`, `/fr/engineering`) — peer-facing
+### System Design lane (`/en/system-design`, `/fr/system-design`) — peer-facing
 
-Technical case files and engineering-leadership pieces for `technical` readers. Dense, peer-to-peer, no hand-holding.
+Technical case files and system-design pieces for `technical` readers. Dense, peer-to-peer, no hand-holding.
 - Playfair throughout body prose. Dense body, no decorative spacing.
 - Inline code in mono; code blocks used sparingly — these pieces are about *reasoning*, not walkthroughs.
-- Metadata strip at the top: primary persona, read time, publish date. **Publish date and read time are mandatory** for every `case-files` article (EN + FR) — surfaced in frontmatter (`date:` ISO field), rendered in the article header under the subtitle, and also shown on every card that references the piece (home-page featured, `/{lang}/engineering`, `/{lang}/entrepreneurs`, `/{lang}/case-files`, where `{lang}` is `en` or `fr`). Format in-page: `MMM D, YYYY · N min read` (EN) / `D MMM YYYY · N min de lecture` (FR). Read time is derived from the body; the publish date is the first-merge git date.
+- Metadata strip at the top: primary persona, read time, publish date. **Publish date and read time are mandatory** for every `case-files` article (EN + FR) — surfaced in frontmatter (`date:` ISO field), rendered in the article header under the subtitle, and also shown on every card that references the piece (home-page featured, `/{lang}/system-design`, `/{lang}/builders`, `/{lang}/case-files`, where `{lang}` is `en` or `fr`). Format in-page: `MMM D, YYYY · N min read` (EN) / `D MMM YYYY · N min de lecture` (FR). Read time is derived from the body; the publish date is the first-merge git date.
 - No tables of contents for short pieces (under ~2000 words).
 - End with a **one-paragraph crisp takeaway**, not a bulleted summary.
 - Voice: skip background paragraphs a general reader would need. Assume vocabulary.
 
-### Entrepreneurs lane (`/en/entrepreneurs`, `/fr/entrepreneurs`) — prospect-facing
+### Builders lane (`/en/builders`, `/fr/builders`) — prospect-facing
 
-Decision guides, founder case files, and operator-framed pieces for `operator` readers. This is the **conversion lane** — reads here are the target audience for consulting engagements and lead-magnet tails.
-- Same typography rules as Engineering, but voice calibration is different: open with the business stake or the decision, not the technical tension.
+Decision guides, founder case files, and builder-framed pieces for `builder` readers. This is the **conversion lane** — reads here are the target audience for consulting engagements and lead-magnet tails.
+- Same typography rules as System Design, but voice calibration is different: open with the business stake or the decision, not the technical tension.
 - Code blocks and architecture diagrams are allowed but must be framed with "why this matters to you" before and after.
 - Explicit "what this means for you" or "what to do now" sections near the end.
 - Article tail (email-gated prompt pack, setup guide) lives most naturally here when it fits (see "Article tail" section below).
 - Voice: decisive, no both-sides-ism. If trade-offs exist, name them and take a position on the common case.
 
-### Essays lane (`/en/essays`, `/fr/essais`) — editorial voice
+### Technology lane (`/en/technology`, `/fr/technology`) — topic-led
 
-Freestyle, curiosity-driven pieces on AI, macro, future-of-work, and the larger frame. Cross-cuts both personas — readers come here for voice, not for decisions.
+Tech, stack, and tooling pieces — SaaS primitives, AI-native stacks, pattern breakdowns. Cross-cuts `technical` and `builder` readers when the topic serves both.
+- Voice is closer to the metal than System Design, and more opinionated than the case files.
+- Code blocks and diagrams are first-class here, not rationed.
+- Persona assignment is optional — `persona` frontmatter may be left unset when a piece is genuinely topic-led.
+
+### Archive lane (`/en/archive`, `/fr/archive`) — long-living material
+
+The long-living **Principles & Playbooks** band. Playbooks live at `/{lang}/operating-playbooks/*` URLs (`{lang}` = `en` | `fr`) and are linked from the Archive index. Reads here are for readers returning to source material, not arriving for the first time.
 - Longer-form allowed; typography and spacing can breathe more than peer-facing pieces.
 - Personal register permitted — still no hedging, still no filler.
-- This lane also surfaces **Principles & Playbooks** as a secondary band: the long-living operating playbooks that underpin the site's thinking. Playbooks live at `/{lang}/operating-playbooks/*` URLs (`{lang}` = `en` | `fr`) and are linked from the Essays index.
 
 ### Voice calibration: peer-facing vs prospect-facing
 
 Same register, different framing. Read the persona, then pick the opener:
 
-| | Peer-facing (`technical`) | Prospect-facing (`operator`) |
+| | Peer-facing (`technical`) | Prospect-facing (`builder`) |
 |---|---|---|
 | Opener | Names the technical tension | Names the business stake or decision |
 | Background | Skip — assume vocabulary | Define central terms once |

@@ -12,10 +12,11 @@ export const DEFAULT_LOCALE: Lang = 'en';
 
 // Paths whose localized slug differs per locale. Key shape is
 // "{lang}:{path-suffix}". Add an entry here when a new slug diverges.
-const SLUG_ALIASES: Record<string, string> = {
-  'en:essays': 'fr:essais',
-  'fr:essais': 'en:essays',
-};
+//
+// Empty after the 2026-04-22 layout restructure — all lanes
+// (system-design, builders, technology, archive, about) use identical
+// slugs in both locales. Re-populate if a future lane diverges.
+const SLUG_ALIASES: Record<string, string> = {};
 
 function stripLocalePrefix(path: string): { lang: Lang | null; rest: string } {
   for (const lang of LOCALES) {

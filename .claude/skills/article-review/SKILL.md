@@ -32,13 +32,13 @@ If any of these is missing, stop and tell Ahmed to check the repo state — do n
 - `title` present and non-empty.
 - `description` present and non-empty.
 - `date` present for `case-files` (EN + FR). Must be an ISO date (`YYYY-MM-DD`). Absent = **blocker** — the layout relies on it to render the meta strip and the cards. Seed from the file's first-merge git date (`git log --follow --diff-filter=A --format=%aI -- <path> | tail -1`).
-- `persona` present. Must be one of `technical`, `operator`. If absent, this is a **blocker** unless the content predates the schema change (then warning).
+- `persona` present. Must be one of `technical`, `builder`. If absent, this is a **blocker** unless the content predates the schema change (then warning).
 - If frontmatter contains `featured: true` or `highlight: true`, cross-check that the article is actually a representative piece — flag for human review.
 
 ### 3. Voice & structure (EN)
 
 Check against the design charter:
-- **Opening hook.** First paragraph should name the tension (technical) or the business stake (operator). Flag if it reads as "in this article, we will discuss…".
+- **Opening hook.** First paragraph should name the tension (technical) or the business stake (builder). Flag if it reads as "in this article, we will discuss…".
 - **Hedging.** Search for "it depends", "may", "might", "could", "perhaps" — flag density >5/1000 words unless hedge is load-bearing.
 - **Filler phrases.** Search for charter-banned EN fillers: "as we all know", "at the end of the day", "in today's fast-paced world", "it is important to note", "it should be noted".
 - **Takeaway.** For case files, flag if there is no closing paragraph that crystallizes the insight. A bulleted summary does not count.
@@ -49,7 +49,7 @@ Check against the design charter:
 - Extract `persona` from frontmatter.
 - Read the first 3 paragraphs. Check that the entry point matches the persona:
   - `technical` → tension / architecture decision / trade-off named immediately.
-  - `operator` → business implication or operational consequence named in paragraph 1, with a clear "what to do" orientation toward the end.
+  - `builder` → business implication or operational consequence named in paragraph 1, with a clear "what to do" orientation toward the end.
 - Flag mismatches as **warnings**. This check is judgment-heavy — report the discrepancy with quoted text, don't autofix.
 
 ### 5. Typography / structural signals
@@ -87,7 +87,7 @@ If FR is missing and the article is in a collection that has existing FR sibling
 - File is in the correct collection directory.
 - File extension matches collection (`.md` vs `.mdx`).
 - Images referenced are in `public/` or use absolute URLs — no broken paths.
-- Internal links use site-relative, **language-prefixed** paths: `/en/case-files/...`, `/en/engineering`, `/en/entrepreneurs`, `/en/essays` for EN articles; `/fr/case-files/...`, `/fr/engineering`, `/fr/entrepreneurs`, `/fr/essais` for FR. Never full domain URLs, never unprefixed paths — the root `/` now 301-redirects to `/en/` and the old unprefixed routes are legacy.
+- Internal links use site-relative, **language-prefixed** paths: `/en/case-files/...`, `/en/system-design`, `/en/builders`, `/en/technology`, `/en/archive` for EN articles; `/fr/case-files/...`, `/fr/system-design`, `/fr/builders`, `/fr/technology`, `/fr/archive` for FR. Never full domain URLs, never unprefixed paths — the root `/` now 301-redirects to `/en/` and the old unprefixed routes are legacy.
 
 ## Output format
 
@@ -97,7 +97,7 @@ Single markdown report to stdout, with sections:
 # Article Review — <slug>
 
 **Primary persona**: <id>
-**Lane**: <Engineering | Entrepreneurs | Essays>
+**Lane**: <System Design | Builders | Technology | Archive>
 **EN path**: <path>
 **FR path**: <path or "missing">
 

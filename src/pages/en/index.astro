@@ -16,7 +16,7 @@ const highlights = (await getCollection('case-files-en', ({ data }) => data.high
 // the slug below.
 const technicalFeatured = (await getCollection(
   'case-files-en',
-  ({ data }) => data.featured && data.persona !== 'operator',
+  ({ data }) => data.featured && data.persona !== 'builder',
 )).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const pinnedPlaybook = await getEntry('operating-playbooks-en', 's3-p2-context-is-the-edge');

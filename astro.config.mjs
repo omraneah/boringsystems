@@ -60,9 +60,19 @@ export default defineConfig({
   redirects: {
     '/': '/en/',
     '/about': '/en/about',
-    '/engineering': '/en/engineering',
-    '/entrepreneurs': '/en/entrepreneurs',
-    '/essays': '/en/essays',
+    // Legacy unprefixed paths — route to the new lanes directly.
+    '/engineering': '/en/system-design',
+    '/entrepreneurs': '/en/builders',
+    '/essays': '/en/archive',
+    // Locale-prefixed renames (2026-04-22 layout restructure).
+    // Preserves inbound links from bookmarks and shared URLs.
+    '/en/engineering': '/en/system-design',
+    '/fr/engineering': '/fr/system-design',
+    '/en/entrepreneurs': '/en/builders',
+    '/fr/entrepreneurs': '/fr/builders',
+    '/en/essays': '/en/archive',
+    '/fr/essais': '/fr/archive',
+    // Case files + operating playbooks routes are unchanged.
     '/case-files': '/en/case-files',
     '/case-files/[slug]': '/en/case-files/[slug]',
     '/operating-playbooks': '/en/operating-playbooks',

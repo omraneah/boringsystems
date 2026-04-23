@@ -15,7 +15,7 @@ Each flag has one surface it drives. Surfaces and their sources are listed below
 
 | Flag | Type | Default | Purpose |
 |---|---|---|---|
-| `featured` | boolean | `false` | Include in grid listings: home *Selected Articles* (when persona is technical), `/case-files` lane index, `/entrepreneurs`, `/engineering`. |
+| `featured` | boolean | `false` | Include in grid listings: home *Selected Articles* (when persona is technical), `/case-files` lane index, `/builders`, `/system-design`. |
 | `highlight` | boolean | `false` | Include in the home *Highlights* stack. Capped at three — if more are flagged, only the first three (by `order`) render. |
 | `order` | number | `99` | Sort key across all surfaces. Lower numbers surface first. |
 
@@ -24,9 +24,11 @@ Each flag has one surface it drives. Surfaces and their sources are listed below
 | Surface | Source query | Sort | Cap |
 |---|---|---|---|
 | Home *Highlights* | `case-files-{lang}` where `highlight: true` | `order` asc | `.slice(0, 3)` |
-| Home *Selected Articles* | `case-files-{lang}` where `featured: true && persona !== 'operator'`, plus `getEntry('operating-playbooks-{lang}', 's3-p2-context-is-the-edge')` | `order` asc for case files, playbook appended last | — |
-| `/engineering` | `case-files-{lang}` where `persona !== 'operator'` | `order` asc | — |
-| `/entrepreneurs` | `case-files-{lang}` where `persona === 'operator'` | `order` asc | — |
+| Home *Selected Articles* | `case-files-{lang}` where `featured: true && persona !== 'builder'`, plus `getEntry('operating-playbooks-{lang}', 's3-p2-context-is-the-edge')` | `order` asc for case files, playbook appended last | — |
+| `/system-design` | `case-files-{lang}` where `persona !== 'builder'` | `order` asc | — |
+| `/builders` | `case-files-{lang}` where `persona === 'builder'` | `order` asc | — |
+| `/technology` | all `technology-{lang}` | `order` asc | — |
+| `/archive` | all `operating-playbooks-{lang}`, grouped by series | `seriesNum` desc, `playbook` asc within series | — |
 | `/case-files` lane index | all `case-files-{lang}` | `order` asc | — |
 | `/operating-playbooks` | all `operating-playbooks-{lang}`, grouped by series | `seriesNum` desc, `playbook` asc within series | — |
 
@@ -48,7 +50,7 @@ The design charter calls for density without decorative motion. Three is the poi
 
 ## Alternatives considered
 
-- **Single `home-featured` boolean across both sections.** Rejected — the two sections have different visual weight and different content-type constraints (Selected Articles excludes operator-persona; Highlights doesn't).
+- **Single `home-featured` boolean across both sections.** Rejected — the two sections have different visual weight and different content-type constraints (Selected Articles excludes builder-persona; Highlights doesn't).
 - **Explicit arrays in config.** Rejected — would externalise the sort+select logic from the article's own frontmatter, creating a second source of truth to keep in sync.
 - **A custom collection for home-page picks.** Rejected — we want the article to carry its own fate; nothing should need to know about home in a second place.
 

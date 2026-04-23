@@ -4,34 +4,34 @@ import ArticleCard from '../../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { articleMeta } from '../../../lib/article-meta';
 
-const operatorWork = (await getCollection('case-files-en', ({ data }) => data.persona === 'operator'))
+const technologyWork = (await getCollection('technology-fr'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
-<Base title="Entrepreneurs" description="Decision guides and field diagnoses for entrepreneurs, intrapreneurs, and founders making technical calls.">
+<Base title="Technology" description="Tech, stack, tooling — primitives SaaS, stacks AI-native et les patterns qui les sous-tendent." lang="fr">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Entrepreneurs</p>
-        <h1 class="page-title">Entrepreneurs</h1>
+        <p class="label">Technology</p>
+        <h1 class="page-title">Technology</h1>
         <p class="page-description muted">
-          Decision guides and field diagnoses for entrepreneurs, intrapreneurs, solopreneurs, and founders making technical calls without a deep engineering background.
+          Tech, stack, tooling. Primitives SaaS, stacks AI-native, et les patterns qui les sous-tendent — des pièces plus proches du métal que System Design, et plus opinionated que les case files.
         </p>
       </header>
 
-      {operatorWork.length > 0 ? (
+      {technologyWork.length > 0 ? (
         <div class="work-list">
-          {operatorWork.map(item => (
+          {technologyWork.map(item => (
             <ArticleCard
               title={item.data.title}
               description={item.data.description}
-              href={`/en/case-files/${item.slug}`}
-              meta={articleMeta(item.body, item.data.date, 'en')}
+              href={`/fr/technology/${item.slug}`}
+              meta={articleMeta(item.body, item.data.date, 'fr')}
             />
           ))}
         </div>
       ) : (
-        <p class="empty-state muted">More field notes for entrepreneurs coming soon.</p>
+        <p class="empty-state muted">Pièces technology à venir.</p>
       )}
     </div>
   </div>

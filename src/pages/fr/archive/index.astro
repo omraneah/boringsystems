@@ -32,24 +32,18 @@ const sortedSeries = Object.entries(grouped).sort(
 );
 ---
 
-<Base title="Essais" description="Essais, principes et playbooks vus de l'intérieur.">
+<Base title="Archive" description="Principes et playbooks — le matériel long-vie derrière la réflexion sur boringsystems.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
-        <p class="label">Essais</p>
-        <h1 class="page-title">Essais</h1>
+        <p class="label">Archive</p>
+        <h1 class="page-title">Archive</h1>
         <p class="page-description muted">
-          Réflexions libres sur l'AI, la macroéconomie, le futur du travail et le cadre plus large. Ainsi que les principes et playbooks qui sous-tendent la réflexion ici.
+          Le matériel long-vie. Principes et playbooks qui sous-tendent la réflexion ici — plus lents à évoluer que les case files, faits pour qu'on y revienne.
         </p>
       </header>
 
       <section class="band">
-        <p class="label band-label">Essais</p>
-        <p class="band-empty muted">Réflexions libres à venir.</p>
-      </section>
-
-      <section class="band">
-        <p class="label band-label">Principles &amp; Playbooks</p>
         {sortedSeries.map(([seriesName, items]) => (
           <div class="series-group">
             <p class="label series-label">{seriesName}</p>

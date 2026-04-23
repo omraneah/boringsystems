@@ -39,9 +39,9 @@ Structure the Linear card as follows:
 [One paragraph. The angle, not the topic. What makes this worth reading for a senior operator.]
 
 ## Primary persona
-[One of: technical, operator — from target-audiences.md. Name the entry point that matches:
-  - technical: tension/architecture decision (Engineering lane)
-  - operator: business implication or decision guide with next steps (Entrepreneurs lane)]
+[One of: technical, builder — from target-audiences.md. Name the entry point that matches:
+  - technical: tension/architecture decision (System Design lane)
+  - builder: business implication or decision guide with next steps (Builders lane)]
 
 ## The intellectual thread to follow
 [Numbered sections, each a building block of the argument. Include the technical layer AND the business/positioning layer. Don't separate them.]
