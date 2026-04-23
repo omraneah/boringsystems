@@ -33,6 +33,7 @@ Full profile: `memory/user_profile.md`, `memory/user_strategic_context.md`.
 | `cross-stack-architecture-starter-pack/` | Distilled architectural principles. ARDs are non-negotiable boundaries. | Read-only. Consult before structural decisions. |
 | `boringsystems/` | Personal site — engineering leadership case files. Astro, Vercel. | Active project. |
 | `personal-apps/` | Subdomain apps. Next.js 16, React 19, Tailwind 4. | Active project. Read `AGENTS.md` first. |
+| `go-to-market/` | Operational positioning — LinkedIn copy, freelance offers, market hypotheses, inbound signals. Evolves weekly. | Active. Edit via `/gtm-sync`. |
 
 ## Non-negotiable rules
 
