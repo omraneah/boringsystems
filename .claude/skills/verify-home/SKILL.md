@@ -21,11 +21,10 @@ Post-change smoke test for the boringsystems home page. Validates the surface-le
      3. `Does Your Early-Stage Startup Actually Need a CTO?`
      Selection logic is driven by frontmatter `highlight: true` + `order` — if this list needs to change, update the articles, not the skill.
    - **Highlights — FR** (`dist/client/fr/index.html`): three titles mirroring the EN above in their French re-voiced form. Do not assert exact strings — just assert three `.highlight-title` elements present and none of them reference English-only brand phrases that were never re-voiced.
-   - **Selected Articles — EN**: four `.card-title` elements under the section labelled `Selected Articles`. Three technical case files (Vendor Lock-In, SaaS Hardening, Architecture Governance) + one playbook (`Context is the Edge`).
-   - **Selected Articles — FR**: four cards under `Articles sélectionnés` matching the FR titles of the same pieces.
-   - **"All case files" link is absent** on both home pages.
-   - **Lead magnet presence.** The two Writing-lane articles that expose a lead magnet (`/en/writing/solo-founder-new-baseline`, `/en/writing/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
-   - **Mermaid block present** on `/en/writing/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.
+   - **Selected Articles — EN**: `.card-title` elements under the section labelled `Selected Articles`, sourced from `writing-en` where `featured: true` (sorted by `order`) plus the pinned archive entry appended last. Current state: `The Solo Founder's New Baseline` + `Context is the Edge`. When Ahmed adds more featured Writing pieces, update this assertion — the skill should reflect the intent, not trail the content.
+   - **Selected Articles — FR**: same count as EN under `Articles sélectionnés`, mirroring the FR re-voiced titles.
+   - **Lead magnet presence.** The two lead-magnet-bearing articles (`/en/writing/solo-founder-new-baseline`, `/en/building/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
+   - **Mermaid block present** on `/en/building/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.
    - **Hreflang present on every page.** Check that `dist/client/en/index.html`, `dist/client/fr/index.html`, one Writing page, one Work page, and one Archive page all include three `<link rel="alternate" hreflang=…>` tags: `en-US`, `fr-FR`, and `x-default`. All lanes use identical slugs across locales — hreflang pairs should point at symmetric paths (`/en/writing` ↔ `/fr/writing`, `/en/work` ↔ `/fr/work`, `/en/archive` ↔ `/fr/archive`, etc.).
    - **Root `/` redirects to `/en/` with 301.** Inspect `.vercel/output/config.json` for a route `{"src":"^/$", "status":301, "headers":{"Location":"/en/"}}`.
 
