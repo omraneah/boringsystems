@@ -1,13 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
-import { getCollection, getEntry } from 'astro:content';
-import { articleMeta, readTime } from '../../lib/article-meta';
+import { getCollection } from 'astro:content';
 
 // Highlights: articles across Writing + Work + Building flagged
-// `highlight: true`, sorted by `order`, capped at 3. Rendered as a stack
-// of large cards, not a carousel. Each entry carries its lane slug so the
-// card links back to the correct URL.
+// `highlight: true`, sorted by `order`, capped at 3. Only home-page
+// content surface at this stage — Selected Articles was removed until
+// there's enough material to merit a second band.
 const writing = await getCollection('writing-en');
 const work = await getCollection('work-en');
 const building = await getCollection('building-en');
@@ -23,43 +21,11 @@ const highlights = allArticles
   .sort((a, b) => (a.entry.data.order ?? 99) - (b.entry.data.order ?? 99))
   .slice(0, 3);
 
-// Selected Articles: Writing lane featured pieces + one pinned archive
-// entry appended last. Writing is the primary conversion lane — Selected
-// Articles surfaces it directly. To rotate the pinned archive entry,
-// change the slug below.
-const writingFeatured = writing
-  .filter((entry) => entry.data.featured)
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
-
-// Archive entries live under on-disk grouping folders; slug includes the
-// full path relative to the collection root. See docs/constraints.md.
-const pinnedArchive = await getEntry(
-  'archive-en',
-  'operating-playbooks/series-3-ai-edge/s3-p2-context-is-the-edge',
-);
-
 const laneLabels: Record<'writing' | 'work' | 'building', string> = {
   'writing': 'Writing',
   'work': 'Work',
   'building': 'Building',
 };
-
-const selectedArticles = [
-  ...writingFeatured.map((entry) => ({
-    title: entry.data.title,
-    description: entry.data.description,
-    href: `/en/writing/${entry.slug.split('/').pop()}`,
-    meta: articleMeta(entry.body, entry.data.date, 'en'),
-  })),
-  ...(pinnedArchive
-    ? [{
-        title: pinnedArchive.data.title,
-        description: pinnedArchive.data.description,
-        href: `/en/archive/${pinnedArchive.slug.split('/').pop()}`,
-        meta: readTime(pinnedArchive.body, 'en'),
-      }]
-    : []),
-];
 ---
 
 <Base title="Ahmed Omrane">
@@ -90,22 +56,6 @@ const selectedArticles = [
       </div>
     </section>
   )}
-
-  <section class="section">
-    <div class="section-inner">
-      <p class="label section-label">Selected Articles</p>
-      <div class="cards">
-        {selectedArticles.map((item) => (
-          <ArticleCard
-            title={item.title}
-            description={item.description}
-            href={item.href}
-            meta={item.meta}
-          />
-        ))}
-      </div>
-    </div>
-  </section>
 
   <section class="section contact-section">
     <div class="section-inner">
@@ -229,14 +179,14 @@ const selectedArticles = [
   .highlight-stack {
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
 
   .highlight-card {
     display: block;
     border-left: 2px solid var(--accent);
     background: var(--bg-elevated);
-    padding: var(--space-lg) var(--space-lg);
+    padding: var(--space-md);
     text-decoration: none;
     transition: border-color 0.15s, background 0.15s;
   }
@@ -256,29 +206,30 @@ const selectedArticles = [
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
   }
 
   .highlight-title {
     font-family: var(--font-display);
-    font-size: var(--size-xl);
-    line-height: 1.25;
+    font-size: var(--size-lg);
+    line-height: 1.3;
     color: var(--text);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
     transition: color 0.15s;
   }
 
   .highlight-description {
-    font-size: var(--size-base);
+    font-size: var(--size-sm);
     color: var(--text-muted);
-    line-height: 1.65;
-    margin-bottom: var(--space-sm);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
   }
 
   .highlight-read {
     font-family: var(--font-ui);
-    font-size: var(--size-sm);
+    font-size: var(--size-xs);
     font-weight: 500;
+    letter-spacing: 0.02em;
   }
 
   .section {
