@@ -1,37 +1,42 @@
 import { defineCollection, z } from 'astro:content';
 
-// Persona drives lane filtering on /engineering and /entrepreneurs.
-// `technical` → engineering lane; `operator` → entrepreneurs lane.
-const persona = z.enum(['technical', 'operator']).optional();
-
-// Flag semantics — see docs/adr-002-home-selection.md for the full contract.
+// Four content lanes — see README.md and docs/target-audiences.md for the
+// editorial taxonomy. Folder name = URL path = collection name (minus the
+// locale suffix). Lane placement is the content-type decision; voice target
+// per piece is a writer-side concern that does not show up here.
 //
-//   featured  — include in grid listings (home "Selected Articles" when
-//               persona is technical, lane index pages).
-//   highlight — include in the home "Highlights" stack (capped at three,
-//               sorted by `order`).
+//   writing   — thinking pieces, decision guides, frameworks, tactical advice.
+//                Most articles land here by default.
+//   work      — past case studies of real engagements. Proof pieces.
+//   building  — current AI-native builds shown live. Live work + commentary.
+//   archive   — long-living playbooks and principles. Doctrine layer.
+//
+// Flag semantics — see docs/adr-002-home-selection.md for the full contract.
+//   featured  — include in grid listings (home "Selected Articles" and lane indexes).
+//   highlight — include in the home "Highlights" stack (capped at three, sorted by order).
 //   order     — sort key across every surface. Lower = earlier.
 //
-// Never add ad-hoc flags (homePinned, showOnHome, etc.). Widen selection
-// logic in `src/pages/{en,fr}/index.astro` instead.
+// Never add ad-hoc frontmatter flags (homePinned, showOnHome, etc.) — widen
+// selection logic in `src/pages/{en,fr}/index.astro` instead.
 
-const caseFiles = defineCollection({
+const article = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string(),
     // First-merge git date, ISO (YYYY-MM-DD). Mandatory — renders in the
-    // meta strip on cards and under every article subtitle. Seeded via:
+    // meta strip on cards and under every article subtitle. Seed via:
     //   git log --follow --diff-filter=A --format=%aI <path> | tail -1
     date: z.coerce.date(),
     featured: z.boolean().optional().default(false),
     highlight: z.boolean().optional().default(false),
     order: z.number().optional().default(99),
-    persona,
   }),
 });
 
-const operatingPlaybooks = defineCollection({
+// Archive: long-living playbooks. No `date` — these are principles, not
+// time-stamped pieces. Series metadata drives grouping on the Archive index.
+const archive = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -39,18 +44,19 @@ const operatingPlaybooks = defineCollection({
     series: z.string().optional(),
     seriesNum: z.number().optional(),
     playbook: z.number().optional(),
-    // `featured` and `highlight` exist for symmetry with case files, but
-    // the home page currently pins exactly one playbook slug by explicit
-    // getEntry() rather than via these flags. See ADR-002.
     featured: z.boolean().optional().default(false),
     highlight: z.boolean().optional().default(false),
-    persona,
+    order: z.number().optional().default(99),
   }),
 });
 
 export const collections = {
-  'case-files-en': caseFiles,
-  'operating-playbooks-en': operatingPlaybooks,
-  'case-files-fr': caseFiles,
-  'operating-playbooks-fr': operatingPlaybooks,
+  'writing-en': article,
+  'writing-fr': article,
+  'work-en': article,
+  'work-fr': article,
+  'building-en': article,
+  'building-fr': article,
+  'archive-en': archive,
+  'archive-fr': archive,
 };

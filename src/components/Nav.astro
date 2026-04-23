@@ -8,18 +8,20 @@ const base = isFrench ? '/fr' : '/en';
 const lang = isFrench ? 'fr' : 'en';
 
 const isHome = pathname === `${base}` || pathname === `${base}/`;
-const isEngineering = pathname.startsWith(`${base}/engineering`);
-const isEntrepreneurs = pathname.startsWith(`${base}/entrepreneurs`);
-const isEssays = pathname.startsWith(`${base}/essays`) || pathname.startsWith(`${base}/essais`);
+const isWriting = pathname.startsWith(`${base}/writing`);
+const isWork = pathname.startsWith(`${base}/work`);
+const isBuilding = pathname.startsWith(`${base}/building`);
+const isArchive = pathname.startsWith(`${base}/archive`);
 const isAbout = pathname === `${base}/about` || pathname === `${base}/about/`;
 
-// Use Astro's native locale-aware URL helper. Essays has a locale-specific
-// slug (essays/essais) handled by `toLocalePath` from src/lib/i18n.
+// Lanes use identical slugs in both locales — `getRelativeLocaleUrl` is
+// sufficient, no slug-alias table needed.
 const homeHref = getRelativeLocaleUrl(lang, '');
-const engineeringHref = getRelativeLocaleUrl(lang, 'engineering');
-const entrepreneursHref = getRelativeLocaleUrl(lang, 'entrepreneurs');
+const writingHref = getRelativeLocaleUrl(lang, 'writing');
+const workHref = getRelativeLocaleUrl(lang, 'work');
+const buildingHref = getRelativeLocaleUrl(lang, 'building');
+const archiveHref = getRelativeLocaleUrl(lang, 'archive');
 const aboutHref = getRelativeLocaleUrl(lang, 'about');
-const essaysPath = isFrench ? '/fr/essais' : '/en/essays';
 
 const langHref = toLocalePath(pathname, isFrench ? 'en' : 'fr');
 ---
@@ -32,18 +34,23 @@ const langHref = toLocalePath(pathname, isFrench ? 'en' : 'fr');
       </a>
     </li>
     <li>
-      <a href={engineeringHref} class:list={[{ active: isEngineering }]}>
-        Engineering
+      <a href={writingHref} class:list={[{ active: isWriting }]}>
+        Writing
       </a>
     </li>
     <li>
-      <a href={entrepreneursHref} class:list={[{ active: isEntrepreneurs }]}>
-        Entrepreneurs
+      <a href={workHref} class:list={[{ active: isWork }]}>
+        Work
       </a>
     </li>
     <li>
-      <a href={essaysPath} class:list={[{ active: isEssays }]}>
-        {isFrench ? 'Essais' : 'Essays'}
+      <a href={buildingHref} class:list={[{ active: isBuilding }]}>
+        Building
+      </a>
+    </li>
+    <li>
+      <a href={archiveHref} class:list={[{ active: isArchive }]}>
+        Archive
       </a>
     </li>
     <li>

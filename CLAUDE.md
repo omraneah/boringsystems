@@ -29,8 +29,8 @@ All code is authored through Claude Code. No manual editing.
 | Architecture + toolchain + typed-registry pattern | `docs/architecture-and-toolchain.md` |
 | Home-page selection contract (featured/highlight/order) | `docs/adr-002-home-selection.md` |
 | Local-first enforcement tier (no CI, pre-commit hook, upgrade trigger) | `docs/adr-003-enforcement-tier.md` |
-| Design charter (voice, layout, persona alignment) | `docs/design-charter.md` |
-| Target audiences (technical vs operator persona) | `docs/target-audiences.md` |
+| Design charter (voice, layout, lane alignment) | `docs/design-charter.md` |
+| Target audiences (technical vs builder voice targets) | `docs/target-audiences.md` |
 | French voice guide + do-not-translate list | `docs/french-guide.md` |
 
 ## Project-scoped skills

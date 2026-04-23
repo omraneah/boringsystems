@@ -2,7 +2,7 @@
 
 The visual, structural, and voice standard for boringsystems. Every article, page, and component is reviewed against this document. The `article-review` skill loads this file before flagging issues.
 
-Personas referenced here (`technical`, `operator`) are defined in [`target-audiences.md`](./target-audiences.md). The site surfaces them as three navigation lanes: **Engineering** (serves `technical`), **Entrepreneurs** (serves `operator`), and **Essays** (cross-cuts).
+Voice targets referenced here (`technical`, `builder`) are defined in [`target-audiences.md`](./target-audiences.md). The site surfaces content through four navigation lanes, each a distinct **content type** (not an audience split): **Writing** (thinking pieces, decision guides, frameworks — primary lane, most volume), **Work** (past case studies of real engagements), **Building** (current AI-native builds shown live), and **Archive** (long-living playbooks and principles). A piece's voice target is a per-piece calibration decision; its lane is structural (folder = URL = collection).
 
 ---
 
@@ -71,39 +71,50 @@ Palette from `src/styles/global.css`:
 
 ## Lanes and layout
 
-The site has three navigation lanes, each with its own voice calibration and layout conventions. Lane is an **audience** distinction; layout expectations follow.
+The site has four navigation lanes, each a distinct **content type** with its own layout conventions. Voice target is a per-piece calibration (see `target-audiences.md`); lane is structural placement.
 
-### Engineering lane (`/en/engineering`, `/fr/engineering`) — peer-facing
+### Writing lane (`/en/writing`, `/fr/writing`) — primary conversion lane
 
-Technical case files and engineering-leadership pieces for `technical` readers. Dense, peer-to-peer, no hand-holding.
+Thinking pieces, decision guides, frameworks, tactical advice. The calls founders, operators, and builders face — framed, diagnosed, and answered. This is where most new content lands. **Highest volume + primary conversion surface.**
 - Playfair throughout body prose. Dense body, no decorative spacing.
-- Inline code in mono; code blocks used sparingly — these pieces are about *reasoning*, not walkthroughs.
-- Metadata strip at the top: primary persona, read time, publish date. **Publish date and read time are mandatory** for every `case-files` article (EN + FR) — surfaced in frontmatter (`date:` ISO field), rendered in the article header under the subtitle, and also shown on every card that references the piece (home-page featured, `/{lang}/engineering`, `/{lang}/entrepreneurs`, `/{lang}/case-files`, where `{lang}` is `en` or `fr`). Format in-page: `MMM D, YYYY · N min read` (EN) / `D MMM YYYY · N min de lecture` (FR). Read time is derived from the body; the publish date is the first-merge git date.
-- No tables of contents for short pieces (under ~2000 words).
+- Inline code in mono; code blocks used sparingly — these pieces are about *reasoning*.
+- Metadata strip at the top: read time, publish date (both mandatory — see "Dates & read times" below).
 - End with a **one-paragraph crisp takeaway**, not a bulleted summary.
-- Voice: skip background paragraphs a general reader would need. Assume vocabulary.
+- Voice target varies per piece (`technical` or `builder`). See `target-audiences.md` for per-target calibration.
+- Article tail (email-gated prompt pack, setup guide) lives most naturally here when the piece targets `builder`.
 
-### Entrepreneurs lane (`/en/entrepreneurs`, `/fr/entrepreneurs`) — prospect-facing
+### Work lane (`/en/work`, `/fr/work`) — past proof
 
-Decision guides, founder case files, and operator-framed pieces for `operator` readers. This is the **conversion lane** — reads here are the target audience for consulting engagements and lead-magnet tails.
-- Same typography rules as Engineering, but voice calibration is different: open with the business stake or the decision, not the technical tension.
-- Code blocks and architecture diagrams are allowed but must be framed with "why this matters to you" before and after.
-- Explicit "what this means for you" or "what to do now" sections near the end.
-- Article tail (email-gated prompt pack, setup guide) lives most naturally here when it fits (see "Article tail" section below).
-- Voice: decisive, no both-sides-ism. If trade-offs exist, name them and take a position on the common case.
+Case studies from real past engagements. What got built, under what constraint, with what trade-offs accepted. **This is proof, not testimonials — the work itself.**
+- Same typography rules as Writing.
+- Voice target typically `technical` (case studies read peer-to-peer), but a case can be framed for `builder` if the operational story is the point.
+- Open with the context and the tension. Close with the outcome and the principle.
+- Dates mandatory.
 
-### Essays lane (`/en/essays`, `/fr/essais`) — editorial voice
+### Building lane (`/en/building`, `/fr/building`) — live AI-native work
 
-Freestyle, curiosity-driven pieces on AI, macro, future-of-work, and the larger frame. Cross-cuts both personas — readers come here for voice, not for decisions.
-- Longer-form allowed; typography and spacing can breathe more than peer-facing pieces.
+Current builds shown live — boringsystems itself, portfolio apps, Claude skills, stack experiments, lead-magnet artifacts. **Evidence the method works in 2026 on modern stacks.** Attracts peer builders who want to see craft, and reassures sponsors who want concreteness.
+- Code blocks and diagrams are first-class. The stack is visible.
+- Register is active-tense: "I'm building this, here's what I'm deciding."
+- Dates mandatory — pieces here are time-stamped by design; they age by convention.
+
+### Archive lane (`/en/archive`, `/fr/archive`) — long-living material
+
+Principles and playbooks. Doctrine layer. Slower-changing than the other three lanes; returnable reference material.
+- Longer-form allowed; typography and spacing can breathe.
 - Personal register permitted — still no hedging, still no filler.
-- This lane also surfaces **Principles & Playbooks** as a secondary band: the long-living operating playbooks that underpin the site's thinking. Playbooks live at `/{lang}/operating-playbooks/*` URLs (`{lang}` = `en` | `fr`) and are linked from the Essays index.
+- No `date` required (pieces here are principles, not time-stamped).
+- Grouped on disk under `operating-playbooks/series-{N}-{name}/`; URLs stay flat per `constraints.md`.
+
+### Dates & read times
+
+**Publish date and read time are mandatory** for every article in Writing, Work, and Building collections (EN + FR). Surfaced in frontmatter (`date:` ISO field), rendered in the article header under the subtitle, and shown on every card that references the piece (home-page, lane indexes). Format in-page: `MMM D, YYYY · N min read` (EN) / `D MMM YYYY · N min de lecture` (FR). Read time is derived from the body; publish date is the first-merge git date. Archive (playbooks) does not require `date`.
 
 ### Voice calibration: peer-facing vs prospect-facing
 
-Same register, different framing. Read the persona, then pick the opener:
+Same register, different framing. Picked per-piece based on the intended reader, regardless of lane:
 
-| | Peer-facing (`technical`) | Prospect-facing (`operator`) |
+| | Peer-facing (`technical`) | Prospect-facing (`builder`) |
 |---|---|---|
 | Opener | Names the technical tension | Names the business stake or decision |
 | Background | Skip — assume vocabulary | Define central terms once |
@@ -111,7 +122,7 @@ Same register, different framing. Read the persona, then pick the opener:
 | Closing | Crystallized insight | "What to do now" clarity |
 | English jargon in FR | Keep every English technical term in English | Keep every English business/tech term in English |
 
-**French edition note.** Both audiences are English-savvy. Engineers in France work in English-tinted French; entrepreneurs and operators read English business/tech content daily. The FR editions of articles in **both** lanes keep English terms in English — translating `startup`, `MVP`, `pipeline`, `framework`, `engineering`, `product`, `growth`, `onboarding`, etc., is the single most common quality failure and reads as written for a general audience rather than a professional one. Full rule lives in [`french-guide.md`](./french-guide.md).
+**French edition note.** Both audiences are English-savvy. Engineers in France work in English-tinted French; entrepreneurs and operators read English business/tech content daily. The FR editions of articles across all four lanes keep English terms in English — translating `startup`, `MVP`, `pipeline`, `framework`, `engineering`, `product`, `growth`, `onboarding`, etc., is the single most common quality failure and reads as written for a general audience rather than a professional one. Full rule lives in [`french-guide.md`](./french-guide.md).
 
 ---
 

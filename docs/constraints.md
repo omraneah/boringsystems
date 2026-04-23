@@ -23,13 +23,13 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 ## Routing & i18n
 
-- **Every page lives under `/en/` or `/fr/`.** No implicit default locale. The root `/` and all legacy flat URLs 301-redirect to their `/en/` equivalents via the `redirects` map in `astro.config.mjs`. See DECISIONS.md `2026-04-21 — Strict /en + /fr i18n`.
+- **Every page lives under `/en/` or `/fr/`.** No implicit default locale. The root `/` 301-redirects to `/en/` via the `redirects` map in `astro.config.mjs`. No other redirects exist — folder = URL is authoritative. See DECISIONS.md `2026-04-21 — Strict /en + /fr i18n`.
 
-- **Use Astro's native i18n primitives for locale-aware URLs.** Import `getRelativeLocaleUrl` from `astro:i18n` instead of hardcoding `/en/foo`. For slugs that differ per locale (currently only `essays` ↔ `essais`), use `toLocalePath` from `src/lib/i18n.ts` which knows the slug alias table. Never reimplement locale routing by hand.
+- **Use Astro's native i18n primitives for locale-aware URLs.** Import `getRelativeLocaleUrl` from `astro:i18n` instead of hardcoding `/en/foo`. For slugs that differ per locale, use `toLocalePath` from `src/lib/i18n.ts` which knows the slug alias table (empty after the 2026-04-22 restructure — all lanes now share identical slugs across locales). Never reimplement locale routing by hand.
 
 - **Every page-level head emits hreflang tags.** `Base.astro` and `Article.astro` both call `hreflangsForPath()` from `src/lib/i18n.ts`. If you add a new layout, wire hreflang in — do not ship a page without the `<link rel="alternate">` pairs, or SEO silently bleeds.
 
-- **Every case file and playbook must exist in both EN and FR.** The hreflang logic assumes mirror content. If a locale-specific piece is ever added, update `src/lib/i18n.ts`'s SLUG_ALIASES and document in DECISIONS.md; do not add orphan content.
+- **Every article must exist in both EN and FR.** Applies to all four lanes (Writing, Work, Building, Archive). The hreflang logic assumes mirror content. If a locale-specific piece is ever added, update `src/lib/i18n.ts`'s SLUG_ALIASES and document in DECISIONS.md; do not add orphan content.
 
 ## API surface
 
@@ -39,7 +39,9 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 ## Content
 
-- **Frontmatter `date` is mandatory on case files.** First-merge git date via `git log --follow --diff-filter=A --format=%aI -- <path> | tail -1`. Article-review skill blocks missing dates.
+- **Frontmatter `date` is mandatory for Writing, Work, and Building articles.** Not required for Archive (playbooks are principles, not time-stamped). First-merge git date via `git log --follow --diff-filter=A --format=%aI -- <path> | tail -1`. Article-review skill blocks missing dates.
+
+- **Lane folder + filename = URL. Subfolders in between are free.** For every content collection, the first-level folder (`writing-en/`, `work-fr/`, `archive-en/`, …) is the URL lane and the file basename (no extension) is the URL slug. Any subfolders between them are organizational grouping only and **must not appear in URLs**. Canonical example: archive playbooks are grouped on disk as `archive-{lang}/operating-playbooks/series-{N}-{name}/s{N}-p{M}-<slug>.md` but render at `/{lang}/archive/s{N}-p{M}-<slug>`. Every `[slug].astro` route maps `entry.slug.split('/').pop()` back to the param, and `scripts/verify-structure.ts` enforces per-collection basename uniqueness so two files in different subfolders can't collide at the same URL.
 
 - **Home selection flags are pinned by ADR-002.** `featured` = grid listings; `highlight` = home highlights stack; `order` = sort key. Do not add new flags (`homePinned`, `showOnHome`, etc.) — widen the selection logic instead. See `docs/adr-002-home-selection.md`.
 

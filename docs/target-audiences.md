@@ -1,19 +1,19 @@
 # Target Audiences
 
-Every article on boringsystems is written for a **primary** persona and is readable by the other without condescension. If an article doesn't have a primary persona in mind, it isn't ready to draft.
+Every article on boringsystems is written for a **primary voice target** — the reader whose shoes the piece is written from. Voice target determines the register, the assumed background, and the entry point. It does **not** determine which lane the piece lives in.
 
-This document is the source of truth for persona tagging. The `persona` field in content frontmatter uses the IDs defined here. The site's navigation lanes (`Engineering`, `Entrepreneurs`, `Essays`) are the visible expression of these personas — `Engineering` serves `technical`, `Entrepreneurs` serves `operator`, and `Essays` cross-cuts.
+**Lane ≠ voice target.** Lanes are content types (thinking pieces vs. past proof vs. live builds vs. long-living doctrine). Voice targets are per-piece calibration. A Writing-lane piece can be addressed to the technical reader or to the builder reader — what makes it a Writing piece is that it's a decision guide / framework / thinking piece, regardless of who it speaks to. Every lane ultimately serves both voice targets; the writer picks the target per piece.
 
 ---
 
-## Persona IDs
+## Voice target IDs
 
-| ID | Short name | Lane | Role sketch |
-|---|---|---|---|
-| `technical` | Technical peers | Engineering | CTO, VP Eng, Staff engineers, technical founders |
-| `operator` | Entrepreneurs & operators | Entrepreneurs | Entrepreneurs, intrapreneurs, solopreneurs, non-technical founders, business operators |
+| ID | Short name | Primary reader |
+|---|---|---|
+| `technical` | Technical peers | CTOs, VPs of Engineering, Staff engineers, technical founders. People who run or shape engineering orgs, who have seen multiple stacks ship and die. |
+| `builder` | Builders & entrepreneurs | Entrepreneurs, intrapreneurs, solopreneurs, non-technical founders, business operators. People who ship and operate, who make technology decisions without writing it every day. |
 
-Use these IDs verbatim in content frontmatter and when the `article-review` skill asks which persona an article targets.
+These IDs are vocabulary for discussing voice — during reviews, in skill prompts, in the `article-review` report. They do **not** appear in frontmatter.
 
 ---
 
@@ -41,13 +41,13 @@ Use these IDs verbatim in content frontmatter and when the `article-review` skil
 - Can skip background paragraphs a general reader would need.
 - Safe to assume they know what "blast radius", "eventual consistency", "backpressure" mean without restating.
 - Invoking named incidents or references (Knight Capital, the S3 outage, CAP, etc.) is load-bearing for them — use them deliberately, not as flavor.
-- Lives primarily in the **Engineering** lane.
+- Where pieces for this voice target typically live: **Work** (case studies — they want to see the decisions and trade-offs), occasionally **Writing** (if the piece is a genuine architecture-level framework).
 
-**French edition (FR).** Engineers in France work in English-tinted French. They read English tech daily, and their working vocabulary for frameworks, infrastructure, tooling, and practice is English. FR content for this persona must **keep English terms in English** — translating `deploy`, `pipeline`, `framework`, `runtime`, `engineering`, `rollout`, `observability`, `webhook`, etc., makes the content feel written for a general audience, not a peer. See [`french-guide.md`](./french-guide.md) for the full rule.
+**French edition (FR).** Engineers in France work in English-tinted French. They read English tech daily, and their working vocabulary for frameworks, infrastructure, tooling, and practice is English. FR content for this voice target must **keep English terms in English** — translating `deploy`, `pipeline`, `framework`, `runtime`, `engineering`, `rollout`, `observability`, `webhook`, etc., makes the content feel written for a general audience, not a peer. See [`french-guide.md`](./french-guide.md) for the full rule.
 
 ---
 
-## P2 — `operator` — Entrepreneurs, intrapreneurs, operators
+## P2 — `builder` — Entrepreneurs, intrapreneurs, builders
 
 **Profile.** Entrepreneurs, intrapreneurs, solopreneurs, founders without deep engineering background, COOs, Heads of Operations, fractional executives. Makes purchasing, hiring, and stack decisions about technology without writing it every day. Some write code; many don't. What they share is that they *ship and operate* — they run the thing, not just staff a function inside it.
 
@@ -67,22 +67,40 @@ Use these IDs verbatim in content frontmatter and when the `article-review` skil
 - Jargon dumps that feel like gatekeeping.
 - Condescension disguised as teaching.
 
-**Conversion path.** Highest-value for consulting engagements, advisory work, and referrals. An operator who reads two boringsystems articles and forms the "this person is trustworthy on technology calls" impression is the target reader for the consulting funnel. This is also where lead-magnet tails (prompt packs, setup guides, Claude skills) land most naturally.
+**Conversion path.** Highest-value for consulting engagements, advisory work, and referrals. A builder who reads two boringsystems articles and forms the "this person is trustworthy on technology calls" impression is the target reader for the consulting funnel. This is also where lead-magnet tails (prompt packs, setup guides, Claude skills) land most naturally.
 
 **Writing implications.**
 - Open with the business stake or the decision framing in the first paragraph.
 - Code blocks, file trees, and architecture diagrams are allowed — but must be framed with "why this matters to you" before and after.
 - Explicit "what this means for you" or "what to do now" sections near the end.
-- Lives in the **Entrepreneurs** lane.
+- Where pieces for this voice target typically live: **Writing** (primary — this is the lane where conversion-facing thinking lives), occasionally **Building** (when a stack/tool demonstration is framed for a non-technical operator).
 
-**French edition (FR).** Entrepreneurs, intrapreneurs, and operators in France are English-savvy. They read English business and tech content as a normal part of their work — newsletters, product docs, Twitter/LinkedIn, investor decks. They expect to see `startup`, `MVP`, `pipeline`, `SaaS`, `onboarding`, `growth`, `product`, `marketing`, `sales` in English, and translating those terms reads as condescending — as if the writer assumed they couldn't handle professional vocabulary. **Keep English terms in English.** A brief gloss on first mention is only appropriate for genuinely niche terms — never for common professional vocabulary. See [`french-guide.md`](./french-guide.md) for the full rule.
+**French edition (FR).** Entrepreneurs, intrapreneurs, and builders in France are English-savvy. They read English business and tech content as a normal part of their work — newsletters, product docs, Twitter/LinkedIn, investor decks. They expect to see `startup`, `MVP`, `pipeline`, `SaaS`, `onboarding`, `growth`, `product`, `marketing`, `sales` in English, and translating those terms reads as condescending — as if the writer assumed they couldn't handle professional vocabulary. **Keep English terms in English.** A brief gloss on first mention is only appropriate for genuinely niche terms — never for common professional vocabulary. See [`french-guide.md`](./french-guide.md) for the full rule.
 
 ---
 
-## Cross-persona rules
+## Lane placement — where does a piece go?
 
-- **Primary persona is mandatory.** No article ships without one in frontmatter. The `article-review` skill enforces this.
-- **Lane assignment follows persona.** `technical` → Engineering lane; `operator` → Entrepreneurs lane. An article can only sit in one lane.
-- **Essays cross-cut.** Freestyle, curiosity-driven pieces (AI, macro, future-of-work) do not need a persona assignment — they serve voice rather than audience. If an essay has a clear primary audience, tag it; otherwise leave `persona` unset and it stays in the Essays lane only.
-- **Never write for both personas simultaneously.** An article that tries to serve a CTO and a non-technical founder in the same voice will fail both. Pick one. Secondary audience is a bonus, not a constraint.
-- **Persona does not dictate topic.** A French-market article on European cloud sovereignty can be framed for either persona — the framing changes, the topic doesn't.
+Lane placement is a **content-type** decision, not an audience decision. Ask in order:
+
+1. **Is this a case study / retrospective of real past work Ahmed did for someone?** → `work`.
+2. **Is this about current work Ahmed is building now (boringsystems itself, portfolio apps, personal tools, AI-agent orchestration) with live commentary on the decisions?** → `building`.
+3. **Is this a long-living principle or playbook — slower-changing, returnable reference material?** → `archive`.
+4. **Otherwise — thinking pieces, decision guides, frameworks, tactical advice, diagnosis of a specific question.** → `writing`. (Default. Most pieces land here.)
+
+Lane placement is visible in the URL:
+
+- `writing-{lang}/<slug>.md` → `/{lang}/writing/<slug>`
+- `work-{lang}/<slug>.md` → `/{lang}/work/<slug>`
+- `building-{lang}/<slug>.md` → `/{lang}/building/<slug>`
+- `archive-{lang}/<subfolders>/<slug>.md` → `/{lang}/archive/<slug>` (subfolders are grouping-only; see `constraints.md`)
+
+---
+
+## Cross-voice rules
+
+- **Lane placement is structural.** The content-collection folder is the single source of truth for a piece's lane. No frontmatter flag, no tag — just which folder the file lives in. Move the file to move the lane.
+- **Voice target is per-piece calibration.** The writer decides who the piece is addressed to. The `article-review` skill asks for voice target as a review input; it does not check frontmatter for it.
+- **Never write for both voice targets simultaneously.** An article that tries to serve a CTO and a non-technical founder in the same voice will fail both. Pick one. Secondary audience is a bonus, not a constraint.
+- **Voice target does not dictate topic.** A French-market article on European cloud sovereignty can be framed for either target — the framing changes, the topic doesn't.
+- **Same register across voice targets.** The boringsystems voice is constant per `design-charter.md`: constraint-first, short sentences, no hedging. Only the *framing* (technical tension vs. business stake) and the *assumed background* change with voice target.

@@ -1,11 +1,13 @@
 # ADR-002 — Home-page selection semantics
 
-**Status:** Accepted — 2026-04-21
+**Status:** Accepted — 2026-04-21 · Amended 2026-04-22 (lane rename: Writing / Work / Building / Archive) · Amended 2026-04-22 (Selected Articles band removed; Highlights is the sole content surface on home)
 **Scope:** `src/pages/{en,fr}/index.astro`, `src/content/config.ts`
 
 ## Context
 
-The home page has two content surfaces beyond the hero: **Highlights** (three large stacked cards) and **Selected Articles** (a grid of card previews). Earlier iterations used three frontmatter flags with overlapping, under-documented semantics: `featured`, `highlight`, and `order`. When Article B was added with both `highlight: true` and `featured: true`, the intent was unclear even at the moment of writing. This ADR pins the semantics so future changes are a two-minute decision rather than a re-derivation.
+The home page currently has one content surface beyond the hero: **Highlights** (a stack of three small cards). A second surface — *Selected Articles* — existed briefly and was removed: not enough published material to justify two bands, and the redundancy pulled attention away from the hand-picked Highlights. If volume grows to the point where Highlights-alone hides too much, Selected Articles (or a new band) can be reintroduced here as an amendment.
+
+Earlier iterations used three frontmatter flags with overlapping, under-documented semantics: `featured`, `highlight`, and `order`. This ADR pins the semantics so future changes are a two-minute decision.
 
 ## Decision
 
@@ -15,24 +17,25 @@ Each flag has one surface it drives. Surfaces and their sources are listed below
 
 | Flag | Type | Default | Purpose |
 |---|---|---|---|
-| `featured` | boolean | `false` | Include in grid listings: home *Selected Articles* (when persona is technical), `/case-files` lane index, `/entrepreneurs`, `/engineering`. |
-| `highlight` | boolean | `false` | Include in the home *Highlights* stack. Capped at three — if more are flagged, only the first three (by `order`) render. |
+| `featured` | boolean | `false` | Include in grid listings: each lane index page (`/writing`, `/work`, `/building`). Does **not** drive any home-page surface today. |
+| `highlight` | boolean | `false` | Include in the home *Highlights* stack. Union across Writing + Work + Building. Capped at three — if more are flagged, only the first three (by `order`) render. |
 | `order` | number | `99` | Sort key across all surfaces. Lower numbers surface first. |
 
 ### Surfaces
 
 | Surface | Source query | Sort | Cap |
 |---|---|---|---|
-| Home *Highlights* | `case-files-{lang}` where `highlight: true` | `order` asc | `.slice(0, 3)` |
-| Home *Selected Articles* | `case-files-{lang}` where `featured: true && persona !== 'operator'`, plus `getEntry('operating-playbooks-{lang}', 's3-p2-context-is-the-edge')` | `order` asc for case files, playbook appended last | — |
-| `/engineering` | `case-files-{lang}` where `persona !== 'operator'` | `order` asc | — |
-| `/entrepreneurs` | `case-files-{lang}` where `persona === 'operator'` | `order` asc | — |
-| `/case-files` lane index | all `case-files-{lang}` | `order` asc | — |
-| `/operating-playbooks` | all `operating-playbooks-{lang}`, grouped by series | `seriesNum` desc, `playbook` asc within series | — |
+| Home *Highlights* | union of `writing-{lang}`, `work-{lang}`, `building-{lang}` where `highlight: true` | `order` asc | `.slice(0, 3)` |
+| `/writing` | all `writing-{lang}` | `order` asc | — |
+| `/work` | all `work-{lang}` | `order` asc | — |
+| `/building` | all `building-{lang}` | `order` asc | — |
+| `/archive` | all `archive-{lang}`, grouped by `series` frontmatter field | `seriesNum` desc, `playbook` asc within series | — |
 
-### Why the pinned playbook is pinned by slug, not by flag
+### Why only Highlights on home
 
-Only one playbook is meant to appear in *Selected Articles* at any given time. A hypothetical `homePinned` flag would scale linearly with playbooks (one flag per doc), would need to be exactly-one-true, and would require either a custom schema validation or a convention everyone has to remember. Pinning by explicit slug in `src/pages/{en,fr}/index.astro` gives a single source of truth — to rotate, edit one line — and keeps the schema lean.
+At the site's current volume (six articles across four lanes), the home page's job is to route the visitor to the three pieces Ahmed wants them to read first. Selected Articles added a second band that mostly duplicated what a lane-index click would show, diluting the Highlights signal. One surface keeps the decision sharp: Highlights is the curation layer; lane indexes are the browsing layer.
+
+Re-introduce a second band (Selected Articles or otherwise) only when published volume makes Highlights feel like a narrow window onto a larger body of work.
 
 ### Why three highlights, not N
 
@@ -40,15 +43,14 @@ The design charter calls for density without decorative motion. Three is the poi
 
 ## Consequences
 
-- Adding a new highlight = add the article with `highlight: true` and a low `order`. Previous highlights either drop out (if their `order` is now higher than three others) or stay.
-- Adding a new *Selected Articles* case file = set `featured: true`, `persona: technical`, appropriate `order`.
-- Rotating the pinned playbook = change the slug string in `src/pages/en/index.astro` and `src/pages/fr/index.astro`.
-- Legacy `homePinned`, `showOnHome`, or any similar flag MUST NOT be added to the schema. If a second playbook ever needs a home slot, widen the home selection logic to accept multiple slugs — do not introduce a new flag.
-- The `verify-home` skill asserts that the current highlight and Selected Articles expectations still hold after any change. Run it after touching frontmatter flags, `order` values, or selection logic.
+- Adding a new highlight = set `highlight: true` and a low `order` on an article in any of Writing / Work / Building. Previous highlights either drop out (if their `order` is now higher than three others) or stay.
+- `featured` still marks articles that should appear prominently on lane index pages. The flag is dormant on home today; it will re-activate if Selected Articles is reintroduced.
+- Legacy `homePinned`, `showOnHome`, or any similar flag MUST NOT be added to the schema. Widen the home selection logic instead of adding flags.
+- The `verify-home` skill asserts that the current Highlights expectations still hold after any change. Run it after touching frontmatter flags, `order` values, or selection logic.
 
 ## Alternatives considered
 
-- **Single `home-featured` boolean across both sections.** Rejected — the two sections have different visual weight and different content-type constraints (Selected Articles excludes operator-persona; Highlights doesn't).
+- **Keep Selected Articles as a secondary band now.** Rejected for current volume — duplicated Highlights, pulled attention from the curation surface. Re-evaluate when article count materially grows.
 - **Explicit arrays in config.** Rejected — would externalise the sort+select logic from the article's own frontmatter, creating a second source of truth to keep in sync.
 - **A custom collection for home-page picks.** Rejected — we want the article to carry its own fate; nothing should need to know about home in a second place.
 

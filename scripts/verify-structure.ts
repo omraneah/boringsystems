@@ -31,15 +31,44 @@ function fail(where: string, why: string): void {
 
 // --- helpers -----------------------------------------------------------
 
+// Walk a collection root and return every content file as a path relative
+// to `dir` (subfolders preserved). Collections may nest — archive groups
+// playbooks under `operating-playbooks/series-*/` — but subfolders are
+// organizational only and never appear in URLs; see docs/constraints.md.
+// Flat collections (system-design, builders, technology) still work: if a
+// collection has no subdirs, `listFiles` just returns basenames.
 function listFiles(dir: string): string[] {
-  try {
-    return readdirSync(dir).filter((name) => {
-      const full = join(dir, name);
-      return statSync(full).isFile();
-    });
-  } catch {
-    return [];
+  const out: string[] = [];
+  function walk(current: string, prefix: string): void {
+    let entries: string[];
+    try {
+      entries = readdirSync(current);
+    } catch {
+      return;
+    }
+    for (const name of entries) {
+      const full = join(current, name);
+      const rel = prefix ? `${prefix}/${name}` : name;
+      let s;
+      try {
+        s = statSync(full);
+      } catch {
+        continue;
+      }
+      if (s.isDirectory()) {
+        walk(full, rel);
+      } else if (s.isFile() && /\.(md|mdx)$/i.test(name)) {
+        out.push(rel);
+      }
+    }
   }
+  walk(dir, '');
+  return out;
+}
+
+function basename(relPath: string): string {
+  const idx = relPath.lastIndexOf('/');
+  return idx === -1 ? relPath : relPath.slice(idx + 1);
 }
 
 function stripExt(name: string): string {
@@ -75,6 +104,8 @@ function parseFrontmatter(filePath: string): Record<string, string> {
 function verifyContentMirror(collection: string): void {
   const enDir = join(CONTENT, `${collection}-en`);
   const frDir = join(CONTENT, `${collection}-fr`);
+  // Compare full relative paths (subfolders included) — EN/FR must mirror
+  // exactly, including the on-disk grouping structure.
   const en = new Set(listFiles(enDir).map(stripExt));
   const fr = new Set(listFiles(frDir).map(stripExt));
 
@@ -96,9 +127,34 @@ function verifyContentMirror(collection: string): void {
   }
 }
 
+// Basenames are URL slugs (subfolders are grouping-only; see
+// docs/constraints.md). Two files with the same basename in the same
+// collection — even in different subfolders — would collide at the same URL.
+// Check EN and FR independently.
+function verifyBasenameUniqueness(collection: string): void {
+  for (const lang of LOCALES) {
+    const dir = join(CONTENT, `${collection}-${lang}`);
+    const seen = new Map<string, string>();
+    for (const rel of listFiles(dir)) {
+      const key = stripExt(basename(rel));
+      const prior = seen.get(key);
+      if (prior) {
+        fail(
+          `${collection}-${lang}`,
+          `basename collision at URL slug "${key}": "${prior}" and "${rel}" — subfolders don't disambiguate URLs`,
+        );
+      } else {
+        seen.set(key, rel);
+      }
+    }
+  }
+}
+
 function verifyFrontmatter(collection: string, requireDate: boolean): void {
   for (const lang of LOCALES) {
     const dir = join(CONTENT, `${collection}-${lang}`);
+    // `listFiles` now walks recursively and returns paths relative to `dir`
+    // (subfolders preserved) — `join(dir, relPath)` still resolves correctly.
     for (const file of listFiles(dir)) {
       const full = join(dir, file);
       const rel = relative(ROOT, full);
@@ -198,9 +254,10 @@ function verifyLeadMagnets(): void {
 
 function verifyPageMirror(): void {
   // Every page file under pages/en should have a counterpart under pages/fr,
-  // respecting SLUG_ALIASES for top-level lane renames (essays ↔ essais).
-  const aliasesFromEnToFr: Record<string, string> = { essays: 'essais' };
-  const aliasesFromFrToEn: Record<string, string> = { essais: 'essays' };
+  // respecting SLUG_ALIASES for any top-level lane renames. Empty after
+  // the 2026-04-22 restructure — all lanes use identical slugs now.
+  const aliasesFromEnToFr: Record<string, string> = {};
+  const aliasesFromFrToEn: Record<string, string> = {};
 
   function relToFirstSeg(rel: string): { first: string; tail: string } {
     const segs = rel.split('/');
@@ -252,10 +309,18 @@ function verifyPageMirror(): void {
 
 // --- run ---------------------------------------------------------------
 
-verifyContentMirror('case-files');
-verifyContentMirror('operating-playbooks');
-verifyFrontmatter('case-files', /* requireDate */ true);
-verifyFrontmatter('operating-playbooks', /* requireDate */ false);
+verifyContentMirror('writing');
+verifyContentMirror('work');
+verifyContentMirror('building');
+verifyContentMirror('archive');
+verifyBasenameUniqueness('writing');
+verifyBasenameUniqueness('work');
+verifyBasenameUniqueness('building');
+verifyBasenameUniqueness('archive');
+verifyFrontmatter('writing', /* requireDate */ true);
+verifyFrontmatter('work', /* requireDate */ true);
+verifyFrontmatter('building', /* requireDate */ true);
+verifyFrontmatter('archive', /* requireDate */ false);
 verifySlugAliases();
 verifyLeadMagnets();
 verifyPageMirror();

@@ -54,18 +54,10 @@ export default defineConfig({
       // index.astro and emits a meta-refresh on static builds).
     },
   },
-  // Root redirect + legacy URLs that predate the strict /{locale}/ structure.
-  // Vercel adapter emits these as 301s (vs. the meta-refresh fallback a raw
-  // Astro.redirect in src/pages/index.astro would produce on static build).
+  // Root only. Every other URL is locale-prefixed (/en/..., /fr/...) and
+  // matches a real page under src/pages/{en,fr}/. No legacy aliases, no
+  // cross-lane forwards — the canonical structure is authoritative.
   redirects: {
     '/': '/en/',
-    '/about': '/en/about',
-    '/engineering': '/en/engineering',
-    '/entrepreneurs': '/en/entrepreneurs',
-    '/essays': '/en/essays',
-    '/case-files': '/en/case-files',
-    '/case-files/[slug]': '/en/case-files/[slug]',
-    '/operating-playbooks': '/en/operating-playbooks',
-    '/operating-playbooks/[slug]': '/en/operating-playbooks/[slug]',
   },
 });

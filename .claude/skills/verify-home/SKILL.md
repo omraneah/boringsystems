@@ -14,19 +14,17 @@ Post-change smoke test for the boringsystems home page. Validates the surface-le
 1. Run `npx astro build` from the project root. If it fails, stop and report the error — no other checks make sense against a broken build.
 2. Extract text from the generated HTML and assert:
    - **Root redirect.** `.vercel/output/config.json` contains a route that redirects `^/$` → `/en/` with status 301 (or 308).
-   - **Legacy redirects.** `.vercel/output/config.json` contains 301s for `/about`, `/engineering`, `/entrepreneurs`, `/essays`, `/case-files`, `/operating-playbooks`, and their `/[slug]` variants, all pointing to their `/en/` equivalents.
+   - **Only redirect.** `.vercel/output/config.json` contains exactly one 301: `^/$` → `/en/`. No legacy aliases, no cross-lane forwards. Folder = URL is authoritative.
    - **Highlights — EN** (`dist/client/en/index.html`): three `.highlight-title` elements, in order:
      1. `The Solo Founder's New Baseline: Command an Agent, Own the Build`
      2. `The Operator's AI Stack: April 2026`
      3. `Does Your Early-Stage Startup Actually Need a CTO?`
      Selection logic is driven by frontmatter `highlight: true` + `order` — if this list needs to change, update the articles, not the skill.
    - **Highlights — FR** (`dist/client/fr/index.html`): three titles mirroring the EN above in their French re-voiced form. Do not assert exact strings — just assert three `.highlight-title` elements present and none of them reference English-only brand phrases that were never re-voiced.
-   - **Selected Articles — EN**: four `.card-title` elements under the section labelled `Selected Articles`. Three technical case files (Vendor Lock-In, SaaS Hardening, Architecture Governance) + one playbook (`Context is the Edge`).
-   - **Selected Articles — FR**: four cards under `Articles sélectionnés` matching the FR titles of the same pieces.
-   - **"All case files" link is absent** on both home pages.
-   - **Lead magnet presence.** Both new article pages (`/en/case-files/solo-founder-new-baseline`, `/en/case-files/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
-   - **Mermaid block present** on `/en/case-files/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.
-   - **Hreflang present on every page.** Check that `dist/client/en/index.html`, `dist/client/fr/index.html`, one case-file page, and one essays page all include three `<link rel="alternate" hreflang=…>` tags: `en-US`, `fr-FR`, and `x-default`. Verify the essays ↔ essais slug aliasing: the EN essays page's `fr-FR` link must point to `/fr/essais`, and vice versa.
+   - **No Selected Articles band.** The home page renders only Highlights as a content surface (per ADR-002 amendment). Assert no section labelled `Selected Articles` (EN) or `Articles sélectionnés` (FR) exists in `dist/client/{en,fr}/index.html`.
+   - **Lead magnet presence.** The two lead-magnet-bearing articles (`/en/writing/solo-founder-new-baseline`, `/en/building/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
+   - **Mermaid block present** on `/en/building/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.
+   - **Hreflang present on every page.** Check that `dist/client/en/index.html`, `dist/client/fr/index.html`, one Writing page, one Work page, and one Archive page all include three `<link rel="alternate" hreflang=…>` tags: `en-US`, `fr-FR`, and `x-default`. All lanes use identical slugs across locales — hreflang pairs should point at symmetric paths (`/en/writing` ↔ `/fr/writing`, `/en/work` ↔ `/fr/work`, `/en/archive` ↔ `/fr/archive`, etc.).
    - **Root `/` redirects to `/en/` with 301.** Inspect `.vercel/output/config.json` for a route `{"src":"^/$", "status":301, "headers":{"Location":"/en/"}}`.
 
 3. Run each assertion with a short Python one-liner using stdlib `re`. Example pattern:

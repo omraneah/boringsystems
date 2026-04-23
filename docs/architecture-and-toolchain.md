@@ -89,20 +89,39 @@ Managed in Vercel project settings. For local development, copy to `.env.local` 
 ```
 src/
 ├── components/        ← Reusable UI: ArticleCard, ArticleFeedback, LeadMagnet, Nav, Footer
-├── content/           ← Markdown + MDX articles, symmetric per language:
-│                       case-files-en/, case-files-fr/,
-│                       operating-playbooks-en/, operating-playbooks-fr/.
+├── content/           ← Markdown + MDX articles, one collection per lane × locale:
+│                       writing-{en,fr}/   — thinking pieces + decision guides (primary)
+│                       work-{en,fr}/      — past case studies of real engagements
+│                       building-{en,fr}/  — current AI-native builds shown live
+│                       archive-{en,fr}/   — long-living playbooks and principles
+│                       Lane folder = URL path. File basename = URL slug.
+│                       Any subfolders in between are grouping-only and never
+│                       appear in URLs (see docs/constraints.md "Content").
 │                       Articles are .md by default; use .mdx when a piece needs
 │                       embedded components (e.g. <LeadMagnet />) or mermaid diagrams.
+│
+│                       Archive is grouped on disk by series; URLs stay flat:
+│                         archive-{en,fr}/operating-playbooks/
+│                           series-1-foundations/s1-p0-how-we-run.md
+│                           series-1-foundations/s1-p1-first-30-days.md
+│                           ...
+│                           series-2-leadership-and-judgment/s2-p1-*.md
+│                           series-3-ai-edge/s3-p1-*.md
+│                         → /{lang}/archive/<basename>
+│                       Basename uniqueness per collection is enforced by
+│                       scripts/verify-structure.ts so grouping never causes
+│                       URL collisions.
 ├── layouts/           ← Page layouts (Base.astro, Article.astro).
 │                       Article.astro loads mermaid.js client-side when any
 │                       <pre class="mermaid"> blocks are present on the page.
 ├── lib/               ← Backend + typed registries (mailer.ts, article-meta.ts,
 │                       lead-magnets.ts)
 ├── pages/             ← Routes, strict two-language tree:
-│                       en/* and fr/* mirror each other; api/* is language-neutral.
+│                       en/{writing,work,building,archive}/* and
+│                       fr/{writing,work,building,archive}/* mirror each other.
+│                       api/* is language-neutral.
 │                       No content lives at the root — astro.config.mjs 301-redirects
-│                       `/`, `/case-files/*`, `/engineering`, etc. to `/en/...`.
+│                       `/` to `/en/`. No other redirects: folder = URL.
 └── styles/            ← Global CSS and design tokens
 
 Mermaid diagrams: write a ```mermaid code fence inside a .md or .mdx article.
