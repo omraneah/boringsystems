@@ -1,13 +1,12 @@
 ---
 title: "Context is the Edge"
 description: "The AI harness commoditizes. The only advantage that compounds with you is the context you build, govern, and carry across every session and every agent."
-series: "Series 3 — AI Native"
-seriesNum: 3
-playbook: 2
+date: 2026-04-17
+highlight: true
 featured: true
+order: 4
 ---
 
-# Playbook 2 — Context is the Edge
 The only thing the labs can't ship for you.
 
 ## Purpose

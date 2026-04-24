@@ -1,0 +1,163 @@
+---
+title: "The Harness Behind the Agent"
+description: "The AI agent is becoming a commodity in 2026. The harness you build around it is where operator leverage compounds. A decision guide to the five dimensions, the engine that powers them, and why the next year matters."
+date: 2026-04-24
+featured: true
+order: 3
+---
+
+import LeadMagnet from '@/components/LeadMagnet.astro';
+
+## Context
+
+Most of the public conversation in 2026 is still about models — which one is smarter, which one codes better, which one is cheaper per token. That conversation is real and it will keep running. It is also not the conversation that decides whether an operator gets more done this year than last.
+
+The conversation that decides that is about the **harness** — the layer you wrap around the model, the one that holds your context, your habits, your guardrails, your institutional knowledge. The model is the engine. The harness is the car. A mid-range engine inside a well-built car beats a race engine bolted to a skateboard, every single day.
+
+This piece is the doctrine. Its companion — *[The Agent Harness That Runs 80% of My Work](/en/building/the-harness-i-actually-run)* — is the field tour of how I have it wired for my own work. Read them in whichever order you prefer. This one argues *why*. The other shows *what*.
+
+---
+
+## What the harness actually is
+
+A harness is everything outside the model weights that shapes how the agent behaves on your work. Anthropic has started using the word directly. The community — Mitchell Hashimoto, Addy Osmani, Simon Willison, others — has converged on the same frame from different angles: the harness is the real craft surface for anyone who wants serious leverage out of coding agents in 2026.
+
+The reason this matters for operators, not just engineers, is that the same pattern applies to any work where judgment is the bottleneck and production is being automated. A harness for sales outreach, a harness for content operations, a harness for investor-letter drafting — the mechanics are identical, even when the use case is not engineering.
+
+I think about it in five dimensions, sitting on one substrate, driven by one engine.
+
+---
+
+## The five dimensions
+
+### 1. Skills
+
+Reusable instructions the agent loads on trigger. You can write them yourself; the agent can help you write them. The pattern is the same every time: "when I do X, do it this way." Three conditions, a checklist, a couple of examples — and a recurring workflow becomes a one-line invocation instead of a paragraph you retype every week.
+
+Skills have **scope**: some apply everywhere (commit discipline, decision logging), others only inside one project (article review for a site, deploy pre-checks for a product). Treat scope like permissioning — broad by default is a mistake. A skill that triggers on every session collides with work that doesn't need it.
+
+### 2. Agents
+
+Sub-agents are the plural of the agent. Two flavors are worth distinguishing.
+
+**Task agents** — `Explore`, `Plan`, general-purpose — are units of work you delegate, usually to protect the main context window or to run independent threads in parallel.
+
+**Persona agents** are sub-agents with a point of view. A GTM strategist who thinks about positioning differently than a coding agent does. A principal engineer who reviews architecture the way a senior staff would. A career coach who hears what I'm avoiding before I do. Each is a prompt, a tool budget, a set of documents they read before answering, and a clear set of situations to invoke them for.
+
+The argument against personas is that they are just prompts — which is true, and entirely beside the point. A prompt you invoke deliberately, with the right context pre-loaded, at the moment you need that lens, is a different cognitive experience from one you improvise every session. It compounds the same way a trusted reviewer does: not because they're smarter than you, but because they're *there*, reliably, with context.
+
+### 3. Hooks with triggers
+
+The harness is an orchestrator. Hooks are what make it orchestrate without you repeating yourself.
+
+The high-leverage trigger points are the ones that happen reliably: a session starts, a session ends, a commit happens, a push is attempted, a branch is merged, a file is edited. At each of these points, something should be enforced, surfaced, or automated — otherwise you are remembering it every time.
+
+Examples that earn their keep on a personal harness:
+
+- **On session start** — load the right context files.
+- **Before every tool call** — block pushes to protected branches, so you cannot accidentally push to `main`.
+- **On session end** — auto-commit to the feature branch so uncommitted work never dies in a closed window.
+- **Before every push** — run a security audit; block if critical findings exist.
+
+The hook tax is that they add constraint. That is the point. A harness without constraint is a document library. A harness with enforcement is an operating system.
+
+### 4. Connectors with governance
+
+Connectors are what give the agent context that does not live on your laptop — issues in Linear, threads in Gmail, tickets in Notion, events in your calendar, repos on GitHub. They also give the agent the ability to *act* in those systems. That is where the governance question arrives.
+
+Agents that can read your inbox are useful. Agents that can send from your inbox are a different kind of risk. The operator's job is to decide, for each connector, which verbs are allowed and which require human confirmation. Read-mostly, write-never is a sensible default for anything outward-facing (email, calendar, messaging). Read-write is fine for your own sandboxes.
+
+The other piece of connector hygiene is **auth without tokens on disk**. If your harness requires a personal access token in a file, you will eventually check it in, lose it, or carry it to a machine it shouldn't be on. Modern harnesses route connector auth through the platform itself — no token, no config, no machine-local state. If yours doesn't, it should.
+
+### 5. Memory and context
+
+This is the dimension most people underestimate, and the one that compounds the hardest over time.
+
+Think about it in three time-horizons.
+
+- **Short-lived** — the current session. Tasks, plans, in-progress state. Lives in memory, evaporates when you close the window.
+- **Medium-lived** — operational memory. The feedback patterns you've taught the agent across sessions: "don't do X, here's why, here's how to apply it." Indexed, auto-loaded, cheap to read.
+- **Long-lived** — your strategic context. Identity, positioning, non-negotiables, the reasoning behind your big decisions. Changes slowly. Lives in its own folder, versioned, route-able.
+
+Split the three. Do not merge them. The mental move that changes everything is realizing that *cognitive clarity* is a multiplier — that being able to hold your own context cleanly in your head is what lets you command the agent, review its work, and notice when it's drifting. The harness carries this for you when you can't, and offloads it reliably when you can. The deeper argument for why this specific structure holds — and why git is non-negotiable underneath it — is in *[Context is the Edge](/en/writing/context-is-the-edge)*.
+
+The file structure is not a chore. It is the scaffolding of your attention.
+
+---
+
+## The substrate: version-controlled, laptop-agnostic
+
+The five dimensions sit on one substrate: **your harness is a git repository**.
+
+This is not a technical preference. It is the property that makes everything else survive. A skill you wrote last month is load-bearing next Tuesday only if it still exists, on this laptop, in the same place, and any replacement laptop can reach it through a clean clone. A hook you rely on is only a hook if it persists. A memory file is only memory if it doesn't evaporate when you re-install your OS.
+
+Version-controlled also means **reviewable**. When your harness grows, you see what grew. When a skill stops earning its keep, you can remove it and see the diff. When you switch machines, you run a one-line setup script and you are back — same skills, same hooks, same personas, same memory.
+
+The test I run for anything in my harness: *if I cloned this repo on a fresh machine tomorrow, would it work?* If the answer is "only if I also did five manual things on the side," the thing isn't real yet.
+
+---
+
+## The engine: the loop, and the pruning
+
+Five dimensions and a substrate get you a static harness. That's the easy part.
+
+The hard part is the loop that makes the harness improve. Hashimoto's phrasing is the cleanest I've read: **every time the agent makes a mistake, engineer the solution so it never makes that mistake again.** That is it. That is the operating discipline. Everything in the harness is either a piece of scaffolding you put there on purpose or a mistake you refused to fix twice.
+
+In practice that looks like: the agent does something you didn't want, you tell it why, and then you write it down somewhere the agent will see next time. Could be a feedback memory. Could be a skill. Could be a hook. Whichever fits. The point is that the lesson persists past this session.
+
+The half of this loop nobody writes about is **pruning**. Skills that stopped being useful. Hooks that made sense six months ago and now slow you down. Memory files that were true once and aren't anymore. A harness that only grows eventually becomes the thing you trip over. My rough rule: every few months, read the harness as a stranger would, and ask each artifact — *would I add this today?* If not, cut.
+
+---
+
+## The counter-position worth taking seriously
+
+The sharpest public critique of harness-heavy work comes from **Armin Ronacher**: *if you want the agent to do something it doesn't yet do, don't build a skill for it — ask the agent to extend itself.* His argument is that self-extending, shell-based minimalism outperforms layered personal harnesses for engineers who are actually coding all day.
+
+For the narrow problem of "I am a senior engineer inside a codebase I know well, working on a single project for weeks" — he is probably right. An agent that can write its own small scripts as it goes covers a lot of ground, and less scaffolding is less to maintain.
+
+For the operator problem — which is what this piece is about — it plays differently. Operators work across sessions, across projects, across weeks, with memory that needs to persist and positioning that needs to stay coherent between a GTM conversation on Monday and an architecture decision on Thursday. Self-extension in a single session doesn't carry forward. A persistent, version-controlled harness does.
+
+Both positions can be right for different people. The honest version of the argument is: **minimalism wins when the work is bounded; structured harnesses win when the work is durable.** If your work is durable, invest.
+
+---
+
+## The platformization window
+
+A fair worry: the platforms will absorb much of this. Anthropic already ships managed memory, managed agents, sandboxed execution. Other platforms are moving the same direction. Will skills, hooks, personas, connectors — will this whole craft — get subsumed into the product layer within a year or two?
+
+Yes, partly. Some dimensions will move up the stack. That is not a reason to wait.
+
+Two things compound for the builder who starts now. **The first** is the operator muscle itself — the taste for what to hook, the judgment for which memory to keep, the instinct for when to build a persona and when a skill suffices. That doesn't come from reading. It comes from running the thing for a year.
+
+**The second** is that the platforms will absorb the *mechanics*, not the *decisions*. What to enforce, whose voice the persona should borrow, which connectors to let write — those remain yours. When the platform makes skills cheaper to build, the operator who already knows what skills pay for themselves will pull ahead faster than the one starting from zero.
+
+The window for starting before the mechanics are commodity is now. A year of operator-muscle head start compounds the way anything compounds — unevenly at first, then inevitably.
+
+---
+
+## What I notice, running this
+
+I am not going to give you a multiplier number. Nobody has clean measurements on this yet, and the numbers that get thrown around in public are mostly vibes.
+
+What I can tell you is what I notice.
+
+Things that used to sit in my backlog for weeks get shipped in a session, because the harness carries the setup cost that used to kill the momentum. Things I would have hired someone to do — small front-end jobs, short analyses, first drafts of positioning copy — I do myself now, faster than scoping the engagement would take. Decisions I would have made alone get run past a persona first; the persona catches maybe one in five before I commit, and those are the ones that would have cost me most to unwind. Compounding is real. It does not show up as one big thing. It shows up as a lot of small things no longer stopping you.
+
+---
+
+## Closing note
+
+The agent is going to keep getting better. That is a safe bet. The next model will be smarter than this one, and the one after that smarter still. None of that is the edge. Every operator reading this will have access to the same model.
+
+The edge is the harness. The skills you wrote last quarter because you got tired of repeating yourself. The persona that caught the sloppy thinking before you sent the message. The hook that blocked the push before the mistake reached production. The memory file that remembers what you decided in February, so the April decision is consistent. The version-controlled repo that survives your next laptop.
+
+None of this is theater. It is the operating discipline of the next decade compressed into the thing you carry between your laptop and the agent. Build it now, tune it weekly, prune it honestly, and the compounding takes care of itself.
+
+The concrete version — file tree, mermaid diagram, every hook I actually run, and how I structure memory and personas — is in *[The Agent Harness That Runs 80% of My Work](/en/building/the-harness-i-actually-run)*. Read it when you are ready to copy shapes.
+
+<LeadMagnet
+  assetSlug="harness-audit"
+  lang="en"
+  articleTitle="The Harness Behind the Agent"
+  articleUrl="https://boringsystems.app/en/writing/harness-behind-the-agent"
+/>

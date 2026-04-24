@@ -1,6 +1,7 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { formatDate } from '@/lib/article-meta';
 
 const writing = await getCollection('writing-fr');
 const work = await getCollection('work-fr');
@@ -14,8 +15,12 @@ const allArticles = [
 
 const highlights = allArticles
   .filter(({ entry }) => entry.data.highlight)
-  .sort((a, b) => (a.entry.data.order ?? 99) - (b.entry.data.order ?? 99))
-  .slice(0, 3);
+  .sort((a, b) => {
+    const dateDiff = new Date(b.entry.data.date).getTime() - new Date(a.entry.data.date).getTime();
+    if (dateDiff !== 0) return dateDiff;
+    return (a.entry.data.order ?? 99) - (b.entry.data.order ?? 99);
+  })
+  .slice(0, 4);
 
 const laneLabelsFr: Record<'writing' | 'work' | 'building', string> = {
   'writing': 'Writing',
@@ -42,7 +47,7 @@ const laneLabelsFr: Record<'writing' | 'work' | 'building', string> = {
         <div class="highlight-stack">
           {highlights.map(({ entry, lane }) => (
             <a href={`/fr/${lane}/${entry.slug.split('/').pop()}`} class="highlight-card">
-              <span class="highlight-series">{laneLabelsFr[lane]}</span>
+              <span class="highlight-series">{laneLabelsFr[lane]} · {formatDate(entry.data.date, 'fr')}</span>
               <h2 class="highlight-title">{entry.data.title}</h2>
               <p class="highlight-description">{entry.data.description}</p>
               <span class="highlight-read accent">Lire →</span>

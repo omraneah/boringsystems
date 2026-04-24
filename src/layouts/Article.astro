@@ -312,6 +312,13 @@ const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) 
     border-radius: 2px;
   }
 
+  .article-body pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
   .article-body table {
     width: 100%;
     border-collapse: collapse;
