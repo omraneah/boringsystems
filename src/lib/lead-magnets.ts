@@ -19,6 +19,53 @@ export interface LeadMagnetAsset {
 }
 
 export const LEAD_MAGNETS: Record<string, LeadMagnetAsset> = {
+  'harness-audit': {
+    slug: 'harness-audit',
+    title: {
+      en: 'Personal AI Harness Audit',
+      fr: 'Audit de votre AI harness personnel',
+    },
+    description: {
+      en: 'Send me a short description of your current harness — skills, hooks, memory, personas, connectors — and I\'ll send back a written audit plus a set of prompts your coding agent can run to level it up.',
+      fr: 'Envoyez-moi une description courte de votre harness actuel — skills, hooks, memory, personas, connectors — et je vous renvoie un audit écrit avec un set de prompts que votre coding agent peut lancer pour le faire évoluer.',
+    },
+    buttonLabel: {
+      en: 'Send me the audit',
+      fr: 'Envoyez-moi l\'audit',
+    },
+    prompt: {
+      en: 'Drop your email and one paragraph on your current setup — or a link to your `.claude/` folder if it\'s public. One email back with the audit and the next-step prompts. No list, no sequence.',
+      fr: 'Laissez votre email et un paragraphe sur votre setup actuel — ou un lien vers votre dossier `.claude/` s\'il est public. Un seul email retour avec l\'audit et les prompts de next step. Pas de liste, pas de séquence.',
+    },
+    confirmation: {
+      en: {
+        subject: 'Your AI Harness Audit — incoming',
+        body: [
+          'Thanks for reaching out.',
+          '',
+          'I\'ll review what you sent and come back within a few days with a written audit — concrete observations on what\'s working, what to reorder, what to cut — plus a short set of prompts you can hand your coding agent to apply the changes.',
+          '',
+          'If you want to sharpen the audit, reply with the one constraint or workflow that bothers you most today. I\'ll focus there.',
+          '',
+          '— Ahmed',
+          'boringsystems.app',
+        ].join('\n'),
+      },
+      fr: {
+        subject: 'Votre AI Harness Audit — en préparation',
+        body: [
+          'Merci pour votre message.',
+          '',
+          'Je regarde ce que vous m\'avez envoyé et je reviens dans les prochains jours avec un audit écrit — observations concrètes sur ce qui marche, ce qu\'il faut réordonner, ce qu\'il faut couper — plus un set de prompts à donner à votre coding agent pour appliquer les changements.',
+          '',
+          'Pour un audit plus ciblé : répondez avec la contrainte ou le workflow qui vous gêne le plus aujourd\'hui. Je focaliserai là-dessus.',
+          '',
+          '— Ahmed',
+          'boringsystems.app',
+        ].join('\n'),
+      },
+    },
+  },
   'ai-native-builder-starter-prompt': {
     slug: 'ai-native-builder-starter-prompt',
     title: {
