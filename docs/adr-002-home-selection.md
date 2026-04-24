@@ -1,6 +1,6 @@
 # ADR-002 — Home-page selection semantics
 
-**Status:** Accepted — 2026-04-21 · Amended 2026-04-22 (lane rename: Writing / Work / Building / Archive) · Amended 2026-04-22 (Selected Articles band removed; Highlights is the sole content surface on home)
+**Status:** Accepted — 2026-04-21 · Amended 2026-04-22 (lane rename: Writing / Work / Building / Archive) · Amended 2026-04-22 (Selected Articles band removed; Highlights is the sole content surface on home) · Amended 2026-04-24 (Highlights sort is now `date` desc with `order` asc as tiebreaker; cap raised 3 → 4; publish date rendered inline with lane label on every card)
 **Scope:** `src/pages/{en,fr}/index.astro`, `src/content/config.ts`
 
 ## Context
@@ -18,14 +18,15 @@ Each flag has one surface it drives. Surfaces and their sources are listed below
 | Flag | Type | Default | Purpose |
 |---|---|---|---|
 | `featured` | boolean | `false` | Currently dormant. Was used by the removed Selected Articles band; re-activates if it's reintroduced. |
-| `highlight` | boolean | `false` | Include in the home *Highlights* stack. Union across Writing + Work + Building. Capped at three — if more are flagged, only the first three (by `order`) render. |
-| `order` | number | `99` | Sort key for the home *Highlights* band only. Not used by lane index pages (those sort by `date`). |
+| `highlight` | boolean | `false` | Include in the home *Highlights* stack. Union across Writing + Work + Building. Capped at four — if more are flagged, only the four newest (by `date`, with `order` asc as tiebreaker) render. |
+| `date` | ISO date | required | Primary home *Highlights* sort key (desc — newest first). Also renders in the lane-label meta strip on the card via `formatDate()` in `src/lib/article-meta.ts`. |
+| `order` | number | `99` | Tiebreaker when two highlighted articles share a `date`. Lower wins. Not consulted when dates differ. |
 
 ### Surfaces
 
 | Surface | Source query | Sort | Cap |
 |---|---|---|---|
-| Home *Highlights* | union of `writing-{lang}`, `work-{lang}`, `building-{lang}` where `highlight: true` | `order` asc (editorial curation) | `.slice(0, 3)` |
+| Home *Highlights* | union of `writing-{lang}`, `work-{lang}`, `building-{lang}` where `highlight: true` | `date` desc, `order` asc as tiebreaker | `.slice(0, 4)` |
 | `/writing` | all `writing-{lang}` | `date` desc (newest first) | — |
 | `/work` | all `work-{lang}` | `date` desc (newest first) | — |
 | `/building` | all `building-{lang}` | `date` desc (newest first) | — |
@@ -37,15 +38,20 @@ At the site's current volume (six articles across four lanes), the home page's j
 
 Re-introduce a second band (Selected Articles or otherwise) only when published volume makes Highlights feel like a narrow window onto a larger body of work.
 
-### Why three highlights, not N
+### Why four highlights, not three
 
-The design charter calls for density without decorative motion. Three is the point at which the home page gives every visitor the three doors Ahmed wants them to walk through first, without scrolling overwhelm. Four starts to feel like a list; two leaves obvious space. Enforcing via `.slice(0, 3)` is intentional — if a fourth article gets `highlight: true`, it should push an older one out (by raising `order`), not silently append.
+Previously capped at three on the thesis that three doors is the right amount for a cold visitor. Four is the current cap because the home now earns its fourth slot: a date-sorted stack of four visibly-dated articles reads as a running log of Ahmed's current thinking, not a curated shortlist. Three would silently drop the oldest flagged piece every time a new one gets promoted — unhelpful when two pieces publish in the same week. Five starts to feel like a list.
+
+### Why sort by date, not editorial order
+
+`order` ASC encoded a fixed editorial ranking, which degraded every time a newer piece earned the top slot: Ahmed had to re-stamp `order` across multiple files to keep the ranking fresh. `date` DESC auto-rolls: the newest highlighted piece leads without any frontmatter edit anywhere else. `order` survives as a tiebreaker only — used when two highlighted pieces publish the same day, which is rare but not zero.
 
 ## Consequences
 
 - **Lane indexes are chronological.** Newest article appears first on `/writing`, `/work`, `/building`. Publishing a new article automatically promotes it to the top of its lane. No flag to set.
-- **Home Highlights are editorial.** Ahmed curates — flip `highlight: true` on the three pieces worth surfacing to cold visitors, set a low `order` to control placement. Lane position (which piece leads the lane) is driven by date, independent of this choice.
-- Adding a new highlight = set `highlight: true` and a low `order` on an article in any of Writing / Work / Building. Previous highlights either drop out (if their `order` is now higher than three others) or stay.
+- **Home Highlights are editorial selection, chronological order.** Ahmed curates *which* pieces surface (by flipping `highlight: true`); the home orders them for him (newest first). The curation and the ordering are now decoupled.
+- Adding a new highlight = set `highlight: true` on an article in any of Writing / Work / Building. No `order` edit needed unless two pieces share a `date` and the default tiebreaker is wrong. Once more than four pieces carry `highlight: true`, the oldest drops out automatically.
+- **Date rendering.** Every highlight card shows its publish date inline with the lane label (`Building · Apr 24, 2026` / `Building · 24 avr. 2026`). Format is locale-aware via `formatDate()` in `src/lib/article-meta.ts`.
 - Legacy `homePinned`, `showOnHome`, or any similar flag MUST NOT be added to the schema. Widen the home selection logic instead of adding flags.
 - The `verify-home` skill asserts that the current Highlights expectations still hold after any change. Run it after touching frontmatter flags, `order` values, or selection logic.
 

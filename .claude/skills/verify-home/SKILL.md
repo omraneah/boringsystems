@@ -18,8 +18,8 @@ Post-change smoke test for the boringsystems home page. Validates the surface-le
    - **Highlights — EN** (`dist/client/en/index.html`): four `.highlight-title` elements, in order (sort: publish date DESC, `order` ASC as tiebreaker, capped at 4):
      1. `The Agent Harness That Runs 80% of My Work`   (2026-04-24)
      2. `The Operator's AI Stack: April 2026`           (2026-04-21)
-     3. `Context is the Edge`                           (2026-04-17, order 4)
-     4. `Does Your Early-Stage Startup Actually Need a CTO?` (2026-04-17, order 6)
+     3. `Does Your Early-Stage Startup Actually Need a CTO?` (2026-04-19)
+     4. `Context is the Edge`                           (2026-04-17)
      Selection logic is driven by frontmatter `highlight: true` + `date` + `order` — if this list needs to change, update the articles, not the skill.
    - **Highlights — FR** (`dist/client/fr/index.html`): four titles mirroring the EN above in their French re-voiced form. Do not assert exact strings — just assert four `.highlight-title` elements present and none of them reference English-only brand phrases that were never re-voiced.
    - **Highlight date strip.** Each `.highlight-series` element must contain a ` · ` separator followed by a formatted date string. Locale-aware: EN uses `en-US` short-month format (e.g. `Apr 24, 2026`), FR uses `fr-FR` short-month format (e.g. `24 avr. 2026`).
