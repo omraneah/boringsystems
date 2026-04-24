@@ -1,13 +1,11 @@
 ---
 title: "Le contexte est l'avantage"
 description: "Le harnais IA se commoditise. Le seul avantage qui se compose avec vous est le contexte que vous construisez, gouvernez et portez à travers chaque session et chaque agent."
-series: "Série 3 — Natif IA"
-seriesNum: 3
-playbook: 2
+date: 2026-04-17
 featured: true
+order: 4
 ---
 
-# Guide 2 — Le contexte est l'avantage
 La seule chose que les labs ne peuvent pas livrer pour vous.
 
 ## Objectif
