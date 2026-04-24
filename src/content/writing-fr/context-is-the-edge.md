@@ -2,6 +2,7 @@
 title: "Le contexte est l'avantage"
 description: "Le harnais IA se commoditise. Le seul avantage qui se compose avec vous est le contexte que vous construisez, gouvernez et portez à travers chaque session et chaque agent."
 date: 2026-04-17
+highlight: true
 featured: true
 order: 4
 ---

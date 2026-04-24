@@ -15,12 +15,14 @@ Post-change smoke test for the boringsystems home page. Validates the surface-le
 2. Extract text from the generated HTML and assert:
    - **Root redirect.** `.vercel/output/config.json` contains a route that redirects `^/$` → `/en/` with status 301 (or 308).
    - **Only redirect.** `.vercel/output/config.json` contains exactly one 301: `^/$` → `/en/`. No legacy aliases, no cross-lane forwards. Folder = URL is authoritative.
-   - **Highlights — EN** (`dist/client/en/index.html`): three `.highlight-title` elements, in order:
-     1. `The Agent Harness That Runs 80% of My Work`
-     2. `The Operator's AI Stack: April 2026`
-     3. `Does Your Early-Stage Startup Actually Need a CTO?`
-     Selection logic is driven by frontmatter `highlight: true` + `order` — if this list needs to change, update the articles, not the skill.
-   - **Highlights — FR** (`dist/client/fr/index.html`): three titles mirroring the EN above in their French re-voiced form. Do not assert exact strings — just assert three `.highlight-title` elements present and none of them reference English-only brand phrases that were never re-voiced.
+   - **Highlights — EN** (`dist/client/en/index.html`): four `.highlight-title` elements, in order (sort: publish date DESC, `order` ASC as tiebreaker, capped at 4):
+     1. `The Agent Harness That Runs 80% of My Work`   (2026-04-24)
+     2. `The Operator's AI Stack: April 2026`           (2026-04-21)
+     3. `Context is the Edge`                           (2026-04-17, order 4)
+     4. `Does Your Early-Stage Startup Actually Need a CTO?` (2026-04-17, order 6)
+     Selection logic is driven by frontmatter `highlight: true` + `date` + `order` — if this list needs to change, update the articles, not the skill.
+   - **Highlights — FR** (`dist/client/fr/index.html`): four titles mirroring the EN above in their French re-voiced form. Do not assert exact strings — just assert four `.highlight-title` elements present and none of them reference English-only brand phrases that were never re-voiced.
+   - **Highlight date strip.** Each `.highlight-series` element must contain a ` · ` separator followed by a formatted date string. Locale-aware: EN uses `en-US` short-month format (e.g. `Apr 24, 2026`), FR uses `fr-FR` short-month format (e.g. `24 avr. 2026`).
    - **No Selected Articles band.** The home page renders only Highlights as a content surface (per ADR-002 amendment). Assert no section labelled `Selected Articles` (EN) or `Articles sélectionnés` (FR) exists in `dist/client/{en,fr}/index.html`.
    - **Lead magnet presence.** The two lead-magnet-bearing articles (`/en/writing/solo-founder-new-baseline`, `/en/building/operator-ai-stack-april-2026`) contain a `<section class="lead-magnet">` block. FR mirrors too.
    - **Mermaid block present** on `/en/building/operator-ai-stack-april-2026` and its FR mirror — a `<pre class="mermaid">` tag with a `flowchart` keyword inside.

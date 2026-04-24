@@ -2,6 +2,7 @@
 title: "Context is the Edge"
 description: "The AI harness commoditizes. The only advantage that compounds with you is the context you build, govern, and carry across every session and every agent."
 date: 2026-04-17
+highlight: true
 featured: true
 order: 4
 ---

@@ -1,11 +1,13 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { formatDate } from '@/lib/article-meta';
 
 // Highlights: articles across Writing + Work + Building flagged
-// `highlight: true`, sorted by `order`, capped at 3. Only home-page
-// content surface at this stage — Selected Articles was removed until
-// there's enough material to merit a second band.
+// `highlight: true`, sorted by publish date DESC (newest first), with
+// `order` ASC as tiebreaker when two pieces share a date. Capped at 4.
+// Only home-page content surface at this stage — Selected Articles was
+// removed until there's enough material to merit a second band.
 const writing = await getCollection('writing-en');
 const work = await getCollection('work-en');
 const building = await getCollection('building-en');
@@ -18,8 +20,12 @@ const allArticles = [
 
 const highlights = allArticles
   .filter(({ entry }) => entry.data.highlight)
-  .sort((a, b) => (a.entry.data.order ?? 99) - (b.entry.data.order ?? 99))
-  .slice(0, 3);
+  .sort((a, b) => {
+    const dateDiff = new Date(b.entry.data.date).getTime() - new Date(a.entry.data.date).getTime();
+    if (dateDiff !== 0) return dateDiff;
+    return (a.entry.data.order ?? 99) - (b.entry.data.order ?? 99);
+  })
+  .slice(0, 4);
 
 const laneLabels: Record<'writing' | 'work' | 'building', string> = {
   'writing': 'Writing',
@@ -46,7 +52,7 @@ const laneLabels: Record<'writing' | 'work' | 'building', string> = {
         <div class="highlight-stack">
           {highlights.map(({ entry, lane }) => (
             <a href={`/en/${lane}/${entry.slug.split('/').pop()}`} class="highlight-card">
-              <span class="highlight-series">{laneLabels[lane]}</span>
+              <span class="highlight-series">{laneLabels[lane]} · {formatDate(entry.data.date, 'en')}</span>
               <h2 class="highlight-title">{entry.data.title}</h2>
               <p class="highlight-description">{entry.data.description}</p>
               <span class="highlight-read accent">Read →</span>
