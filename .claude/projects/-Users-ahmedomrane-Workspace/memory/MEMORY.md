@@ -17,3 +17,5 @@
 - [Platform Features First](feedback_platform_features_first.md) — Check framework native support before reimplementing i18n/auth/routing/caching/redirects. Custom reimplementation is a recurring failure mode.
 - [Audit-Fix Isolation](feedback_audit_fix_isolation.md) — npm audit work lives in its own PR, never bundled with structural/feature changes. Rollback + reviewer triage reasons.
 - [Planning Snapshot Before Flags](feedback_planning_snapshot_before_flags.md) — Every pre-publish review skill opens with an inferred-intent statement (placement + audience + one-sentence read + up-front verdicts) before the flag list. Catches miscalls fast.
+- [Batch Permission for Skill Edits](feedback_batch_permission_for_skill_edits.md) — For multi-skill sweeps: ask once upfront with the full plan, execute all edits in a batch, validate at the end. No per-skill confirmation.
+- [Commit + Push Without Asking](feedback_commit_push_no_ask.md) — On task completion: commit + push to a feature branch automatically. Never main. No permission check.

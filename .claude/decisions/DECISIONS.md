@@ -357,3 +357,17 @@ Applied immediately: moved `article-capture`, `article-review`, `french-audit` f
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-04-24 — Persona subagents architecture (Naomi / Daniel / Hadi)
+
+**Context:** Ahmed wanted multiple specialized "expert chat rooms" — GTM strategist, principal engineer, career coach — to navigate distinct dimensions of his current professional transition. The existing `gtm-discussion` skill demonstrated the pattern but was the wrong primitive: skills load context once into the main thread, then the model drifts back to default behavior over a multi-turn conversation. Research (Anthropic docs + community practice including the SuperClaude Framework) confirmed subagents are the right primitive for sustained role-play because each subagent's system prompt is active on every turn.
+
+**Decision:** Create three subagents at `.claude/agents/`: `gtm-strategist` (Naomi Renard), `principal-engineer` (Daniel Kovac), `career-coach` (Hadi Bensoussan). Each has a named archetypal persona with backstory, voice, operating constraints, what-they're-for / what-they're-not-for boundaries, and an `@imports` block preloading the substrate context (GTM folder + strategic advisor for Naomi; cross-stack ARDs + workspace CLAUDE.md for Daniel; inner-game docs + strategic advisor for Hadi). All three: Opus 4.7, full repo tools (Read/Edit/Write/Bash/Grep/Glob/WebSearch/WebFetch), TLDR output style, forward-focused, hand off rather than overreach. Deleted the now-redundant `gtm-discussion` skill. Added `.claude/agents/README.md` documenting invocation, iteration protocol, and a load-bearing calibration disclaimer that the personas are first drafts — Ahmed has not vetted the reference figures (April Dunford, Gary Vee, Camille Fournier, Charity Majors, Jung) and should rewrite voices that don't serve him after real use.
+
+**Why:** Subagents enforce role across multi-turn conversations (system prompt active every turn) where skills drift. Named archetypal personas (vs unnamed advisors) give the model a consistent voice to inhabit, deeper than abstract role definitions. Archetypal-and-named (not real-person impersonation) avoids brittle mimicry while still anchoring depth. Each persona's "what they're NOT for" plus the trio's complementary scopes (positioning / engineering / inner-game) covers the three dimensions Ahmed is navigating without overlap. Preloading substrate via `@imports` means the persona inhabits the material at session start instead of having to discover it. Calibration disclaimer prevents the personas from being treated as fixed — they are first drafts, iterable as Ahmed learns what voice actually works for him.
+
+**Expected outcome:** Ahmed can run focused multi-turn sessions in any of three persona modes (`claude --agent <name>`) without role drift. Each persona consults the right substrate without being told. Voices stay coherent across long conversations. After 2-3 real sessions per persona, Ahmed iterates the agent files where voices land off — the README documents the protocol so iteration doesn't require rebuilding from scratch. The pattern scales to additional personas (real-estate agent, others) by following the same structure.
+
+**Actual outcome:** *(pending)*
+
+---
