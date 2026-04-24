@@ -16,7 +16,7 @@ Post-change smoke test for the boringsystems home page. Validates the surface-le
    - **Root redirect.** `.vercel/output/config.json` contains a route that redirects `^/$` → `/en/` with status 301 (or 308).
    - **Only redirect.** `.vercel/output/config.json` contains exactly one 301: `^/$` → `/en/`. No legacy aliases, no cross-lane forwards. Folder = URL is authoritative.
    - **Highlights — EN** (`dist/client/en/index.html`): three `.highlight-title` elements, in order:
-     1. `The Harness I Actually Run`
+     1. `The Agent Harness That Runs 80% of My Work`
      2. `The Operator's AI Stack: April 2026`
      3. `Does Your Early-Stage Startup Actually Need a CTO?`
      Selection logic is driven by frontmatter `highlight: true` + `order` — if this list needs to change, update the articles, not the skill.
