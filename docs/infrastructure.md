@@ -37,7 +37,7 @@ Hooks are shell commands wired into Claude Code events. They run deterministical
 ## Setup on a new machine
 
 ```bash
-git clone git@github.com:omraneah/workspace.git ~/Workspace
+git clone https://github.com/omraneah/workspace.git ~/Workspace
 cd ~/Workspace
 git submodule update --init --recursive
 bash .claude/setup.sh
@@ -49,6 +49,26 @@ bash .claude/setup.sh
 - `~/.claude/projects/-Users-ahmedomrane-Workspace/memory/` → `.claude/projects/-Users-ahmedomrane-Workspace/memory/`
 
 `settings.local.json` is gitignored — it is Claude's runtime permission cache, not config.
+
+## Why HTTPS for submodules (cloud-agent compatibility)
+
+Submodule URLs in `.gitmodules` use **HTTPS** (`https://github.com/omraneah/...`) rather than SSH. This is load-bearing for the cloud-agent test (CLAUDE.md test #2): a claude.ai cloud agent has no SSH private key, but the GitHub connector populates Git's HTTPS credential helper transparently with a short-lived OAuth token. SSH submodule URLs fail in cloud-agent environments with `Permission denied (publickey)`; HTTPS URLs work without manual token setup.
+
+**On the local laptop**, both protocols are supported simultaneously. Two patterns work:
+
+1. **Transparent SSH-via-HTTPS** (recommended if you already have an SSH key registered with GitHub):
+   ```bash
+   git config --global url."git@github.com:".insteadOf "https://github.com/"
+   ```
+   Canonical URLs in the repo stay HTTPS (cloud-agent compatible). Your laptop transparently rewrites every `https://github.com/` to `git@github.com:` at runtime, so actual transport is SSH and your existing key keeps working. Cloud agent has no global git config, ignores the rewrite, uses HTTPS as written.
+
+2. **Native HTTPS via macOS Keychain** (if you want HTTPS to genuinely work end-to-end):
+   ```bash
+   git config --global credential.helper osxkeychain
+   ```
+   First HTTPS pull/push prompts for username (your GitHub username) and password (a Personal Access Token from github.com → Settings → Developer settings → Personal access tokens, scoped at minimum to `repo`). Token cached in Keychain; subsequent operations transparent. SSH continues to work in parallel for any explicit `git@` URL.
+
+Pattern 1 is lower-friction (no PAT to generate or rotate). Pattern 2 makes HTTPS a real first-class transport on the laptop. Pick one or both — they coexist.
 
 ## MCP integrations — connector-first
 
