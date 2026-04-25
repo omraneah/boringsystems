@@ -14,6 +14,7 @@ It's **operational** — updated weekly as inbound lands and positioning iterate
 | `offers.md` | The freelance offers currently on the table — structure, pricing logic, stated deliverables, target buyer. | When an offer shifts |
 | `hypotheses.md` | Active bets about the market and how Ahmed is positioning into it. Each hypothesis has an invalidation trigger. | When reality confirms or contradicts a bet |
 | `signals.md` | Running log of inbound signal — DMs, referrals, advisory-call requests, rejections. Feeds hypothesis updates. | Per-inbound, or weekly batch |
+| `outreach-templates.md` | Reusable outbound message templates — warm-tie reactivation, etc. Bucketed by relationship depth and cross-cultural notes. | When a new pattern earns its keep |
 
 ## Relationship to other folders
 
