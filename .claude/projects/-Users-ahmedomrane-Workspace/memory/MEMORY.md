@@ -22,3 +22,4 @@
 - [Two-Tier Agent Architecture](feedback_two_tier_agents.md) — Operational agents (context-loaded, faithful executors) vs Strategic advisors (context-naive, frame-challengers). Different rules, different cadences.
 - [Advisory Board — Six Strategic Advisors](project_advisory_board.md) — Branson / Munger / Singer / Naval / Greene / Godin. All entrepreneurs, courage-and-above register, never read plans. Margaret kept as operational release-companion.
 - [Voice-Dictation Disambiguation](feedback_voice_dictation_disambiguation.md) — When Ahmed dictates, voice-to-text slips on proper nouns. Try plausible homophones inline before asking him to repeat.
+- [Advisor Brief Craft — Don't Amplify Identity-Doc Sentences](feedback_advisor_brief_craft.md) — Never inflate a single line from a long-arc identity doc into a "live variable" in an advisor brief. Grep fresh-state files first; advisors are context-naive.
