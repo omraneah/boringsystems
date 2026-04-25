@@ -1,5 +1,6 @@
 ---
 import Base from '@/layouts/Base.astro';
+import ContactForm from '@/components/ContactForm.astro';
 
 const updated = '2026-04-25';
 ---
@@ -11,51 +12,49 @@ const updated = '2026-04-25';
         <p class="label">Comment on travaille ensemble</p>
         <h1 class="page-title">Quatre formes</h1>
         <p class="opener">
-          Si on a déjà discuté et que tu te demandes par où commencer — voici comment je travaille. Lis, puis dis-moi laquelle colle.
+          Si on a déjà discuté et que vous vous demandez par où commencer — voici comment je travaille. Lisez, puis dites-moi laquelle colle.
         </p>
       </header>
 
       <article class="shape">
         <h2 class="shape-title">Fractional CTO / CPO / tech-product builder</h2>
         <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Un leadership technique embarqué, un à deux jours par semaine. Strategy, architecture, recrutements clés, et les arbitrages qui demandent un second cerveau senior dans la pièce. Pas un IC hands-on — le siège au-dessus, là où les décisions à conséquences se prennent.</p>
-        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Tu as un produit en marché, une équipe engineering entre cinq et cinquante, et tu as besoin d'une présence au niveau leadership sans engager un full-time. Ou tu es entre deux CTOs et le travail ne peut pas attendre.</p>
-        <p class="shape-line"><span class="shape-key">Quand non.</span> Tu cherches quelqu'un qui code cinq jours sur cinq. Tu veux un CTO replacement, pas un CTO peer dans la pièce. Il n'y a pas de vacance au niveau leadership à combler.</p>
+        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Vous avez un produit en marché, une équipe engineering entre cinq et cinquante, et vous avez besoin d'une présence au niveau leadership sans engager un full-time. Ou vous êtes entre deux CTOs et le travail ne peut pas attendre.</p>
+        <p class="shape-line"><span class="shape-key">Quand non.</span> Vous cherchez quelqu'un qui code cinq jours sur cinq. Vous voulez un CTO replacement, pas un CTO peer dans la pièce. Il n'y a pas de vacance au niveau leadership à combler.</p>
         <p class="shape-line"><span class="shape-key">Les deux premières semaines.</span> Lire le système. Parler aux engineers et au product. Produire un read écrit : ce qui marche, ce qui est à risque, et les trois choses qui composent sur le prochain trimestre si on les fait bien.</p>
         <p class="shape-line"><span class="shape-key">Cadence.</span> Trois mois minimum, en continu.</p>
       </article>
 
       <article class="shape">
         <h2 class="shape-title">Complex project lead</h2>
-        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Porter un chantier complexe ou bloqué de bout en bout, en freelance senior — strategy plus operational plus tactical, dans la même personne. Migrations, transformations, transitions, déblocage cross-functional, ou first-MVP zero-to-one pour un client de plus grande taille. Le travail qui échoue quand on le découpe entre un consultant pour la strategy et un IC pour l'execution.</p>
-        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Clients de plus grande taille, projet qui demande quelqu'un capable de lire le système, séquencer le travail, et faire bouger les pièces. Là où les vrais blocages sont les gens, les décisions, les dépendances — et seulement secondairement la technique.</p>
-        <p class="shape-line"><span class="shape-key">Quand non.</span> Le projet est de l'execution simple et tu as déjà un owner interne. Ou c'est du pure deliverable consulting sans surface opérationnelle — un deck, une recommandation, pas de mouvement.</p>
+        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Porter un chantier complexe ou bloqué dans un client de plus grande taille, de bout en bout, en freelance senior — strategy plus operational plus tactical, dans la même personne. Migrations, transformations, transitions, déblocage cross-functional. Le travail qui échoue quand on le découpe entre un consultant pour la strategy et un IC pour l'execution.</p>
+        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Clients de plus grande taille où le projet traverse les équipes ou les stacks, et les vrais blocages sont les gens, les décisions, les dépendances — seulement secondairement techniques. Quelqu'un doit lire le système, séquencer le travail, et faire bouger l'organisation autour.</p>
+        <p class="shape-line"><span class="shape-key">Quand non.</span> Le projet est de l'execution simple et vous avez déjà un owner interne. Ou c'est du pure deliverable consulting sans surface opérationnelle — un deck, une recommandation, pas de mouvement. Ou vous êtes un founder qui construit depuis zéro — c'est la sprint shape, pas celle-ci.</p>
         <p class="shape-line"><span class="shape-key">Les deux premières semaines.</span> Cartographier les pièces qui bougent et les vrais blocages. Produire un plan de séquencement, un engagement écrit sur ce qui sort le premier mois, et la surface qui permet au reste de l'équipe de voir le travail avancer.</p>
         <p class="shape-line"><span class="shape-key">Cadence.</span> Trois à six mois, full-time en freelance.</p>
       </article>
 
       <article class="shape">
         <h2 class="shape-title">Founder / builder sprint</h2>
-        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Un build packagé, end-to-end, avec un founder ou une équipe early-stage. Strategy, product direction, execution menée par des AI agents, et le judgment — puis un handoff propre. Avec tout ce qui va avec : le produit qui tourne, les décisions documentées, le harness laissé sur place, et le founder briefé pour l'opérer.</p>
-        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Tu es early-stage et tu ne sais pas encore quoi construire, ou tu sais mais tu n'as pas le muscle pour le construire bien du premier coup. Le bottleneck est le judgment, pas le headcount. Le prix d'un mauvais build, ce sont des mois de gâchis qui composent — autant payer ce judgment d'entrée.</p>
-        <p class="shape-line"><span class="shape-key">Quand non.</span> Tu sais déjà exactement quoi construire et tu cherches un contractor qui livre to spec. Tu as un solide tech co-founder qui n'a besoin que de bras. Tu veux une relation de build embarquée long terme — c'est la fractional shape, pas celle-ci.</p>
+        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Un build packagé, zero-to-one, avec un founder ou une équipe early-stage. <strong>AI-native par design — les agents font le gros de l'execution sous mon judgment.</strong> Strategy, product direction, et un handoff propre qui vient avec tout : le produit qui tourne, les décisions documentées, le harness laissé sur place, et le founder briefé pour l'opérer.</p>
+        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Vous êtes founder ou équipe early-stage. Vous ne savez pas encore quoi construire, ou vous savez mais vous n'avez pas le muscle pour le construire bien du premier coup. Le bottleneck est le judgment, pas le headcount. Vous préférez payer ce judgment d'entrée plutôt que des mois de gâchis qui composent depuis un mauvais build.</p>
+        <p class="shape-line"><span class="shape-key">Quand non.</span> <strong>Vous ne voulez pas d'AI coding agents pour le build.</strong> Si vous voulez un dev shop traditionnel, du code à la main, ou un contractor qui considère les agents comme interdits — ce n'est pas la bonne shape. Ne colle pas non plus si vous avez déjà un solide tech co-founder, ou si vous êtes un client de plus grande taille qui cherche de l'execution cross-team — c'est la project-lead shape, pas celle-ci.</p>
         <p class="shape-line"><span class="shape-key">Les deux premières semaines.</span> Discovery avec le founder, resserrage du scope, première version exécutable. À la fin de la semaine deux, un prototype qui tourne et un go / no-go clair pour la suite.</p>
         <p class="shape-line"><span class="shape-key">Cadence.</span> Un à trois mois. Pas full-time. Packagé par livrable, présence immédiate.</p>
       </article>
 
       <article class="shape">
         <h2 class="shape-title">Formation AI agents</h2>
-        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Une formation hands-on pour amener un founder, un opérateur technique, ou une équipe technique au top niveau de proficiency avec Claude, Claude Code, et le harness agent autour. Pas un slide deck — le harness réel, monté en live, dans ton propre workflow.</p>
-        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Tu veux arrêter d'être bloqué sur le travail technique, ou tu veux que ton équipe compresse des mois d'apprentissage en quelques jours. Tu es sérieux sur l'idée de commander les agents toi-même plutôt que d'externaliser la question de ce qu'ils peuvent faire.</p>
-        <p class="shape-line"><span class="shape-key">Quand non.</span> Tu cherches une formation packagée à redistribuer plus tard sans moi. Tu veux un cours enregistré, un kit, un slide deck. La formation est sur mesure et live ; ce qui te reste après, c'est ton repo qui tourne et tes notes, pas un produit redistribuable.</p>
-        <p class="shape-line"><span class="shape-key">La première session.</span> Tu repars avec un harness qui tourne dans ton repo, la mémoire musculaire pour l'utiliser, et une référence écrite sur les parties qui prennent du temps à s'ancrer.</p>
+        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Une formation hands-on pour amener un founder, un opérateur technique, ou une équipe technique au top niveau de proficiency avec Claude, Claude Code, et le harness agent autour. Pas un slide deck — le harness réel, monté en live, dans votre propre workflow.</p>
+        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Vous voulez arrêter d'être bloqué sur le travail technique, ou vous voulez que votre équipe compresse des mois d'apprentissage en quelques jours. Vous êtes sérieux sur l'idée de commander les agents vous-même plutôt que d'externaliser la question de ce qu'ils peuvent faire.</p>
+        <p class="shape-line"><span class="shape-key">Quand non.</span> Vous cherchez une formation packagée à redistribuer plus tard sans moi. Vous voulez un cours enregistré, un kit, un slide deck. La formation est sur mesure et live ; ce qui vous reste après, c'est votre repo qui tourne et vos notes, pas un produit redistribuable.</p>
+        <p class="shape-line"><span class="shape-key">La première session.</span> Vous repartez avec un harness qui tourne dans votre repo, la mémoire musculaire pour l'utiliser, et une référence écrite sur les parties qui prennent du temps à s'ancrer.</p>
         <p class="shape-line"><span class="shape-key">Cadence.</span> D'une demi-journée à deux jours, selon la profondeur.</p>
       </article>
 
       <footer class="page-footer">
-        <p>Dis-moi laquelle colle, ou décris ce que tu cherches à faire et je te dirai par où je démarrerais.</p>
-        <p class="contact-line">
-          <a href="mailto:omrane.ah@gmail.com">omrane.ah@gmail.com</a>
-        </p>
+        <p>Dites-moi laquelle colle, ou décrivez ce que vous cherchez à faire et je vous dirai par où je démarrerais.</p>
+        <ContactForm lang="fr" />
         <p class="updated">Mis à jour le {updated}</p>
       </footer>
     </div>
@@ -148,17 +147,6 @@ const updated = '2026-04-25';
     line-height: 1.75;
     color: var(--text);
     margin-bottom: var(--space-sm);
-  }
-
-  .contact-line a {
-    font-family: var(--font-ui);
-    font-size: var(--size-sm);
-    color: var(--accent);
-    transition: color 0.15s;
-  }
-
-  .contact-line a:hover {
-    color: var(--text);
   }
 
   .updated {

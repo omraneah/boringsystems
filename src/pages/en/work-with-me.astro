@@ -1,5 +1,6 @@
 ---
 import Base from '@/layouts/Base.astro';
+import ContactForm from '@/components/ContactForm.astro';
 
 const updated = '2026-04-25';
 ---
@@ -26,18 +27,18 @@ const updated = '2026-04-25';
 
       <article class="shape">
         <h2 class="shape-title">Complex project lead</h2>
-        <p class="shape-line"><span class="shape-key">What it is.</span> Owning a stuck or complex initiative end-to-end as a senior freelance — strategy plus operational plus tactical, in the same person. Migrations, transformations, transitions, cross-functional unblocking, or first-MVP zero-to-one for a bigger client. The work that fails when you split it across a consultant for the strategy and an IC for the execution.</p>
-        <p class="shape-line"><span class="shape-key">When it fits.</span> Bigger clients with a project that needs someone who can read the system, sequence the work, and move the pieces. Where the actual blockers are people, decisions, and dependencies — and only secondarily technical.</p>
-        <p class="shape-line"><span class="shape-key">When it doesn't.</span> The project is straightforward execution and you already have an internal owner. Or it's pure deliverable consulting with no operational surface — a deck, a recommendation, no movement.</p>
+        <p class="shape-line"><span class="shape-key">What it is.</span> Owning a stuck or complex initiative inside a bigger client, end-to-end, as a senior freelance — strategy plus operational plus tactical, in the same person. Migrations, transformations, transitions, cross-functional unblocking. The work that fails when you split it across a consultant for the strategy and an IC for the execution.</p>
+        <p class="shape-line"><span class="shape-key">When it fits.</span> Bigger clients where the project crosses teams or stacks, and the actual blockers are people, decisions, and dependencies — only secondarily technical. Someone has to read the system, sequence the work, and move the org around it.</p>
+        <p class="shape-line"><span class="shape-key">When it doesn't.</span> The project is straightforward execution and you already have an internal owner. Or it's pure deliverable consulting with no operational surface — a deck, a recommendation, no movement. Or you're a founder building from zero — that's the sprint shape, not this one.</p>
         <p class="shape-line"><span class="shape-key">First two weeks.</span> Mapping the moving pieces and the actual blockers. Producing a sequencing plan, a written commitment of what gets shipped in the first month, and the surface that lets the rest of the team see the work happening.</p>
         <p class="shape-line"><span class="shape-key">Cadence.</span> Three to six months, full-time as a freelance.</p>
       </article>
 
       <article class="shape">
         <h2 class="shape-title">Founder / builder sprint</h2>
-        <p class="shape-line"><span class="shape-key">What it is.</span> A packaged, end-to-end build with a founder or early-stage team. Strategy, product direction, AI-agent-led execution, and judgment — then a clean handoff. Comes with everything that goes with the build: the working product, decisions documented, the harness left behind, and the founder briefed to operate it.</p>
-        <p class="shape-line"><span class="shape-key">When it fits.</span> You're early-stage and you don't yet know what you want to build, or you know but don't have the muscle to build it well the first time. The bottleneck is judgment, not headcount. The price of a wrong build is months of compounding waste, and you'd rather pay for that judgment up front.</p>
-        <p class="shape-line"><span class="shape-key">When it doesn't.</span> You already know exactly what you want and you're shopping for a contractor who builds to spec. You have a strong technical co-founder who only needs hands. You want a long-term embedded build relationship — that's the fractional shape, not this one.</p>
+        <p class="shape-line"><span class="shape-key">What it is.</span> A packaged, zero-to-one build with a founder or early-stage team. <strong>AI-native by design — agents do the bulk of the execution under my judgment.</strong> Strategy, product direction, and a clean handoff that comes with everything: the working product, the decisions documented, the harness left behind, and the founder briefed to operate it.</p>
+        <p class="shape-line"><span class="shape-key">When it fits.</span> You're a founder or early-stage team. You don't yet know what to build, or you know but don't have the muscle to build it well the first time. The bottleneck is judgment, not headcount. You'd rather pay for judgment up front than for months of compounding waste from a wrong build.</p>
+        <p class="shape-line"><span class="shape-key">When it doesn't.</span> <strong>You don't want AI coding agents doing the build.</strong> If you want a traditional dev shop, hand-coded everything, or a contractor who treats agents as forbidden — this isn't the right shape. Also doesn't fit if you already have a strong technical co-founder, or if you're a bigger client looking for cross-team execution — that's the project-lead shape, not this one.</p>
         <p class="shape-line"><span class="shape-key">First two weeks.</span> Founder discovery, narrowing scope, first executable version. By end of week two you have a working prototype and a clear go / no-go for the next phase.</p>
         <p class="shape-line"><span class="shape-key">Cadence.</span> One to three months. Not full-time. Packaged by deliverable, immediate presence.</p>
       </article>
@@ -53,9 +54,7 @@ const updated = '2026-04-25';
 
       <footer class="page-footer">
         <p>Tell me which one fits, or describe what you're trying to do and I'll tell you where I'd start.</p>
-        <p class="contact-line">
-          <a href="mailto:omrane.ah@gmail.com">omrane.ah@gmail.com</a>
-        </p>
+        <ContactForm lang="en" />
         <p class="updated">Updated {updated}</p>
       </footer>
     </div>
@@ -148,17 +147,6 @@ const updated = '2026-04-25';
     line-height: 1.75;
     color: var(--text);
     margin-bottom: var(--space-sm);
-  }
-
-  .contact-line a {
-    font-family: var(--font-ui);
-    font-size: var(--size-sm);
-    color: var(--accent);
-    transition: color 0.15s;
-  }
-
-  .contact-line a:hover {
-    color: var(--text);
   }
 
   .updated {
