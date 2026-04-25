@@ -1,0 +1,173 @@
+---
+type Props = {
+  lang: 'en' | 'fr';
+};
+
+const { lang } = Astro.props;
+
+const t = lang === 'fr'
+  ? {
+      emailLabel: 'Votre email',
+      emailPlaceholder: 'vous@exemple.com',
+      messageLabel: 'Message',
+      messagePlaceholder: 'Qu\'avez-vous en tête ?',
+      submit: 'Envoyer le message',
+      sending: 'Envoi…',
+      ok: 'Message envoyé. Je vous répondrai bientôt.',
+      err: 'Une erreur s\'est produite. Veuillez réessayer.',
+      offline: 'Envoi impossible. Vérifiez votre connexion.',
+    }
+  : {
+      emailLabel: 'Your email',
+      emailPlaceholder: 'you@example.com',
+      messageLabel: 'Message',
+      messagePlaceholder: 'What\'s on your mind?',
+      submit: 'Send message',
+      sending: 'Sending…',
+      ok: 'Message sent. I\'ll get back to you.',
+      err: 'Something went wrong. Try again.',
+      offline: 'Could not send. Check your connection.',
+    };
+---
+
+<form id="contact-form" class="contact-form" novalidate>
+  <div class="field">
+    <label for="email" class="field-label">{t.emailLabel}</label>
+    <input id="email" name="email" type="email" class="field-input" placeholder={t.emailPlaceholder} required />
+  </div>
+  <div class="field">
+    <label for="message" class="field-label">{t.messageLabel}</label>
+    <textarea id="message" name="message" class="field-input field-textarea" placeholder={t.messagePlaceholder} required rows="5"></textarea>
+  </div>
+  <div class="form-footer">
+    <button type="submit" class="submit-btn">{t.submit}</button>
+    <p id="form-status" class="form-status" aria-live="polite"></p>
+  </div>
+</form>
+
+<script define:vars={{ submit: t.submit, sending: t.sending, ok: t.ok, err: t.err, offline: t.offline }}>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  const btn = form?.querySelector('button[type="submit"]');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = form.elements.namedItem('email').value.trim();
+    const message = form.elements.namedItem('message').value.trim();
+
+    btn.disabled = true;
+    btn.textContent = sending;
+    status.textContent = '';
+    status.className = 'form-status';
+
+    try {
+      const res = await fetch('/api/v1/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, message }),
+      });
+
+      if (res.ok) {
+        status.textContent = ok;
+        status.classList.add('form-status--ok');
+        form.reset();
+      } else {
+        status.textContent = err;
+        status.classList.add('form-status--err');
+      }
+    } catch {
+      status.textContent = offline;
+      status.classList.add('form-status--err');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = submit;
+    }
+  });
+</script>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .field-label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .field-input {
+    font-family: var(--font-body);
+    font-size: var(--size-sm);
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--accent-dim);
+    padding: 0.6rem 0.75rem;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .field-input:focus {
+    border-color: var(--accent);
+  }
+
+  .field-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .submit-btn {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    font-weight: 500;
+    color: var(--bg);
+    background: var(--text);
+    border: none;
+    padding: 0.6rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background: var(--accent);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .form-status {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    color: var(--text-muted);
+  }
+
+  .form-status--ok {
+    color: var(--accent);
+  }
+
+  .form-status--err {
+    color: #e05252;
+  }
+</style>

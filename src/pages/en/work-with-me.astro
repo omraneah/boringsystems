@@ -1,0 +1,166 @@
+---
+import Base from '@/layouts/Base.astro';
+import ContactForm from '@/components/ContactForm.astro';
+
+const updated = '2026-04-25';
+---
+
+<Base title="How we work together" description="Four shapes of engagement — fractional CTO, complex project lead, founder sprint, and AI-agent training. Sent when asked, not broadcast.">
+  <div class="page">
+    <div class="page-inner">
+      <header class="page-header">
+        <p class="label">How we work together</p>
+        <h1 class="page-title">Four shapes</h1>
+        <p class="opener">
+          If we've been talking and you're wondering where to start — this is how I work. Read it, then tell me which one fits.
+        </p>
+      </header>
+
+      <article class="shape">
+        <h2 class="shape-title">Fractional CTO / CPO / tech-product builder</h2>
+        <p class="shape-line"><span class="shape-key">What it is.</span> Embedded technical leadership at one to two days per week. Strategy, architecture, key hires, and the trade-off calls that need a second senior brain in the room. Not a hands-on contributor — the seat above the IC layer where the consequential decisions get made.</p>
+        <p class="shape-line"><span class="shape-key">When it fits.</span> You have a product in market, an engineering team between five and fifty, and you need leadership-tier presence without committing to a full-time hire. Or you're between CTOs and the work cannot wait.</p>
+        <p class="shape-line"><span class="shape-key">When it doesn't.</span> You need someone writing code five days a week. You want a full CTO replacement rather than a CTO peer in the room. The team has no leadership-tier vacuum to fill.</p>
+        <p class="shape-line"><span class="shape-key">First two weeks.</span> Reading the system. Talking to engineers and product. Producing a written read on what's working, what's at risk, and the three things that will compound over the next quarter if we get them right.</p>
+        <p class="shape-line"><span class="shape-key">Cadence.</span> Three months minimum, ongoing.</p>
+      </article>
+
+      <article class="shape">
+        <h2 class="shape-title">Complex project lead</h2>
+        <p class="shape-line"><span class="shape-key">What it is.</span> Owning a stuck or complex initiative inside a bigger client, end-to-end, as a senior freelance — strategy plus operational plus tactical, in the same person. Migrations, transformations, transitions, cross-functional unblocking. The work that fails when you split it across a consultant for the strategy and an IC for the execution.</p>
+        <p class="shape-line"><span class="shape-key">When it fits.</span> Bigger clients where the project crosses teams or stacks, and the actual blockers are people, decisions, and dependencies — only secondarily technical. Someone has to read the system, sequence the work, and move the org around it.</p>
+        <p class="shape-line"><span class="shape-key">When it doesn't.</span> The project is straightforward execution and you already have an internal owner. Or it's pure deliverable consulting with no operational surface — a deck, a recommendation, no movement. Or you're a founder building from zero — that's the sprint shape, not this one.</p>
+        <p class="shape-line"><span class="shape-key">First two weeks.</span> Mapping the moving pieces and the actual blockers. Producing a sequencing plan, a written commitment of what gets shipped in the first month, and the surface that lets the rest of the team see the work happening.</p>
+        <p class="shape-line"><span class="shape-key">Cadence.</span> Three to six months, full-time as a freelance.</p>
+      </article>
+
+      <article class="shape">
+        <h2 class="shape-title">Founder / builder sprint</h2>
+        <p class="shape-line"><span class="shape-key">What it is.</span> A packaged, zero-to-one build with a founder or early-stage team. <strong>AI-native by design — agents do the bulk of the execution under my judgment.</strong> Strategy, product direction, and a clean handoff that comes with everything: the working product, the decisions documented, the harness left behind, and the founder briefed to operate it.</p>
+        <p class="shape-line"><span class="shape-key">When it fits.</span> You're a founder or early-stage team. You don't yet know what to build, or you know but don't have the muscle to build it well the first time. The bottleneck is judgment, not headcount. You'd rather pay for judgment up front than for months of compounding waste from a wrong build.</p>
+        <p class="shape-line"><span class="shape-key">When it doesn't.</span> <strong>You don't want AI coding agents doing the build.</strong> If you want a traditional dev shop, hand-coded everything, or a contractor who treats agents as forbidden — this isn't the right shape. Also doesn't fit if you already have a strong technical co-founder, or if you're a bigger client looking for cross-team execution — that's the project-lead shape, not this one.</p>
+        <p class="shape-line"><span class="shape-key">First two weeks.</span> Founder discovery, narrowing scope, first executable version. By end of week two you have a working prototype and a clear go / no-go for the next phase.</p>
+        <p class="shape-line"><span class="shape-key">Cadence.</span> One to three months. Not full-time. Packaged by deliverable, immediate presence.</p>
+      </article>
+
+      <article class="shape">
+        <h2 class="shape-title">AI-agent training</h2>
+        <p class="shape-line"><span class="shape-key">What it is.</span> Hands-on training to bring a founder, a technical operator, or a technical team to top-tier proficiency with Claude, Claude Code, and the surrounding agent harness. Not a slide deck — the actual harness, set up live, in your own workflow.</p>
+        <p class="shape-line"><span class="shape-key">When it fits.</span> You want to stop being blocked on technical work, or you want your team to compress months of learning into days. You're serious about commanding agents yourself rather than outsourcing the question of what they can do.</p>
+        <p class="shape-line"><span class="shape-key">When it doesn't.</span> You want a reusable curriculum to deliver later without me. You want a recorded course, a kit, a slide deck. The training is custom and live; what stays with you afterward is your own working repo and notes, not a redistributable package.</p>
+        <p class="shape-line"><span class="shape-key">First session.</span> You leave with a working harness in your own repo, the muscle memory to use it, and a written reference for the parts that take time to internalize.</p>
+        <p class="shape-line"><span class="shape-key">Cadence.</span> Half a day to two days, depending on depth.</p>
+      </article>
+
+      <footer class="page-footer">
+        <p>Tell me which one fits, or describe what you're trying to do and I'll tell you where I'd start.</p>
+        <ContactForm lang="en" />
+        <p class="updated">Updated {updated}</p>
+      </footer>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+
+  .page-inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+    display: block;
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--size-2xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .opener {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .shape {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .shape:last-of-type {
+    border-bottom: none;
+  }
+
+  .shape-title {
+    font-family: var(--font-display);
+    font-size: var(--size-xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .shape-line {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .shape-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .shape-key {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .page-footer {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .page-footer p {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .updated {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .page-inner {
+      padding: 0 var(--space-md);
+    }
+  }
+</style>
