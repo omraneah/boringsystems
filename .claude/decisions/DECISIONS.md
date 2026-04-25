@@ -401,3 +401,23 @@ After the page was drafted, Ahmed surfaced a peer reference — Rémi Alvado (`r
 **Actual outcome:** *(pending — first signal review scheduled mentally for ~2026-06-15; tracked in `memory/project_engagement_shapes_signal_check.md`)*
 
 ---
+
+## 2026-04-25 — Parallel-by-default for non-conflicting tasks
+
+**Context:** Across the 2026-04-25 strategic-board session, Ahmed repeatedly observed that multi-task instructions were being executed serially when most of the tasks had zero conflict surface. The wrap-session round in particular ("merge cleanup + Linear card + Singer subagent + workspace PR bump + encoding the rule itself") was four-to-five independent reasoning streams that should have fired concurrently. Ahmed surfaced this as a class of mistake worth codifying: he should not have to ask for parallelization on every multi-task prompt; the default should be to parallelize independent work and run sequential only when there's a real dependency.
+
+**Decision:** Adopt parallel-by-default as the standard execution shape for any user prompt containing 2+ distinct tasks. Three layers of enforcement:
+
+1. **Memory** — `memory/feedback_parallel_by_default.md` is the operational rule. Loaded at session start via `MEMORY.md`. Defines the classification (independent / sequential-dependency / conflicting), the parallelization mechanics (multiple tool_use blocks in a single message, subagents as the unit of parallel cognition), and the worktree exception (conflict-only, explicit-only).
+
+2. **Decision (this entry)** — captures the rationale and the trigger event for posterity.
+
+3. **Hook** — `.claude/hooks/parallel-by-default-reminder.sh` (UserPromptSubmit, registered in `.claude/settings.json`). Heuristic-based: detects multi-task signals in the prompt (numbered lists, "and then", "also", "in parallel", "paralyze/parallelize", "simultaneously") and injects a one-line reminder when threshold is met. Quiet on single-task prompts to avoid noise.
+
+**Why:** Operator-time is the binding constraint, not compute. Wall-clock latency from serial execution of independent tasks is the most common avoidable waste in long sessions. Worktrees were the previous structural answer for parallelism but they're overkill for the common case (no shared-file conflict) — same-tree parallel via concurrent tool calls and concurrent subagents is enough for ~95% of multi-task prompts. Worktrees stay reserved for the explicit-conflict case Ahmed names directly.
+
+**Expected outcome:** When Ahmed gives a multi-task prompt, the agent identifies independent tasks (no shared file, no shared state, no dependency) and fires them in a single message — multiple Bash calls + multiple Agent calls + multiple Write calls concurrently. Sequential dependencies (e.g. submodule pointer bump needs the post-merge SHA) run after their predecessor. Conflicting writes run serially in the main thread. The hook nudges when the prompt has multi-task signals, providing a safety net for the rule. Net: less wall-clock waiting, no new conflicts.
+
+**Actual outcome:** *(pending — first observable test on the next multi-task prompt after this commit)*
+
+---
