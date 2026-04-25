@@ -371,3 +371,17 @@ Applied immediately: moved `article-capture`, `article-review`, `french-audit` f
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-04-25 — Adopt two-tier agent architecture (operational + strategic advisors)
+
+**Context:** Ahmed asked the three operational subagents (Naomi/Daniel/Hadi from the 2026-04-24 decision) to weigh in on a content-vs-relational GTM question. All three independently returned the same verdict — "stay course on relational." Convergence felt clean; Ahmed identified it as a structural failure mode rather than a useful signal. Each agent had loaded the GTM doctrine, the Re-Entry Doctrine, and the leverage profile via `@imports`, then concluded what those documents already prescribed. Operational agents amplify the existing direction by design — they cannot challenge the frame because the frame is their substrate. The decision being weighed was uncommitted; it deserved adversarial pressure, not faithful execution.
+
+**Decision:** Split agents into two tiers with distinct rules and cadences. **Operational tier** (Naomi `gtm-strategist`, Daniel `principal-engineer`, Hadi `career-coach`, Margaret `release-companion`) reads context files and executes inside the frame; invoked frequently for tactical work. **Strategic tier** (`advisor-1` Branson, `advisor-2` Munger, `advisor-3` Singer, `advisor-4` Naval, `advisor-5` Greene, `advisor-6` Godin) refuses to read `llm-context-2026/`, `go-to-market/`, or any plan/identity/strategy file; refuses to ask Ahmed for his plan; responds from lens to what is said in the moment; operates from Hawkins 200+ register. Six real named figures, all entrepreneurs/builders, selected by Ahmed for personal resonance and lens-diversity. Invocation modes: solo (one lens for one question) or `/convene-board` skill for parallel synthesis on frame-level decisions. Full rationale in `docs/adr-001-two-tier-agents.md`.
+
+**Why:** Context-loaded agents amplify direction; they cannot challenge it. A separate tier with hard refusal of context-reading is the only durable enforcement of frame-challenging behavior — soft instructions drift. Real named figures (vs invented archetypes) give the model a coherent worldview to simulate, producing voice-stable output. Six (not five) was Ahmed's lock after Greene and Godin were both deemed essential and non-overlapping; beyond six, parallel synthesis becomes harder to scan. Hard refusal of context-reading is the load-bearing wall — every other guardrail erodes without it. Alternatives considered and rejected (in ADR-001): adding adversarial behavior to existing operational agents (incoherence), single challenger agent (no lens-diversity), anonymous archetypes (generic mush), partial context-reading (slope erodes), status quo (the failure mode that triggered this).
+
+**Expected outcome:** Frame-level decisions get adversarial pressure rather than faithful amplification. The board's parallel use surfaces disagreement-across-lenses, which is the highest-leverage signal in strategic decisions — convergence-only systems miss it. The two-tier split is portable: new operational agents (real-estate, hiring, fundraising) can be added without disturbing the strategic tier. The `/convene-board` skill formalizes parallel invocation, preventing friction-based underuse. First real test: convening on the content-vs-relational question that triggered the architecture, comparing the board's verdict against the operational tier's "stay course."
+
+**Actual outcome:** *(pending)*
+
+---
