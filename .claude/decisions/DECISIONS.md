@@ -385,3 +385,39 @@ Applied immediately: moved `article-capture`, `article-review`, `french-audit` f
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-04-25 — Engagement-shapes page as exposed-not-broadcast permission artifact
+
+**Context:** Across a four-round strategic-board session (six advisors × four briefs = 24 advisor calls), 5/6 converged on building a single page on boringsystems naming Ahmed's four engagement shapes — fractional CTO/CPO/tech-product builder, complex project lead, founder/builder sprint, AI-agent training. The board was specific about *what shape the page must take*: declarative, in the harness-piece voice, no prices, no CTA button, no testimonials, no logos, no SEO meta, no "I help X do Y" language, no booking calendar. The page is a filter, not persuasion — *"wrong people bounce, right people point at a door"* (Godin). The Singer dissent (refused the page entirely as "more document, the loud mind preparing for conversations that haven't happened") was held alongside as the floor.
+
+After the page was drafted, Ahmed surfaced a peer reference — Rémi Alvado (`remi.alva.do/prestation/*`, in market for ~6 months with a stabilizing French niche). His pages: one URL per shape, French-only, formal "vous", credibility anchored by named past companies (WIZBII / Kelkoo / BestOfMedia), per-page methodology breakdowns by phase, subtle 30-min-call CTA, occasional fictional case studies, BPI funding co-pay angle for PME. Different positioning surface entirely — Alvado's pages are optimized for *cold inbound* (a stranger lands and evaluates in 60 seconds); Ahmed's page is optimized for *warm conversation* (sent only when someone in conversation asks "how do we work together?").
+
+**Decision:** Ship `/en/work-with-me` and `/fr/work-with-me` (EN + FR re-voiced per `boringsystems/docs/french-guide.md`). One page, four shapes inline. Each shape: *what it is · when it fits · when it doesn't · first two weeks · cadence*. The "when it doesn't" line was added after the Alvado comparison (sharpens the filter — Godin's exact criterion; Alvado's "what I don't do" section in Sprint Fondateur validated the pattern). No prices, no CTA button, no testimonials, no SEO. Page **not** in main nav. Linked from About (next to LinkedIn, end of page) and from the home contact section. Sent in conversation, not broadcast. Versioned with an `Updated YYYY-MM-DD` date in the footer for honest staleness signal.
+
+**Why:** Ahmed's positioning is deliberately not Alvado's. Alvado has a stabilized French SME / fractional-CTO niche and his pages are designed to convert cold strangers — that's a different motion with a different cost curve (SEO maintenance, per-page upkeep, calendar/inbox load). Ahmed is in a 30-month exploration window where the binding constraint is *which shape pulls*, not *how many strangers land per week*. The exposed-not-broadcast page fits the constraint: it gives warm referrers something to forward, lets the four shapes be observable to people already in conversation, and doesn't open a cold-inbound surface that would force premature collapse of the four. The board's unanimous "the work is already happening — don't interrupt it" frame says the page should be the smallest possible artifact that adds legibility, not the largest possible artifact that adds reach. One page beats five. Inline shapes beat per-shape URLs. Versioning beats freshness theater.
+
+**Expected outcome:** When someone Ahmed has already been talking to asks "how can we work together?" the page exists and answers cleanly. Warm referrers have a single URL to forward. The four shapes stay observable side-by-side, which preserves Naval's "let one die by day 45 by weight of evidence, not decision" — visible co-presence makes the relative pull-data legible. The "when it doesn't" lines disqualify the wrong fit before the conversation, which is bandwidth saved on both sides. By June 15 (post-disconnect), one of the four shapes will have produced more inbound resonance than the others; the page allows that signal to surface without forcing premature commitment to which.
+
+**Actual outcome:** *(pending — first signal review scheduled mentally for ~2026-06-15; tracked in `memory/project_engagement_shapes_signal_check.md`)*
+
+---
+
+## 2026-04-25 — Parallel-by-default for non-conflicting tasks
+
+**Context:** Across the 2026-04-25 strategic-board session, Ahmed repeatedly observed that multi-task instructions were being executed serially when most of the tasks had zero conflict surface. The wrap-session round in particular ("merge cleanup + Linear card + Singer subagent + workspace PR bump + encoding the rule itself") was four-to-five independent reasoning streams that should have fired concurrently. Ahmed surfaced this as a class of mistake worth codifying: he should not have to ask for parallelization on every multi-task prompt; the default should be to parallelize independent work and run sequential only when there's a real dependency.
+
+**Decision:** Adopt parallel-by-default as the standard execution shape for any user prompt containing 2+ distinct tasks. Three layers of enforcement:
+
+1. **Memory** — `memory/feedback_parallel_by_default.md` is the operational rule. Loaded at session start via `MEMORY.md`. Defines the classification (independent / sequential-dependency / conflicting), the parallelization mechanics (multiple tool_use blocks in a single message, subagents as the unit of parallel cognition), and the worktree exception (conflict-only, explicit-only).
+
+2. **Decision (this entry)** — captures the rationale and the trigger event for posterity.
+
+3. **Hook** — `.claude/hooks/parallel-by-default-reminder.sh` (UserPromptSubmit, registered in `.claude/settings.json`). Heuristic-based: detects multi-task signals in the prompt (numbered lists, "and then", "also", "in parallel", "paralyze/parallelize", "simultaneously") and injects a one-line reminder when threshold is met. Quiet on single-task prompts to avoid noise.
+
+**Why:** Operator-time is the binding constraint, not compute. Wall-clock latency from serial execution of independent tasks is the most common avoidable waste in long sessions. Worktrees were the previous structural answer for parallelism but they're overkill for the common case (no shared-file conflict) — same-tree parallel via concurrent tool calls and concurrent subagents is enough for ~95% of multi-task prompts. Worktrees stay reserved for the explicit-conflict case Ahmed names directly.
+
+**Expected outcome:** When Ahmed gives a multi-task prompt, the agent identifies independent tasks (no shared file, no shared state, no dependency) and fires them in a single message — multiple Bash calls + multiple Agent calls + multiple Write calls concurrently. Sequential dependencies (e.g. submodule pointer bump needs the post-merge SHA) run after their predecessor. Conflicting writes run serially in the main thread. The hook nudges when the prompt has multi-task signals, providing a safety net for the rule. Net: less wall-clock waiting, no new conflicts.
+
+**Actual outcome:** *(pending — first observable test on the next multi-task prompt after this commit)*
+
+---
