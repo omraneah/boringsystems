@@ -1,0 +1,174 @@
+---
+import Base from '@/layouts/Base.astro';
+
+const updated = '2026-04-25';
+---
+
+<Base title="Comment on travaille ensemble" description="Quatre formes d'engagement — fractional CTO, complex project lead, founder sprint, et formation AI agents. Envoyé sur demande, pas en broadcast." lang="fr">
+  <div class="page">
+    <div class="page-inner">
+      <header class="page-header">
+        <p class="label">Comment on travaille ensemble</p>
+        <h1 class="page-title">Quatre formes</h1>
+        <p class="opener">
+          Si on a déjà discuté et que tu te demandes par où commencer — voici comment je travaille. Lis, puis dis-moi laquelle colle.
+        </p>
+      </header>
+
+      <article class="shape">
+        <h2 class="shape-title">Fractional CTO / CPO / tech-product builder</h2>
+        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Un leadership technique embarqué, un à deux jours par semaine. Strategy, architecture, recrutements clés, et les arbitrages qui demandent un second cerveau senior dans la pièce. Pas un IC hands-on — le siège au-dessus, là où les décisions à conséquences se prennent.</p>
+        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Tu as un produit en marché, une équipe engineering entre cinq et cinquante, et tu as besoin d'une présence au niveau leadership sans engager un full-time. Ou tu es entre deux CTOs et le travail ne peut pas attendre.</p>
+        <p class="shape-line"><span class="shape-key">Les deux premières semaines.</span> Lire le système. Parler aux engineers et au product. Produire un read écrit : ce qui marche, ce qui est à risque, et les trois choses qui composent sur le prochain trimestre si on les fait bien.</p>
+        <p class="shape-line"><span class="shape-key">Cadence.</span> Trois mois minimum, en continu.</p>
+      </article>
+
+      <article class="shape">
+        <h2 class="shape-title">Complex project lead</h2>
+        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Porter un chantier complexe ou bloqué de bout en bout, en freelance senior — strategy plus operational plus tactical, dans la même personne. Migrations, transformations, transitions, déblocage cross-functional, ou first-MVP zero-to-one pour un client de plus grande taille. Le travail qui échoue quand on le découpe entre un consultant pour la strategy et un IC pour l'execution.</p>
+        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Clients de plus grande taille, projet qui demande quelqu'un capable de lire le système, séquencer le travail, et faire bouger les pièces. Là où les vrais blocages sont les gens, les décisions, les dépendances — et seulement secondairement la technique.</p>
+        <p class="shape-line"><span class="shape-key">Les deux premières semaines.</span> Cartographier les pièces qui bougent et les vrais blocages. Produire un plan de séquencement, un engagement écrit sur ce qui sort le premier mois, et la surface qui permet au reste de l'équipe de voir le travail avancer.</p>
+        <p class="shape-line"><span class="shape-key">Cadence.</span> Trois à six mois, full-time en freelance.</p>
+      </article>
+
+      <article class="shape">
+        <h2 class="shape-title">Founder / builder sprint</h2>
+        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Un build packagé, end-to-end, avec un founder ou une équipe early-stage. Strategy, product direction, execution menée par des AI agents, et le judgment — puis un handoff propre. Avec tout ce qui va avec : le produit qui tourne, les décisions documentées, le harness laissé sur place, et le founder briefé pour l'opérer.</p>
+        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Tu es early-stage et tu ne sais pas encore quoi construire, ou tu sais mais tu n'as pas le muscle pour le construire bien du premier coup. Le bottleneck est le judgment, pas le headcount. Le prix d'un mauvais build, ce sont des mois de gâchis qui composent — autant payer ce judgment d'entrée.</p>
+        <p class="shape-line"><span class="shape-key">Les deux premières semaines.</span> Discovery avec le founder, resserrage du scope, première version exécutable. À la fin de la semaine deux, un prototype qui tourne et un go / no-go clair pour la suite.</p>
+        <p class="shape-line"><span class="shape-key">Cadence.</span> Un à trois mois. Pas full-time. Packagé par livrable, présence immédiate.</p>
+      </article>
+
+      <article class="shape">
+        <h2 class="shape-title">Formation AI agents</h2>
+        <p class="shape-line"><span class="shape-key">Ce que c'est.</span> Une formation hands-on pour amener un founder, un opérateur technique, ou une équipe technique au top niveau de proficiency avec Claude, Claude Code, et le harness agent autour. Pas un slide deck — le harness réel, monté en live, dans ton propre workflow.</p>
+        <p class="shape-line"><span class="shape-key">Quand ça colle.</span> Tu veux arrêter d'être bloqué sur le travail technique, ou tu veux que ton équipe compresse des mois d'apprentissage en quelques jours. Tu es sérieux sur l'idée de commander les agents toi-même plutôt que d'externaliser la question de ce qu'ils peuvent faire.</p>
+        <p class="shape-line"><span class="shape-key">La première session.</span> Tu repars avec un harness qui tourne dans ton repo, la mémoire musculaire pour l'utiliser, et une référence écrite sur les parties qui prennent du temps à s'ancrer.</p>
+        <p class="shape-line"><span class="shape-key">Cadence.</span> D'une demi-journée à deux jours, selon la profondeur.</p>
+      </article>
+
+      <footer class="page-footer">
+        <p>Dis-moi laquelle colle, ou décris ce que tu cherches à faire et je te dirai par où je démarrerais.</p>
+        <p class="contact-line">
+          <a href="mailto:omrane.ah@gmail.com">omrane.ah@gmail.com</a>
+        </p>
+        <p class="updated">Mis à jour le {updated}</p>
+      </footer>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+
+  .page-inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .label {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+    display: block;
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: var(--size-2xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .opener {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .shape {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .shape:last-of-type {
+    border-bottom: none;
+  }
+
+  .shape-title {
+    font-family: var(--font-display);
+    font-size: var(--size-xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .shape-line {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .shape-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .shape-key {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .page-footer {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .page-footer p {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .contact-line a {
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+    color: var(--accent);
+    transition: color 0.15s;
+  }
+
+  .contact-line a:hover {
+    color: var(--text);
+  }
+
+  .updated {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .page-inner {
+      padding: 0 var(--space-md);
+    }
+  }
+</style>
