@@ -26,3 +26,6 @@
 - [Engagement-Shapes Signal Check (≈2026-06-15)](project_engagement_shapes_signal_check.md) — Watch-memo. Mid-June, evaluate which of the 4 shapes on /work-with-me has pulled inbound. Let one die by weight of evidence, not decision (Naval).
 - [Rémi Alvado — Peer Reference Point](project_alvado_reference_point.md) — French ex-CTO consulting at remi.alva.do/prestation/*. Cold-inbound positioning, NOT a model to copy — useful as benchmark for what Ahmed deliberately diverged from.
 - [Parallel-By-Default for Non-Conflicting Tasks](feedback_parallel_by_default.md) — Multi-task prompts: classify each, fire independent tasks in parallel (Agent + Bash + Write calls in one message). Worktrees ONLY for explicit conflict isolation. Hook reinforces.
+- [Model × Effort × Lane Matrix](feedback_model_effort_matrix.md) — Decision matrix: model + effort by task dimension × cadence × complexity. Workspace default Opus 4.7 / high. Per-lane overrides documented.
+- [Lane-Change Announcement](feedback_lane_change_announcement.md) — When task lane shifts, announce current model/effort + recommendation in a fixed format BEFORE proceeding. Don't hide the choice.
+- [Parallel-Agent Recap](feedback_parallel_agent_recap.md) — When firing parallel sub-agents, announce model/effort/why per agent as the FIRST summary before any output is read.

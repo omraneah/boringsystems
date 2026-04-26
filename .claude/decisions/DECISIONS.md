@@ -421,3 +421,23 @@ After the page was drafted, Ahmed surfaced a peer reference — Rémi Alvado (`r
 **Actual outcome:** *(pending — first observable test on the next multi-task prompt after this commit)*
 
 ---
+
+## 2026-04-26 — Model × Effort × Lane matrix codified
+
+**Context:** Ahmed had been running every Claude Code session at Opus 4.7 / effort=high under the (mistaken) assumption that high effort is faster. In reality, higher effort is slower and longer-form, biasing toward distilled output and away from exchange cadence — which actively fights the workflow he uses for ~70% of his work (psychology, positioning, GTM, advisor convening, market thinking). On a Pro 5x plan with significant unused headroom, the underlying question was: what model + effort suits which kind of work, and how do we make the choice visible rather than hidden behind a single global setting?
+
+**Decision:** Adopt a Model × Effort × Lane matrix as the workspace's operating framework for choosing Claude model + effort. Three independent axes shape the choice: (1) task dimension — psychology / positioning / advisors / code / ops / research; (2) cadence — exchange (back-and-forth) vs distilled (long output); (3) complexity — file writes vs deep reasoning vs novel architecture. Workspace default: Opus 4.7 / effort=high (matches the dominant exchange-heavy workload). Per-lane overrides documented in `memory/feedback_model_effort_matrix.md`. Strategic-tier advisors (advisor-1..6) get `effort: xhigh` via frontmatter — each lens fires in parallel under `/convene-board` with no internal exchange, so depth + distillation matter and exchange cadence does not. Operational agents calibrated per lane: principal-engineer `xhigh` (heavy infra), gtm-strategist + career-coach `high` (positioning/psychology with exchange cadence), release-companion `medium` (release work refuses cognitive reframing — less output, more presence).
+
+Two new behavioral norms encoded as CLAUDE.md non-negotiables:
+
+1. **Lane-change announcement** (`memory/feedback_lane_change_announcement.md`) — when task dimension/cadence shifts mid-session, post a fixed-format block: old lane → new lane, current setup, recommendation, why. Don't hide the choice. Wait for Ahmed's signal on non-trivial bumps; proceed silently for trivial inheritance.
+
+2. **Parallel-agent recap** (`memory/feedback_parallel_agent_recap.md`) — when spawning parallel sub-agents, post model/effort/why per agent as the FIRST summary before any output is read. Sub-agent settings are otherwise invisible; the recap makes audit possible and gives Ahmed a chance to redirect mid-flight.
+
+**Why:** Effort and response length are independent levers but correlate misleadingly. The matrix surfaces the calibration explicitly so the workspace stays auditable as new models / new effort levels ship (xhigh was added in 4.7; assume more variation will come). Per-agent frontmatter pins the right setup so it's reproducible across machines and visible in git — laptop-agnostic in spirit, not just in environment. The two behavioral norms address the failure modes that motivated this work: cognitive load when responses are miscalibrated to the cadence Ahmed is operating in, and quota waste from running max on file moves.
+
+**Expected outcome:** Sessions feel cadence-correct out of the box. Ahmed sees the model/effort choice when it matters (lane shifts, parallel fanout) and never has to reverse-engineer why a sub-agent produced what it produced. The matrix becomes a living artifact — revisited when new effort levels release, when a recurring task type doesn't fit any existing row, or when the effort↔length correlation changes upstream. Skills frontmatter audit deferred to a follow-up session (BOR-24) to keep this PR within the three-concern rule.
+
+**Actual outcome:** *(pending — first observable test on the next strategic-exchange and next /convene-board session after this commit)*
+
+---

@@ -44,6 +44,8 @@ Full profile: `memory/user_profile.md`, `memory/user_strategic_context.md`.
 - **Never modify `llm-context-2026/`, `Enakl/`, or `cross-stack-architecture-starter-pack/`** without explicit instruction.
 - **Twice-is-a-pattern.** When the same manual task happens twice in a session, stop and propose codifying it before the third time.
 - **Max three concerns per session.** Wider scope → split into separate branches.
+- **Lane-change announcement.** When task dimension/cadence shifts (psychology→code, exchange→distilled, single→parallel), announce current model/effort + recommendation before proceeding. Full rule: `memory/feedback_lane_change_announcement.md`.
+- **Parallel-agent recap.** When spawning parallel sub-agents, announce model/effort/why for each as the FIRST summary before any output is read. Full rule: `memory/feedback_parallel_agent_recap.md`.
 - **Never push with high or critical npm vulnerabilities.** Each npm-capable submodule has a `pre-push` hook running `npm audit --audit-level=high`. Workspace root also runs `.claude/git-hooks/pre-push` which audits every submodule before a pointer bump. Fix path: `npm audit fix` → npm `overrides` → major upgrade → documented advisory acceptance in the affected project's ADR. `--no-verify` forbidden.
 
 ## Detail — read these when the topic matters
@@ -53,6 +55,7 @@ Full profile: `memory/user_profile.md`, `memory/user_strategic_context.md`.
 | Collaboration tone, scope discipline, code comment rules | `docs/collaboration.md` |
 | Git workflow, branch rules, PR handoff, post-merge cleanup | `docs/git-workflow.md` |
 | Skills, hooks, setup, MCP, decisions, memory | `docs/infrastructure.md` |
+| Model × Effort × Lane matrix — defaults per task dimension | `memory/feedback_model_effort_matrix.md` |
 | Enforcement-tier template (local-first pre-push audit, reuse across projects) | `docs/patterns/local-first-enforcement.md` |
 | Which ARDs apply at which tier per project | `docs/ard-tier-map.md` |
 | Per-project stack + conventions | `<project>/CLAUDE.md` and `<project>/docs/` |
