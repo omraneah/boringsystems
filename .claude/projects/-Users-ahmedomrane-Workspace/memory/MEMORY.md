@@ -33,3 +33,4 @@
 - [Parallel-Agent Recap](feedback_parallel_agent_recap.md) — When firing parallel sub-agents, announce model/effort/why per agent as the FIRST summary before any output is read.
 - [Card-Fanout Discipline](feedback_card_fanout_discipline.md) — Before creating multi-deliverable Linear cards, check workspace for container-card patterns (BOR-23-style) and mirror the shape instead of creating siblings.
 - [No Recap After Link](feedback_no_recap_after_link.md) — When providing a link to a PR/Linear/ADR/doc, do NOT recap its contents in chat. The link is the recap. Cognitive-load discipline.
+- [Brief Approval Gate for Context-Naive Agents](feedback_brief_approval_gate.md) — When composing a brief for any context-naive sub-agent (board, conductor, framing-heavy Agent calls), draft → show verbatim → wait for approval → fire. Never first-draft fire. Plus editorial-stripping discipline at draft time.
