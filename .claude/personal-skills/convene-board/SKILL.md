@@ -38,7 +38,32 @@ Write one self-contained brief that will be sent verbatim to all six advisors. T
 
 If you're uncertain whether a piece of context is needed, omit it. The board's value is naive first-principles reads.
 
-### 2. Invoke all six advisors in parallel
+#### Editorial-stripping discipline (applied at draft time)
+
+Every interpretive adjective in the brief is leakage. Examples that have caused problems: *"disciplined, high-tempo, well-running, naive, quarantined, side-door."* Context-naive advisors absorb the coloring as factual; it tilts the lens before they read the question.
+
+Discipline at draft time:
+
+- **Facts only.** Numbers, dates, named artifacts, direct quotes from Ahmed in quotation marks, observable state.
+- **No characterizations.** No "running well," "stuck," "drifting," "healthy," "disciplined." Describe the data; let the advisors characterize.
+- **Claude's own framing, when needed, is flagged explicitly.** Use *"My read of this — feel free to disagree: ..."* — not embedded mid-paragraph as if factual.
+- **Direct quotes from Ahmed are quoted, not paraphrased.** Paraphrase introduces interpretation; quotes preserve.
+
+The approval gate (next step) is the catch-all for editorial that survived this discipline. The discipline minimizes what the gate has to catch.
+
+### 2. Approval gate (NON-NEGOTIABLE)
+
+**Never fire the board on first draft.** Always:
+
+1. Show the composed brief to Ahmed verbatim, clearly delimited as a draft (e.g., in a quoted block prefixed with "DRAFT — for your approval before sending").
+2. Wait for explicit approval.
+3. Fire only after approval.
+
+If Ahmed corrects the draft, re-draft with the corrections, show again, wait again. The gate fires every iteration, not just the first.
+
+**Why:** The brief IS the determining variable. Sub-agents respond honestly to what they're given. A wrong frame produces a confident-but-wrong unanimous diagnosis — corrupting the credibility of the entire instrument. Approval cost is low; misframe cost is high. See `memory/feedback_brief_approval_gate.md` for the precedent that codified this rule.
+
+### 3. Invoke all six advisors in parallel
 
 Make six Agent tool calls in **a single message** (parallel execution):
 - `subagent_type: advisor-1` — Richard Branson (action, people-first, brand-as-feeling)
@@ -50,7 +75,7 @@ Make six Agent tool calls in **a single message** (parallel execution):
 
 Pass the same brief to each. Vary nothing. The brief is identical; the differing variable is which lens reads it.
 
-### 3. Synthesize — three-pass output, in this order
+### 4. Synthesize — three-pass output, in this order
 
 Ahmed reads the synthesis under time pressure. Lead with the distilled read. Per-advisor texture comes next for those who want to hear the voices. Analytical recap closes. Always in this order — never invert.
 
@@ -66,16 +91,18 @@ Ahmed reads the synthesis under time pressure. Lead with the distilled read. Per
 - **What the operational tier would have missed.** What a Naomi/Hadi/Daniel read would have skipped that the board surfaced.
 - **Calibration check.** Did any advisor reference context files they shouldn't have? Note any drift in your own brief-craft (e.g. internal vocabulary leaking through quoted material).
 
-### 4. End with one question for Ahmed
+### 5. End with one question for Ahmed
 
 After the recap, pick the single sharpest tension across the six reads and turn it into one decision-making question. Not a recommendation — a question that forces the choice he now has to make.
 
-### 5. Always-recap convention for follow-up
+### 6. Always-recap convention for follow-up
 
 When Ahmed continues the conversation after the synthesis (going deeper into one advisor, one tension, one move), maintain the **distilled-first** discipline: lead each substantive response with a short recap of where the conversation has landed, then go deeper. He will tell you when to drop the recap.
 
 ## Hard rules
 
+- **Never fire on first draft.** The approval gate (Step 2) is non-negotiable. The brief IS the determining variable; show it before sending, every time. See `memory/feedback_brief_approval_gate.md`.
+- **Editorial-stripping at draft time.** Strip interpretive adjectives before showing the draft. The gate is the second line of defense, not the first.
 - **No advisor reads context files.** Each advisor's persona file already enforces this; the brief reinforces it. If an advisor's response references context they shouldn't have, flag it as a calibration drift to address.
 - **Same brief to all six.** No tailoring per advisor. The lens is what differs, not the prompt.
 - **No more than 6 in parallel.** That's the board. Adding voices dilutes; subtracting fragments.
