@@ -441,3 +441,23 @@ Two new behavioral norms encoded as CLAUDE.md non-negotiables:
 **Actual outcome:** *(pending — first observable test on the next strategic-exchange and next /convene-board session after this commit)*
 
 ---
+
+## 2026-04-26 — Disable vercel-plugin + codify cognitive-load rules
+
+**Context:** Wrap-session pass surfaced two compounding noise problems: (a) the `vercel-plugin@vercel` Claude Code plugin was loading ~30 skills on every session and pattern-matching on Bash command substrings (false-positive on `pgrep -fa "next dev"` injecting a "MANDATORY" block during a git wrap-session); (b) Claude was recapping PR/Linear/ADR content in chat after providing the link, duplicating cognitive load when Ahmed could just read the source. Same session: Claude over-fanned three Linear cards when one container card (BOR-23-style) was the right shape.
+
+**Decision:** Three corrections, single PR.
+
+1. **Disable vercel-plugin**, codify rationale in `docs/adr-002-vercel-auto-deploy-only.md`. Vercel deploys via existing GitHub auto-deploy; in-session plugin guidance is not needed for the auto-deploy path. WebFetch the official docs on the rare occasion Vercel-specific guidance comes up. `enabledPlugins: {}` in `.claude/settings.json`.
+
+2. **No-recap-after-link** as a CLAUDE.md non-negotiable + `memory/feedback_no_recap_after_link.md`. When Claude gives a link to a PR, Linear card, ADR, doc, or any authoritative source, the link IS the recap — duplicating its content in chat burns Ahmed's attention. The exception is a one-line orientation or an unusual condition the link doesn't surface.
+
+3. **Card-fanout discipline** as a CLAUDE.md non-negotiable + `memory/feedback_card_fanout_discipline.md` + new `card-against-pattern` skill. Before creating multi-deliverable Linear cards, search the team for existing container shapes (BOR-23-style article series) and mirror them rather than creating siblings.
+
+**Why:** All three corrections share a single principle — Ahmed's cognition is the binding constraint. The Model × Effort × Lane matrix shipped earlier today is the upstream version of this principle (don't waste tokens on the wrong setup); these three are the downstream operational versions (don't waste attention on duplicated content, plugin noise, or scattered Linear cards). The vercel-plugin rule has the highest immediate ROI because it pollutes every session today; the no-recap and card-fanout rules prevent recurring tax on every link / every multi-card creation event going forward.
+
+**Expected outcome:** Sessions feel quieter — fewer skills in the available-skills system reminder, fewer false-positive injections, less duplicated content in chat after a PR or card link, single container cards instead of sibling fanout. ADR-002 makes the vercel-plugin decision findable so future-Claude does not silently re-enable.
+
+**Actual outcome:** *(pending — observable on the next session after this PR merges; vercel-plugin skills should drop from the available list, and the no-recap rule should bite the next time a PR URL is delivered)*
+
+---

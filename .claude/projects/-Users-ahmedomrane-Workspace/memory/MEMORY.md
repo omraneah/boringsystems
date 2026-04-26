@@ -29,3 +29,5 @@
 - [Model × Effort × Lane Matrix](feedback_model_effort_matrix.md) — Decision matrix: model + effort by task dimension × cadence × complexity. Workspace default Opus 4.7 / high. Per-lane overrides documented.
 - [Lane-Change Announcement](feedback_lane_change_announcement.md) — When task lane shifts, announce current model/effort + recommendation in a fixed format BEFORE proceeding. Don't hide the choice.
 - [Parallel-Agent Recap](feedback_parallel_agent_recap.md) — When firing parallel sub-agents, announce model/effort/why per agent as the FIRST summary before any output is read.
+- [Card-Fanout Discipline](feedback_card_fanout_discipline.md) — Before creating multi-deliverable Linear cards, check workspace for container-card patterns (BOR-23-style) and mirror the shape instead of creating siblings.
+- [No Recap After Link](feedback_no_recap_after_link.md) — When providing a link to a PR/Linear/ADR/doc, do NOT recap its contents in chat. The link is the recap. Cognitive-load discipline.
