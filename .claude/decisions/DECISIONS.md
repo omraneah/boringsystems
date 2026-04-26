@@ -499,3 +499,23 @@ Memory file `feedback_wrap_session.md` renamed → `feedback_post_merge_workflow
 **Actual outcome:** *(pending — first real test is when this PR itself merges; the BOR-24 branch will be cleaned up via the new `/cleanup` skill it introduces)*
 
 ---
+
+## 2026-04-26 — Add Sofia Marchetti (market-strategist) — operational tier
+
+**Context:** Workspace had Naomi (gtm-strategist), Daniel (principal-engineer), Hadi (career-coach), Margaret (release-companion), and the six strategic advisors. None of these did market research. None tracked who was making money in the AI-native solo-operator economy in 2026, where readiness pain was concentrating in EU/France, or where the disruption was real vs. noise. Naomi is bound to the Re-Entry Doctrine; an analyst seat that could pressure-test the doctrine itself with field evidence was missing.
+
+**Decision:** Add `.claude/agents/market-strategist.md` — Sofia Marchetti, Italian, 38, Lisbon-based, ex-Atomico (2018–2022), now writes a private research letter on the EU AI-native solo-operator economy and ships one productized service of her own. Operational tier (context-loaded). Sister to Naomi. Does both research AND strategy.
+
+Persona explicitly calibrated to be **AI-forward, not pre-AI nostalgic.** Field years (Atomico, productized service, EU operator graph) are substrate, not lens. Operating mode is first-principles, strategic foresight + tactical now, native to the 2026 economy. She is licensed to challenge the Re-Entry Doctrine, the four engagement shapes, and the AI-readiness-gap thesis itself with evidence.
+
+Default model/effort: **Opus 4.7 / max** (per BOR-24 matrix + Ahmed's instruction for the deep-research workload). Updates `.claude/agents/README.md` table; the existing persona-vet disclaimer block extends to Sofia.
+
+Same commit also adds `memory/feedback_personas_are_living.md` codifying that all persona files are first drafts subject to revision as Ahmed's way of working with them evolves — calibration notes get baked into files, not just chat.
+
+**Why:** The two-tier architecture (operational context-loaded vs. strategic context-naive) is sound, but the operational tier was missing the research seat. Adding Sofia gives the workspace a place where field evidence can pressure-test the doctrine without crossing into Naomi's positioning-craft lane or the strategic board's frame-level lane. Calibrating her AI-forward (not pre-AI) prevents the dominant failure mode of importing 2018-era VC-analyst patterns onto a 2026 solo-operator economy. Codifying "personas are living drafts" prevents calcification — these are tools, not canon.
+
+**Expected outcome:** Sofia produces the BOR-28 deliverables (landscape map + three positioning bets) on a separate commit on the same branch, as the first proof of the persona. Naomi keeps her positioning-craft lane. Ahmed gains an adversarial-research seat that doesn't require him to convene the strategic board for every cohort/altitude question. Future personas inherit the same draft-and-iterate posture rather than being treated as canonical.
+
+**Actual outcome:** *(pending — first observable on Sofia's first deliverable run)*
+
+---
