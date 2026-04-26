@@ -1,6 +1,8 @@
 ---
 name: session-pulse
 description: Mid-session meta-cognition checkpoint. Scans the in-progress work for patterns repeating twice or more, emerging architectural constraints, skills that should exist, and scope drift — then proposes codification before the patterns evaporate. Trigger manually, OR automatically when you notice (a) the same manual task happening for the second time in a session, (b) the user correcting the same class of Claude mistake for a second time, (c) a session exceeding three distinct concerns, or (d) a tool/framework feature being reimplemented by hand.
+model: opus
+effort: high
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Bash(git log *), Bash(git status *), Bash(git diff --stat *), Read, Grep, Glob

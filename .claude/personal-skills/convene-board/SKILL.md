@@ -1,6 +1,8 @@
 ---
 name: convene-board
 description: Convene Ahmed's strategic-tier advisory board — six named advisors (Branson, Munger, Singer, Naval, Greene, Godin) — in parallel on a single question. Each responds from their own lens, context-naive, refusing to read plan/strategy/identity files. Output is a side-by-side synthesis emphasizing disagreement across lenses. Use when Ahmed faces a frame-level decision, structural unease, or wants to test convergence of operational-tier verdicts against independent first-principles reads. Not for tactical questions — those go to the operational tier (Naomi/Hadi/Daniel).
+model: opus
+effort: high
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Read, Write, Edit
