@@ -461,3 +461,22 @@ Two new behavioral norms encoded as CLAUDE.md non-negotiables:
 **Actual outcome:** *(pending — observable on the next session after this PR merges; vercel-plugin skills should drop from the available list, and the no-recap rule should bite the next time a PR URL is delivered)*
 
 ---
+
+## 2026-04-26 — Skills frontmatter audit (BOR-24 follow-up)
+
+**Context:** The Model × Effort × Lane matrix shipped earlier on 2026-04-26 codified per-lane defaults but only the agents tier was audited in that pass. BOR-24 deferred the equivalent skills-tier audit as the highest-ROI remaining item: 8 personal-skills (commit, pr, wrap-session, log-decision, gtm-sync, session-pulse, arch-review, convene-board) had no `model:` or `effort:` frontmatter and were silently inheriting the workspace default (opus / high) regardless of whether their workload matched it.
+
+**Decision:** Add explicit `model:` and `effort:` to all 8 SKILL.md files, mirroring the agent-frontmatter convention (placed after `description`, before `tools`/`allowed-tools`).
+
+- **Operational ops — sonnet / medium:** `commit`, `pr`, `wrap-session`, `log-decision`. Mechanical, speed > depth.
+- **Analytical / distilled — opus / high:** `gtm-sync`, `session-pulse`, `arch-review`, `convene-board`. Reasoning-heavy or composition-heavy work; not novel architecture, so not xhigh.
+
+Per-advisor `xhigh` stays on the `advisor-1..6` agent files (set in the 2026-04-26 agent audit). The `convene-board` skill itself is the orchestrator — brief composition + parallel fanout + synthesis — which sits at `high`.
+
+**Why:** Operational ops were silently running at opus/high — wasted Opus quota and slower-than-needed turnaround on mechanical commits and PR drafts. Analytical skills were technically at the right tier by default but the explicit frontmatter makes the choice auditable and prevents drift if the workspace default ever changes. Matching the matrix everywhere also makes per-skill overrides visible and justifiable rather than implicit.
+
+**Expected outcome:** /commit and /pr feel faster from the next invocation. /gtm-sync, /session-pulse, /arch-review, /convene-board behave identically to before (already at the right tier by default) but now survive a workspace-default change. BOR-24's three remaining deferred items (status-line surfacing, board xhigh validation, auto lane-shift hook) stay deferred to separate sessions per the card's "do not bundle" note.
+
+**Actual outcome:** *(pending — observable on the next /commit and /pr invocations; should feel snappier and surface Sonnet 4.6 in any model-line telemetry)*
+
+---
