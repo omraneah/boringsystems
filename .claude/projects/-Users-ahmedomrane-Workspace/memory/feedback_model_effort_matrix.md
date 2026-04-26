@@ -24,7 +24,8 @@ The right model + effort isn't a single dial — three independent axes shape th
 | Architecture decided → "go execute deeply" | Opus 4.7 | `max` (session-only) | Hand off deep reasoning, get one strong pass |
 | Blog-site coding (boringsystems) | Sonnet 4.6 | `high` | Light, plenty smart, saves Opus quota |
 | Heavy infra / backend coding | Opus 4.7 | `xhigh` | Default for serious code |
-| Operational ops (`/commit`, `/pr`, `/wrap-session`) | Sonnet 4.6 | `medium` | Speed > depth. Mechanical |
+| Operational ops (`/commit`, `/pr`, `/cleanup`, `/log-decision`) | Sonnet 4.6 | `medium` | Speed > depth. Mechanical |
+| Reflection / session recap (`/wrap-session`, `/session-pulse`) | Opus 4.7 | `high` | Pattern-recognition + improvement-proposal. Distilled, not exchange |
 | Web / market research (long, distilled) | Opus 4.7 | `xhigh` | Long output OK; depth matters; no exchange inside the call |
 | One-off "really think hard" turn | current model | current effort + word `ultrathink` in prompt | Bumps a single turn without committing the session |
 
