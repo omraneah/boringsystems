@@ -63,9 +63,7 @@
       }
     ]
   },
-  "enabledPlugins": {
-    "vercel-plugin@vercel": true
-  },
+  "enabledPlugins": {},
   "effortLevel": "high",
   "voice": {
     "enabled": true,
