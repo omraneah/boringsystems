@@ -519,3 +519,25 @@ Same commit also adds `memory/feedback_personas_are_living.md` codifying that al
 **Actual outcome:** *(pending — first observable on Sofia's first deliverable run)*
 
 ---
+
+## 2026-04-26 — Pre-commit branch guard + auto-checkpoint debounce + BOR-24 deferred-items memory (session-close PR)
+
+**Context:** End-of-session wrap on 2026-04-26 surfaced three improvements worth shipping in one PR before closing. (1) Earlier in the session I committed BOR-28 work to local `main` — `pre-push` hook caught it and refused, but the recovery required `git reset --hard`. The protected-branch rule is non-negotiable per workspace CLAUDE.md, but enforcement only existed at push time. (2) The auto-checkpoint Stop hook (`.claude/hooks/auto-commit.sh`) fired after every Claude turn with no debounce, producing 2 noise commits on the BOR-24 branch alongside 2 real commits — signal-to-noise on PR history was poor. (3) BOR-24 was closed with four deferred items (status-line surfacing, model-release calibration, board xhigh validation, auto lane-shift hook) that were intentionally not re-carded to avoid sibling-card fanout, but had no codified surface point.
+
+**Decision:** Three small, independent changes shipped in one session-close PR:
+
+1. **`.claude/git-hooks/pre-commit`** (new) — shell hook refusing commits to `main` / `master` / `dev` / `development` / `production`. Mirrors the existing `pre-push` style. Auto-registers via `core.hooksPath = .claude/git-hooks` (already configured by `setup.sh`). Defense-in-depth — catches the protected-branch mistake at commit time, before the recovery dance.
+
+2. **`.claude/hooks/auto-commit.sh`** (modified) — debounce: skip if the last commit on the current branch was less than `AUTO_CHECKPOINT_DEBOUNCE` seconds ago (default 600 = 10 min). A real commit also resets the timer, so the next auto-checkpoint waits 10 min past the last real save. Env var allows override per session if needed.
+
+3. **`memory/project_bor24_deferred_followups.md`** (new) — surfaces the four deferred BOR-24 items as a single project memory. Honors the card-fanout discipline (no sibling cards) while keeping the items reachable. Marked "surface when relevant; do not preemptively spin a session" so future-Claude doesn't manufacture work.
+
+The fourth recap proposal (decision-log structural pass) was explicitly parked by Ahmed — he wants to design that himself. The "container-card pattern as CLAUDE.md non-negotiable" proposal was redundant — already shipped in the previous session's no-recap-after-link / card-fanout-discipline PR.
+
+**Why:** Each piece addresses an observed-today failure mode. Pre-commit hook prevents a class of mistake the workspace policy already forbids — moving enforcement from "after the fact" to "at the moment of intent". Auto-checkpoint debounce trades a small amount of safety-net coverage (uncommitted work could sit dirty for up to 10 min) for materially cleaner branch history, which compounds across every multi-commit PR. BOR-24 memory note keeps four small follow-ups reachable without inflating the Linear backlog.
+
+**Expected outcome:** Next time Claude is on `main` and tries to commit, `git commit` itself fails — no recovery dance. Auto-checkpoint commits drop from "every Stop event with dirty state" to "at most one per 10 minutes per branch", visible in the next multi-commit PR's `git log`. When a session naturally touches one of the four BOR-24 items, future-Claude surfaces it via the memory rather than re-discovering it cold. No fourth Linear card created — discipline held.
+
+**Actual outcome:** *(pending — pre-commit visible on next stray `git commit` on main; debounce visible on next multi-step session; memory visible on next session that touches model/effort or convene-board)*
+
+---

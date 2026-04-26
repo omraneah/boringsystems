@@ -21,6 +21,17 @@ if git diff --quiet && git diff --cached --quiet && [ -z "$(git status --porcela
   exit 0
 fi
 
+# Debounce: skip if the last commit on this branch was less than DEBOUNCE_SECONDS ago.
+# Prevents back-to-back auto-checkpoints when Claude is iterating fast through several
+# Stop events within a short window. A real (non-auto-checkpoint) commit also resets
+# the timer, so the next auto-checkpoint waits at least DEBOUNCE_SECONDS past it.
+DEBOUNCE_SECONDS="${AUTO_CHECKPOINT_DEBOUNCE:-600}"
+last_commit_ts="$(git log -1 --format=%ct 2>/dev/null || echo 0)"
+now_ts="$(date +%s)"
+if [ "$((now_ts - last_commit_ts))" -lt "$DEBOUNCE_SECONDS" ]; then
+  exit 0
+fi
+
 # Commit and push
 git add -A
 git commit -m "chore: auto-checkpoint

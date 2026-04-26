@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# pre-commit — refuse commits to protected branches.
+#
+# Wired via `git config core.hooksPath .claude/git-hooks` (installed by
+# .claude/setup.sh). Tracked in-repo so hook config travels with clones.
+#
+# Defense-in-depth alongside the existing pre-push hook: catches the
+# protected-branch mistake at commit time, before the recovery dance of
+# `git reset --hard origin/main` is needed. The non-negotiable rule lives
+# in workspace CLAUDE.md ("Never push to protected branches").
+
+set -u
+
+branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
+
+case "$branch" in
+  main|master|development|dev|production)
+    echo "[pre-commit] ✗ refused — committing to protected branch '$branch' is not allowed."
+    echo "             Create a feature branch first: git checkout -b <branch>"
+    echo "             Bypass (--no-verify) forbidden by policy. See workspace CLAUDE.md."
+    exit 1
+    ;;
+esac
+
+exit 0
