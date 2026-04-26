@@ -1,34 +1,48 @@
 ---
 name: wrap-session
-description: Close out a session after a PR has been merged. Syncs local main, deletes the merged feature branch, stops any dev servers Claude started, and produces a session recap with proposed system improvements (skills, hooks, docs, ADRs, memory, decisions). Trigger automatically when Ahmed says some variant of "merged, pull and delete", "I merged the PR, clean up", "we're done, wrap this up", "go to main and delete the branch", or any phrasing that clearly signals a post-merge cleanup.
-model: sonnet
-effort: medium
+description: End-of-session reflection after one or more PRs have shipped and been cleaned up. Stops any dev servers Claude started during the session, then produces a session-level recap with proposed system improvements (skills, hooks, docs, ADRs, memory, decisions). Trigger when Ahmed says some variant of "wrap up the session", "we're done for today", "end of session", "wrap this up". Per-PR git cleanup is NOT this skill's job — that's `/cleanup`, which runs separately for each merged PR during the session.
+model: opus
+effort: high
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Bash(git *), Bash(pkill *), Bash(pgrep *), Read, Edit, Write, Glob, Grep
+allowed-tools: Bash(pkill *), Bash(pgrep *), Bash(git log *), Bash(git status *), Read, Edit, Write, Glob, Grep
 ---
 
-Post-merge wrap-up for a session. Runs when Ahmed signals a PR has been merged. Does two jobs in order: git mechanics, then a reflective recap that proposes ways to improve the system.
+End-of-session reflection. Runs after Ahmed signals the session is done — typically after one or more PRs have already been merged and cleaned up via `/cleanup` during the session. This skill's job is the session-level pass: stop the long-running dev servers, then produce a recap that compounds the session's lessons into system-level improvements.
 
 Do not announce the skill invocation. Just do the work.
 
-## Part 1 — Git mechanics
+## When to invoke
 
-These run in whichever repo Claude is currently in. If the session spanned multiple repos (e.g. workspace + a submodule), repeat for each.
+Auto-fire when Ahmed signals end-of-session:
 
-1. **Identify the feature branch.** `git branch --show-current`. If it's a protected branch (`main`, `master`, `development`, `dev`, `production`), skip to step 5 — nothing to delete.
-2. **Check it's merged.** `git fetch origin main` then `git log HEAD..origin/main --oneline` should include the merge commit. If it doesn't, stop and ask Ahmed — the branch isn't actually merged yet.
-3. **Switch and sync.** `git checkout main && git pull`.
-4. **Delete the feature branch locally** with `git branch -d <branch>`. Never use `-D` — if `-d` refuses, the branch isn't fully merged; report that to Ahmed and do not force-delete.
-5. **Stop dev servers Claude started** in this session. `pkill -f "astro dev"`, `pkill -f "next dev"`, `pkill -f "vite"`, or whatever is relevant. Verify with `pgrep`.
-6. **Confirm clean state.** `git status -s` should be empty; `git branch --show-current` should be `main`.
+- "wrap up the session"
+- "we're done for today"
+- "end of session"
+- "wrap this up"
+
+Do **not** invoke for:
+
+- Per-PR cleanup signals ("merged, clean up", "go delete the branch") — that's `/cleanup`.
+- Mid-session pulse checks — that's `/session-pulse`.
+
+If the signal is ambiguous (could be either `/cleanup` or `/wrap-session`), ask one one-line clarifier: "cleanup the merged branch only, or full session wrap?"
+
+## Part 1 — Dev server cleanup
+
+These persist across PRs within a single session, so they're stopped at session end (not after each `/cleanup`).
+
+1. **Stop dev servers Claude started** in this session. `pkill -f "astro dev"`, `pkill -f "next dev"`, `pkill -f "vite"`, or whatever is relevant. Verify with `pgrep`.
+2. **Confirm clean shell state.** `git status -s` should be empty in whatever cwd you're in. If it isn't, surface the diff and ask before proceeding.
+
+Note: branch / sync state is `/cleanup`'s responsibility. Don't re-do that work. Trust that if Ahmed is saying "wrap up", he's already cleaned up each merged PR with `/cleanup`. If you see an unmerged feature branch checked out, surface it and ask — don't silently switch.
 
 ## Part 2 — Session recap + improvement proposals
 
-After the git mechanics complete, produce a written recap for Ahmed. Four sections, in order:
+Produce a written recap. Four sections, in order:
 
 ### Session recap
-Short prose (3–5 short paragraphs, not bullets). What arcs shipped, how they fed each other, what's now live on `main`. Reference the merged branch name and the top-level commit messages.
+Short prose (3–5 short paragraphs, not bullets). What arcs shipped, how they fed each other, what's now live on `main`. If multiple PRs merged this session, name each one and the through-line that connects them (or note explicitly that they were independent).
 
 ### What's still in-flight
 Anything captured during the session that is not yet done. Linear cards, placeholder assets, TODO-style decisions waiting on Ahmed. Surface each with a short label and pointer.
@@ -53,12 +67,11 @@ Pick the single highest-leverage improvement and name it. Do not list multiple r
 
 ## Guardrails
 
-- **Never force-delete a branch.** `git branch -d` only. If it refuses, investigate and report — do not overrule.
-- **Never push to main.** The post-merge pull is read-only from the git perspective — fast-forward only.
-- **Never fabricate.** If you cannot verify the merge, say so. If the session context is thin (short session, small change), say so and produce a short recap — do not invent improvements to pad the output.
+- **Never fabricate.** If the session context is thin, produce a short recap. Do not invent improvements to pad the output.
 - **Prefer proposals over actions.** Part 2 proposes. It does not execute. Ahmed picks.
 - **If Ahmed says "do everything" or picks items to implement**, branch out into the relevant repos (one feature branch per repo), commit, push, and surface PR-creation URLs per the `/pr` skill. Never open PRs directly — Ahmed does that (`memory/feedback_pr_creation.md`).
+- **Don't re-do `/cleanup`'s work.** This skill assumes per-PR cleanup already happened. If the working tree is dirty or a feature branch is still checked out, surface and ask.
 
 ## Output shape (user-facing)
 
-Keep Part 1's output minimal — one confirmation line per step, no narration. The bulk of the visible output is Part 2: the recap and proposals. Structured markdown, no emojis.
+Keep Part 1 minimal — one or two confirmation lines (servers stopped, state clean). The bulk of the visible output is Part 2: the recap and proposals. Structured markdown, no emojis.
