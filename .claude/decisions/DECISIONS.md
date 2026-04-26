@@ -480,3 +480,22 @@ Per-advisor `xhigh` stays on the `advisor-1..6` agent files (set in the 2026-04-
 **Actual outcome:** *(pending — observable on the next /commit and /pr invocations; should feel snappier and surface Sonnet 4.6 in any model-line telemetry)*
 
 ---
+
+## 2026-04-26 — Split post-merge workflow into /cleanup + /wrap-session
+
+**Context:** Until today, `/wrap-session` did two jobs in one shot — per-PR git mechanics (sync main, delete the merged feature branch) and end-of-session reflection (dev-server stop, recap, improvement proposals). That worked when sessions shipped a single PR. Today's BOR-24 work surfaced that sessions now routinely ship multiple PRs, and conflating the two scopes forces a bad choice: either run the heavy reflective recap after every merge (wasted reflection budget on PRs that don't need it), or defer all cleanup to session end (leaving stale feature branches checked out across multiple PRs and breaking "always on main between chunks" hygiene).
+
+**Decision:** Split into two skills with distinct trigger phrases.
+
+- **`/cleanup`** (new, sonnet/medium): per-PR git mechanics only. Sync main `--ff-only`, delete merged feature branch with `-d`. Fires on "merged, clean up" / "PR merged on main" / "go to main and delete the branch". May fire multiple times per session.
+- **`/wrap-session`** (modified, re-tiered opus/high): end-of-session reflection only. Stops dev servers Claude started across the session, then produces the recap + improvement-proposal pass. Fires on "wrap up the session" / "we're done for today" / "end of session". Once per session.
+
+Memory file `feedback_wrap_session.md` renamed → `feedback_post_merge_workflow.md` and rewritten to describe both triggers. Matrix updated: ops row swaps `/wrap-session` for `/cleanup` + `/log-decision`; new "Reflection / session recap" row pulls `/wrap-session` and `/session-pulse` together at opus/high.
+
+**Why:** The two scopes have different cadence (per-PR vs per-session), different cognitive register (mechanical vs reflective), and now different model+effort tier. Splitting is the only way to honor both without wasting reflection on small PRs or leaving branch hygiene to drift across multi-PR sessions. Bumping `/wrap-session` to opus/high reflects that reflection-only is closer to `/session-pulse` than to `/commit`.
+
+**Expected outcome:** Multi-PR sessions feel cleaner — between chunks Ahmed says "merged, clean up", Claude does 5 seconds of git mechanics, ready for the next chunk. At session end Ahmed says "wrap up", and the heavyweight reflection runs once on the full session arc. Trigger ambiguity ("I'm done") gets a single one-line clarifier, not a guess.
+
+**Actual outcome:** *(pending — first real test is when this PR itself merges; the BOR-24 branch will be cleaned up via the new `/cleanup` skill it introduces)*
+
+---
