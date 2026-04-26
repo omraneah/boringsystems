@@ -541,3 +541,26 @@ The fourth recap proposal (decision-log structural pass) was explicitly parked b
 **Actual outcome:** *(pending — pre-commit visible on next stray `git commit` on main; debounce visible on next multi-step session; memory visible on next session that touches model/effort or convene-board)*
 
 ---
+
+## 2026-04-26 — `lab/` workspace track scaffolded (10% exploration probe, side-door)
+
+**Context:** Same 2026-04-26 session as the Sofia decision. After two rounds of strategic-board input — the second round on a corrected brief — the board endorsed a 90/10 exploitation/exploration split: keep 90% on the relationship-led primary path (engagement-shapes signal-check, warm-graph reactivation already running at 4–5 catch-ups/week), and allocate ~10% (≈ 1 hour/night) to a small parallel probe testing one specific hypothesis: that the emerging agent-to-agent attention dynamic of 2026 may favor people positioned for agent-discoverable assets, and that accumulated knowledge can be productized into info products via a fully-automated stack with €500–€1k MRR as an open-horizon success floor. The board flipped the round-1 verdict (which was responding to a frame error of mine — I'd implied the conversations were waiting; they aren't) and converged on: run the probe, but the originally-named protections (folder + timer + verbal "no attachment") are naive — replace with kill criteria, named tribe, accountability human, narrative discipline, attentional discipline, and Singer's chest-check.
+
+**Decision:** Create `lab/` as a workspace-level folder (not a submodule — soft quarantine), parallel to `go-to-market/`, deliberately separated from boringsystems / personal-apps / engagement-shapes positioning. Four scaffold files committed:
+
+1. `lab/README.md` — entry point. Encodes the 10% rule as load-bearing and the quarantine rules (one-way reference, no narration to the warm graph, no coupling to existing positioning surfaces). Branson exception (one trusted confidant) explicitly allowed.
+2. `lab/CHARTER.md` — the five proofs being run, the success criterion (€500–€1k MRR), the integrity floor ("no duping"), the failure criteria (kill or 90% cadence drops or surface narration leaks or integrity at risk).
+3. `lab/PROTECTIONS.md` — the six board-endorsed protections as the execution gate. Placeholders for kill criteria, named tribe, accountability human, narrative discipline, attentional discipline first-signal commitment, and Singer's chest-check. **No execution begins until the gate is filled.**
+4. `lab/QUESTIONS.md` — eleven open questions preserved deliberately (no collapsing). Hardest one (item 9): does the Re-Entry Doctrine apply to the lab, or does the side-door framing exempt it? The two readings produce very different labs.
+
+Soft quarantine by default. Escalation to hard quarantine (own submodule) is conditional on the lab generating commercially distinct artifacts or needing different deploy / branding surfaces. Hard quarantine is not the default because it imports setup cost the probe can't yet justify.
+
+**Why:** The board-endorsed split (90/10 epsilon-greedy applied to a personal career at a substrate-shift inflection) is structurally sound — *"10% exploration at the inflection of a substrate shift is not optional, it's hygiene"* (Naval). But the dominant failure mode is the 90% getting eaten by the 10% as the probe gets interesting (6/6 advisors converged on this). Filesystem separation buys reversibility of artifacts but not of attention; the real protections live in pre-committed kill criteria, a named tribe, an accountability human, and narrative discipline. Encoding those as a gate file (`PROTECTIONS.md`) before any execution prevents the two failure modes the board flagged: (a) the folder + timer + "no attachment" framing being mistaken for actual protection, and (b) execution starting before the load-bearing prerequisites (named tribe, kill criteria, accountability human) are in place. The four-file scaffold is the minimum that lets Ahmed pick this up next session without re-deriving context from chat history.
+
+The soft quarantine is the laptop-agnostic default — folder lives in the workspace git tree, no separate setup, fully reproducible from `clone + setup.sh`. If it later escalates, that's a logged decision, not a drift.
+
+**Expected outcome:** Ahmed picks up `lab/` next session, fills the `PROTECTIONS.md` placeholders (kill criteria, tribe, accountability human, first-signal commitment), runs Singer's chest-check, then either resolves or annotates the open questions in `QUESTIONS.md` (especially item 9 — doctrine relationship). Only then does any execution begin (agents, goals, build). The 90% (4–5 catch-ups/week, four engagement shapes resolving by mid-June) continues uninterrupted. The 10% remains genuinely 10% or kills itself.
+
+**Actual outcome:** *(pending — first observable when Ahmed picks the lab back up and either fills the gate or doesn't. If the lab folder sits untouched for >4 weeks, that itself is data — likely indicates the chest-check resolved against the probe.)*
+
+---
