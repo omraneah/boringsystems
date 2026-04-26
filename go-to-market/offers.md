@@ -56,6 +56,8 @@ The second half of 2026 is explicitly a freelance + solopreneur exploration wind
 
 **Why this is on the list.** It's a known-good fit for Ahmed's Enakl-era capability (infrastructure rebuilds, vendor exits, SaaS transformations done on team-of-3-to-5 budgets). It's also the offer that's least dependent on the "fractional CTO" market being receptive, which diversifies the bet.
 
+**Credibility check.** Per `credibility-map.md`: this offer is borderline — the "50+ engineer larger corporation" framing brushes the hyperscale wall. The actual proof point is *transformation on team-of-3-to-5 budgets*. Qualify hard in discovery: if the buyer is implicitly asking for VP-of-Engineering-during-migration shape (Zone 3), refer out rather than pursue.
+
 **Pricing logic.** Weekly or monthly retainer, scoped to the transformation timeline. Closer to traditional consulting than offers 1 and 2.
 
 ---
