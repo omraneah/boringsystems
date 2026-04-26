@@ -1,6 +1,8 @@
 ---
 name: gtm-sync
 description: Capture go-to-market signal — LinkedIn edits, new DM patterns, positioning iterations, offer refinements, inbound clustering — into the `go-to-market/` folder. Use when a conversation surfaces anything that changes how Ahmed shows up in the market or how the market is responding. Also use as a periodic reconciliation pass when inbound has been landing without being logged.
+model: opus
+effort: high
 ---
 
 # gtm-sync

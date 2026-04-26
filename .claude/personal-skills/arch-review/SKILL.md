@@ -1,6 +1,8 @@
 ---
 name: arch-review
 description: Review code or a PR against core architectural principles. Use when adding a new module, API endpoint, or significant structural change. Lightweight — focuses on portable invariants, not SaaS-specific patterns.
+model: opus
+effort: high
 disable-model-invocation: false
 allowed-tools: Read, Grep, Glob
 argument-hint: "[file, directory, or description of what to review]"

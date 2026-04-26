@@ -1,6 +1,8 @@
 ---
 name: commit
 description: Stage all changes, write a meaningful commit message, and push to the current feature branch. Use when work on a task is complete or when moving to a new task. Never commits to protected branches.
+model: sonnet
+effort: medium
 disable-model-invocation: false
 allowed-tools: Bash(git *)
 argument-hint: "[optional: commit message override]"

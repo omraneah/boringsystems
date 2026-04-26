@@ -1,6 +1,8 @@
 ---
 name: pr
 description: Prepare a pull request for the current feature branch — pushes if needed, drafts title and body, and surfaces the GitHub PR-creation URL for Ahmed to open himself. Does NOT create the PR. Use after committing work.
+model: sonnet
+effort: medium
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Bash(git *)
