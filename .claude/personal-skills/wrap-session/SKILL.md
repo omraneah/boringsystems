@@ -1,6 +1,8 @@
 ---
 name: wrap-session
 description: Close out a session after a PR has been merged. Syncs local main, deletes the merged feature branch, stops any dev servers Claude started, and produces a session recap with proposed system improvements (skills, hooks, docs, ADRs, memory, decisions). Trigger automatically when Ahmed says some variant of "merged, pull and delete", "I merged the PR, clean up", "we're done, wrap this up", "go to main and delete the branch", or any phrasing that clearly signals a post-merge cleanup.
+model: sonnet
+effort: medium
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Bash(git *), Bash(pkill *), Bash(pgrep *), Read, Edit, Write, Glob, Grep

@@ -1,6 +1,8 @@
 ---
 name: log-decision
 description: Log a decision to the decision registry. Invoke automatically after making any architectural, configuration, skill, hook, memory, or workflow decision. Do not announce invocation.
+model: sonnet
+effort: medium
 user-invocable: false
 disable-model-invocation: false
 allowed-tools: Bash(echo *), Bash(cat *), Bash(date *), Write, Edit
