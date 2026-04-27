@@ -29,6 +29,19 @@ Voice calibration per persona lives in [`target-audiences.md`](./target-audience
 
 ---
 
+## Titles, descriptions, and slugs
+
+A piece is found, judged, and clicked through three short artifacts before its body ever loads: the **title**, the **description** (subtitle), and the **slug** (URL). Each has its own discipline.
+
+- **Slug = title, by default.** New article slugs are the title kebab-cased — lowercase, em-dashes/colons/commas/apostrophes dropped, spaces replaced with hyphens, repeats collapsed. The forcing function lives on the title side: if the title makes a bad URL, the title is bad. Deviate only with a documented reason. **Never rename a published slug** — inbound URLs (LinkedIn shares, citations, search-engine cache) are stable, breaking them costs more than any rename benefit.
+- **Descriptions are audience-calibrated.** A description written for engineers will alienate operators, and vice versa. Match the voice target of the piece (per `target-audiences.md`). Concretely: no engineer-coded jargon (`IDE`, `fresh-machine clone`, `tool-call layer`) in builder-target descriptions; no consumer-soft language in technical pieces. The description appears as the meta description, the lane-card hover, and the LinkedIn preview snippet. Treat it like ad copy with no ad budget.
+- **Distill, don't pad.** One or two sentences max, ideally one. The title carries the promise; the description sharpens the angle. If the description repeats the title in different words, cut it.
+- **Both surface in the wild.** A bad title or description shows up in places the body never reaches — search results, link previews, RSS readers, screenshots circulated on X. Both are public artifacts in their own right.
+
+The `article-review` skill enforces these as warnings: slug ≠ slugified title, description register ≠ inferred voice target, description repeats title.
+
+---
+
 ## Typography
 
 Four typefaces do four specific jobs. Mixing them outside their job is the most common charter violation.
