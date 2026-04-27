@@ -79,6 +79,27 @@ What NOT to flag:
 
 Rule of thumb: if a non-technical English word can be swapped for a simpler one without changing meaning, the simpler word wins.
 
+### 3c. Slug-title alignment + description audience match
+
+Two checks tied to the title-and-slug discipline (see `docs/design-charter.md` § Titles, descriptions, and slugs):
+
+**Slug ↔ title.** For **new** articles (slug not yet published, no inbound URL pressure), the slug should equal the title in kebab-case form:
+
+- Lowercase the title.
+- Replace ` — ` (em-dash with surrounding spaces), `:`, `,` with `-`.
+- Drop apostrophes, periods, and other punctuation.
+- Replace remaining whitespace with `-`.
+- Collapse multiple `-` to a single `-`. Drop leading/trailing `-`.
+
+If `slug ≠ slugified(title)`, flag as a **warning** with the proposed slug. Recommend renaming the file before publish. **Do not flag this on already-published articles** where the slug is live in the wild — preserve URL stability, don't break inbound links. Heuristic for "already published": the article is in the most recent deploy on `main`, or has a `date` older than the current branch's first commit. When unsure, treat as published and skip the rename recommendation.
+
+**Description ↔ voice target.** The `description` frontmatter field must match the piece's voice target (inferred in step 4):
+
+- `technical` description: opens with technical tension or architectural framing; uses field vocabulary the technical reader has.
+- `builder` description: opens with the business stake or operational decision; avoids engineer-only jargon (`IDE`, `tool-call layer`, `fresh-machine clone`, `harness configuration`); plain enough for a non-engineer operator.
+
+If the description register clashes with the voice target — engineer jargon in a builder-target piece, or consumer-soft language in a technical piece — flag as a **warning** with the offending phrase quoted and a one-line proposed rewrite. Also flag if the description merely repeats the title in different words rather than sharpening the angle.
+
 ### 4. Lane / voice alignment
 
 - Resolve the article's lane from its collection path (`writing` / `work` / `building` / `archive`).

@@ -19,6 +19,8 @@ All code is authored through Claude Code. No manual editing.
 - **FR = re-voiced, not translated.** Run `/french-audit` before committing any FR content. Keep English jargon per `docs/french-guide.md`.
 - **Local-first enforcement.** No CI. The pre-commit hook (`astro check` + structural script + `astro build`) is the gate. `--no-verify` forbidden. See `docs/adr-003-enforcement-tier.md` and its upgrade trigger.
 - **All API routes under `/api/v1/`.** Unversioned routes are forbidden. Use `src/lib/http.ts`'s `json()` helper.
+- **Slug derives from title by default.** New article slugs (filenames) are the title kebab-cased — drop em-dashes, colons, commas, apostrophes; replace spaces with hyphens. Deviate only with a documented reason. **Never rename a published slug** — inbound URLs are stable. The forcing function is on the title side: if the title would make a bad slug, fix the title before publishing. Description frontmatter must match the piece's voice target — no engineer-coded jargon (`IDE`, `fresh-machine clone`) in builder-target pieces, no consumer-soft language in technical pieces. See `docs/design-charter.md` § Titles, descriptions, and slugs.
+
 - **Never push with high or critical npm vulnerabilities.** The `pre-push` hook runs `npm audit --audit-level=high` and blocks the push on any high/critical finding. Fix first — `npm audit fix`, npm `overrides`, or a documented advisory-specific acceptance. Never `--no-verify`.
 
 ## Detail docs
