@@ -1,4 +1,7 @@
 Enakl/
 .DS_Store
 .claude/settings.local.json
+tmp/*
+!tmp/.gitkeep
+!tmp/README.md
 # test

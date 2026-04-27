@@ -16,6 +16,11 @@
             "type": "command",
             "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/session-start.sh",
             "async": true
+          },
+          {
+            "type": "command",
+            "command": "find /Users/ahmedomrane/Workspace/tmp -mindepth 1 -not -name '.gitkeep' -not -name 'README.md' -delete",
+            "async": true
           }
         ]
       }
