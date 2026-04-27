@@ -9,13 +9,13 @@ order: 1
 
 import LeadMagnet from '@/components/LeadMagnet.astro';
 
-The model in your IDE today will be replaced before the year ends. The next one will be smarter, cheaper, faster — and will reset to zero on the day it lands, just like the one before. None of the work you did to make this model useful for *your* operation transfers automatically.
+Most people are still using AI the way they used a word processor in 1995 — open the app, type a prompt, get an output, paste it somewhere else. That works for small productivity wins. It is also already the outdated frame.
 
-That work — what you've taught the agent, how you've wired it into your tools, what context it inherits, how you correct its mistakes — sits in a layer between you and the model. That layer is the orchestration. It is not the model. It does not get replaced when the model gets replaced. And it is the only thing in the loop that compounds with you over time.
+The frame that compounds is different. The model is not the assistant; it is the *brain* of a system you build around it — a system that holds your business context, your standards, your past decisions, and your way of working. That system is the orchestration. It sits between you and the model. The model gets replaced every few months; the orchestration does not. It is the only thing in this loop that compounds with you over time.
 
-This piece is the operating principles for that layer. Seven of them. They sit downstream of the engineering bar — *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)* covers that bar in full, and everything below assumes it. These seven are what you add on top once you accept that the agent itself is a commodity.
+This piece is the operating principles for that orchestration layer. Seven of them. The technical practice underneath — how the system itself is built — lives in the companion piece, *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*, written for technical readers. You don't need it to follow the seven below. They are what you, the person running the operation, layer on top once you accept that the model is a commodity and the next one will be too.
 
-The audience is operators: founders, builders, intrapreneurs, anyone running real work with the help of a modern coding agent. The principles are written so a senior engineer can use them too — but the framing is the operator's, because the operator is the one paying the cognitive cost when the orchestration is sloppy.
+The audience is operators: founders, intrapreneurs, builders, leaders running real work and starting to wire AI into their teams. The principles are written so a senior engineer can use them too — but the frame is the operator's, because what you are really building is a small organisation of agents. Which roles in your team stay distinctly human, and which collapse into the orchestration over the next two years, is decided by how well you build that small organisation. The principles below are what decides it.
 
 ---
 
@@ -27,13 +27,13 @@ The orchestration layer holds this in mind continuously. It treats your written 
 
 The failure mode this prevents is the one that breaks every "AI knowledge base" people build: the agent quotes a stale document with confidence, you act on it, and the quote was right when it was written and wrong by the time you used it. The orchestration's job is to know the difference.
 
-## 2. Written, version-controlled, hardware-agnostic
+## 2. Written down, versioned, portable
 
-If it isn't written, it doesn't exist. Skills, hooks, memory, settings, decisions, prompts, configuration — committed to a repository, or not real. There is no in-between state where "I know how to do that, I just haven't written it down" is acceptable. The agent can't read your intentions; it can only read what's there.
+If it isn't written, it doesn't exist. The instructions you give your agents, the corrections you've taught them, the templates you reuse, the rules you want enforced, the playbooks for recurring tasks — all of it lives in writing, or it lives nowhere. The agent cannot read your intentions; it can only read what is captured.
 
-Version control from day one. Not for sophistication — for survival. The skill you wrote last quarter has to still exist next Tuesday. The hook you depend on has to persist. The memory file has to outlive your laptop. None of that is true if the system lives only on the original machine.
+Versioned, not pinned to a single laptop. The skill you wrote last quarter has to still exist next Tuesday on whatever machine you are on. The correction you taught the agent in February has to persist into August. If the system only works on your original computer, you don't have a system — you have a personal habit that disappears the day your laptop does.
 
-The system runs anywhere. Local laptop, cloud agent, fresh-machine clone — all should reach full working state from a single setup script. No tokens or secrets that don't survive the clone. No undocumented setup. Hardware is interchangeable; the orchestration is not.
+Portable across people and machines. A new team member should be able to pick up the orchestration the same way they would pick up a well-written internal handbook — not by sitting next to you and watching. This is the same standard a serious organisation applies to its operating procedures, and it is the standard the orchestration layer has to meet.
 
 ## 3. Memory is tiered — three horizons, three sets of rules
 
@@ -59,30 +59,30 @@ The operator decides what gets codified. The orchestration never silently mutate
 
 This is the meta-principle that subsumes most of the others when you trace the *why*.
 
-LLM intelligence is cheap and getting cheaper. The operator's cognition is the scarcest, most expensive resource in the loop. The orchestration protects it as the primary design constraint. Every output, every notification, every interruption is weighed against the cost it imposes on the operator's attention.
+AI intelligence is cheap and getting cheaper. *Your* attention is not. It is the scarcest, most expensive resource in the loop. The orchestration protects it as the primary design constraint. Every output, every notification, every approval request is weighed against the cost it imposes on you.
 
-Concretely, this is what protects cognition:
+Concretely:
 
-- **Scope discipline.** One concern per unit of work. Wide scope splits before it reaches the operator.
-- **Distillation before details.** Lead with verdicts, summaries, and links. Detail expands on request, not by default.
-- **Confirmation gates only where they pay.** Briefs to context-naive sub-agents, lane changes, and parallel dispatch surface their shape before firing. Routine tool calls do not interrupt for confirmation. The point is not to maximise human-in-the-loop checks — it is to *minimise* them, while keeping the high-stakes ones where they belong. Every avoidable confirmation is a withdrawal from the cognitive bank.
-- **Parallel by default.** Independent work runs concurrently. Serial execution is the exception, and it has to justify itself.
-- **The link is the recap.** When a document, ticket, or PR exists, point to it. Don't re-narrate the contents in chat. One source of truth per fact.
-- **Operational vs strategic separation.** Operational agents are context-loaded faithful executors. Strategic advisors are context-naive frame-challengers. The operator chooses which tier to engage; the orchestration never collapses them.
+- **Scope discipline.** One thing at a time. A request that asks you to weigh in on five unrelated topics splits before it reaches you.
+- **Distill first, detail second.** Lead with the verdict, the summary, the link. Expose detail on request, not by default.
+- **Approval gates only where they earn the interruption.** Briefs to a sub-agent that doesn't know your business, a change in working mode, or a fan-out across multiple agents — surface the shape before firing. Routine actions you have already approved a hundred times do not. The goal is not to maximise human-in-the-loop checks; it is to *minimise* them, while keeping the high-stakes ones where they belong. Every avoidable approval is a withdrawal from the cognitive bank.
+- **Parallel by default.** Independent work runs in parallel. Serial execution is the exception and has to justify itself.
+- **The link is the recap.** When a document, ticket, or page already exists, point to it. Don't re-narrate the contents in conversation. One source of truth per fact.
+- **Operational agents and strategic advisors are different tiers.** Operational agents are loaded with your context and execute on your behalf. Strategic advisors stay deliberately context-naive — their job is to challenge the frame, not to comply with it. You decide which tier to call. The orchestration never collapses them into one.
 
-The discipline is to ask, of every piece of friction the system imposes: *is this saving cognition, or spending it?* Friction that prevents a costly mistake earns its place. Friction that asks you to confirm a routine action you've already approved a hundred times does not.
+The discipline is to ask, of every piece of friction the system imposes: *is this saving cognition, or spending it?* Friction that prevents a costly mistake earns its place. Friction that asks you to confirm a routine action you have already approved a hundred times does not.
 
 ## 6. Engineering principles apply by default
 
-The orchestration layer is software. Everything you build into it — skills, hooks, sub-agent prompts, registries, plugins, the harness configuration itself — is system-building. The same engineering principles that govern your production code govern your orchestration.
+The orchestration is, structurally, software — even when you don't think of it that way. Every skill, every prompt, every connection, every automation you set up is a piece of system-building. The principles that have governed serious software for forty years also govern this. There is no separate, lower bar because it is "AI" or because it is "personal".
 
-That means architecture and boundaries, separation of concerns, root-cause fixes, planning and reviewability, code quality (KISS, YAGNI, DRY), documentation, testing. There is no separate, lower bar for "AI-generated" code or "personal" tooling. The full version is in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*. Anything built into the orchestration inherits it.
+That means clear ownership of responsibility per piece, root-cause fixes over workarounds, change you can review and roll back, simplicity over speculative complexity, documentation that explains *why*. The full version is in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)* and is written for technical readers. You don't need to read every line of it to apply it — the orchestration just needs to inherit the bar.
 
-The corollary that catches people: AI tools follow the same bar engineers do. An agent that bypasses your review process to ship a "quick fix" is not doing you a favour; it is degrading the codebase under the same logic that would get a junior engineer pulled aside. The orchestration is what enforces this — not the model, the orchestration.
+The corollary that catches operators specifically: AI does not get a discount on the bar. An agent that ships a quick fix bypassing your review process is not doing you a favour; it is degrading the operation under the same logic that would get a careless team member pulled aside. The orchestration is what enforces this — not the model, the orchestration.
 
 ## 7. Manage agents like you manage people
 
-What works for humans works for agents. More context helps. Correction helps. Guidance helps. The management toolkit you'd run on a new hire is the same toolkit you run on a coding agent — and the orchestration is what lets you actually run it.
+What works for humans works for agents. More context helps. Correction helps. Guidance helps. The management toolkit you'd run on a new hire is the same toolkit you run on an AI agent — and the orchestration is what lets you actually run it.
 
 The arc is familiar. Early on the agent gets the long version: the goal, the constraints, the example, the bad pattern to avoid, the way you want it framed. You correct it the first few times the way you'd correct a new hire. You show the good answer and the bad one and let it learn from the contrast. You stay close.
 
@@ -108,17 +108,19 @@ The compounding doesn't show up as one big leap. It shows up as a hundred small 
 
 If you are building this for the first time:
 
-1. **Pick the repository.** Decide where the orchestration lives and put it in version control today. Don't optimise the structure yet; just commit something. Structure earns itself by use.
+1. **Decide where the orchestration lives.** A folder, a repository, a workspace — anywhere that is versioned, readable, and not lost when your laptop dies. Don't optimise the structure yet; just put something in it. Structure earns itself by use.
 
-2. **Write the first three skills.** The three workflows you do most often, in the form: *when I do X, do it this way*. A short trigger, a short checklist, an example. The third time you find yourself typing the same paragraph at the agent, that paragraph is a skill.
+2. **Write the first three skills.** The three workflows you run most often, in the form: *when I do X, do it this way*. A short trigger, a short checklist, an example. The third time you find yourself typing the same paragraph at the agent, that paragraph is a skill.
 
-3. **Wire one corrective hook.** The single mistake the agent makes most often that you'd want it to never make again. Block it at the tool-call layer, not at the review layer. This is the one that proves the loop.
+3. **Catch one repeated mistake at the source.** The single thing the agent gets wrong most often that you would want it to never get wrong again. Catch it at the action level — before it ships — not after, by review. This is the one rule that proves the loop is real.
 
-4. **Split memory into the three tiers from day one.** Even if each tier starts with one file. Don't merge them later — that is the bug.
+4. **Split memory into three tiers from day one.** Even if each tier starts with a single file. Merging them later is the bug; resist the temptation now.
 
-5. **Run the orchestration the way you'd run production.** Review changes. Prune what stops earning. Commit messages that explain why, not what.
+5. **Run the orchestration the way a serious team runs its operation.** Review changes. Prune what stops earning. Write down *why* a decision got made, not just what got changed.
 
 The model will keep getting better. None of that is the edge — every operator reading this has access to the same model. The edge is what wraps the model. Build it now, tune it weekly, prune it honestly, and the compounding takes care of itself.
+
+Which roles in your operation collapse into the orchestration over the next two years and which stay distinctly human is decided by how well that orchestration is built. The seven principles above are what decides it.
 
 The companion engineering piece — *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)* — covers the practice layer underneath the orchestration. Read it second; it is the bar everything above sits on.
 

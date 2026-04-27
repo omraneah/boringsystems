@@ -9,13 +9,13 @@ order: 1
 
 import LeadMagnet from '@/components/LeadMagnet.astro';
 
-Le modèle dans votre IDE aujourd'hui sera remplacé avant la fin de l'année. Le suivant sera plus malin, moins cher, plus rapide — et il se réinitialisera à zéro le jour de son arrivée, comme celui d'avant. Rien du travail que vous avez fait pour rendre ce modèle utile à *votre* opération ne se transfère automatiquement.
+La plupart des gens utilisent encore l'AI comme on utilisait un traitement de texte en 1995 — on ouvre l'app, on tape un prompt, on récupère un output, on le colle ailleurs. Ça marche pour des petits gains de productivité. C'est aussi déjà le frame dépassé.
 
-Ce travail — ce que vous avez appris à l'agent, comment vous l'avez câblé à vos outils, quel contexte il hérite, comment vous corrigez ses erreurs — vit dans une couche entre vous et le modèle. Cette couche, c'est l'orchestration. Ce n'est pas le modèle. Elle ne se fait pas remplacer quand le modèle se fait remplacer. Et c'est la seule chose dans la boucle qui se compose avec vous dans le temps.
+Le frame qui se compose est différent. Le modèle n'est pas l'assistant ; c'est le *cerveau* d'un système que vous construisez autour de lui — un système qui porte votre contexte business, vos standards, vos décisions passées, votre façon de travailler. Ce système, c'est l'orchestration. Elle se loge entre vous et le modèle. Le modèle se fait remplacer tous les quelques mois ; l'orchestration non. C'est la seule chose dans cette boucle qui se compose avec vous dans le temps.
 
-Cette pièce, c'est les principes opérationnels de cette couche. Sept. Ils sont en aval de la barre engineering — *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)* couvre cette barre en entier, et tout ce qui suit la présuppose. Ces sept-là sont ce que vous ajoutez par-dessus une fois acceptez que l'agent lui-même est commodity.
+Cette pièce, c'est les principes opérationnels de cette couche d'orchestration. Sept. La pratique technique en dessous — comment le système lui-même est construit — vit dans la pièce compagnon, *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)*, écrite pour les lecteurs techniques. Vous n'en avez pas besoin pour suivre les sept ci-dessous. Ce sont ce que vous, la personne qui fait tourner l'opération, ajoutez par-dessus une fois acceptez que le modèle est commodity et que le suivant le sera aussi.
 
-L'audience, c'est les opérateurs : founders, builders, intrapreneurs, toute personne qui fait tourner du vrai travail avec l'aide d'un coding agent moderne. Les principes sont écrits pour qu'un senior engineer puisse les utiliser aussi — mais le cadrage est celui de l'opérateur, parce que c'est lui qui paie le coût cognitif quand l'orchestration est sloppy.
+L'audience, c'est les opérateurs : founders, intrapreneurs, builders, leaders qui font tourner du vrai travail et commencent à câbler de l'AI dans leur équipe. Les principes sont écrits pour qu'un senior engineer puisse les utiliser aussi — mais le frame est celui de l'opérateur, parce que ce que vous construisez vraiment, c'est une petite organisation d'agents. Quels rôles dans votre équipe restent distinctement humains, et lesquels s'effondrent dans l'orchestration sur les deux prochaines années, c'est décidé par comment vous construisez cette petite organisation. Les principes ci-dessous sont ce qui décide.
 
 ---
 
@@ -27,13 +27,13 @@ La couche d'orchestration tient ça en tête en continu. Elle traite votre corpu
 
 Le mode d'échec que ça empêche, c'est celui qui casse chaque "AI knowledge base" que les gens construisent : l'agent cite un document périmé avec assurance, vous agissez dessus, et la citation était juste quand elle a été écrite et fausse au moment où vous l'utilisez. Le job de l'orchestration, c'est de connaître la différence.
 
-## 2. Écrit, version-controlled, hardware-agnostic
+## 2. Écrit, versionné, portable
 
-Si ce n'est pas écrit, ça n'existe pas. Skills, hooks, memory, settings, decisions, prompts, configuration — committés dans un repo, ou pas réels. Pas d'état intermédiaire où "Je sais comment faire ça, je l'ai juste pas encore écrit" est acceptable. L'agent ne peut pas lire vos intentions ; il ne peut lire que ce qui est là.
+Si ce n'est pas écrit, ça n'existe pas. Les instructions que vous donnez à vos agents, les corrections que vous leur avez apprises, les templates que vous réutilisez, les règles que vous voulez voir appliquées, les playbooks pour les tâches récurrentes — tout ça vit par écrit, ou ça ne vit nulle part. L'agent ne peut pas lire vos intentions ; il ne peut lire que ce qui est capturé.
 
-Version control dès le jour un. Pas pour la sophistication — pour la survie. Le skill que vous avez écrit le trimestre dernier doit toujours exister mardi prochain. Le hook dont vous dépendez doit persister. La memory doit survivre à votre laptop. Rien de tout ça n'est vrai si le système vit seulement sur la machine d'origine.
+Versionné, pas épinglé à un seul laptop. Le skill que vous avez écrit le trimestre dernier doit toujours exister mardi prochain sur n'importe quelle machine sur laquelle vous êtes. La correction que vous avez apprise à l'agent en février doit persister jusqu'en août. Si le système ne marche que sur votre ordinateur d'origine, vous n'avez pas un système — vous avez une habitude personnelle qui disparaît le jour où votre laptop disparaît.
 
-Le système tourne partout. Laptop local, cloud agent, fresh-machine clone — tout doit atteindre l'état de fonctionnement complet à partir d'un seul setup script. Pas de tokens ou de secrets qui ne survivent pas au clone. Pas de setup non documenté. Le hardware est interchangeable ; l'orchestration ne l'est pas.
+Portable à travers les gens et les machines. Un nouveau membre d'équipe devrait pouvoir reprendre l'orchestration de la même façon qu'il reprendrait un handbook interne bien écrit — pas en s'asseyant à côté de vous pour regarder. C'est le standard qu'une organisation sérieuse applique à ses procédures opérationnelles, et c'est le standard que la couche d'orchestration doit atteindre.
 
 ## 3. La memory est tiered — trois horizons, trois jeux de règles
 
@@ -59,30 +59,30 @@ L'opérateur décide ce qui est codifié. L'orchestration ne mute jamais silenci
 
 C'est le méta-principe qui subsume la plupart des autres quand on remonte le *pourquoi*.
 
-L'intelligence des LLMs est cheap et le devient encore plus. La cognition de l'opérateur est la ressource la plus rare et la plus chère de la boucle. L'orchestration la protège comme contrainte de design primaire. Chaque output, chaque notification, chaque interruption est pesé contre le coût qu'il impose à l'attention de l'opérateur.
+L'intelligence AI est cheap et le devient encore plus. *Votre* attention non. C'est la ressource la plus rare et la plus chère de la boucle. L'orchestration la protège comme contrainte de design primaire. Chaque output, chaque notification, chaque demande d'approbation est pesé contre le coût qu'il vous impose.
 
-Concrètement, voici ce qui protège la cognition :
+Concrètement :
 
-- **Discipline de scope.** Une seule préoccupation par unité de travail. Le scope large se découpe avant d'atteindre l'opérateur.
-- **Distillation avant détails.** Ouvrir avec verdicts, résumés, liens. Le détail s'expand sur demande, pas par défaut.
-- **Confirmations seulement quand elles paient.** Les briefs vers des sub-agents context-naive, les changements de lane, le dispatch parallèle surfacent leur forme avant de tirer. Les tool calls de routine n'interrompent pas pour confirmation. Le but n'est pas de maximiser les checks human-in-the-loop — c'est de les *minimiser*, tout en gardant les enjeux haut là où ils doivent être. Chaque confirmation évitable est un retrait de la banque cognitive.
-- **Parallèle par défaut.** Le travail indépendant tourne en concurrent. L'exécution sérielle est l'exception, et elle doit se justifier.
-- **Le lien est le résumé.** Quand un document, un ticket ou un PR existe, on pointe dessus. On ne re-narre pas le contenu en chat. Une seule source de vérité par fait.
-- **Séparation opérationnel vs stratégique.** Les agents opérationnels sont des exécuteurs context-loaded fidèles. Les advisors stratégiques sont des challengers de cadre context-naive. L'opérateur choisit quel tier engager ; l'orchestration ne les confond jamais.
+- **Discipline de scope.** Une chose à la fois. Une demande qui vous oblige à vous prononcer sur cinq sujets sans rapport se découpe avant d'arriver à vous.
+- **Distiller d'abord, détail ensuite.** Ouvrir avec le verdict, le résumé, le lien. Exposer le détail sur demande, pas par défaut.
+- **Approbations seulement là où elles méritent l'interruption.** Les briefs vers un sub-agent qui ne connaît pas votre business, un changement de mode de travail, un fan-out à travers plusieurs agents — surfacent leur forme avant de tirer. Les actions de routine que vous avez déjà approuvées cent fois ne le font pas. Le but n'est pas de maximiser les checks human-in-the-loop — c'est de les *minimiser*, tout en gardant les enjeux haut là où ils doivent être. Chaque approbation évitable est un retrait de la banque cognitive.
+- **Parallèle par défaut.** Le travail indépendant tourne en parallèle. L'exécution sérielle est l'exception, et elle doit se justifier.
+- **Le lien est le résumé.** Quand un document, un ticket ou une page existe déjà, on pointe dessus. On ne re-narre pas le contenu en conversation. Une seule source de vérité par fait.
+- **Agents opérationnels et advisors stratégiques sont des tiers différents.** Les agents opérationnels sont chargés de votre contexte et exécutent en votre nom. Les advisors stratégiques restent délibérément context-naive — leur job, c'est de challenger le cadre, pas de s'y conformer. C'est vous qui décidez quel tier appeler. L'orchestration ne les confond jamais.
 
 La discipline, c'est de demander, pour chaque friction que le système impose : *est-ce que ça économise la cognition, ou la dépense ?* La friction qui empêche une erreur coûteuse mérite sa place. La friction qui demande de confirmer une action de routine déjà approuvée cent fois ne la mérite pas.
 
 ## 6. Les principes d'engineering s'appliquent par défaut
 
-La couche d'orchestration est du software. Tout ce que vous y construisez — skills, hooks, prompts de sub-agents, registries, plugins, la configuration du harness elle-même — est du system-building. Les mêmes principes d'engineering qui gouvernent votre code de production gouvernent votre orchestration.
+L'orchestration est, structurellement, du software — même quand vous n'y pensez pas comme ça. Chaque skill, chaque prompt, chaque connexion, chaque automation que vous mettez en place est un morceau de system-building. Les principes qui gouvernent le software sérieux depuis quarante ans gouvernent ça aussi. Pas de barre séparée et plus basse parce que c'est "AI" ou parce que c'est "personnel".
 
-Ça veut dire architecture et boundaries, séparation des préoccupations, fixes en cause racine, planning et reviewability, qualité de code (KISS, YAGNI, DRY), documentation, testing. Pas de barre séparée et plus basse pour le code "AI-generated" ou le tooling "personnel". La version complète est dans *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)*. Tout ce qui se construit dans l'orchestration en hérite.
+Ça veut dire propriété claire de la responsabilité par pièce, fixes en cause racine plutôt que workarounds, des changements qu'on peut reviewer et roll back, simplicité plutôt que complexité spéculative, documentation qui explique le *pourquoi*. La version complète est dans *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)* et elle est écrite pour des lecteurs techniques. Vous n'avez pas besoin d'en lire chaque ligne pour l'appliquer — l'orchestration doit juste hériter de la barre.
 
-Le corollaire qui attrape les gens : les AI tools suivent la même barre que les engineers. Un agent qui contourne votre processus de review pour shipper un "quick fix" ne vous rend pas service ; il dégrade la codebase sous la même logique qui ferait prendre à part un junior engineer. C'est l'orchestration qui applique ça — pas le modèle, l'orchestration.
+Le corollaire qui attrape les opérateurs spécifiquement : l'AI ne bénéficie pas d'un rabais sur la barre. Un agent qui ship un quick fix en contournant votre processus de review ne vous rend pas service ; il dégrade l'opération sous la même logique qui ferait prendre à part un membre d'équipe négligent. C'est l'orchestration qui applique ça — pas le modèle, l'orchestration.
 
 ## 7. Manager les agents comme on manage des gens
 
-Ce qui marche pour les humains marche pour les agents. Plus de contexte aide. Corriger aide. Guider aide. La boîte à outils de management qu'on utiliserait sur un new hire est la même qu'on fait tourner sur un coding agent — et c'est l'orchestration qui permet de la faire tourner pour de vrai.
+Ce qui marche pour les humains marche pour les agents. Plus de contexte aide. Corriger aide. Guider aide. La boîte à outils de management qu'on utiliserait sur un new hire est la même qu'on fait tourner sur un AI agent — et c'est l'orchestration qui permet de la faire tourner pour de vrai.
 
 L'arc est familier. Au début l'agent reçoit la version longue : le but, les contraintes, l'exemple, le mauvais pattern à éviter, la façon dont on veut que ce soit cadré. On le corrige les premières fois comme on corrigerait un new hire. On montre la bonne réponse et la mauvaise et on le laisse apprendre du contraste. On reste proche.
 
@@ -108,17 +108,19 @@ La composition n'apparaît pas comme un grand saut. Elle apparaît comme cent pe
 
 Si vous construisez ça pour la première fois :
 
-1. **Choisir le repo.** Décider où vit l'orchestration et le mettre en version control aujourd'hui. Pas d'optimisation de structure pour l'instant ; juste committer quelque chose. La structure se gagne par l'usage.
+1. **Décider où vit l'orchestration.** Un dossier, un repo, un workspace — n'importe où qui soit versionné, lisible, et pas perdu quand votre laptop meurt. Pas d'optimisation de structure pour l'instant ; juste mettre quelque chose dedans. La structure se gagne par l'usage.
 
 2. **Écrire les trois premiers skills.** Les trois workflows que vous faites le plus souvent, sous la forme : *quand je fais X, fais-le comme ça*. Un trigger court, une checklist courte, un exemple. La troisième fois que vous tapez le même paragraphe à l'agent, ce paragraphe est un skill.
 
-3. **Câbler un hook correctif.** L'erreur que l'agent fait le plus souvent et que vous voudriez ne plus jamais voir. La bloquer à la couche tool-call, pas à la couche review. C'est celui qui prouve la boucle.
+3. **Attraper une erreur répétée à la source.** La seule chose que l'agent rate le plus souvent et que vous voudriez ne plus jamais voir rater. L'attraper au niveau de l'action — avant qu'elle parte — pas après, en review. C'est la règle qui prouve que la boucle est réelle.
 
-4. **Découper la memory en trois tiers dès le jour un.** Même si chaque tier commence par un seul fichier. Ne pas les fusionner plus tard — c'est ça, le bug.
+4. **Découper la memory en trois tiers dès le jour un.** Même si chaque tier commence par un seul fichier. Les fusionner plus tard, c'est ça le bug ; résister à la tentation maintenant.
 
-5. **Faire tourner l'orchestration comme on fait tourner la production.** Reviewer les changements. Élaguer ce qui ne mérite plus. Commit messages qui expliquent pourquoi, pas quoi.
+5. **Faire tourner l'orchestration comme une équipe sérieuse fait tourner son opération.** Reviewer les changements. Élaguer ce qui ne mérite plus. Écrire pourquoi une décision est prise, pas juste ce qui a changé.
 
 Le modèle continuera de s'améliorer. Rien de tout ça n'est l'edge — chaque opérateur qui lit a accès au même modèle. L'edge, c'est ce qui enveloppe le modèle. Le construire maintenant, l'ajuster chaque semaine, l'élaguer honnêtement, et la composition s'occupe d'elle-même.
+
+Quels rôles dans votre opération s'effondrent dans l'orchestration sur les deux prochaines années et lesquels restent distinctement humains, c'est décidé par comment cette orchestration est construite. Les sept principes ci-dessus sont ce qui décide.
 
 La pièce compagnon engineering — *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)* — couvre la couche pratique en dessous de l'orchestration. À lire en deuxième ; c'est la barre sur laquelle tout ce qui précède repose.
 
