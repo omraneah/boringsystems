@@ -15,6 +15,8 @@ It's **operational** — updated weekly as inbound lands and positioning iterate
 | `hypotheses.md` | Active bets about the market and how Ahmed is positioning into it. Each hypothesis has an invalidation trigger. | When reality confirms or contradicts a bet |
 | `signals.md` | Running log of inbound signal — DMs, referrals, advisory-call requests, rejections. Feeds hypothesis updates. | Per-inbound, or weekly batch |
 | `outreach-templates.md` | Reusable outbound message templates — warm-tie reactivation, etc. Bucketed by relationship depth and cross-cultural notes. | When a new pattern earns its keep |
+| `inbound-call-discipline.md` | Operating principles for inbound calls (Fractional CTO, Sprint, Transformation, advisory). Discovery-before-anchor, skin-in-the-game, slow-down, feedback ask. | When the discipline gets sharpened by a real conversation |
+| `credibility-map.md` | Three-zone map of what the resume sells credibly, with friction, or not at all. Constrains offer design and qualifies inbound live. | Re-read every 6 months against actual inbound |
 
 ## Relationship to other folders
 
