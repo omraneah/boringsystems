@@ -1,6 +1,6 @@
 ---
 title: "Les principes d'orchestration qui survivent au modèle"
-description: "Le modèle dans votre IDE aujourd'hui sera remplacé avant la fin de l'année. La couche d'orchestration enveloppée autour de lui est ce qui se compose avec vous. Six principes opérationnels pour construire la boucle qui survit à la prochaine release de modèle."
+description: "Le modèle dans votre IDE aujourd'hui sera remplacé avant la fin de l'année. La couche d'orchestration enveloppée autour de lui est ce qui se compose avec vous. Sept principes opérationnels pour construire la boucle qui survit à la prochaine release de modèle."
 date: 2026-04-27
 highlight: true
 featured: true
@@ -13,7 +13,7 @@ Le modèle dans votre IDE aujourd'hui sera remplacé avant la fin de l'année. L
 
 Ce travail — ce que vous avez appris à l'agent, comment vous l'avez câblé à vos outils, quel contexte il hérite, comment vous corrigez ses erreurs — vit dans une couche entre vous et le modèle. Cette couche, c'est l'orchestration. Ce n'est pas le modèle. Elle ne se fait pas remplacer quand le modèle se fait remplacer. Et c'est la seule chose dans la boucle qui se compose avec vous dans le temps.
 
-Cette pièce, c'est les principes opérationnels de cette couche. Six. Ils sont en aval de la barre engineering — *[Les principes d'engineering qui survivent au stack](/fr/writing/engineering-principles-that-outlive-the-stack)* couvre cette barre en entier, et tout ce qui suit la présuppose. Ces six-là sont ce que vous ajoutez par-dessus une fois acceptez que l'agent lui-même est commodity.
+Cette pièce, c'est les principes opérationnels de cette couche. Sept. Ils sont en aval de la barre engineering — *[Les principes d'engineering qui survivent au stack](/fr/writing/engineering-principles-that-outlive-the-stack)* couvre cette barre en entier, et tout ce qui suit la présuppose. Ces sept-là sont ce que vous ajoutez par-dessus une fois acceptez que l'agent lui-même est commodity.
 
 L'audience, c'est les opérateurs : founders, builders, intrapreneurs, toute personne qui fait tourner du vrai travail avec l'aide d'un coding agent moderne. Les principes sont écrits pour qu'un senior engineer puisse les utiliser aussi — mais le cadrage est celui de l'opérateur, parce que c'est lui qui paie le coût cognitif quand l'orchestration est sloppy.
 
@@ -79,6 +79,20 @@ La couche d'orchestration est du software. Tout ce que vous y construisez — sk
 Ça veut dire architecture et boundaries, séparation des préoccupations, fixes en cause racine, planning et reviewability, qualité de code (KISS, YAGNI, DRY), documentation, testing. Pas de barre séparée et plus basse pour le code "AI-generated" ou le tooling "personnel". La version complète est dans *[Les principes d'engineering qui survivent au stack](/fr/writing/engineering-principles-that-outlive-the-stack)*. Tout ce qui se construit dans l'orchestration en hérite.
 
 Le corollaire qui attrape les gens : les AI tools suivent la même barre que les engineers. Un agent qui contourne votre processus de review pour shipper un "quick fix" ne vous rend pas service ; il dégrade la codebase sous la même logique qui ferait prendre à part un junior engineer. C'est l'orchestration qui applique ça — pas le modèle, l'orchestration.
+
+## 7. Manager les agents comme on manage des gens
+
+Ce qui marche pour les humains marche pour les agents. Plus de contexte aide. Corriger aide. Guider aide. La boîte à outils de management qu'on utiliserait sur un new hire est la même qu'on fait tourner sur un coding agent — et c'est l'orchestration qui permet de la faire tourner pour de vrai.
+
+L'arc est familier. Au début l'agent reçoit la version longue : le but, les contraintes, l'exemple, le mauvais pattern à éviter, la façon dont on veut que ce soit cadré. On le corrige les premières fois comme on corrigerait un new hire. On montre la bonne réponse et la mauvaise et on le laisse apprendre du contraste. On reste proche.
+
+À mesure que l'agent devient fluent dans une classe de travail, on abstrait plus haut. La SOP détaillée écrite la première semaine devient l'invocation macro de la huitième — *traite-le comme on a traité X* — et l'agent remplit le gap procédural parce qu'il a le contexte pour le faire. On montre une fois ; on le laisse apprendre. La main se desserre comme un manager élargit l'autonomie une fois la confiance gagnée. C'est comme ça que la composition se montre vraiment : ce qu'on faisait défiler ligne par ligne devient une invocation d'une seule ligne.
+
+L'autre moitié, c'est **la spécialisation bat la généralité**. Un agent généraliste qui sait tout de votre opération finit par se noyer dans le cross-traffic d'instructions contradictoires, de memory à moitié pertinente, de skills écrits pour du travail sans rapport. La solution, c'est la même qu'une organisation choisit quand un généraliste se dilue : embaucher un spécialiste, lui donner le contexte étroit dont il a besoin, et router le bon travail vers lui.
+
+Concrètement — quand une classe de travail est assez mûre pour avoir sa propre SOP, on l'extrait dans un sub-agent spécialisé avec son propre prompt, son propre tool budget, sa propre memory. L'agent généraliste monte d'un niveau et orchestre à travers les spécialistes au lieu d'essayer d'être tous. On grimpe l'abstraction ; le cycle recommence. Quand la nouvelle abstraction commence à s'effondrer sous la charge, on délègue cette couche aussi, et on grimpe encore.
+
+L'orchestration entière finit par refléter ce que font les organisations bien gérées. Onboarder avec du contexte. Corriger en boucles de feedback. Documenter les SOPs. Promouvoir sur la proficiency démontrée. Spécialiser quand le généraliste est surchargé. Manager les managers. Rien de tout ça n'est une pratique de management nouvelle ; ce qui est nouveau, c'est que ça s'applique maintenant au software, pas juste aux équipes humaines.
 
 ---
 

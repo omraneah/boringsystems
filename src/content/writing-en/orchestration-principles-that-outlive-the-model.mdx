@@ -1,6 +1,6 @@
 ---
 title: "Orchestration Principles That Outlive the Model"
-description: "The model in your IDE today gets replaced before year-end. The orchestration layer wrapped around it is what compounds with you. Six operating principles for building the loop that survives the next model release."
+description: "The model in your IDE today gets replaced before year-end. The orchestration layer wrapped around it is what compounds with you. Seven operating principles for building the loop that survives the next model release."
 date: 2026-04-27
 highlight: true
 featured: true
@@ -13,7 +13,7 @@ The model in your IDE today will be replaced before the year ends. The next one 
 
 That work — what you've taught the agent, how you've wired it into your tools, what context it inherits, how you correct its mistakes — sits in a layer between you and the model. That layer is the orchestration. It is not the model. It does not get replaced when the model gets replaced. And it is the only thing in the loop that compounds with you over time.
 
-This piece is the operating principles for that layer. Six of them. They sit downstream of the engineering bar — *[Engineering Principles That Outlive the Stack](/en/writing/engineering-principles-that-outlive-the-stack)* covers that bar in full, and everything below assumes it. These six are what you add on top once you accept that the agent itself is a commodity.
+This piece is the operating principles for that layer. Seven of them. They sit downstream of the engineering bar — *[Engineering Principles That Outlive the Stack](/en/writing/engineering-principles-that-outlive-the-stack)* covers that bar in full, and everything below assumes it. These seven are what you add on top once you accept that the agent itself is a commodity.
 
 The audience is operators: founders, builders, intrapreneurs, anyone running real work with the help of a modern coding agent. The principles are written so a senior engineer can use them too — but the framing is the operator's, because the operator is the one paying the cognitive cost when the orchestration is sloppy.
 
@@ -79,6 +79,20 @@ The orchestration layer is software. Everything you build into it — skills, ho
 That means architecture and boundaries, separation of concerns, root-cause fixes, planning and reviewability, code quality (KISS, YAGNI, DRY), documentation, testing. There is no separate, lower bar for "AI-generated" code or "personal" tooling. The full version is in *[Engineering Principles That Outlive the Stack](/en/writing/engineering-principles-that-outlive-the-stack)*. Anything built into the orchestration inherits it.
 
 The corollary that catches people: AI tools follow the same bar engineers do. An agent that bypasses your review process to ship a "quick fix" is not doing you a favour; it is degrading the codebase under the same logic that would get a junior engineer pulled aside. The orchestration is what enforces this — not the model, the orchestration.
+
+## 7. Manage agents like you manage people
+
+What works for humans works for agents. More context helps. Correction helps. Guidance helps. The management toolkit you'd run on a new hire is the same toolkit you run on a coding agent — and the orchestration is what lets you actually run it.
+
+The arc is familiar. Early on the agent gets the long version: the goal, the constraints, the example, the bad pattern to avoid, the way you want it framed. You correct it the first few times the way you'd correct a new hire. You show the good answer and the bad one and let it learn from the contrast. You stay close.
+
+As the agent gets fluent in a class of work, abstract higher. The detailed SOP you wrote in week one becomes the macro invocation in week eight — *handle this the way we handled X* — and the agent fills in the procedural gap because it has the context to do so. You show once; you let it learn. The grip loosens the same way a manager lets autonomy expand once trust has been earned. This is how compounding actually shows up: the things you used to walk through line-by-line move to a one-line invocation.
+
+The other half is **specialisation beats generalism**. A general-purpose agent that knows everything in your operation eventually drowns in the cross-traffic of conflicting instructions, half-relevant memory, and skills written for unrelated work. The fix is the same fix an organisation reaches for when a generalist starts getting diluted: hire a specialist, give them the narrow context they need, and route the right work to them.
+
+Concretely — when a class of work is mature enough to have its own SOP, lift it out into a specialised sub-agent with its own prompt, its own tool budget, its own memory. The generalist agent steps up a level and orchestrates across specialists instead of trying to be all of them. You climb the abstraction; the cycle repeats. When the new abstraction starts to collapse under load, you delegate that layer too, and you climb again.
+
+The whole orchestration ends up mirroring what well-run organisations do. Onboard with context. Correct in feedback loops. Document SOPs. Promote on demonstrated proficiency. Specialise when the generalist is overloaded. Manage the managers. None of this is novel management practice; what is new is that it now applies to software, not just to teams of people.
 
 ---
 
