@@ -2,7 +2,7 @@
 import Base from '@/layouts/Base.astro';
 ---
 
-<Base title="About" description="Ahmed Omrane — CTO-level operator specializing in constraint-to-scale engineering.">
+<Base title="About" description="Ahmed Omrane — AI-native builder owning the business → product → engineering arc end-to-end. France-based, European focus, contract engagements only.">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
@@ -12,25 +12,31 @@ import Base from '@/layouts/Base.astro';
 
       <div class="bio">
         <p>
-          I build and govern technical systems at the intersection of constraint and scale — the place where engineering decisions have direct P&amp;L consequences and where the wrong move compounds for years. My background is in CTO-level operator work across early-stage and growth-phase companies: building engineering organisations from scratch, navigating founder-driven environments, and transitioning live platforms without downtime.
+          I build at the seam where business model, product, and engineering meet — the decisions where getting it wrong is expensive and getting it right compounds.
         </p>
         <p>
-          My practice is constraint-to-scale engineering: establishing governance-fit systems under resource, organisational, and technical constraints. This means sequencing correctly before building, treating architecture as a business decision, and designing for the system to run without me. The case files and playbooks on this site document how that looks in practice.
+          The work moves through three layers in sequence. Business first: vision, GTM, the call on what is actually being built and why. Product next: roadmap, prioritisation, sequencing the trade-offs that decide what ships in which quarter. Engineering last: architecture, technical trade-offs, the execution that turns the prior layers into shipped software. I own that arc end-to-end.
         </p>
         <p>
-          I use AI systems architecturally, not as acceleration tools — as a second cognitive layer with explicit governance, a structured retrieval corpus, and strict separation between long-term knowledge and live context. This shapes how I think about both my own leverage and the systems I build for teams.
+          AI-native execution is how the arc gets delivered solo at senior scope. I run an orchestration layer of agents that does the work of three people while I keep judgement, taste, and trust in the room — not as a productivity tool, as the system the arc runs through. Complex transformations, infrastructure migrations, SaaS transitions: one operator, at a trade-off resolution that previously required a full-stack hire across business, product, and engineering. The seven operating principles behind the orchestration are written up in <a href="/en/writing/orchestration-principles-that-outlive-the-model">Agentic AI Orchestration — 7 Operating Principles</a>.
         </p>
-        <p>
-          Based in France, with a European market focus and an international operating background.
-        </p>
-      </div>
 
-      <div class="contact">
-        <p class="label">Contact</p>
-        <div class="contact-links">
-          <a href="/en/work-with-me/">How we work together</a>
-          <a href="https://www.linkedin.com/in/omrane-ahmed/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
+        <p class="label proof-label">Selected proof</p>
+        <ul class="proof">
+          <li>
+            Vendor lock-in exit to a proprietary transport management system at <strong>Enakl</strong> (VC-backed seed, B2B/B2G mobility platform, emerging markets) — built from scratch, 10× operational scaling, zero downtime during full migration. Team of 3: mobile, full-stack Node.js, cloud AWS. Full case file: <a href="/en/work/breaking-vendor-lock-in">Breaking Vendor Lock-In</a>.
+          </li>
+          <li>
+            Full SaaS transformation at <strong>Enakl</strong> — multi-tenant architecture, high availability, enterprise-grade security, revenue model shifting from service delivery to software. Team of 5 engineers plus AI coding agents. Full case file: <a href="/en/work/saas-hardening">SaaS Hardening</a>.
+          </li>
+          <li>
+            Data and analytics infrastructure from scratch at <strong>The Fabulous</strong> (bootstrapped consumer wellness app, 20M+ daily active users) — attribution, growth metrics, and reliable measurement enabling aggressive spend. Team of 5: data science, data analysis, analytics engineering.
+          </li>
+        </ul>
+
+        <p>
+          France-based, European market focus, international operating background. I work on contract, fractional, advisory, and partnership engagements — not full-time employment. The shape varies; the constants are end-to-end ownership across business, product, and engineering, with AI-native execution.
+        </p>
       </div>
     </div>
   </div>
@@ -85,27 +91,40 @@ import Base from '@/layouts/Base.astro';
     margin-bottom: 0;
   }
 
-  .contact {
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--border);
-  }
-
-  .contact-links {
-    display: flex;
-    gap: var(--space-md);
-    flex-wrap: wrap;
-    margin-top: var(--space-sm);
-  }
-
-  .contact-links a {
-    font-family: var(--font-ui);
-    font-size: var(--size-sm);
+  .bio a {
     color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
     transition: color 0.15s;
   }
 
-  .contact-links a:hover {
+  .bio a:hover {
     color: var(--text);
+  }
+
+  .proof-label {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .bio ul.proof {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-md);
+  }
+
+  .bio ul.proof li {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--border);
+  }
+
+  .bio ul.proof li:last-child {
+    margin-bottom: 0;
   }
 
   @media (max-width: 768px) {

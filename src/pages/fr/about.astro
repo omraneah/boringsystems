@@ -2,7 +2,7 @@
 import Base from '@/layouts/Base.astro';
 ---
 
-<Base title="À propos" description="Ahmed Omrane — opérateur de niveau CTO spécialisé dans l'ingénierie contrainte-à-scale." lang="fr">
+<Base title="À propos" description="Ahmed Omrane — AI-native builder qui porte l'arc business → product → engineering en bout-en-bout. Basé en France, focus européen, engagements en contract uniquement." lang="fr">
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
@@ -12,25 +12,31 @@ import Base from '@/layouts/Base.astro';
 
       <div class="bio">
         <p>
-          Je construis et gouverne des systèmes techniques à l'intersection de la contrainte et de la scale — là où les décisions d'ingénierie ont des conséquences directes sur le P&amp;L et où le mauvais mouvement se compose pendant des années. Mon parcours est dans le travail d'opérateur de niveau CTO dans des entreprises en phase précoce et de croissance : construire des organisations d'ingénierie de zéro, naviguer dans des environnements à forte présence fondateur, et faire évoluer des plateformes en production sans interruption.
+          Je construis à la jointure entre business model, product et engineering — les décisions où se tromper coûte cher et où réussir compose.
         </p>
         <p>
-          Ma pratique est l'ingénierie contrainte-à-scale : établir des systèmes adaptés à la gouvernance sous contraintes de ressources, organisationnelles et techniques. Cela signifie séquencer correctement avant de construire, traiter l'architecture comme une décision business, et concevoir pour que le système fonctionne sans moi. Les études de cas et guides sur ce site documentent à quoi ça ressemble en pratique.
+          Le travail traverse trois couches en séquence. Business d'abord : vision, GTM, le call sur ce qui est vraiment construit et pourquoi. Product ensuite : roadmap, priorisation, séquencer les trade-offs qui décident ce qui ship à quel trimestre. Engineering en dernier : architecture, technical trade-offs, l'exécution qui transforme les couches précédentes en software livré. Je porte cet arc en bout-en-bout.
         </p>
         <p>
-          J'utilise les systèmes IA architecturalement, pas comme des outils d'accélération — comme une seconde couche cognitive avec une gouvernance explicite, un corpus de récupération structuré, et une séparation stricte entre la connaissance à long terme et le contexte en direct. Cela façonne la façon dont je pense à la fois à mon propre levier et aux systèmes que je construis pour les équipes.
+          L'exécution AI-native, c'est comment l'arc est livré en solo au scope senior. Je fais tourner une couche d'orchestration d'agents qui fait le travail de trois personnes pendant que je garde le jugement, le goût et la confiance dans la pièce — pas comme outil de productivité, comme système à travers lequel l'arc tourne. Complex transformations, infrastructure migrations, SaaS transitions : un seul opérateur, à une résolution de trade-offs qui demandait précédemment un hire full-stack sur business, product et engineering. Les sept principes opérationnels derrière l'orchestration sont écrits dans <a href="/fr/writing/orchestration-principles-that-outlive-the-model">Agentic AI Orchestration — 7 principes opérationnels</a>.
         </p>
-        <p>
-          Basé en France, avec un focus marché européen et un parcours opérationnel international.
-        </p>
-      </div>
 
-      <div class="contact">
-        <p class="label">Contact</p>
-        <div class="contact-links">
-          <a href="/fr/work-with-me/">Comment on travaille ensemble</a>
-          <a href="https://www.linkedin.com/in/omrane-ahmed/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
+        <p class="label proof-label">Sélection de proof</p>
+        <ul class="proof">
+          <li>
+            Sortie de vendor lock-in vers un transport management system propriétaire chez <strong>Enakl</strong> (VC-backed seed, plateforme mobility B2B/B2G, marchés émergents) — construit from scratch, 10× scaling opérationnel, zéro downtime pendant la migration complète. Équipe de 3 : mobile, full-stack Node.js, cloud AWS. Étude de cas : <a href="/fr/work/breaking-vendor-lock-in">Breaking Vendor Lock-In</a>.
+          </li>
+          <li>
+            Full SaaS transformation chez <strong>Enakl</strong> — architecture multi-tenant, high availability, enterprise-grade security, revenue model qui passe de service delivery à software. Équipe de 5 engineers plus AI coding agents. Étude de cas : <a href="/fr/work/saas-hardening">SaaS Hardening</a>.
+          </li>
+          <li>
+            Infrastructure data et analytics from scratch chez <strong>The Fabulous</strong> (consumer wellness app bootstrappé, 20M+ daily active users) — attribution, growth metrics, et measurement fiable permettant un spend agressif. Équipe de 5 : data science, data analysis, analytics engineering.
+          </li>
+        </ul>
+
+        <p>
+          Basé en France, focus marché européen, background opérationnel international. Je travaille sur des engagements contract, fractional, advisory et partnership — pas en full-time employment. La forme varie ; les constantes sont l'ownership end-to-end across business, product et engineering, avec AI-native execution.
+        </p>
       </div>
     </div>
   </div>
@@ -85,27 +91,40 @@ import Base from '@/layouts/Base.astro';
     margin-bottom: 0;
   }
 
-  .contact {
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--border);
-  }
-
-  .contact-links {
-    display: flex;
-    gap: var(--space-md);
-    flex-wrap: wrap;
-    margin-top: var(--space-sm);
-  }
-
-  .contact-links a {
-    font-family: var(--font-ui);
-    font-size: var(--size-sm);
+  .bio a {
     color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
     transition: color 0.15s;
   }
 
-  .contact-links a:hover {
+  .bio a:hover {
     color: var(--text);
+  }
+
+  .proof-label {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .bio ul.proof {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-md);
+  }
+
+  .bio ul.proof li {
+    font-family: var(--font-body);
+    font-size: var(--size-base);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--border);
+  }
+
+  .bio ul.proof li:last-child {
+    margin-bottom: 0;
   }
 
   @media (max-width: 768px) {
