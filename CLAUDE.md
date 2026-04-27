@@ -8,7 +8,7 @@ Start-of-session routing: `WORKSPACE_MAP.md` (project map). Detail docs under `d
 
 Two workspace-root files hold the governing rules everything below is downstream of:
 
-- **`META-PRINCIPLES.md`** — six irreducible invariants (corpus malleability, version-controlled + hardware-agnostic, tiered memory, closed-loop self-correction, protect the master's cognition, engineering principles by default). Every rule in this file, every memory in `memory/`, every skill, hook, ADR, and doctrine is a consequence of applying them. Capped at seven by design.
+- **`META-PRINCIPLES.md`** — seven irreducible invariants (corpus malleability, version-controlled + hardware-agnostic, tiered memory, closed-loop self-correction, protect the master's cognition, engineering principles by default, manage agents like you manage people). Every rule in this file, every memory in `memory/`, every skill, hook, ADR, and doctrine is a consequence of applying them. Cap is seven — at the design ceiling.
 - **`ENGINEERING-PRINCIPLES.md`** — seven cross-stack engineering dimensions (architecture and boundaries, separation of concerns, root-cause fixes, planning and reviewability, code quality, documentation, testing). One bar for engineers and AI tools alike. Full reference in `cross-stack-architecture-starter-pack/`.
 
 Anything that contradicts either file is a defect, not an exception. Consult them whenever a rule below feels arbitrary or whenever a new pattern is being introduced.

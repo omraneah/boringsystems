@@ -65,6 +65,14 @@ They are not repeated here. The workspace-root distillation lives in `ENGINEERIN
 
 → `ENGINEERING-PRINCIPLES.md`, `cross-stack-architecture-starter-pack/`
 
+## 7. Manage agents like you manage people
+
+What works for humans works for agents. More context helps. Correction helps. Guidance helps. Show the good and the bad; let the agent learn from the contrast. Stay close early, loosen the grip as proficiency builds. The detailed SOP of week one becomes the macro invocation of week eight — *handle this the way we handled X* — and the agent fills in the procedural gap because it has the context to do so.
+
+Specialisation beats generalism. When a generalist agent gets diluted by cross-traffic of conflicting instructions, half-relevant memory, and skills written for unrelated work, the fix is the same fix an organisation reaches for: lift the mature class of work into a specialised sub-agent with its own prompt, tool budget, and memory. The generalist climbs a level of abstraction and orchestrates across specialists instead of being all of them. When the new abstraction collapses under load, delegate that layer too and climb again.
+
+The whole orchestration ends up mirroring what well-run organisations do — onboard with context, correct in feedback loops, document SOPs, promote on demonstrated proficiency, specialise when the generalist is overloaded, manage the managers. The discipline is not novel; what is new is that it applies to software, not just to teams of people. This is the principle that drives sub-agent creation in this workspace and the abstraction-climb that follows.
+
 ---
 
 ## How this file evolves
