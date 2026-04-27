@@ -1,0 +1,116 @@
+---
+title: "Les principes d'orchestration qui survivent au modèle"
+description: "Le modèle dans votre IDE aujourd'hui sera remplacé avant la fin de l'année. La couche d'orchestration enveloppée autour de lui est ce qui se compose avec vous. Six principes opérationnels pour construire la boucle qui survit à la prochaine release de modèle."
+date: 2026-04-27
+highlight: true
+featured: true
+order: 1
+---
+
+import LeadMagnet from '@/components/LeadMagnet.astro';
+
+Le modèle dans votre IDE aujourd'hui sera remplacé avant la fin de l'année. Le suivant sera plus malin, moins cher, plus rapide — et il se réinitialisera à zéro le jour de son arrivée, comme celui d'avant. Rien du travail que vous avez fait pour rendre ce modèle utile à *votre* opération ne se transfère automatiquement.
+
+Ce travail — ce que vous avez appris à l'agent, comment vous l'avez câblé à vos outils, quel contexte il hérite, comment vous corrigez ses erreurs — vit dans une couche entre vous et le modèle. Cette couche, c'est l'orchestration. Ce n'est pas le modèle. Elle ne se fait pas remplacer quand le modèle se fait remplacer. Et c'est la seule chose dans la boucle qui se compose avec vous dans le temps.
+
+Cette pièce, c'est les principes opérationnels de cette couche. Six. Ils sont en aval de la barre engineering — *[Les principes d'engineering qui survivent au stack](/fr/writing/engineering-principles-that-outlive-the-stack)* couvre cette barre en entier, et tout ce qui suit la présuppose. Ces six-là sont ce que vous ajoutez par-dessus une fois acceptez que l'agent lui-même est commodity.
+
+L'audience, c'est les opérateurs : founders, builders, intrapreneurs, toute personne qui fait tourner du vrai travail avec l'aide d'un coding agent moderne. Les principes sont écrits pour qu'un senior engineer puisse les utiliser aussi — mais le cadrage est celui de l'opérateur, parce que c'est lui qui paie le coût cognitif quand l'orchestration est sloppy.
+
+---
+
+## 1. Le corpus est malléable
+
+Chaque document que vous avez écrit sur votre business — strategy, positioning, principes opérationnels, decision logs, customer research — est une opinion tenue à un moment par un auteur particulier. La vérité est contextuelle. Ce qui était juste il y a six mois peut être faux maintenant.
+
+La couche d'orchestration tient ça en tête en continu. Elle traite votre corpus écrit comme évidence et prior, pas comme vérité. Quand la conversation live contredit ce que vous avez écrit en février, la conversation gagne par défaut ; le corpus se met à jour, jamais l'inverse. La dérive entre l'écrit et le maintenant est détectée activement, surfacée explicitement, et résolue par déprécation ou par réécriture.
+
+Le mode d'échec que ça empêche, c'est celui qui casse chaque "AI knowledge base" que les gens construisent : l'agent cite un document périmé avec assurance, vous agissez dessus, et la citation était juste quand elle a été écrite et fausse au moment où vous l'utilisez. Le job de l'orchestration, c'est de connaître la différence.
+
+## 2. Écrit, version-controlled, hardware-agnostic
+
+Si ce n'est pas écrit, ça n'existe pas. Skills, hooks, memory, settings, decisions, prompts, configuration — committés dans un repo, ou pas réels. Pas d'état intermédiaire où "Je sais comment faire ça, je l'ai juste pas encore écrit" est acceptable. L'agent ne peut pas lire vos intentions ; il ne peut lire que ce qui est là.
+
+Version control dès le jour un. Pas pour la sophistication — pour la survie. Le skill que vous avez écrit le trimestre dernier doit toujours exister mardi prochain. Le hook dont vous dépendez doit persister. La memory doit survivre à votre laptop. Rien de tout ça n'est vrai si le système vit seulement sur la machine d'origine.
+
+Le système tourne partout. Laptop local, cloud agent, fresh-machine clone — tout doit atteindre l'état de fonctionnement complet à partir d'un seul setup script. Pas de tokens ou de secrets qui ne survivent pas au clone. Pas de setup non documenté. Le hardware est interchangeable ; l'orchestration ne l'est pas.
+
+## 3. La memory est tiered — trois horizons, trois jeux de règles
+
+Le contexte et la memory sont critiques, et ne sont pas plats. Trois buckets, chacun avec sa propre discipline d'écriture et son propre modèle de décroissance. Les confondre, c'est une erreur de catégorie qui surface soit comme du travail perdu, soit comme du conseil périmé.
+
+**Court terme, courte vie.** Conversation active, tâches en cours, plan courant, raisonnement scratch. Éphémère par design. Effacée au reset de contexte. Jamais la source de vérité de quoi que ce soit.
+
+**Moyen terme, malléable, en évolution.** Memos projet, tickets en cours, watch-memos avec des dates de revisit explicites, hypothèses sous test, drafts de personas, market reads. La décroissance est attendue et bienvenue — ces documents sont *censés* changer à mesure que la compréhension s'affine. C'est de la memory de travail, pas de l'archive.
+
+**Long terme, stable sur des mois.** Doctrines, big goals, principes codifiés, decision registry, matériel d'identité. Lent à écrire, lent à changer, jamais écrasé silencieusement. C'est la couche où vivent les principes engineering, la strategy et la barre opérationnelle.
+
+Promouvoir de l'éphémère vers le long terme — transformer un fil de chat en doctrine — corrompt la doctrine. Démouvoir des faits porteurs vers le chat — ne jamais les écrire — les perd. Chaque tier a sa propre cadence d'écriture et ses propres règles de déprécation. L'orchestration applique dans quel tier vit chaque morceau de contexte.
+
+## 4. Le système se corrige lui-même
+
+Closed loop. L'orchestration s'observe elle-même, surface les déviations, et propose des raffinements à l'opérateur. Les échecs deviennent des règles. Les frictions deviennent du tooling. Le travail manuel répété devient du pattern codifié.
+
+La cadence est concrète : deux fois, c'est un pattern. La deuxième fois que vous corrigez l'agent sur la même classe d'erreur, cette correction doit tourner sur une règle, un hook, un skill ou une entrée memory — pas sur votre vigilance, pas sur votre espoir de vous en souvenir la prochaine fois. La troisième occurrence se produit parce que le système a été construit pour la prévenir.
+
+L'opérateur décide ce qui est codifié. L'orchestration ne mute jamais silencieusement la couche long terme (par le principe 1) et ne laisse jamais le même problème tomber trois fois. L'amélioration est suggérée, pas exécutée unilatéralement. La boucle doit fermer, et le système est responsable de la fermer.
+
+## 5. Protéger la cognition de l'opérateur
+
+C'est le méta-principe qui subsume la plupart des autres quand on remonte le *pourquoi*.
+
+L'intelligence des LLMs est cheap et le devient encore plus. La cognition de l'opérateur est la ressource la plus rare et la plus chère de la boucle. L'orchestration la protège comme contrainte de design primaire. Chaque output, chaque notification, chaque interruption est pesé contre le coût qu'il impose à l'attention de l'opérateur.
+
+Concrètement, voici ce qui protège la cognition :
+
+- **Discipline de scope.** Une seule préoccupation par unité de travail. Le scope large se découpe avant d'atteindre l'opérateur.
+- **Distillation avant détails.** Ouvrir avec verdicts, résumés, liens. Le détail s'expand sur demande, pas par défaut.
+- **Confirmations seulement quand elles paient.** Les briefs vers des sub-agents context-naive, les changements de lane, le dispatch parallèle surfacent leur forme avant de tirer. Les tool calls de routine n'interrompent pas pour confirmation. Le but n'est pas de maximiser les checks human-in-the-loop — c'est de les *minimiser*, tout en gardant les enjeux haut là où ils doivent être. Chaque confirmation évitable est un retrait de la banque cognitive.
+- **Parallèle par défaut.** Le travail indépendant tourne en concurrent. L'exécution sérielle est l'exception, et elle doit se justifier.
+- **Le lien est le résumé.** Quand un document, un ticket ou un PR existe, on pointe dessus. On ne re-narre pas le contenu en chat. Une seule source de vérité par fait.
+- **Séparation opérationnel vs stratégique.** Les agents opérationnels sont des exécuteurs context-loaded fidèles. Les advisors stratégiques sont des challengers de cadre context-naive. L'opérateur choisit quel tier engager ; l'orchestration ne les confond jamais.
+
+La discipline, c'est de demander, pour chaque friction que le système impose : *est-ce que ça économise la cognition, ou la dépense ?* La friction qui empêche une erreur coûteuse mérite sa place. La friction qui demande de confirmer une action de routine déjà approuvée cent fois ne la mérite pas.
+
+## 6. Les principes d'engineering s'appliquent par défaut
+
+La couche d'orchestration est du software. Tout ce que vous y construisez — skills, hooks, prompts de sub-agents, registries, plugins, la configuration du harness elle-même — est du system-building. Les mêmes principes d'engineering qui gouvernent votre code de production gouvernent votre orchestration.
+
+Ça veut dire architecture et boundaries, séparation des préoccupations, fixes en cause racine, planning et reviewability, qualité de code (KISS, YAGNI, DRY), documentation, testing. Pas de barre séparée et plus basse pour le code "AI-generated" ou le tooling "personnel". La version complète est dans *[Les principes d'engineering qui survivent au stack](/fr/writing/engineering-principles-that-outlive-the-stack)*. Tout ce qui se construit dans l'orchestration en hérite.
+
+Le corollaire qui attrape les gens : les AI tools suivent la même barre que les engineers. Un agent qui contourne votre processus de review pour shipper un "quick fix" ne vous rend pas service ; il dégrade la codebase sous la même logique qui ferait prendre à part un junior engineer. C'est l'orchestration qui applique ça — pas le modèle, l'orchestration.
+
+---
+
+## Ce que ça permet
+
+Les principes ne sont pas une posture. C'est ce qui fait que le reste de l'année se compose.
+
+Écrire un skill une fois ; ne jamais réexpliquer ce workflow. Poser un hook une fois ; ne jamais refaire cette erreur. Capturer la doctrine une fois ; la prochaine conversation l'hérite sans que vous la re-narriez. Construire la boucle corrective dans le système ; la troisième occurrence du problème se prévient elle-même.
+
+La composition n'apparaît pas comme un grand saut. Elle apparaît comme cent petites choses qui ne vous arrêtent plus, pendant que les opérateurs autour de vous hand-rollent encore chaque session.
+
+## Que faire maintenant
+
+Si vous construisez ça pour la première fois :
+
+1. **Choisir le repo.** Décider où vit l'orchestration et le mettre en version control aujourd'hui. Pas d'optimisation de structure pour l'instant ; juste committer quelque chose. La structure se gagne par l'usage.
+
+2. **Écrire les trois premiers skills.** Les trois workflows que vous faites le plus souvent, sous la forme : *quand je fais X, fais-le comme ça*. Un trigger court, une checklist courte, un exemple. La troisième fois que vous tapez le même paragraphe à l'agent, ce paragraphe est un skill.
+
+3. **Câbler un hook correctif.** L'erreur que l'agent fait le plus souvent et que vous voudriez ne plus jamais voir. La bloquer à la couche tool-call, pas à la couche review. C'est celui qui prouve la boucle.
+
+4. **Découper la memory en trois tiers dès le jour un.** Même si chaque tier commence par un seul fichier. Ne pas les fusionner plus tard — c'est ça, le bug.
+
+5. **Faire tourner l'orchestration comme on fait tourner la production.** Reviewer les changements. Élaguer ce qui ne mérite plus. Commit messages qui expliquent pourquoi, pas quoi.
+
+Le modèle continuera de s'améliorer. Rien de tout ça n'est l'edge — chaque opérateur qui lit a accès au même modèle. L'edge, c'est ce qui enveloppe le modèle. Le construire maintenant, l'ajuster chaque semaine, l'élaguer honnêtement, et la composition s'occupe d'elle-même.
+
+La pièce compagnon engineering — *[Les principes d'engineering qui survivent au stack](/fr/writing/engineering-principles-that-outlive-the-stack)* — couvre la couche pratique en dessous de l'orchestration. À lire en deuxième ; c'est la barre sur laquelle tout ce qui précède repose.
+
+<LeadMagnet
+  assetSlug="harness-audit"
+  lang="fr"
+  articleTitle="Les principes d'orchestration qui survivent au modèle"
+  articleUrl="https://boringsystems.app/fr/writing/orchestration-principles-that-outlive-the-model"
+/>
