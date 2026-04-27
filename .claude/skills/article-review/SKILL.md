@@ -100,6 +100,24 @@ If `slug ≠ slugified(title)`, flag as a **warning** with the proposed slug. Re
 
 If the description register clashes with the voice target — engineer jargon in a builder-target piece, or consumer-soft language in a technical piece — flag as a **warning** with the offending phrase quoted and a one-line proposed rewrite. Also flag if the description merely repeats the title in different words rather than sharpening the angle.
 
+### 3d. List-pretending-to-be-prose check
+
+When prose enumerates three or more items in sequence, each opening with a labelled term ("Short-term: … Mid-term: … Long-term: …" or "Business: … Product: … Engineering: …"), separated by periods rather than as bullets, that's a list pretending to be a paragraph. Lists scan; prose-with-colons doesn't. See `docs/design-charter.md` § Lists vs prose.
+
+**Detection pattern.** Within a single paragraph, find three or more occurrences of `<term>: <description>` where each `<term>` is a noun or short noun phrase and each `<description>` is a definition or expansion of that term, separated by sentence breaks (`. `).
+
+**Flag as warning** with:
+
+- The line number range of the offending paragraph.
+- The quoted offending paragraph (truncate to ~200 chars if long, ending on `…`).
+- A proposed conversion: lead-in sentence ending with `:` + bulleted list with bold lead-ins (`**Term:**`) + wrap-up sentence on its own paragraph if any.
+
+**Do not flag:**
+
+- Two-item enumerations (the threshold is **three or more**).
+- Items already correctly formatted as `<ul>` / markdown bullets.
+- Parallel-structure rhetoric where labels are anaphora (rhetorical repetition for cadence, not enumeration). **Heuristic**: if you remove the labels and the descriptions still read as continuous prose, it's an enumeration → flag. If removing the labels breaks the flow, it's rhetoric → leave.
+
 ### 4. Lane / voice alignment
 
 - Resolve the article's lane from its collection path (`writing` / `work` / `building` / `archive`).

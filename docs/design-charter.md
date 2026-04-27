@@ -42,6 +42,24 @@ The `article-review` skill enforces these as warnings: slug ≠ slugified title,
 
 ---
 
+## Lists vs prose
+
+When the structure of an idea is **a list of three or more items**, write it as a list. When the structure is **flowing argument**, write it as prose. Do not disguise one as the other.
+
+The most common failure on this site: a paragraph that enumerates three or more labelled items separated by colons and periods — *"Short-term: … Mid-term: … Long-term: …"* — pretending to be prose. It reads as a wall and forces the reader to manually parse the structure that should be visible at a glance. This is a defect, not a style choice.
+
+The shape of a properly-listed enumeration:
+
+- **Lead-in sentence**, ending with a colon, that names what's about to be enumerated. *"The work moves through three layers in sequence:"*
+- **Bulleted list**, one item per line, each item with a **bold lead-in** for the labelled term, followed by `:` and the expansion. *"**Business first:** vision, GTM…"*
+- **Wrap-up sentence**, if any, on its own paragraph after the list — never appended to the last bullet.
+
+When prose is the right call: when the items are not parallel definitions but flowing argument, when there are only two items, when the labels are rhetorical anaphora rather than enumeration. Heuristic for distinguishing: remove the labels mentally and read the descriptions back. If they read as continuous prose, the labels are an enumeration and the structure wants to be a list. If removing the labels breaks the argument, the structure is rhetoric and prose is correct.
+
+The `article-review` skill flags violations as warnings.
+
+---
+
 ## Typography
 
 Four typefaces do four specific jobs. Mixing them outside their job is the most common charter violation.
