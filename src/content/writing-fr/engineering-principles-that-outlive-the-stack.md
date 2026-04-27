@@ -27,11 +27,19 @@ La version la plus dure de cette règle : ne pas construire au-dessus d'une dég
 
 ## 2. Séparation des préoccupations
 
-La logique business vit dans le backend ou l'API. Les clients consomment des APIs et gèrent la presentation, point.
+Chaque unité porte une seule responsabilité. C'est l'expression au niveau architecture du Single Responsibility Principle de SOLID, et c'est la règle que la plupart des architectures en couches — controller/service/repository, hexagonal, clean, MVC, modular monolith — existent pour appliquer. Une unité ne devrait avoir qu'une seule raison de changer. Quand deux raisons entrent en collision dans un même module, les reviewers ne peuvent plus dire quel axe un diff fait vraiment bouger, et le module se met à changer pour les mauvaises raisons.
 
-La dérive la plus commune : la logique de validation qui a commencé dans l'API se duplique dans le client parce que c'était plus rapide que d'attendre l'équipe API. Six mois plus tard, les règles divergent, la copie côté client est périmée, et le bug ressemble à un problème backend alors que la source est une supposition côté client.
+Le principe se généralise à toutes les échelles. Fonctions : une chose par fonction. Modules : une responsabilité bornée par module. Services : un domaine par service. Les boundaries changent d'échelle ; la discipline reste. Encapsulation, loose coupling et high cohesion sont les corollaires — les unités qui portent une seule responsabilité cachent leurs internals, n'ont besoin que de peu de dépendances, et gardent ce qu'il y a dedans cohérent.
 
-Le backend est la source unique de vérité pour les règles du domaine. Les clients rendent. C'est la ligne.
+Les modes d'échec concrets à nommer.
+
+**La logique business qui fuit dans le client.** La validation qui a commencé dans l'API se duplique dans le front-end ; six mois plus tard les règles divergent, la copie côté client est périmée, et le bug ressemble à un problème backend alors que la source est une supposition côté client. Le backend est la source unique de vérité pour les règles du domaine ; les clients rendent.
+
+**Les controllers qui font le travail des services.** Les route handlers qui plongent directement dans la base de données, ou qui orchestrent de la logique cross-domaine, deviennent l'endroit où chaque changement atterrit. On pousse le travail d'une couche en dessous ; le controller reste fin.
+
+**Les god modules.** Un fichier `utils` ou `helpers` qui dépasse un seul thème est un échec de séparation des préoccupations qui attend d'être découpé.
+
+Le test en review : si une seule demande de changement touche plus d'une responsabilité dans une unité, l'unité portait trop. On découpe d'abord, on change ensuite.
 
 ## 3. Cause racine et correctifs
 

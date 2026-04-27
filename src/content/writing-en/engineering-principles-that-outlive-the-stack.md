@@ -27,11 +27,19 @@ The hardest version of this rule: do not build on top of major degradation. If a
 
 ## 2. Separation of concerns
 
-Business logic lives in the backend or API. Clients consume APIs and handle presentation only.
+Each unit owns one responsibility. This is the architectural-level expression of SOLID's Single Responsibility Principle, and it is the rule that most layered architectures — controller/service/repository, hexagonal, clean, MVC, modular monolith — exist to enforce. A unit should have exactly one reason to change. When two reasons collide inside a single module, reviewers can no longer tell which axis a diff actually moves, and the module starts changing for the wrong ones.
 
-The most common drift: validation logic that started in the API gets duplicated into the client because it was easier than waiting for the API team to add it. Six months later, the rules diverge, the client copy is stale, and the bug looks like a backend issue when the source is a client-side guess.
+The principle generalises across every level. Functions: one thing per function. Modules: one bounded responsibility per module. Services: one domain per service. The boundaries change scale; the discipline does not. Encapsulation, loose coupling, and high cohesion are corollaries — units that own one responsibility hide their internals, need few dependencies, and keep what's inside them belonging together.
 
-The backend is the single source of truth for domain rules. Clients render. That is the line.
+Concrete failure modes worth naming.
+
+**Business logic leaking into the client.** Validation that started in the API gets duplicated into the front-end; six months later the rules diverge, the client copy is stale, and the bug looks like a backend issue when the source is a client-side guess. The backend is the single source of truth for domain rules; clients render.
+
+**Controllers doing service work.** Route handlers that reach directly into the database, or orchestrate cross-domain logic, become the place every change lands. Push the work down a layer; the controller stays thin.
+
+**God modules.** A `utils` or `helpers` file that grows past a single theme is a separation-of-concerns failure waiting to be split.
+
+The test in review: if a single change request would touch more than one responsibility inside a unit, the unit was carrying too much. Split first, then change.
 
 ## 3. Root cause and fixes
 
