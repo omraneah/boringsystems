@@ -1,5 +1,5 @@
 ---
-title: "Les principes d'engineering qui survivent au stack"
+title: "Engineering Practice Boundaries — Une seule barre pour engineers et AI"
 description: "Les frameworks tournent. Les langages se renouvellent. Les primitives cloud se rebrandent. Les sept dimensions de la pratique d'engineering en dessous sont stack-orthogonales — vraies sur du bare metal, vraies sur Kubernetes, vraies sur n'importe quel runtime agent-native qui sortira en 2028."
 date: 2026-04-27
 order: 2
@@ -87,4 +87,4 @@ Une équipe qui les viole le premier mois ship le travail du premier mois vite e
 
 Les stacks sont interchangeables. La pratique non. Tout ce que vous construisez sur ces sept invariants survit à la prochaine migration ; tout ce que vous construisez à côté d'eux est réécrit quand le framework change d'avis.
 
-La couche d'orchestration qui enveloppe un coding agent moderne — skills, hooks, memory, sub-agents, le harness autour du modèle — a son propre jeu d'invariants, en aval de ceux-ci mais avec leur propre logique. Ils sont dans la pièce compagnon : *[Les principes d'orchestration qui survivent au modèle](/fr/writing/orchestration-principles-that-outlive-the-model)*. L'agent qui vous aide à écrire le code suit la même practice bar décrite ci-dessus ; l'orchestration autour de l'agent suit sept principes additionnels qui gèrent ce que l'agent lui-même ne peut pas.
+La couche d'orchestration qui enveloppe un coding agent moderne — skills, hooks, memory, sub-agents, le harness autour du modèle — a son propre jeu d'invariants, en aval de ceux-ci mais avec leur propre logique. Ils sont dans la pièce compagnon : *[Agentic AI Orchestration — 7 principes opérationnels](/fr/writing/orchestration-principles-that-outlive-the-model)*. L'agent qui vous aide à écrire le code suit la même practice bar décrite ci-dessus ; l'orchestration autour de l'agent suit sept principes additionnels qui gèrent ce que l'agent lui-même ne peut pas.

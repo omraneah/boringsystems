@@ -1,5 +1,5 @@
 ---
-title: "Engineering Principles That Outlive the Stack"
+title: "Engineering Practice Boundaries — One Bar for Engineers and AI"
 description: "Frameworks turn over. Languages cycle. Cloud primitives get rebranded. The seven dimensions of engineering practice underneath are stack-orthogonal — true on bare metal, true on Kubernetes, true on whatever the agent-native runtime turns out to be in 2028."
 date: 2026-04-27
 order: 2
@@ -87,4 +87,4 @@ A team that violates them in month one ships month-one's work fast and pays inte
 
 Stacks are interchangeable. Practice is not. Anything you build on top of these seven invariants survives the next migration; anything you build around them gets rewritten when the framework changes its mind.
 
-The orchestration layer that wraps a modern coding agent — skills, hooks, memory, sub-agents, the harness around the model — has its own set of invariants, downstream of these but with their own logic. Those are in the companion piece: *[Orchestration Principles That Outlive the Model](/en/writing/orchestration-principles-that-outlive-the-model)*. The agent that helps you write the code follows the same practice bar described above; the orchestration around the agent follows seven additional principles that handle what the agent itself cannot.
+The orchestration layer that wraps a modern coding agent — skills, hooks, memory, sub-agents, the harness around the model — has its own set of invariants, downstream of these but with their own logic. Those are in the companion piece: *[Agentic AI Orchestration — 7 Operating Principles](/en/writing/orchestration-principles-that-outlive-the-model)*. The agent that helps you write the code follows the same practice bar described above; the orchestration around the agent follows seven additional principles that handle what the agent itself cannot.

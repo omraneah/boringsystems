@@ -1,5 +1,5 @@
 ---
-title: "Les principes d'orchestration qui survivent au modèle"
+title: "Agentic AI Orchestration — 7 principes opérationnels"
 description: "Le modèle dans votre IDE aujourd'hui sera remplacé avant la fin de l'année. La couche d'orchestration enveloppée autour de lui est ce qui se compose avec vous. Sept principes opérationnels pour construire la boucle qui survit à la prochaine release de modèle."
 date: 2026-04-27
 highlight: true
@@ -13,7 +13,7 @@ Le modèle dans votre IDE aujourd'hui sera remplacé avant la fin de l'année. L
 
 Ce travail — ce que vous avez appris à l'agent, comment vous l'avez câblé à vos outils, quel contexte il hérite, comment vous corrigez ses erreurs — vit dans une couche entre vous et le modèle. Cette couche, c'est l'orchestration. Ce n'est pas le modèle. Elle ne se fait pas remplacer quand le modèle se fait remplacer. Et c'est la seule chose dans la boucle qui se compose avec vous dans le temps.
 
-Cette pièce, c'est les principes opérationnels de cette couche. Sept. Ils sont en aval de la barre engineering — *[Les principes d'engineering qui survivent au stack](/fr/writing/engineering-principles-that-outlive-the-stack)* couvre cette barre en entier, et tout ce qui suit la présuppose. Ces sept-là sont ce que vous ajoutez par-dessus une fois acceptez que l'agent lui-même est commodity.
+Cette pièce, c'est les principes opérationnels de cette couche. Sept. Ils sont en aval de la barre engineering — *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)* couvre cette barre en entier, et tout ce qui suit la présuppose. Ces sept-là sont ce que vous ajoutez par-dessus une fois acceptez que l'agent lui-même est commodity.
 
 L'audience, c'est les opérateurs : founders, builders, intrapreneurs, toute personne qui fait tourner du vrai travail avec l'aide d'un coding agent moderne. Les principes sont écrits pour qu'un senior engineer puisse les utiliser aussi — mais le cadrage est celui de l'opérateur, parce que c'est lui qui paie le coût cognitif quand l'orchestration est sloppy.
 
@@ -76,7 +76,7 @@ La discipline, c'est de demander, pour chaque friction que le système impose : 
 
 La couche d'orchestration est du software. Tout ce que vous y construisez — skills, hooks, prompts de sub-agents, registries, plugins, la configuration du harness elle-même — est du system-building. Les mêmes principes d'engineering qui gouvernent votre code de production gouvernent votre orchestration.
 
-Ça veut dire architecture et boundaries, séparation des préoccupations, fixes en cause racine, planning et reviewability, qualité de code (KISS, YAGNI, DRY), documentation, testing. Pas de barre séparée et plus basse pour le code "AI-generated" ou le tooling "personnel". La version complète est dans *[Les principes d'engineering qui survivent au stack](/fr/writing/engineering-principles-that-outlive-the-stack)*. Tout ce qui se construit dans l'orchestration en hérite.
+Ça veut dire architecture et boundaries, séparation des préoccupations, fixes en cause racine, planning et reviewability, qualité de code (KISS, YAGNI, DRY), documentation, testing. Pas de barre séparée et plus basse pour le code "AI-generated" ou le tooling "personnel". La version complète est dans *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)*. Tout ce qui se construit dans l'orchestration en hérite.
 
 Le corollaire qui attrape les gens : les AI tools suivent la même barre que les engineers. Un agent qui contourne votre processus de review pour shipper un "quick fix" ne vous rend pas service ; il dégrade la codebase sous la même logique qui ferait prendre à part un junior engineer. C'est l'orchestration qui applique ça — pas le modèle, l'orchestration.
 
@@ -120,11 +120,11 @@ Si vous construisez ça pour la première fois :
 
 Le modèle continuera de s'améliorer. Rien de tout ça n'est l'edge — chaque opérateur qui lit a accès au même modèle. L'edge, c'est ce qui enveloppe le modèle. Le construire maintenant, l'ajuster chaque semaine, l'élaguer honnêtement, et la composition s'occupe d'elle-même.
 
-La pièce compagnon engineering — *[Les principes d'engineering qui survivent au stack](/fr/writing/engineering-principles-that-outlive-the-stack)* — couvre la couche pratique en dessous de l'orchestration. À lire en deuxième ; c'est la barre sur laquelle tout ce qui précède repose.
+La pièce compagnon engineering — *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)* — couvre la couche pratique en dessous de l'orchestration. À lire en deuxième ; c'est la barre sur laquelle tout ce qui précède repose.
 
 <LeadMagnet
   assetSlug="harness-audit"
   lang="fr"
-  articleTitle="Les principes d'orchestration qui survivent au modèle"
+  articleTitle="Agentic AI Orchestration — 7 principes opérationnels"
   articleUrl="https://boringsystems.app/fr/writing/orchestration-principles-that-outlive-the-model"
 />
