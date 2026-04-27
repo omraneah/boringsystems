@@ -1,42 +1,117 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props {
+  lang?: 'en' | 'fr';
+}
+
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'fr'
+  ? {
+      disclosure:
+        'Une note sur la façon dont ce site est fait. Chaque partie — le codebase, les articles, le design, les éditions françaises — est construite et écrite par des agents AI, orchestrés par moi avec les principes documentés à travers les écrits. Le site est le travail, pas une description du travail.',
+      langNote:
+        "Langue source : anglais. L'édition française est une traduction par AI, calibrée pour l'accessibilité plutôt que pour la fidélité. Quand les deux versions existent, lire l'anglais en premier.",
+      work: 'Travailler avec moi',
+    }
+  : {
+      disclosure:
+        'A note on how this site is made. Every part of it — the codebase, the articles, the design, the French editions — is built and written by AI agents, orchestrated by me using the principles documented across the writing. The site is the work, not a description of it.',
+      langNote:
+        'Source language: English. The French edition is an AI translation, calibrated for accessibility rather than fidelity. When both versions exist, read English first.',
+      work: 'How we work together',
+    };
+
+const workWithMeHref = getRelativeLocaleUrl(lang, 'work-with-me/');
 ---
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <a href="https://www.linkedin.com/in/omrane-ahmed/" target="_blank" rel="noopener noreferrer">Ahmed Omrane</a>
+    <div class="disclosure">
+      <p>{t.disclosure}</p>
+      <p class="lang-note">{t.langNote}</p>
+    </div>
+    <div class="footer-row">
+      <div class="links">
+        <a href="https://www.linkedin.com/in/omrane-ahmed/" target="_blank" rel="noopener noreferrer">Ahmed Omrane — LinkedIn</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href={workWithMeHref}>{t.work}</a>
+      </div>
+      <div class="copyright">© 2026 Ahmed Omrane</div>
+    </div>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    padding: var(--space-md) var(--space-lg);
-    margin-top: auto;
+    padding: var(--space-lg) var(--space-lg) var(--space-xl);
+    margin-top: var(--space-xl);
+    border-top: 1px solid var(--border);
   }
 
   .footer-inner {
-    max-width: var(--max-wide);
+    max-width: var(--max-content);
     margin: 0 auto;
     font-family: var(--font-ui);
     font-size: var(--size-xs);
     color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .disclosure {
+    max-width: 64ch;
+  }
+
+  .disclosure p {
+    margin: 0 0 var(--space-sm);
+  }
+
+  .disclosure p:last-child {
+    margin-bottom: var(--space-md);
+  }
+
+  .lang-note {
+    font-style: italic;
+  }
+
+  .footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border);
+  }
+
+  .links {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     flex-wrap: wrap;
   }
 
-  .footer-inner a {
+  .links a {
     color: var(--text-muted);
     transition: color 0.15s;
   }
 
-  .footer-inner a:hover {
+  .links a:hover {
     color: var(--accent);
   }
 
-@media (max-width: 768px) {
+  .sep {
+    opacity: 0.5;
+  }
+
+  .copyright {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
     .site-footer {
-      padding: var(--space-lg) var(--space-md);
+      padding: var(--space-md) var(--space-md) var(--space-lg);
     }
   }
 </style>

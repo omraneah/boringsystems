@@ -53,7 +53,7 @@ const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) 
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
     <Analytics />
     <SpeedInsights />
   </body>
