@@ -14,7 +14,7 @@ Check architectural boundaries before implementation; boundaries are non-negotia
 
 ## 2. Separation of Concerns
 
-Business logic lives in the backend or API. Clients consume APIs and handle presentation only. The backend is the single source of truth for domain rules — clients never duplicate or re-implement them.
+Each unit owns one responsibility. The architectural-level expression of SOLID's Single Responsibility Principle, applied across functions, modules, services, and systems. Layered architectures (controller/service/repository, hexagonal, clean, MVC, modular monolith) exist to enforce it; encapsulation, loose coupling, and high cohesion are corollaries. Specific failure modes to watch: business logic leaking into the client, controllers doing service work, god modules. The test in review: if a single change request would touch more than one responsibility inside a unit, the unit was carrying too much.
 
 ## 3. Root Cause and Fixes
 
