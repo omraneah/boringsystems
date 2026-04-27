@@ -43,6 +43,7 @@ Full profile: `memory/user_profile.md`, `memory/user_strategic_context.md`.
 | `boringsystems/` | Personal site — engineering leadership case files. Astro, Vercel. | Active project. |
 | `personal-apps/` | Subdomain apps. Next.js 16, React 19, Tailwind 4. | Active project. Read `AGENTS.md` first. |
 | `go-to-market/` | Operational positioning — LinkedIn copy, freelance offers, market hypotheses, inbound signals. Evolves weekly. | Active. Edit via `/gtm-sync`. |
+| `tmp/` | Short-term RAM — long Claude-generated analysis the user will read in full lands here instead of in chat. | Ephemeral. Folder tracked, contents ignored, wiped at session boundaries. |
 
 ## Non-negotiable rules
 
@@ -56,6 +57,7 @@ Full profile: `memory/user_profile.md`, `memory/user_strategic_context.md`.
 - **Lane-change announcement.** When task dimension/cadence shifts (psychology→code, exchange→distilled, single→parallel), announce current model/effort + recommendation before proceeding. Full rule: `memory/feedback_lane_change_announcement.md`.
 - **Parallel-agent recap.** When spawning parallel sub-agents, announce model/effort/why for each as the FIRST summary before any output is read. Full rule: `memory/feedback_parallel_agent_recap.md`.
 - **No recap after link.** When providing a link to a PR, Linear card, ADR, or any authoritative source, do NOT recap its contents in chat. The link IS the recap. Full rule: `memory/feedback_no_recap_after_link.md`.
+- **Long analysis goes to `tmp/`, not chat.** When Claude generates more than ~400 words of dense analysis the user will read in full, write it to `tmp/<name>.md` and reference the path. Folder tracked, contents ignored, wiped at session boundaries. Full rule: `memory/feedback_tmp_as_ram.md`.
 - **Card-fanout discipline.** Before creating multiple Linear cards for related deliverables, check the team for an existing container-card pattern (BOR-23-style) and mirror it. Full rule: `memory/feedback_card_fanout_discipline.md`.
 - **Never push with high or critical npm vulnerabilities.** Each npm-capable submodule has a `pre-push` hook running `npm audit --audit-level=high`. Workspace root also runs `.claude/git-hooks/pre-push` which audits every submodule before a pointer bump. Fix path: `npm audit fix` → npm `overrides` → major upgrade → documented advisory acceptance in the affected project's ADR. `--no-verify` forbidden.
 
