@@ -10,16 +10,12 @@ const { lang = 'en' } = Astro.props;
 const t = lang === 'fr'
   ? {
       disclosure:
-        'Une note sur la façon dont ce site est fait. Chaque partie — le codebase, les articles, le design, les éditions françaises — est construite et écrite par des agents AI, orchestrés par moi avec les principes documentés à travers les écrits. Le site est le travail, pas une description du travail.',
-      langNote:
-        "Langue source : anglais. L'édition française est une traduction par AI, calibrée pour l'accessibilité plutôt que pour la fidélité. Quand les deux versions existent, lire l'anglais en premier.",
+        "Une note sur la façon dont ce site est fait. Chaque partie — le codebase, les articles, le design, les éditions françaises — est construite et écrite par des agents AI sous mon orchestration, avec les principes documentés à travers les écrits. La langue source est l'anglais ; l'édition française est une traduction par AI calibrée pour l'accessibilité plutôt que pour la fidélité, donc quand les deux versions existent, lire l'anglais en premier.",
       work: 'Travailler avec moi',
     }
   : {
       disclosure:
-        'A note on how this site is made. Every part of it — the codebase, the articles, the design, the French editions — is built and written by AI agents, orchestrated by me using the principles documented across the writing. The site is the work, not a description of it.',
-      langNote:
-        'Source language: English. The French edition is an AI translation, calibrated for accessibility rather than fidelity. When both versions exist, read English first.',
+        'A note on how this site is made. Every part of it — the codebase, the articles, the design, the French editions — is built and written by AI agents under my orchestration, using the principles documented across the writing. Source language is English; the French edition is an AI translation calibrated for accessibility rather than parity, so when both exist, read English first.',
       work: 'How we work together',
     };
 
@@ -28,10 +24,7 @@ const workWithMeHref = getRelativeLocaleUrl(lang, 'work-with-me/');
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <div class="disclosure">
-      <p>{t.disclosure}</p>
-      <p class="lang-note">{t.langNote}</p>
-    </div>
+    <p class="disclosure">{t.disclosure}</p>
     <div class="footer-row">
       <div class="links">
         <a href="https://www.linkedin.com/in/omrane-ahmed/" target="_blank" rel="noopener noreferrer">Ahmed Omrane — LinkedIn</a>
@@ -51,7 +44,7 @@ const workWithMeHref = getRelativeLocaleUrl(lang, 'work-with-me/');
   }
 
   .footer-inner {
-    max-width: var(--max-content);
+    max-width: var(--max-wide);
     margin: 0 auto;
     font-family: var(--font-ui);
     font-size: var(--size-xs);
@@ -60,19 +53,7 @@ const workWithMeHref = getRelativeLocaleUrl(lang, 'work-with-me/');
   }
 
   .disclosure {
-    max-width: 64ch;
-  }
-
-  .disclosure p {
-    margin: 0 0 var(--space-sm);
-  }
-
-  .disclosure p:last-child {
-    margin-bottom: var(--space-md);
-  }
-
-  .lang-note {
-    font-style: italic;
+    margin: 0 0 var(--space-md);
   }
 
   .footer-row {
