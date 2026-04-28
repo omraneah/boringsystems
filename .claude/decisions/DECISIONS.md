@@ -578,3 +578,45 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending — first observable across the next 5–10 long-output exchanges. Signals of fit: Ahmed stops complaining about terminal reading; renders happen reflexively. Signals of drift: skill stops firing when expected, or Ahmed manually re-derives. If Marky proves unstable or unsigned-binary friction recurs, fall back to Obsidian vault on `tmp/` — same loop, heavier reader.)*
 
 ---
+
+
+---
+
+## 2026-04-28 — Tiered memory architecture v1 (ADR-004)
+
+**Decision:** Restructured the workspace `memory/` folder from a flat 37-file structure into a three-tier architecture (long-term identity, medium-term direction + behavioural feedback, short-term episodic), with two attribution skills (`/whence`, `/divergence-check`) as the drift-detection immune system and `/consolidate-week` as the closed-loop weekly correction. Auto-load policy reads long-term + medium-term/feedback/ + current-arc + current+last week of short-term every session. Symlink architecture: workspace is source of truth, Claude Code reads via symlink at `~/.claude/projects/.../memory/`. Full design rationale, alternatives, and revisit triggers in `docs/adr-004-tiered-memory-architecture.md`.
+
+**Why:** `META-PRINCIPLES.md` declared "tiered memory" as principle #3 but the architecture didn't enforce it. Flat memory mixed constitutional rules (laptop-agnostic, PR creation) with identity preferences with active project state, all loaded with equal weight. No drift detection, no consolidation cadence. The orchestration article on the same principles had been published; the architect's own memory hadn't been restructured. This was the dogfood pass.
+
+---
+
+## 2026-04-28 — Feedback as a medium-term sub-tier with stable/in-flight split
+
+**Decision:** Behavioural rules (`feedback_*.md` files) live in `memory/medium-term/feedback/`, split into two audit-only sub-folders: `stable/` (rules that have crystallized across many domains and time, constitutional in flavour) and `in-flight/` (rules tied to current workflow, specific tooling, or recent corrections, genuinely evolving). Both auto-load every session — runtime is unified. The split exists so the operator can see at a glance which rules to interrogate first during a deliberate audit pass.
+
+**Why:** Initial v1 design put all behavioural rules in long-term. Audit critique surfaced false equivalence: constitutional rules (which don't drift) and identity-rooted rules (which do) sat together with the same conflict-resolution semantics. Moving feedback to medium-term acknowledges that most behavioural rules are temporary — they get condensed, promoted, or archived over time. Long-term is reserved for what has crystallized into identity or doctrine. The stable/in-flight split is a refinement of that move, addressing the secondary critique that 34 files in one folder lost signal-to-noise.
+
+---
+
+## 2026-04-28 — Split `/cleanup` into `/github-cleanup` + `/tmp-cleanup`
+
+**Decision:** Renamed the `/cleanup` skill to `/github-cleanup` (per-PR post-merge git branch cleanup) and created a separate `/tmp-cleanup` skill (operator-directed `tmp/` folder wipe). Removed the auto-wipe of `tmp/` from the SessionStart hook in `.claude/settings.json`. Both skills share the same shape (explicit operator request → mechanical action → one-line confirmation) but operate on different surfaces.
+
+**Why:** The auto-wipe of `tmp/` at SessionStart caused a load-bearing artifact (the live build narrative for the boringsystems article) to disappear mid-workflow during the v1 tiered-memory restructure. The wipe was a hook firing at session-restart events the operator didn't control. Two improvements: (a) the wipe is now explicit operator-directed only, and (b) the word "cleanup" is now scoped — `/github-cleanup` for git, `/tmp-cleanup` for tmp. Backward-compatible triggers preserved so muscle memory still works.
+
+---
+
+## 2026-04-28 — Bilingual EN+FR mandate for boringsystems articles
+
+**Decision:** Codified two long-term feedback rules: every boringsystems article / playbook / page-copy update ships in both English and French at the same time, in the same PR (`feedback_boringsystems_articles_en_and_fr`); and `/article-review` (EN + FR) plus `/french-audit` (FR) are mandatory passes before declaring any boringsystems content done (`feedback_always_run_article_review_and_french_audit`). Never asks the operator about either — both are non-questions.
+
+**Why:** Boringsystems serves a French-market audience as a primary segment. EN-only or FR-deferred shouldn't be on the table. Asking each time creates friction and signals the rule isn't internalized. Codifying as feedback rules removes the question and ensures the discipline survives across sessions.
+
+---
+
+## 2026-04-28 — `llm-context-2026/` submodule deleted, content fully migrated to `memory/`
+
+**Decision:** Removed the `llm-context-2026/` submodule from the workspace. Content distilled into `memory/long-term/inner-game/` (4 files), `memory/medium-term/market/` (7 files), `memory/medium-term/strategic-advisor-system-prompt.md` (1 file), and `memory/medium-term/Proof-Asset-Extraction-OS.md` (1 file). The transition content (3 files) was intentionally discarded per the let-go direction. The Strategic Index was superseded by the new `memory/MEMORY.md` routing protocol.
+
+**Why:** The legacy strategic-context folder created routing fragmentation — two separate memory locations with cross-references, manual STRATEGIC INDEX navigation, and no auto-load. With the new tiered memory architecture in place (ADR-004), all strategic content has a structural home in `memory/`. The submodule no longer earned its place. Two-step deletion (PR #41 cleared all references and migrated load-bearing content; PR #42 deleted the submodule atomically) preserved review safety.
+
