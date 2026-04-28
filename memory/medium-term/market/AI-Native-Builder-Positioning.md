@@ -1,0 +1,97 @@
+> **Origin:** Distilled from `llm-context-2026/market/AI-Native-Builder-Positioning.md` on 2026-04-28.
+> Original retained at source path until full deprecation pass.
+
+---
+
+# AI-Native Builder Positioning - Entry Strategy (France 2026)
+
+Objective: enter through a high-leverage disruption wedge while preserving trajectory.
+
+## 1) Core Positioning
+> Senior Builder - AI-native systems and execution under constraint
+
+- Operates at system and decision level, not task level.
+- Uses AI to compress execution, not replace judgment.
+- Focus = design, arbitrate, and implement selectively to demonstrate velocity.
+- Value = turn ambiguity into structured, working systems fast.
+
+## 2) Entry Strategy (Primary Vector)
+
+### Target Surfaces
+- AI-native initiatives that are early, under-defined, and funded.
+- Intra-preneurial projects inside larger organizations.
+- Lean teams with real mandate and high urgency.
+
+### Engagement Model
+- Prefer:
+  - Freelance or fractional entry.
+  - Short-cycle, high-impact missions.
+- Avoid:
+  - Immediate full-time commitment without clarity.
+  - Roles framed as pure execution.
+
+## 3) Non-Negotiable Guardrail
+> Immediate proximity to a decision-maker
+
+Required:
+- Direct access to founder or executive sponsor.
+- Clear line to decisions, prioritization, and trade-offs.
+
+Reject if:
+- You sit under layers without authority.
+- You operate as execution without influence.
+
+## 4) Freelance as Strategic Tool
+
+### Purpose
+- De-risk before commitment.
+- Test sponsor quality, decision velocity, and mandate reality.
+- **Primary validity criterion: does this create sponsor proximity and relationship leverage?** If not, it does not qualify as a strategic entry — it is execution-for-hire.
+
+### Valid Use
+- Diagnostic plus initial system setup that deepens sponsor relationship.
+- AI-native execution model shaping with a decision-maker in the room.
+- Early architecture framing that builds trust and reveals problem shape.
+
+### Invalid Use
+- Staff augmentation.
+- Open-ended delivery.
+- Filling IC gaps.
+- Any engagement where the output is work product without relationship compounding.
+
+See **Re-Entry Doctrine — Relationship Primacy** for acceptance/refusal criteria.
+
+## 5) Operating Mode (During Engagement)
+
+### What You Do
+- Frame problems in constraints, trade-offs, and system design.
+- Introduce AI-native workflows and execution-compression loops across dev cycles, decision loops, and delivery cadence.
+- Deliver fast, visible system shifts.
+
+### What You Avoid
+- Owning backlog execution.
+- Absorbing continuous ambiguity.
+- Acting as delivery buffer.
+
+## 6) Selection Filters
+Accept only if:
+- Sponsor has real authority through budget or influence, plus urgency.
+- Problem is concrete and decision-backed.
+- Scope allows system-level impact.
+
+Reject if:
+- Vague AI exploration.
+- No clear owner.
+- Decision-making is diffused.
+
+## 7) Success Condition of This Phase
+> Convert 2-3 engagements into proof cases with sponsor relationships that compound forward
+
+## 8) Failure Modes (Watch Closely)
+- Execution gravity (IC drift).
+- Loss of sponsor proximity.
+- Over-investment without narrative return.
+- Long freelance entrapment.
+
+## 9) Guiding Principle
+> Enter through leverage. Exit or expand - never absorb.

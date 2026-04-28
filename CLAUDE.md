@@ -2,7 +2,7 @@
 
 Ahmed Omrane's primary workspace. All projects live here.
 
-Start-of-session routing: `WORKSPACE_MAP.md` (project map). Detail docs under `docs/`.
+Start-of-session routing: `WORKSPACE_MAP.md` (project map). Detail docs under `docs/`. Memory architecture: `memory/README.md` (human governance) + `memory/MEMORY.md` (machine entry, auto-loaded).
 
 ## Read first — Principles
 
@@ -25,25 +25,39 @@ Tests every change must pass:
 4. **Committed-or-it-doesn't-exist.** Hooks, skills, settings, memory, decisions — version-controlled or it isn't real.
 5. **Symlink hygiene.** Symlinks from `~/` into a tracked workspace path are fine (reproducible via setup.sh). Symlinks from the repo out to the host are not.
 
-Full rule: `memory/feedback_laptop_agnostic.md`.
+Full rule: `memory/long-term/feedback_laptop_agnostic.md`.
 
 ## Who Ahmed is
 
-Senior engineering leader (CTO-equivalent scope). Currently in transition — exiting Enakl after 3 years, re-entering on his own terms in France 2026. His leverage is capability-based and portable: rapid navigation of ambiguous systems, crisp judgment under constraint, cross-functional system thinking, AI-native execution that compresses cycles without outsourcing judgment. France-based. Depth-oriented.
+Senior engineering leader (CTO-equivalent scope). Currently transitioning. Roughly 10 hours per week of paid commitments through end of June 2026; rest of time directed toward what comes next — producing content, building, meeting people, deepening positioning. Re-entering on his own terms in France 2026. His leverage is capability-based and portable: rapid navigation of ambiguous systems, crisp judgment under constraint, cross-functional system thinking, AI-native execution that compresses cycles without outsourcing judgment. France-based. Depth-oriented.
 
-Full profile: `memory/user_profile.md`, `memory/user_strategic_context.md`.
+Full profile: `memory/long-term/user_profile.md`, `memory/medium-term/user_strategic_context.md`. Live current direction: `memory/medium-term/current-arc.md`.
+
+## Memory — Tiered Architecture
+
+Memory is tiered into three horizons (`memory/long-term/`, `memory/medium-term/`, `memory/short-term/`), with weekly consolidation as the closed-loop correction mechanism. `memory/MEMORY.md` is the auto-loaded machine entry every turn; `memory/README.md` is the human governance doc. Implements meta-principle #3.
+
+Drift-detection (immune system):
+
+- `/whence` — directive. Ahmed asks where Claude pulled a claim from.
+- `/divergence-check` — proactive. Claude fires on detected frustration / loss-of-fit.
+
+Closed loop:
+
+- `/consolidate-week` — auto-fires on Mondays. Reads last week's daily entries, proposes promotions / demotions / drift-flags, Ahmed decides, results recorded in this week's `consolidation.md`.
 
 ## Workspace structure
 
 | Folder | Purpose | Access |
 |--------|---------|--------|
-| `llm-context-2026/` | Strategic brain — identity, strategy, transition, market positioning. | Read-only. Never modify without explicit instruction. |
-| `Enakl/` | 3 years of TMS work. Past company context. | Read-only. Never modify. |
+| `memory/` | Tiered memory: long-term constitutional + identity, medium-term current direction, short-term episodic record. Auto-loaded by Claude Code via symlink. | Source of truth. Edit via consolidation flow + drift-detection skills. |
+| `llm-context-2026/` | Strategic brain (legacy). Being deprecated bit by bit; distilled content lives in `memory/long-term/inner-game/` and `memory/medium-term/market/`. | Read-only. Never modify. Phasing out. |
+| `Enakl/` | Archived past project context. | Read-only. Never modify. |
 | `cross-stack-architecture-starter-pack/` | Distilled architectural principles. ARDs are non-negotiable boundaries. | Read-only. Consult before structural decisions. |
 | `boringsystems/` | Personal site — engineering leadership case files. Astro, Vercel. | Active project. |
 | `personal-apps/` | Subdomain apps. Next.js 16, React 19, Tailwind 4. | Active project. Read `AGENTS.md` first. |
 | `go-to-market/` | Operational positioning — LinkedIn copy, freelance offers, market hypotheses, inbound signals. Evolves weekly. | Active. Edit via `/gtm-sync`. |
-| `tmp/` | Short-term RAM — long Claude-generated analysis the user will read in full lands here instead of in chat. | Ephemeral. Folder tracked, contents ignored, wiped at session boundaries. |
+| `tmp/` | Render buffer — long Claude-generated analysis lands here for Marky reading. NOT for memory: episodic record goes to `memory/short-term/`. | Ephemeral. Folder tracked, contents ignored, wiped at session boundaries. |
 
 ## Non-negotiable rules
 
@@ -54,31 +68,34 @@ Full profile: `memory/user_profile.md`, `memory/user_strategic_context.md`.
 - **Never modify `llm-context-2026/`, `Enakl/`, or `cross-stack-architecture-starter-pack/`** without explicit instruction.
 - **Twice-is-a-pattern.** When the same manual task happens twice in a session, stop and propose codifying it before the third time.
 - **Max three concerns per session.** Wider scope → split into separate branches.
-- **Lane-change announcement.** When task dimension/cadence shifts (psychology→code, exchange→distilled, single→parallel), announce current model/effort + recommendation before proceeding. Full rule: `memory/feedback_lane_change_announcement.md`.
-- **Parallel-agent recap.** When spawning parallel sub-agents, announce model/effort/why for each as the FIRST summary before any output is read. Full rule: `memory/feedback_parallel_agent_recap.md`.
-- **No recap after link.** When providing a link to a PR, Linear card, ADR, or any authoritative source, do NOT recap its contents in chat. The link IS the recap. Full rule: `memory/feedback_no_recap_after_link.md`.
-- **Long analysis goes to `tmp/`, not chat.** When Claude generates more than ~400 words of dense analysis the user will read in full, write it to `tmp/<name>.md` and reference the path. Folder tracked, contents ignored, wiped at session boundaries. Full rule: `memory/feedback_tmp_as_ram.md`.
-- **Card-fanout discipline.** Before creating multiple Linear cards for related deliverables, check the team for an existing container-card pattern (BOR-23-style) and mirror it. Full rule: `memory/feedback_card_fanout_discipline.md`.
+- **Lane-change announcement.** When task dimension/cadence shifts (psychology→code, exchange→distilled, single→parallel), announce current model/effort + recommendation before proceeding. Full rule: `memory/long-term/feedback_lane_change_announcement.md`.
+- **Parallel-agent recap.** When spawning parallel sub-agents, announce model/effort/why for each as the FIRST summary before any output is read. Full rule: `memory/long-term/feedback_parallel_agent_recap.md`.
+- **No recap after link.** When providing a link to a PR, Linear card, ADR, or any authoritative source, do NOT recap its contents in chat. The link IS the recap. Full rule: `memory/long-term/feedback_no_recap_after_link.md`.
+- **Long analysis goes to `tmp/`, not chat.** When Claude generates more than ~400 words of dense analysis the user will read in full, write it to `tmp/<name>.md` and reference the path. `tmp/` is ephemeral render buffer; episodic memory goes to `memory/short-term/`. Full rule: `memory/medium-term/feedback_tmp_as_ram.md`.
+- **Card-fanout discipline.** Before creating multiple Linear cards for related deliverables, check the team for an existing container-card pattern and mirror it. Full rule: `memory/medium-term/feedback_card_fanout_discipline.md`.
+- **Drift detection.** Fire `/divergence-check` on detected frustration or loss-of-fit (proactive). Respond to `/whence` with tier+source+bias-risk when asked (directive). Full rule: `memory/long-term/feedback_fire_divergence_check_on_frustration.md`.
+- **Weekly consolidation.** On Monday session start, fire `/consolidate-week` if this week's consolidation hasn't been done yet. Full rule: `memory/long-term/feedback_consolidate_week_on_monday_session_start.md`.
 - **Never push with high or critical npm vulnerabilities.** Each npm-capable submodule has a `pre-push` hook running `npm audit --audit-level=high`. Workspace root also runs `.claude/git-hooks/pre-push` which audits every submodule before a pointer bump. Fix path: `npm audit fix` → npm `overrides` → major upgrade → documented advisory acceptance in the affected project's ADR. `--no-verify` forbidden.
 
 ## Detail — read these when the topic matters
 
 | Topic | File |
 |---|---|
+| Memory architecture (tiered: long/medium/short) | `memory/README.md` |
 | Collaboration tone, scope discipline, code comment rules | `docs/collaboration.md` |
 | Git workflow, branch rules, PR handoff, post-merge cleanup | `docs/git-workflow.md` |
 | Skills, hooks, setup, MCP, decisions, memory | `docs/infrastructure.md` |
-| Model × Effort × Lane matrix — defaults per task dimension | `memory/feedback_model_effort_matrix.md` |
+| Model × Effort × Lane matrix — defaults per task dimension | `memory/medium-term/feedback_model_effort_matrix.md` |
 | Enforcement-tier template (local-first pre-push audit, reuse across projects) | `docs/patterns/local-first-enforcement.md` |
 | Which ARDs apply at which tier per project | `docs/ard-tier-map.md` |
 | Per-project stack + conventions | `<project>/CLAUDE.md` and `<project>/docs/` |
 
-## Strategic routing (from `llm-context-2026/`)
+## Strategic routing — prefer memory-tier paths
 
-Use the Strategic Index to navigate. Never read everything — route precisely.
+The legacy `llm-context-2026/` content is being deprecated bit by bit. Distilled equivalents live in the memory tiers; route to those first.
 
-- Transition + emotion → `llm-context-2026/transition/`
-- Opportunity evaluation → `llm-context-2026/market/Leverage Profile & Market Lens.md`
-- External action / positioning → `llm-context-2026/market/AI-Native-Builder-Positioning.md`
-- Identity drift → `llm-context-2026/inner-game/Meta-Identity-Constitution.md`
-- Work confusion → `llm-context-2026/inner-game/Work-Hygiene-Doctrine.md`
+- Identity drift → `memory/long-term/inner-game/Meta-Identity-Constitution.md`
+- Work confusion → `memory/long-term/inner-game/Work-Hygiene-Doctrine.md`
+- Opportunity evaluation → `memory/medium-term/market/Leverage Profile & Market Lens.md`
+- External action / positioning → `memory/medium-term/market/AI-Native-Builder-Positioning.md`
+- Current direction snapshot → `memory/medium-term/current-arc.md`

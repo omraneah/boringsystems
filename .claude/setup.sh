@@ -6,7 +6,9 @@ set -e
 
 WORKSPACE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CLAUDE_DIR="$HOME/.claude"
-MEMORY_SRC="$WORKSPACE_DIR/.claude/projects/-Users-ahmedomrane-Workspace/memory"
+# Memory: tiered architecture lives at workspace root (memory/long-term, /medium-term, /short-term).
+# Claude Code reads from ~/.claude/projects/<sanitized-workspace-path>/memory; we symlink that to here.
+MEMORY_SRC="$WORKSPACE_DIR/memory"
 MEMORY_DST="$CLAUDE_DIR/projects/-Users-ahmedomrane-Workspace/memory"
 
 echo "Workspace: $WORKSPACE_DIR"
@@ -37,16 +39,23 @@ else
   echo "Created: ~/.claude/settings.json → .claude/settings.json"
 fi
 
-# 3. Memory: symlink for workspace project memory
+# 3. Memory: symlink Claude Code's auto-memory location to workspace memory tier root
 if [ -L "$MEMORY_DST" ]; then
-  echo "memory symlink already exists — skipping"
+  EXISTING_TARGET="$(readlink "$MEMORY_DST")"
+  if [ "$EXISTING_TARGET" = "$MEMORY_SRC" ]; then
+    echo "memory symlink already correct — skipping"
+  else
+    echo "Updating memory symlink: $EXISTING_TARGET → $MEMORY_SRC"
+    rm "$MEMORY_DST"
+    ln -s "$MEMORY_SRC" "$MEMORY_DST"
+  fi
 elif [ -d "$MEMORY_DST" ]; then
-  echo "ERROR: $MEMORY_DST is a real directory. Remove it first."
+  echo "ERROR: $MEMORY_DST is a real directory. Move/back it up first."
   exit 1
 else
   mkdir -p "$(dirname "$MEMORY_DST")"
   ln -s "$MEMORY_SRC" "$MEMORY_DST"
-  echo "Created: workspace memory symlink"
+  echo "Created: ~/.claude/projects/-Users-ahmedomrane-Workspace/memory → workspace/memory"
 fi
 
 # 4. Git hooks: point core.hooksPath at tracked hook directory so the

@@ -1,0 +1,106 @@
+> **Origin:** Distilled from `llm-context-2026/inner-game/Work-Hygiene-Doctrine.md` on 2026-04-28.
+> Original retained at source path until full deprecation pass.
+
+---
+
+# Work Hygiene Doctrine
+
+Purpose: protect builder positioning by separating leverage work from execution gravity.
+
+## 1) Core Rule
+> Do work that compounds judgment, systems, and sponsor trust. Refuse work that trains dependency.
+
+Every task is evaluated by what it makes you legible as:
+- builder and operator
+- backlog owner
+- ambiguity absorber
+- delivery buffer
+
+Only the first category compounds.
+
+## 2) Clean Work
+
+### System design
+- Define constraints, invariants, and architecture direction.
+- Write decision records that humans and AI can execute from.
+- Design operating loops, review surfaces, and quality bars.
+
+### Decision work
+- Arbitrate trade-offs with explicit options.
+- Kill work that should not exist.
+- Sequence at system level, not task level.
+
+### Sponsor work
+- Convert ambiguity into bounded decisions.
+- Keep direct line to sponsor priorities.
+- Make resource, speed, and risk trade-offs explicit.
+
+### Proof work
+- Produce artifacts that show before/after system change.
+- Capture wins as reusable proof cases.
+
+## 3) Dirty Work
+
+### Execution gravity
+- Owning backlog movement.
+- Breaking vague requests into detailed tasks.
+- Rewriting tickets, cards, or specs for others.
+- Repeatedly unblocking people on basics.
+
+### Support labor
+- Acting as emotional stabilizer.
+- Absorbing ambiguity to keep others comfortable.
+- Becoming the buffer between weak ownership and delivery pressure.
+
+### Fixer optics
+- Heroics during recurring chaos.
+- Quietly doing what the system should surface.
+- Carrying scope without authority.
+
+If the work makes you more necessary each week, it is dirty.
+
+## 4) Transitional Work
+Allowed only when it is declining and produces an artifact.
+
+Valid:
+- bootstrap a new execution loop
+- define an initial AI-native workflow
+- shape a first decision framework
+
+Invalid:
+- repeating the same clarification manually
+- staying as the permanent fallback
+
+Rule:
+> Explain once, codify once, then refuse repetition.
+
+## 5) Disengagement Protocol
+- Ask for proposals with assumptions instead of open ambiguity.
+- Push unresolved requests back to sponsor trade-offs.
+- Let friction surface when ownership is missing.
+- Treat collapse as system data, not a cue to rescue.
+
+Default line:
+> Bring a proposal with options, assumptions, and trade-offs. I will arbitrate.
+
+## 6) Narrative Hygiene
+Speak in terms of:
+- constraints
+- design choices
+- decision quality
+- execution compression
+- visible system shifts
+
+Do not describe yourself as:
+- helping the team
+- keeping things moving
+- supporting delivery
+- doing whatever was needed
+
+## 7) Weekly Check
+- Did this week increase or reduce dependency on me?
+- Was I close to a sponsor or buried under execution?
+- Did I produce a reusable artifact or just consume ambiguity?
+- Would this work strengthen a proof case within 30 days?
+
+Two consecutive weeks of drift require correction immediately.
