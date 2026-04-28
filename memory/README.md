@@ -28,11 +28,11 @@ memory/
 
 ## Tier definitions
 
-| Tier | Horizon | What goes here | Examples |
+| Tier | Horizon | What goes here | Lives in |
 |---|---|---|---|
-| **Long-term** | Effectively constant | Constitutional rules. Identity profile. Engineering principles. | `feedback_laptop_agnostic`, `user_profile`, distilled `inner-game/` |
-| **Medium-term** | 1–6 month, evolving | Current positioning, doctrine, project arcs, advisory board, current-direction snapshot | `current-arc.md`, distilled `market/`, `user_strategic_context`, `project_advisory_board` |
-| **Short-term** | ≤4 weeks, episodic | Daily entries: decisions, health/state, conflicts. Weekly consolidation files. | `2026-W18/2026-04-28.md`, `_needs-consolidation/`, `consolidation.md` |
+| **Long-term** | Effectively constant | Constitutional rules. Identity profile. Engineering principles. Durable behavioural discipline. | `long-term/` |
+| **Medium-term** | 1–6 month, evolving | Current positioning, doctrine, project arcs, advisory board, current-direction snapshot. | `medium-term/` |
+| **Short-term** | ≤4 weeks, episodic | Daily entries (decisions, state, conflicts). Weekly consolidation files. Items pending tier-decision. | `short-term/` |
 
 ## Auto-load policy (v1)
 
@@ -113,7 +113,7 @@ Format: chronological, timestamps, concise. **No essays.**
 ## 09:30
 - Decision: ...
 - State: ...
-- Conflict (vs long-term `user_profile.md`): ...
+- Conflict (vs long-term identity rule): ...
 
 ## 14:15
 - Decision: ...
@@ -158,16 +158,15 @@ Test: clone + setup.sh = full memory accessible.
 
 ## What this implements
 
-This memory architecture is the dogfood of:
+This memory architecture is the dogfood of the workspace meta-principles:
 
-- **Principle #1 (corpus is malleable)** — live conversation overrides stale docs; drift detection is the immune system.
-- **Principle #2 (written down, versioned, portable)** — everything in this folder is in-repo, version-controlled, laptop-agnostic.
-- **Principle #3 (memory is tiered, three horizons)** — the entire structure of this folder.
-- **Principle #4 (the system corrects itself)** — weekly consolidation, two attribution skills, drift detection.
-- **Principle #5 (protect the operator's cognition)** — auto-load policy is conservative; routing is precise; READMEs are scannable.
+- **Corpus is malleable** — live conversation overrides stale docs; drift detection is the immune system.
+- **Written down, versioned, portable** — everything in this folder is in-repo, version-controlled, laptop-agnostic.
+- **Tiered memory, three horizons** — the entire structure of this folder.
+- **The system corrects itself** — weekly consolidation, two attribution skills, drift detection.
+- **Protect the operator's cognition** — auto-load policy is conservative; routing is precise; READMEs are scannable.
 
-Companion article: `boringsystems/src/content/writing-en/orchestration-principles-that-outlive-the-model.mdx`.
+References:
 
-Live narrative of v1 build: `tmp/restructure-narrative.md`.
-
-Post-restructure audit: Linear BOR-29.
+- `META-PRINCIPLES.md` (workspace root) — the workspace-level meta-principle declaration this folder implements.
+- `boringsystems/src/content/writing-en/orchestration-principles-that-outlive-the-model.mdx` — the detailed published article on the same principles.

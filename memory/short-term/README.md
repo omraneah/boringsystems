@@ -50,7 +50,7 @@ short-term/
 ## 09:30
 - Decision: chose to restructure memory into 3 tiers in one pass.
 - State: high energy, decisive.
-- Conflict (vs long-term `feedback_scope_discipline.md`): max 3 concerns rule — argued this is 1 concern (memory architecture) with 11 phases. Live wins.
+- Conflict (vs long-term scope-discipline rule): this is 1 concern with 11 phases, not 3 concerns. Live wins.
 
 ## 14:15
 - ...

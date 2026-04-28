@@ -12,17 +12,13 @@ Rules and facts that pass the test:
 
 If yes → medium-term.
 
-Examples:
+Categories:
 
-- `current-arc.md` — the live snapshot of where Ahmed is heading right now (one file, evolving)
-- Distilled `market/` content — positioning, leverage profile, re-entry doctrine, visibility OS
-- `user_strategic_context.md` — France 2026, work hygiene
-- `project_advisory_board.md` — six-advisor strategic board
-- `feedback_model_effort_matrix.md` — model × effort × lane decisions
-- `feedback_personas_are_living.md` — operational/strategic agent rules
-- `feedback_brief_approval_gate.md` — sub-agent brief discipline
-- `feedback_render_long_output.md`, `feedback_tmp_as_ram.md` — workspace conventions
-- `feedback_card_fanout_discipline.md`, `feedback_audit_fix_isolation.md`, etc.
+- **Current direction snapshot** — one always-fresh file describing where Ahmed is heading right now. Updated during weekly consolidation.
+- **Positioning and market doctrine** — leverage profile, market lens, re-entry doctrine, visibility, sponsor-altitude rules, GTM strategy.
+- **Strategic context** — current life-phase context, work hygiene doctrine, geographic and market specifics.
+- **Advisory and operating-mode rules** — strategic advisory board composition, model × effort × lane matrix, sub-agent brief discipline, persona-as-living-draft posture, parallel-agent recap, lane-change announcement.
+- **Workspace conventions** — file routing, output rendering, card-fanout discipline, audit-fix isolation, batch permission patterns, post-merge workflow, planning-snapshot-before-flags, infrastructure-first.
 
 ## Auto-load
 

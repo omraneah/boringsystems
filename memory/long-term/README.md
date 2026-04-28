@@ -15,24 +15,13 @@ Two categories live here:
 
 ### 1. Operationally constitutional (rule-shaped, identity-independent)
 
-Hard rules that hold regardless of who Ahmed is. Examples:
-
-- `feedback_laptop_agnostic.md` — workspace must survive fresh-machine clone
-- `feedback_pr_creation.md` — Claude pushes, Ahmed opens PRs
-- `feedback_mcp_connectors.md` — connector-first, no manual auth
-- `feedback_no_recap_after_link.md` — link IS the recap
-- `feedback_twice_is_a_pattern.md` — codify before the third occurrence
-- Engineering principles, parallel-by-default, etc.
+Hard rules that hold regardless of who Ahmed is. The kind of thing that reads as a workspace invariant: laptop-agnostic compliance, PR-creation division of labour, connector-first auth, link-is-the-recap discipline, twice-is-a-pattern codification, engineering principles, parallel-by-default, etc.
 
 ### 2. Identity-rooted (who Ahmed is)
 
-Profile, preferences tied to identity. Examples:
+Profile, preferences, collaboration tone, distilled identity content from inner-game work. The kind of thing that defines the operator the rules are built around.
 
-- `user_profile.md`
-- `feedback_collaboration.md`
-- Distilled `inner-game/` content
-
-⚠️ **Identity files can drift.** See Linear BOR-29: Ahmed flagged active identity reshaping during the v1 restructure. Identity-rooted long-term entries are the most likely to be stale at any moment. Treat with vigilance.
+⚠️ **Identity files can drift.** Identity-rooted long-term entries are the most likely tier in this whole architecture to be stale at any moment, because the operator is a moving target. The `_needs-consolidation/` workflow and weekly consolidation are designed to surface this drift. Treat with vigilance — when live conversation contradicts an identity-rooted rule, default to live and flag for consolidation.
 
 ## Auto-load
 
