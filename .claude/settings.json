@@ -64,7 +64,7 @@
     ]
   },
   "enabledPlugins": {},
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "voice": {
     "enabled": true,
     "mode": "hold"

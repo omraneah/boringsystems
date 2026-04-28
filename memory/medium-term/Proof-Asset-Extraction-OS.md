@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/Proof Asset Extraction OS.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # Proof Asset Extraction OS
 
 **Status:** Authoritative — governs all extraction during notice period

@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/inner-game/Inner-Game_Identity-Constitution-and-Exit-Doctrine.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # Inner Game - Identity Constitution and Exit Doctrine
 
 This document is the inner-game anchor for identity, freedom, exit integrity, and long-horizon transition.

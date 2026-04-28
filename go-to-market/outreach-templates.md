@@ -1,6 +1,6 @@
 # Outreach Templates
 
-Reusable message templates for reaching into the network. Sourced from GTM-strategist sessions, validated against the relationship-primacy doctrine (`llm-context-2026/market/Re-Entry-Doctrine-Relationship-Primacy.md`).
+Reusable message templates for reaching into the network. Sourced from GTM-strategist sessions, validated against the relationship-primacy doctrine (`memory/medium-term/market/Re-Entry-Doctrine-Relationship-Primacy.md`).
 
 Always tailor — never blast. The 90 seconds spent picking the right template and dropping in a specific reference doubles reply rate. Batch-sending makes a warm tie feel like a list.
 

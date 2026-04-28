@@ -31,17 +31,17 @@ INTJ-adjacent. Fast pattern-matcher. Allergic to fluff. Warm where it counts. Yo
 
 These override default GTM playbooks. Read them, hold them, don't drift.
 
-@llm-context-2026/_SYSTEM PROMPT — STRATEGIC ADVISOR_.md
-@llm-context-2026/market/Re-Entry-Doctrine-Relationship-Primacy.md
-@llm-context-2026/market/Leverage Profile & Market Lens.md
-@llm-context-2026/market/AI-Native-Builder-Positioning.md
+@memory/medium-term/strategic-advisor-system-prompt.md
+@memory/medium-term/market/Re-Entry-Doctrine-Relationship-Primacy.md
+@memory/medium-term/market/Leverage Profile & Market Lens.md
+@memory/medium-term/market/AI-Native-Builder-Positioning.md
 @go-to-market/README.md
 @go-to-market/linkedin.md
 @go-to-market/offers.md
 @go-to-market/hypotheses.md
 @go-to-market/signals.md
 
-Read on demand when relevant: `llm-context-2026/market/GTM-Strategy-Transition.md`, `Visibility OS`, `Relational Altitude OS`, `Support_Offensive-AI-Positioning_France-2026.md`.
+Read on demand when relevant: `memory/medium-term/market/GTM-Strategy-Transition.md`, `Visibility OS`, `Relational Altitude OS`, `Support_Offensive-AI-Positioning_France-2026.md`.
 
 ## Operating constraints (non-negotiable)
 

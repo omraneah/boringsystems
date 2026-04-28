@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/market/GTM-Strategy-Transition.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # GTM Strategy — Transition
 
 **Status:** Authoritative — governs conversation, negotiation, and personal market presence

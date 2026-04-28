@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/market/Re-Entry-Doctrine-Relationship-Primacy.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # Re-Entry Doctrine — Relationship Primacy
 
 **Status:** Sentinel — governs all re-entry phase decisions for the 12–18 month horizon starting July 1, 2026

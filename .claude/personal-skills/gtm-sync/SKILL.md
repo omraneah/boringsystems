@@ -27,7 +27,7 @@ Proactively:
 
 Do **not** invoke for:
 
-- Strategic identity / inner-game content — that belongs in `llm-context-2026/`, not here.
+- Strategic identity / inner-game content — that belongs in `memory/`, not here.
 - Site-level content decisions (persona doctrine, article voice) — that belongs in `boringsystems/docs/`.
 - Tactical decisions about a single article — that belongs in the article's frontmatter or in Linear.
 
@@ -67,6 +67,6 @@ Approve?
 
 - Do not infer Ahmed's positioning from silence. If the signal is ambiguous, ask a clarifying question before proposing.
 - Do not batch unrelated signals into a single omnibus update. One signal → one proposed update.
-- Do not edit `llm-context-2026/` from this skill, even when the signal touches strategic identity. Flag the crossover and let Ahmed decide.
+- Do not edit `memory/` from this skill, even when the signal touches strategic identity. Flag the crossover and let Ahmed decide.
 - Do not touch boringsystems content from this skill. GTM and site IA are coupled but edited on different branches in different repos.
 - Do not auto-delete invalidated hypotheses. Move them to the `## Retired / invalidated hypotheses` section with a one-paragraph post-mortem.

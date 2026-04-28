@@ -10,9 +10,9 @@
 
 How Claude has been told to operate. Every behavioural rule starts here. Over time, rules condense, get promoted to long-term constitutional, or archive. **Always auto-loaded** even though the rest of medium-term is on-demand. See `feedback/README.md` for the lifecycle.
 
-### `market/` — distilled market doctrine
+### `market/` — market doctrine
 
-Positioning, leverage profile, re-entry doctrine, visibility, sponsor-altitude rules, GTM strategy. Distilled from `llm-context-2026/market/`. Loaded on demand.
+Positioning, leverage profile, re-entry doctrine, visibility, sponsor-altitude rules, GTM strategy. Loaded on demand.
 
 ## Top-level files
 

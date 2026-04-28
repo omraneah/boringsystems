@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/market/Support_Visibility-OS.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # Visibility OS
 
 Purpose: make builder judgment legible to sponsors and peers without teaching, explaining, or performing expertise.

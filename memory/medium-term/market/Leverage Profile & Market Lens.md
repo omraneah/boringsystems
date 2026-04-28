@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/market/Leverage Profile & Market Lens.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # Leverage Profile & Market Lens
 
 **Status:** Sentinel — overrides roles, recruiter framing, and company narratives

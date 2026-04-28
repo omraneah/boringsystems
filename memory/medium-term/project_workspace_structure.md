@@ -14,12 +14,6 @@ Primary workspace: `/Users/ahmedomrane/Workspace/`
 
 ## Folders
 
-### `llm-context-2026/`
-Ahmed's strategic brain — identity, market positioning, transition strategy. Living documents, updated as he evolves.
-- **Access:** Read-only by default. Never modify without explicit instruction.
-- **Key files:** `_SYSTEM PROMPT — STRATEGIC ADVISOR_.md` (main context), `STRATEGIC INDEX & ROUTING MAP.md` (navigation)
-- **Subdirs:** `inner-game/` (identity), `transition/` (Enakl exit), `market/` (positioning)
-
 ### `Enakl/`
 3-year history: built a TMS (Transport Management System) for a logistics startup, now transitioning to SaaS.
 - **Access:** Read-only. Never modify without explicit per-session permission.

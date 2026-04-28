@@ -82,4 +82,4 @@ If two or more answers land in Zone 3, walk with care (per the `inbound-call-dis
 
 - `offers.md` — the three offers, now constrained by this map
 - `inbound-call-discipline.md` — discovery questions surface zone before anchoring
-- `llm-context-2026/market/Leverage Profile & Market Lens.md` — the strategic-tier source material on capability-based vs. credential-based leverage
+- `memory/medium-term/market/Leverage Profile & Market Lens.md` — the strategic-tier source material on capability-based vs. credential-based leverage

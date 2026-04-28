@@ -53,7 +53,6 @@ Closed loop:
 | Folder | Purpose | Access |
 |--------|---------|--------|
 | `memory/` | Tiered memory: long-term constitutional + identity, medium-term current direction, short-term episodic record. Auto-loaded by Claude Code via symlink. | Source of truth. Edit via consolidation flow + drift-detection skills. |
-| `llm-context-2026/` | Strategic brain (legacy). Being deprecated bit by bit; distilled content lives in `memory/long-term/inner-game/` and `memory/medium-term/market/`. | Read-only. Never modify. Phasing out. |
 | `Enakl/` | Archived past project context. | Read-only. Never modify. |
 | `cross-stack-architecture-starter-pack/` | Distilled architectural principles. ARDs are non-negotiable boundaries. | Read-only. Consult before structural decisions. |
 | `boringsystems/` | Personal site — engineering leadership case files. Astro, Vercel. | Active project. |
@@ -67,7 +66,7 @@ Closed loop:
 - **Never open PRs.** Claude pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request`.
 - **Connector-first MCP.** Linear, GitHub, Gmail, Notion always via claude.ai connectors. Never manual auth.
 - **Platform features first, custom code second.** Before reimplementing anything structural (i18n, auth, redirects, caching), check framework docs for native support.
-- **Never modify `llm-context-2026/`, `Enakl/`, or `cross-stack-architecture-starter-pack/`** without explicit instruction.
+- **Never modify `Enakl/` or `cross-stack-architecture-starter-pack/`** without explicit instruction.
 - **Twice-is-a-pattern.** When the same manual task happens twice in a session, stop and propose codifying it before the third time.
 - **Max three concerns per session.** Wider scope → split into separate branches.
 - **Lane-change announcement.** When task dimension/cadence shifts (psychology→code, exchange→distilled, single→parallel), announce current model/effort + recommendation before proceeding. Full rule: `memory/medium-term/feedback/stable/feedback_lane_change_announcement.md`.
@@ -92,9 +91,7 @@ Closed loop:
 | Which ARDs apply at which tier per project | `docs/ard-tier-map.md` |
 | Per-project stack + conventions | `<project>/CLAUDE.md` and `<project>/docs/` |
 
-## Strategic routing — prefer memory-tier paths
-
-The legacy `llm-context-2026/` content is being deprecated bit by bit. Distilled equivalents live in the memory tiers; route to those first.
+## Strategic routing
 
 - Identity drift → `memory/long-term/inner-game/Meta-Identity-Constitution.md`
 - Work confusion → `memory/long-term/inner-game/Work-Hygiene-Doctrine.md`

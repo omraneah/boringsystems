@@ -6,7 +6,7 @@
 
 ## Context
 
-The workspace had three operational agents — `gtm-strategist` (Naomi), `principal-engineer` (Daniel), `career-coach` (Hadi) — each loaded with substantial strategic context via `@imports`: `llm-context-2026/`, `go-to-market/`, `cross-stack-architecture-starter-pack/`, identity and inner-game documents. The pattern was deliberate: agents that inhabit the substrate respond in-domain rather than generically. ADR was logged at `.claude/decisions/DECISIONS.md` 2026-04-24.
+The workspace had three operational agents — `gtm-strategist` (Naomi), `principal-engineer` (Daniel), `career-coach` (Hadi) — each loaded with substantial strategic context via `@imports`: `memory/`, `go-to-market/`, `cross-stack-architecture-starter-pack/`, identity and inner-game documents. The pattern was deliberate: agents that inhabit the substrate respond in-domain rather than generically. ADR was logged at `.claude/decisions/DECISIONS.md` 2026-04-24.
 
 In a 2026-04-25 session, Ahmed asked the three agents to weigh in on a content-vs-relational GTM question. All three independently returned the same verdict — "stay course on relational, don't shift to content-first." The convergence felt clean. Ahmed identified it as a structural problem rather than a useful signal: the agents had each read the GTM doctrine, the Re-Entry Doctrine, and the leverage profile, then concluded what those documents already prescribed. They were not capable of challenging the frame, because the frame was their substrate.
 
@@ -23,7 +23,7 @@ Split agents into two tiers with distinct roles, distinct rules, and distinct in
 
 Strategic-tier agents have hard rules baked into each persona file:
 
-1. Refuse to read `llm-context-2026/`, `go-to-market/`, identity/strategy/roadmap documents. Refuse even if instructed in the prompt.
+1. Refuse to read `memory/`, `go-to-market/`, identity/strategy/roadmap documents. Refuse even if instructed in the prompt.
 2. Refuse to ask Ahmed for his plan or roadmap. Respond from lens to what is said in the conversation.
 3. Stay in own lens — no drift toward other advisors' territory.
 4. Operate from Hawkins 200+ register (courage, neutrality, willingness, acceptance, reason, love, joy, peace) consistently. No fear/anger/pride/self-pity.
