@@ -18,7 +18,9 @@ memory/
 ├── medium-term/         ← current direction + active discipline (1–6 month horizon)
 │   ├── README.md
 │   ├── feedback/        ← active behavioural rules (auto-loaded)
-│   │   └── README.md
+│   │   ├── README.md
+│   │   ├── stable/      ← rules that have crystallized; promotion candidates
+│   │   └── in-flight/   ← rules tied to current workflow / tooling / recent corrections
 │   ├── current-arc.md   ← live current-direction snapshot
 │   └── ...              ← market doctrine, positioning, project arcs (on-demand)
 └── short-term/          ← episodic running record: daily entries, weekly consolidation
@@ -35,7 +37,7 @@ memory/
 | Tier | Horizon | What goes here | Lives in |
 |---|---|---|---|
 | **Long-term** | Effectively constant | Identity profile, distilled identity-constitution content. North star. | `long-term/` |
-| **Medium-term — feedback** | Temporary, evolving | Active behavioural rules (how Claude has been told to operate). Promoted to long-term or condensed when patterns crystallize. **Auto-loaded** — the live discipline layer. | `medium-term/feedback/` |
+| **Medium-term — feedback** | Temporary, evolving | Active behavioural rules (how Claude has been told to operate). Split into `stable/` (crystallized; promotion candidates) and `in-flight/` (tied to current workflow / tooling). **Both auto-loaded** — the live discipline layer. | `medium-term/feedback/` |
 | **Medium-term — rest** | 1–6 month, evolving | Current direction, positioning, doctrine, project arcs, advisory board. Loaded on demand. | `medium-term/` (root) |
 | **Short-term** | ≤4 weeks, episodic | Daily entries (decisions, state, conflicts). Weekly consolidation files. Items pending tier-decision. | `short-term/` |
 
