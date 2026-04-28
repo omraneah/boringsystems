@@ -1,0 +1,185 @@
+> **Origin:** Distilled from `llm-context-2026/inner-game/Inner-Game_Identity-Constitution-and-Exit-Doctrine.md` on 2026-04-28.
+> Original retained at source path until full deprecation pass.
+
+---
+
+# Inner Game - Identity Constitution and Exit Doctrine
+
+This document is the inner-game anchor for identity, freedom, exit integrity, and long-horizon transition.
+
+## 1) Freedom - Wealth - Experience Doctrine (Non-negotiable)
+
+### Core orientation
+Freedom precedes creation. If forced to choose between living freely and impact, freedom wins.
+
+### The three freedoms (non-substitutable)
+1) Epistemic Freedom (freedom to understand)
+- Exposure to real constraints and invariant discovery.
+- Valid only if it does not create long-term captivity.
+
+2) Structural Freedom (freedom from capture)
+- Clean exit rights, no dependency on a single role or founder.
+- No path is valid if it requires staying to remain whole.
+
+3) Choice and Quality Freedom (wealth as lubricant)
+- Wealth removes friction and expands option quality.
+- Wealth is never used for validation or identity completion.
+
+### Sequencing law
+Wealth is required for freedom of conditions, but freedom constrains how wealth may be acquired.
+
+### Experiential expansion principle
+Experience compounds identity only if exposure is time-boxed, non-capturing, and extractive.
+
+### Laziness reframe
+What looks like laziness is energy conservation. Engage only when a fix raises the floor.
+
+### Invalid trade-offs (hard stops)
+- Wealth that requires long-term capture.
+- Identity foreclosure in exchange for security.
+- Roles that demand emotional buy-in as coercion.
+- Creation that binds to repetition.
+
+### Valid trade-offs (allowed, time-boxed)
+- Short-term discomfort for irreversible learning.
+- Bounded exposure to toxic systems to collapse unknowns.
+- Slower wealth accumulation to preserve autonomy.
+
+### Decision filter (stay / leave / next)
+A move is valid only if all are true:
+- Epistemic upside
+- Structural safety
+- Wealth trajectory
+
+---
+
+## 2) 2026 North Stars and Non-negotiables
+
+### North stars
+- Sovereignty over identity and time.
+- Freedom as lived condition, not a concept.
+- Continuity: compounding across arenas without identity foreclosure.
+
+### Baseline year orientation
+2026 is a re-anchoring year, not conquest or acceleration.
+
+### Life anchors (operational intent)
+- Upgrade living conditions toward calm, light, nature access.
+- Restore and stabilize health and inflammation baseline.
+- Return to movement without performance pressure.
+- Increase nature exposure in France and Tunisia.
+- Remove coercion and scarcity posture from career decisions.
+
+---
+
+## 3) Life-Level Context Exit Doctrine
+
+### Invariant
+I do not cognitively manage contexts indefinitely. I tolerate friction only while identity incompatibility compounds value.
+
+### Three phases of any context
+1) Context Dominance - the context selects behavior. Exit fast.
+2) Context Containment - boundaries hold but require energy. Extract and time-box.
+3) Context Extinction - old identity no longer activates. Exit cleanly.
+
+### Exit triggers (context-agnostic)
+If two or more persist, exit planning begins:
+- Vigilance required without decreasing trend.
+- Identity friction without new learning or leverage.
+- Suppression of clarity, competence, or speed to remain compatible.
+- Context stability depends on my silence or restraint.
+- Freedom preserved only through continuous self-regulation.
+- Relief (not fear) when imagining exit.
+- Reaching Q1 2027 without credible pull or upward trajectory triggers mandatory transition planning.
+
+### Anti-rumination rule
+If I debate leaving longer than a defined window, the decision is already made. Only timing remains.
+
+### Relationship and social capital nuance
+Exit contexts aggressively. Exit roles immediately. Exit relationships only when they demand identity regression.
+
+Relationship categories:
+A) Identity-dependent relationships - require reenacting a former identity. Exit cleanly.
+B) Parallel, non-interfering relationships - retain selectively, redesign surfaces.
+C) Anti-fragile, trajectory-based relationships - actively cultivate.
+
+---
+
+## 4) Identity Transition and Mastery
+
+### The five walking modes
+1) Maintenance - stable execution and routines.
+2) Exploratory - light ecosystem engagement without agenda.
+3) Expressive - public reflections when signal is real.
+4) Cognitive reconnaissance - silent scanning for patterns and invariants.
+5) Exposure - proximity to richer environments and people.
+
+What walking is not:
+- Freezing or waiting for certainty.
+- Forcing output to relieve anxiety.
+- Grinding to "find an idea".
+
+Weekly review (1 minute):
+- Did I maintain baseline (maintenance)?
+- Did I expand edges (exploratory)?
+- Did I express signal (expressive)?
+- Did I explore internally (cognitive reconnaissance)?
+- Did I expose myself to richer environments (exposure)?
+If 3 of 5 are true, I am walking.
+
+### Mastery axes (existing strength)
+- Systems thinking and sensemaking.
+- Leadership under constraint (constraint-to-scale).
+- Technical, product, and people synthesis.
+
+### Expansion vector (current)
+- Outgrowing containers I do not own.
+- Entering a creative-autonomous phase.
+- Entrepreneurship as structural authorship, not hype.
+
+### "Walk until the mountain appears"
+Keep steady motion across the walking modes and let authorship emerge without forcing.
+
+---
+
+## 5) Distilled Dimensions (Reference Layer)
+
+Use this as a diagnostic, not a daily operating surface.
+
+1) Local leverage
+- Signal: systems reinforce without my intervention.
+- Rule: design once, observe, intervene only on violation.
+
+2) Plateau horizon
+- Signal: marginal returns are psychological, not strategic.
+- Rule: comfort is allowed, drift is not.
+
+3) Transferability gap
+- Signal: internal role is illegible externally.
+- Rule: hide edge cases, sell invariants.
+
+4) Narrative discipline
+- Signal: truth vs market legibility diverge.
+- Rule: narrative is abstraction, not confession.
+
+5) Credible vouching
+- Signal: identity hardens when others repeat it without prompting.
+
+6) BATNA integrity
+- Rule: BATNA protects agency, narrative protects future leverage.
+
+7) Exit optionality
+- Rule: define conditions and a latest acceptable window without emotional pressure.
+
+8) Selection filters
+- Rule: selectivity preserves leverage, not scarcity.
+
+9) Energy economics
+- Rule: energy is fuel, direction determines outcome.
+
+---
+
+## 6) Pointers
+
+- Market-facing spine and freedom strategy live in Outer Game (see `archive/On-Hold/Market-Spine-and-Freedom-Strategy-France-2026-2031.md`).
+- State, guardrails, and regulation live in the companion inner-game OS document.
