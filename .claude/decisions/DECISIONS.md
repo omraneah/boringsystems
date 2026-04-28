@@ -564,3 +564,17 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending — first observable when Ahmed picks the lab back up and either fills the gate or doesn't. If the lab folder sits untouched for >4 weeks, that itself is data — likely indicates the chest-check resolved against the probe.)*
 
 ---
+
+## 2026-04-28 — Marky as canonical reader for long Claude output; `/render` skill operationalises it
+
+**Context:** The `tmp/` folder was already established (2026-04-27) as workspace short-term RAM — long Claude-generated analysis writes there instead of into chat scrollback. The *write* half of the loop existed; the *read* half did not. Ahmed had to manually `cat`, `open`, or pull the file into another tool. He hates reading long markdown in the terminal. He explicitly tried Mac markdown apps (Marked 2, MacMD Viewer, generic readers) and rejected them — paid, heavy UI, App Store friction, or terminal-bound (glow). He asked for the AI-frontier 2026 answer and was open to building it.
+
+**Decision:** Adopt **Marky** ([github.com/GRVYDEV/marky](https://github.com/GRVYDEV/marky)) as the canonical reader for long Claude-generated output. Free, open source, Tauri/Rust/React, ~15 MB, ARM-only (matches Ahmed's M-series Mac), live-reload, folder workspaces, Shiki + KaTeX + Mermaid. Installed via `brew tap GRVYDEV/tap && brew install --cask GRVYDEV/tap/marky`, point at `~/Workspace/tmp/`. Created `/render` skill (`.claude/personal-skills/render/SKILL.md`) that auto-fires on natural-language triggers ("render this with Marky", "render outside the terminal", "go render this", etc.), takes the last substantive assistant message, writes verbatim to `tmp/<slug>.md`, runs `marky <path>`, returns one-line confirmation. Memory rule logged at `feedback_render_long_output.md`. ADR at `docs/adr-003-marky-as-canonical-reader.md`.
+
+**Why:** The `tmp/` rule had a missing piece — without a frictionless reader, the rule was incomplete and Ahmed kept reading long output in terminal anyway. Building the viewer ourselves was on the table; Marky exists, is purpose-built for agentic coding workflows in 2026, and is exactly what we'd have built. Codifying as a skill (not just "do it manually each time") matters because Ahmed will say "render this" frequently — without the skill, every render is a re-derivation. The skill normalises the verb.
+
+**Expected outcome:** Long Claude output stops landing in terminal scrollback. Ahmed reads in Marky's native window with rendered tables, code, mermaid diagrams. The `/render` skill becomes the default verb when he wants to consume substantive output. Live-watch on `tmp/` means files appear in Marky's sidebar as Claude writes them — the loop closes without a manual second step. Voice-drift "Marquee/Markey/Marki" handled inline.
+
+**Actual outcome:** *(pending — first observable across the next 5–10 long-output exchanges. Signals of fit: Ahmed stops complaining about terminal reading; renders happen reflexively. Signals of drift: skill stops firing when expected, or Ahmed manually re-derives. If Marky proves unstable or unsigned-binary friction recurs, fall back to Obsidian vault on `tmp/` — same loop, heavier reader.)*
+
+---
