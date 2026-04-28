@@ -4,19 +4,19 @@
 
 Skills live in two scopes. Cross-project skills (useful in every repo) live at `.claude/personal-skills/` and are surfaced globally via the `~/.claude/skills` symlink. Project-scoped skills live at `<project>/.claude/skills/` and only load when Claude is launched from that project.
 
-| Skill | Scope | User-invocable | Auto-invokes |
-|---|---|---|---|
-| `/commit` | cross-project | yes | on Stop hook |
-| `/pr` | cross-project | yes | — |
-| `/log-decision` | cross-project | no | after any architectural, config, skill, hook, memory, or workflow decision |
-| `/arch-review` | cross-project | yes | after a new module/API endpoint/structural change |
-| `/wrap-session` | cross-project | yes | on natural-language merge signals |
-| `/session-pulse` | cross-project | yes | mid-session on emerging-pattern detection |
-| `/article-capture` | boringsystems | yes | when a conversation produces publishable insight |
-| `/article-review` | boringsystems | yes | before publishing any article |
-| `/french-audit` | boringsystems | yes | after drafting/updating any FR content |
-| `/verify-home` | boringsystems | yes | after any change to home layout, redirects, or selection flags |
-| `/check-constraints` | boringsystems | yes | before writing structural code (i18n, auth, caching, redirects) |
+| Skill                | Scope         | User-invocable | Auto-invokes                                                               |
+| -------------------- | ------------- | -------------- | -------------------------------------------------------------------------- |
+| `/commit`            | cross-project | yes            | on Stop hook                                                               |
+| `/pr`                | cross-project | yes            | —                                                                          |
+| `/log-decision`      | cross-project | no             | after any architectural, config, skill, hook, memory, or workflow decision |
+| `/arch-review`       | cross-project | yes            | after a new module/API endpoint/structural change                          |
+| `/wrap-session`      | cross-project | yes            | on natural-language merge signals                                          |
+| `/session-pulse`     | cross-project | yes            | mid-session on emerging-pattern detection                                  |
+| `/article-capture`   | boringsystems | yes            | when a conversation produces publishable insight                           |
+| `/article-review`    | boringsystems | yes            | before publishing any article                                              |
+| `/french-audit`      | boringsystems | yes            | after drafting/updating any FR content                                     |
+| `/verify-home`       | boringsystems | yes            | after any change to home layout, redirects, or selection flags             |
+| `/check-constraints` | boringsystems | yes            | before writing structural code (i18n, auth, caching, redirects)            |
 
 **The scope rule** (DECISIONS.md 2026-04-21): no duplication across scopes. If a skill needs to work in two projects, either hoist it up or accept that Claude must be launched from the right project. Launch discipline > file duplication.
 

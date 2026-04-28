@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/market/Relational-Altitude-OS.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # Relational Altitude OS
 
 Purpose: govern sponsor-facing interaction so conversations stay high-signal, low-friction, and leverage-preserving.

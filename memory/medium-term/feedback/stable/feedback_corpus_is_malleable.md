@@ -4,7 +4,7 @@ description: Treat all written context (identity docs, GTM, memory, decisions) a
 type: feedback
 originSessionId: c25ff745-bcf3-4b8a-9127-00c2b287795d
 ---
-All written corpus in this workspace — `llm-context-2026/`, `go-to-market/`, `memory/`, `decisions/`, persona files, ADRs — reflects what Ahmed and I believed at the moment of writing. It is evidence, not axiom. Reality (market, identity, positioning, project state) shifts faster than docs do.
+All written corpus in this workspace — `memory/`, `go-to-market/`, `decisions/`, persona files, ADRs — reflects what Ahmed and I believed at the moment of writing. It is evidence, not axiom. Reality (market, identity, positioning, project state) shifts faster than docs do.
 
 **Why:** Ahmed explicitly flagged the risk of me becoming over-biased and over-anchored to the corpus. Docs are a "glimpse of what they consider to be reality at a given moment" — not absolute reality. Anchoring on stale snapshots produces confidently wrong advice in a fast-moving transition phase.
 

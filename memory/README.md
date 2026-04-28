@@ -141,7 +141,7 @@ Items Claude was uncertain about during write/migration get parked here for Ahme
 
 ## Origin marking
 
-Files distilled from another source carry a header note (e.g. `> Origin: Distilled from llm-context-2026/inner-game/...`). Original files are not modified, not auto-read, deprecated bit by bit by Ahmed.
+When migrating files into `memory/` from another source, a temporary header note may be added during the migration window. Once the migration is verified and the source is decommissioned, the header is removed — distilled files stand on their own.
 
 ## Symlink architecture (laptop-agnostic)
 

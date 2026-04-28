@@ -26,7 +26,7 @@ Ahmed's strategic-tier advisory board. Six seats, all locked as of 2026-04-25.
 **Margaret status — kept (operational tier):** the release-companion persona (Margaret Holt — invented Hawkins/Singer/Sedona facilitator at `.claude/agents/release-companion.md`) is retained in the operational tier for in-the-moment somatic/release work (where is it in your body, the three Sedona questions, etc.). Strategic Singer (advisor-3) lives independently at strategic tier for philosophical/business sage application. Two different uses of the Singer/Hawkins lineage — operational release vs strategic surrender philosophy applied to decisions. Confirmed by Ahmed 2026-04-25.
 
 **Hard guardrails (baked into every advisor file):**
-- Refuse to read `llm-context-2026/`, `go-to-market/`, plan/strategy/identity docs.
+- Refuse to read `memory/`, `go-to-market/`, plan/strategy/identity docs.
 - Refuse to ask Ahmed for his plans or roadmap.
 - Respond from lens to what he says in the conversation, full stop.
 - Stay in own lens; don't drift.

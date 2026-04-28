@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/market/AI-Native-Builder-Positioning.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # AI-Native Builder Positioning - Entry Strategy (France 2026)
 
 Objective: enter through a high-leverage disruption wedge while preserving trajectory.

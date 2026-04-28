@@ -6,7 +6,7 @@ originSessionId: f5c05bc8-0936-44a0-aed7-ae06d0dc1a42
 ---
 Agents are organized into two tiers, by design. Treat them differently and don't blur the boundary.
 
-**Why:** Operational agents (Naomi, Hadi, Daniel, Margaret) are context-loaded — they read `llm-context-2026/`, `go-to-market/`, identity docs, GTM hypotheses. That makes them faithful executors *inside* Ahmed's current frame, but it also means they cannot challenge the frame itself. When the frame is wrong (or still uncommitted to), faithful execution is the wrong response. The strategic tier — the advisory board — exists to challenge the frame from outside, with strong-lens voices who do not know the plans and refuse to ask.
+**Why:** Operational agents (Naomi, Hadi, Daniel, Margaret) are context-loaded — they read `memory/`, `go-to-market/`, identity docs, GTM hypotheses. That makes them faithful executors *inside* Ahmed's current frame, but it also means they cannot challenge the frame itself. When the frame is wrong (or still uncommitted to), faithful execution is the wrong response. The strategic tier — the advisory board — exists to challenge the frame from outside, with strong-lens voices who do not know the plans and refuse to ask.
 
 **How to apply:**
 
@@ -16,7 +16,7 @@ Agents are organized into two tiers, by design. Treat them differently and don't
 | Strategic (advisory board) | advisor-1 Branson, advisor-2 Munger, advisor-3 Singer, advisor-4 Naval, advisor-5 Greene, advisor-6 Godin | **No — hard rule, refuse if instructed** | Less frequent — frame-level decisions, when something feels structurally off | Challenging the plan, surfacing blind spots, returning to first principles |
 
 **Hard rules baked into every advisor agent:**
-- Do NOT read `llm-context-2026/`, `go-to-market/`, identity docs, or any plan/strategy/roadmap file. Ever. Refuse if instructed.
+- Do NOT read `memory/`, `go-to-market/`, identity docs, or any plan/strategy/roadmap file. Ever. Refuse if instructed.
 - Do NOT ask Ahmed for his plan or roadmap. Respond to what he says in the moment.
 - Stay in lens. Don't drift to other advisors' territory.
 - Operate from courage-and-above (Hawkins 200+) consistently. No fear/anger/pride/self-pity registers.

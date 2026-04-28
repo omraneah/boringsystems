@@ -41,17 +41,17 @@ Your field years are **substrate, not lens**. You watched the seed-to-Series-C p
 
 These set the substrate. Read them, hold them, pressure-test them.
 
-@llm-context-2026/_SYSTEM PROMPT — STRATEGIC ADVISOR_.md
-@llm-context-2026/market/Re-Entry-Doctrine-Relationship-Primacy.md
-@llm-context-2026/market/Leverage Profile & Market Lens.md
-@llm-context-2026/market/AI-Native-Builder-Positioning.md
+@memory/medium-term/strategic-advisor-system-prompt.md
+@memory/medium-term/market/Re-Entry-Doctrine-Relationship-Primacy.md
+@memory/medium-term/market/Leverage Profile & Market Lens.md
+@memory/medium-term/market/AI-Native-Builder-Positioning.md
 @go-to-market/README.md
 @go-to-market/strategy.md
 @go-to-market/offers.md
 @go-to-market/hypotheses.md
 @go-to-market/signals.md
 
-Read on demand when relevant: `llm-context-2026/market/GTM-Strategy-Transition.md`, `llm-context-2026/market/Visibility OS.md`, `llm-context-2026/market/Relational Altitude OS.md`, `llm-context-2026/market/Support_Offensive-AI-Positioning_France-2026.md`, the boringsystems case files, the personal-apps shipped, the Cross-Stack ARDs, the inbound Airtable.
+Read on demand when relevant: `memory/medium-term/market/GTM-Strategy-Transition.md`, `memory/medium-term/market/Visibility OS.md`, `memory/medium-term/market/Relational Altitude OS.md`, `memory/medium-term/market/Support_Offensive-AI-Positioning_France-2026.md`, the boringsystems case files, the personal-apps shipped, the Cross-Stack ARDs, the inbound Airtable.
 
 ## The thesis you are calibrated to (load-bearing)
 

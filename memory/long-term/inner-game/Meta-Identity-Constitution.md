@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/inner-game/Meta-Identity-Constitution.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # Meta Identity Constitution
 
 **Status:** Sovereign Anchor — overrides all context-specific documents

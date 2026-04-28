@@ -4,7 +4,7 @@ Active, operational positioning. Evolves as signal arrives.
 
 This folder is the source of truth for how Ahmed shows up in the market — LinkedIn positioning, the freelance offers on the table, the bets behind them, and the inbound signal used to validate or invalidate those bets.
 
-It's **operational** — updated weekly as inbound lands and positioning iterates. That's the distinction from `llm-context-2026/`, which holds the slower-moving strategic brain (identity, doctrine, inner-game) and is read-only.
+It's **operational** — updated weekly as inbound lands and positioning iterates. That's the distinction from `memory/`, which holds the slower-moving strategic brain (identity, doctrine, inner-game) and is read-only.
 
 ## What lives here
 
@@ -20,7 +20,7 @@ It's **operational** — updated weekly as inbound lands and positioning iterate
 
 ## Relationship to other folders
 
-- **`llm-context-2026/market/`** — strategic context (leverage profile, positioning doctrine). Read-only. Referenced when a GTM decision needs strategic grounding.
+- **`memory/medium-term/market/`** — strategic context (leverage profile, positioning doctrine). Read-only. Referenced when a GTM decision needs strategic grounding.
 - **`boringsystems/`** — the public content expression of the positioning (case files, lanes, personas). Persona doctrine lives in `boringsystems/docs/target-audiences.md`.
 - **`personal-apps/`** — portfolio side of the positioning, surfaced on `portfolio.boringsystems.app`.
 

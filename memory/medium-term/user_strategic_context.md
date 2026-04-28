@@ -47,4 +47,4 @@ Rule: "Explain once, codify once, then refuse repetition."
 
 ## Reference Documents
 
-Full context lives in `/Users/ahmedomrane/Workspace/llm-context-2026/`. Route using `STRATEGIC INDEX & ROUTING MAP.md`. Do not read all documents — route precisely to what the question requires.
+Full strategic context lives in `memory/`. Use the routing protocol in `memory/MEMORY.md`; route precisely to what the question requires rather than reading everything.

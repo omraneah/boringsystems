@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/inner-game/Inner-Game_State-and-Guardrails-OS.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # Inner Game - State and Guardrails OS
 
 This document governs state regulation, boundary discipline, and correction loops.

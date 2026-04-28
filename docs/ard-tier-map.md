@@ -47,9 +47,6 @@ Not yet tiered explicitly. Candidate to adopt T1 using `docs/patterns/local-firs
 
 Read-only ARD repository. The doc being tiered against, not a tiered project.
 
-### llm-context-2026 — **T0**
-
-Read-only strategic brain. No code, no audit surface. Rule enforcement is access-control only (never modify without explicit instruction).
 
 ### Enakl — **N/A**
 

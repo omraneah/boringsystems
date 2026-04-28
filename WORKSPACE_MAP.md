@@ -8,12 +8,6 @@ Scope: top-level projects and where to go next for each. Not a file inventory. W
 
 ## Projects
 
-### `llm-context-2026/` — submodule
-Strategic brain. Identity, transition, positioning, inner game.
-- Routing entry → `STRATEGIC INDEX & ROUTING MAP.md`
-- System prompt → `_SYSTEM PROMPT — STRATEGIC ADVISOR_.md`
-- Read-only. Route precisely, never read everything.
-
 ### `personal-apps/` — submodule
 Next.js 16 + React 19 + Tailwind 4 monorepo. Subdomain apps on boringsystems domain.
 - Routing entry → `AGENTS.md` and `CLAUDE.md`

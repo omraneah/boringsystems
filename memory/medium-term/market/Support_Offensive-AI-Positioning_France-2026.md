@@ -1,8 +1,3 @@
-> **Origin:** Distilled from `llm-context-2026/market/Support_Offensive-AI-Positioning_France-2026.md` on 2026-04-28.
-> Original retained at source path until full deprecation pass.
-
----
-
 # Offensive AI Positioning - France 2026
 
 Purpose: convert the AI disruption window into sponsor-led entry opportunities in France.
