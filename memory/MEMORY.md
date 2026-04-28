@@ -79,4 +79,4 @@ Full rules in `README.md`.
 ## REFERENCES
 
 - `META-PRINCIPLES.md` (workspace root) — the tiered-memory principle this folder implements.
-- `boringsystems/src/content/writing-en/orchestration-principles-that-outlive-the-model.mdx` — published article on the same principles.
+- `docs/adr-004-tiered-memory-architecture.md` — the ADR for this architecture (design rationale, alternatives, revisit triggers).

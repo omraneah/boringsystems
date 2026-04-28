@@ -4,19 +4,31 @@
 
 Skills live in two scopes. Cross-project skills (useful in every repo) live at `.claude/personal-skills/` and are surfaced globally via the `~/.claude/skills` symlink. Project-scoped skills live at `<project>/.claude/skills/` and only load when Claude is launched from that project.
 
-| Skill                | Scope         | User-invocable | Auto-invokes                                                               |
-| -------------------- | ------------- | -------------- | -------------------------------------------------------------------------- |
-| `/commit`            | cross-project | yes            | on Stop hook                                                               |
-| `/pr`                | cross-project | yes            | —                                                                          |
-| `/log-decision`      | cross-project | no             | after any architectural, config, skill, hook, memory, or workflow decision |
-| `/arch-review`       | cross-project | yes            | after a new module/API endpoint/structural change                          |
-| `/wrap-session`      | cross-project | yes            | on natural-language merge signals                                          |
-| `/session-pulse`     | cross-project | yes            | mid-session on emerging-pattern detection                                  |
-| `/article-capture`   | boringsystems | yes            | when a conversation produces publishable insight                           |
-| `/article-review`    | boringsystems | yes            | before publishing any article                                              |
-| `/french-audit`      | boringsystems | yes            | after drafting/updating any FR content                                     |
-| `/verify-home`       | boringsystems | yes            | after any change to home layout, redirects, or selection flags             |
-| `/check-constraints` | boringsystems | yes            | before writing structural code (i18n, auth, caching, redirects)            |
+| Skill                       | Scope         | User-invocable | Auto-invokes                                                               |
+| --------------------------- | ------------- | -------------- | -------------------------------------------------------------------------- |
+| `/commit`                   | cross-project | yes            | on Stop hook                                                               |
+| `/pr`                       | cross-project | yes            | —                                                                          |
+| `/log-decision`             | cross-project | no             | after any architectural, config, skill, hook, memory, or workflow decision |
+| `/arch-review`              | cross-project | yes            | after a new module/API endpoint/structural change                          |
+| `/wrap-session`             | cross-project | yes            | on natural-language end-of-session signals                                 |
+| `/session-pulse`            | cross-project | yes            | mid-session on emerging-pattern detection                                  |
+| `/github-cleanup`           | cross-project | yes            | on natural-language post-merge cleanup signals                             |
+| `/tmp-cleanup`              | cross-project | yes            | only on explicit operator request (never auto-fires)                       |
+| `/whence`                   | cross-project | yes            | on operator drift-detection prompts ("where did you get that?")            |
+| `/divergence-check`         | cross-project | no             | on detected frustration / loss-of-fit / correction loops (proactive)       |
+| `/consolidate-week`         | cross-project | yes            | on Monday session start (per long-term feedback rule)                      |
+| `/render`                   | cross-project | yes            | on natural-language render-with-Marky signals                              |
+| `/card-against-pattern`     | cross-project | yes            | before creating multi-deliverable Linear cards                             |
+| `/convene-board`            | cross-project | yes            | on frame-level decisions, structural unease                                |
+| `/signal-recap`             | cross-project | yes            | on natural-language recap-and-defer signals                                |
+| `/check-stable-docs-leaks`  | cross-project | yes            | before opening a PR that touches stable docs                               |
+| `/audit-fix`                | boringsystems | yes            | when `npm audit` shows high/critical                                       |
+| `/gtm-sync`                 | cross-project | yes            | on go-to-market signal capture                                             |
+| `/article-capture`          | boringsystems | yes            | when a conversation produces publishable insight                           |
+| `/article-review`           | boringsystems | yes            | before publishing any article                                              |
+| `/french-audit`             | boringsystems | yes            | after drafting/updating any FR content                                     |
+| `/verify-home`              | boringsystems | yes            | after any change to home layout, redirects, or selection flags             |
+| `/check-constraints`        | boringsystems | yes            | before writing structural code (i18n, auth, caching, redirects)            |
 
 **The scope rule** (DECISIONS.md 2026-04-21): no duplication across scopes. If a skill needs to work in two projects, either hoist it up or accept that Claude must be launched from the right project. Launch discipline > file duplication.
 
@@ -28,9 +40,10 @@ Hooks are shell commands wired into Claude Code events. They run deterministical
 |---|---|---|
 | `session-start.sh` | SessionStart (async) | Pulls `main`/`development` if session opens on a base branch |
 | `block-protected-push.sh` | PreToolUse (Bash) | Blocks `git push origin main/master/dev/production` |
-| `auto-commit.sh` | Stop (async) | Auto-commits + pushes if dirty, on feature branches only |
+| `auto-commit.sh` | Stop (async) | Auto-commits + pushes if dirty, on feature branches only. Skips if last commit was within `AUTO_CHECKPOINT_DEBOUNCE` (default 1800s) OR if more than `AUTO_CHECKPOINT_DIRTY_THRESHOLD` files are modified (default 10 — signals active multi-step work) |
 | `post-edit-typecheck.sh` | PostToolUse (Edit, Write on .ts/.astro) | Runs `astro check` / `tsc --noEmit` in background; reports errors |
-| `pattern-capture-nudge.sh` | Stop (async) | Every N turns, reminds Claude to check for uncodified emerging patterns |
+| `parallel-by-default-reminder.sh` | UserPromptSubmit | Reminds Claude to parallelize independent tool calls when a multi-task prompt is detected |
+| `gtm-nudge.sh` | Stop (async) | Periodic reminder to capture GTM signal via `/gtm-sync` |
 
 **Hook discipline.** Hooks must be idempotent, fast, and never block the user-visible response path. Long-running work goes to `async: true`. Hooks that need to surface findings write to a known location (e.g. `/tmp/claude-<session>/notices.log`) rather than `echo`-ing into Claude's stream.
 
@@ -46,7 +59,7 @@ bash .claude/setup.sh
 `setup.sh` creates three symlinks:
 - `~/.claude/skills` → `.claude/personal-skills/`
 - `~/.claude/settings.json` → `.claude/settings.json`
-- `~/.claude/projects/-Users-ahmedomrane-Workspace/memory/` → `.claude/projects/-Users-ahmedomrane-Workspace/memory/`
+- `~/.claude/projects/-Users-ahmedomrane-Workspace/memory/` → `memory/` (workspace root)
 
 `settings.local.json` is gitignored — it is Claude's runtime permission cache, not config.
 
@@ -78,7 +91,7 @@ Before setting up any MCP server manually (`.mcp.json`, API keys, env vars):
 
 Services with direct connectors (never set up manually): **Linear, GitHub, Gmail, Notion, Google Calendar, Google Drive.** These are OAuth-managed by Anthropic, account-scoped, and work in every session — including cloud and mobile — automatically.
 
-Full rule: `memory/feedback_mcp_connectors.md`.
+Full rule: `memory/medium-term/feedback/stable/feedback_mcp_connectors.md`.
 
 ## Decision registry
 
@@ -86,6 +99,12 @@ Full rule: `memory/feedback_mcp_connectors.md`.
 
 ## Memory system
 
-File-based memory at `.claude/projects/-Users-ahmedomrane-Workspace/memory/`. Types: user, feedback, project, reference. Rules and structure live in Claude's system prompt — see the "auto memory" section.
+Tiered file-based memory at `memory/` (workspace root, version-controlled, symlinked from `~/.claude/projects/...`). Three horizons:
 
-The index file `MEMORY.md` is loaded on every conversation. Keep it terse — one line per entry, under ~150 characters. Content goes in per-topic files, not in the index.
+- `memory/long-term/` — identity profile, distilled identity-constitution content. Auto-loaded fully every session.
+- `memory/medium-term/` — current direction (`current-arc.md`), market doctrine, project arcs, advisory board, plus the `feedback/` sub-tier (active behavioural rules, split into `stable/` and `in-flight/` for audit purposes; both auto-loaded).
+- `memory/short-term/` — daily entries, weekly consolidation files. Current week + last week auto-loaded for continuity. Older weeks archived in `_archive/`.
+
+The auto-loaded surface is `memory/MEMORY.md` (machine entry, ~80 lines) — session-start protocol + tier descriptions + drift / consolidation pointers. Human governance lives in `memory/README.md`. Architecture rationale + alternatives + revisit triggers in `docs/adr-004-tiered-memory-architecture.md`.
+
+Drift detection: `/whence` (operator-fired) + `/divergence-check` (Claude-fired). Closed loop: `/consolidate-week` on Monday session start.
