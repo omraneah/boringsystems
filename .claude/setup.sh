@@ -61,4 +61,28 @@ if git -C "$WORKSPACE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
   fi
 fi
 
+# 5. Marky: canonical reader for long Claude output (ADR-003).
+#    macOS + Homebrew only. Non-fatal — Marky is UX, not load-bearing.
+if [ "$(uname -s)" = "Darwin" ] && command -v brew >/dev/null 2>&1; then
+  if command -v marky >/dev/null 2>&1; then
+    echo "marky already installed — skipping"
+  else
+    echo "Installing Marky (canonical reader for tmp/, ADR-003)..."
+    if brew tap | grep -q '^grvydev/tap$'; then
+      echo "  tap already added"
+    else
+      brew tap GRVYDEV/tap || echo "WARN: brew tap GRVYDEV/tap failed — Marky install skipped"
+    fi
+    if brew tap | grep -q '^grvydev/tap$'; then
+      brew install --cask GRVYDEV/tap/marky || echo "WARN: marky cask install failed — install manually if needed"
+      if [ -d "/Applications/Marky.app" ]; then
+        xattr -cr /Applications/Marky.app 2>/dev/null || true
+        echo "  cleared Gatekeeper quarantine on Marky.app"
+      fi
+    fi
+  fi
+else
+  echo "Skipping Marky install (not macOS or no Homebrew)"
+fi
+
 echo "Setup complete."
