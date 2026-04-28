@@ -6,10 +6,6 @@
 	path = cross-stack-architecture-starter-pack
 	url = https://github.com/omraneah/cross-stack-architecture-starter-pack.git
 
-[submodule "llm-context-2026"]
-	path = llm-context-2026
-	url = https://github.com/omraneah/llm-context-2026.git
-
 [submodule "personal-apps"]
 	path = personal-apps
 	url = https://github.com/omraneah/personal-apps.git
