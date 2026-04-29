@@ -20,12 +20,14 @@
 
 ## LONG-TERM — North Star
 
-`long-term/` — identity profile and distilled identity content. Slow to change.
-`long-term/inner-game/` — distilled identity-constitution content from llm-context.
+`long-term/I-AM.md` — **centerpiece.** Being-statements with whys, 3–5 year convergence, anti-beings, stable preferences, philosophy. Read first.
+`long-term/inner-game/Meta-Identity-Constitution.md` — depth-expansion of the I AM (immovable core, strong defaults, conscious trajectory, blind spots, upgrades-in-progress).
+
+> **Being → Doing → Having.** The long-term tier holds the BEING. The being attracts the rest.
 
 ⚠️ Identity-rooted entries are the most likely tier to drift over time because the operator changes. When live conversation contradicts an identity-rooted rule, default to live and surface the divergence. See `long-term/README.md`.
 
-Note: behavioural rules (the `feedback_*` files) used to live here; they are now in `medium-term/feedback/` because feedback is by nature temporary — it gets condensed or promoted over time.
+Note: behavioural rules (the `feedback_*` files) used to live here; they are now in `medium-term/feedback/`. As of 2026-04-29, operational discipline (Exit Doctrine, State and Guardrails OS, Work Hygiene Doctrine, Recovery Signals) was also relocated to `medium-term/operational-doctrine/` — long-term now holds being only.
 
 ---
 
@@ -33,7 +35,9 @@ Note: behavioural rules (the `feedback_*` files) used to live here; they are now
 
 `medium-term/feedback/stable/` — behavioural rules that have crystallized but haven't been promoted to long-term doctrine yet. Auto-loaded.
 `medium-term/feedback/in-flight/` — behavioural rules tied to current workflow / specific tooling / recent corrections. Auto-loaded.
-`medium-term/current-arc.md` — the live snapshot of where Ahmed is heading right now. Updated during weekly consolidation.
+`medium-term/current-arc.md` — the live snapshot of where Ahmed is heading right now. Updated during weekly consolidation. Auto-loaded.
+`medium-term/current-context.md` — current life-phase context, capability profile, market specifics, re-entry posture. On-demand.
+`medium-term/operational-doctrine/` — operational discipline (relocated 2026-04-29 from long-term): exit triggers, state regulation, work hygiene, recovery markers. On-demand.
 `medium-term/market/` — distilled market doctrine.
 `medium-term/` (root) — positioning, project arcs, evolving conventions. Loaded on demand.
 

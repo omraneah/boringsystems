@@ -1,6 +1,17 @@
+---
+name: Work Hygiene Doctrine
+description: Separating leverage work from execution gravity. Clean work / dirty work / disengagement protocol / weekly check.
+type: doctrine
+relocated_from: long-term/inner-game/Work-Hygiene-Doctrine.md
+relocated_on: 2026-04-29
+relocated_reason: Pure DOING-rules for work. Operational. The underlying being ("I am a creator") is in `long-term/I-AM.md`.
+---
+
 # Work Hygiene Doctrine
 
 Purpose: protect builder positioning by separating leverage work from execution gravity.
+
+The being layer is at `long-term/I-AM.md` ("I am a creator"). This file holds the operational discipline that protects creator-mode from being captured by execution gravity.
 
 ## 1) Core Rule
 > Do work that compounds judgment, systems, and sponsor trust. Refuse work that trains dependency.
