@@ -5,9 +5,11 @@
 
 ## Centerpiece
 
-**`I-AM.md`** is the canonical centerpiece — the being-statements with whys, the 3–5 year convergence, anti-beings, stable preferences, and philosophy. Read this first; everything else in long-term is its depth-expansion.
+**`I-AM.md`** is the canonical centerpiece — the being-statements with whys, the 3–5 year convergence, anti-beings, stable preferences, and philosophy. Read this first; everything else in long-term is its depth-expansion or descriptive context.
 
 **`inner-game/Meta-Identity-Constitution.md`** is the depth-expansion behind the I AM — long-form articulation of the immovable core, in-motion strong defaults, conscious trajectory, blind spots, and upgrades-in-progress.
+
+**`inner-game/Trait-Architecture.md`** is the descriptive read on the wiring underneath the I AM — the trait cluster (where 2+ SD), founder-archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, and explicitly-rejected mis-labels. Distilled from the 2026-04-28 deep-dive.
 
 ## Philosophy of this tier
 

@@ -22,6 +22,7 @@
 
 `long-term/I-AM.md` — **centerpiece.** Being-statements with whys, 3–5 year convergence, anti-beings, stable preferences, philosophy. Read first.
 `long-term/inner-game/Meta-Identity-Constitution.md` — depth-expansion of the I AM (immovable core, strong defaults, conscious trajectory, blind spots, upgrades-in-progress).
+`long-term/inner-game/Trait-Architecture.md` — descriptive read on the wiring underneath the I AM (trait cluster, founder-archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, rejected mis-labels). Distilled from 2026-04-28 dive.
 
 > **Being → Doing → Having.** The long-term tier holds the BEING. The being attracts the rest.
 
