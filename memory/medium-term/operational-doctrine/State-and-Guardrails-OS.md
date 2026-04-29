@@ -1,6 +1,15 @@
-# Inner Game - State and Guardrails OS
+---
+name: State and Guardrails OS
+description: State regulation, boundary discipline, correction loops, emotional regulation kit, mantras
+type: doctrine
+relocated_from: long-term/inner-game/Inner-Game_State-and-Guardrails-OS.md
+relocated_on: 2026-04-29
+relocated_reason: 80% operational discipline — morning/midday/evening loops, boundary protocols, correction sequences, integration loops, field signals. The being-pointing belief upgrades and mantras are absorbed by `long-term/I-AM.md`.
+---
 
-This document governs state regulation, boundary discipline, and correction loops.
+# State and Guardrails OS
+
+This document governs state regulation, boundary discipline, and correction loops. The being layer is at `long-term/I-AM.md`; this file holds the daily/weekly operational discipline that protects the being from drift.
 
 ## 1) Core laws
 - Clarity over control. When blurred, slow down until intent is clean.

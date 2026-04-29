@@ -1,6 +1,15 @@
-# Inner Game - Identity Constitution and Exit Doctrine
+---
+name: Identity Constitution & Exit Doctrine
+description: Freedom-wealth-experience doctrine + life-level exit triggers + transition mastery (operational tier)
+type: doctrine
+relocated_from: long-term/inner-game/Inner-Game_Identity-Constitution-and-Exit-Doctrine.md
+relocated_on: 2026-04-29
+relocated_reason: Operational doctrine — exit triggers, walking modes, distilled diagnostic dimensions. The being-pointing Section 1 is absorbed by `long-term/I-AM.md`. The 2026-bound North Stars in Section 2 are explicitly transition-shaped.
+---
 
-This document is the inner-game anchor for identity, freedom, exit integrity, and long-horizon transition.
+# Identity Constitution and Exit Doctrine
+
+This document is the operational doctrine for freedom, exit integrity, and long-horizon transition. The being layer is at `long-term/I-AM.md`; this file holds the operating rules that protect the being from capture.
 
 ## 1) Freedom - Wealth - Experience Doctrine (Non-negotiable)
 
@@ -176,5 +185,8 @@ Use this as a diagnostic, not a daily operating surface.
 
 ## 6) Pointers
 
-- Market-facing spine and freedom strategy live in Outer Game (see `archive/On-Hold/Market-Spine-and-Freedom-Strategy-France-2026-2031.md`).
-- State, guardrails, and regulation live in the companion inner-game OS document.
+- Being layer (north star at 3-5 years) → `long-term/I-AM.md`
+- Depth-expansion of immovable core → `long-term/inner-game/Meta-Identity-Constitution.md`
+- State regulation, boundaries, correction loops → `medium-term/operational-doctrine/State-and-Guardrails-OS.md`
+- Work-mode discipline → `medium-term/operational-doctrine/Work-Hygiene-Doctrine.md`
+- Recovery markers (transition tier, expires end of 2026) → `medium-term/operational-doctrine/Recovery-Signals.md`

@@ -14,10 +14,16 @@ How Claude has been told to operate. Every behavioural rule starts here. Over ti
 
 Positioning, leverage profile, re-entry doctrine, visibility, sponsor-altitude rules, GTM strategy. Loaded on demand.
 
+### `operational-doctrine/` — operational discipline (relocated 2026-04-29)
+
+State regulation, boundary protocols, work hygiene, exit triggers, recovery markers. These were in long-term until 2026-04-29 — relocated because they are doctrine about *operating*, not constitutional being. The being layer is at `../long-term/I-AM.md`; this folder holds the operating rules that protect the being. Loaded on demand.
+
+Files: `Identity-Constitution-and-Exit-Doctrine.md`, `State-and-Guardrails-OS.md`, `Work-Hygiene-Doctrine.md`, `Recovery-Signals.md` (transition-period, expires end of 2026).
+
 ## Top-level files
 
 - `current-arc.md` — the always-fresh snapshot of where Ahmed is heading right now. Updated during weekly consolidation. **Auto-loaded** because it sets the live direction filter for everything.
-- `user_strategic_context.md` — current life-phase context, work hygiene, geographic and market specifics. On-demand.
+- `current-context.md` — current life-phase context, capability profile, geographic and market specifics, re-entry posture. Merged from former `user_strategic_context.md` + `long-term/user_profile.md` on 2026-04-29. On-demand.
 - `project_workspace_structure.md` — workspace folder map. On-demand.
 - `project_advisory_board.md` — six-advisor strategic board composition. On-demand.
 - `Proof-Asset-Extraction-OS.md` — framework for converting work into market-grade assets. On-demand.

@@ -3,9 +3,23 @@
 > Identity profile and distilled identity-constitution content. Effectively constant. Auto-loaded fully.
 > See `../README.md` for full architecture.
 
+## Centerpiece
+
+**`I-AM.md`** is the canonical centerpiece — the being-statements with whys, the 3–5 year convergence, anti-beings, stable preferences, and philosophy. Read this first; everything else in long-term is its depth-expansion or descriptive context.
+
+**`inner-game/Meta-Identity-Constitution.md`** is the depth-expansion behind the I AM — long-form articulation of the immovable core, in-motion strong defaults, conscious trajectory, blind spots, and upgrades-in-progress.
+
+**`inner-game/Trait-Architecture.md`** is the descriptive read on the wiring underneath the I AM — trait cluster, founder-archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, psychological type. Distilled from the 2026-04-28 deep-dive.
+
+## Philosophy of this tier
+
+> **Being → Doing → Having.** Always start from being. Never start from having. The being attracts the rest.
+
+The long-term tier holds the BEING. It does not hold operational discipline (`medium-term/operational-doctrine/`), current state (`medium-term/current-context.md`), or behavioural rules (`medium-term/feedback/`). Those tiers serve the being — they don't define it.
+
 ## What goes here
 
-Identity-rooted content only. The kind of thing that defines who the operator IS — profile, distilled inner-game, identity constitution.
+Identity-rooted content only. The kind of thing that defines who the operator IS — being-statements, what the being attracts, the depth behind the being.
 
 The test:
 
