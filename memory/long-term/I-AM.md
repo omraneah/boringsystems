@@ -158,4 +158,6 @@ The being-attractor is the whole point. Being attracts everything else.
 - **If a section produces resistance, scarcity, or closeness** — flag it, don't act on it. The discomfort is data: either the wording is off, or you've found something that wants to soften before being committed.
 - **If a section produces relief or a smile** — that's the felt-check passing.
 
-For depth-expansion of the immovable core, conscious trajectory, blind spots, and upgrades-in-motion: see `inner-game/Meta-Identity-Constitution.md`.
+Cross-references:
+- Depth-expansion of the immovable core, conscious trajectory, blind spots, upgrades-in-motion → `inner-game/Meta-Identity-Constitution.md`
+- Descriptive read on the wiring underneath (trait cluster, archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, psychological type) → `inner-game/Trait-Architecture.md`

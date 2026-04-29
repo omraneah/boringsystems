@@ -9,7 +9,7 @@
 
 **`inner-game/Meta-Identity-Constitution.md`** is the depth-expansion behind the I AM — long-form articulation of the immovable core, in-motion strong defaults, conscious trajectory, blind spots, and upgrades-in-progress.
 
-**`inner-game/Trait-Architecture.md`** is the descriptive read on the wiring underneath the I AM — the trait cluster (where 2+ SD), founder-archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, and explicitly-rejected mis-labels. Distilled from the 2026-04-28 deep-dive.
+**`inner-game/Trait-Architecture.md`** is the descriptive read on the wiring underneath the I AM — trait cluster, founder-archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, psychological type. Distilled from the 2026-04-28 deep-dive.
 
 ## Philosophy of this tier
 

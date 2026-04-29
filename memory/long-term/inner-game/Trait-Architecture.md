@@ -149,6 +149,14 @@ The AI-leverage composition is part of the core trait architecture, not a produc
 
 ---
 
+## 5. Psychological type
+
+**MBTI: INTJ.**
+
+The type aligns with the trait cluster in §1 — introversion-leaning, intuition-driven pattern density, thinking-driven need for coherence, judging-driven structural systematizing. MBTI is shorthand; the substantive description is the trait cluster.
+
+---
+
 ## Pointers
 
 - Being layer (canonical) → `../I-AM.md`
