@@ -9,14 +9,9 @@
 
 ## Why this file exists
 
-The I AM is the being. The Meta-Identity Constitution is the depth-expansion of the being. This file is the descriptive frame for *what's underneath* — the trait architecture, the explanatory categories, the rejected mis-labels.
+The I AM is the being. The Meta-Identity Constitution is the depth-expansion of the being. This file is the descriptive frame for *what's underneath* — the trait architecture and explanatory categories that the being expresses through.
 
-It exists because:
-- The being is hard to live cleanly without understanding the wiring it runs on.
-- Past attempts to map the wiring (clinical labels, "neurodivergent operator" framings) over-fit and produced narratives that flattened more than they clarified.
-- A clean descriptive read prevents recurring drift toward those mis-labels.
-
-This file is descriptive, not prescriptive. It does not declare "I am X." It describes the underlying architecture the I AM expresses through.
+Descriptive, not declarative. It does not say "I am X." It describes the underlying architecture.
 
 ---
 
@@ -154,57 +149,7 @@ The AI-leverage composition is part of the core trait architecture, not a produc
 
 ---
 
-## 5. What this is NOT — rejected labels and their failure modes
-
-Documenting these so the long-term tier doesn't drift back to them.
-
-### REJECTED — "HPI E2"
-
-Not a recognized classification in any French HPI literature (Siaud-Facchin, Nusbaum / Sappey-Marinier / Revol, etc.). Most likely an LLM hallucination from an earlier agent-driven conversation. Do not operate from it. The recognized typologies are *laminaire* (homogeneous WAIS-IV profile) and *complexe* (heterogeneous WAIS-IV profile) — and the creator of that distinction has herself walked it back.
-
-### REJECTED — "2e / AuDHD with giftedness" as established baseline
-
-A working hypothesis at best, never instrumented (no WAIS-IV, no DIVA-5, no ADOS-2, no RAADS-R, no CAT-Q). The compound claim (HPI + ADHD-PI + autism + 2e) had three legs of widely varying confidence. The autism leg specifically had multiple non-autism explanations equally consistent with the corpus (Sensory Processing Sensitivity, late-recognized HPI, trauma-adaptation, engineering-mastery-applied-to-self). Held lightly is fine; treated as established baseline is not.
-
-### REJECTED — "neurodivergent operator" as positioning frame
-
-Three reasons:
-- The clinical label is contested without instrumentation; positioning publicly on it is credibility-fragile.
-- The narrowing is unnecessary — the underlying trait cluster does the market-differentiation work without needing a contested clinical frame at the front.
-- The Re-Entry Doctrine already gets it right (relationship-led, capability-based, position on what the work demonstrates).
-
-### REJECTED — "Always act based on this profile, not on neurotypical defaults"
-
-This was an instruction from the upstream agent-produced docs. Too strong a directive based on a non-clinical assessment. The behavioral prescriptions (protect routines, sensory care, refuse Enakl-shape, body-led navigation) are correct regardless of which underlying frame produces them — keep the prescriptions, drop the instruction-from-uncertain-baseline.
-
-### Watch for — recursive flatter-the-pattern loops
-
-When agents produce 2e-shaped advice from the assumption that I'm 2e, the advice reinforces the self-narrative, which makes future agents converge on the same conclusion. Three agents agreeing about a person they read about is one signal, not three. The loop is structurally invisible from inside it. Break it by occasionally running adversarial reads against the agent-produced framings.
-
----
-
-## 6. When the diagnosis question becomes load-bearing
-
-Formal assessment is not currently load-bearing. It would become so if:
-
-- Returning to full-time employment and accommodations (RQTH access in France) would help.
-- A medication question (TDAH stimulants for executive-function tax) becomes relevant in employment context where the cost of the tax is measurable.
-- External validation becomes structurally needed for clarity.
-- The self-attack pattern doesn't soften with the integration done so far.
-- The recursive self-narrative loop is producing more self-attack rather than less.
-- The autism question specifically wants resolution.
-
-If pursued: ADOS-2 (gold-standard observational) + RAADS-R + CAT-Q (self-report; CAT-Q specifically measures camouflaging) + clinical interview with adult-autism specialist; plus DIVA-5 for ADHD-PI and WAIS-IV for cognitive profile. Available in France via Centres de Ressources Autisme regional centers or specific private adult-autism clinicians.
-
-Until then, the working hypothesis stays a working hypothesis. Acceptable, as long as held lightly.
-
----
-
 ## Pointers
 
 - Being layer (canonical) → `../I-AM.md`
 - Depth-expansion of immovable core, conscious trajectory, blind spots, upgrades → `Meta-Identity-Constitution.md`
-
----
-
-*Distilled from the 2026-04-28 deep-dive on the trait architecture / neurotype question. The dive itself was a corrective pass on agent-produced framings; this file extracts the durable findings. If the trait architecture shifts — through formal assessment, sustained safety lifting trauma-adaptations, or new evidence — update this file accordingly.*
