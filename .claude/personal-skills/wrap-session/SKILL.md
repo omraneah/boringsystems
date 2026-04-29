@@ -1,14 +1,14 @@
 ---
 name: wrap-session
-description: End-of-session reflection after one or more PRs have shipped and been cleaned up. Stops any dev servers Claude started during the session, then produces a session-level recap with proposed system improvements (skills, hooks, docs, ADRs, memory, decisions). Trigger when Ahmed says some variant of "wrap up the session", "we're done for today", "end of session", "wrap this up". Per-PR git cleanup is NOT this skill's job — that's `/github-cleanup`, which runs separately for each merged PR during the session.
+description: End-of-session reflection after one or more PRs have shipped and been cleaned up. Stops any dev servers Claude started during the session, writes today's daily entry to short-term memory, then produces a session-level recap with proposed system improvements (skills, hooks, docs, ADRs, memory, decisions). Trigger when Ahmed says some variant of "wrap up the session", "we're done for today", "end of session", "wrap this up". Per-PR git cleanup is NOT this skill's job — that's `/github-cleanup`, which runs separately for each merged PR during the session.
 model: opus
 effort: high
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Bash(pkill *), Bash(pgrep *), Bash(git log *), Bash(git status *), Read, Edit, Write, Glob, Grep
+allowed-tools: Bash(pkill *), Bash(pgrep *), Bash(git log *), Bash(git status *), Bash(ls *), Bash(mkdir *), Read, Edit, Write, Glob, Grep
 ---
 
-End-of-session reflection. Runs after Ahmed signals the session is done — typically after one or more PRs have already been merged and cleaned up via `/github-cleanup` during the session. This skill's job is the session-level pass: stop the long-running dev servers, then produce a recap that compounds the session's lessons into system-level improvements.
+End-of-session reflection. Runs after Ahmed signals the session is done — typically after one or more PRs have already been merged and cleaned up via `/github-cleanup` during the session. This skill's job is the session-level pass: stop the long-running dev servers, write the daily entry to short-term memory, then produce a recap that compounds the session's lessons into system-level improvements.
 
 Do not announce the skill invocation. Just do the work.
 
@@ -37,7 +37,48 @@ These persist across PRs within a single session, so they're stopped at session 
 
 Note: branch / sync state is `/github-cleanup`'s responsibility. Don't re-do that work. Trust that if Ahmed is saying "wrap up", he's already cleaned up each merged PR with `/github-cleanup`. If you see an unmerged feature branch checked out, surface it and ask — don't silently switch.
 
-## Part 2 — Session recap + improvement proposals
+## Part 2 — Daily entry
+
+Capture the session in the chronological short-term record. This step writes to disk before the recap is produced — the daily entry is for future-self continuity, the recap is for the operator's current review.
+
+1. **Determine today's path.** Use today's date from session context: `memory/short-term/<YYYY-Www>/<YYYY-MM-DD>.md` where `<YYYY-Www>` is the ISO week folder. If the week folder doesn't exist, create it.
+2. **If today's entry doesn't exist**, draft it from the session's decisions, state changes, and conflicts. Write the file.
+3. **If it exists**, append new time-blocks for this session's work — do not overwrite earlier entries from the same day.
+
+Format (matches existing daily entries):
+
+````markdown
+# YYYY-MM-DD
+
+## TIME — short title
+
+- Decision: ...
+- State: ...
+- Conflict: ...
+
+## TIME — short title
+
+- ...
+
+## State
+
+[end-of-day paragraph: where things stand, energy, what's pending]
+````
+
+Time-blocks use approximate hours (`~22:00` is fine). Use file modification times in the working tree as a hint when exact times are unclear.
+
+**Tight, not verbose.** Yesterday's-entry compression is the target. Decisions / state / conflicts only — not a retrospective recap (that's Part 3).
+
+**Part 2 vs Part 3 — different shapes:**
+
+- **Part 2 = chronological log.** Event-by-event, in order. Written for future-self continuity.
+- **Part 3 = retrospective recap.** Arcs, patterns, system improvements. Written for the operator's review now.
+
+Both should exist after a substantive session. If the session was thin (one quick PR, no decisions), Part 2 can be a one-liner under a single time-block.
+
+After writing, surface one confirmation line: `Daily entry written: <path>`.
+
+## Part 3 — Session recap + improvement proposals
 
 Produce a written recap. Four sections, in order:
 
@@ -68,10 +109,11 @@ Pick the single highest-leverage improvement and name it. Do not list multiple r
 ## Guardrails
 
 - **Never fabricate.** If the session context is thin, produce a short recap. Do not invent improvements to pad the output.
-- **Prefer proposals over actions.** Part 2 proposes. It does not execute. Ahmed picks.
+- **Prefer proposals over actions.** Part 3 proposes. It does not execute. Ahmed picks.
 - **If Ahmed says "do everything" or picks items to implement**, branch out into the relevant repos (one feature branch per repo), commit, push, and surface PR-creation URLs per the `/pr` skill. Never open PRs directly — Ahmed does that (`memory/feedback_pr_creation.md`).
 - **Don't re-do `/github-cleanup`'s work.** This skill assumes per-PR cleanup already happened. If the working tree is dirty or a feature branch is still checked out, surface and ask.
+- **Daily entry is a file write, not a chat recap.** Part 2 writes to disk; Part 3 surfaces in chat. Don't conflate them — they serve different audiences (future-self continuity vs. operator's current review).
 
 ## Output shape (user-facing)
 
-Keep Part 1 minimal — one or two confirmation lines (servers stopped, state clean). The bulk of the visible output is Part 2: the recap and proposals. Structured markdown, no emojis.
+Keep Part 1 minimal (one or two confirmation lines: servers stopped, state clean). Part 2 is a file write — confirm with one line (`Daily entry written: <path>`). The bulk of the visible chat output is Part 3: the recap and proposals. Structured markdown, no emojis.
