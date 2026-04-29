@@ -620,3 +620,19 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 
 **Why:** The legacy strategic-context folder created routing fragmentation — two separate memory locations with cross-references, manual STRATEGIC INDEX navigation, and no auto-load. With the new tiered memory architecture in place (ADR-004), all strategic content has a structural home in `memory/`. The submodule no longer earned its place. Two-step deletion (PR #41 cleared all references and migrated load-bearing content; PR #42 deleted the submodule atomically) preserved review safety.
 
+---
+
+## 2026-04-29 — Extend /wrap-session to write daily entry before recap
+
+**Context:** `/wrap-session` produced a session-level recap + improvement proposals but did not write to `memory/short-term/`. Operator caught the gap during the 2026-04-29 session: significant work (long-term tier restructure, PR #44 merged, ADR-005 filed) without any chronological short-term entry for the day. Daily entries depended on operator asking explicitly or Claude proactively offering — neither reliable.
+
+**Decision:** Added new Part 2 "Daily entry" to `/wrap-session` skill (`.claude/personal-skills/wrap-session/SKILL.md`). Writes (or appends to) `memory/short-term/<YYYY-Www>/<YYYY-MM-DD>.md` before producing the recap. Current Part 2 (recap + improvement proposals) renumbered to Part 3. Daily entry is a file write; recap is chat output. Different shapes, different audiences, both required after substantive sessions.
+
+**Why:** `/wrap-session` is already where end-of-session housekeeping happens, so adding the daily-entry write there is the lightest fix — no new skill to remember, no SessionEnd hook firing too aggressively. Lighter than alternatives: a separate `/log-day` skill adds surface area; a SessionEnd hook fires on every `/clear` and quit without a substantive-session filter; a behavioural rule depends on Claude remembering. Closes the gap at the source by resolving the chronological-vs-recap conflation that caused it.
+
+**Expected outcome:** Every `/wrap-session` invocation ensures today's daily entry exists in short-term. No more gaps in the chronological record. Operator never has to ask. The `/wrap-session` ritual becomes the deterministic gate for both chronological logging (Part 2) and retrospective recap (Part 3). Implemented in the same PR as ADR-005 (`omraneah/adr-005-long-term-being-first`).
+
+**Actual outcome:** *(pending)*
+
+---
+
