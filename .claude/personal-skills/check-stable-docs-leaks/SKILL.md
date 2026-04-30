@@ -36,7 +36,7 @@ memory/README.md
 memory/MEMORY.md
 memory/long-term/README.md
 memory/medium-term/README.md
-memory/medium-term/feedback/README.md
+memory/short-term/feedback/README.md
 memory/short-term/README.md
 .claude/personal-skills/*/SKILL.md
 docs/adr-*.md
@@ -44,7 +44,7 @@ docs/*.md (any architecture / infrastructure doc)
 .claude/decisions/DECISIONS.md (with carve-out — see below)
 ```
 
-`memory/medium-term/feedback/stable/*.md` and `memory/medium-term/feedback/in-flight/*.md` are also stable in nature; include them.
+`memory/short-term/feedback/stable/*.md` and `memory/short-term/feedback/in-flight/*.md` are also stable in nature; include them.
 
 Daily short-term entries (`memory/short-term/<week>/<date>.md`) are NOT stable — they are episodic record. Skip them.
 

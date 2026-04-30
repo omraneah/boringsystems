@@ -118,7 +118,8 @@ This file is **doctrine, not plan**. Updates when:
 
 - I AM (north star) → `../I-AM.md`
 - Day-to-day texture (felt-test for path-validity) → `../I-AM.md` § *Day-to-day texture — the lived projection*
-- Identity coherence + exit triggers → `../../medium-term/audit/operational-doctrine/Identity-Constitution-and-Exit-Doctrine.md` *(currently under audit)*
-- Work hygiene + clean/dirty work distinction → `../../medium-term/audit/operational-doctrine/Work-Hygiene-Doctrine.md` *(currently under audit)*
-- Medium-term re-stabilize plan → `../../medium-term/audit/plan.md`
-- Short-term 2-month plan → `../../short-term/audit/plan.md`
+- Relational architecture (depth-expansion) → `Relational-Architecture.md`
+- Identity coherence + exit triggers → `../../medium-term/operational-doctrine/Identity-and-Exit-Doctrine.md`
+- Work hygiene + clean/dirty work distinction → `../../medium-term/operational-doctrine/Work-Hygiene-Doctrine.md`
+- Medium-term current arc (re-stabilize phase) → `../../medium-term/current-arc.md`
+- Short-term current arc (2 months) → `../../short-term/current-arc.md`

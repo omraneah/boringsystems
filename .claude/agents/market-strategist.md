@@ -41,17 +41,16 @@ Your field years are **substrate, not lens**. You watched the seed-to-Series-C p
 
 These set the substrate. Read them, hold them, pressure-test them.
 
-@memory/medium-term/strategic-advisor-system-prompt.md
-@memory/medium-term/market/Re-Entry-Doctrine-Relationship-Primacy.md
-@memory/medium-term/market/Leverage Profile & Market Lens.md
+@memory/medium-term/market/Leverage-Profile-and-Market-Lens.md
 @memory/medium-term/market/AI-Native-Builder-Positioning.md
+@memory/long-term/inner-game/Path-Doctrine.md
 @go-to-market/README.md
 @go-to-market/strategy.md
 @go-to-market/offers.md
 @go-to-market/hypotheses.md
 @go-to-market/signals.md
 
-Read on demand when relevant: `memory/medium-term/market/GTM-Strategy-Transition.md`, `memory/medium-term/market/Visibility OS.md`, `memory/medium-term/market/Relational Altitude OS.md`, `memory/medium-term/market/Support_Offensive-AI-Positioning_France-2026.md`, the boringsystems case files, the personal-apps shipped, the Cross-Stack ARDs, the inbound Airtable.
+Read on demand when relevant: `memory/medium-term/market/Sales-Mode-Tactics.md`, `memory/medium-term/market/Visibility-OS.md`, `memory/medium-term/operational-doctrine/Relational-Altitude-OS.md`, `memory/medium-term/operational-doctrine/Enakl-Derailment-Archetype.md`, the boringsystems case files, the personal-apps shipped, the Cross-Stack ARDs, the inbound Airtable.
 
 ## The thesis you are calibrated to (load-bearing)
 

@@ -1,11 +1,45 @@
-# Short-term Memory — Episodic Running Record
+# Short-term Memory — Episodic Record + Active Discipline
 
-> Chronological daily entries. 4 rolling weeks active. Weekly consolidation. Archive after.
+> Chronological daily entries + active behavioural rules (feedback). 4 rolling weeks active. Weekly consolidation. Archive after.
 > See `../README.md` for full architecture.
 
 ## What goes here
 
-The running record of what happens, day by day. **Episodic memory.**
+Two things share short-term:
+
+1. **The running record of what happens.** Day by day. **Episodic memory.**
+2. **The active behavioural rules** Ahmed consolidates on top of weekly. Feedback.
+
+Plus the active 2-month plan and Enakl-extraction discipline (which are short-term-bound by horizon).
+
+## Top-level files
+
+- **`current-arc.md`** — active 2-month plan (May → end June 2026). Auto-loaded.
+- **`extraction-os.md`** — Enakl proof-asset extraction discipline (2-month bound). Auto-loaded.
+
+## Subfolders
+
+### `feedback/` — active behavioural rules (auto-loaded)
+
+How Claude has been told to operate. Every behavioural rule starts here. Over time, rules condense, get promoted to long-term constitutional or medium-term doctrine, or archive. **Always auto-loaded.**
+
+- `feedback/stable/` — rules that have crystallized; promotion candidates.
+- `feedback/in-flight/` — rules tied to current workflow / specific tooling / recent corrections.
+
+The split is for audit purposes only; runtime behaviour is unified. See `feedback/README.md` for the lifecycle.
+
+### `<YYYY-Www>/` — weekly daily entry folders
+
+ISO week numbering. Current + last 3 weeks active.
+
+- `<YYYY-MM-DD>.md` — daily entry, chronological with timestamps.
+- `consolidation.md` — created Monday, talks about last week.
+
+### `_archive/` — archived weeks
+
+Weeks older than 4 rolling weeks. Not auto-read.
+
+## Daily entry capture
 
 Each day, capture:
 
@@ -14,33 +48,6 @@ Each day, capture:
 - **Conflicts / divergences** from any tier — most important, these feed consolidation
 
 Be concise. No essays. Timestamps + bullet points.
-
-## File layout
-
-```
-short-term/
-├── README.md
-├── 2026-W18/                    ← current week (ISO week numbering)
-│   ├── 2026-04-28.md            ← daily entry
-│   ├── 2026-04-29.md
-│   └── consolidation.md         ← created Monday, talks about LAST week
-├── 2026-W17/                    ← last week
-├── 2026-W16/                    ← 2 weeks ago
-├── 2026-W15/                    ← 3 weeks ago (oldest active)
-├── _needs-consolidation/        ← Claude-uncertain items pending Ahmed's audit
-└── _archive/
-    └── 2026-W14/                ← archived, no longer auto-loaded
-```
-
-## Naming conventions
-
-- Week folder: `<YYYY-Www>` — ISO week, e.g. `2026-W18`
-- Daily entry: `<YYYY-MM-DD>.md` — ISO date
-- Consolidation: `consolidation.md` (one per week, lives in current week's folder, talks about last week)
-
-## Auto-load
-
-**Current week + last week**, full content. For continuity.
 
 ## Daily entry format
 
@@ -77,16 +84,18 @@ Multiple sessions same day → append timestamp section, don't overwrite.
 [Final state, paths, summary]
 ```
 
+## Auto-load
+
+| Sub-area | Auto-load behaviour |
+|---|---|
+| `feedback/stable/` + `feedback/in-flight/` | Full content every turn |
+| `current-arc.md` | Full content every turn |
+| `extraction-os.md` | Full content every turn |
+| Current week + last week | Full content (continuity) |
+| `_archive/` | Not read unless Ahmed points to a specific week |
+
 ## Garbage collection
 
 - Weeks older than current + last 3 → moved to `_archive/<YYYY-Www>/`
 - Never deleted
 - **Claude does not read `_archive/`** unless Ahmed points to a specific week
-
-## `_needs-consolidation/`
-
-Items Claude was uncertain about during writes or migration get parked here. Each gets a top note explaining the uncertainty. Folder should trend toward empty after each consolidation.
-
-## When in doubt about a new entry
-
-If you're not sure whether something belongs in short-term, medium-term, or long-term — write it here under `_needs-consolidation/`. Better to over-park than to miscategorize. Ahmed sorts during weekly review.

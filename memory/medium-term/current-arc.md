@@ -1,11 +1,11 @@
 ---
-name: Medium-term Plan — Re-Stabilize Phase (July → December 2026)
+name: Medium-term Current Arc — Re-Stabilize Phase (July → December 2026)
 description: Six-month re-stabilization phase post-Enakl. Money is NOT the focus; trajectory + alignment + happily-freely-living is the focus. Soft monetary aspirations held grain-of-salt. Hint at where the 2-3yr sprint will start (without committing).
 horizon: 2026-07-01 → 2026-12-31 (~6 months)
-status: scaffolding draft from 2026-04-30 brainstorm. The audit folder around this file holds the existing medium-term docs to be reviewed against this scaffolding + the enriched long-term I-AM.
+last_reviewed: 2026-04-30
 ---
 
-# Medium-term Plan — Re-Stabilize Phase
+# Medium-term Current Arc — Re-Stabilize Phase
 
 **Window:** July 2026 → December 2026 (~6 months). Reaches age 37 by end of phase.
 
@@ -13,7 +13,7 @@ status: scaffolding draft from 2026-04-30 brainstorm. The audit folder around th
 
 Re-stabilize after Enakl exit. The first phase that is fully on his own terms in years.
 
-**The principle that governs everything: money is NOT the focus.** The earlier €10k target was a "prove I can make it outside employment" frame — released as of 2026-04-30. Trajectory + alignment + living happily freely is the focus. Money compounds where it compounds.
+**The principle that governs everything: money is NOT the focus.** The earlier €10k target was a "prove I can make it outside employment" frame — released. Trajectory + alignment + living happily freely is the focus. Money compounds where it compounds.
 
 ## What "re-stabilize" means concretely
 
@@ -32,7 +32,7 @@ If a fractional-shape opportunity emerges with this profile, say yes:
 - **Single light fractional, weeks mostly free**
 - **Aligned with the trajectory** (decision-altitude, AI-native, real authority, sponsor proximity)
 
-This is the rhythm that resonates ("fuck yes" — operator's words 2026-04-30). Don't hunt for it. Notice it if it shows up.
+This is the rhythm that resonates ("fuck yes" — operator's words). Don't hunt for it. Notice it if it shows up.
 
 ## Soft aspirational targets (grain of salt — DO NOT let them move the frame)
 
@@ -52,7 +52,7 @@ Going back to a full-time job is on the table — *if aligned with trajectory*. 
 
 The 2-3yr sprint that builds the long-term path to the North Star starts emerging during this phase. **Shape stays open by design** (per I-AM Creator-statement). By end of December, the shape should be CLEARER, not committed.
 
-→ See `../../long-term/inner-game/Path-Doctrine.md` for the doctrine governing the sprint.
+→ See `../long-term/inner-game/Path-Doctrine.md` for the doctrine governing the sprint.
 
 ## Hard rules (don't break)
 
@@ -61,18 +61,9 @@ The 2-3yr sprint that builds the long-term path to the North Star starts emergin
 3. **Build small wins along the way.** Plural, not singular. Confidence comes from many tangible movements, not one big bet.
 4. **Body-first compass at every decision.** Heat = wherever the work feels deeply aligned with long-term being. Not surface-by-surface heat-mapping. Coherence-check, not heat-map.
 
-## TODO at end of audit (operator-tracked)
-
-- **MEMORY.md auto-load paths broken.** Files moved to `audit/`; auto-load references in `MEMORY.md` and root README still point at old paths. **Audit and update at end** before the audit/ folder is deleted.
-- **Cleanup:** delete `audit/` folder when complete. Surviving content (refined and earned its way out) gets relocated to proper homes. Anything still in `audit/` at end is fluff/noise.
-- **Per-file decisions:** every doc currently in `audit/` needs an explicit verdict — keep-as-is / refine / delete / merge-into-other. Verdicts captured in today's daily entry working log.
-
 ## Cross-references
 
-- North star (being layer) → `../../long-term/I-AM.md`
-- Path doctrine (2-3yr sprint) → `../../long-term/inner-game/Path-Doctrine.md`
-- Short-term plan (current 2 months) → `../../short-term/audit/plan.md`
-
-## Status
-
-Scaffolding draft from 2026-04-30 brainstorm. The `audit/` folder around this file contains existing medium-term docs (current-arc.md, current-context.md, market/*, operational-doctrine/*, project_*.md, Proof-Asset-Extraction-OS.md, strategic-advisor-system-prompt.md) — those are being audited against this scaffolding + the enriched long-term I-AM.
+- North star (being layer) → `../long-term/I-AM.md`
+- Path doctrine (2-3yr sprint) → `../long-term/inner-game/Path-Doctrine.md`
+- Relational architecture → `../long-term/inner-game/Relational-Architecture.md`
+- Short-term current arc (next 2 months) → `../short-term/current-arc.md`

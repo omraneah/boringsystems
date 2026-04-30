@@ -2,9 +2,6 @@
 name: Work Hygiene Doctrine
 description: Separating leverage work from execution gravity. Clean work / dirty work / disengagement protocol / weekly check.
 type: doctrine
-relocated_from: long-term/inner-game/Work-Hygiene-Doctrine.md
-relocated_on: 2026-04-29
-relocated_reason: Pure DOING-rules for work. Operational. The underlying being ("I am a creator") is in `long-term/I-AM.md`.
 ---
 
 # Work Hygiene Doctrine

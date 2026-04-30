@@ -176,8 +176,3 @@ Aligned with the `I-AM.md § Relational architecture` non-negotiable: the relati
 - Work Hygiene Doctrine (weekly check pattern) → `../../medium-term/operational-doctrine/Work-Hygiene-Doctrine.md`
 - Relational Altitude OS (sponsor-conversation operational discipline) → `../../medium-term/operational-doctrine/Relational-Altitude-OS.md`
 
----
-
-## Status
-
-**Captured 2026-04-30** as a North-Star elevation of relational architecture. Operator's words: *"Network is net worth. Anti-fragility in relationships is critical. No short-termism, no pure extraction. I see the end before the beginning crystallizes."* This file holds the depth-expansion of those principles. Reviewed at consolidation cadence.

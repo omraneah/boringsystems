@@ -1,10 +1,7 @@
 ---
-name: Identity Constitution & Exit Doctrine
+name: Identity & Exit Doctrine
 description: Freedom-wealth-experience doctrine + life-level exit triggers + transition mastery (operational tier)
 type: doctrine
-relocated_from: long-term/inner-game/Inner-Game_Identity-Constitution-and-Exit-Doctrine.md
-relocated_on: 2026-04-29
-relocated_reason: Operational doctrine — exit triggers, walking modes, distilled diagnostic dimensions. The being-pointing Section 1 is absorbed by `long-term/I-AM.md`. The 2026-bound North Stars in Section 2 are explicitly transition-shaped.
 ---
 
 # Identity Constitution and Exit Doctrine

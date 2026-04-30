@@ -2,8 +2,6 @@
 name: Current Context — 2026 Re-Entry
 description: Current life-phase context. Capability profile, transition state, market specifics, entry strategy. Updates as the phase evolves; archive when re-entry phase ends.
 type: context
-merged_from: long-term/user_profile.md + medium-term/user_strategic_context.md
-merged_on: 2026-04-29
 horizon: 2026 + first half of 2027
 ---
 

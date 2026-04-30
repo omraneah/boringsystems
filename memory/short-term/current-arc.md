@@ -1,11 +1,11 @@
 ---
-name: Short-term Plan — Next 2 Months (May → end June 2026)
+name: Short-term Current Arc — Next 2 Months (May → end June 2026)
 description: The transition window. Stay at Enakl 10h/week for extraction + team-survival; 80% of time on explorative-not-applying moves. Resist "previous me" pressure. No premature commitment.
 horizon: 2026-04-30 → 2026-06-30 (~2 months)
-status: scaffolding draft from 2026-04-30 brainstorm. Refines as audit progresses.
+last_reviewed: 2026-04-30
 ---
 
-# Short-term Plan — Next 2 Months
+# Short-term Current Arc — Next 2 Months
 
 **Window:** 2026-04-30 → end of June 2026.
 
@@ -29,7 +29,7 @@ Two months. Structurally bound to Enakl until exit.
 - **Don't apply.** Inbound only. The minute applying enters the picture, the previous-me has won.
 - **Don't shortcut.** Highest risk in this phase is collapsing exploration prematurely under pressure.
 - **No premature commitment.** No retainer locked. No mandate-sentence locked. Not yet.
-- **Resist "previous me" pressure.** The pressure to have "something already prepared" is identity-residue from the version being let go of, NOT market reality. Internal source. When it fires: pause, breath, body-check, return to the day-to-day texture frame from `../../long-term/I-AM.md` § *Day-to-day texture*.
+- **Resist "previous me" pressure.** The pressure to have "something already prepared" is identity-residue from the version being let go of, NOT market reality. Internal source. When it fires: pause, breath, body-check, return to the day-to-day texture frame from `../long-term/I-AM.md` § *Day-to-day texture*.
 
 ## Output by end-June
 
@@ -41,10 +41,8 @@ Two months. Structurally bound to Enakl until exit.
 
 ## Cross-references
 
-- North star (being layer) → `../../long-term/I-AM.md`
-- Path doctrine (2-3yr sprint) → `../../long-term/inner-game/Path-Doctrine.md`
-- Medium-term plan (next phase) → `../../medium-term/audit/plan.md`
-
-## Status
-
-Scaffolding draft from 2026-04-30 brainstorm. Refines as the audit of existing medium-term docs progresses.
+- North star (being layer) → `../long-term/I-AM.md`
+- Path doctrine (2-3yr sprint) → `../long-term/inner-game/Path-Doctrine.md`
+- Relational architecture → `../long-term/inner-game/Relational-Architecture.md`
+- Medium-term current arc (next phase, July → December) → `../medium-term/current-arc.md`
+- Enakl proof-asset extraction discipline → `extraction-os.md`

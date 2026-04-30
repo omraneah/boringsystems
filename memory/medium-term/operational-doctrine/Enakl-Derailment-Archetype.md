@@ -67,6 +67,3 @@ If the archetype is detected at in-engagement altitude, the response is:
 - State & Guardrails OS (regulation kit) → `State-and-Guardrails-OS.md`
 - Recovery Signals (felt markers when recovering) → `Recovery-Signals.md`
 
-## Status
-
-**Captured 2026-04-30** during the long-term-enrichment + medium-term reconciliation session. The archetype shape is unlikely to change; the application notes will refine with use.

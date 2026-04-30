@@ -2,8 +2,6 @@
 name: Recovery Signals
 description: Felt markers indicating depletion is lifting and baseline is returning. Transition-period operational doc.
 type: doctrine
-extracted_from: long-term/inner-game/Meta-Identity-Constitution.md (Section 6, version pre-2026-04-29)
-extracted_on: 2026-04-29
 expires: end of 2026 — when 3+ of these signals are consistently true, archive this file.
 ---
 
