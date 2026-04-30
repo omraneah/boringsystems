@@ -28,10 +28,11 @@ The sprint is done **in a fun, loving, North-Star-aligned way.** Not in striving
 A valid path-shape during the sprint must satisfy ALL of the following. If any fails, the path is wrong, regardless of how compelling other dimensions look.
 
 1. **Day-to-day texture intact.** Body, sleep, family, presence, kindness, no haste — every day, repeatedly. The *Day-to-day texture* section of `../I-AM.md` is the felt-test. If a path violates it more than briefly, the path is wrong.
-2. **Aligned with the I AM.** Sovereign, calm, present, content, loving, kind-not-nice, courageous-not-striving, curious, free, wealthy, creator. If the path requires becoming any anti-being (scarce, striving, status-performing, validation-seeking, captured, etc.) — no.
-3. **Enough time and space for own things to accumulate.** The sprint isn't pure for-others. Own creations — writing, experiments, tools, communities, whatever shape emerges — need room to pile up, accumulate, concretize on their own terms. Without that room, the sovereign-creator dimension dies.
+2. **Aligned with the I AM.** Sovereign, calm, present, content, loving, kind-not-nice, **relational**, courageous-not-striving, curious, free, wealthy, creator. If the path requires becoming any anti-being (scarce, striving, status-performing, validation-seeking, captured, etc.) — no.
+3. **Relational architecture honored.** No extraction in either direction. Anti-fragility is the lens. Diverse layers (Layer 1 deep trust + Layer 2 mutual exchange + Layer 3 connector routing) all active. See `Relational-Architecture.md` for the full filter. **A path that violates the relational architecture is wrong, even if all other conditions hold.**
+4. **Enough time and space for own things to accumulate.** The sprint isn't pure for-others. Own creations — writing, experiments, tools, communities, whatever shape emerges — need room to pile up, accumulate, concretize on their own terms. Without that room, the sovereign-creator dimension dies.
 
-If all three hold simultaneously: it's a candidate path. If any fails: it's wrong, regardless of other strengths.
+If all four hold simultaneously: it's a candidate path. If any fails: it's wrong, regardless of other strengths.
 
 ---
 
