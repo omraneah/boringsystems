@@ -92,15 +92,28 @@ Anything captured during the session that is not yet done. Linear cards, placeho
 
 Walk the session through these lenses and surface anything worth codifying:
 
-- **Patterns that repeated.** If the same shape of work appeared more than once (e.g. "build infrastructure first, content second"; "every content change needs EN+FR"), propose a skill, a doc section, or a memory entry that captures it.
-- **Skills that should exist.** If a checklist was run manually more than twice (build → grep HTML, or "check FR mirror"), propose a new skill. Be explicit about whether it's cross-project (`personal-skills/`) or project-scoped (`<project>/.claude/skills/`).
-- **Hooks.** If a behaviour should run automatically on a specific trigger (pre-commit, post-merge, SessionStart), propose a hook in `settings.json`. Real shell hooks, not skill invocations — hooks run deterministically, skills run when Claude decides to invoke them.
-- **Architectural Decision Records.** If a non-trivial architectural choice was made (collection shape, redirect strategy, dependency rejection), propose an ADR under `docs/adr-NNN-<topic>.md` in the relevant project. Use 3-sigfig numbering so they sort.
-- **Doc updates.** If architecture/toolchain/design docs now misrepresent reality, flag the exact file and line.
-- **Memory entries.** Feedback/project/reference memories that capture what Claude should carry into future sessions. Use the shapes defined in the auto-memory system prompt — do not invent new types.
-- **Decisions to log.** Anything that belongs in `.claude/decisions/DECISIONS.md` via the `/log-decision` skill. Give each a concrete title + one-line context.
+- **Patterns that repeated.** Same shape of work appearing more than once → propose a skill, doc section, or memory entry.
+- **Skills that should exist.** Checklist run manually more than twice → propose a new skill. Be explicit about scope (`personal-skills/` vs. `<project>/.claude/skills/`).
+- **Hooks.** Behaviour that should run automatically on a trigger (pre-commit, post-merge, SessionStart) → propose a `settings.json` hook. Real shell hooks, not skill invocations.
+- **ADRs.** Non-trivial architectural choice made (collection shape, redirect strategy, dependency rejection) → propose an ADR under `docs/adr-NNN-<topic>.md`. 3-sigfig numbering.
+- **Doc updates.** Architecture / toolchain / design docs that now misrepresent reality → flag the exact file and line.
+- **Memory entries.** Feedback / project / reference memories Claude should carry into future sessions. Use only the shapes defined in the auto-memory system prompt.
+- **Decisions to log.** Anything for `.claude/decisions/DECISIONS.md` via `/log-decision`.
 
-For each improvement, state clearly: **(a)** what it is, **(b)** where it lives, **(c)** why it earns its place (the return, not the activity).
+**Output format — table, not bullets.** Bulky bulleted output every wrap is too dense to read. Render proposals as a single table:
+
+| # | Improvement | Category | Impact | Details |
+|---|---|---|---|---|
+| 1 | <distilled improvement> | Skill / Hook / Memory / ADR / Decision / Doc | High / Medium / Low | <why useful, how surfaced, where it lives> |
+
+**Column rules:**
+
+- **Improvement** — distilled in one short phrase, not a sentence.
+- **Category** — pick one: Skill, Hook, Memory, ADR, Decision, Doc. If genuinely cross-cutting, pick the primary and note the others in Details.
+- **Impact** — `High` = items you would definitely recommend; `Medium` = operator decides; `Low` = surfacing for awareness, probably skip.
+- **Details** — one or two sentences. Why useful + how surfaced this session + where it would live (path / scope). No paragraphs. No headings inside cells.
+
+If a proposal genuinely needs more than two sentences, that's a sign it's not yet distilled enough — keep iterating until it fits, or split it.
 
 ### What I'd do first
 
