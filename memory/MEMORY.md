@@ -11,8 +11,8 @@
 1. **Read every file in `long-term/` and `long-term/inner-game/`.** These are the north star — identity profile, distilled identity content (including `Path-Doctrine.md` for the 2-3yr sprint shape, `Relational-Architecture.md` for the depth-expansion of the relational North Star). Load fully every session. Weighted highest in routing.
 2. **Read every file in `short-term/feedback/stable/` and `short-term/feedback/in-flight/`.** Active behavioural rules — how Claude has been told to operate. Always auto-loads (both sub-folders). Feedback is the live discipline layer; it lives in short-term because Ahmed consolidates on top of it weekly. The `stable/` vs `in-flight/` split is for audit purposes only; both are equally in-scope at runtime.
 3. **Read `medium-term/current-arc.md`.** The current-direction snapshot for the re-stabilization phase (July → December 2026). Bridges short-term reality and long-term north star.
-4. **Read `short-term/current-arc.md`.** The active 2-month plan (May → end June 2026). Bound to the Enakl-exit window.
-5. **Read `short-term/extraction-os.md`.** Enakl proof-asset extraction discipline (2-month bound).
+4. **Read `short-term/current-arc.md`.** The active 2-month plan (May → end June 2026). Bound to the current-chapter-closing window.
+5. **Read `short-term/extraction-os.md`.** Proof-asset extraction discipline (2-month bound, transition-period).
 6. **Read all `.md` files in `short-term/<this-week>/` and `short-term/<last-week>/`.** Continuity. Decisions, state, conflicts from the past two weeks.
 7. **If today is Monday**, follow `short-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md` — fire `/consolidate-week` if this week's consolidation hasn't been written yet.
 8. **Other medium-term files load on demand** when the work touches their topic (positioning, doctrine, project state, etc.).
@@ -24,7 +24,7 @@
 
 `long-term/I-AM.md` — **centerpiece.** Being-statements with whys, 3–5 year convergence, day-to-day texture, relational architecture, anti-beings, stable preferences, philosophy. Read first.
 `long-term/inner-game/Meta-Identity-Constitution.md` — depth-expansion of the I AM (immovable core, strong defaults, conscious trajectory, blind spots, upgrades-in-progress).
-`long-term/inner-game/Path-Doctrine.md` — doctrine for the 2–3 year sprint to the North Star. Necessary conditions + Singer-echo (for-others is a valid path) + Enakl-derailment archetype as anti-pattern. Shape stays open.
+`long-term/inner-game/Path-Doctrine.md` — doctrine for the 2–3 year sprint to the North Star. Necessary conditions + Singer-echo (for-others is a valid path) + the single-dimension-trap as anti-pattern. Shape stays open.
 `long-term/inner-game/Relational-Architecture.md` — depth-expansion of the I-AM Relational architecture section. Diversity layers, exit protocols, application across domains.
 `long-term/inner-game/Trait-Architecture.md` — descriptive read on the wiring underneath the I AM (trait cluster, founder-archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, psychological type).
 
@@ -38,7 +38,7 @@
 
 `medium-term/current-arc.md` — six-month re-stabilization plan (July → December 2026). Auto-loaded.
 `medium-term/current-context.md` — current life-phase context, capability profile, market specifics, re-entry posture. On-demand.
-`medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Enakl-derailment archetype filter. On-demand.
+`medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Engagement Validity Filter. On-demand.
 `medium-term/market/` — capability-led positioning, market lens, sales-mode tactics, visibility OS. On-demand.
 `medium-term/projects/` — project metadata (advisory board composition, etc.). On-demand.
 
@@ -50,8 +50,8 @@ The interpretive layer between short-term episodic record and long-term constitu
 
 `short-term/feedback/stable/` — behavioural rules that have crystallized but haven't been promoted to long-term doctrine yet. **Auto-loaded.** Ahmed consolidates on top of these weekly.
 `short-term/feedback/in-flight/` — behavioural rules tied to current workflow / specific tooling / recent corrections. **Auto-loaded.**
-`short-term/current-arc.md` — active 2-month plan (May → end June 2026). Bound to Enakl-exit window. Auto-loaded.
-`short-term/extraction-os.md` — Enakl proof-asset extraction discipline (2-month bound). Auto-loaded.
+`short-term/current-arc.md` — active 2-month plan (May → end June 2026). Bound to current-chapter-closing window. Auto-loaded.
+`short-term/extraction-os.md` — Proof-asset extraction discipline (2-month bound, transition-period). Auto-loaded.
 `short-term/<YYYY-Www>/` — daily entries, ISO week folders. Current + last 3 weeks active.
 `short-term/<this-week>/consolidation.md` — created Monday, talks about last week.
 `short-term/_archive/` — older weeks. Not auto-read.

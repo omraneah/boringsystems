@@ -35,7 +35,7 @@ memory/
     │   ├── stable/        ← rules that have crystallized; promotion candidates
     │   └── in-flight/     ← rules tied to current workflow / tooling
     ├── current-arc.md     ← active 2-month plan (auto-loaded)
-    ├── extraction-os.md   ← Enakl extraction discipline (auto-loaded)
+    ├── extraction-os.md   ← Proof-asset extraction discipline (auto-loaded)
     ├── <YYYY-Www>/        ← week folder
     │   ├── <YYYY-MM-DD>.md
     │   └── consolidation.md
@@ -74,7 +74,7 @@ Both auto-load with the rest of the discipline layer (long-term + current-arc + 
 | Medium-term — rest | Routing-only references in `MEMORY.md`; full content on demand |
 | Short-term — `feedback/` | Full content (active discipline layer) |
 | Short-term — `current-arc.md` | Full content (active 2-month plan) |
-| Short-term — `extraction-os.md` | Full content (Enakl extraction discipline) |
+| Short-term — `extraction-os.md` | Full content (proof-asset extraction discipline) |
 | Short-term — current week + last week | Full content (continuity) |
 
 ## Weighting rules (when sources conflict)
