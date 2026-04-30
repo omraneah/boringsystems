@@ -18,12 +18,20 @@ Objective: enter through a high-leverage disruption wedge while preserving traje
 - Lean teams with real mandate and high urgency.
 
 ### Engagement Model
-- Prefer:
-  - Freelance or fractional entry.
-  - Short-cycle, high-impact missions.
-- Avoid:
-  - Immediate full-time commitment without clarity.
-  - Roles framed as pure execution.
+
+The engagement-shape is open. Constraint is alignment with `../../long-term/inner-game/Path-Doctrine.md` necessary conditions (day-to-day texture intact, I-AM aligned, room for own-things), not preferred-shape orthodoxy.
+
+- **Preferred (de-risks faster):**
+  - Freelance / fractional / advisory entry — short-cycle, high-impact, sponsor-proximity wedges.
+  - Bounded scope, visible outcome, exit-friendly structure.
+- **Open (validate against path-doctrine if it shows up):**
+  - Full-time employment in a deeply aligned organization with own-things compounded on the side.
+  - Multi-role hybrids (employee + advisor, fractional + own-things).
+- **Reject regardless of shape:**
+  - Pure execution without judgment ownership.
+  - No proximity to decision-maker, no real authority.
+  - Engagements that violate day-to-day texture (body, place, family, sleep).
+  - Anything matching the failure shape named in the Engagement Validity Filter (`../operational-doctrine/Engagement-Validity-Filter.md`).
 
 ## 3) Non-Negotiable Guardrail
 > Immediate proximity to a decision-maker

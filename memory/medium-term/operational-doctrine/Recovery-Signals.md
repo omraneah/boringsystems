@@ -2,8 +2,6 @@
 name: Recovery Signals
 description: Felt markers indicating depletion is lifting and baseline is returning. Transition-period operational doc.
 type: doctrine
-extracted_from: long-term/inner-game/Meta-Identity-Constitution.md (Section 6, version pre-2026-04-29)
-extracted_on: 2026-04-29
 expires: end of 2026 — when 3+ of these signals are consistently true, archive this file.
 ---
 
@@ -11,7 +9,7 @@ expires: end of 2026 — when 3+ of these signals are consistently true, archive
 
 How to know the baseline is returning. Not metrics — felt markers.
 
-This file is transition-period operational. Its job is to give you a felt-check during the post-Enakl recovery arc. Once 3+ signals are consistently true, the recovery is complete and this file can be archived to `_archive/`.
+This file is transition-period operational. Its job is to give you a felt-check during the post-transition recovery arc. Once 3+ signals are consistently true, the recovery is complete and this file can be archived to `_archive/`.
 
 ---
 

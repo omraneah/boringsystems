@@ -1,32 +1,44 @@
-# Medium-term Memory — Current Direction + Active Discipline
+# Medium-term Memory — Current Direction
 
-> Positioning, doctrine, project arcs, current direction (1–6 month horizon, evolving), plus the live behavioural discipline layer (`feedback/` subfolder, auto-loaded).
+> Positioning, doctrine, project arcs, current direction (1–6 month horizon, evolving).
 > The interpretive layer that bridges short-term reality with long-term north star.
 > See `../README.md` for full architecture.
 
+## Top-level files
+
+- **`current-arc.md`** — six-month re-stabilization plan (July → December 2026). Auto-loaded.
+- **`current-context.md`** — current life-phase context, capability profile, geographic and market specifics. Updates as the phase evolves; archive when re-entry phase ends.
+
 ## Subfolders
-
-### `feedback/` — active behavioural rules (auto-loaded)
-
-How Claude has been told to operate. Every behavioural rule starts here. Over time, rules condense, get promoted to long-term constitutional, or archive. **Always auto-loaded** even though the rest of medium-term is on-demand. See `feedback/README.md` for the lifecycle.
 
 ### `market/` — market doctrine
 
-Positioning, leverage profile, re-entry doctrine, visibility, sponsor-altitude rules, GTM strategy. Loaded on demand.
+Capability-led positioning, market lens, sales-mode tactics, visibility OS.
 
-### `operational-doctrine/` — operational discipline (relocated 2026-04-29)
+Files:
+- `Leverage-Profile-and-Market-Lens.md` — capability profile + AI-driven shift + ugliness detection.
+- `AI-Native-Builder-Positioning.md` — entry strategy + selection filters + failure modes.
+- `Sales-Mode-Tactics.md` — when in sales-mode, run it as one. Tactics not strategy.
+- `Visibility-OS.md` — publishing posture + tone + content shape.
 
-State regulation, boundary protocols, work hygiene, exit triggers, recovery markers. These were in long-term until 2026-04-29 — relocated because they are doctrine about *operating*, not constitutional being. The being layer is at `../long-term/I-AM.md`; this folder holds the operating rules that protect the being. Loaded on demand.
+### `operational-doctrine/` — operational discipline
 
-Files: `Identity-Constitution-and-Exit-Doctrine.md`, `State-and-Guardrails-OS.md`, `Work-Hygiene-Doctrine.md`, `Recovery-Signals.md` (transition-period, expires end of 2026).
+State regulation, work hygiene, exit triggers, recovery markers, relational altitude, derailment-archetype filter.
 
-## Top-level files
+Files:
+- `Identity-and-Exit-Doctrine.md` — Freedom-Wealth-Experience doctrine + life-level exit triggers + walking modes.
+- `State-and-Guardrails-OS.md` — daily/weekly state regulation + boundary protocols + correction loops + mantras.
+- `Work-Hygiene-Doctrine.md` — clean work / dirty work / disengagement protocol / weekly check.
+- `Recovery-Signals.md` — felt markers indicating depletion is lifting. Transition-period; expires end of 2026.
+- `Relational-Altitude-OS.md` — sponsor-facing posture + altitude levels + French warmth floor.
+- `Engagement-Validity-Filter.md` — non-negotiable filter for engagement-validity.
 
-- `current-arc.md` — the always-fresh snapshot of where Ahmed is heading right now. Updated during weekly consolidation. **Auto-loaded** because it sets the live direction filter for everything.
-- `current-context.md` — current life-phase context, capability profile, geographic and market specifics, re-entry posture. Merged from former `user_strategic_context.md` + `long-term/user_profile.md` on 2026-04-29. On-demand.
-- `project_workspace_structure.md` — workspace folder map. On-demand.
-- `project_advisory_board.md` — six-advisor strategic board composition. On-demand.
-- `Proof-Asset-Extraction-OS.md` — framework for converting work into market-grade assets. On-demand.
+### `projects/` — project metadata
+
+Documentation about specific tools / systems used by Claude.
+
+Files:
+- `advisory-board.md` — six-advisor strategic-tier board composition + invocation rules.
 
 ## What goes here
 
@@ -40,7 +52,6 @@ If yes → medium-term.
 
 | Sub-area | Auto-load behaviour |
 |---|---|
-| `feedback/` | Full content every turn |
 | `current-arc.md` | Full content every turn |
 | Everything else | Routing reference only in `MEMORY.md`; full content on demand |
 
@@ -48,22 +59,18 @@ If yes → medium-term.
 
 Medium-term is the layer that:
 
-- Reads short-term experience (last 4 weeks of daily entries)
+- Reads short-term experience (last 4 weeks of daily entries + feedback)
 - Articulates what it means for current direction (`current-arc.md`)
-- Holds the live behavioural discipline (`feedback/`)
+- Holds market and operational doctrine
 - Flags drift candidates for long-term audit during consolidation
 
 ## Promotion / demotion path
 
 - Short-term observation that has stabilized over 4 weeks → propose promotion to medium-term during consolidation.
-- `feedback/` rule that has held across domains and time and become identity-shaped → propose promotion to long-term.
-- Multiple `feedback/` files covering related ground → propose condensation into a single principle.
-- Medium-term claim that no longer fits current direction → demote to short-term `_needs-consolidation/` for re-evaluation, or archive.
+- Medium-term claim that no longer fits current direction → demote or archive.
 
 All movements happen during weekly consolidation, not silently.
 
 ## Conflict with live conversation
 
 Medium-term is the most fluid tier overall. If live conversation contradicts a medium-term entry, default to live + flag for consolidation. Less stop-and-ask friction than long-term, more than short-term.
-
-Exception: if `feedback/` contains a rule about behaviour Ahmed cares about strongly (the rule's own description signals it), respect it until consolidation re-evaluates.

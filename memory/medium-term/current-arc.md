@@ -1,36 +1,70 @@
 ---
-name: Current Arc
-description: The live snapshot of where Ahmed is heading right now. The bridge between today's lived experience and the long-term north star. Updated during weekly consolidation.
-tier: medium-term
+name: Medium-term Current Arc — Re-Stabilize Phase (July → December 2026)
+description: Six-month re-stabilization phase. Money is NOT the focus; trajectory + alignment + happily-freely-living is the focus. Soft monetary aspirations held grain-of-salt. Hint at where the 2-3yr sprint will start (without committing).
+horizon: 2026-07-01 → 2026-12-31 (~6 months)
+last_reviewed: 2026-04-30
 ---
 
-# Current Arc — as of 2026-04-28
+# Medium-term Current Arc — Re-Stabilize Phase
 
-## Phase
+**Window:** July 2026 → December 2026 (~6 months). Reaches age 37 by end of phase.
 
-Currently transitioning. Roughly 10 hours per week of paid commitments through end of June 2026. The rest of time directed toward what comes next: producing content, building, meeting people, deepening positioning.
+## The phase
 
-## Re-entry posture
+Re-stabilize after the transition. The first phase that is fully on his own terms in years.
 
-France 2026, on his own terms. Capability-portable leverage. Depth-oriented. Re-entering as the operator who owns the relationship with sponsors directly, not via an employer-of-record arrangement.
+**The principle that governs everything: money is NOT the focus.** The earlier €10k target was a "prove I can make it outside employment" frame — released. Trajectory + alignment + living happily freely is the focus. Money compounds where it compounds.
 
-## Active operating modes
+## What "re-stabilize" means concretely
 
-- AI-native execution that compresses cycles without outsourcing judgment.
-- Distillation as primary instrument — written corpus, versioned, portable, laptop-agnostic.
-- Workspace-as-thinking-environment continuously rebuilt to match current operating model.
-- Anti-mass, anti-vanity-metric, pro-trust-and-specificity.
+- **Body, place, family, sleep, presence — non-negotiable, intact every day.** The Engagement Validity Filter (`operational-doctrine/Engagement-Validity-Filter.md`) is the operational test for any engagement — never replay the failure shape it names.
+- **Deep market analysis continuing.** How the market is shifting, what kinds of roles, what kinds of companies, what kinds of contracts, who the decision makers are. **Mapping is fun. Highest risk is shortcutting it.** Can run through Q3-Q4.
+- **Reactivation continuing.** Warm graph re-engagement, increasingly as a game (testing messaging, watching what resonates).
+- **Boringsystems publishing continuing.** Heat is there.
+- **Things in the world continuing.** Publishing apps where natural. Exploring agentic engineering + organization.
 
-## What this is not
+## The "fuck yes" rhythm — if it shows up
 
-Not a product launch. Not an audience-building grind. Not a rigid roadmap. The arc is direction, not deadline.
+If a fractional-shape opportunity emerges with this profile, say yes:
 
-## How this file evolves
+- **1–3K/month range**
+- **10–20 hours/month total**
+- **Single light fractional, weeks mostly free**
+- **Aligned with the trajectory** (decision-altitude, AI-native, real authority, sponsor proximity)
 
-This file gets updated during weekly consolidation. It absorbs:
+This is the rhythm that resonates ("fuck yes" — operator's words). Don't hunt for it. Notice it if it shows up.
 
-- Drift candidates from the long-term tier (when live conversation contradicts north-star)
-- Promotion candidates from short-term observations that have stabilized over 4 weeks
-- Pivots in market posture that the medium-term doctrine should reflect
+## Soft aspirational targets (grain of salt — DO NOT let them move the frame)
 
-When in doubt about how to act in the present, this file articulates where we are. It is the interpretive layer between short-term episodic record and long-term constitutional anchors.
+Soft gut-feel timeline, captured for reference, **explicitly held lightly**:
+
+- ~€1k by September (gut feel, can change).
+- ~€3-5k by December (gut feel, can change).
+- **Aspirational:** €3k net (~€5k gross) — the threshold to live in Paris with wife full-time, sooner the better. Until then: OK with Paris/Tunisia rotation in the meantime if that's what the rhythm wants.
+
+These targets are useful only as long as they don't move the frame. **The moment chasing them produces haste — they go away.**
+
+## Employment is a valid shape
+
+Going back to a full-time job is on the table — *if aligned with trajectory*. The constraint is **alignment**, not "stay out of employment at all costs." The "real failure" is misalignment (any path that violates the necessary conditions in `Path-Doctrine.md`), not income source.
+
+## What this hints at (without committing)
+
+The 2-3yr sprint that builds the long-term path to the North Star starts emerging during this phase. **Shape stays open by design** (per I-AM Creator-statement). By end of December, the shape should be CLEARER, not committed.
+
+→ See `../long-term/inner-game/Path-Doctrine.md` for the doctrine governing the sprint.
+
+## Hard rules (don't break)
+
+1. **Don't collapse exploration.** Highest risk is "previous me" pressure forcing closure before the right shape has surfaced.
+2. **Don't shortcut letting-life-guide-me.** The Singer-shape is the discipline. Per I-AM Philosophy: *"The path shows itself as it's walked. Don't pre-commit the shape; commit the being."*
+3. **Build small wins along the way.** Plural, not singular. Confidence comes from many tangible movements, not one big bet.
+4. **Body-first compass at every decision.** Heat = wherever the work feels deeply aligned with long-term being. Not surface-by-surface heat-mapping. Coherence-check, not heat-map.
+
+## Cross-references
+
+- North star (being layer) → `../long-term/I-AM.md`
+- Path doctrine (2-3yr sprint) → `../long-term/inner-game/Path-Doctrine.md`
+- Relational architecture → `../long-term/inner-game/Relational-Architecture.md`
+- Engagement Validity Filter → `operational-doctrine/Engagement-Validity-Filter.md`
+- Short-term current arc (next 2 months) → `../short-term/current-arc.md`

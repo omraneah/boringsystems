@@ -2,9 +2,6 @@
 name: State and Guardrails OS
 description: State regulation, boundary discipline, correction loops, emotional regulation kit, mantras
 type: doctrine
-relocated_from: long-term/inner-game/Inner-Game_State-and-Guardrails-OS.md
-relocated_on: 2026-04-29
-relocated_reason: 80% operational discipline — morning/midday/evening loops, boundary protocols, correction sequences, integration loops, field signals. The being-pointing belief upgrades and mantras are absorbed by `long-term/I-AM.md`.
 ---
 
 # State and Guardrails OS
@@ -142,17 +139,7 @@ Quarterly:
 
 ---
 
-## 9) Field signals of balance
-
-- Irritation rare (less than 1 per week).
-- One new insight per month logged.
-- Energy baseline >= 80 percent.
-- One system shipped per month.
-- Agency expands by 5 percent per quarter without conflict.
-
----
-
-## 10) Mantras
+## 9) Mantras
 
 - My stillness is my leverage.
 - Discernment over control.

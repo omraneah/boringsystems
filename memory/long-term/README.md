@@ -15,7 +15,7 @@
 
 > **Being → Doing → Having.** Always start from being. Never start from having. The being attracts the rest.
 
-The long-term tier holds the BEING. It does not hold operational discipline (`medium-term/operational-doctrine/`), current state (`medium-term/current-context.md`), or behavioural rules (`medium-term/feedback/`). Those tiers serve the being — they don't define it.
+The long-term tier holds the BEING. It does not hold operational discipline (`medium-term/operational-doctrine/`), current state (`medium-term/current-context.md`), or behavioural rules (`short-term/feedback/`). Those tiers serve the being — they don't define it.
 
 ## What goes here
 
@@ -25,17 +25,17 @@ The test:
 
 > *"Would this still be true if I woke up in a different country with a different role?"*
 
-If yes → long-term. If no, but the rule is constitutional in nature (PR creation discipline, laptop-agnostic, MCP connector-only, etc.), it lives in `medium-term/feedback/` until consolidation promotes it.
+If yes → long-term. If no, but the rule is constitutional in nature (PR creation discipline, laptop-agnostic, MCP connector-only, etc.), it lives in `short-term/feedback/` until consolidation promotes it.
 
 ## What does NOT live here anymore
 
-Behavioural rules — the `feedback_*` files — used to live in long-term. They have all moved to `medium-term/feedback/`.
+Behavioural rules — the `feedback_*` files — used to live in long-term. They have all moved to `short-term/feedback/`.
 
 The reasoning: feedback is by nature temporary. It is rules Ahmed has surfaced but hasn't yet structured into a more durable form. Over time, feedback condenses, gets promoted, or archives. Until that shaping happens, feedback lives in medium-term where its evolving nature is honoured. The auto-load policy keeps feedback always in scope, so behaviour doesn't degrade despite the relocation.
 
 ## Promotion path
 
-A `medium-term/feedback/` rule may be promoted to long-term when:
+A `short-term/feedback/` rule may be promoted to long-term when:
 
 - It has held across enough domains and time to feel constitutional.
 - It is identity-shaped (vs operationally-shaped).

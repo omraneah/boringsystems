@@ -111,15 +111,11 @@ Do NOT document:
 
 ---
 
-## 5. Weekly Output Target
+## 5. Cadence
 
-- 1–2 high-quality artifacts per week
-- Not more
-
-**Reason:**
-
-> Quality > volume (these are positioning assets)
-> 
+- **Quality > volume.** These are positioning assets, not output to fill a schedule.
+- Capture when the triggers in Section 6 fire — pattern recognized, decision had long-term impact, constraint forced a non-obvious solution. Don't manufacture artifacts for the cadence.
+- A few clean artifacts over the 2-month window beats a forced weekly schedule.
 
 ---
 
@@ -134,16 +130,17 @@ Capture when:
 
 ---
 
-## 7. Final Output Buckets
+## 7. Likely Output Buckets
 
-At the end, you should have:
+These are buckets where artifacts are likely to land — not a target inventory:
 
-- Infra principles set
-- SaaS transition playbook
+- Infra principles
+- SaaS transition principles
 - AI-native dev perspective
 - Org design under constraint
-- Cross-stack “healthy start” doctrine
-- 5–10 strong case artifacts
+- Cross-stack "healthy start" doctrine
+
+The actual mix is whatever the extraction triggers produce. Some buckets may stay empty; others may produce more. Quality and reusability are the only metrics.
 
 ---
 

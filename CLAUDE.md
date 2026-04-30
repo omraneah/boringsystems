@@ -25,19 +25,19 @@ Tests every change must pass:
 4. **Committed-or-it-doesn't-exist.** Hooks, skills, settings, memory, decisions — version-controlled or it isn't real.
 5. **Symlink hygiene.** Symlinks from `~/` into a tracked workspace path are fine (reproducible via setup.sh). Symlinks from the repo out to the host are not.
 
-Full rule: `memory/medium-term/feedback/stable/feedback_laptop_agnostic.md`.
+Full rule: `memory/short-term/feedback/stable/feedback_laptop_agnostic.md`.
 
 ## Who Ahmed is
 
 Senior engineering leader (CTO-equivalent scope). Currently transitioning. Roughly 10 hours per week of paid commitments through end of June 2026; rest of time directed toward what comes next — producing content, building, meeting people, deepening positioning. Re-entering on his own terms in France 2026. His leverage is capability-based and portable: rapid navigation of ambiguous systems, crisp judgment under constraint, cross-functional system thinking, AI-native execution that compresses cycles without outsourcing judgment. France-based. Depth-oriented.
 
-Full profile: `memory/long-term/user_profile.md`, `memory/medium-term/user_strategic_context.md`. Live current direction: `memory/medium-term/current-arc.md`.
+Full profile: `memory/long-term/I-AM.md`, `memory/medium-term/current-context.md`. Live current direction: `memory/medium-term/current-arc.md` (6-month phase) and `memory/short-term/current-arc.md` (active 2-month plan).
 
 ## Memory — Tiered Architecture
 
 Memory is tiered into three horizons (`memory/long-term/`, `memory/medium-term/`, `memory/short-term/`), with weekly consolidation as the closed-loop correction mechanism. `memory/MEMORY.md` is the auto-loaded machine entry every turn; `memory/README.md` is the human governance doc. Implements meta-principle #3.
 
-**Feedback as a sub-tier in medium-term.** Behavioural rules (`feedback_*.md` files) live in `memory/medium-term/feedback/`, split across two audit-only sub-folders: `stable/` (rules that have crystallized) and `in-flight/` (rules tied to current workflow / specific tooling / recent corrections). Both auto-load every session despite living in medium-term, so the discipline layer is always in scope. The split is for audit purposes (which rules to interrogate first); runtime behaviour is unified. See `memory/medium-term/feedback/README.md` for the lifecycle.
+**Feedback in short-term.** Behavioural rules (`feedback_*.md` files) live in `memory/short-term/feedback/`, split across two audit-only sub-folders: `stable/` (rules that have crystallized) and `in-flight/` (rules tied to current workflow / specific tooling / recent corrections). Feedback lives in short-term because Ahmed consolidates on top of it weekly. Both auto-load every session, so the discipline layer is always in scope. The split is for audit purposes (which rules to interrogate first); runtime behaviour is unified. See `memory/short-term/feedback/README.md` for the lifecycle.
 
 Drift-detection (immune system):
 
@@ -63,19 +63,20 @@ Closed loop:
 ## Non-negotiable rules
 
 - **Never push to protected branches.** `main`, `master`, `development`, `dev`, `production`. Enforced by hook.
+- **Never edit on protected branches.** Same protected list. Before the first edit of a session, check the current branch in the relevant repo (workspace or submodule) and create a feature branch (`omraneah/<short-task-name>`) if needed. Reuse an existing session feature branch — do not create siblings. Edits are pre-authorized; no permission prompts. Enforced by `enforce-feature-branch.sh` PreToolUse hook on `Edit|Write|NotebookEdit`. Full rule: `memory/short-term/feedback/stable/feedback_auto_edit_on_feature_branch.md`.
 - **Never open PRs.** Claude pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request`.
 - **Connector-first MCP.** Linear, GitHub, Gmail, Notion always via claude.ai connectors. Never manual auth.
 - **Platform features first, custom code second.** Before reimplementing anything structural (i18n, auth, redirects, caching), check framework docs for native support.
 - **Never modify `Enakl/` or `cross-stack-architecture-starter-pack/`** without explicit instruction.
 - **Twice-is-a-pattern.** When the same manual task happens twice in a session, stop and propose codifying it before the third time.
 - **Max three concerns per session.** Wider scope → split into separate branches.
-- **Lane-change announcement.** When task dimension/cadence shifts (psychology→code, exchange→distilled, single→parallel), announce current model/effort + recommendation before proceeding. Full rule: `memory/medium-term/feedback/stable/feedback_lane_change_announcement.md`.
-- **Parallel-agent recap.** When spawning parallel sub-agents, announce model/effort/why for each as the FIRST summary before any output is read. Full rule: `memory/medium-term/feedback/stable/feedback_parallel_agent_recap.md`.
-- **No recap after link.** When providing a link to a PR, Linear card, ADR, or any authoritative source, do NOT recap its contents in chat. The link IS the recap. Full rule: `memory/medium-term/feedback/stable/feedback_no_recap_after_link.md`.
-- **Long analysis goes to `tmp/`, not chat.** When Claude generates more than ~400 words of dense analysis the user will read in full, write it to `tmp/<name>.md` and reference the path. `tmp/` is ephemeral render buffer; episodic memory goes to `memory/short-term/`. Full rule: `memory/medium-term/feedback/in-flight/feedback_tmp_as_ram.md`.
-- **Card-fanout discipline.** Before creating multiple Linear cards for related deliverables, check the team for an existing container-card pattern and mirror it. Full rule: `memory/medium-term/feedback/in-flight/feedback_card_fanout_discipline.md`.
-- **Drift detection.** Fire `/divergence-check` on detected frustration or loss-of-fit (proactive). Respond to `/whence` with tier+source+bias-risk when asked (directive). Full rule: `memory/medium-term/feedback/in-flight/feedback_fire_divergence_check_on_frustration.md`.
-- **Weekly consolidation.** On Monday session start, fire `/consolidate-week` if this week's consolidation hasn't been done yet. Full rule: `memory/medium-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md`.
+- **Lane-change announcement.** When task dimension/cadence shifts (psychology→code, exchange→distilled, single→parallel), announce current model/effort + recommendation before proceeding. Full rule: `memory/short-term/feedback/stable/feedback_lane_change_announcement.md`.
+- **Parallel-agent recap.** When spawning parallel sub-agents, announce model/effort/why for each as the FIRST summary before any output is read. Full rule: `memory/short-term/feedback/stable/feedback_parallel_agent_recap.md`.
+- **No recap after link.** When providing a link to a PR, Linear card, ADR, or any authoritative source, do NOT recap its contents in chat. The link IS the recap. Full rule: `memory/short-term/feedback/stable/feedback_no_recap_after_link.md`.
+- **Long analysis goes to `tmp/`, not chat.** When Claude generates more than ~400 words of dense analysis the user will read in full, write it to `tmp/<name>.md` and reference the path. `tmp/` is ephemeral render buffer; episodic memory goes to `memory/short-term/`. Full rule: `memory/short-term/feedback/in-flight/feedback_tmp_as_ram.md`.
+- **Card-fanout discipline.** Before creating multiple Linear cards for related deliverables, check the team for an existing container-card pattern and mirror it. Full rule: `memory/short-term/feedback/in-flight/feedback_card_fanout_discipline.md`.
+- **Drift detection.** Fire `/divergence-check` on detected frustration or loss-of-fit (proactive). Respond to `/whence` with tier+source+bias-risk when asked (directive). Full rule: `memory/short-term/feedback/in-flight/feedback_fire_divergence_check_on_frustration.md`.
+- **Weekly consolidation.** On Monday session start, fire `/consolidate-week` if this week's consolidation hasn't been done yet. Full rule: `memory/short-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md`.
 - **Never push with high or critical npm vulnerabilities.** Each npm-capable submodule has a `pre-push` hook running `npm audit --audit-level=high`. Workspace root also runs `.claude/git-hooks/pre-push` which audits every submodule before a pointer bump. Fix path: `npm audit fix` → npm `overrides` → major upgrade → documented advisory acceptance in the affected project's ADR. `--no-verify` forbidden.
 
 ## Detail — read these when the topic matters
@@ -86,7 +87,7 @@ Closed loop:
 | Collaboration tone, scope discipline, code comment rules | `docs/collaboration.md` |
 | Git workflow, branch rules, PR handoff, post-merge cleanup | `docs/git-workflow.md` |
 | Skills, hooks, setup, MCP, decisions, memory | `docs/infrastructure.md` |
-| Model × Effort × Lane matrix — defaults per task dimension | `memory/medium-term/feedback/in-flight/feedback_model_effort_matrix.md` |
+| Model × Effort × Lane matrix — defaults per task dimension | `memory/short-term/feedback/in-flight/feedback_model_effort_matrix.md` |
 | Enforcement-tier template (local-first pre-push audit, reuse across projects) | `docs/patterns/local-first-enforcement.md` |
 | Which ARDs apply at which tier per project | `docs/ard-tier-map.md` |
 | Per-project stack + conventions | `<project>/CLAUDE.md` and `<project>/docs/` |
@@ -94,7 +95,10 @@ Closed loop:
 ## Strategic routing
 
 - Identity drift → `memory/long-term/inner-game/Meta-Identity-Constitution.md`
-- Work confusion → `memory/long-term/inner-game/Work-Hygiene-Doctrine.md`
-- Opportunity evaluation → `memory/medium-term/market/Leverage Profile & Market Lens.md`
+- Work confusion → `memory/medium-term/operational-doctrine/Work-Hygiene-Doctrine.md`
+- Opportunity evaluation → `memory/medium-term/market/Leverage-Profile-and-Market-Lens.md`
 - External action / positioning → `memory/medium-term/market/AI-Native-Builder-Positioning.md`
-- Current direction snapshot → `memory/medium-term/current-arc.md`
+- Current direction snapshot → `memory/medium-term/current-arc.md` (6-month phase) and `memory/short-term/current-arc.md` (active 2-month plan)
+- Path doctrine (2-3yr sprint) → `memory/long-term/inner-game/Path-Doctrine.md`
+- Relational architecture (depth-expansion) → `memory/long-term/inner-game/Relational-Architecture.md`
+- Engagement-validity filter → `memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md`
