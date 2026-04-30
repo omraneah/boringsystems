@@ -130,4 +130,4 @@ Independent / hybrid / fractional paths are leverage-amplification options when 
 - Must remain selective (alignment over urgency).
 - Must produce visible outcomes (proof, but not for-its-own-sake).
 - Must not degrade into pure execution capacity (regardless of shape).
-- Must pass the Enakl-derailment-archetype filter (`../operational-doctrine/Enakl-Derailment-Archetype.md`).
+- Must pass the Engagement Validity Filter (`../operational-doctrine/Engagement-Validity-Filter.md`).

@@ -63,15 +63,17 @@ For-others CAN BE the path, when chosen freely from anchored kindness, when alig
 
 ---
 
-## Anti-pattern (the Enakl-derailment shape — not this)
+## Anti-pattern (the single-dimension trap — not this)
 
-The Enakl experience names the failure mode cleanly:
+The shape that drains while looking exciting:
 
-> **High-curiosity engagement that pays in curiosity but costs body, place, network, health, assets, positioning.**
+> **A high-payoff engagement on ONE dimension that silently costs many others — body, place, network, health, assets, positioning.**
 
-A path that satisfies *only* deep curiosity (e.g., "engineering production systems," "emerging markets understanding") while costing the rest is misaligned, regardless of how interesting the curiosity is. **The signal that ONE dimension is being satisfied at the cost of MANY others — that's the alarm.**
+A path that satisfies *only* deep curiosity (e.g., "interesting engineering," "emerging-market exposure") while costing the rest is misaligned, regardless of how interesting the curiosity is. **The signal that ONE dimension is being satisfied at the cost of MANY others — that's the alarm.**
 
 The sprint must pay across multiple dimensions simultaneously. Not just curiosity. Not just income. Not just status. **Body + family + place + network + health + own-creation accumulation + financial stability + curiosity. Multiple at once.** Where any of these is being silently traded off, the path is in drift.
+
+→ Engagement Validity Filter (operational test) → `../../medium-term/operational-doctrine/Engagement-Validity-Filter.md`
 
 ---
 

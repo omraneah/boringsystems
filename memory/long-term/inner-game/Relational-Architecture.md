@@ -128,7 +128,7 @@ Two consecutive weeks of drift on any of the five → correct immediately.
 
 ### In work / engagements
 
-- The Enakl-derailment archetype's *connectedness* dimension is downstream of this architecture. A path that violates connectedness fails the path-doctrine necessary conditions.
+- The Engagement Validity Filter's *connectedness* dimension is downstream of this architecture. A path that violates connectedness fails the path-doctrine necessary conditions.
 - Sponsor relationships are Layer-2-or-deeper; if they don't graduate beyond pure-utility, that's a signal.
 - A client who treats me as execution-capacity violates the no-extraction principle. Exit.
 - A client who shows real care about the work AND the relationship is Layer-2-eventual.
@@ -172,7 +172,7 @@ Aligned with the `I-AM.md § Relational architecture` non-negotiable: the relati
 - I AM (north star, including high-level relational architecture) → `../I-AM.md`
 - Path Doctrine (necessary conditions reference relational architecture) → `Path-Doctrine.md`
 - Identity & Exit Doctrine (life-level exit triggers, relationship categories) → `../../medium-term/operational-doctrine/Identity-and-Exit-Doctrine.md`
-- Enakl-Derailment-Archetype (engagement-validity filter, connectedness dimension) → `../../medium-term/operational-doctrine/Enakl-Derailment-Archetype.md`
+- Engagement Validity Filter (connectedness dimension) → `../../medium-term/operational-doctrine/Engagement-Validity-Filter.md`
 - Work Hygiene Doctrine (weekly check pattern) → `../../medium-term/operational-doctrine/Work-Hygiene-Doctrine.md`
 - Relational Altitude OS (sponsor-conversation operational discipline) → `../../medium-term/operational-doctrine/Relational-Altitude-OS.md`
 

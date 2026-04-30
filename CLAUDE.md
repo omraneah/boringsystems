@@ -101,4 +101,4 @@ Closed loop:
 - Current direction snapshot → `memory/medium-term/current-arc.md` (6-month phase) and `memory/short-term/current-arc.md` (active 2-month plan)
 - Path doctrine (2-3yr sprint) → `memory/long-term/inner-game/Path-Doctrine.md`
 - Relational architecture (depth-expansion) → `memory/long-term/inner-game/Relational-Architecture.md`
-- Engagement-validity filter → `memory/medium-term/operational-doctrine/Enakl-Derailment-Archetype.md`
+- Engagement-validity filter → `memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md`

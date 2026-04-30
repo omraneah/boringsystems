@@ -103,7 +103,7 @@ The Meta-Identity Constitution names many patterns explicitly as "post-trauma sc
 - "I survive alone" as default-first-move under difficulty
 - Kindness underground (warmth invisible under threat)
 - Exit reflex firing preemptively at the threshold of depth
-- Hyper-vigilance toward founder-shaped contexts (post-Enakl)
+- Hyper-vigilance toward founder-shaped contexts
 - Self-attack pattern when perceived-capacity ≠ realized-output
 - Output as proof of existence
 

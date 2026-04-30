@@ -31,7 +31,7 @@ The engagement-shape is open. Constraint is alignment with `../../long-term/inne
   - Pure execution without judgment ownership.
   - No proximity to decision-maker, no real authority.
   - Engagements that violate day-to-day texture (body, place, family, sleep).
-  - Anything matching the Enakl derailment archetype (`../operational-doctrine/Enakl-Derailment-Archetype.md`).
+  - Anything matching the failure shape named in the Engagement Validity Filter (`../operational-doctrine/Engagement-Validity-Filter.md`).
 
 ## 3) Non-Negotiable Guardrail
 > Immediate proximity to a decision-maker

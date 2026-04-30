@@ -53,7 +53,7 @@ A move is valid only if all are true:
 - **Room for own-things to accumulate** (creator-side dimension not starved).
 - **Epistemic upside** (something real to learn).
 - **Structural safety** (no long-term capture).
-- **Passes the Enakl-derailment-archetype filter** (`Enakl-Derailment-Archetype.md`).
+- **Passes the Engagement Validity Filter** (`Engagement-Validity-Filter.md`).
 
 > **Wealth-trajectory was previously the third filter; demoted as of 2026-04-30.** Money compounds where the necessary conditions hold; it is not an independent filter. The frame "make €X by date Y" was released in favor of "live the path, money follows." Soft monetary gut-feels exist (see `../plan.md` for current ones) but they explicitly do not move the frame.
 

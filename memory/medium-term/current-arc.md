@@ -1,6 +1,6 @@
 ---
 name: Medium-term Current Arc — Re-Stabilize Phase (July → December 2026)
-description: Six-month re-stabilization phase post-Enakl. Money is NOT the focus; trajectory + alignment + happily-freely-living is the focus. Soft monetary aspirations held grain-of-salt. Hint at where the 2-3yr sprint will start (without committing).
+description: Six-month re-stabilization phase. Money is NOT the focus; trajectory + alignment + happily-freely-living is the focus. Soft monetary aspirations held grain-of-salt. Hint at where the 2-3yr sprint will start (without committing).
 horizon: 2026-07-01 → 2026-12-31 (~6 months)
 last_reviewed: 2026-04-30
 ---
@@ -11,13 +11,13 @@ last_reviewed: 2026-04-30
 
 ## The phase
 
-Re-stabilize after Enakl exit. The first phase that is fully on his own terms in years.
+Re-stabilize after the transition. The first phase that is fully on his own terms in years.
 
 **The principle that governs everything: money is NOT the focus.** The earlier €10k target was a "prove I can make it outside employment" frame — released. Trajectory + alignment + living happily freely is the focus. Money compounds where it compounds.
 
 ## What "re-stabilize" means concretely
 
-- **Body, place, family, sleep, presence — non-negotiable, intact every day.** The Enakl derailment archetype (high-curiosity engagement that pays in curiosity but costs body, place, network, health, assets, positioning) — never again.
+- **Body, place, family, sleep, presence — non-negotiable, intact every day.** The Engagement Validity Filter (`operational-doctrine/Engagement-Validity-Filter.md`) is the operational test for any engagement — never replay the failure shape it names.
 - **Deep market analysis continuing.** How the market is shifting, what kinds of roles, what kinds of companies, what kinds of contracts, who the decision makers are. **Mapping is fun. Highest risk is shortcutting it.** Can run through Q3-Q4.
 - **Reactivation continuing.** Warm graph re-engagement, increasingly as a game (testing messaging, watching what resonates).
 - **Boringsystems publishing continuing.** Heat is there.
@@ -66,4 +66,5 @@ The 2-3yr sprint that builds the long-term path to the North Star starts emergin
 - North star (being layer) → `../long-term/I-AM.md`
 - Path doctrine (2-3yr sprint) → `../long-term/inner-game/Path-Doctrine.md`
 - Relational architecture → `../long-term/inner-game/Relational-Architecture.md`
+- Engagement Validity Filter → `operational-doctrine/Engagement-Validity-Filter.md`
 - Short-term current arc (next 2 months) → `../short-term/current-arc.md`

@@ -11,7 +11,7 @@ The being layer is at `long-term/I-AM.md`. This file holds the operational curre
 
 ## Phase
 
-Exiting Enakl (June 30, 2026). 3 years building TMS for a logistics startup, now transitioning to SaaS. Re-anchoring year, not conquest. Goal: re-enter on his own terms — high leverage, decision-layer work, proximity to real authority.
+Closing the current professional chapter (June 30, 2026 cut). Re-anchoring year, not conquest. Goal: re-enter on his own terms — high leverage, decision-layer work, proximity to real authority.
 
 ## Capability profile (portable, not title-based)
 
@@ -33,10 +33,6 @@ Exiting Enakl (June 30, 2026). 3 years building TMS for a logistics startup, now
   - Warm introductions and trusted intermediaries over cold applications.
   - Every external message must close with a brief human acknowledgment — even a "no" must feel respectful.
   - Brief AND warm (never brief AND cold).
-
-## The system being exited
-
-Enakl shape: ambiguity + pressure, offloads responsibility upward, rewards over-functioning. Primary exit risk is re-attachment through responsibility or empathy ("quick help" traps).
 
 ## Positioning philosophy (current)
 
@@ -60,7 +56,7 @@ Reject if: vague AI exploration, no clear owner, execution-only framing, buried 
 - **Engagement-shape stays open by design.** Freelance / fractional / advisory / employment all valid IF aligned with the necessary conditions in `../long-term/inner-game/Path-Doctrine.md` (day-to-day texture intact, I-AM aligned, room for own-things to accumulate). The shape that satisfies the conditions wins; ideology about preferred shape does not.
 - **Strong preference (not rule):** direct access to decision-maker; real authority; system-level scope; sponsor proximity.
 - **Strong preference (not rule):** short-cycle wedges to de-risk before deeper commitment.
-- **Filter:** does this pass the Enakl-derailment-archetype filter? (`operational-doctrine/Enakl-Derailment-Archetype.md`)
+- **Filter:** does this pass the Engagement Validity Filter? (`operational-doctrine/Engagement-Validity-Filter.md`)
 - **Target:** relationships that compound forward — sponsor proximity, real conversations, mutual value-exchange. Whether the engagement-shape is freelance, fractional, advisory, or employment is downstream of alignment.
 
 ## Work hygiene (summary)
@@ -76,5 +72,6 @@ Full discipline → `medium-term/operational-doctrine/Work-Hygiene-Doctrine.md`.
 - **Being layer (north star at 3–5 years)** → `long-term/I-AM.md`
 - **Depth-expansion of immovable core** → `long-term/inner-game/Meta-Identity-Constitution.md`
 - **Live snapshot of current direction** → `medium-term/current-arc.md`
+- **Active 2-month plan** → `short-term/current-arc.md`
 - **Market doctrine** → `medium-term/market/`
 - **Operational discipline** → `medium-term/operational-doctrine/`

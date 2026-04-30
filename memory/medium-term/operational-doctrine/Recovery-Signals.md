@@ -9,7 +9,7 @@ expires: end of 2026 — when 3+ of these signals are consistently true, archive
 
 How to know the baseline is returning. Not metrics — felt markers.
 
-This file is transition-period operational. Its job is to give you a felt-check during the post-Enakl recovery arc. Once 3+ signals are consistently true, the recovery is complete and this file can be archived to `_archive/`.
+This file is transition-period operational. Its job is to give you a felt-check during the post-transition recovery arc. Once 3+ signals are consistently true, the recovery is complete and this file can be archived to `_archive/`.
 
 ---
 

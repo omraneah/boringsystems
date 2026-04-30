@@ -31,7 +31,7 @@ Files:
 - `Work-Hygiene-Doctrine.md` — clean work / dirty work / disengagement protocol / weekly check.
 - `Recovery-Signals.md` — felt markers indicating depletion is lifting. Transition-period; expires end of 2026.
 - `Relational-Altitude-OS.md` — sponsor-facing posture + altitude levels + French warmth floor.
-- `Enakl-Derailment-Archetype.md` — non-negotiable filter for engagement-validity.
+- `Engagement-Validity-Filter.md` — non-negotiable filter for engagement-validity.
 
 ### `projects/` — project metadata
 

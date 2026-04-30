@@ -108,4 +108,4 @@ Two red flags → downgrade or exit.
 - Sponsor conversation altitude + interaction discipline → `../operational-doctrine/Relational-Altitude-OS.md`
 - Visibility and publishing → `Visibility-OS.md`
 - Path-shape doctrine (the 2-3yr sprint) → `../../long-term/inner-game/Path-Doctrine.md`
-- Engagement-validity filter → `../operational-doctrine/Enakl-Derailment-Archetype.md`
+- Engagement-validity filter → `../operational-doctrine/Engagement-Validity-Filter.md`
