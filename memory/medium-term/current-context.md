@@ -59,10 +59,11 @@ Reject if: vague AI exploration, no clear owner, execution-only framing, buried 
 
 ## Re-entry posture
 
-- Prefer freelance/fractional/advisory entry before full-time commitment
-- Require direct access to decision-maker (founder or executive sponsor)
-- Short-cycle, high-impact missions
-- Goal: 2–3 engagements that become proof cases with compounding sponsor relationships
+- **Engagement-shape stays open by design.** Freelance / fractional / advisory / employment all valid IF aligned with the necessary conditions in `../long-term/inner-game/Path-Doctrine.md` (day-to-day texture intact, I-AM aligned, room for own-things to accumulate). The shape that satisfies the conditions wins; ideology about preferred shape does not.
+- **Strong preference (not rule):** direct access to decision-maker; real authority; system-level scope; sponsor proximity.
+- **Strong preference (not rule):** short-cycle wedges to de-risk before deeper commitment.
+- **Filter:** does this pass the Enakl-derailment-archetype filter? (`operational-doctrine/Enakl-Derailment-Archetype.md`)
+- **Target:** relationships that compound forward — sponsor proximity, real conversations, mutual value-exchange. Whether the engagement-shape is freelance, fractional, advisory, or employment is downstream of alignment.
 
 ## Work hygiene (summary)
 

@@ -51,21 +51,30 @@ What looks like laziness is energy conservation. Engage only when a fix raises t
 
 ### Decision filter (stay / leave / next)
 A move is valid only if all are true:
-- Epistemic upside
-- Structural safety
-- Wealth trajectory
+- **Day-to-day texture intact** (per `../../long-term/I-AM.md` § *Day-to-day texture*).
+- **I-AM aligned** (no anti-being slippage required).
+- **Room for own-things to accumulate** (creator-side dimension not starved).
+- **Epistemic upside** (something real to learn).
+- **Structural safety** (no long-term capture).
+- **Passes the Enakl-derailment-archetype filter** (`Enakl-Derailment-Archetype.md`).
+
+> **Wealth-trajectory was previously the third filter; demoted as of 2026-04-30.** Money compounds where the necessary conditions hold; it is not an independent filter. The frame "make €X by date Y" was released in favor of "live the path, money follows." Soft monetary gut-feels exist (see `../plan.md` for current ones) but they explicitly do not move the frame.
 
 ---
 
 ## 2) 2026 North Stars and Non-negotiables
 
-### North stars
+### North stars (2026, refined 2026-04-30)
 - Sovereignty over identity and time.
 - Freedom as lived condition, not a concept.
 - Continuity: compounding across arenas without identity foreclosure.
+- **Day-to-day texture intact and consistent** (added 2026-04-30).
+- **No haste — exploration not collapsed prematurely** (added 2026-04-30).
+
+> The 2026 North Stars are the local manifestation of the long-term I AM during the re-stabilization phase. Update at end of 2026 or when the phase changes shape.
 
 ### Baseline year orientation
-2026 is a re-anchoring year, not conquest or acceleration.
+2026 is a re-anchoring year, not conquest or acceleration. End-of-2026 marker: phase 1 done; the 2-3 year sprint to the long-term path begins emerging (see `../../long-term/inner-game/Path-Doctrine.md`).
 
 ### Life anchors (operational intent)
 - Upgrade living conditions toward calm, light, nature access.
@@ -73,6 +82,7 @@ A move is valid only if all are true:
 - Return to movement without performance pressure.
 - Increase nature exposure in France and Tunisia.
 - Remove coercion and scarcity posture from career decisions.
+- **Money is not the focus.** Trajectory + alignment + happily-freely-living is the focus. Soft monetary gut-feels (see `../plan.md`) are useful only as long as they do not move the frame.
 
 ---
 

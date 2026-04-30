@@ -99,18 +99,9 @@ Immediately flag:
 
 ## 5. Positioning Vector (Directional)
 
-Target positioning:
+The positioning is **capability-led, not shape-locked.** The capability profile (Section 1) plus the AI-native edge plus the French market context (in `../current-context.md`) describe the leverage. The shape it takes is downstream — operator-inside-org, fractional, employee, advisor, builder, or hybrid. **Forms are not pre-ranked.**
 
-> **AI-native execution builder operating across systems, decisions, and transformations**
-> 
-
-Possible forms (not mutually exclusive):
-
-- Operator inside high-quality environment
-- Early-stage builder in emerging system
-- High-leverage independent / fractional operator
-
-**Selection criterion (post-July 2026):** The primary selection filter across all forms is **relationship leverage** — does this engagement create sponsor proximity and network compounding? Role shape is secondary. A fractional engagement with a high-quality sponsor outweighs a more "senior" role with no relationship upside. See **Re-Entry Doctrine — Relationship Primacy** for acceptance/refusal criteria.
+**Selection filter (post-July 2026):** alignment first (per `../../long-term/inner-game/Path-Doctrine.md` necessary conditions). Within alignment, relationship leverage and sponsor proximity are strong amplifiers — but they're not the only valid amplifier. A well-aligned employment role at a deeply compatible organization can outweigh a fractional engagement with a high-quality sponsor if the rest of the path-doctrine is better served by the former.
 
 ---
 
@@ -132,14 +123,11 @@ If not → reject or deprioritize
 
 ## 7. Strategic Principle
 
-> Early phase may favor independent or hybrid paths
-> 
-> 
-> not as fallback, but as **leverage amplification strategy**
-> 
+> Path-shape stays open. Choose the shape that the necessary conditions point at, not the shape that ideology preferred.
 
-With constraints:
+Independent / hybrid / fractional paths are leverage-amplification options when they best satisfy the path-doctrine's necessary conditions — not by default. Constraints stay:
 
-- must remain selective
-- must produce proof cases
-- must not degrade into freelance execution
+- Must remain selective (alignment over urgency).
+- Must produce visible outcomes (proof, but not for-its-own-sake).
+- Must not degrade into pure execution capacity (regardless of shape).
+- Must pass the Enakl-derailment-archetype filter (`../operational-doctrine/Enakl-Derailment-Archetype.md`).

@@ -1,20 +1,19 @@
-# GTM Strategy — Transition
+# Sales-Mode Tactics
 
-**Status:** Authoritative — governs conversation, negotiation, and personal market presence
+**Status:** Operational — invoked when actual sales conversations / negotiations / sponsor-pitches happen.
 **Folder:** market/
+
+> **This file is tactics, not strategy.** It governs HOW to behave when actually selling. The strategic question of WHEN to be in sales-mode at all (vs. exploration-mode, vs. employment-conversation-mode, vs. "having coffee") is upstream — see `../plan.md` and `../../long-term/inner-game/Path-Doctrine.md`.
+>
+> **Frame correction (2026-04-30):** the earlier framing — *"You are selling a high-ticket judgment capability, not applying for a job"* — over-committed the shape. Live frame: employment-shape is valid if aligned. The tactics below apply when the conversation IS sales-shaped (high-ticket judgment, advisory, fractional). They do not apply to a friendly chat or an aligned employment exploration.
 
 ---
 
-## Core Principle (Non-Negotiable)
+## Core Principle (When in sales-mode)
 
-> You are selling a high-ticket judgment capability, not applying for a job.
-> Every interaction is a B2B consultative sale — long cycles, discovery-first, sponsor-direct.
+> When the conversation is a B2B consultative sale, run it as one — long cycles, discovery-first, sponsor-direct. Do not collapse it into job-application register.
 
-**Reconciliation — Relationship Primacy (post-July 2026):**
-> GTM is relationship-first, not public-distribution-first.  
-> Distribution in France flows through relationships. LinkedIn and public artifacts are support surfaces — they do not substitute for direct relationship cultivation.  
-> The primary GTM motion is: warm introductions → sponsor conversations → advisory engagement.  
-> Public content exists to make thinking legible to people already in conversation, not to build an audience that converts.
+In France, even sales-mode runs through relationships. Public-distribution and warm-graph cultivation are not substitutes for each other — they're complementary. The motion to default to: warm introductions → sponsor conversations → advisory engagement. Public content makes thinking legible; it does not replace the relationship layer.
 
 ---
 
@@ -104,7 +103,9 @@ Two red flags → downgrade or exit.
 
 ## 7. Routing
 
-- Positioning and entry strategy → AI-Native-Builder-Positioning.md + Offensive-AI-Positioning.md
-- Sponsor conversation altitude → Relational-Altitude-OS.md
-- Visibility and publishing → Visibility-OS.md
-- Opportunity evaluation → Leverage-Profile-and-Market-Lens.md
+- Positioning + selection filters → `AI-Native-Builder-Positioning.md`
+- Capability profile + leverage / ugliness detection → `Leverage-Profile-and-Market-Lens.md`
+- Sponsor conversation altitude + interaction discipline → `../operational-doctrine/Relational-Altitude-OS.md`
+- Visibility and publishing → `Visibility-OS.md`
+- Path-shape doctrine (the 2-3yr sprint) → `../../long-term/inner-game/Path-Doctrine.md`
+- Engagement-validity filter → `../operational-doctrine/Enakl-Derailment-Archetype.md`
