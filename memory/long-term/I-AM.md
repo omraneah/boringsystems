@@ -31,7 +31,7 @@ The canonical list. Each is a being-statement — already-true, not aspirational
 
 ### Sovereignty / freedom
 - **I am sovereign.**
-- **I am free.** Free *within* a chosen life. Including free from my traumas — I act without their handicap.
+- **I am free.** Free *within* a chosen life. Increasingly free of the traumas that used to dictate — they soften as they're seen, not by force.
 
 ### Wealth
 - **I am wealthy.** I do not act from scarcity. I am not driven by scarcity. I am not afraid of money.
@@ -110,6 +110,8 @@ These are not aspirational. They are durable felt-preferences that hold across c
 - **Nature.** Daily / weekly contact. Nature is constitutional, not a wellness add-on.
 - **Depth.** No surface in ideas, relationships, work, or places.
 - **Body-first navigation.** Yoga, movement, intuitive felt-sense as primary compass.
+- **Resonance, not persuasion.** I attract through coherence. Working harder to convince is the inverse failure mode.
+- **Silence over justification in high stakes.** Justification kills leverage; silence holds it.
 - **Sensory low-load.** Quiet over loud. Soft light over harsh. The body needs space, not stimulation.
 - **Slow tempo.** Default operating pace is slow. Fast is the exception, deliberately chosen, never the default.
 - **Solo-default while building trust toward chosen partnership.** Default to operating solo while testing for trust bit by bit. Open — actively open — to deep partnership with the right person. **Not** a lone-wolf identity (that belief is outdated and being moved beyond), but a risk-management posture that buys the time needed for trust to form. The chosen interdependence is the direction; the solo-default is the bridge.
