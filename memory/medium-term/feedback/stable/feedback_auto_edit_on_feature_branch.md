@@ -15,7 +15,8 @@ Editing files in this workspace is pre-authorized. Do not ask Ahmed for permissi
    - Protected names: `main`, `master`, `development`, `dev`, `production`.
 
 2. **If on a protected branch, create a feature branch first.**
-   - Convention: `omraneah/<short-task-name>` (kebab-case, descriptive of the task).
+   - Convention for single-feature work: `omraneah/<short-task-name>` (kebab-case, descriptive of the task).
+   - Convention for multi-concern session work (questions review + memory distillation + decisions across multiple cards, where there isn't a single named feature): `omraneah/session-YYYY-MM-DD`. Established 2026-04-30.
    - The `enforce-feature-branch.sh` PreToolUse hook will block the edit otherwise — that hook is the safety net, not the primary path. Do the right thing without waiting for the hook to fire.
 
 3. **If a feature branch already exists for this session in this repo, keep editing on it.**
