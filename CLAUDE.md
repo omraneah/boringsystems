@@ -63,6 +63,7 @@ Closed loop:
 ## Non-negotiable rules
 
 - **Never push to protected branches.** `main`, `master`, `development`, `dev`, `production`. Enforced by hook.
+- **Never edit on protected branches.** Same protected list. Before the first edit of a session, check the current branch in the relevant repo (workspace or submodule) and create a feature branch (`omraneah/<short-task-name>`) if needed. Reuse an existing session feature branch — do not create siblings. Edits are pre-authorized; no permission prompts. Enforced by `enforce-feature-branch.sh` PreToolUse hook on `Edit|Write|NotebookEdit`. Full rule: `memory/medium-term/feedback/stable/feedback_auto_edit_on_feature_branch.md`.
 - **Never open PRs.** Claude pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request`.
 - **Connector-first MCP.** Linear, GitHub, Gmail, Notion always via claude.ai connectors. Never manual auth.
 - **Platform features first, custom code second.** Before reimplementing anything structural (i18n, auth, redirects, caching), check framework docs for native support.

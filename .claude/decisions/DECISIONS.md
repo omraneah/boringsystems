@@ -636,3 +636,31 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 
 ---
 
+## 2026-04-30 — Auto-allow Edit/Write/NotebookEdit (no permission prompt)
+
+**Context:** Edit, Write, and NotebookEdit were not in the permissions allow-list, so each first-edit-of-a-file in a session triggered a permission prompt. Operator flagged this as friction on a settled workflow: the workspace is fully version-controlled, edits land on feature branches, branches are isolated and reversible, pushes to protected branches are already blocked by hook. The prompt layer adds nothing the version-control layer doesn't already cover.
+
+**Decision:** Added `Edit`, `Write`, `NotebookEdit` to `permissions.allow` in `.claude/settings.json`. No more permission prompts for file edits. Safety moves down to the existing version-control layer (feature branches, commit history, branch-protection hook) plus the new edit-time enforcement hook (see companion decision below).
+
+**Why:** Permission prompts are valuable when the action is hard to reverse or has external blast radius. File edits in a version-controlled workspace are neither — `git checkout`, `git restore`, branch deletion all roll back cleanly. Trust earned at the version-control layer should not be re-litigated at the prompt layer. Operator stated the rule explicitly and asked it codified so it never re-emerges.
+
+**Expected outcome:** Zero edit-permission prompts in normal flow. If this produces an accidental edit on a protected branch, the companion enforcement hook catches it. If a file outside any git repo gets edited unexpectedly, that's surfaced by the lack of a feature-branch context.
+
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-04-30 — Feature-branch enforcement at edit time (PreToolUse hook)
+
+**Context:** With Edit/Write auto-allowed (companion decision above), there is no longer a per-edit confirmation moment to catch a stray edit on `main`/`master`/`dev`/`development`/`production`. The existing `block-protected-push.sh` only fires at push time — by then, edits and commits have already accumulated on the wrong branch and need rewinding. Operator wants the rule enforced earlier and stated as a default behavior: before the first edit of any session, check current branch; if protected, create a feature branch first; if a feature branch already exists for the session, keep editing on it (no siblings).
+
+**Decision:** Added `.claude/hooks/enforce-feature-branch.sh`, registered as a PreToolUse hook on `Edit|Write|NotebookEdit`. The hook resolves the repo containing the file being edited (handles workspace root + submodules naturally), reads `git rev-parse --abbrev-ref HEAD` for that repo, and blocks the edit if the branch matches the protected list. Block message tells Claude to create `omraneah/<short-task-name>` and retry, and explicitly to reuse an existing session feature branch rather than creating siblings. Companion feedback file: `memory/medium-term/feedback/stable/feedback_auto_edit_on_feature_branch.md`.
+
+**Why:** Defense in depth. The hook is the safety net — the primary path is Claude doing the right thing without waiting for the hook to fire (per the feedback rule). Catching protected-branch edits at the PreToolUse stage is much cheaper than catching them at push time: zero commits to rewind, zero history to rewrite. Submodule-aware resolution (find the git repo containing the file, not the workspace root) is critical because edits in `personal-apps/` or `boringsystems/` need their own feature branches in those submodules.
+
+**Expected outcome:** Impossible to land an edit on a protected branch in any tracked repo (workspace root or submodule). Block message gives Claude actionable guidance — branch name convention, sibling-avoidance rule. Combined with the companion auto-allow decision, the net effect is: edits flow without prompts on feature branches, hard-stop on protected branches.
+
+**Actual outcome:** *(pending)*
+
+---
+

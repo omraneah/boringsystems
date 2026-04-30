@@ -4,9 +4,13 @@
       "Agent",
       "WebFetch",
       "WebSearch",
-      "Bash"
+      "Bash",
+      "Edit",
+      "Write",
+      "NotebookEdit"
     ]
   },
+  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
@@ -26,6 +30,15 @@
           {
             "type": "command",
             "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/block-protected-push.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/enforce-feature-branch.sh"
           }
         ]
       }
@@ -63,13 +76,12 @@
     ]
   },
   "enabledPlugins": {},
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
   "skipDangerousModePermissionPrompt": true,
   "agentPushNotifEnabled": true,
-  "voiceEnabled": true,
-  "model": "opus"
+  "voiceEnabled": true
 }
