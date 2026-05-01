@@ -20,7 +20,7 @@ Ce n'était pas une erreur de conception non remarquée. Ajouter un troisième e
 
 Mais la dette différée s'était cumulée. Le système n'était pas seulement couplé à un provider spécifique. Il était câblé au modèle d'identité de ce provider à chaque couche. Toute évolution future — contrôle d'accès plus strict, remplacement du provider, ou intégration enterprise — exigeait de démêler ce couplage en premier.
 
-Ce démêlage n'était pas optionnel. C'était la condition structurelle pour la prochaine phase.
+Ce démêlage n'était pas optionnel. C'était la condition structurelle pour la prochaine phase — [la séquence de renforcement de la plateforme qui a suivi est documentée dans Renforcer une plateforme en production pour l'entreprise](/fr/work/saas-hardening/).
 
 ---
 
@@ -114,3 +114,5 @@ Le couplage au provider d'authentification se cumule silencieusement. Il reste i
 La résolution ne consiste pas à éviter les choix pragmatiques sous pression — ces choix sont souvent corrects pour le moment. Il s'agit de nommer la contrainte, définir la frontière future, et exécuter le cleanup avant que la dette technique ferme des options stratégiques.
 
 Quand les règles sont explicites, appliquées programmatiquement et suivies sur une métrique réelle, un refactoring de cette envergure peut être terminé plus vite qu'anticipé — sans perturber la delivery qu'il accompagne.
+
+Le cadre de décision pour savoir quand déléguer l'auth et comment lire le plafond de chaque approche — avant que le couplage devienne de la dette — est couvert dans [SaaS Auth : le bon, la brute et le truand](/fr/writing/saas-auth-the-good-the-bad-and-the-ugly/).

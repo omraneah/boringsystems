@@ -89,6 +89,8 @@ Cela importait parce qu'une plateforme ne peut pas évoluer en sécurité quand 
 
 Une fois cette séparation existante, l'identité à l'intérieur du système est devenue portable au lieu d'être liée au fournisseur.
 
+L'exécution complète de cette couche — nommer la dette, le cleanup systématique, et la décision d'architecture enterprise-ready — est documentée dans [Découpler l'identité du provider d'authentification](/fr/work/decoupling-identity-from-the-auth-provider/). Le cadre de décision orienté opérateurs pour cette couche est couvert dans [SaaS Auth : le bon, la brute et le truand](/fr/writing/saas-auth-the-good-the-bad-and-the-ugly/).
+
 ---
 
 ### Couche 2 — Appliquer l'accès à la limite

@@ -44,7 +44,7 @@ Le provider émet un identifiant — un claim `sub`, un Cognito user ID. Il est 
 
 **Les provider IDs qui fuient dans la logique métier.**
 
-Même cause racine, surface différente. Une entité booking a une colonne `cognito_user_id`. Un enregistrement de paiement porte l'identifiant du provider. Les événements GPS routent sur la clé utilisateur du provider auth. L'authentification et la logique domaine sont maintenant couplées sémantiquement — pas à la frontière où c'est intentionnel, mais partout dans le système où c'est invisible. Ce ne sont pas des bugs. Ils s'accumulent comme des décisions de développement normales prises sans règle claire. Le cleanup, quand il arrive, n'est pas un hotfix.
+Même cause racine, surface différente. Une entité booking a une colonne `cognito_user_id`. Un enregistrement de paiement porte l'identifiant du provider. Les événements GPS routent sur la clé utilisateur du provider auth. L'authentification et la logique domaine sont maintenant couplées sémantiquement — pas à la frontière où c'est intentionnel, mais partout dans le système où c'est invisible. Ce ne sont pas des bugs. Ils s'accumulent comme des décisions de développement normales prises sans règle claire. Le cleanup, quand il arrive, n'est pas un hotfix — [un cas concret en trois phases de ce cleanup est documenté ici](/fr/work/decoupling-identity-from-the-auth-provider/).
 
 **Utiliser les groupes du provider pour les rôles.**
 
@@ -105,28 +105,26 @@ Pas besoin de les implémenter. Il faut savoir ce qu'on achète.
 | Self-hosted (Keycloak) | Oui | Très élevé (0,25–1 FTE ongoing) | Faible | Souveraineté des données, environnement réglementé |
 | Build full custom | Dépend | Très élevé | Contrôle total | Capacité ingénierie auth et besoins spécifiques |
 
-L'analogie tient encore : Stripe existe non pas parce que les paiements sont impossibles à construire, mais parce que la plupart des équipes ont mieux à faire que les construire. La même logique s'applique à l'auth au niveau enterprise. Un auth broker à 125 $/connexion enterprise par mois est négligeable par rapport au coût d'un deal enterprise bloqué parce qu'on ne pouvait pas supporter SAML à temps.
+L'analogie tient encore : Stripe existe non pas parce que les paiements sont impossibles à construire, mais parce que la plupart des équipes ont mieux à faire que les construire. La même logique s'applique à l'auth au niveau enterprise. Le coût d'un auth broker par connexion enterprise est négligeable par rapport au coût d'un deal enterprise bloqué parce qu'on ne pouvait pas supporter SAML à temps.
 
 ---
 
-## Comparaison des outils
+## Les solutions auth : une carte par catégorie
 
-| Outil | SAML/OIDC | SCIM | Self-hosted | Modèle tarifaire | Idéal pour |
-|---|---|---|---|---|---|
-| **WorkOS** | Oui | Oui | Non | Par connexion (65–125 $/mois) | SaaS Series A–C, motion de vente enterprise rodée |
-| **Stytch B2B** | Oui | Oui* | Non | MAU + par connexion ; 5 offertes | Early-stage, validation de la demande enterprise |
-| **Auth0 (Okta)** | Oui | Oui | Plan enterprise seulement | MAU + palier plan ; falaise après 5 connexions | Écosystème Okta existant ou besoins hybrides complexes |
-| **Frontegg** | Oui | Oui | Non | MAU + features ; tier gratuit (5 connexions) | Équipes qui embarquent un portail admin tenant dans le produit |
-| **Clerk** | Oui | Non | Non | Par connexion (15–75 $/mois) | Produits PLG / developer ; pas prêt pour Fortune 500 |
-| **SSOReady** | Oui | Oui | Oui (Apache) | Core gratuit ; enterprise custom | Environnements réglementés, contrainte coût, open source |
-| **Keycloak** | IdP complet | Oui | Oui (obligatoire) | OSS gratuit ; build Red Hat disponible | Gouvernement, souveraineté EU, on-prem |
-| **AWS Cognito** | SP uniquement | Non natif | AWS-hosted seulement | MAU (0,015 $/MAU SAML) | Équipes AWS-native, peu de clients enterprise |
+La décision porte sur la catégorie en premier, le produit ensuite. Chaque catégorie implique un arbitrage structurel différent.
 
-*Statut GA du SCIM Stytch : à vérifier avant engagement.
+| Catégorie | Ce qu'elle fait | Plafond | Quand | Exemples |
+|---|---|---|---|---|
+| **Auth managée** | AuthN à l'échelle consumer, charge ops faible | Pas de modèle organisation natif ; SSO enterprise multi-tenant exige du code custom | Early stage, B2C, B2SMB | Cognito, Firebase Auth |
+| **Plateforme identity généraliste** | Couverture complète consumer + enterprise, SSO et SCIM inclus | Complexité et coût croissent ensemble ; paliers tarifaires enterprise sur certains plans | Écosystème existant ; besoins hybrides complexes | Auth0 (Okta), Frontegg |
+| **Auth broker** | N tenants × M protocoles derrière une intégration | Dépendance fournisseur supplémentaire ; hébergé uniquement | Vente enterprise, équipe trop petite pour gérer l'infra auth | WorkOS, Stytch B2B |
+| **Self-hosted / open source** | Contrôle total, données dans votre infrastructure | Charge ops permanente — temps ingénierie dédié | Souveraineté des données, environnement réglementé, acheteurs gouvernementaux | Keycloak, SSOReady |
+| **Entièrement custom** | Contrôle total, responsabilité totale | Capacité ingénierie auth requise | Exigences spécifiques qu'aucun outil disponible ne couvre | — |
 
-**Note sur Clerk :** pas de support SCIM en début 2026. Quand un employé est supprimé d'Okta, l'application n'en est pas notifiée. C'est une lacune que la plupart des questionnaires de sécurité enterprise détectent.
+Deux points structurels qui tiennent indépendamment des produits spécifiques :
 
-**Note sur Auth0 :** la falaise tarifaire est réelle. Au-delà du cinquième client enterprise avec SSO sur le plan Professional, le contrat suivant nécessite une négociation enterprise custom. Des devis réels à ce palier pour de petits volumes d'utilisateurs ont été documentés à 30 000 $/an et au-delà.
+- **La couverture SCIM varie.** Tous les outils ne supportent pas la gestion du cycle de vie utilisateur. Quand un employé est supprimé d'un identity provider, une application sans support SCIM n'en est pas notifiée — une lacune que les questionnaires de sécurité enterprise détectent systématiquement. Vérifier avant de s'engager.
+- **Paliers tarifaires enterprise.** Certaines plateformes ont des seuils de coût significatifs à l'échelle enterprise — un point à partir duquel le client suivant déclenche un contrat enterprise custom. Savoir où se situe ce seuil avant de construire une motion de vente qui le dépasse.
 
 ---
 

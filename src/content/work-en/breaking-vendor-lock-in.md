@@ -182,3 +182,5 @@ It was sovereignty gained without operational shock.
 This case illustrates that reclaiming control from a deeply embedded external dependency is less about speed than sequencing.
 
 When internals are inaccessible, the path forward is to observe precisely, move authority inward in stages, and remove dependencies only after the owned path has become dependable.
+
+The next stage of this work — strengthening the reclaimed system for more demanding external use cases — is documented in [Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/).

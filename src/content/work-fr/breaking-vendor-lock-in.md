@@ -182,3 +182,5 @@ C'était la souveraineté gagnée sans choc opérationnel.
 Ce cas illustre que reprendre le contrôle d'une dépendance externe profondément enracinée relève moins de la vitesse que du séquençage.
 
 Quand les mécanismes internes sont inaccessibles, la voie à suivre est d'observer précisément, de déplacer l'autorité vers l'intérieur par étapes, et de supprimer les dépendances seulement après que le chemin détenu est devenu fiable.
+
+L'étape suivante de ce travail — renforcer le système récupéré pour des cas d'usage externes plus exigeants — est documentée dans [Renforcer une plateforme en production pour l'entreprise](/fr/work/saas-hardening/).

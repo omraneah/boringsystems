@@ -177,3 +177,5 @@ This case illustrates that architecture governance does not require a large arch
 It requires explicit boundaries, accessible guidance, and enough operational discipline to keep that guidance authoritative.
 
 Once the same principles are applied from the same source, coordination overhead drops and parallel execution becomes safer.
+
+These governance mechanisms — principle-level boundary documents, programmatic enforcement, weekly tracking against a visible metric — are demonstrated in practice in [Decoupling Identity From the Auth Provider](/en/work/decoupling-identity-from-the-auth-provider/).

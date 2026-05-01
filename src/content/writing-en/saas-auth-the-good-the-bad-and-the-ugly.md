@@ -44,7 +44,7 @@ The provider issues an identifier — a `sub` claim, a Cognito user ID. It's rig
 
 **Provider IDs leaking into business logic.**
 
-Same root cause, different surface. A booking entity has a `cognito_user_id` column. A payment record carries the provider's identifier. GPS events route by the auth provider's user key. Authentication and domain logic are now semantically coupled — not at the boundary where it's intentional, but throughout the system where it's invisible. These aren't bugs. They accumulate as normal development decisions made without a clear rule. The cleanup, when it eventually happens, is not a hotfix.
+Same root cause, different surface. A booking entity has a `cognito_user_id` column. A payment record carries the provider's identifier. GPS events route by the auth provider's user key. Authentication and domain logic are now semantically coupled — not at the boundary where it's intentional, but throughout the system where it's invisible. These aren't bugs. They accumulate as normal development decisions made without a clear rule. The cleanup, when it eventually happens, is not a hotfix — [a three-phase case study of exactly this cleanup is documented here](/en/work/decoupling-identity-from-the-auth-provider/).
 
 **Using auth provider groups for roles.**
 
@@ -105,28 +105,26 @@ You don't need to implement these. You need to know what you're buying.
 | Self-host (Keycloak) | Yes | Very high (0.25–1 FTE ongoing) | Low | Data sovereignty mandate, regulated environments |
 | Build fully custom | Depends | Very high | Full control | Auth engineering capacity and specific requirements |
 
-The analogy holds again: Stripe exists not because payment processing is impossible to build, but because most teams are better off delegating it. The same logic applies to auth at the enterprise tier. An auth broker at $125 per enterprise connection per month is a rounding error relative to the cost of a stalled enterprise deal because you couldn't support SAML in time.
+The analogy holds again: Stripe exists not because payment processing is impossible to build, but because most teams are better off delegating it. The same logic applies to auth at the enterprise tier. An auth broker's cost per enterprise connection is a rounding error relative to the cost of a stalled enterprise deal because you couldn't support SAML in time.
 
 ---
 
-## Tool Comparison
+## Auth Solutions: Categories and Examples
 
-| Tool | SAML/OIDC | SCIM | Self-hosted | Pricing model | Best for |
-|---|---|---|---|---|---|
-| **WorkOS** | Yes | Yes | No | Per-connection ($65–$125/mo) | Series A–C SaaS, clean enterprise sales motion |
-| **Stytch B2B** | Yes | Yes* | No | MAU + per-connection; 5 free | Early-stage, validating enterprise demand |
-| **Auth0 (Okta)** | Yes | Yes | Enterprise plan only | MAU + plan tier; steep cliff after 5 connections | Existing Okta ecosystem or complex hybrid needs |
-| **Frontegg** | Yes | Yes | No | MAU + features; free tier (5 connections) | Teams shipping a self-service tenant admin portal |
-| **Clerk** | Yes | No | No | Per-connection ($15–$75/mo) | Developer/PLG products; not ready for Fortune 500 |
-| **SSOReady** | Yes | Yes | Yes (Apache) | Free core; custom enterprise | Regulated environments, cost-sensitive, open-source |
-| **Keycloak** | Full IdP | Yes | Yes (required) | Free OSS; Red Hat build available | Government, EU data sovereignty, air-gapped |
-| **AWS Cognito** | As SP only | No native | AWS-hosted only | MAU-based ($0.015/MAU SAML) | AWS-native teams, small number of enterprise customers |
+The decision is category first, product second. Each category makes a different structural tradeoff.
 
-*Stytch SCIM GA status: verify before committing.
+| Category | What it does | Ceiling | When | Examples |
+|---|---|---|---|---|
+| **Managed auth** | Consumer-scale AuthN, low ops burden | No native org model; enterprise SSO requires custom code | Early stage, B2C, B2SMB | Cognito, Firebase Auth |
+| **General-purpose platform** | Full consumer + enterprise stack, SSO and SCIM included | Complexity and cost grow together; pricing step-changes at enterprise scale on some plans | Existing ecosystem; complex hybrid requirements | Auth0 (Okta), Frontegg |
+| **Auth broker** | N-tenants × M-protocols behind one integration | Another vendor dependency; hosted only | Selling to enterprises, team too small to own auth ops | WorkOS, Stytch B2B |
+| **Self-hosted / open-source** | Full control, data on your infrastructure | Ongoing ops burden — dedicated engineering time required | Data sovereignty, regulated environments, government buyers | Keycloak, SSOReady |
+| **Fully custom** | Total control, total responsibility | Auth engineering capacity required | Genuinely specific requirements no available tool covers | — |
 
-**One note on Clerk:** no SCIM support as of early 2026. When an employee is removed from Okta, your app isn't notified. That's a gap most enterprise IT security questionnaires catch.
+Two structural notes that hold regardless of which specific products you evaluate:
 
-**One note on Auth0:** the pricing cliff is real. After your fifth enterprise SSO connection on the Professional plan, the next customer requires a custom enterprise contract. Real-world quotes at this tier have been documented in the $30K+/year range for small user counts.
+- **SCIM coverage varies.** Not all tools in any category support user lifecycle management. When an employee is removed from an identity provider, an app without SCIM isn't notified — a gap enterprise security questionnaires reliably surface. Verify before committing.
+- **Enterprise pricing step-changes.** Some platforms have significant cost thresholds at enterprise scale — a point where the next customer triggers a custom enterprise contract. Know where that threshold sits before building a sales motion that crosses it.
 
 ---
 

@@ -20,7 +20,7 @@ This was not an oversight. Adding a third identity namespace — on top of the e
 
 But the deferred debt had compounded. The system was not just coupled to a specific provider. It was wired to that provider's identity model at every layer. Any future evolution — stricter access control, provider replacement, or enterprise-grade integration — required untangling that coupling first.
 
-That untangling was not optional. It was the structural precondition for the next phase.
+That untangling was not optional. It was the structural precondition for the next phase — [the platform-wide hardening sequence that followed is documented in Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/).
 
 ---
 
@@ -114,3 +114,5 @@ Auth provider coupling compounds silently. It tends to be invisible until the ne
 The resolution is not to avoid pragmatic choices under pressure — those choices are often correct for the moment. It is to name the constraint, define the future boundary, and execute the cleanup before the technical debt forecloses strategic options.
 
 When the rules are explicit, programmatically enforced, and tracked against a real metric, a refactor of this scope can be completed faster than expected — and without disrupting the ongoing delivery it runs alongside.
+
+The decision framework for when to delegate auth and how to read the ceiling of any given approach — before coupling becomes debt — is covered in [SaaS Auth: The Good, the Bad, and the Ugly](/en/writing/saas-auth-the-good-the-bad-and-the-ugly/).

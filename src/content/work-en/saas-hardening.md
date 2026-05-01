@@ -89,6 +89,8 @@ This mattered because a platform cannot evolve safely when core identity is defi
 
 Once that separation existed, identity inside the system became portable instead of provider-bound.
 
+The full execution of this layer — naming the debt, systematic cleanup, and the enterprise-ready architecture decision — is documented in [Decoupling Identity From the Auth Provider](/en/work/decoupling-identity-from-the-auth-provider/). The operator-facing decision framework for this layer is covered in [SaaS Auth: The Good, the Bad, and the Ugly](/en/writing/saas-auth-the-good-the-bad-and-the-ugly/).
+
 ---
 
 ### Layer 2 — Enforce Access at the Boundary
