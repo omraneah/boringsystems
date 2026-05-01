@@ -1,6 +1,6 @@
 ---
-title: "Découpler l'identité du provider d'authentification"
-description: "Un parcours en trois phases : du câblage provider pragmatique à une couche identité propre et une frontière d'authentification enterprise-ready."
+title: "Délimiter les couches d'authentification dans un système en production"
+description: "Un compte-rendu en trois phases de la séparation des couches auth dans une plateforme live — du modèle domaine couplé au provider vers des frontières propres et un chemin d'authentification enterprise-ready."
 date: 2026-05-01
 featured: true
 order: 6
@@ -8,111 +8,130 @@ order: 6
 
 ## Contexte
 
-Une fois la maîtrise interne de la plateforme établie, un problème structurel plus profond est apparu.
+Le principe de départ était juste : ne pas gérer les mots de passe, ne pas devenir un Identity Provider. Déléguer la vérification des credentials à un service managé — absorber aucun risque cryptographique, aucune complexité de breach response, aucune surface de compliance. Cette décision a été prise correctement, sous pression et contrainte, et elle a tenu.
 
-La couche d'authentification avait été câblée pendant la phase d'inhousing sous forte pression temporelle. Le provider retenu — un service cloud d'identité managé — avait été choisi parce qu'il était déjà disponible et ne nécessitait aucun travail d'infrastructure initial. C'était le bon choix étant donné les contraintes.
+Ce qui n'a pas été spécifié, c'est tout le reste.
 
-Mais ce choix avait été étendu au-delà de son périmètre initial.
+La stack auth a plus d'une couche. Il y a l'Identity Provider — le système qui authentifie les utilisateurs et émet des assertions signées. Il y a l'identity broker — la couche qui normalise la fédération entre plusieurs IdPs en amont. Il y a la token verification — comment le backend confirme l'identité à chaque requête API. Il y a le user management — la base de données de la plateforme, son modèle domaine, ses IDs. Il y a le user provisioning — le cycle de vie des comptes, distinct de l'authentification. Il y a le session management — maintenir l'état authentifié entre les requêtes. Il y a l'authorization — qui peut faire quoi.
 
-Le provider d'authentification avait glissé dans un second rôle : il servait de facto de couche de gestion des utilisateurs. Ses identifiants spécifiques s'étaient propagés dans tout le système — modules métier, API, back office, application mobile. Ce qui devait être un point d'intégration étroit était devenu une dépendance structurante embarquée dans une logique applicative qui n'avait rien à voir avec l'authentification.
+Aucune de ces couches n'a été nommée. Elles sont donc devenues par défaut la responsabilité de l'IdP. Pas par choix — par gravité. Le service d'authentification managé était là, il avait des APIs, et l'équipe les a utilisées. L'identifiant utilisateur du provider est devenu l'identifiant utilisateur de la plateforme, embarqué dans les objets domaine. La token verification appelait le provider à chaque requête API. L'état d'autorisation était partiellement stocké dans les custom attributes du provider. Le point d'intégration qui aurait dû rester étroit était devenu une dépendance structurante dans chaque module domaine.
 
-Ce n'était pas une erreur de conception non remarquée. Ajouter un troisième espace d'identifiants — par-dessus les identifiants du vendor externe et ceux du provider — aurait introduit une complexité structurelle pendant la fenêtre de vélocité la plus critique de la transition. Le choix pragmatique était de différer.
+Chacune de ces décisions était défendable en isolation, prise sous pression pendant une transition critique. Le problème n'était pas une décision individuelle. C'était l'absence d'un modèle qui définit les couches comme distinctes, assigne à chacune un propriétaire, et rend les violations de frontières rejetables.
 
-Mais la dette différée s'était cumulée. Le système n'était pas seulement couplé à un provider spécifique. Il était câblé au modèle d'identité de ce provider à chaque couche. Toute évolution future — contrôle d'accès plus strict, remplacement du provider, ou intégration enterprise — exigeait de démêler ce couplage en premier.
-
-Ce démêlage n'était pas optionnel. C'était la condition structurelle pour la prochaine phase — [la séquence de renforcement de la plateforme qui a suivi est documentée dans Renforcer une plateforme en production pour l'entreprise](/fr/work/saas-hardening/).
+Voici comment c'est résolu — et comment le chemin d'authentification enterprise a été construit sur des fondations propres ensuite.
 
 ---
 
 ## Contraintes
 
-L'environnement portait un ensemble de contraintes familières :
+Le travail s'est déroulé sous les contraintes opérationnelles standard pour ce type de chantier :
 
-- production en continu sans tolérance d'interruption,
-- delivery de features qui ne pouvait pas s'arrêter,
-- une équipe réduite avec une capacité parallèle limitée,
-- et une identité spécifique au provider embarquée sur de multiples surfaces.
+- production live, delivery continue, aucune tolérance d'interruption
+- delivery de features qui ne pouvait pas s'arrêter
+- équipe réduite avec une capacité parallèle limitée
+- identifiants et logique spécifiques au provider dans chaque module domaine : booking, paiement, wallet, user management, opérations drivers, GPS, gestion des lignes, back office, application mobile
 
-Le problème ne pouvait pas se résoudre par une réécriture. Il fallait le traiter progressivement, sans perturber la delivery.
-
----
-
-## Objectif
-
-Établir une couche identité propre et agnostique au provider — rendre l'identifiant utilisateur interne canonique dans tout le système, isoler le provider d'authentification sur une frontière étroite, et préparer la plateforme à une authentification enterprise sans forcer une migration destructurante.
+Le couplage ne pouvait pas se résoudre par une réécriture. Il fallait le traiter progressivement, une frontière à la fois, sans perturber la delivery.
 
 ---
 
-## Exécution
+## Les trois violations de couche
 
-Le travail s'est déroulé en trois phases distinctes, chacune adressant un stade différent du problème d'identité.
+Avant tout cleanup, la première tâche était de nommer quelles couches faisaient le travail de qui. Un cleanup qui commence sans modèle clair produit de l'activité sans progrès.
 
----
+Trois violations ont été cartographiées :
 
-### Phase 1 — Nommer la dette avant d'y toucher
+**L'identifiant de l'IdP dans la couche domaine.** L'identifiant interne du provider — un claim émis par le token — était devenu l'identifiant utilisateur canonique dans tous les objets domaine. Chaque record de booking, ligne de paiement, log d'activité, et contrat API référençait l'identifiant du provider. C'était un élément de la couche IdP embarqué dans les couches user management et domaine. Le provider faisait office de base de données utilisateurs de la plateforme — non par décision, mais parce qu'aucune autre décision n'avait été prise.
 
-La première phase était un choix de jugement, pas une implémentation.
+**La token verification dans le hot path de l'API.** La couche de token verification appelait l'API du provider auth à chaque requête entrante. Chaque appel API authentifié — chargements de pages, actions utilisateurs, fetch de données — était un appel réseau externe synchrone vers un service tiers. L'effet : 50 à 300 ms de latence externe à chaque requête, une dépendance de disponibilité sur le provider pour chaque utilisateur à chaque instant, et les rate limits API du provider qui devenaient les rate limits de la plateforme sous charge.
 
-Le choix pragmatique fait pendant l'inhousing était correct pour ce moment-là. Rouvrir le modèle d'identité en pleine transition aurait ralenti le travail qui devait réellement avancer. La décision était donc de continuer, de documenter la contrainte explicitement, et de traiter le cleanup comme un engagement futur défini — pas un report indéfini, mais un séquençage intentionnel.
+Le pattern correct est la vérification cryptographique locale : parser le JWT, vérifier la signature contre les clés publiques publiées par l'émetteur (récupérées une fois, mises en cache via JWKS), valider les claims. C'est une opération locale avec zéro appel réseau en régime normal. Le provider appartient au cold path — le login — pas au hot path.
 
-Ce cadrage avait de l'importance. Il signifiait que le cleanup arrivait avec un propriétaire clair et un périmètre défini, plutôt que comme un refactoring ouvert déclenché par l'accumulation de frustrations.
-
----
-
-### Phase 2 — Supprimer les fuites du provider de façon systématique
-
-La deuxième phase a démarré une fois la maîtrise de la plateforme stabilisée et la feuille de route de hardening en cours.
-
-La première étape consistait à établir des règles claires : un identifiant interne unique devenait le primitif utilisateur canonique dans tout le système. Les identifiants spécifiques au provider étaient confinés à une frontière auth étroite. Toute occurrence en dehors de cette frontière était classifiée comme un défaut architectural — pas une suggestion, pas un backlog : une violation à rejeter en code review.
-
-Ces règles ont été publiées sous forme de documents de frontières architecturales, placés là où la planification, l'implémentation et la review avaient déjà lieu. Cela les rendait actionnables plutôt que consultatives.
-
-Des guardrails programmatiques ont été ajoutés pour que les identifiants provider ne puissent pas réintégrer la logique métier et atteindre la production sans être détectés. Un suivi hebdomadaire mesurait le nombre de violations restantes dans la codebase. Cela donnait au cleanup une métrique visible et une condition d'arrêt concrète.
-
-L'exécution a été divisée délibérément : un senior engineer portait le refactoring structurel, tandis que les autres contributeurs nettoyaient les violations rencontrées dans leur flow de delivery habituel. Cette division a empêché le cleanup de bloquer les features ou de se concentrer sur une seule personne.
-
-Le cleanup a couvert tous les modules métier du système : booking, paiement, wallet, gestion des utilisateurs, opérations drivers, GPS, gestion des lignes, back office et application mobile.
-
-Le périmètre complet a été terminé en environ deux mois — plus vite que ce type d'effort prend habituellement, principalement parce que les règles étaient explicites, les guardrails appliqués programmatiquement, et le suivi hebdomadaire rendait la progression lisible sans coordination constante.
+**L'état d'autorisation dans la mauvaise couche.** Les rôles et les données liées aux permissions étaient partiellement gérés via les custom attributes et les group constructs du provider auth. L'authorization est une préoccupation domaine. Qui peut faire quoi, dans quel contexte, sous quel tenant — ça appartient à la base de données de la plateforme, dérivé de son propre modèle domaine. L'IdP prouve l'identité. Ce que cette identité est autorisée à faire ne concerne pas le provider.
 
 ---
 
-### Phase 3 — Construire la voie enterprise-ready
+## Phase 1 — Nommer la dette avant d'y toucher
+
+La première phase était une décision de cadrage, pas d'implémentation.
+
+Les choix pragmatiques faits pendant la transition étaient corrects pour ce moment-là. Rouvrir le modèle d'identité sous pression de vélocité aurait ralenti le travail qui devait réellement avancer. La décision était donc de continuer, documenter la contrainte explicitement, et s'engager sur un cleanup défini — pas un backlog ouvert, mais une dette nommée avec un propriétaire et un périmètre.
+
+Ce cadrage avait de l'importance. Il signifiait que le cleanup arrivait avec une propriété claire et une condition d'arrêt définie, plutôt que comme un refactoring ouvert déclenché par l'accumulation de friction.
+
+---
+
+## Phase 2 — Redessiner les frontières et exécuter le cleanup
+
+La deuxième phase a démarré une fois la stabilité de la plateforme restaurée.
+
+**Les règles d'abord.** Un identifiant utilisateur interne à la plateforme — généré par la plateforme, opaque pour le provider auth — est devenu le primitif utilisateur canonique dans tout le système. L'identifiant du provider auth a été confiné à une frontière auth étroite. Toute occurrence en dehors de cette frontière était classifiée comme un défaut architectural : pas une suggestion de code review, pas un item de backlog, mais une violation à rejeter.
+
+Ces règles ont été publiées sous forme de documents de frontières architecturales placés là où la planification, l'implémentation et la review avaient déjà lieu. Ça les rendait actionnables plutôt que consultatives.
+
+**L'enforcement programmatique.** Des guardrails d'analyse statique empêchaient les identifiants spécifiques au provider de traverser vers les modules domaine sans être détectés. Un tracking metric hebdomadaire comptait les violations restantes dans la codebase. Quand le cleanup a un nombre visible et une condition d'arrêt concrète, il finit. Quand il est diffus, il ne finit pas.
+
+**L'exécution divisée délibérément.** Un senior engineer portait le refactoring structurel des modules domaine centraux. Les autres contributeurs nettoyaient les violations rencontrées dans leur flow de delivery habituel. Ça a empêché le cleanup de devenir un projet bloquant ou de se concentrer sur une seule personne.
+
+Le périmètre complet a été terminé en environ deux mois pour une codebase de cette taille et cette surface — plus vite que ce type de refactoring structurel ne progresse habituellement, principalement parce que le modèle était explicite, l'enforcement était programmatique, et la progression était mesurée sur un metric réel.
+
+---
+
+## Phase 3 — Le chemin enterprise : IdP de l'acheteur via un broker vers la plateforme
 
 La troisième phase adressait la trajectoire suivante de la plateforme.
 
-Le modèle business exigeait une authentification enterprise : intégrations avec les identity providers des acheteurs grands comptes, support des protocoles standards utilisés par ces acheteurs, et gestion du cycle de vie des utilisateurs déléguée aux systèmes de l'acheteur.
+Le business model exigeait une authentification enterprise-grade : intégration avec les identity providers des organisations acheteuses, support des protocoles qu'elles utilisent, et gestion du cycle de vie des comptes déléguée aux systèmes de l'acheteur.
 
-Deux options étaient sur la table concernant le provider d'authentification existant : l'étendre au-delà de son périmètre initial pour couvrir ces exigences, ou le traiter comme l'outil adapté à ce qu'il faisait déjà et router les nouvelles exigences enterprise ailleurs.
+**La structure de l'auth enterprise en B2B SaaS.** Dans un contexte B2B SaaS, l'authentification enterprise a une forme spécifique : les employés de l'acheteur s'authentifient auprès de l'identity provider de l'acheteur — Okta, Microsoft Entra ID, une instance Keycloak self-hosted. Ce provider émet une assertion signée (SAML ou OIDC). Le SaaS reçoit cette assertion, la vérifie, et la mappe au bon user record et à la bonne session.
 
-Étendre le provider existant a été considéré et rejeté. Cette voie aurait accumulé une complexité opérationnelle — configuration par tenant, cas limites protocolaires, outillage de gestion sur-mesure — sans résoudre la dépendance architecturale sous-jacente. Elle aurait aussi rendu la migration complète plus coûteuse à terme, pas moins.
+La couche entre le SaaS et l'IdP de l'acheteur est l'identity broker. Sa fonction : normaliser N configurations d'IdP clients, N variantes protocolaires, N attribute mappings en une seule API. Gérer l'admin portal self-service pour que les équipes IT clients configurent les connexions indépendamment. Abstraire les échanges de metadata SAML par client et les rotations de certificats. C'est le problème de fédération multi-tenant — il compound avec chaque client enterprise ajouté. Le construire en interne est un engagement opérationnel permanent qui évolue mal.
 
-La résolution a été une séparation nette : le provider existant restait en place pour le tenant interne actuel, où il fonctionnait bien et où le risque de migration ne valait pas d'être pris. Tous les nouveaux tenants enterprise passaient par un auth broker dédié — une couche spécifiquement conçue pour absorber la complexité N-tenants × M-protocoles et gérer les intégrations avec les identity providers sans exposer cette complexité au backend de la plateforme.
+**Les deux options évaluées pour la stack auth existante.** Le service d'authentification managé en place pouvait supporter la fédération SAML et OIDC. Mais le SSO enterprise multi-tenant à l'échelle — configuration IdP par tenant, admin portal self-service, gestion des endpoints SCIM par client — exigeait de construire une couche custom significative par-dessus. Évalué, rejeté : ce chemin aurait recréé la couche broker, sous-dimensionnée, dans un service portant déjà plus de responsabilité qu'il ne devrait.
 
-Cette approche maintenait la stabilité opérationnelle, donnait aux nouveaux tenants du SSO enterprise dès le départ, et préservait un chemin de migration clair pour le tenant interne au moment opportun.
+L'alternative : introduire un identity broker dédié pour les nouveaux tenants enterprise, et laisser le service d'authentification managé existant en place pour le tenant interne de l'entreprise où il fonctionne et où le risque de migration ne justifie pas le coût.
+
+**L'architecture résultante pour les tenants enterprise :**
+
+```
+Employé de l'acheteur
+  → IdP de l'acheteur (Okta, Entra ID, Keycloak, etc.)
+  → Identity broker (normalise SAML/OIDC, gère la config par tenant, gère SCIM)
+  → Backend de la plateforme (reçoit le profil vérifié, émet son propre session token)
+  → Base de données de la plateforme (user record, tenant, rôles, permissions)
+```
+
+Le tenant interne continue sur son chemin existant, inchangé.
+
+**La token verification reste le même pattern quel que soit l'émetteur.** Les deux chemins émettent des JWTs. Les deux sont vérifiés localement contre le JWKS publié par l'émetteur. Le claim `iss` dans le token détermine quel key set utiliser. Deux émetteurs, deux endpoints JWKS, une couche de vérification. Le provider auth — quel qu'il soit — est sur le cold path. Le hot path est une vérification cryptographique locale.
+
+La gestion du cycle de vie des comptes pour les tenants enterprise passe par SCIM : l'identity provider de l'acheteur pousse des événements de provisioning vers le broker, qui les transmet à la plateforme. Quelqu'un rejoint l'organisation : compte créé. Quelqu'un la quitte : accès révoqué. Aucune intervention manuelle, aucune dérive.
 
 ---
 
 ## Résultat
 
-La plateforme est passée d'un état où l'identité spécifique au provider était embarquée dans toute la logique métier à un état où l'identifiant interne est canonique, la logique provider isolée en périphérie du système, et la couche d'authentification capable d'évoluer sans toucher au code domaine.
+La plateforme est passée d'un état où les identifiants du provider auth étaient embarqués dans tout le domaine à un état avec une séparation propre des couches :
 
-Les résultats concrets :
+- Un identifiant utilisateur interne à la plateforme est canonique dans tous les objets domaine
+- L'identifiant du provider auth est une référence externe, stockée une fois, isolée à la frontière auth
+- La token verification est une opération cryptographique locale — aucun provider dans le hot path de l'API
+- La logique d'autorisation opère entièrement depuis les données propres de la plateforme
+- Les nouveaux tenants enterprise s'authentifient via un identity broker qui gère la fédération multi-tenant sans exposer cette complexité au backend
+- Le tenant interne continue inchangé, avec un chemin de migration disponible le moment venu
 
-- identité agnostique au provider dans tous les modules métier,
-- frontières programmatiques empêchant les fuites de régresser,
-- voie d'authentification enterprise pour les nouveaux tenants, isolée des opérations existantes,
-- périmètre complété en deux mois pour un refactoring de cette envergure structurelle,
-- et une fondation propre pour toute évolution ou remplacement futur du provider.
+Le cleanup a terminé le périmètre complet en environ deux mois — parce que le modèle était explicite, l'enforcement était programmatique, et la progression était mesurée sur un metric réel plutôt que gérée par coordination.
 
 ---
 
-## Note de clôture
+## Le principe qui tient
 
-Le couplage au provider d'authentification se cumule silencieusement. Il reste invisible jusqu'à ce que la prochaine exigence stratégique rende le coût du démêlage prohibitif.
+La décision de départ — ne pas posséder les mots de passe, ne pas devenir un Identity Provider — était juste et cascade correctement à chaque couche de la stack.
 
-La résolution ne consiste pas à éviter les choix pragmatiques sous pression — ces choix sont souvent corrects pour le moment. Il s'agit de nommer la contrainte, définir la frontière future, et exécuter le cleanup avant que la dette technique ferme des options stratégiques.
+La même logique s'applique à l'identity broker : ne pas construire la matrice N-IdPs × M-protocoles en interne quand le problème est déjà résolu et que le coût de le construire compound avec chaque client.
 
-Quand les règles sont explicites, appliquées programmatiquement et suivies sur une métrique réelle, un refactoring de cette envergure peut être terminé plus vite qu'anticipé — sans perturber la delivery qu'il accompagne.
+La même logique s'applique à la token verification : le provider émet un token une fois au login. Le backend le vérifie localement à chaque requête. Le provider appartient au cold path.
 
-Le cadre de décision pour savoir quand déléguer l'auth et comment lire le plafond de chaque approche — avant que le couplage devienne de la dette — est couvert dans [SaaS Auth : le bon, la brute et le truand](/fr/writing/saas-auth-the-good-the-bad-and-the-ugly/).
+Le failure mode n'est pas la mauvaise première décision. C'est prendre la première décision sans nommer ce qui vient après. Chaque couche non nommée défaute vers le vendor disponible — pragmatiquement, invisiblement — jusqu'au moment où la pression d'évolution rend le coût du démêlage prohibitif.
+
+Le cadre de décision pour savoir quand déléguer l'auth et comment lire le plafond de chaque approche — avant que le couplage devienne de la dette — est couvert dans [Auth SaaS : les couches que les opérateurs traitent comme une seule décision](/fr/writing/saas-auth-the-good-the-bad-and-the-ugly/).

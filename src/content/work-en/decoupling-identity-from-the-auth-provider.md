@@ -1,6 +1,6 @@
 ---
-title: "Decoupling Identity From the Auth Provider"
-description: "A three-phase journey from pragmatic provider wiring through a systematic identity cleanup to an enterprise-ready authentication boundary."
+title: "Untangling Auth Layer Boundaries in a Running System"
+description: "A three-phase account of separating conflated auth layers in a live platform — from provider-entangled domain model to clean layer boundaries and an enterprise-ready federation path."
 date: 2026-05-01
 featured: true
 order: 6
@@ -8,111 +8,130 @@ order: 6
 
 ## Context
 
-After internal platform ownership was established, a deeper structural issue surfaced.
+The founding principle was right: don't own passwords, don't become an Identity Provider. Delegate credential verification to a managed service — absorb none of the cryptographic risk, none of the breach-response complexity, none of the compliance surface. That decision was made correctly, under pressure and constraint, and it held.
 
-The authentication layer had been wired during the in-housing transition under significant time pressure. The provider selected — a managed cloud identity service — had been chosen because it was already available and required no upfront infrastructure work. That was correct given the constraints.
+What wasn't specified was everything else.
 
-But the choice had been extended further than intended.
+The auth stack has more than one layer. There is the Identity Provider — the system that authenticates users and issues signed assertions. There is the identity broker — the layer that normalizes federation across multiple upstream IdPs. There is the token verification layer — how the backend confirms identity on every API request. There is user management — the platform's own database, domain model, and user IDs. There is user provisioning — account lifecycle, separate from authentication. There is session management — maintaining authenticated state across requests. There is authorization — who can do what.
 
-The authentication provider had drifted into a second role: it was being used as the de facto user management layer. Its provider-specific identifiers had spread across the system — into domain modules, APIs, the back office, and the mobile application. What was meant to be a narrow integration point had become a load-bearing dependency embedded in business logic that had nothing to do with authentication.
+None of those layers were named. So by default, they became the IdP's responsibility. Not by design — by gravity. The managed cloud identity service was there, it had APIs, and the team used them. The provider's user identifier became the platform's user identifier, embedded across domain objects. Token validation called the provider on every API request. Authorization state was partially stored in the provider's custom attributes. The integration point that should have been narrow had become a load-bearing dependency across every domain module.
 
-This was not an oversight. Adding a third identity namespace — on top of the external vendor's identifiers and the provider's own identifiers — would have added structural complexity during the most critical velocity window of the transition. The pragmatic choice was to defer it.
+Each of these was a defensible call in isolation, made under velocity pressure during a critical transition. The problem wasn't any individual decision. It was the absence of a model that defined the layers as distinct, assigned each an owner, and made boundary violations rejectable.
 
-But the deferred debt had compounded. The system was not just coupled to a specific provider. It was wired to that provider's identity model at every layer. Any future evolution — stricter access control, provider replacement, or enterprise-grade integration — required untangling that coupling first.
-
-That untangling was not optional. It was the structural precondition for the next phase — [the platform-wide hardening sequence that followed is documented in Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/).
+This is the account of how that got fixed — and how the enterprise authentication path was built on clean foundations afterward.
 
 ---
 
-## Constraint Pattern
+## Constraints
 
-The environment carried a familiar set of constraints:
+The work ran under standard operating constraints for this type of platform work:
 
-- live production with no acceptable downtime,
-- ongoing feature delivery that could not stop,
-- a small team with limited parallel capacity,
-- and provider-specific identity embedded across multiple surfaces.
+- live production, continuous delivery, no scheduled downtime
+- feature delivery that could not stop
+- a small team with limited parallel capacity
+- provider-specific identifiers and logic across every domain module: booking, payment, wallet, user management, driver operations, GPS, line management, back office, mobile application
 
-The problem could not be solved through a rewrite. It had to be resolved progressively, without disrupting delivery.
-
----
-
-## Objective
-
-Establish a clean, provider-agnostic identity layer — making the internal user identifier canonical throughout the system, isolating the authentication provider to a narrow boundary, and preparing the platform for enterprise-grade authentication without forcing a disruptive migration.
+The coupling could not be resolved through a rewrite. It had to be treated progressively, one boundary at a time, without disrupting delivery.
 
 ---
 
-## Execution Overview
+## The three layer violations
 
-The work unfolded in three distinct phases, each addressing a different stage of the identity problem.
+Before any cleanup, the first task was naming which layers were doing whose job. Cleanup that begins without a clear model produces movement without progress.
 
----
+Three violations were mapped:
 
-### Phase 1 — Name the Debt Before Touching It
+**The IdP's identifier in the domain layer.** The auth provider's internal user ID — a token-issued claim — had become the canonical user identifier across all domain objects. Every booking record, payment row, activity log, and API contract referenced the provider's identifier. This was an IdP-layer construct embedded in the user management and domain layers. The provider was acting as the platform's user database — not by decision, but because no other decision had been made.
 
-The first phase was a judgment call, not an implementation.
+**Token verification on the API hot path.** The token verification layer was calling the auth provider's API on every incoming request. Every authenticated API call — page loads, button actions, data fetches — was a synchronous external network round-trip to an outside service. The effect: 50–300ms of external latency on every request, a runtime dependency on the provider's uptime for every user at every moment, and the provider's API rate limits becoming the platform's rate limits under load.
 
-The pragmatic choice made during in-housing had been correct for that moment. Reopening the identity model mid-transition would have slowed the work that actually needed to happen. The decision was therefore to proceed, document the constraint explicitly, and treat the cleanup as a defined future commitment — not indefinite deferral, but intentional sequencing.
+The correct pattern is local cryptographic verification: parse the JWT, check the signature against the issuer's published public keys (fetched once, cached via JWKS), validate the claims. This is a local operation with zero network calls in steady state. The provider belongs on the cold path — login — not the hot path.
 
-That framing mattered. It meant the cleanup arrived with a clear owner and clear scope, rather than as an open-ended refactor triggered by accumulated frustration.
-
----
-
-### Phase 2 — Remove the Provider Leakage Systematically
-
-The second phase began once platform ownership was stable and the hardening roadmap was under way.
-
-The first step was to establish clear rules: one internal identifier became the canonical user primitive across the entire system. Provider-specific identifiers were confined to a narrow auth boundary. Any occurrence outside that boundary was classified as an architectural defect — not a suggestion, not a wish list item, but a violation to be rejected in review.
-
-These rules were published as principle-level boundary documents and placed where planning, implementation, and review already happened. That made them actionable rather than advisory.
-
-Programmatic guardrails were added so that provider identifiers could not re-enter business logic and reach production undetected. A weekly tracking mechanism measured the number of remaining violations across the codebase. That gave the cleanup a visible metric and a concrete stopping condition.
-
-The execution was split deliberately: one senior engineer owned the structural refactoring, while other contributors cleared the violations they encountered in their normal flow of delivery. That split prevented the cleanup from stalling feature work or collapsing into a single-person bottleneck.
-
-Cleanup ran across every domain module in the system: booking, payment, wallet, user management, driver operations, GPS, line management, the back office, and the mobile application.
-
-The full scope was completed in approximately two months — faster than comparable efforts typically complete, primarily because the rules were explicit, the guardrails were enforced programmatically, and the weekly tracking made progress legible without requiring constant coordination.
+**Authorization state in the wrong layer.** Roles and permission-relevant data were partially managed through the auth provider's custom attributes and group constructs. Authorization is a domain concern. Who can do what, in which context, under which tenant — that belongs in the platform's own database, derived from its own domain model. The IdP proves identity. What that identity is allowed to do is not the provider's concern.
 
 ---
 
-### Phase 3 — Build the Enterprise-Ready Path Forward
+## Phase 1 — Naming the debt before touching it
 
-The third phase addressed where the platform needed to go next.
+The first phase was a framing decision, not an implementation.
 
-The business model required support for enterprise-grade authentication: custom identity provider integrations for large organizational buyers, support for the protocols those buyers standardly use, and user lifecycle management delegated to the buyer's own systems.
+The pragmatic calls made during the platform transition were correct for that moment. Reopening the identity model under velocity pressure would have slowed the work that actually needed to move. The call was to continue, document the constraint explicitly, and commit to a defined cleanup — not an open-ended backlog item, but named debt with an owner and a scope.
 
-Two options were on the table for the existing authentication provider: extend it beyond its intended scope to handle these requirements, or treat it as the right tool for what it already did and route new enterprise requirements elsewhere.
+That framing mattered. It meant the cleanup arrived with clear ownership and a defined stop condition, rather than as an open-ended refactoring triggered by accumulated friction.
 
-Extending the current provider was considered and rejected. That path would have accumulated operational complexity — per-tenant configuration overhead, protocol edge cases, bespoke management tooling — without resolving the underlying architectural dependency. It would also have made the eventual full migration more expensive, not less.
+---
 
-The resolution was a clean split: the existing provider remained in place for the current internal tenant, where it worked well and where migration risk was not worth accepting. All new enterprise tenants were routed through a purpose-built authentication broker — a layer specifically designed to absorb the N-tenants × M-protocols complexity and handle identity provider integrations without exposing that complexity to the platform's backend.
+## Phase 2 — Redrawing the boundaries and executing the cleanup
 
-This approach kept the operational surface stable, gave new tenants enterprise-grade SSO from the start, and preserved a clear migration path for the internal tenant when the time was right.
+The second phase began once platform stability was restored.
+
+**Rules first.** An internal platform user ID — generated by the platform, opaque to the auth provider — became the canonical user primitive across the entire system. The auth provider's identifier was confined to a single auth boundary. Any occurrence outside that boundary was classified as an architectural defect: not a code-review suggestion, not a backlog item, but a violation to be rejected.
+
+These rules were published as architectural boundary documents placed where planning, implementation, and review already happened. This made them actionable rather than advisory.
+
+**Programmatic enforcement.** Static analysis guardrails prevented provider-specific identifiers from crossing into domain modules undetected. A weekly tracking metric counted remaining violations across the codebase. When the cleanup has a visible number and a concrete stop condition, it finishes. When it's diffuse, it doesn't.
+
+**Execution divided deliberately.** One senior engineer owned the structural refactoring across the core domain modules. Other contributors cleared violations they encountered in their normal delivery flow. This kept the cleanup from becoming a blocking project or concentrating on one person.
+
+The full scope completed in approximately two months for a codebase of this size and surface area — faster than this type of structural refactoring typically moves, primarily because the model was explicit, enforcement was programmatic, and progress was tracked on a real metric.
+
+---
+
+## Phase 3 — The enterprise path: buyer's IdP through a broker to the platform
+
+The third phase addressed the platform's next trajectory.
+
+The business model required enterprise-grade authentication: integration with the identity providers that buyer organizations run, support for the protocols those organizations use, and account lifecycle management delegated to the buyer's own systems.
+
+**The shape of B2B enterprise auth.** In a B2B SaaS context, enterprise authentication has a specific structure: the buyer's employees authenticate against the buyer's identity provider — Okta, Microsoft Entra ID, a self-hosted Keycloak instance. That provider issues a signed assertion (SAML or OIDC). The SaaS receives that assertion, verifies it, and maps it to the appropriate user record and session.
+
+The layer between the SaaS and the buyer's IdP is the identity broker. Its function: normalize N customer IdP configurations, N protocol variants, N attribute mappings into one API. Handle the self-service admin portal so customer IT teams can configure connections independently. Abstract per-customer SAML metadata exchanges and certificate rotations. This is the multi-tenant federation problem — it compounds with each enterprise customer added. Building it in-house is a permanent operational commitment that scales poorly.
+
+**The two options evaluated.** The managed auth service in place could support SAML and OIDC federation. But multi-tenant enterprise SSO at scale — per-tenant IdP configuration, a self-service admin portal, SCIM endpoint management across customers — required building a significant custom layer on top of it. Evaluated, rejected: this path would have recreated the broker layer, under-resourced, inside a service already carrying more responsibility than it should.
+
+The alternative: introduce a purpose-built identity broker for new enterprise tenants, and leave the existing managed auth service in place for the internal company tenant where it works and where migration risk doesn't justify the cost.
+
+**The resulting architecture for enterprise tenants:**
+
+```
+Enterprise employee
+  → Buyer's IdP (Okta, Entra ID, Keycloak, etc.)
+  → Identity broker (normalizes SAML/OIDC, manages per-tenant config, handles SCIM)
+  → Platform backend (receives verified profile, issues own session token)
+  → Platform database (user record, tenant, roles, permissions)
+```
+
+The internal company tenant continues on its existing path unchanged.
+
+**Token verification stays the same pattern regardless of issuer.** Both paths issue JWTs. Both are verified locally against the issuer's published JWKS. The `iss` claim in the token determines which key set to use. Two issuers, two JWKS endpoints, one verification layer. The auth provider — whichever one — is on the cold path. The hot path is a local cryptographic check.
+
+Account lifecycle management for enterprise tenants runs through SCIM: the buyer's identity provider pushes provisioning events to the broker, which forwards them to the platform. Join the organization: account created. Leave the organization: access revoked. No manual intervention, no drift.
 
 ---
 
 ## Result
 
-The platform moved from a state where provider-specific identity was embedded throughout business logic to a state where the internal identifier was canonical, provider logic was isolated at the system edge, and the authentication layer could evolve without touching domain code.
+The platform moved from a state where the auth provider's identifiers were embedded across the domain to a state with clean layer separation:
 
-The material outcomes were:
+- An internal platform user ID is canonical across all domain objects
+- The auth provider's identifier is an external reference, stored once, isolated to the auth boundary
+- Token verification is a local cryptographic operation — no provider in the API hot path
+- Authorization logic operates entirely from the platform's own data
+- New enterprise tenants authenticate through an identity broker that handles multi-tenant federation without exposing that complexity to the backend
+- The internal tenant continues unchanged, with a clear migration path available when the time comes
 
-- provider-agnostic identity throughout all domain modules,
-- programmatic boundaries that prevented leakage from regressing,
-- an enterprise-ready authentication path for new tenants, isolated from existing operations,
-- a two-month completion window for a refactor of this structural scope,
-- and a clean foundation for any subsequent provider evolution or replacement.
+The cleanup completed the full scope in approximately two months — because the model was explicit, enforcement was programmatic, and progress was tracked on a real metric rather than managed by coordination overhead.
 
 ---
 
-## Closing Note
+## The principle that holds
 
-Auth provider coupling compounds silently. It tends to be invisible until the next strategic requirement makes the cost of untangling it prohibitive.
+The founding call — don't own passwords, don't become an Identity Provider — was correct and cascades correctly to every layer of the stack.
 
-The resolution is not to avoid pragmatic choices under pressure — those choices are often correct for the moment. It is to name the constraint, define the future boundary, and execute the cleanup before the technical debt forecloses strategic options.
+The same logic applies to the identity broker: don't build the N-IdPs × M-protocols matrix in-house when the problem is already solved and the cost of building compounds with each customer.
 
-When the rules are explicit, programmatically enforced, and tracked against a real metric, a refactor of this scope can be completed faster than expected — and without disrupting the ongoing delivery it runs alongside.
+The same logic applies to token verification: the provider issues a token once at login. Your backend verifies it locally on every request. The provider belongs on the cold path.
 
-The decision framework for when to delegate auth and how to read the ceiling of any given approach — before coupling becomes debt — is covered in [SaaS Auth: The Good, the Bad, and the Ugly](/en/writing/saas-auth-the-good-the-bad-and-the-ugly/).
+The failure mode isn't the wrong first decision. It's making the first decision without naming what comes after it. Each unnamed layer defaults to the vendor at hand — pragmatically, invisibly — until evolution pressure makes the cost of untangling it prohibitive.
+
+The decision framework for when to delegate auth and how to read the ceiling of any given approach — before coupling becomes debt — is covered in [The SaaS Authentication Stack Operators Keep Treating as One Decision](/en/writing/saas-auth-the-good-the-bad-and-the-ugly/).
