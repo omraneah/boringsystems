@@ -14,7 +14,7 @@ This is honest market reality, not aspiration. Inbound that lands inside the eas
 |---|---|
 | Lead generalist (Tech / Data / Product) | Three-year cross-functional ownership; technical decisions made with business-model awareness |
 | 0→1 builder | Done it twice — both times to operable production state |
-| Data / AI native | Demonstrated in current role and in the AI-agent orchestration work that defines the post-Enakl operating mode |
+| Data / AI native | Demonstrated in current role and in the AI-agent orchestration work that defines the post-transition operating mode |
 | Early-stage operator (5–50 people) | Three-year footprint at this exact altitude |
 
 **Inbound landing here closes fast.** The buyer is buying something the resume already proves. Discovery is about fit and timing, not about whether Ahmed can do the work.
