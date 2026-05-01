@@ -10,7 +10,6 @@
       "NotebookEdit"
     ]
   },
-  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
