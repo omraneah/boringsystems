@@ -73,7 +73,7 @@ Both surface objections that would otherwise stay silent and shape the next call
 ## Anti-patterns to catch live
 
 - **Pitching offers before discovery.** If the buyer hasn't articulated their problem yet, naming an offer shape is anchoring against an unknown ceiling.
-- **Defending past work.** Future-oriented language closes; past-oriented language defends. *"What I'd do here"* > *"What I did at Enakl"* once credibility is established.
+- **Defending past work.** Future-oriented language closes; past-oriented language defends. *"What I'd do here"* > *"What I did three years ago"* once credibility is established.
 - **Logic vs. emotion battles.** Information asymmetry favours the buyer. Pure logical argument loses. Move conversations into "what does this make possible for you" territory when logic stalls.
 - **Email negotiation.** Body language and tone carry 70%+ of the signal. Move to video or in-person the moment terms are on the table. Email is for scheduling and confirming, not for deciding.
 - **Confidence inflation in long messages.** The more confident the position, the shorter the message should be. A long justification reads as defending; a short statement reads as decided.

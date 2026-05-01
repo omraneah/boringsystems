@@ -2,9 +2,11 @@
 
 **Status:** Pre-launch. Enrichment phase.
 **Started:** 2026-04-24
-**Horizon:** 2026 exit → €1k/month by Dec 2026 → €10k/month by end 2027
+**Horizon:** post-transition (mid-2026) → re-stabilize phase through end 2026 → 2-3yr sprint emerging from 2027 onward.
 
-This is the cornerstone document for Ahmed's go-to-market. Built incrementally through conversations with Naomi (GTM strategist persona). Every session adds signal; no premature commitment. The goal is to arrive at exit with surfaces, stories, and a bounded portfolio of paths — not with a fixed plan that reality will break.
+This is the cornerstone document for Ahmed's go-to-market. Built incrementally through conversations with Naomi (GTM strategist persona). Every session adds signal; no premature commitment. The goal is to arrive at the transition point with surfaces, stories, and a bounded portfolio of paths emerging — not with a fixed plan that reality will break.
+
+> **Frame note (2026-05-01 re-voicing).** Money is **not** the focus of this doc. Trajectory + alignment + happily-freely-living is the focus. Soft monetary aspirations are held grain-of-salt and noted as such. Lock-by-date phrasing has been released into "let it emerge." Employment is a valid shape if aligned. The "fuck-yes" rhythm during the re-stabilize phase is **1-3K/month for 10-20h/month, weeks mostly free** — see `memory/medium-term/current-arc.md`. Earlier phrasing in this doc was driven by a "prove I can make it outside employment" striving frame; that frame has been released. Substance retained, voice softened.
 
 Adjacent files in this folder (`README.md`, `hypotheses.md`, `linkedin.md`, `offers.md`, `signals.md`) are the operational layer. This document is the strategic layer they roll up into.
 
@@ -14,15 +16,20 @@ Adjacent files in this folder (`README.md`, `hypotheses.md`, `linkedin.md`, `off
 
 ### Runway
 
-- ~€40k cash at exit (€30k liquid + €10k net from final 2 months at Enakl)
+- ~€40k cash at the transition (€30k liquid + ~€10k net from the final months of the current chapter)
 - Monthly burn ~€1k (Paris shared expenses with partner, or Paris/Sfax rotation at same total)
-- **Financial runway: 30+ months. Psychological runway is the binding constraint.**
+- **Financial runway: 30+ months.** The constraint is alignment, not income — see `memory/medium-term/current-arc.md` and `memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md`. Even no income for some time is OK during this phase; ~€1-2k is psychological insurance, not threshold.
 
-### Psychological targets
+### Soft income aspirations (grain of salt — DO NOT let them move the frame)
 
-- **December 2026 (~6 months post-exit): €1k/month net** — traction line. Below this for too long → go back to "normal job."
-- **End 2027 (~18 months out): €10k/month net** — real target. Constellation TBD.
-- €10k is **not** month one. Not month six. Anchor at 18 months.
+Soft gut-feel timeline, captured for reference, **explicitly held lightly**:
+
+- ~€1k/month by September 2026 (gut feel, can change).
+- ~€3-5k/month by December 2026 (gut feel, can change).
+- **Aspirational marker:** ~€3k net (~€5k gross) — the threshold to live in Paris with wife full-time, sooner the better. Until then: OK with Paris/Sfax rotation in the meantime if that's what the rhythm wants.
+- The "fuck-yes" rhythm during the re-stabilize phase is **1-3K/month for 10-20h/month, weeks mostly free, single light fractional, aligned with trajectory.** Don't hunt for it. Notice it if it shows up.
+
+These targets are useful only as long as they don't move the frame. **The moment chasing them produces haste — they go away.** Employment is a valid shape if aligned (per `memory/long-term/inner-game/Path-Doctrine.md`). The "real failure" is misalignment, not income source.
 
 ### Pricing rule
 
@@ -44,10 +51,10 @@ Adjacent files in this folder (`README.md`, `hypotheses.md`, `linkedin.md`, `off
 
 ### Framing correction (do not carry into external conversations)
 
-The Enakl exit is **not** a "3-year bet that didn't compound." Factually honest, strategically wrong as an external frame. What didn't compound is the equity outcome. What did compound: craft, pattern library, nervous-system calibration, judgment that refuses hourly billing without flinching. The French warm graph will mirror whatever frame is handed to them.
+The transition is **not** "a 3-year bet that didn't compound." Factually honest, strategically wrong as an external frame. What didn't compound was the equity outcome of the prior chapter. What did compound: craft, pattern library, nervous-system calibration, judgment that refuses hourly billing without flinching. The French warm graph will mirror whatever frame is handed to them.
 
 - **External frame to use:** *"3-year CTO-equivalent tenure where I built X, learned Y, now deploying Z into fractional mandates."*
-- **External frame to avoid:** any "post-failure" language, hedging about the Enakl outcome, or over-explaining the gap.
+- **External frame to avoid:** any "post-failure" language, hedging about the prior outcome, or over-explaining the gap.
 
 ---
 
@@ -61,12 +68,12 @@ Self-aware trap: engineering-only work keeps him in the backend of value creatio
 
 ## The four paths (portfolio, not pick)
 
-1. **Full employment** — cautious, Enakl-burn scar. Only from a position of strength, after working with someone first. Currently what LinkedIn is optimized for. Doubling as recon channel via recruiter inbound — not conviction.
-2. **Fractional CTO/CPO** — retainer-based, 1-2 days/week, **stackable by design**. Cashflow layer, not ceiling. Two retainers × €4-5k = €8-10k/month on ~3 days/week, leaving 2 days/week for building.
+1. **Full employment** — valid shape if aligned with trajectory (per `memory/long-term/inner-game/Path-Doctrine.md`). Currently what LinkedIn is optimized for. Doubling as recon channel via recruiter inbound — not conviction. The Engagement Validity Filter (`memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md`) is the test.
+2. **Fractional CTO/CPO** — retainer-based, **stackable by design**. The "fuck-yes" rhythm during the re-stabilize phase is light (1-3K/month, 10-20h/month, weeks mostly free); a heavier shape (multiple retainers, 2-3 days/week) is a *possible* future configuration if it shows up aligned, not a target to engineer toward.
 3. **Sprint Builder** — multi-week fixed-scope, delivery + docs + architecture + decision handover. Lands with operator-archetype buyers.
 4. **Freelance mission with bigger corporation** — transformation, migration, stuck-complex-project at the intersection of tech + judgment + alignment. **Emerging from conversations unprompted** — market signal, not a priori choice.
 
-Constellation decides itself through traction data, not through premature commitment.
+Constellation decides itself through traction data + felt-sense alignment, not through premature commitment.
 
 ### Two other paths evaluated, currently de-prioritized
 
@@ -243,22 +250,23 @@ Referrals in France are underwritten by the referrer's reputation. They need a *
 
 ---
 
-## Recalibrated sequencing (Naomi's current read)
+## Sequencing (held lightly, not locked)
 
-- **Q2-Q3 2026:** Land retainer #1. Single fractional mandate, €4-5k, 1.5 days/week. Prove the shape is clean and **stackable** (no scope creep eating the full week).
-- **Q3-Q4 2026:** Land retainer #2. Same shape. Hit €1k floor comfortably, realistically €8-10k. Start product/asset track in the 2 free days/week.
-- **2027:** Asset track compounds. If traction, trade a fractional seat for more build time. If not, stay at 2× fractional + keep experimenting.
+Naomi's earlier sequencing read leaned heavily prescriptive (specific quarters, specific income thresholds, specific day-counts). The frame has since softened — sequencing is now held as *direction, not deadline*.
 
-**The discipline: keep fractional bounded so it doesn't eat the build time.** Most fractional operators fail at stacking because scope drifts and one client eats the week — reducing the setup to "one main client" which is just employment with extra steps.
+- **Re-stabilize phase (mid-2026 → end 2026):** Notice fractional-shape opportunities if they appear. Light rhythm preferred (1-3K/month, 10-20h/month, single mandate). Continue boringsystems publishing + warm-graph reactivation + apps. Let shape emerge.
+- **Through 2027 onward:** the 2-3yr sprint shape clarifies (per `memory/long-term/inner-game/Path-Doctrine.md`). Could be stackable fractional. Could be aligned employment. Could be transformation lead. Could be own-thing track compounding harder than expected. **Shape is open. Conditions are not** (necessary conditions named in the Path Doctrine).
+
+**The discipline: don't let any one mandate become identity-load-bearing.** The classic fractional-stack failure is scope drift turning the setup into "one main client" which is just employment with extra steps. Where light rhythm is the "fuck-yes" shape, *protect the lightness* — that's where the alignment lives.
 
 ---
 
-## Pre-launch phase (current)
+## Pre-transition phase (current)
 
-- Window: 2 months remaining at Enakl = **preparation / pre-launch**.
+- Window: ~2 months remaining in the current chapter = **preparation / pre-launch**.
 - Not deciding paths. Not launching offers. Not running sales. Not committing positioning publicly.
 - Gathering: recon conversations, LinkedIn signal, inbound patterns, self-observation.
-- Goal: exit with surfaces + stories + bounded path portfolio ready. Not with premature commitment.
+- Goal: arrive at the transition with surfaces + stories + bounded path portfolio ready. Not with premature commitment.
 
 ---
 
@@ -272,26 +280,26 @@ Referrals in France are underwritten by the referrer's reputation. They need a *
 - What she's worried about: **breadth under pressure.** Four paths, three site lanes, two live threads, twenty warm contacts, a missing artifact, an optional headline sharpening, a scoring rubric, curiosity pulling toward product/asset. All legitimate. All potentially distracting in May.
 - What she's impressed by: **the discipline of not collapsing the four paths yet.** Hold that.
 
-### The three May focus points (prioritized, not interchangeable)
+### The three May focus points (direction, not deadlines)
 
-1. **Resolve the two live threads to a clean yes/no/shape + deploy Mode 1/2 closes on 8-12 more warm conversations.**
+1. **Resolve the two live threads to a clean yes/no/shape + deploy Mode 1/2 closes on more warm conversations as they happen.**
    - Vibe (Director of Product Analytics, AdTech Series B) and Lucis (Head of AI, Healthtech) are **not data yet** — they're pending. They become signal when they either (a) convert to a mandate conversation or (b) decline with a crisp teaching-reason.
    - Don't draft more closes. The three that exist are enough. Friction of first three uses teaches which archetype actually lands in French warm graph **as it is in 2026**, not as modeled.
-   - **Target by May 31:** said the close out loud (or in writing) to ≥10 people, and know which one lands.
-   - **Why first priority:** everything downstream is unresolvable without this month's signal. Cannot write the retainer mandate sentence before hearing the shape of what people actually ask for.
+   - **Aim:** by end of May, have said the close out loud (or in writing) to ~10 people, and have a felt sense of which one lands. Not a counter to hit; a direction to move.
+   - **Why this is foreground:** downstream resolution is unavailable without conversational signal. The retainer mandate sentence cannot be written before hearing what people actually ask for.
 
 2. **Ship "How to work with me" engagement-shapes page on boringsystems. v1, not perfect.**
    - Single missing ecosystem artifact. Without it, every Path 2/3/4 warm-intro prospect lands on a site with no doorway.
    - **Three engagement shapes max.** Plain language. No pricing, no service menu — shapes + what a first conversation looks like.
-   - **Ship v1 by mid-May** (~May 15). Let the month's conversations tell you what v2 is.
-   - **Why:** conversation volume is about to 3×. Every one without this page is a lossy handoff.
+   - **Ship when it's ready** — v1 mid-month is the natural rhythm if it shows up. The month's conversations will tell you what v2 is. No date-lock.
+   - **Why:** conversation volume is about to scale. Every one without this page is a lossy handoff.
 
-3. **Draft retainer #1 mandate sentence — one sentence, by May 10, revisable weekly.**
-   - Not to commit. To have something to test against every May conversation.
+3. **Sketch a retainer #1 mandate sentence — one sentence, when natural, revisable.**
+   - Not to commit. To have something to test against May conversations.
    - Shape: *"I do X for Y companies at Z stage, explicitly not A or B."*
    - Doesn't need to be right. Needs to exist — so each call either ratifies or bends it.
-   - **Draft May 10. Revise weekly. Lock June 15.**
-   - **The trap:** German work-mode will want to perfect before shipping. Resist. A wrong sentence is more useful in May than a perfect sentence in June.
+   - **No lock-by-date.** Let the sentence emerge through use. Re-voicing aside (2026-05-01): the prior framing locked this for June 15, which was a striving artifact — released.
+   - **The trap:** German work-mode will want to perfect before shipping. Resist. A draft sentence is more useful in May than a perfect sentence later.
 
 ### Explicit avoid list (Naomi: "more load-bearing than the focus list")
 
@@ -300,7 +308,7 @@ Referrals in France are underwritten by the referrer's reputation. They need a *
 - **No industry commitment in May.** Healthtech vs AdTech is a June-or-later decision. Committing in May forecloses live threads and prunes the warm graph before it's been run. Hold the ambiguity — "uncomfortable and correct."
 - **No product/asset track opening in May.** Curiosity is real but not a May move. *"Opening path 4 in May because it feels generative is the exploration-phase version of scarcity drift: compensating for unresolved uncertainty in path 1 by opening path 4."*
 - **No fourth site lane, newsletter, content cadence, distribution experiment.** Any "I should also..." thought gets written down and deferred to July minimum.
-- **No post-failure frame in any external conversation.** If Enakl comes up: the re-framed version above. Never "a bet that didn't compound."
+- **No post-failure frame in any external conversation.** If the prior chapter comes up: the re-framed version above. Never "a bet that didn't compound."
 
 ### Open calibration question for week 1 of May
 
@@ -332,6 +340,7 @@ Answer changes what "deploy the closes" actually means operationally in week 1.
 - **2026-04-24** — Four load-bearing questions answered. Sequencing recalibrated after Ahmed corrected timeline: €10k at 18 months, not 6. Stackable-fractional insight introduced. A+D call held, D reframed from "background thread" to "second track with real time allocation."
 - **2026-04-24** — Close diagnosis complete. Two buyer modes named (operator / domain expert). Mode 1 and Mode 2 closes drafted in French by Naomi. Pricing contradiction surfaced and resolved (no hourly, retainer shape).
 - **2026-04-24** — Living-document framing agreed. This file created as cornerstone.
-- **2026-04-24** — LinkedIn inbound Airtable shared (21 conversations, Jan 13 → Apr 23). Naomi diagnosed public profile as IC-leaning. Ahmed corrected: IC-lean is **deliberate April 2026 market calibration** (VP doors closed by 15-20 direct-report gate + Enakl-reads-as-risky at VP-DD depth + data-origin career read). LinkedIn locked as single-purpose Path 1 instrument. Option B (multi-buyer split) rejected.
+- **2026-04-24** — LinkedIn inbound Airtable shared (21 conversations, Jan 13 → Apr 23). Naomi diagnosed public profile as IC-leaning. Ahmed corrected: IC-lean is **deliberate April 2026 market calibration** (VP doors closed by 15-20 direct-report gate + prior-chapter-reads-as-risky at VP-DD depth + data-origin career read). LinkedIn locked as single-purpose Path 1 instrument. Option B (multi-buyer split) rejected.
 - **2026-04-24** — Ecosystem map completed. Six surfaces allocated per buyer × path. Single missing artifact identified: **"How to work with me" engagement-shapes page on boringsystems** — warm-intro conversion surface for Paths 2/3/4. "Digital exposures" section restructured into "Surfaces & positioning" with per-surface objectives, improvements, and cadence.
 - **2026-04-24** — May 2026 prescription from Naomi: signal-resolution month, not systems month. Three focus points (resolve live threads + 10 warm closes, ship engagement-shapes page v1, draft retainer mandate sentence). Explicit avoid list (no headline edit, no scoring rubric, no industry commitment, no product track opening, no new distribution surface, no post-failure framing). Framing correction logged under Anchors.
+- **2026-05-01** — Re-voicing pass (BOR-38) + chapter-name scrub (BOR-39). Striving-tax phrasing softened: €10k-by-18-months collapsed into the soft-aspirations frame; "below threshold → go back to normal job" punishment frame dissolved (employment is a valid shape if aligned); lock-by-date language ("Lock June 15", "Draft May 10", "Ship v1 by mid-May", "Target by May 31") released into "let it emerge"; the "two stacked retainers / 3 days/week" shape demoted from baseline to *possible future configuration if it shows up aligned* — the "fuck-yes" rhythm now framed as light (1-3K/month, 10-20h/month, weeks mostly free). Naomi's overall structure preserved; four-path / six-surface / buyer-mode / French-market substance untouched. Past-chapter company name removed from forward-looking framing per memory hygiene rule (lessons stay as the Engagement Validity Filter; the name does not).

@@ -672,3 +672,12 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-01 — /pr always opens URL in browser + 5-bullet summary
+**Context:** Ahmed asked whether Claude could `open` the GitHub PR-creation URL on his Mac instead of just printing it. Confirmed yes — `open <url>` launches the default browser. He then asked for this to be the durable default for /pr and any in-conversation push, with a 5-bullet concise summary alongside the link.
+**Decision:** Updated `.claude/personal-skills/pr/SKILL.md` (added `Bash(open *)` to allowed-tools, added "open the URL in browser" + "print 5-bullet summary" steps, updated output shape) and `memory/short-term/feedback/stable/feedback_pr_creation.md` (formalized the three-part end-of-turn artifact: 5-bullet summary + clickable URL + automatic `open <url>` in same turn). Applies even outside the /pr skill — any time a push surfaces a PR URL.
+**Why:** Reduces friction (one less click) and forces the summary to be terse + scannable instead of re-stating the diff. Codified at both the skill layer and the feedback layer so the rule binds even when /pr isn't explicitly invoked.
+**Expected outcome:** Every push that surfaces a PR URL: browser opens automatically, chat shows 5 terse bullets + the link. No asking, no per-instance opt-in. Ahmed reviews the diff in-browser; the bullets are the executive summary.
+**Actual outcome:** *(pending)*
+
+---

@@ -11,7 +11,7 @@
 
 Three bets, ranked by expected signal-density per unit effort over the next 90 days:
 
-1. **Bet C — "Closing the post-readiness gap" / Article-4-anchored fractional advisory for ETI + scaleups.** **Pick this if forced.** The single live forcing function in the European market for the second half of 2026, and the only bet that fully exploits Ahmed's Enakl proof at the right altitude. Highest leverage, hardest to land in the first 30 days, but compounds violently from the first paid engagement.
+1. **Bet C — "Closing the post-readiness gap" / Article-4-anchored fractional advisory for ETI + scaleups.** **Pick this if forced.** The single live forcing function in the European market for the second half of 2026, and the only bet that fully exploits Ahmed's prior-tenure proof at the right altitude. Highest leverage, hardest to land in the first 30 days, but compounds violently from the first paid engagement.
 2. **Bet B — Personal reconnection / warm-graph relationship-led advisory.** Already in motion in Naomi's strategy (Surfaces 4 + 6 in `go-to-market/strategy.md`). Continue but with sharpened bait — see Bet C as the conversational topic, not a generic "exchange." Lowest invalidation risk, slowest to compound.
 3. **Bet A — "Agents do my work, I orchestrate" / build-in-public for AI-native founder + operator cohort.** **Kill first if forced to drop one.** The most aesthetically resonant with Ahmed's identity. Also the one with the worst sponsor-altitude economics in the European market and the largest competition density. Build-in-public worked in 2024; in 2026 it's the noise floor.
 
@@ -180,7 +180,7 @@ This is the white-space signal from Section 3 of the landscape doc. Concretely:
 1. **78% of European enterprises are unprepared for Article 4 enforcement** ([Vision Compliance 2026 readiness report](https://natlawreview.com/press-releases/vision-compliance-releases-2026-eu-ai-act-readiness-report-finds-78)). This is the single largest forced-buyer event in the European AI services market in 2026. Confidence: **High.**
 2. **The Big-4 will quote €100-500k packages** for AI Act compliance programs ([NatLaw 2026](https://natlawreview.com/press-releases/vision-compliance-releases-2026-eu-ai-act-readiness-report-finds-78)). Cheaper boutiques quote €50-100k for diagnostic-only. Solo ops can credibly land €25-75k for the diagnostic + harness install + advisory tail. Confidence: **High.**
 3. **OPCO + BPI co-funding mechanisms exist** that explicitly absorb solo-expert engagements when packaged as accompagnement / formation ([Plateya 2026](https://www.plateya.fr/blog/detail/formation-ia-2026-guide-complet-financement-ai-act); [BPI Pack IA](https://blog-ia.com/aides-publiques-ia/)). 25% PME co-pay on Pack IA; 50% co-pay in Île-de-France through 2025-2026. The buyer's effective cost is half the sticker price, which compresses the procurement objection.
-4. **Ahmed's Enakl proof maps directly to the buyer's adjacent fear** — vendor-exit, multi-tenant SaaS hardening, data infra at scale, full transformation. The buyer worried about Article 4 in August is also worried about the rest of their AI roadmap. Ahmed reads as one of the few people who can cover both.
+4. **Ahmed's prior-tenure proof maps directly to the buyer's adjacent fear** — vendor-exit, multi-tenant SaaS hardening, data infra at scale, full transformation. The buyer worried about Article 4 in August is also worried about the rest of their AI roadmap. Ahmed reads as one of the few people who can cover both.
 5. **Nobody in France is leading with this combination yet.** Rémi Alvado has `accompagnement-pme` and `formation-ia-agentique` as separate pages — he hasn't fused them under the Article 4 umbrella. The Big-4 are leading with compliance and farming the harness work to internal teams. Mozza / AI Builders / Headmind are at premium price points without the regulatory anchor. **The combination of (regulatory anchor) + (harness-as-deliverable) + (single senior operator) is currently an empty quadrant.** Confidence: **High** based on competition map (Section 2.4 of landscape doc).
 
 ### How Ahmed lands the first paid engagement
@@ -198,7 +198,7 @@ Three plausible paths, ranked by speed:
 | Week | Move |
 |---|---|
 | 1 | Targeted outbound to 3-5 named ex-colleagues now in ETI/scaleup CDO/CIO chairs, with the Article 4 + harness specific ask. |
-| 2-3 | Two diagnostic conversations booked. Bring the Enakl case files + the harness piece + one written diagnostic template. |
+| 2-3 | Two diagnostic conversations booked. Bring the prior-tenure case files + the harness piece + one written diagnostic template. |
 | 4-6 | One paid diagnostic engagement signed. €5-10k for a 2-week reading + written board-grade memo + harness recommendation. This is the wedge. |
 | 7-12 | Diagnostic delivered, expansion conversation: €25-75k for the implementation tail (harness install + 90-day advisory + one training cohort). One expansion converts. |
 | 13-26 | Second client lands. Repeatable shape emerges. Possibly hire a sub-contractor for the training delivery to free Ahmed for the judgment layer. |

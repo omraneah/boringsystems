@@ -34,7 +34,7 @@ Use when reaching back to someone after a long silence. Pick by depth of the rel
 
 **Use for:** strong dormant ties. Worked closely, real trust. They'll be slightly insulted by vagueness.
 
-> Hey [Name], been a while. Quick context: I'm wrapping up my run at Enakl after three years and figuring out what's next from France. You're someone whose read I'd value — would you be up for 30 min sometime in the next couple of weeks?
+> Hey [Name], been a while. Quick context: I'm wrapping up a 3-year CTO-equivalent chapter and figuring out what's next from France. You're someone whose read I'd value — would you be up for 30 min sometime in the next couple of weeks?
 
 **Why it works:** honest, not pitchy. Names the why without selling. Only use where the relationship can carry "I'd value your read" without it feeling presumptuous.
 

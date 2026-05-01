@@ -21,9 +21,9 @@ The single sharpest white-space I see: **Bet C — productized AI-Act-Article-4 
 
 | Capability | Evidence | Differentiating? |
 |---|---|---|
-| Decision-layer judgment in ambiguous tech-product-business interfaces | Three Enakl case files: data infra @ 20M+ DAU, vendor-exit + 10x op scaling, multi-tenant SaaS hardening with team of 5 + agents (`boringsystems/src/content/work-en/*`) | **High.** This is the load-bearing differentiator. Not the AI claim. |
+| Decision-layer judgment in ambiguous tech-product-business interfaces | Three case files from the prior CTO-tenure: data infra @ 20M+ DAU, vendor-exit + 10x op scaling, multi-tenant SaaS hardening with team of 5 + agents (`boringsystems/src/content/work-en/*`) | **High.** This is the load-bearing differentiator. Not the AI claim. |
 | Hands-on agent orchestration as the actual build mechanism | `boringsystems/src/content/building-en/the-harness-i-actually-run.mdx`, `operator-ai-stack-april-2026.mdx`, plus shipped Pollen Tracker + African Legal Factory (`personal-apps/`) | **High.** The proof exists. Most fractional-CTO competition cannot ship apps end-to-end. |
-| Cross-functional native (eng + product + data + ops in one head) | Self-reported and corroborated by Enakl scope (`memory/user_profile.md`); LinkedIn currently reads 2x reach since AI-native + 0→1 builder language went up (`go-to-market/strategy.md` Surface 1) | **High in France.** The market discriminates poorly on intersection profiles — most senior engineers stack vertically, not horizontally. |
+| Cross-functional native (eng + product + data + ops in one head) | Self-reported and corroborated by the prior CTO-equivalent scope; LinkedIn currently reads 2x reach since AI-native + 0→1 builder language went up (`go-to-market/strategy.md` Surface 1) | **High in France.** The market discriminates poorly on intersection profiles — most senior engineers stack vertically, not horizontally. |
 | Connector-builder posture, value-first, relationships compound through his hands | Asserted in this brief; partially evidenced by 30-40 warm-graph reactivation in progress, and the ~10 conversations done in two weeks (`go-to-market/strategy.md` Network state) | **Inference.** Not yet demonstrated externally — too early in the reactivation cycle to read. |
 | Architectural depth (Cross-Stack ARDs, multi-tenant, security, scale) | `cross-stack-architecture-starter-pack/` — 3 years of distilled patterns | **Medium.** Real but invisible to most buyers without the case-file walkthrough. |
 | French-market-native + German-trained work mode | Self-described, calibrated in `_SYSTEM PROMPT — STRATEGIC ADVISOR_.md` "tone calibration" section | **High in DE-FR cross-border conversations**, table-stakes inside France-only. |
@@ -40,13 +40,13 @@ The single sharpest white-space I see: **Bet C — productized AI-Act-Article-4 
 
 1. **The AI-Act-Article-4 angle.** Ahmed has zero workspace artifacts referencing it. The Aug 2 2026 enforcement deadline + 7%-of-turnover penalty + mandatory AI literacy for all staff using AI ([Article 4 official text](https://artificialintelligenceact.eu/article/4/), [Delbion 2026 guide](https://www.delbion.com/en/insights/mandatory-ai-training-eu-ai-act/)) creates **the single largest forced-buyer event in the European AI services market this year**. Confidence: **High**. Naomi's strategy doesn't surface it. It's a 90-day window where "AI literacy training + agent harness install" is something every legally-attentive French ETI / scaleup CFO is being told they have to procure.
 2. **The harness-as-product** angle. `the-harness-i-actually-run.mdx` is shipped. The harness itself is reproducible. He's currently treating it as proof-of-method (correct for the relationship-led posture). But it could also be the underlying IP behind Shape 4 (training) — productized into a "install + train your team in your repo" 2-day engagement at €3-8k, which sits squarely in the Article 4 budget envelope ([SavoirIA 2026](https://www.savoiria.fr/formation-ia-entreprise-france-2026/)).
-3. **The Enakl proof-asset density**. Three serious case files, none currently positioned for the buyer who actually pays for that work — the **mid-market ETI / scaleup transformation lead**, who reads "vendor-exit + 10x operational scaling + zero-downtime migration" and recognizes their own next 12 months. The case files are voiced for engineering peers, not for the buyer. Confidence: **Medium** (this is a positioning craft observation; Naomi owns the reframe).
+3. **The prior-tenure proof-asset density**. Three serious case files, none currently positioned for the buyer who actually pays for that work — the **mid-market ETI / scaleup transformation lead**, who reads "vendor-exit + 10x operational scaling + zero-downtime migration" and recognizes their own next 12 months. The case files are voiced for engineering peers, not for the buyer. Confidence: **Medium** (this is a positioning craft observation; Naomi owns the reframe).
 
 **Over-played** (or at risk of being):
 
 1. **The "fractional CTO" framing.** Saturated. The market for fractional CTOs has doubled in two years ([Justin McKelvey 2026](https://justinmckelvey.com/blog/fractional-cto-cost-hourly-rate)), there are explicit French boutique competitors (Yieldstudio's `cto-as-a-service`, Rémi Alvado's `management-de-transition`, plus dozens of solo operators on Malt and Crème de la Crème). The shape is right; the label is mid-pack. Confidence: **High**.
 2. **The Sprint-Founder-Builder offer at the price point implied.** The data shows that **non-technical founders building solo with AI is now the dominant new-startup shape** (36.3% solo in H1 2025, projected up). The "I'll build your MVP with judgment" offer competes against (a) Lovable / Bolt / Cursor at €0-200/month, (b) AI-first agencies at €5-15k/month with junior teams + agents, (c) Daniel Vassallo / Pieter Levels-style "do it yourself, here's the playbook" content. The judgment moat is real but **needs a buyer who has already tried solo and failed**, not a buyer who hasn't started. Confidence: **Medium-High**.
-3. **The complex-project-lead shape, as written.** It's a 50+ engineer, in-flight migration, transformation framing — this lives in a corporate procurement world, where deals run €100k-€500k via Big-4 / boutique consultancies (Deloitte, Accenture, Mozza, AI Builders, Headmind Partners — see [Systelium top-5](https://systelium.com/blogs/top-5-ai-consulting-firms-in-france)). For a solo French freelance to land this without prior corporate sponsor proximity is hard. **Not impossible** — the Enakl proof is real — but the channel for landing it is not LinkedIn or warm-graph; it's a corporate sponsor who knew him pre-Enakl. The shape is correct; the lead time is 6-12 months from cold positioning, much shorter from a warm sponsor.
+3. **The complex-project-lead shape, as written.** It's a 50+ engineer, in-flight migration, transformation framing — this lives in a corporate procurement world, where deals run €100k-€500k via Big-4 / boutique consultancies (Deloitte, Accenture, Mozza, AI Builders, Headmind Partners — see [Systelium top-5](https://systelium.com/blogs/top-5-ai-consulting-firms-in-france)). For a solo French freelance to land this without prior corporate sponsor proximity is hard. **Not impossible** — the prior-tenure proof is real — but the channel for landing it is not LinkedIn or warm-graph; it's a corporate sponsor who knew him before the transition. The shape is correct; the lead time is 6-12 months from cold positioning, much shorter from a warm sponsor.
 
 ---
 
@@ -77,7 +77,7 @@ The single sharpest white-space I see: **Bet C — productized AI-Act-Article-4 
 **At the corporate / scaleup altitude (€50-250k engagements):**
 - AI Act readiness audits + remediation programs. 78% of enterprises unprepared as of report date ([Vision Compliance 2026](https://natlawreview.com/press-releases/vision-compliance-releases-2026-eu-ai-act-readiness-report-finds-78)).
 - Interim CTO at €1.2-2.5k/day for crisis transitions ([Pivaio 2026](https://pivaio.com/manager-de-transition-une-profession-lucrative-en-2026/)). 15-20% YoY growth in IT interim management since 2023.
-- Vendor-exits / migrations / multi-tenant rebuilds — Ahmed's Enakl shape, maps directly.
+- Vendor-exits / migrations / multi-tenant rebuilds — Ahmed's prior-tenure shape, maps directly.
 
 ### 2.3 Comp benchmarks (sourced)
 
@@ -109,7 +109,7 @@ The single sharpest white-space I see: **Bet C — productized AI-Act-Article-4 
 - Accenture (training 30k professionals on Claude), Deloitte (470k staff Claude rollout), PwC, KPMG, Slalom, Tribe AI, Turing — all in the [Anthropic Partner Network](https://www.anthropic.com/news/claude-partner-network), all chasing the AI Act enterprise programs.
 - Atos (Sovereign Agentic Studios), Capgemini (post-WNS acquisition for €3.3B) — the French national champions.
 
-**The implication:** Ahmed competes **upward** against Big-4 (he's cheaper, faster, the judgment is denser) and **downward** against agencies + Lovable / Bolt (he charges more for documented decision-making + handoff). The narrow band between the two is exactly where the relationship-led French market lives — but the band is occupied by ~20-50 visible operators with similar bios. The differentiation is not in the offer; it's in (a) the proof density (Enakl + boringsystems + apps), (b) the harness as a transferable artifact, (c) the Article 4 angle no one is leading with yet.
+**The implication:** Ahmed competes **upward** against Big-4 (he's cheaper, faster, the judgment is denser) and **downward** against agencies + Lovable / Bolt (he charges more for documented decision-making + handoff). The narrow band between the two is exactly where the relationship-led French market lives — but the band is occupied by ~20-50 visible operators with similar bios. The differentiation is not in the offer; it's in (a) the proof density (prior-tenure case files + boringsystems + apps), (b) the harness as a transferable artifact, (c) the Article 4 angle no one is leading with yet.
 
 ---
 
@@ -151,9 +151,9 @@ The single sharpest white-space I see: **Bet C — productized AI-Act-Article-4 
 
 | White space | Ahmed's leverage match | Match score |
 |---|---|---|
-| WS-1 (ETI Article 4 + agentic competence) | Cross-functional + harness-as-product + Enakl proof at scale + French-native | **9/10** |
+| WS-1 (ETI Article 4 + agentic competence) | Cross-functional + harness-as-product + prior-tenure proof at scale + French-native | **9/10** |
 | WS-2 (Solo founder post-revenue, pre-A) | Apps shipped + harness piece + cross-functional judgment | **8/10** |
-| WS-3 (Interim CTO + agent-native handoff) | Enakl 3-year leadership + agent fluency + management-de-transition vocabulary | **8/10** |
+| WS-3 (Interim CTO + agent-native handoff) | 3-year CTO-equivalent leadership + agent fluency + management-de-transition vocabulary | **8/10** |
 | WS-4 (Corporate intra-preneur sponsorship) | Decision-layer + Offensive AI Positioning doc + warm-graph reactivation channel | **7/10** (channel is unproven) |
 
 ---
@@ -182,7 +182,7 @@ The single sharpest white-space I see: **Bet C — productized AI-Act-Article-4 
 ### 4.4 What does NOT get commoditized (inference, high confidence)
 
 - **The judgment layer in regulatory + sponsor + technical-trade-off conversations.** Higher altitude, more relationship-dependent, harder to systemize. This is where Ahmed's leverage compounds and where the price-points hold or rise. The Big-4 will charge €500k for a packaged version; a solo with sponsor proximity can charge €30-50k for a sharper version. **Confidence: High.**
-- **The "I personally ran this transformation" credibility** — Enakl-grade case files don't get cheaper through AI. They get more valuable, because they're harder to produce.
+- **The "I personally ran this transformation" credibility** — operator-grade case files (the kind produced inside a real CTO tenure) don't get cheaper through AI. They get more valuable, because they're harder to produce.
 
 ### 4.5 What I'm watching that I don't have signal on yet (flagged for follow-up)
 

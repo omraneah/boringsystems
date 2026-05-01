@@ -36,7 +36,7 @@ When GTM shifts, the downstream expressions (site IA, article voice, LinkedIn co
 
 ## Quick current snapshot (2026-04-22)
 
-- **Status:** 2 months remaining in current role (Enakl exit mid-2026). Freelance-first for the 6 months following the exit — 2026 second half is about navigating solo-preneurship.
+- **Status:** ~2 months remaining in the current chapter (transition mid-2026). Freelance-first for the 6 months following the transition — 2026 second half is the re-stabilize phase.
 - **Primary channel:** LinkedIn. Recent headline shift moved inbound away from founding-engineer / IC-under-manager pattern toward Principal / Staff / Head-of roles and fractional CTO conversations.
 - **Three offers on the table:** Fractional CTO (rolling quota), Sprint Founder-Builder (multi-week MVP+judgment build), Transformation Lead (non-IC migrations at larger corps).
 - **Open question:** which of the three freelance offers concentrates the highest-quality inbound over the next 60 days.
