@@ -89,6 +89,8 @@ Cela importait parce qu'une plateforme ne peut pas évoluer en sécurité quand 
 
 Une fois cette séparation existante, l'identité à l'intérieur du système est devenue portable au lieu d'être liée au fournisseur.
 
+L'exécution complète de cette couche — nommer la dette, le cleanup systématique, et la décision d'architecture enterprise-ready — est documentée dans [Délimiter les couches d'authentification dans un système en production](/fr/work/untangling-auth-layer-boundaries-in-a-running-system/). Le cadre de décision orienté opérateurs pour cette couche est couvert dans [Auth SaaS : les couches que les opérateurs traitent comme une seule décision](/fr/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision/).
+
 ---
 
 ### Couche 2 — Appliquer l'accès à la limite

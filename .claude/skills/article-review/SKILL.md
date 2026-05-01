@@ -184,6 +184,12 @@ If FR is missing and the article is in a collection that has existing FR sibling
 - Images referenced are in `public/` or use absolute URLs — no broken paths.
 - Internal links use site-relative, **language-prefixed** paths that match the canonical folder-equals-URL structure: `/en/writing/<slug>`, `/en/work/<slug>`, `/en/building/<slug>`, `/en/archive/<slug>` for EN articles; FR mirrors. Never full domain URLs, never unprefixed paths. The root `/` 301-redirects to `/en/`; no other redirects exist.
 
+### 11. Cross-reference audit
+
+Invoke `/cross-ref-check $SLUG` and embed its full output under `## Cross-reference audit` in the report. This checks bidirectional links and FR parity more thoroughly than the inline cross-link scan in step 5.
+
+If `cross-ref-check` is unavailable, note "skipped — cross-ref-check not available" and proceed.
+
 ## Output format
 
 Single markdown report to stdout, with sections:
@@ -221,6 +227,9 @@ So Ahmed can catch a miscall before reading the flag list:
 
 ## French audit
 <embedded output from french-audit skill, or "skipped — FR missing">
+
+## Cross-reference audit
+<embedded output from cross-ref-check skill, or "skipped — not available">
 
 ## Verdict
 - Blockers: N

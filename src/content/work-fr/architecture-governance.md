@@ -177,3 +177,5 @@ Ce cas illustre que la gouvernance d'architecture ne nécessite pas une grande f
 Elle nécessite des limites explicites, des directives accessibles et assez de discipline opérationnelle pour maintenir ces directives faisant autorité.
 
 Une fois que les mêmes principes sont appliqués depuis la même source, le coût de coordination diminue et l'exécution parallèle devient plus sûre.
+
+Ces mécanismes de gouvernance — documents de périmètre au niveau des principes, application programmatique, suivi hebdomadaire sur une métrique visible — sont démontrés en pratique dans [Délimiter les couches d'authentification dans un système en production](/fr/work/untangling-auth-layer-boundaries-in-a-running-system/).
