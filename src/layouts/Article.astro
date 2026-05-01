@@ -16,11 +16,13 @@ interface Props {
   lang?: 'en' | 'fr';
   date?: string;
   isoDate?: string;
+  lastModifiedIso?: string;
   readTime?: string;
   ogImage?: string;
+  articleType?: 'BlogPosting' | 'Article';
 }
 
-const { title, description, series, backHref, backLabel, lang = 'en', date, isoDate, readTime, ogImage = 'https://boringsystems.app/logo.png' } = Astro.props;
+const { title, description, series, backHref, backLabel, lang = 'en', date, isoDate, lastModifiedIso, readTime, ogImage = 'https://boringsystems.app/logo.png', articleType = 'BlogPosting' } = Astro.props;
 const showHeader = Boolean(date || readTime);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) : null;
@@ -29,16 +31,19 @@ const pageTitle = `${title} — Boring Systems`;
 
 const articleSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Article',
+  '@type': articleType,
   headline: title,
   description: metaDescription,
+  inLanguage: lang === 'fr' ? 'fr-FR' : 'en-US',
   author: {
     '@type': 'Person',
+    '@id': 'https://boringsystems.app/#ahmed-omrane',
     name: 'Ahmed Omrane',
     url: 'https://boringsystems.app',
   },
   publisher: {
     '@type': 'Organization',
+    '@id': 'https://boringsystems.app/#website',
     name: 'Boring Systems',
     url: 'https://boringsystems.app',
     logo: {
@@ -47,12 +52,42 @@ const articleSchema = {
     },
   },
   ...(isoDate ? { datePublished: isoDate } : {}),
+  ...(lastModifiedIso
+    ? { dateModified: lastModifiedIso }
+    : isoDate
+    ? { dateModified: isoDate }
+    : {}),
   mainEntityOfPage: {
     '@type': 'WebPage',
     '@id': canonicalUrl.href,
   },
   url: canonicalUrl.href,
   image: ogImage,
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: lang === 'fr' ? 'Accueil' : 'Home',
+      item: `https://boringsystems.app/${lang}/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: backLabel,
+      item: `https://boringsystems.app${backHref}`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: title,
+      item: canonicalUrl.href,
+    },
+  ],
 };
 ---
 
@@ -75,12 +110,20 @@ const articleSchema = {
     <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:site_name" content="Boring Systems" />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
+    {lang === 'en'
+      ? <meta property="og:locale:alternate" content="fr_FR" />
+      : <meta property="og:locale:alternate" content="en_US" />
+    }
     {isoDate && <meta property="article:published_time" content={isoDate} />}
-    <meta property="article:author" content="Ahmed Omrane" />
+    <meta property="article:author" content="https://www.linkedin.com/in/omrane-ahmed/" />
+    {backLabel && <meta property="article:section" content={backLabel} />}
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={ogImage} />
@@ -94,8 +137,9 @@ const articleSchema = {
       rel="stylesheet"
     />
 
-    <!-- JSON-LD: Article -->
+    <!-- JSON-LD: Article + BreadcrumbList -->
     <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
     <script is:inline>
       (function () {

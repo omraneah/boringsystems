@@ -1,5 +1,41 @@
 ---
 import Base from '@/layouts/Base.astro';
+
+const profilePageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': 'https://boringsystems.app/#ahmed-omrane',
+    name: 'Ahmed Omrane',
+    url: 'https://boringsystems.app/fr/about',
+    image: 'https://boringsystems.app/logo.png',
+    jobTitle: 'Engineering Leader',
+    description: 'Engineering leader avec 15+ ans portant l\'arc business → product → engineering. Exécution AI-native. Basé en France.',
+    knowsAbout: [
+      'Agentic AI Orchestration',
+      'Engineering Leadership',
+      'SaaS Architecture',
+      'Vendor Lock-in Migration',
+      'Multi-tenant Systems',
+      'Technical Product Strategy',
+    ],
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Boring Systems',
+      url: 'https://boringsystems.app',
+    },
+    alumniOf: [
+      { '@type': 'Organization', name: 'Enakl', url: 'https://enakl.com' },
+      { '@type': 'Organization', name: 'The Fabulous', url: 'https://thefabulous.co' },
+    ],
+    sameAs: [
+      'https://www.linkedin.com/in/omrane-ahmed/',
+      'https://medium.com/@ahmedomrane',
+    ],
+  },
+};
 ---
 
 <Base
@@ -7,6 +43,7 @@ import Base from '@/layouts/Base.astro';
   description="Ahmed Omrane — engineering leader portant l'arc business → product → engineering en bout-en-bout. Ancien CTO chez Enakl, data leadership chez The Fabulous. Basé en France, focus européen, engagements contract uniquement."
   lang="fr"
 >
+  <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(profilePageSchema)} />
   <div class="page">
     <div class="page-inner">
       <header class="page-header">

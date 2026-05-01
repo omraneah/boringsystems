@@ -1,11 +1,48 @@
 ---
 import Base from '@/layouts/Base.astro';
+
+const profilePageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': 'https://boringsystems.app/#ahmed-omrane',
+    name: 'Ahmed Omrane',
+    url: 'https://boringsystems.app/en/about',
+    image: 'https://boringsystems.app/logo.png',
+    jobTitle: 'Engineering Leader',
+    description: 'Engineering leader with 15+ years owning the business → product → engineering arc. AI-native execution. France-based.',
+    knowsAbout: [
+      'Agentic AI Orchestration',
+      'Engineering Leadership',
+      'SaaS Architecture',
+      'Vendor Lock-in Migration',
+      'Multi-tenant Systems',
+      'Technical Product Strategy',
+    ],
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Boring Systems',
+      url: 'https://boringsystems.app',
+    },
+    alumniOf: [
+      { '@type': 'Organization', name: 'Enakl', url: 'https://enakl.com' },
+      { '@type': 'Organization', name: 'The Fabulous', url: 'https://thefabulous.co' },
+    ],
+    sameAs: [
+      'https://www.linkedin.com/in/omrane-ahmed/',
+      'https://medium.com/@ahmedomrane',
+    ],
+  },
+};
 ---
 
 <Base
   title="About"
   description="Ahmed Omrane — engineering leader owning the business → product → engineering arc end-to-end. Past: CTO at Enakl, data leadership at The Fabulous. France-based, European focus, contract engagements only."
 >
+  <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(profilePageSchema)} />
   <div class="page">
     <div class="page-inner">
       <header class="page-header">

@@ -29,6 +29,7 @@ const pageTitle = title === 'Ahmed Omrane' ? 'Ahmed Omrane — Boring Systems' :
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': 'https://boringsystems.app/#ahmed-omrane',
   name: 'Ahmed Omrane',
   url: 'https://boringsystems.app',
   description:
@@ -43,12 +44,15 @@ const personSchema = {
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': 'https://boringsystems.app/#website',
   name: 'Boring Systems',
   url: 'https://boringsystems.app',
+  inLanguage: ['en-US', 'fr-FR'],
   description:
     'Engineering leadership case files and frameworks for the agentic AI era. Systems that scale. Judgment that holds.',
   publisher: {
     '@type': 'Person',
+    '@id': 'https://boringsystems.app/#ahmed-omrane',
     name: 'Ahmed Omrane',
     url: 'https://boringsystems.app',
   },
@@ -74,10 +78,17 @@ const websiteSchema = {
     <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:site_name" content="Boring Systems" />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
+    {lang === 'en'
+      ? <meta property="og:locale:alternate" content="fr_FR" />
+      : <meta property="og:locale:alternate" content="en_US" />
+    }
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
@@ -94,6 +105,7 @@ const websiteSchema = {
     <!-- JSON-LD: Person + WebSite -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <slot name="head-extra" />
 
     <script is:inline>
       (function () {
