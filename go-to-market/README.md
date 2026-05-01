@@ -17,6 +17,7 @@ It's **operational** — updated weekly as inbound lands and positioning iterate
 | `outreach-templates.md` | Reusable outbound message templates — warm-tie reactivation, etc. Bucketed by relationship depth and cross-cultural notes. | When a new pattern earns its keep |
 | `inbound-call-discipline.md` | Operating principles for inbound calls (Fractional CTO, Sprint, Transformation, advisory). Discovery-before-anchor, skin-in-the-game, slow-down, feedback ask. | When the discipline gets sharpened by a real conversation |
 | `credibility-map.md` | Three-zone map of what the resume sells credibly, with friction, or not at all. Constrains offer design and qualifies inbound live. | Re-read every 6 months against actual inbound |
+| `website.md` | Operational tactic for the `boringsystems.app` surface — funnel positioning, pre-funnel aesthetic-filter principle, rename-considered-and-rejected paragraph, secondary-domain experiment trigger conditions. Cross-references `strategy.md` § Surface 2. | When site positioning, tactics, or trigger conditions shift |
 
 ## Relationship to other folders
 

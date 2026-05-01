@@ -664,3 +664,11 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 
 ---
 
+## 2026-05-01 — Keep boringsystems.app as canonical surface; defer secondary-domain experiment
+**Context:** Late April 2026, reconsidering the website surface name ahead of SEO/AEO consolidation. Two replacement candidates analyzed (`slowcraft.app`, `calmcraft.app`). Reversibility decreases fast once SEO/AEO investment compounds, so the call needed to land before the consolidation work.
+**Decision:** Keep `boringsystems.app` as canonical surface. Defer the secondary-domain hedge (e.g. `omrane.work` / `ahmedomrane.com` 301'd to the same site) for cold-stranger-heavy contexts until trigger conditions fire.
+**Why:** Verified through the copy-craftsperson agent (Camille Brodeur) twice — initial verdict and a refined verdict after pushback. Three load-bearing reasons. (1) **Counterweight** — the rest of the positioning system is uniformly warm (calm, anchored, sovereign, resonance-not-persuasion); "boring" is the only un-warm word and provides the structural edge for bottom-of-funnel commitment. Replacing it produces a uniformly-warm system that fails to filter at the close. (2) **Archetype-fit** — `boringsystems` flags the new operator-archetype the market is just learning to price (AI-compressed execution, refuses theatre); `calmcraft` flags an older, saturated artisan-consultant archetype. (3) **Pre-funnel aesthetic filter** — boring's strangeness *is* the filter; structurally cheaper than positional polarization because wrong-fit readers don't enter the funnel at all. The site itself rescues the name within ~6 seconds via hero copy and case-file format.
+**Expected outcome:** SEO/AEO investment compounds into one canonical brand. Pre-funnel aesthetic-filter principle generalizes to all cold-stranger touchpoints (LinkedIn header, bios, podcast cards). Secondary-domain hedge available when crossover triggers fire (LinkedIn reach threshold crossed, AI-citation traffic appears, two-plus cold-stranger reports of pre-funnel friction, or distribution shifts to cold-stranger-heavy). Don't relitigate for 6 months minimum. Full tactic context in `go-to-market/website.md`.
+**Actual outcome:** *(pending)*
+
+---
