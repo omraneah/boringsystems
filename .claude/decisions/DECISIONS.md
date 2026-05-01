@@ -681,3 +681,12 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-01 — New /check-linear-card-paths sibling skill
+**Context:** During wrap-session, surfaced that BOR-38's Linear card description pointed at the renamed `Enakl-Derailment-Archetype.md` (now `Engagement-Validity-Filter.md`). Existing `/check-stable-docs-leaks` sweeps repo files for forbidden references but doesn't touch Linear cards — different surface, different drift class. Operator approved extension.
+**Decision:** Created `.claude/personal-skills/check-linear-card-paths/SKILL.md` as a sibling skill. Sweeps open Linear card descriptions + comments for path-shaped references (`memory/...`, `docs/...`, `.claude/...`, generic `<path>.md`) and flags those that no longer resolve in `/Users/ahmedomrane/Workspace/`. Read-only by default; optional `--fix` proposes rename-resolution lookups but never silently mutates. Cross-linked from `/check-stable-docs-leaks`. Honors silent-retry rule for Linear MCP rate-limit hiccups. Also patched BOR-38's description manually inline (the load-bearing instance the skill exists to catch).
+**Why:** Same shape as the existing leak-sweep skill, opposite direction — repo→leaks vs. cards→broken-paths. Sibling rather than merged because the surfaces (filesystem vs. Linear API) and the cadences (pre-PR vs. on-demand / post-restructure) differ. Sibling pattern matches how `/github-cleanup` and `/tmp-cleanup` are kept separate. Real instance forced the issue today; future memory restructures will recur this drift class without mechanization.
+**Expected outcome:** Card descriptions stay synchronized with the workspace as files rename. Catches the drift class within seconds instead of months. Operator surfaces it manually or wires to `/loop` weekly later.
+**Actual outcome:** *(pending)*
+
+---

@@ -124,3 +124,7 @@ Fire `/check-stable-docs-leaks --fix` to attempt automated cleanup, or fix manua
 
 - The four governance rules captured in BOR-30 codifications (READMEs point to stable refs only, no Linear in stable docs, no tmp in stable docs, workspace-root-precedence) — this skill mechanizes their enforcement.
 - `feedback_at_imports_break_on_rename.md` — the @-import check (Pattern 4) prevents the silent breakage that rule warns about.
+
+## Companion skills
+
+- `/check-linear-card-paths` — sibling. Same shape (path-references-must-resolve), different surface (Linear cards, not filesystem). This skill catches *forbidden* references in repo docs; the sibling catches *broken* references in Linear cards. Run both when tightening up a folder rename or memory restructure.
