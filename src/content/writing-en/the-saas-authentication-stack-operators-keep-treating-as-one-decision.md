@@ -42,6 +42,16 @@ This layer recently got a name. The pattern is sometimes called a federation bro
 
 The broker problem is: N customer IdPs × M protocols (SAML 2.0, OIDC) × per-customer configuration × a self-service admin portal for each customer's IT team. That's not a JIRA ticket. It's a full-time engineering investment that compounds with every enterprise customer you add. WorkOS, Stytch B2B, and SSOReady exist because the industry converged on "this layer is worth buying."
 
+| Vendor | SAML | OIDC | SCIM | Admin portal | Model |
+|---|---|---|---|---|---|
+| **WorkOS** | ✓ | ✓ | ✓ | ✓ | Paid — per-connection |
+| **Stytch B2B** | ✓ | ✓ | ✓ | ✓ | Paid |
+| **Frontegg** | ✓ | ✓ | ✓ | ✓ | Paid — bundled app-layer features (RBAC UI, etc.) |
+| **Auth0 (Okta CIC)** | ✓ | ✓ | ✓ | ✓ | Paid — broad feature set, mature, expensive |
+| **Clerk** | ✓ | ✓ | Partial | ✓ | Paid — B2C origins, enterprise SCIM maturing |
+| **SSOReady** | ✓ | ✓ | ✓ | ✓ | Open-source / self-hosted |
+| **Keycloak** | ✓ | ✓ | ✓ | ✓ | Open-source / self-hosted — full ops burden |
+
 The broker is not the same as the IdP. The broker doesn't own identity — it federates to IdPs that do. Conflating them is one of the most expensive auth mistakes: treating a broker as a user database, then discovering the coupling when you need to migrate.
 
 ### Token verification

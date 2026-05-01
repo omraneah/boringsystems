@@ -42,6 +42,16 @@ Cette couche a récemment trouvé un nom. Le pattern s'appelait "federation brok
 
 Le problème du broker : N IdPs clients × M protocoles (SAML 2.0, OIDC) × configuration par client × un admin portal self-service pour les équipes IT de chaque client. C'est un investissement engineering permanent, pas un ticket. Il compound avec chaque client enterprise ajouté. WorkOS, Stytch B2B, et SSOReady existent parce que l'industrie a convergé vers "cette couche vaut la peine d'être achetée".
 
+| Vendor | SAML | OIDC | SCIM | Admin portal | Modèle |
+|---|---|---|---|---|---|
+| **WorkOS** | ✓ | ✓ | ✓ | ✓ | Payant — par connexion |
+| **Stytch B2B** | ✓ | ✓ | ✓ | ✓ | Payant |
+| **Frontegg** | ✓ | ✓ | ✓ | ✓ | Payant — features app bundlées (RBAC UI, etc.) |
+| **Auth0 (Okta CIC)** | ✓ | ✓ | ✓ | ✓ | Payant — large, mature, coûteux |
+| **Clerk** | ✓ | ✓ | Partiel | ✓ | Payant — origines B2C, SCIM enterprise en maturation |
+| **SSOReady** | ✓ | ✓ | ✓ | ✓ | Open-source / self-hosted |
+| **Keycloak** | ✓ | ✓ | ✓ | ✓ | Open-source / self-hosted — ops complet |
+
 Le broker n'est pas l'IdP. Le broker ne possède pas l'identité — il fédère vers des IdPs qui le font. Les confondre est une des erreurs auth les plus coûteuses : traiter un broker comme une base de données utilisateurs, puis découvrir le couplage quand il faut migrer.
 
 ### Token verification
