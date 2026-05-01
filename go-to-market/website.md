@@ -23,6 +23,104 @@ The operational tactic for the website surface — how `boringsystems.app` talks
 - **Voice target is per-piece**, not per-lane. A Building-lane piece can address P1 or P2; a Writing-lane piece can address P1 or P2.
 - **Companion surface:** `portfolio.boringsystems.app` — apps shipped end-to-end. Currently unlinked from main nav by design. Gated-by-knowledge.
 
+## Persona model — two channels, two intents
+
+Two reader-personas live on the same site. **They do not share a funnel.**
+
+**P1 — peers** (senior engineers, technical operators).
+
+- *Intent:* community channel. They come to read, recognize quality, refer Ahmed to others.
+- *What they pay in:* trust and reach. Not revenue.
+- *Voice:* technical depth, restraint, no ask. **No CTAs on P1 surfaces.**
+- *Profile detail:* `boringsystems/docs/target-audiences.md` § P1 `technical`.
+
+**P2 — buyers** (founder-operators, sponsors, advisors with execution problems).
+
+- *Intent:* conversion channel. They come to decide whether Ahmed can solve a problem keeping them up at night.
+- *What they pay in:* revenue.
+- *Voice:* capability-led, calm, sovereign, anchored. They need to recognize themselves first, then see a door.
+- *Profile detail:* `boringsystems/docs/target-audiences.md` § P2 `builder`.
+
+**Voice-target-per-piece rule.** Every piece of copy is written to one persona, not both. Lane-independent — a Building-lane piece can address P1 or P2; per-piece calibration. Cross-referenced from `boringsystems/docs/target-audiences.md` § Cross-voice rules; formalized here as load-bearing for this channel.
+
+### Current phase: scaffolding, not converting
+
+The site is being built; voice and rhythm come first. P2 conversion funnel ships later — when voice has stabilized on LinkedIn and warm-intro volume justifies a real close.
+
+Until then:
+
+- **Cold-stranger bounces are acceptable.** That's pre-funnel filter doing its job (§ Pre-funnel aesthetic filter).
+- **Warm-intro bounces are NOT acceptable.** Warm intros leave with an impression that colors the next conversation. The home page must read as deliberate, never as under-construction.
+- **"How to work with me" doorway stays visible from the home page through scaffolding** so the conversion muscle doesn't atrophy. (Page design itself is in flight per `strategy.md` § Surface 2 § May focus points.)
+
+### LinkedIn voice is the load-bearing artifact
+
+The site is downstream of the voice. Voice gets built in public on LinkedIn. If voice compounds there, the site rewrites itself almost passively. If voice doesn't compound, no site work compensates.
+
+Attention allocation reflects that: **LinkedIn first, site second.** When the two compete for time, LinkedIn wins.
+
+### Decisions — do not relitigate
+
+- Domain stays `boringsystems.app`. Functions as pre-funnel aesthetic filter. Counterweight to an otherwise warm stack. (Logged: `.claude/decisions/DECISIONS.md` 2026-05-01.)
+- P2 is the conversion persona. P1 is peer-share — no revenue expected.
+- Voice-target-per-piece. Never write for both at once.
+- "How to work with me" doorway visible from the home page through scaffolding.
+
+### Routing principle (for when conversion goes live)
+
+Split P1/P2 at the **second click**, not the first.
+
+- Home stays one shared room with two visible doors. Visible-without-scrolling doors beat clever IA.
+- Don't force self-classification at the URL level before the visitor has signal — that's the site's job, not the visitor's.
+- When P2 lands on the home page, the question is *how fast do they see their door* — not *whether the home is rewritten for them*. Routing problem, not tuning problem.
+
+### Polarization gradient across the funnel
+
+Different filtering mechanism at each stage. § Pre-funnel aesthetic filter is the principle this gradient comes from.
+
+| Stage | Mechanism | What does the work |
+|---|---|---|
+| Top (pre-funnel + Awareness) | Aesthetic filter | Domain, header, surface register |
+| Middle (Interest + Consideration) | Specificity | Body copy, named systems, named constraints, named decisions |
+| Bottom (Conversion) | Edge | Offer page polarizes by stating what's *not* a fit |
+
+**Drift to watch (load-bearing):** warmth creeping into the *bottom* (softens the close, leaves the right reader unable to commit) ↔ edge creeping into the *top* (filters out warm prospects in line one). Same identity-reflex showing up in opposite directions of the funnel.
+
+### Drift watches — per persona
+
+**P1:**
+
+- Premature ask. P1 surfaces have no CTAs.
+- Over-explaining the technical. P1 doesn't need the warm-up paragraph.
+- Founder-LinkedIn cadence intrusion (short-line punch-and-drop). Reads as performance to engineers.
+
+**P2:**
+
+- Performative warmth at the close. Trust-building voice carrying into the conversion ask, leaving the right reader unable to commit.
+- Generic-claim drift. "Senior judgment" without sensory anchor.
+- Hedge-stacking on the offer ("I think," "maybe," "perhaps"). Leaks confidence at the moment of decision.
+- Premature edge at the open. Anti-hype reflex producing copy that filters out warm prospects in line one.
+
+### Signals to watch (operational triggers)
+
+- **Cold-stranger volume rising** → revisit secondary-domain experiment (§ Secondary-domain experiment).
+- **Warm intros bouncing without converting** → routing audit. Home page is failing the second-click rule.
+- **P2 conversion data, once it exists** → re-test the persona-model diagnoses against the first ten real P2 conversations sourced from the site. The model is hypothesis until then.
+- **Voice not compounding on LinkedIn** → step back from site work. Site is downstream; site work cannot compensate for upstream voice failure.
+- **P1 traffic swamping P2 in raw volume** → bring forward the P1/P2 split sooner than planned.
+
+### Deferred work — with triggers
+
+Each item ships when the trigger fires. None of these are scheduled.
+
+- **Full P2 conversion funnel** — when voice has stabilized on LinkedIn and warm-intro volume justifies a real close.
+- **Dedicated P2 landing page beyond the existing doorway** — after the first ~5 P2 conversations sourced from the site. Until then there's not enough signal to know what the page actually needs to say.
+- **Dedicated P1 landing page or peer-shaped index** — when P1 traffic swamps P2 routing on the shared home.
+- **Secondary domain (`omrane.work` or similar) 301'd to the site** — when cold-stranger volume rises to where the boringsystems.app filter is costing more warm conversions than it's worth (cross-reference § Secondary-domain experiment).
+- **Conversion measurement definition** — must be defined *before* the P2 conversion funnel ships. No funnel without a measurement plan.
+
+---
+
 ## What the site does — and doesn't
 
 **Does:**
