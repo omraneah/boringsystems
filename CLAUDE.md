@@ -82,6 +82,7 @@ Closed loop:
 - **Drift detection.** Fire `/divergence-check` on detected frustration or loss-of-fit (proactive). Respond to `/whence` with tier+source+bias-risk when asked (directive). Full rule: `memory/short-term/feedback/in-flight/feedback_fire_divergence_check_on_frustration.md`.
 - **Weekly consolidation.** On Monday session start, fire `/consolidate-week` if this week's consolidation hasn't been done yet. Full rule: `memory/short-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md`.
 - **Never push with high or critical npm vulnerabilities.** Each npm-capable submodule has a `pre-push` hook running `npm audit --audit-level=high`. Workspace root also runs `.claude/git-hooks/pre-push` which audits every submodule before a pointer bump. Fix path: `npm audit fix` → npm `overrides` → major upgrade → documented advisory acceptance in the affected project's ADR. `--no-verify` forbidden.
+- **Medium-term docs contain rules, never state.** Every sentence in a `memory/medium-term/` document must be as true in six months as it is today. Never embed Linear card IDs, board snapshots, PR numbers, active branch names, or any live issue list in medium-term documents — that is short-term episodic state and belongs on the board or in `memory/short-term/`. Full rule: `memory/short-term/feedback/stable/feedback_no_short_term_state_in_medium_term_docs.md`.
 
 ## Detail — read these when the topic matters
 
