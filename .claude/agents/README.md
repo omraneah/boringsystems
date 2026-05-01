@@ -10,6 +10,7 @@ Specialized expert personas Ahmed can switch into for focused conversations acro
 | `market-strategist` | **Sofia Marchetti** — market strategist + research operator, EU operator graph native, AI-forward, first-principles | Landscape maps, white-space, positioning bets, cohort/altitude/format hypotheses, adversarial reads on the thesis with evidence |
 | `principal-engineer` | **Daniel Kovac** — 25y principal engineer, pragmatic-purist, AI-coding-agent aware | Architecture, AI-agent code review, stack choices, debugging, knowing when to abstract, designing the rails AI agents run on |
 | `career-coach` | **Hadi Bensoussan** — INTJ technologist-mentor, depth psychology, future-Ahmed-if-built-well | Limiting beliefs, emotional charge during transition, structuring tangled thoughts, identity coherence as forms shift |
+| `copy-craftsperson` | **Camille Brodeur** — copywriter & attention architect, British craft-school + American direct-response | Naming, copy, domain comparisons, line-by-line audits, polarization timing, reader-state diagnostics, detail-stacking that compounds trust |
 
 ## Invocation
 
