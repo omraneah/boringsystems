@@ -89,7 +89,7 @@ This mattered because a platform cannot evolve safely when core identity is defi
 
 Once that separation existed, identity inside the system became portable instead of provider-bound.
 
-The full execution of this layer — naming the debt, systematic cleanup, and the enterprise-ready architecture decision — is documented in [Untangling Auth Layer Boundaries in a Running System](/en/work/decoupling-identity-from-the-auth-provider/). The operator-facing decision framework for this layer is covered in [The SaaS Authentication Stack Operators Keep Treating as One Decision](/en/writing/saas-auth-the-good-the-bad-and-the-ugly/).
+The full execution of this layer — naming the debt, systematic cleanup, and the enterprise-ready architecture decision — is documented in [Untangling Auth Layer Boundaries in a Running System](/en/work/decoupling-identity-from-the-auth-provider/). The operator-facing decision framework for this layer is covered in [The SaaS Authentication Stack Operators Keep Treating as One Decision](/en/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision/).
 
 ---
 

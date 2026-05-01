@@ -134,4 +134,4 @@ La même logique s'applique à la token verification : le provider émet un toke
 
 Le failure mode n'est pas la mauvaise première décision. C'est prendre la première décision sans nommer ce qui vient après. Chaque couche non nommée défaute vers le vendor disponible — pragmatiquement, invisiblement — jusqu'au moment où la pression d'évolution rend le coût du démêlage prohibitif.
 
-Le cadre de décision pour savoir quand déléguer l'auth et comment lire le plafond de chaque approche — avant que le couplage devienne de la dette — est couvert dans [Auth SaaS : les couches que les opérateurs traitent comme une seule décision](/fr/writing/saas-auth-the-good-the-bad-and-the-ugly/).
+Le cadre de décision pour savoir quand déléguer l'auth et comment lire le plafond de chaque approche — avant que le couplage devienne de la dette — est couvert dans [Auth SaaS : les couches que les opérateurs traitent comme une seule décision](/fr/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision/).

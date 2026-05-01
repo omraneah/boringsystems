@@ -10,7 +10,7 @@ order: 7
 
 La première décision auth que la plupart des opérateurs prennent correctement : ne pas gérer les mots de passe. Ne pas devenir un Identity Provider. Ne pas construire l'infrastructure cryptographique, le stockage des credentials, la réponse aux incidents de sécurité, les flows MFA. Déléguer ce risque à un tiers spécialisé. Les outils existent, les protocoles sont standardisés, et il n'y a aucun avantage concurrentiel à faire ça soi-même.
 
-Cette décision conduit naturellement au bon premier choix d'implémentation : utiliser un service d'authentification managé. AWS Cognito, Firebase Auth, Auth0 — n'importe lequel gère la vérification des credentials et l'émission de tokens. La couche IdP est résolue. On passe à la suite.
+Cette décision conduit naturellement au bon premier choix d'implémentation : utiliser un service d'authentification managé. AWS Cognito, Firebase Auth, Supabase Auth — n'importe lequel gère la vérification des credentials et l'émission de tokens. La couche IdP est résolue. On passe à la suite.
 
 Le problème commence avec ce qui suit.
 
@@ -24,7 +24,7 @@ Ce guide est là pour prendre ces décisions avant qu'elles ne se prennent d'ell
 
 "Auth" est un raccourci pour une stack de couches fonctionnelles distinctes. Ces couches existent quel que soit le vendor ou le protocole utilisé — elles décrivent des *rôles*, pas des produits. Un seul vendor remplit souvent plusieurs rôles, et c'est exactement ce qui crée la confusion.
 
-**Identity Provider (IdP)**
+### Identity Provider (IdP)
 
 Le système qui authentifie les utilisateurs — qui prouve que cette personne est bien qui elle prétend être. Il détient ou fédère les credentials, gère la vérification multi-facteurs, et émet des assertions signées en aval : une réponse SAML ou un token OIDC.
 
@@ -34,7 +34,7 @@ En contexte B2B enterprise, l'IdP appartient à l'acheteur. Leur tenant Okta, le
 
 Cette distinction — qui gère l'IdP — est le premier axe de toute décision d'architecture auth.
 
-**Identity broker**
+### Identity broker
 
 La couche entre l'application et l'IdP de l'acheteur. Quand on a plusieurs clients enterprise, chacun avec son propre IdP, chacun avec sa configuration SAML ou OIDC, le broker normalise cette complexité en une seule API que le backend utilise.
 
@@ -44,19 +44,19 @@ Le problème du broker : N IdPs clients × M protocoles (SAML 2.0, OIDC) × conf
 
 Le broker n'est pas l'IdP. Le broker ne possède pas l'identité — il fédère vers des IdPs qui le font. Les confondre est une des erreurs auth les plus coûteuses : traiter un broker comme une base de données utilisateurs, puis découvrir le couplage quand il faut migrer.
 
-**Token verification**
+### Token verification
 
 Comment le backend vérifie l'identité à chaque requête API.
 
 Le pattern correct est la vérification cryptographique locale : parser le JWT depuis l'Authorization header, vérifier la signature contre les clés publiques publiées par l'émetteur (récupérées une fois, mises en cache — c'est le rôle de JWKS), valider les claims standards. C'est une opération locale. Elle coûte des microsecondes. Zéro appel réseau en régime normal.
 
-L'anti-pattern courant est d'appeler le provider auth à chaque requête pour valider le token — invoquer l'API du service auth pour chaque appel entrant. Ça ajoute 50 à 300 ms à chaque requête authentifiée, consomme les rate limits API du provider, et rend la disponibilité de l'application dépendante de la disponibilité du provider pour chaque utilisateur, chaque endpoint, chaque seconde. C'est silencieux en développement et visible sous charge.
+L'anti-pattern courant est d'appeler le provider auth à chaque requête pour valider le token — invoquer l'API du service auth pour chaque appel entrant. Ça ajoute jusqu'à 300 ms à chaque requête authentifiée, consomme les rate limits API du provider, et rend la disponibilité de l'application dépendante de la disponibilité du provider pour chaque utilisateur, chaque endpoint, chaque seconde. C'est silencieux en développement et visible sous charge.
 
 AWS publie `aws-jwt-verify` spécifiquement parce que cette erreur est assez répandue pour mériter une librairie officielle. Le pattern est documenté : vérifier les tokens localement, via JWKS.
 
 Le backend vérifie les tokens. Le provider auth les émet, une fois, au login.
 
-**User management**
+### User management
 
 Votre base de données. Pas celle du provider auth.
 
@@ -68,7 +68,7 @@ Posséder son user ID. Il est généré par le système, vit dans la base de don
 
 Le détail de ce que ce couplage provoque dans une plateforme live — comment il s'accumule et comment il se résout — est documenté dans [Délimiter les couches d'authentification dans un système en production](/fr/work/decoupling-identity-from-the-auth-provider/).
 
-**User provisioning (SCIM)**
+### User provisioning (SCIM)
 
 La gestion du cycle de vie des comptes. Cette couche tourne sur un protocole différent, à un moment différent : pas "qui se connecte maintenant" mais "qui devrait avoir accès, et cet accès est-il synchronisé avec les systèmes RH et IT de l'acheteur".
 
@@ -76,13 +76,13 @@ Quand quelqu'un rejoint une entreprise, son compte devrait exister dans les outi
 
 SCIM 2.0 (System for Cross-domain Identity Management) est le protocole qui gère ça. L'identity provider de l'acheteur pousse des lifecycle events — user créé, mis à jour, désactivé — vers un endpoint exposé par l'application. L'application les traite et maintient l'accès synchronisé.
 
-Le just-in-time (JIT) provisioning — créer un compte à la première connexion SSO — est un fallback acceptable pour les clients SMB et les premiers clients enterprise. Il ne tient pas à l'échelle parce qu'il ne peut pas déprovisionner, ni pré-provisionner, ni synchroniser les changements de group membership en temps réel. Au-dessus de ~50K€ ACV, les équipes procurement commencent à exiger SCIM explicitement. Au-dessus de 200K€, c'est un hard gate.
+Le just-in-time (JIT) provisioning — créer un compte à la première connexion SSO — est un fallback acceptable pour les clients SMB et les premiers clients enterprise. Il ne tient pas à l'échelle parce qu'il ne peut pas déprovisionner, ni pré-provisionner, ni synchroniser les changements de group membership en temps réel.
 
-**Session management**
+### Session management
 
 La couche "vous êtes toujours connecté". Tokens d'accès à courte durée de vie, rotation des refresh tokens, session timeouts configurables, forced logout, limites de sessions concurrentes. Les équipes IT enterprise veulent que ça soit configurable par tenant : sessions courtes pour les environnements sensibles, sessions longues pour la productivité, re-authentification forcée après un changement de credential.
 
-**Authorization**
+### Authorization
 
 Qui peut faire quoi, dans quel contexte. Vos rôles, vos permissions, vos règles métier. Cette couche vit entièrement dans l'application — dans la base de données et la logique backend.
 
@@ -122,7 +122,7 @@ Trois points de cette table qui surprennent le plus souvent les opérateurs :
 |---|---|---|
 | **Identity Provider** | Déléguer | Ne jamais implémenter le stockage de credentials. Choisir selon le marché : IdP managé pour les utilisateurs qui n'apportent pas le leur ; se fier à l'IdP corporate de l'acheteur pour l'enterprise. |
 | **Identity broker** | Déléguer dès que N > quelques clients enterprise | La matrice N-IdPs × M-protocoles est un problème engineering permanent qui compound avec chaque client. Les brokers dédiés existent parce que construire en interne est une charge opérationnelle permanente. |
-| **Token verification** | Posséder le code — ~50 lignes | Vérification JWKS locale avec une librairie. Le provider n'est pas dans le hot path de l'API. |
+| **Token verification** | Posséder — quelques centaines de lignes avec une librairie reconnue | Vérification JWKS locale avec une librairie. Le provider n'est pas dans le hot path de l'API. |
 | **User management** | Posséder — toujours | Votre table users, vos IDs, votre schéma. L'identifiant du provider est une référence externe, pas la clé primaire. |
 | **Provisioning** | Déléguer via broker ou construire l'endpoint SCIM | Le protocole est standardisé ; la partie difficile est l'UI admin self-service pour les clients. Les brokers gèrent ça ; construire en interne signifie posséder cette surface. |
 | **Session management** | Construire avec une librairie | Tokens d'accès à courte durée de vie, rotation des refresh tokens, timeout configurable par tenant. |

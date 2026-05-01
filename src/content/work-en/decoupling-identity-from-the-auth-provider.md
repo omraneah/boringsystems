@@ -43,7 +43,7 @@ Three violations were mapped:
 
 **The IdP's identifier in the domain layer.** The auth provider's internal user ID — a token-issued claim — had become the canonical user identifier across all domain objects. Every booking record, payment row, activity log, and API contract referenced the provider's identifier. This was an IdP-layer construct embedded in the user management and domain layers. The provider was acting as the platform's user database — not by decision, but because no other decision had been made.
 
-**Token verification on the API hot path.** The token verification layer was calling the auth provider's API on every incoming request. Every authenticated API call — page loads, button actions, data fetches — was a synchronous external network round-trip to an outside service. The effect: 50–300ms of external latency on every request, a runtime dependency on the provider's uptime for every user at every moment, and the provider's API rate limits becoming the platform's rate limits under load.
+**Token verification on the API hot path.** The token verification layer was calling the auth provider's API on every incoming request. Every authenticated API call — page loads, button actions, data fetches — was a synchronous external network round-trip to an outside service. The effect: up to 300ms of external latency on every request, a runtime dependency on the provider's uptime for every user at every moment, and the provider's API rate limits becoming the platform's rate limits under load.
 
 The correct pattern is local cryptographic verification: parse the JWT, check the signature against the issuer's published public keys (fetched once, cached via JWKS), validate the claims. This is a local operation with zero network calls in steady state. The provider belongs on the cold path — login — not the hot path.
 
@@ -134,4 +134,4 @@ The same logic applies to token verification: the provider issues a token once a
 
 The failure mode isn't the wrong first decision. It's making the first decision without naming what comes after it. Each unnamed layer defaults to the vendor at hand — pragmatically, invisibly — until evolution pressure makes the cost of untangling it prohibitive.
 
-The decision framework for when to delegate auth and how to read the ceiling of any given approach — before coupling becomes debt — is covered in [The SaaS Authentication Stack Operators Keep Treating as One Decision](/en/writing/saas-auth-the-good-the-bad-and-the-ugly/).
+The decision framework for when to delegate auth and how to read the ceiling of any given approach — before coupling becomes debt — is covered in [The SaaS Authentication Stack Operators Keep Treating as One Decision](/en/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision/).
