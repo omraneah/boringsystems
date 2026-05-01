@@ -5,7 +5,7 @@ model: sonnet
 effort: medium
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Bash(git *)
+allowed-tools: Bash(git *), Bash(open *)
 argument-hint: "[optional: PR title override]"
 ---
 
@@ -20,7 +20,8 @@ Prepare everything Ahmed needs to open a PR on GitHub. **Claude never creates th
 5. If the branch has unpushed commits, push with `git push -u origin <branch>`.
 6. Derive the origin URL from `git remote get-url origin` and construct the PR-creation URL: `https://github.com/<owner>/<repo>/pull/new/<branch>`.
 7. If $ARGUMENTS provided, use as the PR title. Otherwise derive from branch name and the most substantive commit subjects.
-8. Print to Ahmed: the branch name (confirmed pushed), the PR-creation URL, the drafted title, and the drafted body in a paste-ready code block.
+8. **Open the PR-creation URL in Ahmed's default browser** via `open <url>` (macOS). This happens every time, no asking.
+9. **Print a 5-bullet concise summary** of what shipped (one bullet per concern, terse — not a re-statement of the diff). Then the branch name (confirmed pushed), the PR-creation URL, the drafted title, and the drafted body in a paste-ready code block.
 
 ## PR body format
 
@@ -47,7 +48,10 @@ Prepare everything Ahmed needs to open a PR on GitHub. **Claude never creates th
 
 ## Output shape
 
-End the turn with a clear, pasteable block:
+End the turn with:
+
+1. A 5-bullet summary of what shipped — one concern per bullet, terse.
+2. A clear, pasteable block:
 
 ```
 Branch: omraneah/<name> (pushed)
@@ -59,3 +63,5 @@ Title:
 Body:
 <body>
 ```
+
+3. Confirmation that the URL has been opened in the browser.
