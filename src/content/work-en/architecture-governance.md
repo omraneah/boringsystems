@@ -178,4 +178,4 @@ It requires explicit boundaries, accessible guidance, and enough operational dis
 
 Once the same principles are applied from the same source, coordination overhead drops and parallel execution becomes safer.
 
-These governance mechanisms — principle-level boundary documents, programmatic enforcement, weekly tracking against a visible metric — are demonstrated in practice in [Untangling Auth Layer Boundaries in a Running System](/en/work/decoupling-identity-from-the-auth-provider/).
+These governance mechanisms — principle-level boundary documents, programmatic enforcement, weekly tracking against a visible metric — are demonstrated in practice in [Untangling Auth Layer Boundaries in a Running System](/en/work/untangling-auth-layer-boundaries-in-a-running-system/).

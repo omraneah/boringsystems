@@ -66,7 +66,7 @@ L'erreur classique est de laisser l'identifiant interne du provider devenir l'id
 
 Posséder son user ID. Il est généré par le système, vit dans la base de données, et est stable à travers les changements de provider auth. L'identifiant du provider est stocké une fois, comme référence externe. Le domaine n'en dépend jamais.
 
-Le détail de ce que ce couplage provoque dans une plateforme live — comment il s'accumule et comment il se résout — est documenté dans [Délimiter les couches d'authentification dans un système en production](/fr/work/decoupling-identity-from-the-auth-provider/).
+Le détail de ce que ce couplage provoque dans une plateforme live — comment il s'accumule et comment il se résout — est documenté dans [Délimiter les couches d'authentification dans un système en production](/fr/work/untangling-auth-layer-boundaries-in-a-running-system/).
 
 ### User provisioning (SCIM)
 
