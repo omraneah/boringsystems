@@ -2,6 +2,10 @@
 
 > Version-controlled doctrine. Updated after each significant workflow change.
 > Companion: `linear-sop.md` (same folder).
+>
+> ⚠️ This document contains only stable rules and structures — never board snapshots,
+> PR IDs, branch names of current work, or any live state. Those are short-term episodic
+> and belong in `memory/short-term/` or on GitHub itself.
 
 ---
 
