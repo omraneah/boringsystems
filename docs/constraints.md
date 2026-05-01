@@ -41,6 +41,18 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 - **Shared `json()` response helper.** All API routes use `src/lib/http.ts`'s `json()` — do not re-implement `new Response(JSON.stringify(...))` inline. Single source of truth for content-type headers and status shape.
 
+## SEO and AEO
+
+- **Every page must emit OG and Twitter Card tags.** `Base.astro` and `Article.astro` both emit the full set: `og:type`, `og:title`, `og:description`, `og:url`, `og:site_name`, `og:image`, `og:locale`, `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`. If you add a new layout, wire these in — do not ship a page without them.
+- **Every article must emit JSON-LD Article schema.** `Article.astro` emits `Article` with `headline`, `description`, `author` (Person), `publisher` (Organization), `datePublished`, `mainEntityOfPage`, and `url`. No new layout should omit this.
+- **Homepage and Base layout emit JSON-LD Person + WebSite schema.** Declared in `Base.astro`. The Person schema includes `sameAs` with the LinkedIn and Medium URLs — keep these current.
+- **`robots.txt` is in `public/`.** Never delete or block crawlers from content paths. AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended) are explicitly allowed.
+- **`llms.txt` is in `public/`.** Update the key pieces list when a new high-signal article ships.
+- **Every article description must be a proper description, not a tagline.** Descriptions are the meta description for search and answer engines — they should describe the content specifically, not echo the site tagline. Check: does this description tell a search engine what the article covers?
+- **Cross-references are mandatory on every article.** Before publishing any new article, run `/cross-ref-check` to audit for missing internal links. Every article must link to at least two related pieces (same-site). Hub-and-spoke applies: the pillar piece in a cluster should link to all spokes; each spoke should link back to the pillar and to at least one sibling.
+- **External company links are required where companies are named.** When naming Enakl or The Fabulous in article body text, link to enakl.com or thefabulous.co on first mention in each article. Do not name companies without linking.
+- **FR parity on cross-references.** Every internal link added to an EN article must have an FR equivalent in the FR mirror. FR URLs use `/fr/` prefix.
+
 ## Content
 
 - **Frontmatter `date` is mandatory for Writing, Work, and Building articles.** Not required for Archive (playbooks are principles, not time-stamped). First-merge git date via `git log --follow --diff-filter=A --format=%aI -- <path> | tail -1`. Article-review skill blocks missing dates.

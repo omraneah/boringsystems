@@ -89,3 +89,7 @@ These are not edge cases. They recur across different companies, different stage
 The misconceptions are not born from laziness. They come from solving a real problem — technical ownership — with a borrowed frame that does not fit the current reality. The cost of the frame mismatch is paid later: when the system cannot hold, when the person leaves, or when the role cannot be filled again at the level the company now needs.
 
 The first right decision is the simplest one: understand what problem you are actually solving before you name the hire.
+
+---
+
+If you have decided the coding-agent path is the right answer — that you will build the operator judgment yourself rather than hiring for it — the practical next step is *[The Solo Founder's New Baseline](/en/writing/solo-founder-new-baseline)*, which maps the three paths and what each costs. For the technical bar your CTO or fractional advisor should be holding, *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)* is the reference. What that bar looks like applied to a real platform, under delivery pressure, is documented in the case files: *[Reclaiming System Ownership Under Vendor Lock-In](/en/work/breaking-vendor-lock-in)* and *[Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening)*.

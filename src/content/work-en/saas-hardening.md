@@ -177,3 +177,7 @@ This case illustrates that platform hardening works best when it is sequenced as
 
 Identity, access, contracts, data boundaries, and release discipline are not parallel concerns.
 They compound only when ordered correctly.
+
+The principles guiding the sequence — architecture boundary discipline, separation of concerns, root-cause fixes before workarounds — are the seven invariants in [Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack). The governance layer established during this work to keep those principles authoritative is documented in [Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance). For operators making the platform decisions this hardening addresses — especially the auth stack — the decision framework is in [The SaaS Authentication Stack Operators Keep Treating as One Decision](/en/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision).
+
+This work was executed at [Enakl](https://enakl.com) — a VC-backed B2B/B2G mobility platform serving emerging markets.

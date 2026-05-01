@@ -149,3 +149,7 @@ Les décisions auth sont bon marché prises tôt. Les couches sont claires, les 
 L'erreur n'est pas de choisir le mauvais vendor. C'est de ne pas nommer les couches du tout — de laisser chacune défauter vers "aussi le provider auth", puis de découvrir les frontières quand la pression d'évolution rend le refactoring coûteux.
 
 La première décision — ne pas posséder les mots de passe — est correcte et cascade correctement à chaque couche. L'appliquer jusqu'au bout.
+
+---
+
+Le principe de séparation des préoccupations sous-jacent à chaque call dans ce guide — chaque couche possède une responsabilité, les violations sont des défauts pas des choix de design — est formalisé dans *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)*. La question de qui tient le jugement technique pour ces décisions dans une entreprise early-stage est traitée dans *[Does Your Early-Stage Startup Actually Need a CTO?](/fr/writing/does-your-startup-need-a-cto)*. Et le pattern organisationnel pour garder ces frontières explicites et applicables à mesure que le système grandit est dans *[Establishing Cross-Surface Architecture Governance](/fr/work/architecture-governance)*.

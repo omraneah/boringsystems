@@ -95,9 +95,12 @@ Flag any EN link missing from FR as a **warning**.
 - Do not rewrite article content. Propose; Ahmed applies.
 - If no load-bearing related content exists, report "No load-bearing related articles found" and stop.
 - Maximum 3 flags per direction. Quality over completeness.
+- **External company links:** If the article names Enakl or The Fabulous in body text, flag any first mention that doesn't link to enakl.com or thefabulous.co respectively. This is a constraint from `docs/constraints.md`.
+- **FR parity is mandatory, not optional.** Every internal link in EN must have a FR equivalent. Flag FR parity gaps as **blocking** (not nits) — they break AEO signals for the FR audience.
 
 ## When to invoke
 
-- Before opening a PR for any new article.
+- Before opening a PR for any new article (mandatory).
 - After article-review (as step 11 in that skill's flow).
 - When a new article is added to the work series — always check against other work articles.
+- When running a full SEO audit pass on the site.

@@ -120,3 +120,7 @@ Le produit n'est pas optionnel.
 C'est la discipline de l'ingénierie liée à la valeur.
 
 Si vous ne pouvez pas répondre pourquoi, pour qui, à quel compromis, et avec quelle boucle de feedback — ne construisez pas.
+
+---
+
+La couche de pratique technique qui rend possible la livraison avec discipline produit — qualité du code, testabilité, révisabilité — est dans *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)*. Pour l'opérateur qui construit seul plutôt que de diriger une équipe : *[The Solo Founder's New Baseline](/fr/writing/solo-founder-new-baseline)* couvre comment commander un agent avec un jugement produit intact.

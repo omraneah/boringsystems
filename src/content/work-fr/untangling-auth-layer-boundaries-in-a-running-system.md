@@ -135,3 +135,7 @@ La même logique s'applique à la token verification : le provider émet un toke
 Le failure mode n'est pas la mauvaise première décision. C'est prendre la première décision sans nommer ce qui vient après. Chaque couche non nommée défaute vers le vendor disponible — pragmatiquement, invisiblement — jusqu'au moment où la pression d'évolution rend le coût du démêlage prohibitif.
 
 Le cadre de décision pour savoir quand déléguer l'auth et comment lire le plafond de chaque approche — avant que le couplage devienne de la dette — est couvert dans [Auth SaaS : les couches que les opérateurs traitent comme une seule décision](/fr/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision/).
+
+Le principe d'engineering qui rend cette classe de problème prévisible — chaque unité possède une responsabilité, et les violations de frontières sont des défauts à rejeter en review plutôt que des choix de design à tolérer — est la dimension deux de [Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack). La couche de gouvernance construite pour maintenir ces frontières faisant autorité sur l'ensemble de la plateforme est documentée dans [Establishing Cross-Surface Architecture Governance](/fr/work/architecture-governance).
+
+Ce travail a été exécuté chez [Enakl](https://enakl.com) — une plateforme mobility B2B/B2G VC-backed au service des marchés émergents.

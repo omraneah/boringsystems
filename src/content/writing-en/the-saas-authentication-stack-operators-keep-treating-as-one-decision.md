@@ -149,3 +149,7 @@ Auth decisions are cheap when made early. The layers are clear, the protocols ar
 The mistake isn't picking the wrong vendor. It's not naming the layers at all — letting each one default to "also the auth provider," then discovering the boundaries when evolution pressure makes refactoring expensive.
 
 The founding call — don't own passwords — is correct and cascades correctly through every layer. Apply it all the way down.
+
+---
+
+The separation-of-concerns principle underneath every call in this guide — each layer owns one responsibility, violations are defects not opinions — is formalized in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*. The question of who holds technical judgment for these decisions at an early-stage company is addressed in *[Does Your Early-Stage Startup Actually Need a CTO?](/en/writing/does-your-startup-need-a-cto)*. And the organizational pattern for keeping these boundaries explicit and enforceable as the system grows — so future decisions and future engineers inherit clear constraints — is in *[Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance)*.

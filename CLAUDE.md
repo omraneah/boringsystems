@@ -12,6 +12,10 @@ All code is authored through Claude Code. No manual editing.
 
 - **Platform-native i18n.** Astro's `i18n` config with `prefixDefaultLocale: true` is the routing backbone. Every page lives under `/en/` or `/fr/`. No implicit default locale. Use `getRelativeLocaleUrl` from `astro:i18n` and `toLocalePath` from `src/lib/i18n.ts` — never reinvent.
 - **Hreflang on every page.** `Base.astro` and `Article.astro` emit `<link rel="alternate">` pairs via `hreflangsForPath()`. Ship no page without it.
+- **OG + Twitter Card tags on every page.** `Base.astro` and `Article.astro` both emit the full set (og:type, og:title, og:description, og:url, og:site_name, og:image, twitter:card, etc.). New layouts must wire this in. See `docs/constraints.md § SEO and AEO`.
+- **JSON-LD on every page.** `Base.astro` emits Person + WebSite schema. `Article.astro` emits Article schema with datePublished. No layout should omit structured data.
+- **robots.txt and llms.txt are in `public/`.** Never delete them. Update `llms.txt` key pieces list when a high-signal article ships.
+- **Cross-references are mandatory.** Every article must link to at least two related pieces. Run `/cross-ref-check` before publishing. External company names (Enakl, The Fabulous) must link to their URLs on first body mention.
 - **No build-time browser deps.** No playwright, no puppeteer. Mermaid renders client-side.
 - **No CSS `transform: scale()` for vector zoom.** Scale via intrinsic `width`/`height`.
 - **`date` frontmatter mandatory on case files.** Seed from first-merge git date.
