@@ -41,6 +41,8 @@
 `medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Engagement Validity Filter. On-demand.
 `medium-term/market/` — capability-led positioning, market lens, sales-mode tactics, visibility OS. On-demand.
 `medium-term/projects/` — project metadata (advisory board composition, etc.). On-demand.
+`medium-term/project-management/linear-sop.md` — how we manage Linear: card rules, lifecycle, board structure, active work inventory, known limitations. On-demand.
+`medium-term/project-management/github-sop.md` — how we manage GitHub: branch rules, PR division of labor, commit discipline, hooks, submodule workflow, known limitations. On-demand.
 
 The interpretive layer between short-term episodic record and long-term constitutional anchors.
 
