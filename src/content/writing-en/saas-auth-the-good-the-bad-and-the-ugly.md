@@ -54,7 +54,7 @@ Cognito groups, Auth0 app_metadata — these seem like a reasonable place to mar
 
 **Coupling every API request to the auth provider's network.**
 
-It feels like the right way to validate a token: call the source of truth on every request. In practice, you've added a synchronous external network call to every authenticated request in your application — 50–150ms of latency, a provider rate limit that becomes your rate limit, and an availability dependency where any Cognito degradation affects every user, every endpoint, every time. The correct pattern is local JWT verification: check the signature against cached public keys, no network call. This is a local cryptographic operation. It costs nanoseconds, not milliseconds. If nobody on the team knew this was wrong, it runs silently in production until load exposes it.
+It feels like the right way to validate a token: call the source of truth on every request. In practice, you've added a synchronous external network call to every authenticated request in your application — 50–150ms of latency, a provider rate limit that becomes your rate limit, and an availability dependency where any Cognito degradation affects every user, every endpoint, every time. The correct pattern is local JWT verification: check the signature against cached public keys, no network call. This is a local cryptographic operation. It costs microseconds, not milliseconds. If nobody on the team knew this was wrong, it runs silently in production until load exposes it.
 
 **No ceiling plan.**
 

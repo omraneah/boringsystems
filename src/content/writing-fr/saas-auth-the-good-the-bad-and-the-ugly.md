@@ -54,7 +54,7 @@ Les Cognito groups, les `app_metadata` Auth0 — ça semble raisonnable pour mar
 
 **Coupler chaque requête API au réseau du provider.**
 
-Ça paraît être la bonne façon de valider un token : appeler la source de vérité à chaque requête. En pratique, on vient d'ajouter un appel réseau externe synchrone à chaque requête authentifiée de l'application — 50 à 150ms de latence, un rate limit du provider qui devient son propre rate limit, et une dépendance de disponibilité où toute dégradation de Cognito affecte chaque utilisateur, chaque endpoint, à chaque instant. Le bon pattern est la vérification locale du JWT : vérifier la signature contre des clés publiques mises en cache, aucun appel réseau. C'est une opération cryptographique locale. Elle coûte des nanosecondes, pas des millisecondes. Si personne dans l'équipe ne sait que c'est problématique, ça tourne silencieusement en production jusqu'à ce que la charge l'expose.
+Ça paraît être la bonne façon de valider un token : appeler la source de vérité à chaque requête. En pratique, on vient d'ajouter un appel réseau externe synchrone à chaque requête authentifiée de l'application — 50 à 150ms de latence, un rate limit du provider qui devient son propre rate limit, et une dépendance de disponibilité où toute dégradation de Cognito affecte chaque utilisateur, chaque endpoint, à chaque instant. Le bon pattern est la vérification locale du JWT : vérifier la signature contre des clés publiques mises en cache, aucun appel réseau. C'est une opération cryptographique locale. Elle coûte des microsecondes, pas des millisecondes. Si personne dans l'équipe ne sait que c'est problématique, ça tourne silencieusement en production jusqu'à ce que la charge l'expose.
 
 **Pas de plan pour le plafond du provider.**
 
