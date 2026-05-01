@@ -90,7 +90,17 @@ Anything captured during the session that is not yet done. Linear cards, placeho
 
 ### Proposed system improvements
 
-Walk the session through these lenses and surface anything worth codifying:
+**Operator cognition is the binding constraint** — meta-principle #5 (protect the master's cognition). The wrap exists to compress the session, not to broadcast every observation Claude noticed. Surface ONLY critical proposals; log everything else.
+
+#### The cap (non-negotiable)
+
+- **Default expected count: 1.** Sometimes 2. Three is a high bar — operator should agree all three are critical.
+- **Hard ceiling: 5**, and only when genuine high-impact risks must be raised. Hitting 5 without a serious risk is a failure of triage, not a feature.
+- **If you find yourself with more than 3 candidates, you are noticing too much, not curating enough.** Re-triage harder.
+
+#### Triage rule
+
+Walk the session through these lenses to identify candidates:
 
 - **Patterns that repeated.** Same shape of work appearing more than once → propose a skill, doc section, or memory entry.
 - **Skills that should exist.** Checklist run manually more than twice → propose a new skill. Be explicit about scope (`personal-skills/` vs. `<project>/.claude/skills/`).
@@ -100,7 +110,23 @@ Walk the session through these lenses and surface anything worth codifying:
 - **Memory entries.** Feedback / project / reference memories Claude should carry into future sessions. Use only the shapes defined in the auto-memory system prompt.
 - **Decisions to log.** Anything for `.claude/decisions/DECISIONS.md` via `/log-decision`.
 
-**Output format — table, not bullets.** Bulky bulleted output every wrap is too dense to read. Render proposals as a single table:
+Then triage ruthlessly. A candidate passes the bar to be **surfaced** only if at least one of these holds:
+
+- It catches the **second occurrence** of a pattern that will become entrenched if not codified now (twice-is-a-pattern threshold from the workspace doctrine).
+- It prevents real damage to the next session if not raised today.
+- It surfaces a risk the operator probably hasn't seen and would want to know about now.
+
+Items that *don't* pass the bar — interesting observations, low-impact polish, things that compound slowly — are **logged, not surfaced**.
+
+#### Logging the rest (don't drop the observations)
+
+Append a section to today's daily entry titled `## Observations logged (not surfaced — for weekly consolidation)`. Use the same table format as below, but in the daily entry file (Part 2). Operator scans it during `/consolidate-week` if anything matters. **The observations are preserved; the operator's attention is protected.**
+
+This is the load-bearing move. Without it, triage just becomes "drop everything I didn't surface" — losing signal. With it, signal is captured durably without burning the operator's bandwidth.
+
+#### Output format — table for the surfaced items only
+
+Render the surfaced critical items (1–3 typical, 5 ceiling) as a single table:
 
 | # | Improvement | Category | Impact | Details |
 |---|---|---|---|---|
@@ -110,14 +136,16 @@ Walk the session through these lenses and surface anything worth codifying:
 
 - **Improvement** — distilled in one short phrase, not a sentence.
 - **Category** — pick one: Skill, Hook, Memory, ADR, Decision, Doc. If genuinely cross-cutting, pick the primary and note the others in Details.
-- **Impact** — `High` = items you would definitely recommend; `Medium` = operator decides; `Low` = surfacing for awareness, probably skip.
+- **Impact** — `High` = items you would definitely recommend; `Medium` = operator decides. (Low items don't get surfaced — they get logged.)
 - **Details** — one or two sentences. Why useful + how surfaced this session + where it would live (path / scope). No paragraphs. No headings inside cells.
 
 If a proposal genuinely needs more than two sentences, that's a sign it's not yet distilled enough — keep iterating until it fits, or split it.
 
 ### What I'd do first
 
-Pick the single highest-leverage improvement and name it. Do not list multiple recommendations — force a choice. Explain in one sentence why it compounds more than the others. Then ask Ahmed which items he wants implemented *now* vs. parked.
+**Skip this section if only 1 item was surfaced** — the choice is obvious, no need to narrate it.
+
+If 2–3 items were surfaced, pick the single highest-leverage one and name it. Do not list multiple recommendations — force a choice. Explain in one sentence why it compounds more than the others. Then ask Ahmed which items he wants implemented *now* vs. parked.
 
 ## Guardrails
 
