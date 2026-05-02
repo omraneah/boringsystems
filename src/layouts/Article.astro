@@ -442,6 +442,47 @@ const breadcrumbSchema = {
     border-bottom: 1px solid var(--accent-dim);
   }
 
+  /* Wide-table wrapper — lets a comparison table breach the prose column
+     and use up to --max-wide horizontally, while still scrolling on mobile.
+     Centered relative to the viewport (margin-left: 50% + translateX(-50%))
+     so the table reads independently of the surrounding paragraph width. */
+  .article-body .wide-table {
+    position: relative;
+    width: min(var(--max-wide), calc(100vw - 2 * var(--space-lg)));
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+    overflow-x: auto;
+  }
+
+  .article-body .wide-table table {
+    margin: 0;
+    min-width: 720px;
+  }
+
+  .article-body .wide-table caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-bottom: 0.5rem;
+  }
+
+  .article-body .wide-table th:first-child,
+  .article-body .wide-table td:first-child {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .article-body .wide-table {
+      width: calc(100vw - 2 * var(--space-md));
+    }
+  }
+
   .article-body pre.mermaid {
     position: relative;
     background: var(--bg-elevated);

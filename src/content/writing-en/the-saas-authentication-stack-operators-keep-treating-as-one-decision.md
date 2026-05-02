@@ -20,9 +20,193 @@ This is the guide for making those decisions before they get made for you.
 
 ---
 
-## What "auth" actually bundles together
+## The seven layers in 30 seconds
 
-"Auth" is shorthand for a stack of distinct functional layers. These layers are real regardless of which vendor or protocol you use — they describe *roles*, not products. One vendor often fills multiple roles, which is exactly what creates the confusion.
+Before the calls, the vocabulary. "Auth" is shorthand for seven functional layers — each a separate decision:
+
+1. **Identity Provider (IdP)** — proves who the user is. Either yours (Cognito, Firebase, Supabase Auth) or the buyer's (their Okta, Entra ID, Keycloak).
+2. **Identity broker** — federates between your app and many buyer IdPs. WorkOS, Stytch B2B, SSOReady and friends.
+3. **Token verification** — your backend checks every API request, locally, using JWKS.
+4. **User management** — your database, your user IDs, never the provider's identifier as your primary key.
+5. **User provisioning (SCIM)** — the buyer's HR / IT system pushes account lifecycle events to an endpoint your application exposes.
+6. **Session management** — short-lived access tokens, refresh rotation, configurable per tenant.
+7. **Authorization** — roles, permissions, business rules. Your domain logic, in your DB.
+
+The actionable sections come next. The layer-by-layer detail — what each layer does, how it fails, why it has to stay its own decision — is in the second half of the guide for readers who want the *why* behind each call.
+
+---
+
+## Your situation → your stack
+
+The general principles map onto where you actually are. Six common operator situations, with the call:
+
+**You're pre-PMF, B2C or SMB, on AWS or GCP.** Stack: Cognito or Firebase Auth, JWKS verification, your own user table. Stop. Don't shop for a broker. Don't migrate to Auth0 "to be ready for enterprise" — you're not selling enterprise yet, and the cost of being ready is real now while the benefit is hypothetical. The one thing you must get right is keeping your application's user IDs separate from the provider's identifier (the user-management section in the second half of the guide).
+
+**You're pre-PMF on a framework-native stack (Next.js, Remix, etc.) and not yet on a managed cloud.** Stack: Auth.js / Lucia / your framework's session helper, your own DB, JWKS verification when you do bring in a managed IdP. Cheaper than a managed IdP, fewer moving parts, no vendor coupling. Add a managed IdP only when you outgrow it — usually social login at scale, recovery flows you don't want to operate, or MFA enforcement you don't want to roll yourself.
+
+**You just signed your first enterprise customer asking for SAML.** Stack: keep your existing IdP. Add a broker that does SSO and SCIM and nothing else. **SSOReady** (open source / managed) and **WorkOS broker-only** (per-connection) are the two right answers. Don't replace your IdP at the same time as adding SSO — you'd be migrating user identity and adding enterprise federation in the same sprint, and one of those is going to break. Don't pick Auth0 or Frontegg or Stytch B2B for this case unless you have a separate reason to migrate the IdP at the same time.
+
+**You're at three or more enterprise customers and the team is rebuilding the SAML wiring each time.** This is where a broker's per-connection cost becomes a rounding error against engineering hours. **WorkOS** or **SSOReady**. If you're greenfield (no IdP yet) and the product is B2B-shaped from day one, **Stytch B2B** becomes a real option — one vendor for IdP plus broker — but be honest about the lock-in: you can't easily separate the layers later, and post-Twilio-acquisition the roadmap is in flux.
+
+**You're in a regulated, sovereign, or compliance-heavy context.** Buyer's IdP is the authority, often non-negotiable. Self-hosted broker (**Keycloak** or self-hosted SSOReady). SCIM with audit-grade logging is a hard requirement, not a nice-to-have. The cost story flips compared to SaaS-land: engineering time on Keycloak operations is the price of admission, and there is no shortcut around it.
+
+**You're already locked into Auth0, Frontegg, or another full platform from an earlier decision.** Don't migrate unless there's a forcing function: a cost cliff at the next tier, a missing feature your buyer requires (SCIM if you're on Clerk, real-time provisioning if you're on Entra), or an outage profile you can't accept. The sunk-cost trap is the wrong one — but the inverse trap is also real. The migration cost is the bill you'd pay to switch, and the new vendor will cause its own surprises. Migrate when the math is clear, not when the dashboard is annoying.
+
+The pattern across all six: **the broker decision is downstream of the question "what does my next twelve months of customers look like?"** Pre-PMF, pre-enterprise, pre-procurement: the answer is "use what's in your cloud, own your user table, keep moving." Past those gates, the broker layer becomes a buy decision and the vendor map below tells you which one.
+
+---
+
+## The vendor map
+
+Vendors split into two groups for the operator. The **first group** is purpose-built for the broker layer (some have grown into full B2B auth platforms). The **second group** is generic / cloud-native auth services operators reach for early because they're already on AWS, GCP, or Supabase — these are *not* brokers, but operators conflate them until the first enterprise procurement call exposes the gap. We list both because the realistic decision tree includes both.
+
+The columns are operator-shaped: what the vendor covers beyond brokering, the pricing *shape* (per-connection vs per-MAU vs bundled — exact dollar amounts move, so each row links to the vendor's own pricing page), choose-when, skip-when.
+
+<div class="wide-table">
+<table>
+  <caption>Identity brokers and B2B auth platforms</caption>
+  <thead>
+    <tr>
+      <th>Vendor</th>
+      <th>Beyond brokering — what else it covers</th>
+      <th>Pricing shape</th>
+      <th>Choose when</th>
+      <th>Skip when</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>WorkOS</strong></td>
+      <td>Full IdP (AuthKit), sessions, MFA, RBAC, orgs, audit logs, buyer admin portal, fraud (Radar), KMS (Vault)</td>
+      <td>Per-connection, premium-priced, with volume discounts; AuthKit on its own MAU band — <a href="https://workos.com/pricing">workos.com/pricing</a></td>
+      <td>You want a clean broker that scales per enterprise deal, with the option to adopt their full IdP later</td>
+      <td>You'll have a long tail of small enterprise tenants — per-connection economics get steep</td>
+    </tr>
+    <tr>
+      <td><strong>Stytch B2B</strong> <em>(Twilio)</em></td>
+      <td>Full IdP, sessions, MFA, RBAC, B2B orgs, embeddable buyer admin portal, M2M tokens, device fingerprinting</td>
+      <td>Generous free tier on B2B MAU + a few SSO/SCIM connections; usage-based above — <a href="https://stytch.com/pricing">stytch.com/pricing</a></td>
+      <td>You're greenfield B2B and want one vendor for IdP + broker; multi-tenant orgs from day one</td>
+      <td>You're vendor-risk-averse — Twilio acquired Stytch in late 2025; roadmap still settling</td>
+    </tr>
+    <tr>
+      <td><strong>Frontegg</strong></td>
+      <td>Full IdP, RBAC, orgs, hosted login box and buyer admin portal, audit logs — heavily bundled</td>
+      <td>Free starter tier (low caps); SSO and advanced features paid, sales-quoted — <a href="https://frontegg.com/pricing">frontegg.com/pricing</a></td>
+      <td>You want the entire buyer-admin UI surface prebuilt and don't want to design it</td>
+      <td>You want transparent pricing or a narrow integration — bundling forces UI and data-model choices</td>
+    </tr>
+    <tr>
+      <td><strong>Auth0 (Okta CIC)</strong></td>
+      <td>Full IdP, federation, sessions, MFA, RBAC, B2B orgs, audit logs, attack protection</td>
+      <td>Premium; B2B SKU significantly more expensive than B2C at the same MAU; enterprise sales-quoted — <a href="https://auth0.com/pricing">auth0.com/pricing</a></td>
+      <td>You're already on Okta corporate, want every feature in one place, and budget isn't the constraint</td>
+      <td>You're cost-sensitive — the B2C → B2B SKU jump is steep; enterprise runs into six figures</td>
+    </tr>
+    <tr>
+      <td><strong>Clerk</strong></td>
+      <td>Full IdP, sessions, MFA, RBAC, B2B orgs, prebuilt React UI. <em>No native SCIM as of May 2026</em></td>
+      <td>Pro tier; paid add-ons for additional SAML connections and an MFA+SAML bundle; B2B add-on above a low organization threshold — <a href="https://clerk.com/pricing">clerk.com/pricing</a></td>
+      <td>B2C / prosumer or consumer-grade B2B with great prebuilt UI; React-first stacks</td>
+      <td>An enterprise buyer demands SCIM directory sync — Clerk doesn't ship it natively</td>
+    </tr>
+    <tr>
+      <td><strong>SSOReady</strong></td>
+      <td>SAML SSO and SCIM directory sync — and nothing else. Hosted self-serve setup, custom domain, management API. Explicitly <em>not</em> an IdP</td>
+      <td>Open source; managed cloud free for typical use; paid only for enterprise SLA — <a href="https://ssoready.com/">ssoready.com</a></td>
+      <td>You already run an IdP and want to add enterprise federation cleanly, with an exit option</td>
+      <td>You also need a user pool, sessions, MFA, or RBAC — out of scope by design</td>
+    </tr>
+    <tr>
+      <td><strong>Keycloak</strong></td>
+      <td>Full IdP, federation, user mgmt, sessions, MFA, realms for multi-tenancy. <em>SCIM only via community extensions, no native endpoint</em></td>
+      <td>Free / self-hosted; cost is operational (clustering, DB, upgrades, monitoring) — <a href="https://www.keycloak.org/">keycloak.org</a></td>
+      <td>Regulated / sovereign / self-host mandatory and you have a platform team</td>
+      <td>Small team without ops capacity — admin console is dense, footprint is heavy</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+The next table is what people actually use *before* the broker question gets named — the auth that ships with the cloud they're already on. These are not brokers. They handle the IdP role for users you own; some of them bolt on enterprise federation, but none of them solve the multi-customer admin portal or the SCIM-as-procurement-gate problem. Listing them here is what an operator actually faces: "should I just use what's already in my cloud?" The honest answer depends on where you're going.
+
+<div class="wide-table">
+<table>
+  <caption>Generic / cloud-native auth services (not brokers — listed because operators conflate them)</caption>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Layers covered (and the gaps that matter)</th>
+      <th>Pricing shape</th>
+      <th>Choose when</th>
+      <th>Skip when</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Firebase Auth</strong></td>
+      <td>IdP (email/password, social, phone), sessions, basic user mgmt. <em>No SAML, no OIDC, no SCIM, no buyer admin portal</em></td>
+      <td>Generous consumer free band; per-MAU above — <a href="https://firebase.google.com/pricing">firebase.google.com/pricing</a></td>
+      <td>Quickest path to "users can log in" on a B2C or mobile-first product; already on Firebase</td>
+      <td>Any B2B-enterprise roadmap — there is no SAML path; you'll bolt on a broker later and regret the coupling</td>
+    </tr>
+    <tr>
+      <td><strong>Google Cloud Identity Platform (GCIP)</strong></td>
+      <td>Firebase Auth engine + SAML, OIDC, MFA, multi-tenancy, SLA. <em>No SCIM, no buyer admin portal</em></td>
+      <td>Small free band on enterprise MAU; per-MAU above — <a href="https://cloud.google.com/identity-platform/pricing">cloud.google.com/identity-platform/pricing</a></td>
+      <td>You're already on GCP and need SAML for a handful of enterprise customers</td>
+      <td>Buyers expect SCIM — neither tier ships it; multi-tenant admin UX is build-it-yourself</td>
+    </tr>
+    <tr>
+      <td><strong>Supabase Auth</strong></td>
+      <td>IdP (email, magic link, social, MFA), sessions; SAML SSO on paid tier. <em>No SCIM, no first-class organizations primitive</em> — multi-tenancy is RLS + JWT claims by hand</td>
+      <td>Bundled with Supabase plan — <a href="https://supabase.com/pricing">supabase.com/pricing</a></td>
+      <td>You're already running on Supabase Postgres and need light SAML SSO for small B2B</td>
+      <td>Buyer expects orgs / teams or SCIM — you'd be building the B2B layer on top of Postgres yourself</td>
+    </tr>
+    <tr>
+      <td><strong>AWS Cognito</strong></td>
+      <td>IdP (user pools), federation (SAML, OIDC, social), MFA, hosted UI, groups (not real RBAC). <em>No SCIM in user pools, no buyer admin portal</em></td>
+      <td>Cheap MAU pricing; AWS-native — <a href="https://aws.amazon.com/cognito/pricing/">aws.amazon.com/cognito/pricing</a></td>
+      <td>Already on AWS, cost-sensitive, willing to build the buyer-admin surface yourself</td>
+      <td>You're moving upmarket — Cognito is workforce-shaped; multi-tenant SaaS gating on SCIM is build-it-yourself</td>
+    </tr>
+    <tr>
+      <td><strong>Microsoft Entra External ID</strong></td>
+      <td>IdP, user mgmt, sessions, MFA, conditional access, SAML/OIDC; SCIM requires Entra ID workforce licensing</td>
+      <td>MAU-based with free tier (replaces Azure AD B2C — closed to new customers in 2025) — <a href="https://learn.microsoft.com/en-us/entra/external-id/external-identities-pricing">microsoft.com / Entra External ID pricing</a></td>
+      <td>Microsoft-heavy stack selling into Microsoft-shop enterprises</td>
+      <td>You want vendor-neutral DX — config leans on the Azure portal; SCIM cadence is rough for real-time</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+Two patterns to notice across both tables. **The "covers everything" vendors charge for the bundle whether or not you use it.** Auth0, Frontegg, and to a lesser degree Stytch B2B and Clerk price the full platform — the broker layer is delivered alongside the IdP, sessions, MFA, RBAC, admin portal, audit logs, and so on. If you only need federation, you pay for the rest. **The narrow vendors (SSOReady, WorkOS broker-only) keep the layer separable** — at the cost of you owning the IdP and user pool. The decision between "bundle me everything" and "give me only the broker" is not really a feature comparison. It's a question of whether you want auth to be one box you stop thinking about, or one layer you keep separable so you can swap any piece later.
+
+---
+
+## Ten-minute pre-procurement checklist
+
+When an enterprise prospect's procurement or IT team asks about your auth, walk this list before answering "yes" to any of it. Most procurement disasters are one of these seven items unanswered, not a vendor choice gone wrong:
+
+1. **Who runs the IdP?** Theirs (Okta, Entra, Keycloak). Confirm in writing — never assume.
+2. **SAML or OIDC?** Both is the safe default. "OIDC only" loses the deal six months later when their auditor asks for SAML.
+3. **SCIM?** If they're above a few hundred employees, expect yes. JIT-only loses the SOC 2 Type II audit on the deprovisioning evidence.
+4. **Session policy?** Configurable timeout, forced logout, concurrent session limits — they will ask, and "we don't support it" is a no.
+5. **Audit logs?** Login events, role changes, admin actions — exposed in a way the buyer's IT can read directly, not as a support ticket.
+6. **Where do their user IDs map to yours?** If your domain model has the IdP's identifier as the primary key for users, your honest answer is a quarter of refactor work, not a procurement reply. Get this right *before* the call.
+7. **Who owns the customer's admin portal?** If the answer is "we do" and you don't have one yet, you are either buying a broker that ships one (WorkOS, Stytch B2B, Frontegg) or building the portal yourself this quarter.
+
+Walk the list out loud, write the gaps down, take them back to engineering with a deadline. The deal won't close on a vendor demo — it closes on these seven answers being unambiguous.
+
+---
+
+## How auth decomposes — layer by layer
+
+The seven layers from the top of the guide, in detail. What each one does, how it fails, why it has to stay a separate decision. If the calls above already make sense, you can stop here. If you want the *why* behind a specific call, the corresponding subsection has it.
+
+"Auth" describes *roles*, not products. One vendor often fills multiple roles, which is exactly what creates the confusion. Naming the role each layer plays is what keeps the boundaries visible.
 
 ### Identity Provider (IdP)
 
@@ -41,16 +225,6 @@ The layer between your application and the buyer's IdP. When you have multiple e
 This layer recently got a name. The pattern is sometimes called a federation broker in academic identity literature, but the term identity broker — or just auth broker — became operator language around 2022, when purpose-built products emerged to solve it. Before that, teams built this layer themselves and called it "the SAML integration," which understates what it actually involves.
 
 The broker problem is: N customer IdPs × M protocols (SAML 2.0, OIDC) × per-customer configuration × a self-service admin portal for each customer's IT team. That's not a JIRA ticket. It's a full-time engineering investment that compounds with every enterprise customer you add. WorkOS, Stytch B2B, and SSOReady exist because the industry converged on "this layer is worth buying."
-
-| Vendor | SAML | OIDC | SCIM | Admin portal | Model |
-|---|---|---|---|---|---|
-| **WorkOS** | ✓ | ✓ | ✓ | ✓ | Paid — per-connection |
-| **Stytch B2B** | ✓ | ✓ | ✓ | ✓ | Paid |
-| **Frontegg** | ✓ | ✓ | ✓ | ✓ | Paid — bundled app-layer features (RBAC UI, etc.) |
-| **Auth0 (Okta CIC)** | ✓ | ✓ | ✓ | ✓ | Paid — broad feature set, mature, expensive |
-| **Clerk** | ✓ | ✓ | Partial | ✓ | Paid — B2C origins, enterprise SCIM maturing |
-| **SSOReady** | ✓ | ✓ | ✓ | ✓ | Open-source / self-hosted |
-| **Keycloak** | ✓ | ✓ | ✓ | ✓ | Open-source / self-hosted — full ops burden |
 
 The broker is not the same as the IdP. The broker doesn't own identity — it federates to IdPs that do. Conflating them is one of the most expensive auth mistakes: treating a broker as a user database, then discovering the coupling when you need to migrate.
 
@@ -86,7 +260,7 @@ When someone joins a company, their account should exist in the tools the compan
 
 SCIM 2.0 (System for Cross-domain Identity Management) is the protocol that handles this. The buyer's identity provider pushes lifecycle events — user created, updated, deactivated — to an endpoint your application exposes. Your application processes them and keeps access synchronized.
 
-Just-in-time (JIT) provisioning — creating a user account on first SSO login — is an acceptable fallback for SMB customers and the first handful of enterprise accounts. It fails at scale because it cannot deprovision, cannot pre-provision, and cannot sync group membership changes in real time. 
+Just-in-time (JIT) provisioning — creating a user account on first SSO login — is an acceptable fallback for SMB customers and the first handful of enterprise accounts. It fails at scale because it cannot deprovision, cannot pre-provision, and cannot sync group membership changes in real time.
 
 ### Session management
 
@@ -104,17 +278,64 @@ This separation matters because the authorization model evolves independently of
 
 ## How the requirements change by market
 
-The right answers at each layer depend on who you're selling to.
+The right answers at each layer depend on who you're selling to. Two of the seven layers, though, don't vary by market: **token verification is always local JWKS**, and **user management is always your own database**. They are settled answers regardless of the row in the table below. The rest is the calibration.
 
-| Layer | B2C | B2SMB (≤50) | B2B mid-market | B2B enterprise | Regulated |
-|---|---|---|---|---|---|
-| **Identity Provider** | Managed IdP or social login | Google / Microsoft OIDC + managed IdP | Mix of managed + buyer's corporate IdP | Buyer's IdP is the authority | Buyer's IdP mandatory; self-hosted (Keycloak) in sovereign/regulated contexts |
-| **Identity broker** | Not needed | Not needed | Optional — one or two enterprise accounts manageable manually | Required — more than a few customers makes in-house multi-tenant SAML permanent overhead | Required; often self-hosted broker |
-| **Token verification** | Local JWKS — always | Local JWKS — always | Local JWKS — always | Local JWKS — always | Local JWKS + immutable audit trail |
-| **User management** | Your DB — always | Your DB — always | Your DB — always | Your DB — always | Your DB — always |
-| **Provisioning** | Not needed | JIT is enough | JIT acceptable; SCIM for larger accounts | SCIM required | SCIM required + audit-grade logging |
-| **Session management** | Basic | Configurable | Per-tenant configurable | Per-tenant: timeout, force-logout, concurrent limits | Strict controls; often compliance-mandated |
-| **Authorization** | Simple | Role-based | RBAC, tenant-aware | Tenant-aware RBAC, attribute-based controls | Fine-grained; sometimes external policy engine |
+<div class="wide-table">
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>B2C</th>
+      <th>B2SMB (≤50)</th>
+      <th>B2B mid-market</th>
+      <th>B2B enterprise</th>
+      <th>Regulated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Identity Provider</strong></td>
+      <td>Managed IdP / social</td>
+      <td>Managed IdP + Google/MS OIDC</td>
+      <td>Managed IdP + buyer's IdP</td>
+      <td>Buyer's IdP is the authority</td>
+      <td>Buyer's IdP; Keycloak self-hosted in sovereign contexts</td>
+    </tr>
+    <tr>
+      <td><strong>Identity broker</strong></td>
+      <td>—</td>
+      <td>—</td>
+      <td>Optional (1–2 manual)</td>
+      <td>Required past a few customers</td>
+      <td>Required; often self-hosted</td>
+    </tr>
+    <tr>
+      <td><strong>Provisioning</strong></td>
+      <td>—</td>
+      <td>JIT is enough</td>
+      <td>JIT; SCIM for larger accounts</td>
+      <td>SCIM required</td>
+      <td>SCIM + audit-grade logging</td>
+    </tr>
+    <tr>
+      <td><strong>Session management</strong></td>
+      <td>Basic</td>
+      <td>Configurable</td>
+      <td>Per-tenant configurable</td>
+      <td>Per-tenant: timeout, force-logout, concurrent limits</td>
+      <td>Strict; compliance-mandated</td>
+    </tr>
+    <tr>
+      <td><strong>Authorization</strong></td>
+      <td>Simple</td>
+      <td>Role-based</td>
+      <td>RBAC, tenant-aware</td>
+      <td>Tenant-aware RBAC + ABAC</td>
+      <td>Fine-grained; sometimes external policy engine</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 Three things from this table that surprise operators most often:
 
@@ -138,7 +359,7 @@ Three things from this table that surprise operators most often:
 | **Session management** | Build with a library                                   | Short-lived access tokens, refresh rotation, per-tenant configurable timeout.                                                                                                                  |
 | **Authorization**      | Own; scale to a policy engine when complexity warrants | Start with RBAC in your database. Add an external policy engine if your access control rules become complex enough to need independent testing.                                                |
 
-The broker decision is where the math changes most visibly as you scale. One enterprise customer: wire up SAML manually. Three customers: three configurations, three certificate rotations, three IT support threads. Ten customers: you've built the broker layer yourself, under pressure, without the tooling. At two or three enterprise deals a quarter, the per-connection cost of a purpose-built broker is a rounding error against the engineering time required to build and operate the same thing in-house — plus the organizational risk of that engineering time being a permanent commitment.
+The broker decision is where the math changes most visibly as you scale. One enterprise customer: wire up SAML manually. Three customers: three configurations, three certificate rotations, three IT support threads. Ten customers: you've built the broker layer yourself, under pressure, without the tooling. Past two or three enterprise deals a quarter, the per-connection cost of a purpose-built broker is a rounding error against the engineering time required to build and operate the same thing in-house — plus the organizational risk of that engineering time being a permanent commitment.
 
 ---
 
