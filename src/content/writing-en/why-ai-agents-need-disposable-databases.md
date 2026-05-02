@@ -73,3 +73,9 @@ Separation of concerns compounds. Snowflake separated storage from compute for a
 The hyperscalers will keep winning infrastructure and losing the application layer. The specialists will keep capturing the emergent workloads. Enterprises will keep running Oracle and Postgres and SQL Server for the data that actually matters, and they should. What they won't do is buy a new thousand-dollar-a-month provisioned instance every time an engineer wants to run an experiment — not when the agent doing the experiment needs fifty throwaway databases and a tenth of one cent to run them.
 
 For anyone building right now: the provisioning decision you made last year is the one worth revisiting this quarter. If your stack assumes your workloads are permanent, you are paying for permanence you do not need, and you are paying the most for the experiments that matter most. The architecture changed. The price changed. The only thing left is whether the decision you make this month reflects what is now true.
+
+---
+
+Separation of concerns — the principle that storage and compute should be separately owned, that what changes fast should not be coupled to what changes slow — is one of the seven invariants in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*. Neon's architectural bet is that principle applied to database provisioning.
+
+The ephemeral database sits alongside ephemeral context: agents don't persist the data they explore, and they shouldn't persist the scratch reasoning they generate either. The architecture for managing what *does* persist — the context that compounds across sessions — is the subject of *[Context is the Edge](/en/writing/context-is-the-edge)*. The complete stack that ties all of this together is in *[The Agent Harness That Runs 80% of My Work](/en/building/the-harness-i-actually-run)*.

@@ -125,3 +125,7 @@ In a healthy system:
 Engineering is not expense; it's leverage.
 
 Controlled as a profit engine, it compounds. Miscast as a cost center, it kills momentum.
+
+---
+
+The practice standards that make the profit engine reliable — code quality, architecture boundaries, root-cause discipline — are codified in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*. What it looks like to run these principles under real delivery pressure — vendor lock-in, SaaS hardening, enterprise readiness — is documented in the work case files: *[Reclaiming System Ownership Under Vendor Lock-In](/en/work/breaking-vendor-lock-in)* and *[Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening)*.

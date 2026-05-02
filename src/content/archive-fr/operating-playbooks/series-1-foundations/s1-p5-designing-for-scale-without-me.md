@@ -77,3 +77,7 @@ Dans un système sain :
 - Le leadership se prouve quand s'éloigner accélère le progrès, au lieu de le bloquer.
 
 Le leadership n'est pas la présence. C'est concevoir des systèmes qui scalent en votre absence.
+
+---
+
+En 2026, "concevoir pour scaler sans moi" a une nouvelle dimension : la couche d'orchestration d'agents qui porte le contexte, fait respecter les standards et exécute pour vous quand vous prenez du recul. Les principes opérationnels pour ce système sont dans *[Agentic AI Orchestration — 7 principes opérationnels](/fr/writing/orchestration-principles-that-outlive-the-model)*. Pour le call de leadership qui précède tout ça — qui doit vraiment être dans la pièce, et à quelles conditions — *[Does Your Early-Stage Startup Actually Need a CTO?](/fr/writing/does-your-startup-need-a-cto)* est le diagnostic de terrain.

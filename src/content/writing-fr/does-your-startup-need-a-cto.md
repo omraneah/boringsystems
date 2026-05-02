@@ -89,3 +89,7 @@ Ce ne sont pas des cas marginaux. Ils se reproduisent dans différentes entrepri
 Les idées reçues ne naissent pas de la paresse. Elles viennent de la résolution d'un vrai problème — la propriété technique — avec un cadre emprunté qui ne correspond pas à la réalité actuelle. Le coût du décalage de cadre est payé plus tard : quand le système ne tient pas, quand la personne part, ou quand le rôle ne peut plus être pourvu à nouveau au niveau dont l'entreprise a maintenant besoin.
 
 La première bonne décision est la plus simple : comprendre quel problème vous résolvez réellement avant de nommer le recrutement.
+
+---
+
+Si vous avez décidé que la voie coding-agent est la bonne réponse — que vous construirez le jugement d'opérateur vous-même plutôt que de recruter pour ça — l'étape pratique suivante est *[The Solo Founder's New Baseline](/fr/writing/solo-founder-new-baseline)*, qui cartographie les trois voies et ce que chacune coûte. Pour la barre technique que votre CTO ou conseiller fractional devrait tenir, *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)* est la référence. Ce à quoi ça ressemble appliqué à une vraie plateforme, sous pression de livraison, est documenté dans les études de cas : *[Reclaiming System Ownership Under Vendor Lock-In](/fr/work/breaking-vendor-lock-in)* et *[Hardening a Live Platform for Enterprise Readiness](/fr/work/saas-hardening)*.

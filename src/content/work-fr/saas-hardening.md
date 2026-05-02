@@ -177,3 +177,7 @@ Ce cas illustre que le renforcement de plateforme fonctionne mieux quand il est 
 
 L'identité, l'accès, les contrats, les limites de données et la discipline de mise en production ne sont pas des préoccupations parallèles.
 Elles se composent seulement quand elles sont ordonnées correctement.
+
+Les principes qui guidaient la séquence — discipline des frontières architecturales, séparation des préoccupations, corrections de cause racine avant les contournements — sont les sept invariants dans [Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack). La couche de gouvernance établie pendant ce travail pour maintenir ces principes faisant autorité est documentée dans [Establishing Cross-Surface Architecture Governance](/fr/work/architecture-governance). Pour les opérateurs prenant les décisions de plateforme que ce hardening adresse — notamment la stack auth — le cadre de décision est dans [The SaaS Authentication Stack Operators Keep Treating as One Decision](/fr/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision).
+
+Ce travail a été exécuté chez [Enakl](https://enakl.com) — une plateforme mobility B2B/B2G VC-backed au service des marchés émergents.

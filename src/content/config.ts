@@ -28,6 +28,7 @@ const article = defineCollection({
     // meta strip on cards and under every article subtitle. Seed via:
     //   git log --follow --diff-filter=A --format=%aI <path> | tail -1
     date: z.coerce.date(),
+    lastModified: z.coerce.date().optional(),
     featured: z.boolean().optional().default(false),
     highlight: z.boolean().optional().default(false),
     order: z.number().optional().default(99),

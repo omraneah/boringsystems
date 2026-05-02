@@ -240,3 +240,9 @@ La matière première — les décisions, les contraintes, le jugement — est �
 Personne ne le construira pour vous.
 
 Le contexte est l'avantage. Tout le reste est de l'infrastructure.
+
+---
+
+Les sept principes opérationnels qui gouvernent *comment* gérer la couche d'orchestration — ce qui s'écrit, comment la mémoire est structurée en tiers, comment la boucle reste fermée — sont dans *[Agentic AI Orchestration — 7 principes opérationnels](/fr/writing/orchestration-principles-that-outlive-the-model)*. Cette pièce est l'architecture ; celle-là est la discipline opérationnelle pour la faire tourner.
+
+L'implémentation concrète de cette stack de contexte à trois couches — l'arborescence de fichiers réelle, les noms de hooks et de skills, le harness qui tourne par-dessus — est dans *[The Agent Harness That Runs 80% of My Work](/fr/building/the-harness-i-actually-run)*. Et la doctrine sur pourquoi le harness est la surface de levier, pas le modèle, est dans *[The Harness Behind the Agent](/fr/writing/harness-behind-the-agent)*.

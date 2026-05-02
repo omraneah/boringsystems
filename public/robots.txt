@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — welcome, this site is AI-native by design
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://boringsystems.app/sitemap-index.xml

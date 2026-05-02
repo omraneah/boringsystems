@@ -125,3 +125,7 @@ Dans un système sain :
 L'ingénierie n'est pas une dépense ; c'est du levier.
 
 Contrôlée comme moteur de profit, elle se compose. Décrite comme centre de coûts, elle tue l'élan.
+
+---
+
+Les standards de pratique qui rendent le moteur de profit fiable — qualité du code, frontières architecturales, discipline de cause racine — sont codifiés dans *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)*. Ce à quoi ça ressemble de faire tourner ces principes sous vraie pression de livraison est documenté dans les études de cas : *[Reclaiming System Ownership Under Vendor Lock-In](/fr/work/breaking-vendor-lock-in)* et *[Hardening a Live Platform for Enterprise Readiness](/fr/work/saas-hardening)*.

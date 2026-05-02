@@ -240,3 +240,9 @@ The raw material — the decisions, the constraints, the judgment — is yours t
 No one will build it for you.
 
 Context is the edge. Everything else is infrastructure.
+
+---
+
+The seven operating principles that govern *how* you manage the orchestration layer — what gets written down, how memory is tiered, how the loop stays closed — are in *[Agentic AI Orchestration — 7 Operating Principles](/en/writing/orchestration-principles-that-outlive-the-model)*. This piece is the architecture; that one is the operating discipline.
+
+The concrete implementation of this three-layer context stack — the actual file tree, the real hooks and skill names, and the harness that runs on top of it — is in *[The Agent Harness That Runs 80% of My Work](/en/building/the-harness-i-actually-run)*. And the doctrine on why the harness is the leverage surface, not the model, is in *[The Harness Behind the Agent](/en/writing/harness-behind-the-agent)*.

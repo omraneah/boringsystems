@@ -135,3 +135,7 @@ The same logic applies to token verification: the provider issues a token once a
 The failure mode isn't the wrong first decision. It's making the first decision without naming what comes after it. Each unnamed layer defaults to the vendor at hand — pragmatically, invisibly — until evolution pressure makes the cost of untangling it prohibitive.
 
 The decision framework for when to delegate auth and how to read the ceiling of any given approach — before coupling becomes debt — is covered in [The SaaS Authentication Stack Operators Keep Treating as One Decision](/en/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision/).
+
+The engineering principle that makes this class of problem predictable — each unit owns one responsibility, and boundary violations are defects to reject in review rather than design choices to tolerate — is dimension two of [Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack). The governance layer built to keep those boundaries authoritative across the platform, preventing new violations as delivery continued, is documented in [Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance).
+
+This work was executed at [Enakl](https://enakl.com) — a VC-backed B2B/B2G mobility platform serving emerging markets.

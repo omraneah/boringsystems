@@ -184,3 +184,7 @@ Ce cas illustre que reprendre le contrôle d'une dépendance externe profondéme
 Quand les mécanismes internes sont inaccessibles, la voie à suivre est d'observer précisément, de déplacer l'autorité vers l'intérieur par étapes, et de supprimer les dépendances seulement après que le chemin détenu est devenu fiable.
 
 L'étape suivante de ce travail — renforcer le système récupéré pour des cas d'usage externes plus exigeants — est documentée dans [Renforcer une plateforme en production pour l'entreprise](/fr/work/saas-hardening/).
+
+Les principes d'engineering qui ont gouverné cette transition — discipline des frontières architecturales, corrections de cause racine plutôt que contournements, planification et révisabilité — sont les sept invariants dans [Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack). La couche de gouvernance construite sur le système récupéré est documentée dans [Establishing Cross-Surface Architecture Governance](/fr/work/architecture-governance). Et la question de quel rôle de leadership technique était nécessaire pour piloter un travail de cette portée est le sujet de [Does Your Early-Stage Startup Actually Need a CTO?](/fr/writing/does-your-startup-need-a-cto).
+
+Ce travail a été exécuté chez [Enakl](https://enakl.com) — une plateforme mobility B2B/B2G VC-backed au service des marchés émergents.

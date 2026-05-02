@@ -1,8 +1,48 @@
 ---
 import Base from '@/layouts/Base.astro';
+
+const profilePageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': 'https://boringsystems.app/#ahmed-omrane',
+    name: 'Ahmed Omrane',
+    url: 'https://boringsystems.app/en/about',
+    image: 'https://boringsystems.app/logo.png',
+    jobTitle: 'Engineering Leader',
+    description: 'Engineering leader with 15+ years owning the business → product → engineering arc. AI-native execution. France-based.',
+    knowsAbout: [
+      'Agentic AI Orchestration',
+      'Engineering Leadership',
+      'SaaS Architecture',
+      'Vendor Lock-in Migration',
+      'Multi-tenant Systems',
+      'Technical Product Strategy',
+    ],
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Boring Systems',
+      url: 'https://boringsystems.app',
+    },
+    alumniOf: [
+      { '@type': 'Organization', name: 'Enakl', url: 'https://enakl.com' },
+      { '@type': 'Organization', name: 'The Fabulous', url: 'https://thefabulous.co' },
+    ],
+    sameAs: [
+      'https://www.linkedin.com/in/omrane-ahmed/',
+      'https://medium.com/@ahmedomrane',
+    ],
+  },
+};
 ---
 
-<Base title="About" description="Ahmed Omrane — AI-native builder owning the business → product → engineering arc end-to-end. France-based, European focus, contract engagements only.">
+<Base
+  title="About"
+  description="Ahmed Omrane — engineering leader owning the business → product → engineering arc end-to-end. Past: CTO at Enakl, data leadership at The Fabulous. France-based, European focus, contract engagements only."
+>
+  <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(profilePageSchema)} />
   <div class="page">
     <div class="page-inner">
       <header class="page-header">
@@ -28,13 +68,13 @@ import Base from '@/layouts/Base.astro';
         <p class="label proof-label">Selected proof</p>
         <ul class="proof">
           <li>
-            Vendor lock-in exit to a proprietary transport management system at <strong>Enakl</strong> (VC-backed seed, B2B/B2G mobility platform, emerging markets) — built from scratch, 10× operational scaling, zero downtime during full migration. Team of 3: mobile, full-stack Node.js, cloud AWS. Full case file: <a href="/en/work/breaking-vendor-lock-in">Breaking Vendor Lock-In</a> · <a href="https://www.youtube.com/watch?v=Cc4HTB_iRDs" target="_blank" rel="noopener noreferrer">Product demo</a>.
+            Vendor lock-in exit to a proprietary transport management system at <strong><a href="https://enakl.com" target="_blank" rel="noopener noreferrer">Enakl</a></strong> (VC-backed seed, B2B/B2G mobility platform, emerging markets) — built from scratch, 10× operational scaling, zero downtime during full migration. Team of 3: mobile, full-stack Node.js, cloud AWS. Full case file: <a href="/en/work/breaking-vendor-lock-in">Breaking Vendor Lock-In</a> · <a href="https://www.youtube.com/watch?v=Cc4HTB_iRDs" target="_blank" rel="noopener noreferrer">Product demo</a>.
           </li>
           <li>
-            Full SaaS transformation at <strong>Enakl</strong> — multi-tenant architecture, high availability, enterprise-grade security, revenue model shifting from service delivery to software. Team of 5 engineers plus AI coding agents. Full case file: <a href="/en/work/saas-hardening">SaaS Hardening</a>.
+            Full SaaS transformation at <strong><a href="https://enakl.com" target="_blank" rel="noopener noreferrer">Enakl</a></strong> — multi-tenant architecture, high availability, enterprise-grade security, revenue model shifting from service delivery to software. Team of 5 engineers plus AI coding agents. Full case file: <a href="/en/work/saas-hardening">SaaS Hardening</a>.
           </li>
           <li>
-            Data and analytics infrastructure from scratch at <strong>The Fabulous</strong> (bootstrapped consumer wellness app, 20M+ daily active users) — attribution, growth metrics, and reliable measurement enabling aggressive spend. Team of 5: data science, data analysis, analytics engineering. Architecture deep-dive: <a href="https://medium.com/@ahmedomrane/on-data-analytics-architecture-how-to-design-you-data-model-for-scalable-accurate-analytics-dbt-dcfb7f379c75" target="_blank" rel="noopener noreferrer">On Data Analytics Architecture</a>.
+            Data and analytics infrastructure from scratch at <strong><a href="https://thefabulous.co" target="_blank" rel="noopener noreferrer">The Fabulous</a></strong> (bootstrapped consumer wellness app, 20M+ daily active users) — attribution, growth metrics, and reliable measurement enabling aggressive spend. Team of 5: data science, data analysis, analytics engineering. Architecture deep-dive: <a href="https://medium.com/@ahmedomrane/on-data-analytics-architecture-how-to-design-you-data-model-for-scalable-accurate-analytics-dbt-dcfb7f379c75" target="_blank" rel="noopener noreferrer">On Data Analytics Architecture</a>.
           </li>
         </ul>
 

@@ -98,3 +98,7 @@ In a healthy system:
 - Principles scale, micromanagement doesn't.
 - Escalations handled at the right altitude keep momentum intact.
 - Cadence tied to strategy protects against drift.
+
+---
+
+The technical principle layer that makes this kind of oversight possible — the seven engineering dimensions that a principled executive can apply from altitude — is in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*. The case file showing how principle-level boundary documents became an operational governance layer — distributed into the environments where work already happens — is *[Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance)*.

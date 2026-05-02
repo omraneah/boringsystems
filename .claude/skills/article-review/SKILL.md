@@ -184,6 +184,32 @@ If FR is missing and the article is in a collection that has existing FR sibling
 - Images referenced are in `public/` or use absolute URLs — no broken paths.
 - Internal links use site-relative, **language-prefixed** paths that match the canonical folder-equals-URL structure: `/en/writing/<slug>`, `/en/work/<slug>`, `/en/building/<slug>`, `/en/archive/<slug>` for EN articles; FR mirrors. Never full domain URLs, never unprefixed paths. The root `/` 301-redirects to `/en/`; no other redirects exist.
 
+### 10a. SEO and AEO metadata check
+
+Run the following checks against the frontmatter and article body. These are constraints from `docs/constraints.md § SEO and AEO`:
+
+**Frontmatter description quality:**
+- Is the `description` a genuine description of the article's specific content? Or does it echo the site tagline or repeat the title with different words?
+- Flag as **warning** if the description is shorter than 70 characters (too vague for search snippets) or longer than 160 characters (truncated in SERPs).
+- Flag as **warning** if the description doesn't name at least one specific concept, decision, or outcome the reader will get.
+
+**External company link discipline:**
+- If the article body names "Enakl" or "The Fabulous" (or their URLs), check whether the first mention in the body is linked to `https://enakl.com` or `https://thefabulous.co`.
+- Flag as **nit** if a company is named without a link on first mention.
+
+**Minimum cross-reference threshold:**
+- Count outbound internal links in the EN body (`](/en/`). Flag as **warning** if fewer than 2 are present — every article must link to at least two related pieces.
+
+**Published slug preservation:**
+- If the article has a `date` in frontmatter (i.e., it has been published before), verify the current filename matches the established slug. If there is any indication the file was renamed from a previously published path (e.g., git history shows a rename, or the slug doesn't match what's currently on `main`), flag as a **blocker**: "Renaming a published slug permanently breaks all inbound URLs — no redirect exists. Either revert the rename or add a redirect entry before shipping."
+- If the article is new (no prior presence on `main`), skip this check.
+
+**llms.txt refresh signal:**
+- If `featured: true` is set in frontmatter, or the article covers a topic that is not already represented in `public/llms.txt` key pieces, flag as a **nit**: "Consider adding this article to `public/llms.txt` key pieces — it signals to AI engines which articles to prioritise as entry points."
+- Do not flag for articles that are clearly already covered by an existing llms.txt entry.
+
+Report all findings under a `## SEO metadata` section in the output.
+
 ### 11. Cross-reference audit
 
 Invoke `/cross-ref-check $SLUG` and embed its full output under `## Cross-reference audit` in the report. This checks bidirectional links and FR parity more thoroughly than the inline cross-link scan in step 5.
@@ -227,6 +253,9 @@ So Ahmed can catch a miscall before reading the flag list:
 
 ## French audit
 <embedded output from french-audit skill, or "skipped — FR missing">
+
+## SEO metadata
+<findings from step 10a: description quality, company links, cross-reference count>
 
 ## Cross-reference audit
 <embedded output from cross-ref-check skill, or "skipped — not available">

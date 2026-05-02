@@ -98,3 +98,7 @@ Dans un système sain :
 - Les principes scalent, le micro-management non.
 - Les escalades gérées à la bonne altitude maintiennent l'élan intact.
 - La cadence liée à la stratégie protège contre la dérive.
+
+---
+
+La couche de principes techniques qui rend ce type d'oversight possible — les sept dimensions d'engineering qu'un exécutif de principe peut appliquer depuis l'altitude — est dans *[Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack)*. L'étude de cas montrant comment des documents de frontières au niveau des principes sont devenus une couche de gouvernance opérationnelle est *[Establishing Cross-Surface Architecture Governance](/fr/work/architecture-governance)*.

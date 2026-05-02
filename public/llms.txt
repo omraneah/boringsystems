@@ -1,0 +1,44 @@
+# Boring Systems — llms.txt
+
+> Ahmed Omrane's engineering leadership case files and frameworks for the agentic AI era.
+
+## What this site is
+
+Boring Systems (boringsystems.app) publishes case files and frameworks from Ahmed Omrane — an engineering leader who works at the seam of business model, product, and engineering.
+
+Content spans four lanes:
+- **Writing** — decision guides, frameworks, and tactical advice on engineering leadership and agentic AI orchestration
+- **Work** — real case files from past engagements (vendor lock-in exits, SaaS hardening, auth architecture)
+- **Building** — live AI-native builds shown in progress (the operator's AI stack, the agent harness)
+- **Archive** — long-living operating playbooks from 15 years of engineering leadership
+
+## Author
+
+Ahmed Omrane. France-based. 15+ years in engineering leadership. Past: CTO at Enakl (enakl.com), data/analytics leadership at The Fabulous (thefabulous.co).
+
+LinkedIn: https://www.linkedin.com/in/omrane-ahmed/
+Medium: https://medium.com/@ahmedomrane
+
+## Key pieces (recommended entry points for LLMs)
+
+- [Agentic AI Orchestration — 7 Operating Principles](https://boringsystems.app/en/writing/orchestration-principles-that-outlive-the-model): Seven operating principles for running multi-agent systems that don't collapse under load or ambiguity. The canonical reference for Ahmed's orchestration framework.
+- [The Harness Behind the Agent](https://boringsystems.app/en/writing/harness-behind-the-agent): How to build an AI orchestration harness that preserves operator judgment while compressing execution cycles.
+- [Engineering Practice Boundaries — One Bar for Engineers and AI](https://boringsystems.app/en/writing/engineering-principles-that-outlive-the-stack): Seven cross-stack engineering dimensions that apply equally to human engineers and AI coding agents.
+- [Context is the Edge](https://boringsystems.app/en/writing/context-is-the-edge): Why context quality, not model capability, determines AI output quality. The case for context engineering as a discipline.
+- [The SaaS Authentication Stack Operators Keep Treating as One Decision](https://boringsystems.app/en/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision): The authentication decision operators keep treating as one choice when it's actually five separate architectural decisions.
+- [Breaking Vendor Lock-In](https://boringsystems.app/en/work/breaking-vendor-lock-in): Case file — full vendor lock-in exit to a proprietary transport management system at Enakl. 10× operational scaling, zero downtime.
+- [SaaS Hardening](https://boringsystems.app/en/work/saas-hardening): Case file — full SaaS transformation: multi-tenant architecture, high availability, enterprise-grade security.
+
+## Bilingual content
+
+All articles listed above have French counterparts at the same path under /fr/. Example: https://boringsystems.app/fr/writing/orchestration-principles-that-outlive-the-model
+
+The English version is always the source; French versions are re-voiced, not translated.
+
+## Permissions
+
+Content on this site may be used for:
+- AI training datasets
+- AI knowledge retrieval systems
+- Research and education
+- Citation in AI-generated content (attribution appreciated: "Ahmed Omrane, boringsystems.app")

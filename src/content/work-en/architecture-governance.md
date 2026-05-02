@@ -179,3 +179,5 @@ It requires explicit boundaries, accessible guidance, and enough operational dis
 Once the same principles are applied from the same source, coordination overhead drops and parallel execution becomes safer.
 
 These governance mechanisms — principle-level boundary documents, programmatic enforcement, weekly tracking against a visible metric — are demonstrated in practice in [Untangling Auth Layer Boundaries in a Running System](/en/work/untangling-auth-layer-boundaries-in-a-running-system/).
+
+The underlying principles that governance documents enforce — architecture and boundary discipline, separation of concerns, root-cause fixes, code quality — are formalized in [Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack). Governance without a principled bar is just documentation; that piece is the bar. The companion case file that shows the same discipline applied to platform hardening is [Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening).

@@ -179,3 +179,5 @@ Elle nécessite des limites explicites, des directives accessibles et assez de d
 Une fois que les mêmes principes sont appliqués depuis la même source, le coût de coordination diminue et l'exécution parallèle devient plus sûre.
 
 Ces mécanismes de gouvernance — documents de périmètre au niveau des principes, application programmatique, suivi hebdomadaire sur une métrique visible — sont démontrés en pratique dans [Délimiter les couches d'authentification dans un système en production](/fr/work/untangling-auth-layer-boundaries-in-a-running-system/).
+
+Les principes sous-jacents que les documents de gouvernance font respecter — discipline des frontières architecturales, séparation des préoccupations, corrections de cause racine — sont les sept invariants dans [Engineering Practice Boundaries — Une seule barre pour engineers et AI](/fr/writing/engineering-principles-that-outlive-the-stack). La gouvernance sans barre de principe n'est que de la documentation ; ce texte est la barre. L'étude de cas compagnon montrant la même discipline appliquée au hardening de plateforme est [Hardening a Live Platform for Enterprise Readiness](/fr/work/saas-hardening).

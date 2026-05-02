@@ -120,3 +120,7 @@ Product is not optional.
 It is the discipline of engineering tied to value.
 
 If you can't answer why, for whom, at what trade-off, and with what feedback loop — don't build.
+
+---
+
+The technical practice layer that makes shipping with product discipline possible — code quality, testability, reviewability — is in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*. For the operator building solo rather than leading a team: *[The Solo Founder's New Baseline](/en/writing/solo-founder-new-baseline)* covers how to command an agent with product judgment intact.

@@ -23,6 +23,7 @@ const { Content } = await entry.render();
   backHref="/fr/building"
   backLabel="Building"
   date={formatDate(entry.data.date, 'fr') ?? undefined}
+  isoDate={entry.data.date ? entry.data.date.toISOString() : undefined}
   readTime={readTime(entry.body, 'fr')}
   lang="fr"
 >

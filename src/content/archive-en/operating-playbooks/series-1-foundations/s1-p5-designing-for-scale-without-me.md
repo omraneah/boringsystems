@@ -77,3 +77,7 @@ In a healthy system:
 - Leadership is proven when stepping away accelerates progress, not stalls it.
 
 Leadership isn't presence. It's designing systems that scale in your absence.
+
+---
+
+In 2026, "designing for scale without me" has a new dimension: the orchestration layer of agents that carries context, enforces standards, and executes on your behalf when you step back. The operating principles for that system are in *[Agentic AI Orchestration — 7 Operating Principles](/en/writing/orchestration-principles-that-outlive-the-model)*. For the leadership call that precedes all of this — who actually needs to be in the room, and at what terms — *[Does Your Early-Stage Startup Actually Need a CTO?](/en/writing/does-your-startup-need-a-cto)* is the field diagnosis.
