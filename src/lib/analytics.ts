@@ -23,15 +23,12 @@ export async function initMixpanel(): Promise<void> {
     track_pageview: 'url-with-path',
     cross_subdomain_cookie: false,
     ip: false,
+    persistence: 'none' as any,
   });
   const lane = deriveLane(window.location.pathname);
   const language = document.documentElement.lang ?? 'en';
   const voiceTarget = (document.body.dataset.voiceTarget as string) ?? 'unknown';
-  const isReturning = (() => {
-    try { return localStorage.getItem('bs_returning') === 'true'; } catch { return false; }
-  })();
-  mixpanel.register({ lane, language, voice_target: voiceTarget, is_returning: isReturning });
-  if (!isReturning) { try { localStorage.setItem('bs_returning', 'true'); } catch {} }
+  mixpanel.register({ lane, language, voice_target: voiceTarget });
   _mp = mixpanel;
 }
 

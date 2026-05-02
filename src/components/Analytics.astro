@@ -1,101 +1,16 @@
 ---
-// Mixpanel init + GDPR consent banner.
-// Token is injected at build time via import.meta.env in the client script.
-// Banner shows on first visit (consent === null), hidden once decided.
+// Mixpanel init. persistence: 'none' — no storage writes, no consent banner needed.
+// Every pageview gets a fresh anonymous distinct_id. Same posture as Vercel Analytics was.
 ---
-
-<div id="bs-consent" role="banner" aria-label="Analytics consent">
-  <span class="consent-msg">This site uses analytics to understand what content resonates.</span>
-  <div class="consent-btns">
-    <button id="bs-consent-accept" type="button">Accept</button>
-    <button id="bs-consent-decline" type="button">Decline</button>
-  </div>
-</div>
 
 <script>
   import { initMixpanel, trackOutbound } from '@/lib/analytics';
 
-  const KEY = 'bs_analytics_consent';
-  const get = (): string | null => { try { return localStorage.getItem(KEY); } catch { return null; } };
-  const set = (v: string): void => { try { localStorage.setItem(KEY, v); } catch {} };
+  initMixpanel();
 
-  const consent = get();
-
-  if (consent === 'accepted') {
-    initMixpanel();
-  } else if (consent === null) {
-    const banner = document.getElementById('bs-consent');
-    if (banner) banner.style.display = 'flex';
-
-    document.getElementById('bs-consent-accept')?.addEventListener('click', () => {
-      set('accepted');
-      if (banner) banner.style.display = 'none';
-      initMixpanel();
-    });
-
-    document.getElementById('bs-consent-decline')?.addEventListener('click', () => {
-      set('declined');
-      if (banner) banner.style.display = 'none';
-    });
-  }
-
-  // Delegated outbound click tracking — any [data-track-outbound] link anywhere in the document.
   document.addEventListener('click', (e) => {
     const link = (e.target as Element).closest<HTMLAnchorElement>('[data-track-outbound]');
     if (!link) return;
     trackOutbound(link.dataset.trackOutbound ?? link.href);
   });
 </script>
-
-<style>
-  #bs-consent {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: var(--bg-elevated);
-    border-top: 1px solid var(--border);
-    padding: 0.65rem var(--space-lg);
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-md);
-    flex-wrap: wrap;
-  }
-
-  .consent-msg {
-    font-family: var(--font-ui);
-    font-size: var(--size-xs);
-    color: var(--text-muted);
-  }
-
-  .consent-btns {
-    display: flex;
-    gap: 0.5rem;
-    flex-shrink: 0;
-  }
-
-  .consent-btns button {
-    font-family: var(--font-ui);
-    font-size: var(--size-xs);
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    padding: 0.3rem 0.75rem;
-    border: 1px solid var(--border);
-    background: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: border-color 0.15s, color 0.15s;
-  }
-
-  #bs-consent-accept {
-    border-color: var(--accent-dim);
-    color: var(--accent);
-  }
-
-  .consent-btns button:hover {
-    border-color: var(--accent);
-    color: var(--text);
-  }
-</style>
