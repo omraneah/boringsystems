@@ -200,6 +200,14 @@ Run the following checks against the frontmatter and article body. These are con
 **Minimum cross-reference threshold:**
 - Count outbound internal links in the EN body (`](/en/`). Flag as **warning** if fewer than 2 are present — every article must link to at least two related pieces.
 
+**Published slug preservation:**
+- If the article has a `date` in frontmatter (i.e., it has been published before), verify the current filename matches the established slug. If there is any indication the file was renamed from a previously published path (e.g., git history shows a rename, or the slug doesn't match what's currently on `main`), flag as a **blocker**: "Renaming a published slug permanently breaks all inbound URLs — no redirect exists. Either revert the rename or add a redirect entry before shipping."
+- If the article is new (no prior presence on `main`), skip this check.
+
+**llms.txt refresh signal:**
+- If `featured: true` is set in frontmatter, or the article covers a topic that is not already represented in `public/llms.txt` key pieces, flag as a **nit**: "Consider adding this article to `public/llms.txt` key pieces — it signals to AI engines which articles to prioritise as entry points."
+- Do not flag for articles that are clearly already covered by an existing llms.txt entry.
+
 Report all findings under a `## SEO metadata` section in the output.
 
 ### 11. Cross-reference audit
