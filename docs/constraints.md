@@ -55,6 +55,10 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 ## Content
 
+- **Factual claims must be verified before publishing.** Every claim that can be checked — statistics, user counts, pricing, tool capabilities, version-specific behaviors — must be cross-checked against a trustworthy source. The `/article-review` skill runs this automatically via WebSearch. A single false or stale claim permanently undermines credibility with the exact reader most likely to share the piece. This is not optional.
+
+- **Time-sensitive claims must be marked or avoided.** Pricing, user counts, plan limits, version-specific behaviors, and product capability claims go stale fastest. Either (a) add "as of [date]" and link the source, or (b) soften to a structural claim that won't go stale ("the pricing model is usage-based" rather than "the price is $X/month"). Never assert as permanently true what is commercially or technically contingent.
+
 - **Frontmatter `date` is mandatory for Writing, Work, and Building articles.** Not required for Archive (playbooks are principles, not time-stamped). First-merge git date via `git log --follow --diff-filter=A --format=%aI -- <path> | tail -1`. Article-review skill blocks missing dates.
 
 - **Lane folder + filename = URL. Subfolders in between are free.** For every content collection, the first-level folder (`writing-en/`, `work-fr/`, `archive-en/`, …) is the URL lane and the file basename (no extension) is the URL slug. Any subfolders between them are organizational grouping only and **must not appear in URLs**. Canonical example: archive playbooks are grouped on disk as `archive-{lang}/operating-playbooks/series-{N}-{name}/s{N}-p{M}-<slug>.md` but render at `/{lang}/archive/s{N}-p{M}-<slug>`. Every `[slug].astro` route maps `entry.slug.split('/').pop()` back to the param, and `scripts/verify-structure.ts` enforces per-collection basename uniqueness so two files in different subfolders can't collide at the same URL.
