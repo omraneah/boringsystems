@@ -96,7 +96,9 @@ Closed loop:
 | Enforcement-tier template (local-first pre-push audit, reuse across projects) | `docs/patterns/local-first-enforcement.md` |
 | Which ARDs apply at which tier per project | `docs/ard-tier-map.md` |
 | Per-project stack + conventions | `<project>/CLAUDE.md` and `<project>/docs/` |
-| Workspace structure — layer ownership, what lives where | `docs/workspace-structure.md` |
+| Workspace structure — layer ownership, what lives where _(under active scrutiny — model still forming)_ | `docs/workspace-structure.md` · when this topic is active, also read `memory/medium-term/project-management/github-sop.md` and `memory/medium-term/project-management/linear-sop.md` |
+| Git collaboration — branch rules, PR flow, commit discipline, hooks, post-merge | `memory/medium-term/project-management/github-sop.md` |
+| Work tracking — Linear card rules, lifecycle, multi-deliverable patterns | `memory/medium-term/project-management/linear-sop.md` |
 
 ## Strategic routing
 
