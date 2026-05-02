@@ -37,7 +37,7 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 ## API surface
 
-- **Every API route lives under `/api/v{N}/`.** Current version is `v1`. Per `cross-stack-architecture-starter-pack/api-boundaries.md`, unversioned routes are forbidden. Breaking changes introduce a new version segment; additive changes land within the current version. Form clients point at the versioned base URL.
+- **Every API route lives under `/api/v{N}/`.** Current version is `v1`. Unversioned routes are forbidden. Breaking changes introduce a new version segment; additive changes land within the current version. Form clients point at the versioned base URL.
 
 - **Shared `json()` response helper.** All API routes use `src/lib/http.ts`'s `json()` — do not re-implement `new Response(JSON.stringify(...))` inline. Single source of truth for content-type headers and status shape.
 
@@ -83,6 +83,6 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 - **Never push to `main`.** Feature branch, PR, Ahmed opens the PR on GitHub. Auto-commit hook handles feature-branch commits.
 
-- **Max three concerns per branch.** If the current branch spans more concerns, split. See `memory/feedback_scope_discipline.md` at workspace level.
+- **Max three concerns per branch.** Count concerns, not files. If a branch accumulates more than three distinct concerns, stop and propose splitting into separate feature branches. Bundling exception: work that is genuinely coupled (can't ship A without B) stays on one branch.
 
-- **When a pattern repeats twice in a session, codify before the third time.** Skill, hook, doc, memory, or ADR — pick one of the five. See `memory/feedback_twice_is_a_pattern.md` at workspace level.
+- **When a pattern repeats twice in a session, codify before the third time.** Deterministic shell sequence → hook or script. Reasoning-heavy checklist → skill. Behavioral rule → memory entry. Architectural constraint → constraints.md + decision log. Governance decision → DECISIONS.md. Pick one; never invent a new location.

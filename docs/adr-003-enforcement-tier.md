@@ -5,7 +5,7 @@
 
 ## Context
 
-`cross-stack-architecture-starter-pack/quality-security-boundaries.md` treats CI as the only authority:
+The workspace's engineering quality principle treats CI as the only authority:
 
 > Enforcement is systemic, not human. Manual review never substitutes automated gates. Human judgment is not a quality gate.
 
@@ -43,17 +43,17 @@ Three tiers, each systemic and unskippable within its scope:
 - **No SAST / SCA / secret scanning in CI.** Covered partially by GitHub's free Dependabot alerts (no Actions minutes consumed) and by `npm audit` at release time. Not gated.
 - **No end-to-end tests.** The structural script covers the invariants a tiny E2E suite would cover.
 
-## ARD reconciliation
+## Reconciliation against engineering quality principles
 
-Against `quality-security-boundaries.md`:
+The core principle — enforcement is systemic, not human; no manual overrides — is honored as follows:
 
-| ARD § | Principle | Local-tier implementation |
-|---|---|---|
-| §1 Enforcement is systemic | Not human | Pre-commit hook runs on every commit. Hook install is `postinstall`, not optional. |
-| §2 CI is the only authority | No manual overrides | Hook is the merge gate. `--no-verify` forbidden by workspace policy. |
-| §3 Local and CI aligned | Same categories | Only one tier exists, so alignment is trivial. When CI is added later, it must run the same hook. |
-| §4 Security blocks | High/Critical block | Deferred — see upgrade trigger. `npm audit` run manually at release. |
-| §5 Quality gates mandatory | Tests, lint, format | `astro check` + structural script. No separate linter (Astro's built-in check is sufficient at this size). No formatter (TypeScript conventions, manual). |
+| Principle | Local-tier implementation |
+|---|---|
+| Enforcement is systemic, not human | Pre-commit hook runs on every commit. Hook install is `postinstall`, not optional. |
+| CI is the only authority — no manual overrides | Hook is the merge gate. `--no-verify` forbidden by workspace policy. |
+| Local and CI must be aligned on same categories | Only one tier exists, so alignment is trivial. When CI is added later, it must run the same hook. |
+| Security failures block — High/Critical block merges | Deferred — see upgrade trigger. `npm audit` run manually at release. |
+| Quality gates mandatory — tests, lint, format | `astro check` + structural script. No separate linter (Astro's built-in check is sufficient at this size). No formatter (TypeScript conventions, manual). |
 
 Gap vs. the ARD: security vulnerability gating is not automated. Accepted for now because (a) the dependency surface is 8 packages, (b) the build doesn't run untrusted code, (c) there's no user-data persistence. Re-evaluate at the upgrade trigger.
 
@@ -64,7 +64,7 @@ Any one of the following flips enforcement to GitHub Actions (or equivalent CI w
 - **First paid subscriber** to a lead magnet or offering sold through the site.
 - **Repo made public.** Open-source exposure introduces supply-chain surface that free Dependabot + `npm audit` don't cover at merge time.
 - **Collaborator joins the repo.** More than one human committing means local-tier enforcement is no longer systemic — the hook install is no longer guaranteed.
-- **State layer added** (Neon or equivalent). Migrations need CI-level gating per `production-data-integrity-boundaries.md`.
+- **State layer added** (Neon or equivalent). Migrations need CI-level gating — data integrity at the production level requires automated schema validation on every PR.
 
 When any of the above occurs: open an issue referencing this ADR, add `.github/workflows/pr.yml` that runs the same commands the pre-commit hook runs, and supersede this ADR with a new one.
 
@@ -98,8 +98,8 @@ Vercel platform config lives in `vercel.json` (framework pin + security headers)
 
 ## Related
 
-- `cross-stack-architecture-starter-pack/quality-security-boundaries.md` — the ARD being tiered.
-- `cross-stack-architecture-starter-pack/engineering-practices-boundaries.md` §7 — testing expectation, partially deferred here.
-- `cross-stack-architecture-starter-pack/infrastructure-as-code-boundaries.md` — satisfied via `vercel.json` + `astro.config.mjs`.
+- Engineering quality principle being tiered: systemic enforcement via automation, no reliance on human judgment, CI as the only authoritative merge gate.
+- Engineering practices principle §7: testing expectations partially deferred here — structural script replaces unit tests at this scale.
+- Infrastructure-as-code principle: satisfied via `vercel.json` + `astro.config.mjs`, no separate IaC layer needed.
 - `docs/constraints.md` — cross-linked; "no CI / no unit tests" now explicit, not implicit.
 - `docs/adr-001-contact-form.md`, `docs/adr-002-home-selection.md` — companion ADRs.
