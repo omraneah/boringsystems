@@ -4,9 +4,31 @@ The choreography for the three workflow types in this project, plus post-merge c
 
 ---
 
+## Article context drop — autonomous pipeline
+
+When the operator shares article context — materials, raw input, personal thoughts, potential cross-links, framing — the full article creation pipeline triggers immediately, no questions asked, through to PR.
+
+**Trigger:** operator shares any of: source material, voice memo transcript, a thread of thoughts, cross-link candidates, framing context for a piece.
+
+**Pipeline (end-to-end, no pauses):**
+
+1. Write EN article from the provided context.
+2. Write FR article — re-voiced, not translated.
+3. Wire frontmatter (title, description, date, series if applicable).
+4. Add ≥2 internal cross-references. Run `/cross-ref-check`.
+5. Run `/french-audit` on the FR file.
+6. Run `/article-review` on EN + FR together. Fix all BLOCKERs.
+7. Self-review pass — read both as a reader. Check description fit, voice consistency, cross-reference naturalness.
+8. `/commit`
+9. `/pr` — Ahmed opens the PR; Claude doesn't.
+
+If something is genuinely ambiguous (one article or two, which lane), pick the most natural interpretation and note it in the PR summary. No upfront questions.
+
+---
+
 ## Article workflow
 
-For new articles or updates to existing articles.
+For new articles or updates to existing articles — manual, step-by-step reference.
 
 1. **Branch.** Create a feature branch in boringsystems: `git checkout -b omraneah/<article-slug>`.
 
