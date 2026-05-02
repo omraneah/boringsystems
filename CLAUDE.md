@@ -31,6 +31,7 @@ All code is authored through Claude Code. No manual editing.
 
 | Topic | File |
 |---|---|
+| Workflow SOPs (article / code / structural / post-merge cleanup) | `docs/workflow.md` |
 | Full constraints list + rationale | `docs/constraints.md` |
 | Architecture + toolchain + typed-registry pattern | `docs/architecture-and-toolchain.md` |
 | Home-page selection contract (featured/highlight/order) | `docs/adr-002-home-selection.md` |

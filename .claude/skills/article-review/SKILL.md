@@ -3,7 +3,7 @@ name: article-review
 description: Pre-publish review for boringsystems articles. Loads design charter, target audiences, and French guide, then flags voice, structure, lane, and FR register issues. Use before publishing any new article or playbook — EN and FR together.
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Read, Grep, Glob, Skill
+allowed-tools: Read, Grep, Glob, Skill, WebSearch, WebFetch
 argument-hint: "[article slug — e.g. work/architecture-governance or writing/does-your-startup-need-a-cto — or full EN path]"
 ---
 
@@ -216,6 +216,35 @@ Invoke `/cross-ref-check $SLUG` and embed its full output under `## Cross-refere
 
 If `cross-ref-check` is unavailable, note "skipped — cross-ref-check not available" and proceed.
 
+### 12. Factual accuracy and time-sensitivity check
+
+Cross-check all verifiable claims against trustworthy external sources. This is a credibility requirement — a single false or stale claim undermines the trust the article is building with the exact reader most likely to share it. Risky claims must never ship unverified.
+
+**Extract and classify claims from the article body:**
+
+- **Statistics and numbers** — user counts, percentages, performance figures ("10×", "20M+ daily active users").
+- **Pricing and commercial terms** — specific prices, plan limits, free tier caps, pricing model descriptions. These go stale fastest.
+- **Tool / framework version-specific behaviors** — "framework X does Y as of version Z", "platform X does not support Y". Capabilities change.
+- **Product capability claims** — "service X provides Y", "X does not offer Y". Check against official docs.
+- **Attributions** — quotes or positions attributed to specific people, companies, or organizations.
+- **Named historical events** — incidents, acquisitions, launches. Usually stable; verify if the claim is central to the argument.
+
+**For each extracted claim:**
+
+1. Run a WebSearch — prefer official documentation, official product pages, or well-established technical publications. One or two searches per claim is enough.
+2. **Claim checks out and is stable** → no flag.
+3. **Claim is accurate but time-sensitive** (pricing, version-specific, product features, user counts) → flag as **nit**: "Time-sensitive — add 'as of [date]' or link to source. Will need periodic review."
+4. **Claim cannot be verified within 2 searches** → flag as **warning**: "Unverifiable — no authoritative source found. Either add a citation or soften the claim."
+5. **Claim is contradicted by a trustworthy source** → flag as **blocker**: "Factually incorrect — [source] contradicts this. Rewrite required before shipping."
+
+**Always flag as nit regardless of current accuracy (time-sensitive by definition):**
+- Any specific pricing figure
+- Any "X has N users / customers / deployments" statistic
+- Any "X does not support Y" statement about a commercial product
+- Any comparison that involves current product features or pricing
+
+**Report all findings under `## Factual accuracy`.** If no verifiable claims are found, note: "No extractable factual claims requiring external verification."
+
 ## Output format
 
 Single markdown report to stdout, with sections:
@@ -257,6 +286,9 @@ So Ahmed can catch a miscall before reading the flag list:
 ## SEO metadata
 <findings from step 10a: description quality, company links, cross-reference count>
 
+## Factual accuracy
+<findings from step 12: verified claims, flagged claims, time-sensitive items, or "No extractable factual claims requiring external verification">
+
 ## Cross-reference audit
 <embedded output from cross-ref-check skill, or "skipped — not available">
 
@@ -272,6 +304,7 @@ So Ahmed can catch a miscall before reading the flag list:
 - **Blockers** must be fixed before ship.
 - **Warnings** are judgment calls — Ahmed decides.
 - **Nits** are style preferences.
+- **Factual accuracy is non-negotiable.** A contradicted claim is a blocker. An unverifiable claim is a warning. A time-sensitive claim without a date anchor is a nit — but skipping all of step 12 is never acceptable. Credibility with a technical or builder reader is built over many articles and destroyed by one wrong number.
 - Do not auto-fix. Do not rewrite. This is a linter.
 - Every flag must cite a line number or a specific quote. "The voice feels off" is not a valid flag.
 - If the article cannot be reviewed (missing file, missing governance docs, malformed frontmatter), stop with a single-line error and do not produce a partial report.
