@@ -96,6 +96,7 @@ Closed loop:
 | Enforcement-tier template (local-first pre-push audit, reuse across projects) | `docs/patterns/local-first-enforcement.md` |
 | Which ARDs apply at which tier per project | `docs/ard-tier-map.md` |
 | Per-project stack + conventions | `<project>/CLAUDE.md` and `<project>/docs/` |
+| Workspace structure — layer ownership, what lives where | `docs/workspace-structure.md` |
 
 ## Strategic routing
 

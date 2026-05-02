@@ -22,6 +22,16 @@ The feedback loop: decisions that prove correct compound. Decisions that drift o
 
 Claude updates this file automatically after any session where architectural, workflow, configuration, or structural decisions are made. No manual entry needed. Periodic review to fill in **Actual outcome** fields as reality confirms or contradicts expectations.
 
+## Scope
+
+**Workspace infrastructure decisions only.** This means choices about workspace setup, tooling, process architecture, and meta-level rules that apply across all projects.
+
+Not for:
+- Behavioral corrections → `memory/short-term/feedback/` (feedback memory files)
+- Code/architecture decisions → project `docs/adr-*.md` (structured ADRs per project)
+
+Historical entries predate this scope clarification and remain as-is. The discipline applies going forward.
+
 ---
 
 ## 2026-04-18 — Workspace Git Structure and Version Control Setup
