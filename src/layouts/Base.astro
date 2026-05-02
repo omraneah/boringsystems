@@ -2,8 +2,7 @@
 import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
 import '../styles/global.css';
-import Analytics from '@vercel/analytics/astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
+import MixpanelAnalytics from '@/components/Analytics.astro';
 import { hreflangsForPath } from '@/lib/i18n';
 
 interface Props {
@@ -25,6 +24,14 @@ const {
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) : null;
 const pageTitle = title === 'Ahmed Omrane' ? 'Ahmed Omrane — Boring Systems' : `${title} — Boring Systems`;
+const pathname = Astro.url.pathname;
+const lane = pathname.includes('/writing/') ? 'writing'
+  : pathname.includes('/work/') ? 'work'
+  : pathname.includes('/building/') ? 'building'
+  : pathname.includes('/archive/') ? 'archive'
+  : pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'about'
+  : pathname.endsWith('/work-with-me') || pathname.endsWith('/work-with-me/') ? 'work-with-me'
+  : 'home';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -120,14 +127,13 @@ const websiteSchema = {
       })();
     </script>
   </head>
-  <body>
+  <body data-lane={lane}>
     <Nav />
     <main>
       <slot />
     </main>
     <Footer lang={lang} />
-    <Analytics />
-    <SpeedInsights />
+    <MixpanelAnalytics />
   </body>
 </html>
 

@@ -49,6 +49,7 @@ const t = {
 </section>
 
 <script>
+  import { trackLeadMagnet } from '@/lib/analytics';
   const forms = document.querySelectorAll<HTMLFormElement>('form.lm-form');
   for (const form of forms) {
     const input = form.querySelector<HTMLInputElement>('input[name="email"]')!;
@@ -81,6 +82,11 @@ const t = {
         if (res.ok) {
           status.textContent = status.dataset.success ?? '';
           status.classList.add('lm-status--ok');
+          trackLeadMagnet(
+            form.dataset.asset ?? '',
+            document.body.dataset.articleSlug ?? '',
+            form.dataset.lang ?? 'en'
+          );
           input.value = '';
           button.disabled = true;
           button.textContent = initialLabel;

@@ -3,8 +3,7 @@ import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
 import ArticleFeedback from '@/components/ArticleFeedback.astro';
 import '../styles/global.css';
-import Analytics from '@vercel/analytics/astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
+import MixpanelAnalytics from '@/components/Analytics.astro';
 import { hreflangsForPath } from '@/lib/i18n';
 
 interface Props {
@@ -28,6 +27,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) : null;
 const metaDescription = description ?? title;
 const pageTitle = `${title} — Boring Systems`;
+const urlParts = Astro.url.pathname.split('/').filter(Boolean);
+const lane = urlParts[1] ?? 'unknown';
+const voiceTarget = lane === 'work' ? 'technical' : 'builder';
+const articleSlug = urlParts[urlParts.length - 1] ?? '';
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -154,7 +157,7 @@ const breadcrumbSchema = {
       })();
     </script>
   </head>
-  <body>
+  <body data-article-slug={articleSlug} data-lane={lane} data-voice-target={voiceTarget}>
     <Nav />
     <main class="article-main">
       <div class="article-container">
@@ -192,8 +195,7 @@ const breadcrumbSchema = {
       </div>
     </main>
     <Footer />
-    <Analytics />
-    <SpeedInsights />
+    <MixpanelAnalytics />
     <script>
       // Render mermaid code blocks (if any) and wrap each one with a
       // zoom + pan controller so readers can explore the diagram.
@@ -331,6 +333,22 @@ const breadcrumbSchema = {
           viewport.addEventListener('pointerleave', stopDrag);
         }
       }
+    </script>
+    <script>
+      import { trackScroll75 } from '@/lib/analytics';
+      const slug = document.body.dataset.articleSlug ?? '';
+      const articleLane = document.body.dataset.lane ?? 'unknown';
+      const vt = document.body.dataset.voiceTarget ?? 'unknown';
+      let fired = false;
+      const onScroll = () => {
+        if (fired) return;
+        if ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight >= 0.75) {
+          fired = true;
+          trackScroll75(slug, articleLane, vt);
+          window.removeEventListener('scroll', onScroll);
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
     </script>
   </body>
 </html>
