@@ -43,7 +43,7 @@ Path-shaped references in Linear card descriptions and comments. Patterns:
 - `.claude/...\.md` — skills, decisions, hooks, agents
 - `<workspace-relative>/...\.md` — generic markdown references like `go-to-market/strategy.md`, `boringsystems/docs/<file>.md`
 
-Extract every path-shaped substring → for each, check whether it resolves in `/Users/ahmedomrane/Workspace/` → flag the ones that don't.
+Extract every path-shaped substring → for each, check whether it resolves under `$CLAUDE_PROJECT_DIR` → flag the ones that don't.
 
 **Carve-outs:**
 - Skip URLs (`https://...`, `mailto:`, etc.).
@@ -55,7 +55,7 @@ Extract every path-shaped substring → for each, check whether it resolves in `
 1. **List target cards** via Linear MCP (`mcp__claude_ai_Linear__list_issues`). Default filter: status type ∈ {`backlog`, `unstarted`, `started`}. Honor scope flags.
 2. **For each card**: fetch the description via `get_issue`, fetch all comments via `list_comments`. Concatenate text.
 3. **Extract path-shaped substrings** from each card's full text using a path regex. Suggested: `[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+\.md`.
-4. **Resolve each path** against `/Users/ahmedomrane/Workspace/`. Use the Bash tool with `[ -f ... ]` checks, or batch via `find`.
+4. **Resolve each path** against `$CLAUDE_PROJECT_DIR`. Use the Bash tool with `[ -f ... ]` checks, or batch via `find`.
 5. **Flag non-resolving paths** grouped by card.
 6. **Output report**: per-card list of stale references, with the line context from the description/comment.
 
@@ -101,7 +101,7 @@ Linear MCP rate-limits unpredictably (per `feedback_retry_silently_on_transient_
 - **Read-only by default.** Only `--fix` mode proposes mutations, and even then asks before applying.
 - **Don't sweep historical Linear noise.** Closed cards are archaeology unless `--all` is passed.
 - **Cross-link from `/check-stable-docs-leaks`** — they're siblings; the operator should know both exist.
-- **Workspace-rooted only.** This skill checks paths against `/Users/ahmedomrane/Workspace/`. It does not check absolute paths, URLs, or external filesystems.
+- **Workspace-rooted only.** This skill checks paths against `$CLAUDE_PROJECT_DIR`. It does not check absolute paths, URLs, or external filesystems.
 - **Don't conflate with leak-sweep direction.** `/check-stable-docs-leaks` checks repo files for *forbidden* references (Linear, tmp, etc.). This skill checks Linear cards for *broken* references (non-resolving paths). Inverse direction; don't merge them.
 
 ## Companion skills

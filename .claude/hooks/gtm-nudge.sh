@@ -9,7 +9,8 @@
 # The nudge is informational — Claude sees it in SessionStart context
 # and decides whether to invoke /gtm-sync before the next turn.
 
-PROJ_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+PROJ_DIR="${CLAUDE_PROJECT_DIR}"
+[ -z "$PROJ_DIR" ] && exit 0
 cd "$PROJ_DIR" || exit 0
 
 # Only run at the workspace root (go-to-market/ lives there).

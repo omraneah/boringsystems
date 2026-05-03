@@ -9,7 +9,7 @@ CLAUDE_DIR="$HOME/.claude"
 # Memory: tiered architecture lives at workspace root (memory/long-term, /medium-term, /short-term).
 # Claude Code reads from ~/.claude/projects/<sanitized-workspace-path>/memory; we symlink that to here.
 MEMORY_SRC="$WORKSPACE_DIR/memory"
-MEMORY_DST="$CLAUDE_DIR/projects/-Users-ahmedomrane-Workspace/memory"
+MEMORY_DST="$CLAUDE_DIR/projects/$(echo "$WORKSPACE_DIR" | tr '/' '-')/memory"
 
 echo "Workspace: $WORKSPACE_DIR"
 
@@ -55,7 +55,7 @@ elif [ -d "$MEMORY_DST" ]; then
 else
   mkdir -p "$(dirname "$MEMORY_DST")"
   ln -s "$MEMORY_SRC" "$MEMORY_DST"
-  echo "Created: ~/.claude/projects/-Users-ahmedomrane-Workspace/memory → workspace/memory"
+  echo "Created: $MEMORY_DST → workspace/memory"
 fi
 
 # 4. Git hooks: point core.hooksPath at tracked hook directory so the
