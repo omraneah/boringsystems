@@ -94,6 +94,14 @@ const langHref = toLocalePath(pathname, isFrench ? 'en' : 'fr');
   })();
 </script>
 
+<script>
+  import { trackLanguageToggle } from '@/lib/analytics';
+  document.querySelector<HTMLAnchorElement>('.lang-toggle')?.addEventListener('click', () => {
+    const currentLang = document.documentElement.lang ?? 'en';
+    trackLanguageToggle(currentLang, currentLang === 'fr' ? 'en' : 'fr');
+  });
+</script>
+
 <style>
   .site-nav {
     display: flex;

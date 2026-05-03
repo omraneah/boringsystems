@@ -3,9 +3,11 @@ import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
 import ArticleFeedback from '@/components/ArticleFeedback.astro';
 import '../styles/global.css';
+import MixpanelAnalytics from '@/components/Analytics.astro';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import { hreflangsForPath } from '@/lib/i18n';
+import { deriveLane } from '@/lib/lanes';
 
 interface Props {
   title: string;
@@ -28,6 +30,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) : null;
 const metaDescription = description ?? title;
 const pageTitle = `${title} — Boring Systems`;
+const urlParts = Astro.url.pathname.split('/').filter(Boolean);
+const lane = deriveLane(Astro.url.pathname);
+const articleSlug = urlParts[urlParts.length - 1] ?? '';
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -154,7 +159,7 @@ const breadcrumbSchema = {
       })();
     </script>
   </head>
-  <body>
+  <body data-article-slug={articleSlug} data-lane={lane}>
     <Nav />
     <main class="article-main">
       <div class="article-container">
@@ -192,6 +197,7 @@ const breadcrumbSchema = {
       </div>
     </main>
     <Footer />
+    <MixpanelAnalytics />
     <Analytics />
     <SpeedInsights />
     <script>
@@ -331,6 +337,21 @@ const breadcrumbSchema = {
           viewport.addEventListener('pointerleave', stopDrag);
         }
       }
+    </script>
+    <script>
+      import { trackScroll75 } from '@/lib/analytics';
+      const slug = document.body.dataset.articleSlug ?? '';
+      const articleLane = document.body.dataset.lane ?? 'unknown';
+      let fired = false;
+      const onScroll = () => {
+        if (fired) return;
+        if ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight >= 0.75) {
+          fired = true;
+          trackScroll75(slug, articleLane);
+          window.removeEventListener('scroll', onScroll);
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
     </script>
   </body>
 </html>

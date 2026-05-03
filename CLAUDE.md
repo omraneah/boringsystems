@@ -26,6 +26,7 @@ All code is authored through Claude Code. No manual editing.
 - **Slug derives from title by default.** New article slugs (filenames) are the title kebab-cased — drop em-dashes, colons, commas, apostrophes; replace spaces with hyphens. Deviate only with a documented reason. **Never rename a published slug** — inbound URLs are stable. The forcing function is on the title side: if the title would make a bad slug, fix the title before publishing. Description frontmatter must match the piece's voice target — no engineer-coded jargon (`IDE`, `fresh-machine clone`) in builder-target pieces, no consumer-soft language in technical pieces. See `docs/design-charter.md` § Titles, descriptions, and slugs.
 
 - **Never push with high or critical npm vulnerabilities.** The `pre-push` hook runs `npm audit --audit-level=high` and blocks the push on any high/critical finding. Fix first — `npm audit fix`, npm `overrides`, or a documented advisory-specific acceptance. Never `--no-verify`.
+- **Analytics goes through the library.** All tracking calls use `src/lib/analytics.ts` — never call `mixpanel.track()` directly in components. Outbound links get `data-track-outbound="[url]"` and are tracked automatically via the delegated handler in `Analytics.astro`. Event taxonomy is fixed at 5 for v1 — do not add events without consulting `docs/analytics.md`. Run `/analytics-audit` before committing any component with new outbound links or CTAs.
 
 ## Detail docs
 
@@ -39,6 +40,8 @@ All code is authored through Claude Code. No manual editing.
 | Design charter (voice, layout, lane alignment) | `docs/design-charter.md` |
 | Target audiences (technical vs builder voice targets) | `docs/target-audiences.md` |
 | French voice guide + do-not-translate list | `docs/french-guide.md` |
+| Analytics taxonomy, event schema, UTM template, tracking checklist | `docs/analytics.md` |
+| Analytics tooling decision (Mixpanel, GDPR posture, upgrade triggers) | `docs/adr-004-analytics-tooling.md` |
 
 ## Project-scoped skills
 
@@ -49,6 +52,7 @@ All code is authored through Claude Code. No manual editing.
 | `/french-audit` | After drafting or updating any FR content |
 | `/verify-home` | After any change to home layout, redirects, or home-selection flags |
 | `/check-constraints` | Before writing structural code (i18n, routing, caching, auth, deps) |
+| `/analytics-audit` | Before committing any component or page with new outbound links or CTAs |
 
 Cross-project skills (`/commit`, `/pr`, `/log-decision`, `/wrap-session`, `/session-pulse`, `/arch-review`) are available from any working dir.
 

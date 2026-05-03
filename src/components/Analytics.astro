@@ -1,0 +1,16 @@
+---
+// Mixpanel init. persistence: 'none' — no storage writes, no consent banner needed.
+// Every pageview gets a fresh anonymous distinct_id. Same posture as Vercel Analytics was.
+---
+
+<script>
+  import { initMixpanel, trackOutbound } from '@/lib/analytics';
+
+  initMixpanel();
+
+  document.addEventListener('click', (e) => {
+    const link = (e.target as Element).closest<HTMLAnchorElement>('[data-track-outbound]');
+    if (!link) return;
+    trackOutbound(link.dataset.trackOutbound ?? link.href);
+  });
+</script>
