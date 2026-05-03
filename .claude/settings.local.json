@@ -16,7 +16,10 @@
       "Bash(git add src/pages/about.astro src/components/Footer.astro && git commit -m \"$\\(cat <<'EOF'\nReplace email and GitHub with LinkedIn\n\nUpdate contact links in About page and Footer to point to\nhttps://www.linkedin.com/in/omrane-ahmed/\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\nEOF\n\\)\" && git push origin main && npx vercel --prod 2>&1)",
       "Bash(git add src/components/Footer.astro && git commit -m \"$\\(cat <<'EOF'\nSimplify footer to name-as-LinkedIn link\n\nRemove all footer content except name, which now links\ndirectly to https://www.linkedin.com/in/omrane-ahmed/\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\nEOF\n\\)\" && git push origin main && npx vercel --prod 2>&1)",
       "Bash(git add -A && git commit -m \"$\\(cat <<'EOF'\nReplace PNG logo with SVG flywheel on homepage\n\nSwap logo.png for flywheel-logo.svg in hero section,\nsized at 346px for optimal visual balance.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\nEOF\n\\)\" && git push origin main && npx vercel --prod 2>&1)",
-      "Skill(wrap-session)"
+      "Skill(wrap-session)",
+      "mcp__claude_ai_Airtable__search_bases",
+      "mcp__claude_ai_Airtable__list_tables_for_base",
+      "mcp__claude_ai_Airtable__list_records_for_table"
     ]
   }
 }
