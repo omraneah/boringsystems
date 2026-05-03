@@ -4,7 +4,7 @@ Known limitations specific to `memory/short-term/feedback/`. Concerns spanning m
 
 ---
 
-## Crystallization into mid-term SOPs (high priority — BOR-32 work)
+## Crystallization into mid-term SOPs (high priority)
 
 Many files in `stable/` are protocol rules — structured workflows in behavioral-correction form. These should be rewritten as SOP sections in `memory/medium-term/project-management/workspace-workflow.md` rather than staying as individual feedback files or being promoted to long-term doctrine.
 
@@ -14,10 +14,10 @@ Many files in `stable/` are protocol rules — structured workflows in behaviora
 3. Replace the feedback file body with a one-line pointer: "See `workspace-workflow.md` §[section]."
 4. Archive the feedback file during the next audit pass (do not delete immediately — keep pointer in place for one consolidation cycle).
 
-**Crystallization candidates (to verify during BOR-32):**
+**Crystallization candidates:**
 
 Protocol-shaped → workspace-workflow.md:
-- `stable/feedback_code_change_gate.md` → §Code change flow (gates 1/2/3 are already in workspace-workflow.md as of 2026-05-03; this file can point there)
+- `stable/feedback_code_change_gate.md` → §Code change flow (gates 1/2/3 are already in workspace-workflow.md; this file can point there)
 - `stable/feedback_parallel_by_default.md` + `stable/feedback_parallel_agent_recap.md` + `stable/feedback_lane_change_announcement.md` → condense → workspace-workflow.md §Parallel and lane-change protocols
 - `stable/feedback_pr_creation.md` → workspace-workflow.md §PR handoff
 - `stable/feedback_scope_discipline.md` → workspace-workflow.md §Code change flow (max 3 concerns rule)
@@ -44,4 +44,4 @@ Tertiary: garbage collection (situation changed, tooling changed, operator chang
 
 ## stable/ vs in-flight/ boundary drift
 
-Some in-flight files have been in-flight since April 2026 and are no longer tied to a current situation. During the BOR-32 audit, interrogate every in-flight file: "Is the triggering situation still live?" If not: promote to stable, crystallize, or archive.
+Some in-flight files have been in-flight since April 2026 and are no longer tied to a current situation. During the next audit pass, interrogate every in-flight file: "Is the triggering situation still live?" If not: promote to stable, crystallize, or archive.

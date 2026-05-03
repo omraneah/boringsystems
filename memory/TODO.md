@@ -12,7 +12,7 @@ This file uses the workspace TODO.md convention: improvement notes placed close 
 
 The crystallization path: short-term/feedback → rewrite as SOP section → place in `medium-term/project-management/workspace-workflow.md` → convert feedback file to thin pointer → archive during next audit pass.
 
-This is the primary work of the BOR-32 audit session. See `short-term/feedback/TODO.md` for the candidate list.
+See `short-term/feedback/TODO.md` for the candidate list.
 
 The target is ~15-20 feedback files total (down from 46). The reduction comes from crystallization (protocols → SOP) and condensation (clusters → single principle).
 
