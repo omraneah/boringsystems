@@ -102,8 +102,8 @@ If leaks:
 ⚠ Stable docs have N leaks across 4 patterns:
 
 [Pattern 1 — Linear card references]
-- CLAUDE.md:42 — BOR-29 referenced
-- memory/README.md:88 — linear.app/.../issue/BOR-30 referenced
+- CLAUDE.md:42 — PROJ-NNN referenced
+- memory/README.md:88 — linear.app/.../issue/PROJ-NNN referenced
 
 [Pattern 2 — tmp/ paths]
 - memory/medium-term/README.md:15 — tmp/restructure-narrative.md referenced
@@ -122,7 +122,7 @@ Fire `/check-stable-docs-leaks --fix` to attempt automated cleanup, or fix manua
 
 ## Companion rules
 
-- The four governance rules captured in BOR-30 codifications (READMEs point to stable refs only, no Linear in stable docs, no tmp in stable docs, workspace-root-precedence) — this skill mechanizes their enforcement.
+- The four governance rules (READMEs point to stable refs only, no Linear in stable docs, no tmp in stable docs, workspace-root-precedence) — this skill mechanizes their enforcement.
 - `feedback_at_imports_break_on_rename.md` — the @-import check (Pattern 4) prevents the silent breakage that rule warns about.
 
 ## Companion skills

@@ -27,7 +27,7 @@ If the session produced nothing decision-shaped, say so and stop. Do not fabrica
 
 ## Step 2 — Structure the card
 
-Format the Linear card description as structured markdown. Mirror BOR-23 section structure:
+Format the Linear card description as structured markdown. Use the article-series container card structure:
 
 ```
 ## The decision

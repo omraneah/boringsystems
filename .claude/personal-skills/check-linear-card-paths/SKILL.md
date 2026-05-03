@@ -16,7 +16,7 @@ This skill mechanizes the sweep. Sibling to `/check-stable-docs-leaks` — same 
 
 ## Why this exists
 
-A real instance: 2026-05-01, BOR-38 was filed with a description pointing at `memory/medium-term/operational-doctrine/Enakl-Derailment-Archetype.md`. The next day, the file was renamed to `Engagement-Validity-Filter.md` as part of a memory cleanup. The Linear card description still pointed at the old name — caught manually inline during the BOR-38 work, but the class of drift will recur.
+A real instance: 2026-05-01, a card was filed with a description pointing at `memory/medium-term/operational-doctrine/Enakl-Derailment-Archetype.md`. The next day, the file was renamed to `Engagement-Validity-Filter.md` as part of a memory cleanup. The Linear card description still pointed at the old name — caught manually inline during the card's execution, but the class of drift will recur.
 
 ## When to fire
 
@@ -72,7 +72,7 @@ If stale references found:
 ```
 ⚠ N stale workspace path references across M cards:
 
-[BOR-38] Re-voice go-to-market/strategy.md to remove striving-tax
+[PROJ-NN] Re-voice go-to-market/strategy.md to remove striving-tax
 - description:34 — memory/medium-term/operational-doctrine/Enakl-Derailment-Archetype.md (does not exist; possible rename → Engagement-Validity-Filter.md)
 
 [BOR-NN] <title>

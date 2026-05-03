@@ -172,7 +172,7 @@ Each npm-capable submodule has a `pre-push` hook running `npm audit --audit-leve
 
 2. **PR description has no enforced template.** The `/pr` skill drafts title + body, but format is AI-generated per session. A `PULL_REQUEST_TEMPLATE.md` in each repo would standardize this and survive non-Claude PRs.
 
-3. **Submodule pointer drift is manual.** BOR-17 (auto-detect via SessionStart hook) was canceled on 2026-05-01. Currently relies on opportunistic `git status` observation. Drift silently accumulates between merges.
+3. **Submodule pointer drift is manual.** A planned SessionStart hook for auto-detecting submodule pointer drift was canceled on 2026-05-01. Currently relies on opportunistic `git status` observation. Drift silently accumulates between merges.
 
 4. **No automated PR ↔ Linear card linking.** Branch names follow the `omraneah/bor-<N>-...` convention, which Linear's GitHub integration could auto-link — but the integration is not configured. Card updates are manual comments from Claude.
 

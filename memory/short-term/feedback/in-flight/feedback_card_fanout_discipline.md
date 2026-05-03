@@ -1,12 +1,12 @@
 ---
 name: Card-Fanout Discipline
-description: When creating Linear cards for related multi-deliverable work, check the workspace for existing "container" card patterns (e.g. BOR-23-style article series with multiple sections) and mirror that shape instead of creating sibling cards.
+description: When creating Linear cards for related multi-deliverable work, check the workspace for existing "container" card patterns (e.g. an article-series card with multiple articles as sections) and mirror that shape instead of creating sibling cards.
 type: feedback
 ---
 
 Before creating more than one Linear card for related deliverables in the same session, search the team for an existing container card and mirror its shape. Single card with deliverables as sections beats multiple sibling cards.
 
-**Why:** When the same architecture decision produces multiple deliverables (e.g. two articles, one audit + one writeup, a migration + a doc update), one container card with sections is more navigable than N sibling cards. Sibling cards lose the cross-referencing context, scatter the conversation, and require manual cleanup when discovered. This rule was prompted by the 2026-04-26 incident: I created BOR-25 + BOR-26 (two article cards) when BOR-23 — already in the workspace as the established "article series" container shape — should have been mirrored. Cleanup cost: two cancellations + one consolidation card (BOR-27).
+**Why:** When the same architecture decision produces multiple deliverables (e.g. two articles, one audit + one writeup, a migration + a doc update), one container card with sections is more navigable than N sibling cards. Sibling cards lose the cross-referencing context, scatter the conversation, and require manual cleanup when discovered. This rule was prompted by the 2026-04-26 incident: two article sibling cards were created when an existing article-series container card — already in the workspace as the established shape — should have been mirrored. Cleanup cost: two cancellations + one consolidation card.
 
 **How to apply:**
 
@@ -20,8 +20,8 @@ The `card-against-pattern` skill enforces this — invoke it (or its logic) befo
 
 ## Container patterns observed
 
-- **BOR-23** — article series with two articles (Writing + Building) + architecture diagram, all in one card
-- **BOR-27** — article series mirroring BOR-23, two articles + mermaid diagram in one card
+- **Article series (canonical shape)** — two articles (Writing + Building) + architecture diagram, all in one card
+- **Article series (variant)** — two articles + mermaid diagram; mirrors the canonical shape
 
 ## See also
 

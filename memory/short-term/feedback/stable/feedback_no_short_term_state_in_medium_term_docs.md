@@ -6,7 +6,7 @@ type: feedback
 
 Medium-term documents (`memory/medium-term/`) are stable doctrine — rules, structures, and operating procedures that outlive any single session or sprint. Short-term state (Linear card IDs, board snapshots, current issue lists, PR numbers, active branch names) has a half-life of days. Mixing them corrupts the medium-term tier and forces manual cleanup every time the board evolves.
 
-**Why:** This was violated in the first draft of the Linear SOP, which included a "Board health" section listing ~15 card IDs (BOR-40, BOR-29, etc.) as if they were doctrine. Ahmed flagged it immediately: those belong on the board or in `memory/short-term/`, not in a versioned SOP.
+**Why:** This was violated in the first draft of the Linear SOP, which included a "Board health" section listing ~15 active card IDs as if they were doctrine. Ahmed flagged it immediately: those belong on the board or in `memory/short-term/`, not in a versioned SOP.
 
 **How to apply:**
 

@@ -56,7 +56,7 @@ Residual risks:
 PR: [covers X. Ahmed attention needed on Y / no additional attention needed]
 ```
 
-8. **Identify the active Linear card.** Derive it from the branch name (e.g. `omraneah/bor-46-*` → `BOR-46`). If the branch name doesn't contain a card identifier, check recent Linear cards in the boringsystems team for one matching the work. If no card is found, skip steps 9–10 and note "No Linear card identified."
+8. **Identify the active Linear card.** Derive it from the branch name (e.g. `omraneah/bor-NN-*` → `BOR-NN`). If the branch name doesn't contain a card identifier, check recent Linear cards in the boringsystems team for one matching the work. If no card is found, skip steps 9–10 and note "No Linear card identified."
 
 9. **Transition the card to In Review** via `mcp__claude_ai_Linear__save_issue` (`state: "In Review"`).
 
