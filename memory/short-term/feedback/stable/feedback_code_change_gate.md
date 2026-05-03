@@ -14,7 +14,7 @@ Before writing the first line of code on any multi-file or structural change:
 2. **Write the plan.** What files change, what decisions are required, what assumptions are being made.
 3. **Confirm with Ahmed before executing.** Especially: any decision that can't be easily reversed once code is written (removing a dependency, choosing an event taxonomy, mapping a derived dimension). Do not execute on assumed answers.
 
-**Why:** The BOR-40 session shipped three rounds of corrections because Vercel Analytics removal, voice_target design, and event taxonomy were never confirmed in plan phase. Ahmed's cognition paid the tax that the plan gate would have blocked.
+**Why:** A prior boringsystems analytics session shipped three rounds of corrections because Vercel Analytics removal, voice_target design, and event taxonomy were never confirmed in plan phase. Ahmed's cognition paid the tax that the plan gate would have blocked.
 
 **How to apply:** "I'm about to start X. Here's my plan: [N bullets]. Decisions I need confirmed before I execute: [list]. Confirming?" — then wait.
 
@@ -25,7 +25,7 @@ When a design decision changes mid-session (Ahmed overrules an approach, a const
 - Update all affected docs (ADRs, reference docs, constraints.md) in the **same commit** as the code change.
 - Never split doc updates from code updates across commits. "I'll update the docs later" creates guaranteed drift.
 
-**Why:** The BOR-40 session updated `persistence: 'none'` in code but left the ADR saying "consent banner required." The ADR was authoritative for anyone reading it after the session.
+**Why:** A prior session updated `persistence: 'none'` in code but left the ADR saying "consent banner required." The ADR was authoritative for anyone reading it after the session.
 
 ## Gate 3 — Post-execution: run skills, fix, re-run until clean, then declare done
 
@@ -38,7 +38,7 @@ After finishing any non-trivial boringsystems code change, before pushing:
 
 "Build passed" is a necessary condition, not a sufficient one. The build gate catches type errors and broken imports. The skills gate catches wiring gaps, missing tracking, broken invariants, and doc drift. Both must pass.
 
-**Why:** The BOR-40 session had 5 untracked outbound links on about pages, a missing ContactForm tracking event, wrong voice_target mapping, and an ADR with wrong facts — all of which `/analytics-audit` and `/arch-review` caught. None were caught before Ahmed reviewed the PR because the skills were never run pre-push.
+**Why:** A prior boringsystems analytics session had 5 untracked outbound links on about pages, a missing ContactForm tracking event, wrong voice_target mapping, and an ADR with wrong facts — all of which `/analytics-audit` and `/arch-review` caught. None were caught before Ahmed reviewed the PR because the skills were never run pre-push.
 
 ---
 

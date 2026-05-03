@@ -26,10 +26,10 @@ Use `mcp__claude_ai_Linear__list_issues` on the relevant team (default: Boringsy
 
 Or any title containing `+` / multi-deliverable language. Inspect the top 2-3 candidates by description (`mcp__claude_ai_Linear__get_issue`) for the section structure they use — articles-as-sections, deliverables-as-sections, etc.
 
-Reference container cards observed in this workspace:
+Reference container card shapes observed in this workspace:
 
-- **BOR-23** ("Article series — the AI advisory board") — two articles + architecture diagram in one card
-- **BOR-27** ("Article series — Tuning Claude") — same shape, mirrored from BOR-23
+- **Article series (canonical shape)** — two articles ("Writing" + "Building") + architecture diagram in one card
+- **Article series (variant)** — same shape applied to a second topic; two articles + mermaid diagram in one card
 
 ## Step 3 — Mirror, don't fan
 
@@ -41,12 +41,12 @@ If no container pattern exists for the work-shape, create one card per deliverab
 
 Always show the proposed shape to the user before calling `save_issue`:
 
-> Found similar pattern in BOR-23 (article-series container). Proposed: ONE card mirroring that shape, with [Article A] and [Article B] as sections. Confirm?
+> Found similar pattern (article-series container). Proposed: ONE card mirroring that shape, with [Article A] and [Article B] as sections. Confirm?
 
 Only fire `save_issue` after explicit confirmation, unless the user has set autonomy expectations otherwise in-session.
 
 ## Why this skill exists
 
-The 2026-04-26 model × effort × lane session created three Linear cards (BOR-24, BOR-25, BOR-26) when only two were intended (one work-tracker + one article series). Cleanup required cancelling two cards and creating BOR-27 to consolidate the article series. The fix is upstream: check for the container pattern before creating, not after.
+The 2026-04-26 model × effort × lane session created three Linear cards when only two were intended (one work-tracker + one article series). Cleanup required cancelling two cards and creating a consolidation card. The fix is upstream: check for the container pattern before creating, not after.
 
 See also: `memory/feedback_card_fanout_discipline.md`.

@@ -13,7 +13,7 @@ When designing or updating a **pre-publish review skill** (article review, PR re
 
 This section appears **before** the Blockers / Warnings / Nits list. The reason is not cosmetic: if the reviewer has misread what the artifact is for, every flag that follows is reviewing the wrong piece. Forcing the interpretation to be explicit lets Ahmed (or whoever is reading the report) catch the miscall in two seconds rather than after arguing through a flag list.
 
-**Why:** 2026-04-23 boringsystems session. After BOR-7 shipped, Ahmed caught a cryptic title ("The Architecture of Disposable State") that the `/article-review` skill had passed clean. The skill had no mechanism to state its read of the piece's intent — so the miscall wasn't a misjudgment, it was an unstated one. Adding a Planning-snapshot header to the review output would have forced the reviewer to name the article's promise in a sentence, which would have surfaced the title gap immediately. Ahmed confirmed the pattern carries forward: any future review skill gets this shape.
+**Why:** 2026-04-23 boringsystems session. Ahmed caught a cryptic title ("The Architecture of Disposable State") in a just-shipped article that the `/article-review` skill had passed clean. The skill had no mechanism to state its read of the piece's intent — so the miscall wasn't a misjudgment, it was an unstated one. Adding a Planning-snapshot header to the review output would have forced the reviewer to name the article's promise in a sentence, which would have surfaced the title gap immediately. Ahmed confirmed the pattern carries forward: any future review skill gets this shape.
 
 **How to apply:**
 
