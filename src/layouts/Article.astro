@@ -4,6 +4,8 @@ import Footer from '@/components/Footer.astro';
 import ArticleFeedback from '@/components/ArticleFeedback.astro';
 import '../styles/global.css';
 import MixpanelAnalytics from '@/components/Analytics.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import { hreflangsForPath } from '@/lib/i18n';
 import { deriveLane } from '@/lib/lanes';
 
@@ -196,6 +198,8 @@ const breadcrumbSchema = {
     </main>
     <Footer />
     <MixpanelAnalytics />
+    <Analytics />
+    <SpeedInsights />
     <script>
       // Render mermaid code blocks (if any) and wrap each one with a
       // zoom + pan controller so readers can explore the diagram.
