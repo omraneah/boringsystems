@@ -47,7 +47,7 @@ memory/
 | Tier | Horizon | What goes here | Lives in |
 |---|---|---|---|
 | **Long-term** | Years | Identity profile, distilled identity-constitution content, path doctrine, relational architecture. North star. | `long-term/` |
-| **Medium-term** | 1–6 months, evolving | Current direction (`current-arc.md`), current context, market doctrine, operational doctrine, project metadata. Loaded on demand (except `current-arc.md` which auto-loads). | `medium-term/` |
+| **Medium-term** | 1–6 months, evolving | Current direction (`current-arc.md`), current context, market doctrine, operational doctrine, project metadata. Project-management SOPs (`workspace-workflow.md`, `linear-sop.md`, `github-sop.md`) auto-load every session; rest loads on demand. | `medium-term/` |
 | **Short-term** | ≤4 weeks episodic + active discipline | Daily entries, weekly consolidation, active feedback rules, current 2-month plan, extraction discipline. | `short-term/` |
 
 ## On feedback
@@ -70,6 +70,9 @@ Both auto-load with the rest of the discipline layer (long-term + current-arc + 
 | Tier | What auto-loads every turn |
 |---|---|
 | Long-term | Full content (north star, weighted highest) |
+| Medium-term — `project-management/workspace-workflow.md` | Full content (collaboration SOP — governs every session) |
+| Medium-term — `project-management/linear-sop.md` | Full content (card rules — governs every session) |
+| Medium-term — `project-management/github-sop.md` | Full content (branch rules — governs every session) |
 | Medium-term — `current-arc.md` | Full content (live direction snapshot) |
 | Medium-term — rest | Routing-only references in `MEMORY.md`; full content on demand |
 | Short-term — `feedback/` | Full content (active discipline layer) |
@@ -83,10 +86,13 @@ In order of weight, descending:
 
 1. **Live conversation** — always overrides stale docs (article principle #1: corpus is malleable). The user in the room is the canonical signal.
 2. **Long-term** — north star (identity). When live conversation contradicts long-term, this is potential identity drift. **Stop and surface.**
-3. **Short-term / feedback** — the live behavioural discipline.
-4. **Current week of short-term** — present-moment context.
-5. **Last week of short-term** — continuity.
-6. **Medium-term** — current direction, positioning, project arcs.
+3. **Mid-term — project-management SOPs** (`workspace-workflow.md`, `linear-sop.md`, `github-sop.md`) — crystallized structural protocols. A protocol wins over a raw behavioral correction. When a feedback rule contradicts a mid-term SOP, the SOP is authoritative unless Ahmed explicitly overrides.
+4. **Short-term / feedback** — the live behavioural discipline.
+5. **Current week of short-term** — present-moment context.
+6. **Last week of short-term** — continuity.
+7. **Medium-term — rest** — current direction, positioning, project arcs. Loaded on demand; lower weight in conflicts.
+
+⚠️ **Known limitation:** This weighting structure was corrected 2026-05-03 (previously mid-term sat below short-term/feedback). The distinction between "protocol-shaped" mid-term (high weight, auto-load) and "context-shaped" mid-term (lower weight, on-demand) is structural and needs ongoing review. See `memory/TODO.md`.
 
 ## Conflict resolution
 

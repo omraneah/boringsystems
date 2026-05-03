@@ -39,6 +39,8 @@ Memory is tiered into three horizons (`memory/long-term/`, `memory/medium-term/`
 
 **Feedback in short-term.** Behavioural rules (`feedback_*.md` files) live in `memory/short-term/feedback/`, split across two audit-only sub-folders: `stable/` (rules that have crystallized) and `in-flight/` (rules tied to current workflow / specific tooling / recent corrections). Feedback lives in short-term because Ahmed consolidates on top of it weekly. Both auto-load every session, so the discipline layer is always in scope. The split is for audit purposes (which rules to interrogate first); runtime behaviour is unified. See `memory/short-term/feedback/README.md` for the lifecycle.
 
+**Project-management SOPs in medium-term.** `memory/medium-term/project-management/` holds three structural SOPs that auto-load every session: `workspace-workflow.md` (collaboration flows, autonomy gradient, skill checklist), `linear-sop.md` (card rules), `github-sop.md` (branch rules). These are weighted above short-term/feedback in conflict resolution — a crystallized protocol wins over a raw behavioral correction. Feedback rules crystallize into these SOPs over time via consolidation; see `memory/short-term/feedback/TODO.md` for the candidate list.
+
 Drift-detection (immune system):
 
 - `/whence` — directive. Ahmed asks where Claude pulled a claim from.
@@ -83,6 +85,7 @@ Closed loop:
 - **Weekly consolidation.** On Monday session start, fire `/consolidate-week` if this week's consolidation hasn't been done yet. Full rule: `memory/short-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md`.
 - **Never push with high or critical npm vulnerabilities.** Each npm-capable submodule has a `pre-push` hook running `npm audit --audit-level=high`. Workspace root also runs `.claude/git-hooks/pre-push` which audits every submodule before a pointer bump. Fix path: `npm audit fix` → npm `overrides` → major upgrade → documented advisory acceptance in the affected project's ADR. `--no-verify` forbidden.
 - **Medium-term docs contain rules, never state.** Every sentence in a `memory/medium-term/` document must be as true in six months as it is today. Never embed Linear card IDs, board snapshots, PR numbers, active branch names, or any live issue list in medium-term documents — that is short-term episodic state and belongs on the board or in `memory/short-term/`. Full rule: `memory/short-term/feedback/stable/feedback_no_short_term_state_in_medium_term_docs.md`.
+- **TODO.md convention.** Known limitations and improvement backlog items live in `TODO.md` files placed at the parent folder level of where they apply. If a limitation spans a whole folder → `<folder>/TODO.md`. If it applies to a subfolder → the `TODO.md` lives at the parent. This keeps technical debt visible and co-located with the affected context. Never write improvement TODOs only in Linear or only in chat — they drift. Write them close to the code or doc they apply to.
 
 ## Detail — read these when the topic matters
 
@@ -99,6 +102,7 @@ Closed loop:
 | Workspace structure — layer ownership, what lives where _(under active scrutiny — model still forming)_ | `docs/workspace-structure.md` · when this topic is active, also read `memory/medium-term/project-management/github-sop.md` and `memory/medium-term/project-management/linear-sop.md` |
 | Git collaboration — branch rules, PR flow, commit discipline, hooks, post-merge | `memory/medium-term/project-management/github-sop.md` |
 | Work tracking — Linear card rules, lifecycle, multi-deliverable patterns | `memory/medium-term/project-management/linear-sop.md` |
+| Collaboration workflow SOP — all flows, autonomy gradient, per-flow skill checklist | `memory/medium-term/project-management/workspace-workflow.md` (**auto-loaded every session**) |
 
 ## Strategic routing
 
