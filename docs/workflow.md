@@ -60,19 +60,28 @@ For new articles or updates to existing articles — manual, step-by-step refere
 
 For changes to layouts, components, config, scripts, or any non-content file.
 
-1. **Check constraints.** Run `/check-constraints` before touching i18n, routing, content schema, deps, API surface, or enforcement tier. No exceptions — the pre-check surfaces conflicts before you're 200 lines in.
+1. **Read context.** Before writing any plan: read `docs/constraints.md` + any domain-relevant doc for the work type. For analytics work: `docs/analytics.md` + `docs/target-audiences.md`. For i18n/routing: `docs/architecture-and-toolchain.md`. Do not infer from `CLAUDE.md` alone — the detail docs are the full context.
 
-2. **Branch.** Create a feature branch: `git checkout -b omraneah/<short-description>`.
+2. **Write plan and confirm.** Write what files change, what decisions are required, what assumptions are being made. Confirm with Ahmed before executing. Especially: any decision that can't be easily reversed (removing a dep, choosing a taxonomy, mapping a derived dimension).
 
-3. **Edit.** Keep to ≤3 concerns per branch. At four, stop and split.
+3. **Check constraints.** Run `/check-constraints` before touching i18n, routing, content schema, deps, API surface, or enforcement tier. No exceptions — the pre-check surfaces conflicts before you're 200 lines in.
 
-4. **Verify locally.** Run `npm run build` before committing. Don't discover build failures at commit time.
+4. **Branch.** Create a feature branch: `git checkout -b omraneah/<short-description>`.
 
-5. **Commit.** Run `/commit`. Pre-commit hook: `astro check` + `npm run verify` + `astro build`. Fix all failures; `--no-verify` is forbidden.
+5. **Edit.** Keep to ≤3 concerns per branch. At four, stop and split. When a design decision changes mid-edit, update affected docs in the same commit as the code — never split them.
 
-6. **PR.** Run `/pr`. Ahmed opens the PR on GitHub.
+6. **Verify locally.** Run `npm run build` before committing. Don't discover build failures at commit time.
 
-7. **Post-merge cleanup.** See below.
+7. **Run review skills.** After editing, before committing:
+   - Analytics work (new outbound links, CTAs, conversion actions): `/analytics-audit` — fix all FIX-level findings, re-run until clean.
+   - Structural/architectural changes: `/arch-review`.
+   - "Build passed" is necessary but not sufficient. Skills catch wiring gaps and doc drift that the build doesn't.
+
+8. **Commit.** Run `/commit`. Pre-commit hook: `astro check` + `npm run verify` + `astro build`. Fix all failures; `--no-verify` is forbidden.
+
+9. **PR.** Run `/pr`. Ahmed opens the PR on GitHub.
+
+10. **Post-merge cleanup.** See below.
 
 ---
 
@@ -131,7 +140,7 @@ Then Ahmed opens the workspace PR on GitHub.
 |---|---|
 | New article | Draft both locales → `/article-review` → commit |
 | Updating existing article | Check slug stability (never rename post-publish) → edit → `/article-review` |
-| Layout / component change | `/check-constraints` → branch → edit → `npm run build` |
+| Layout / component change | Read context → confirm plan → `/check-constraints` → branch → edit → skills → `npm run build` |
 | Schema / routing / i18n change | `/check-constraints` → ADR decision → branch |
 | Any PR merged | Post-merge cleanup immediately (both steps) |
 | Pattern repeated twice in a session | Stop → propose codification before the third time |
