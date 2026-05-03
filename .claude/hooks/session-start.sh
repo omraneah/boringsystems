@@ -13,7 +13,11 @@ fi
 
 # Ensure ~/.claude/ symlinks, git hooksPath, and Marky are wired.
 # setup.sh is idempotent: warm machines hit fast skip-paths; fresh VMs get wired.
-bash "$PROJ_DIR/.claude/setup.sh" >/dev/null 2>&1 || true
+# Log to a temp file so fresh-VM failures (e.g. real memory dir blocks symlink)
+# surface instead of vanishing into /dev/null at the moment they matter most.
+SETUP_LOG="/tmp/claude-setup-$(basename "$PROJ_DIR").log"
+bash "$PROJ_DIR/.claude/setup.sh" >"$SETUP_LOG" 2>&1 \
+  || echo "WARN: setup.sh failed — check $SETUP_LOG"
 
 git rev-parse --git-dir > /dev/null 2>&1 || exit 0
 
