@@ -71,6 +71,7 @@ const t = lang === 'fr'
         status.textContent = ok;
         status.classList.add('form-status--ok');
         form.reset();
+        document.dispatchEvent(new CustomEvent('bs:contact-sent'));
       } else {
         status.textContent = err;
         status.classList.add('form-status--err');
@@ -83,6 +84,11 @@ const t = lang === 'fr'
       btn.textContent = submit;
     }
   });
+</script>
+
+<script>
+  import { trackContactFormSent } from '@/lib/analytics';
+  document.addEventListener('bs:contact-sent', () => trackContactFormSent());
 </script>
 
 <style>

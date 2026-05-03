@@ -1,64 +1,69 @@
-# ADR-004 — Analytics Tooling: Mixpanel (Experimental)
+# ADR-004 — Analytics Tooling: Mixpanel + Vercel Analytics
 
 **Status:** Accepted  
 **Date:** 2026-05-02  
 **Decider:** Ahmed Omrane  
-**Scope:** boringsystems.app only. Portfolio subdomain is a separate surface.
+**Scope:** boringsystems.app only.
 
 ## Decision
 
-Mixpanel (EU data residency — Netherlands DC) with a minimal GDPR consent banner.
+Run Mixpanel (EU data residency) and Vercel Analytics side-by-side. Both are free. Both are consent-free. They serve different purposes.
 
-## Context and forces
+## Why both tools
 
-1. Conversion measurement must precede the P2 conversion funnel (Camille's rule, 2026-05-01). Analytics now = historical baseline by the time the funnel ships.
-2. SEO/AEO consolidation needs retention windows beyond Vercel Analytics' 30-day cap.
-3. Operator knows Mixpanel from Fabulous (20M DAU) — fastest path from decision to working instrumentation.
-4. Vercel Analytics (previously installed) is CNIL-exempt but lacks UTM attribution and custom events. Removed as part of this work.
-5. Plausible (€9/mo, consent-free, sufficient for v1 observation window) was the recommendation. Operator chose Mixpanel for depth and familiarity.
+**Vercel Analytics** runs at the edge, zero config, aggregate traffic counts and referrers. Useful as a sanity-check layer. Its 30-day retention window and lack of custom events make it insufficient for behavioral analysis on its own.
 
-## Hard constraints (non-negotiable)
+**Mixpanel** is the primary analysis layer. The goal is to understand how visitors actually navigate the site: where they come from, what they click, which articles they read vs. skim, where they go after. UTM attribution per-pageview tells which distribution channels drive real engagement. Custom events on high-value actions (lead magnet, contact form, scroll depth, language toggle, outbound clicks) give signals the aggregate traffic view never would.
 
-1. **EU data residency.** Netherlands DC. Configured at project creation. Irreversible on free tier.
-2. **No fingerprinting.** No canvas/browser fingerprinting (FingerprintJS-style). No IP-based deduplication.
-3. **User deduplication via Mixpanel `distinct_id`.** Stored as a first-party cookie. Same browser across sessions = same user. Requires GDPR consent.
-4. **GDPR consent banner required.** CNIL 2025-2026: analytics cookies (and localStorage UUIDs) require explicit consent for French audience. Visitors who decline are invisible — accepted trade-off.
-5. **Scope: boringsystems.app only.** `cross_subdomain_cookie: false`. Portfolio subdomain is a separate project.
+## Why Mixpanel specifically
 
-## What was NOT chosen and why
+- Operator knows Mixpanel from Fabulous (20M DAU) — fastest path from decision to working instrumentation.
+- EU data residency on free tier (Netherlands DC, `api-eu.mixpanel.com`).
+- `persistence: 'none'` — Mixpanel writes nothing to the browser (no cookies, no localStorage). No GDPR/CNIL consent required.
+- Free tier is sufficient for current traffic volume.
+
+## GDPR / CNIL posture
+
+`persistence: 'none'` means no storage writes on the visitor's device. CNIL requires consent only when analytics tools write to terminal equipment. This setup does not. No consent banner needed. Same posture as Vercel Analytics.
+
+## Deduplication
+
+With `persistence: 'none'`:
+
+- No cookie or localStorage — Mixpanel cannot reliably link two separate sessions to the same person.
+- Each page load on a full-page-reload site gets a fresh anonymous `distinct_id`.
+- Mixpanel clusters events server-side by IP + user-agent for approximate deduplication, but this is heuristic.
+
+**For weekly aggregate analysis this is acceptable.** You're reading event counts and navigation patterns — not individual journeys. UTM attribution and `$referrer` chains are per-pageview and accurate regardless of deduplication.
+
+If reliable user-level deduplication becomes load-bearing (e.g., funnel analysis across sessions), the path is: persistent first-party cookie (requires CNIL consent for French audience) or server-side ID assignment. Not needed at this stage.
+
+## What was NOT chosen
 
 | Alternative | Why not |
 |---|---|
-| Plausible (€9/mo) | Consent-free and sufficient for v1. Recommended but operator chose Mixpanel for behavioral depth and prior familiarity. Best fallback if consent decline rate proves unacceptable. |
-| PostHog | Equivalent capability, but 30–45 min longer to ship for an operator with no PostHog experience. |
-| Vercel Analytics (was installed) | No UTM attribution, no custom events, no user-level data. Removed. |
-| Server-side tracking | Stronger privacy, avoids consent banner. More work. Defer unless client-side proves problematic. |
-
-## Posture: experimental, throwaway-acceptable
-
-No custom dashboards for 2 weeks. Observe raw data first. If Mixpanel earns a rebuild after the observation window, rebuild with better design rationale.
-
-## Upgrade triggers (revisit this ADR if)
-
-- Consent decline rate > 40% among French visitors → evaluate Plausible migration
-- EU regulatory changes tighten Mixpanel's compliance posture
-- Server-side tracking becomes a priority (privacy-first redesign)
-- Cross-domain tracking with portfolio subdomain becomes load-bearing
+| Plausible (€9/mo) | Consent-free. Good for aggregate counts. No custom events, no UTM attribution depth, no behavioral sequences. |
+| PostHog | Equivalent capability. 30–45 min longer to ship for an operator with no PostHog experience. |
+| Vercel Analytics only | Good for traffic counts. No custom events, no UTM, no behavioral data. Stays as secondary sanity-check layer. |
+| Server-side tracking | Stronger deduplication, avoids all client-side constraints. More work. Revisit if `persistence: 'none'` proves insufficient. |
 
 ## Implementation
 
 - Token: `PUBLIC_MIXPANEL_TOKEN` env var (Vercel dashboard). Never hardcoded.
 - EU API endpoint: `https://api-eu.mixpanel.com`
-- `cross_subdomain_cookie: false` — scoped to boringsystems.app only
+- `cross_subdomain_cookie: false` — scoped to boringsystems.app, not subdomains
 - `ip: false` — IP not stored
-- `track_pageview: 'url-with-path'` — hash/query changes don't create noise pageviews
-- Dynamic import (`import('mixpanel-browser')`) inside `initMixpanel()` — Mixpanel JS only loads after consent
-- Super properties on init: `lane`, `language`, `voice_target`, `is_returning`
+- `track_pageview: 'url-with-path'` — hash/query string changes don't generate noise pageviews
+- Super properties on init: `lane`, `language`
 - Event taxonomy (5 max for v1): see `docs/analytics.md`
+
+## Upgrade triggers
+
+- Persistent deduplication becomes load-bearing → persistent cookie (with CNIL consent flow) or server-side tracking
+- Free tier limits hit → evaluate Mixpanel paid plan
+- Cross-subdomain tracking with portfolio.boringsystems.app becomes needed → revisit `cross_subdomain_cookie`
 
 ## References
 
 - Mixpanel EU data residency: https://mixpanel.com/legal/eu-data-residency/
-- CNIL Sheet n°16 on analytics: https://www.cnil.fr/en/sheet-ndeg16-use-analytics-your-websites-and-applications
-- BOR-40 (operational card): https://linear.app/boringsystems/issue/BOR-40
-- Event taxonomy and tracking reference: `docs/analytics.md`
+- CNIL guidelines on analytics: https://www.cnil.fr/en/sheet-ndeg16-use-analytics-your-websites-and-applications

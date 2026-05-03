@@ -3,7 +3,7 @@
 **Tool:** Mixpanel (EU — Netherlands DC)  
 **ADR:** `docs/adr-004-analytics-tooling.md`  
 **Central library:** `src/lib/analytics.ts`  
-**Init + consent banner:** `src/components/Analytics.astro`
+**Init:** `src/components/Analytics.astro`
 
 ## Rule: always go through the library
 
@@ -38,8 +38,6 @@ Set during `initMixpanel()` via `mixpanel.register()`. Derived once per page loa
 |---|---|---|
 | `lane` | `writing`, `work`, `building`, `archive`, `about`, `work-with-me`, `home` | URL pathname (client-side, same logic as server-side derivation in layouts) |
 | `language` | `en`, `fr` | `document.documentElement.lang` |
-| `voice_target` | `technical`, `builder`, `unknown` | `data-voice-target` on `<body>` — set in `Article.astro` (work → technical, others → builder); `unknown` on non-article pages |
-| `is_returning` | `true`, `false` | `localStorage.getItem('bs_returning')` — set on first consented visit |
 
 ---
 
@@ -107,13 +105,13 @@ Fires in: `Nav.astro`, on click of `.lang-toggle`.
 
 ---
 
-### `portfolio_visited`
+### `contact_form_sent`
 
-Fired when a user clicks through to `portfolio.boringsystems.app`. Currently reserved — no portfolio link exists in the nav or footer yet.
+Fired when the contact form is successfully submitted.
 
 Props: none.
 
-When the portfolio link ships: add `data-track-outbound` to the link (handled automatically) AND optionally call `trackPortfolioVisit()` explicitly for a dedicated signal.
+Fires in: `ContactForm.astro`, on successful API response (`/api/v1/contact`).
 
 ---
 

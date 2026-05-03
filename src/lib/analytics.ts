@@ -1,17 +1,9 @@
+import { deriveLane } from '@/lib/lanes';
+
 let _mp: any = null;
 
 function mp() {
   return _mp;
-}
-
-function deriveLane(pathname: string): string {
-  if (pathname.includes('/writing/')) return 'writing';
-  if (pathname.includes('/work/')) return 'work';
-  if (pathname.includes('/building/')) return 'building';
-  if (pathname.includes('/archive/')) return 'archive';
-  if (pathname.endsWith('/about') || pathname.endsWith('/about/')) return 'about';
-  if (pathname.endsWith('/work-with-me') || pathname.endsWith('/work-with-me/')) return 'work-with-me';
-  return 'home';
 }
 
 export async function initMixpanel(): Promise<void> {
@@ -27,8 +19,7 @@ export async function initMixpanel(): Promise<void> {
   });
   const lane = deriveLane(window.location.pathname);
   const language = document.documentElement.lang ?? 'en';
-  const voiceTarget = (document.body.dataset.voiceTarget as string) ?? 'unknown';
-  mixpanel.register({ lane, language, voice_target: voiceTarget });
+  mixpanel.register({ lane, language });
   _mp = mixpanel;
 }
 
@@ -41,14 +32,14 @@ export function trackLeadMagnet(magnetSlug: string, articleSlug: string, languag
   mp()?.track('lead_magnet_captured', { magnet_slug: magnetSlug, article_slug: articleSlug, language });
 }
 
-export function trackScroll75(articleSlug: string, lane: string, voiceTarget: string): void {
-  mp()?.track('article_scroll_75', { article_slug: articleSlug, lane, voice_target: voiceTarget });
+export function trackScroll75(articleSlug: string, lane: string): void {
+  mp()?.track('article_scroll_75', { article_slug: articleSlug, lane });
 }
 
 export function trackLanguageToggle(from: string, to: string): void {
   mp()?.track('language_toggled', { from, to });
 }
 
-export function trackPortfolioVisit(): void {
-  mp()?.track('portfolio_visited', {});
+export function trackContactFormSent(): void {
+  mp()?.track('contact_form_sent', {});
 }

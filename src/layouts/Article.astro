@@ -5,6 +5,7 @@ import ArticleFeedback from '@/components/ArticleFeedback.astro';
 import '../styles/global.css';
 import MixpanelAnalytics from '@/components/Analytics.astro';
 import { hreflangsForPath } from '@/lib/i18n';
+import { deriveLane } from '@/lib/lanes';
 
 interface Props {
   title: string;
@@ -28,8 +29,7 @@ const hreflangs = Astro.site ? hreflangsForPath(Astro.url.pathname, Astro.site) 
 const metaDescription = description ?? title;
 const pageTitle = `${title} — Boring Systems`;
 const urlParts = Astro.url.pathname.split('/').filter(Boolean);
-const lane = urlParts[1] ?? 'unknown';
-const voiceTarget = lane === 'work' ? 'technical' : 'builder';
+const lane = deriveLane(Astro.url.pathname);
 const articleSlug = urlParts[urlParts.length - 1] ?? '';
 
 const articleSchema = {
@@ -157,7 +157,7 @@ const breadcrumbSchema = {
       })();
     </script>
   </head>
-  <body data-article-slug={articleSlug} data-lane={lane} data-voice-target={voiceTarget}>
+  <body data-article-slug={articleSlug} data-lane={lane}>
     <Nav />
     <main class="article-main">
       <div class="article-container">
@@ -338,13 +338,12 @@ const breadcrumbSchema = {
       import { trackScroll75 } from '@/lib/analytics';
       const slug = document.body.dataset.articleSlug ?? '';
       const articleLane = document.body.dataset.lane ?? 'unknown';
-      const vt = document.body.dataset.voiceTarget ?? 'unknown';
       let fired = false;
       const onScroll = () => {
         if (fired) return;
         if ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight >= 0.75) {
           fired = true;
-          trackScroll75(slug, articleLane, vt);
+          trackScroll75(slug, articleLane);
           window.removeEventListener('scroll', onScroll);
         }
       };
