@@ -13,7 +13,8 @@ Stage, commit, and push current changes to the active branch.
 ## Steps
 
 1. Check current branch — if on `main`, `master`, `development`, `dev`, or `production`, STOP and tell the user to create a feature branch first.
-2. Run `git status` to see what changed.
+2. **Run `/hygiene-review`.** If it returns BLOCKED, stop and fix violations before continuing. Skip hygiene-review only for: single-file typo fixes, submodule pointer bumps, and operational one-liners (github-cleanup, tmp-cleanup). When in doubt, run it.
+3. Run `git status` to see what changed.
 3. Run `git add -A` to stage everything.
 4. Write a commit message that:
    - Starts with a type: `feat:`, `fix:`, `chore:`, `refactor:`, `docs:`

@@ -9,14 +9,15 @@
 ## SESSION-START PROTOCOL
 
 1. **Read every file in `long-term/` and `long-term/inner-game/`.** These are the north star — identity profile, distilled identity content (including `Path-Doctrine.md` for the 2-3yr sprint shape, `Relational-Architecture.md` for the depth-expansion of the relational North Star). Load fully every session. Weighted highest in routing.
-2. **Read every file in `short-term/feedback/stable/` and `short-term/feedback/in-flight/`.** Active behavioural rules — how Claude has been told to operate. Always auto-loads (both sub-folders). Feedback is the live discipline layer; it lives in short-term because Ahmed consolidates on top of it weekly. The `stable/` vs `in-flight/` split is for audit purposes only; both are equally in-scope at runtime.
-3. **Read `medium-term/current-arc.md`.** The current-direction snapshot for the re-stabilization phase (July → December 2026). Bridges short-term reality and long-term north star.
-4. **Read `short-term/current-arc.md`.** The active 2-month plan (May → end June 2026). Bound to the current-chapter-closing window.
-5. **Read `short-term/extraction-os.md`.** Proof-asset extraction discipline (2-month bound, transition-period).
-6. **Read all `.md` files in `short-term/<this-week>/` and `short-term/<last-week>/`.** Continuity. Decisions, state, conflicts from the past two weeks.
-7. **If today is Monday**, follow `short-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md` — fire `/consolidate-week` if this week's consolidation hasn't been written yet.
-8. **Other medium-term files load on demand** when the work touches their topic (positioning, doctrine, project state, etc.).
-9. **Do not read `short-term/_archive/`** unless Ahmed explicitly points to a week.
+2. **Read all three files in `medium-term/project-management/`.** These are structural SOPs that govern every session — `workspace-workflow.md` (all collaboration flows, autonomy gradient, skill checklist), `linear-sop.md` (card rules and lifecycle), `github-sop.md` (branch rules and PR flow). Load fully. Weighted above short-term/feedback in conflicts (protocol wins over correction).
+3. **Read every file in `short-term/feedback/stable/` and `short-term/feedback/in-flight/`.** Active behavioural rules — how Claude has been told to operate. Always auto-loads (both sub-folders). Feedback is the live discipline layer; it lives in short-term because Ahmed consolidates on top of it weekly. The `stable/` vs `in-flight/` split is for audit purposes only; both are equally in-scope at runtime.
+4. **Read `medium-term/current-arc.md`.** The current-direction snapshot for the re-stabilization phase (July → December 2026). Bridges short-term reality and long-term north star.
+5. **Read `short-term/current-arc.md`.** The active 2-month plan (May → end June 2026). Bound to the current-chapter-closing window.
+6. **Read `short-term/extraction-os.md`.** Proof-asset extraction discipline (2-month bound, transition-period).
+7. **Read all `.md` files in `short-term/<this-week>/` and `short-term/<last-week>/`.** Continuity. Decisions, state, conflicts from the past two weeks.
+8. **If today is Monday**, follow `short-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md` — fire `/consolidate-week` if this week's consolidation hasn't been written yet.
+9. **Other medium-term files load on demand** when the work touches their topic (positioning, doctrine, project state, etc.).
+10. **Do not read `short-term/_archive/`** unless Ahmed explicitly points to a week.
 
 ---
 
@@ -36,15 +37,16 @@
 
 ## MEDIUM-TERM — Current Direction
 
+`medium-term/project-management/workspace-workflow.md` — **Auto-loaded.** Cross-project collaboration SOP: all flow types (research, card creation, card pickup, code change, structural change), autonomy gradient, per-flow skill checklist. Governs every session.
+`medium-term/project-management/linear-sop.md` — **Auto-loaded.** How we manage Linear: card rules, lifecycle, board structure, known limitations.
+`medium-term/project-management/github-sop.md` — **Auto-loaded.** How we manage GitHub: branch rules, PR division of labor, commit discipline, hooks, submodule workflow.
 `medium-term/current-arc.md` — six-month re-stabilization plan (July → December 2026). Auto-loaded.
 `medium-term/current-context.md` — current life-phase context, capability profile, market specifics, re-entry posture. On-demand.
 `medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Engagement Validity Filter. On-demand.
 `medium-term/market/` — capability-led positioning, market lens, sales-mode tactics, visibility OS. On-demand.
 `medium-term/projects/` — project metadata (advisory board composition, etc.). On-demand.
-`medium-term/project-management/linear-sop.md` — how we manage Linear: card rules, lifecycle, board structure, active work inventory, known limitations. On-demand.
-`medium-term/project-management/github-sop.md` — how we manage GitHub: branch rules, PR division of labor, commit discipline, hooks, submodule workflow, known limitations. On-demand.
 
-The interpretive layer between short-term episodic record and long-term constitutional anchors.
+The interpretive layer between short-term episodic record and long-term constitutional anchors. The `project-management/` sub-folder is structural (governs every session) and therefore auto-loads; the rest of medium-term is contextual and loads on demand.
 
 ---
 
@@ -77,7 +79,9 @@ Daily entry format: chronological with timestamps. Decisions, state, conflicts. 
 
 ## CONFLICT RESOLUTION (when sources contradict)
 
-Weight order, descending: live conversation > long-term > short-term/feedback > current week > last week > medium-term.
+Weight order, descending: live conversation > long-term > mid-term (project-management SOPs) > short-term/feedback > current week > last week.
+
+⚠️ **Structure under active review** — this ordering was corrected 2026-05-03. Previously mid-term sat below short-term/feedback, which was wrong: a crystallized SOP in mid-term should win over a raw behavioral correction in short-term. Monitor in practice; if SOP entries are over-riding recent valid corrections, revisit. See `memory/TODO.md`.
 
 - Low-stakes conflicts: default to live, flag for next consolidation.
 - Identity / strategy / north-star conflicts: stop, surface, ask before acting.

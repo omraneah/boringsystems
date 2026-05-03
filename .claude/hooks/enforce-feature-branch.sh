@@ -10,6 +10,14 @@ if [ -z "$FILE_PATH" ]; then
   exit 0
 fi
 
+# Personal-skills are workspace infrastructure — always editable regardless of branch.
+# Quick skill iteration should never require a feature branch.
+case "$FILE_PATH" in
+  */.claude/personal-skills/*|*/personal-skills/*)
+    exit 0
+    ;;
+esac
+
 # Walk up to find an existing parent directory (file may not exist yet)
 DIR="$FILE_PATH"
 while [ ! -d "$DIR" ] && [ "$DIR" != "/" ]; do
