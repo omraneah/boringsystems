@@ -2,8 +2,14 @@
 # SessionStart hook — pulls latest on main or development when opening a session.
 # Keeps submodule sessions from diverging silently.
 
-PROJ_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+PROJ_DIR="${CLAUDE_PROJECT_DIR}"
+[ -z "$PROJ_DIR" ] && exit 0
 cd "$PROJ_DIR" || exit 0
+
+# Export workspace root to all session Bash tool calls via CLAUDE_ENV_FILE
+if [ -n "$CLAUDE_ENV_FILE" ]; then
+  echo "export CLAUDE_PROJECT_DIR=\"$CLAUDE_PROJECT_DIR\"" >> "$CLAUDE_ENV_FILE"
+fi
 
 git rev-parse --git-dir > /dev/null 2>&1 || exit 0
 

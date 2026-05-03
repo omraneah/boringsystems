@@ -8,7 +8,8 @@
 
 set -u
 
-PROJ_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+PROJ_DIR="${CLAUDE_PROJECT_DIR:-}"
+[ -z "$PROJ_DIR" ] && exit 0
 cd "$PROJ_DIR" || exit 0
 
 # Must be a git repo

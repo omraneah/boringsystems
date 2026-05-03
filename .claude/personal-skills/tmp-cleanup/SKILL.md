@@ -34,11 +34,11 @@ Do NOT fire on:
 1. List what's currently in tmp/ (excluding `.gitkeep` and `README.md`).
 2. If anything looks load-bearing (analysis, narrative, raw material the operator might still need), ask once: "About to delete N files including <names>. Anything to preserve before I wipe?"
 3. If the trigger was unambiguous and contents look routine, proceed without asking.
-4. Run: `find /Users/ahmedomrane/Workspace/tmp -mindepth 1 -not -name '.gitkeep' -not -name 'README.md' -delete`
+4. Run: `find "$CLAUDE_PROJECT_DIR/tmp" -mindepth 1 -not -name '.gitkeep' -not -name 'README.md' -delete`
 5. Confirm in chat: `Cleaned tmp/. N files removed.`
 
 ## Guardrails
 
-- Never wipe outside `/Users/ahmedomrane/Workspace/tmp/`.
+- Never wipe outside `$CLAUDE_PROJECT_DIR/tmp/`.
 - Never use `rm -rf`. The `find ... -delete` approach is safe and surgical.
 - Never run on session start. The whole point of this skill is to replace the SessionStart hook with operator control.

@@ -7,7 +7,8 @@
       "Bash",
       "Edit",
       "Write",
-      "NotebookEdit"
+      "NotebookEdit",
+      "Skill(*)"
     ]
   },
   "hooks": {
@@ -16,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/session-start.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh\"",
             "async": true
           }
         ]
@@ -28,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/block-protected-push.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-protected-push.sh\""
           }
         ]
       },
@@ -37,7 +38,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/enforce-feature-branch.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/enforce-feature-branch.sh\""
           }
         ]
       }
@@ -47,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/parallel-by-default-reminder.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/parallel-by-default-reminder.sh\""
           }
         ]
       }
@@ -57,17 +58,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/auto-commit.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/auto-commit.sh\"",
             "async": true
           },
           {
             "type": "command",
-            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/post-edit-typecheck.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-edit-typecheck.sh\"",
             "async": true
           },
           {
             "type": "command",
-            "command": "bash /Users/ahmedomrane/Workspace/.claude/hooks/gtm-nudge.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/gtm-nudge.sh\"",
             "async": true
           }
         ]

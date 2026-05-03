@@ -2,7 +2,8 @@
 # Auto-commit and push at end of each task turn (Stop event).
 # Runs async — does not block Claude's response.
 
-PROJ_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+PROJ_DIR="${CLAUDE_PROJECT_DIR}"
+[ -z "$PROJ_DIR" ] && exit 0
 cd "$PROJ_DIR" || exit 0
 
 # Must be a git repo

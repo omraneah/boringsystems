@@ -53,5 +53,5 @@ Report findings as:
 End with a one-line verdict: PASS / PASS WITH WARNINGS / FAIL.
 
 ## Reference
-Full architectural boundaries (for complex cases): `/Users/ahmedomrane/Workspace/cross-stack-architecture-starter-pack/`
+Full architectural boundaries (for complex cases): `cross-stack-architecture-starter-pack/` (workspace-relative)
 Use those docs when the project is explicitly multi-tenant or SaaS-grade. For most projects here, the above checklist is sufficient.
