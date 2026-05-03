@@ -2,12 +2,23 @@
 name: Short-term Current Arc — Next 2 Months (May → end June 2026)
 description: The transition window. Stay at Enakl 10h/week for extraction + team-survival; 80% of time on explorative-not-applying moves. Resist "previous me" pressure. No premature commitment.
 horizon: 2026-04-30 → 2026-06-30 (~2 months)
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-03
 ---
 
 # Short-term Current Arc — Next 2 Months
 
 **Window:** 2026-04-30 → end of June 2026.
+
+## Phase structure
+
+**Phase 1 — Decompression & Setup** · April 3 → May 3 · **Done**
+Stressful resignation aftermath. Tracking infrastructure built: Airtable base, 48 contacts mapped, inbound calibration started, publishing rhythm established. Warm-up, not activation.
+
+**Phase 2 — Activate** · May 3 → June 3 · **Current**
+Theme: shift from mapping to real conversations at altitude. P0 contacts activated, publish→distribute loop closed, watchlist trimmed to 3 researched companies, 2+ DM-level conversations. Key results → Airtable Objectives table (30-day window).
+
+**Phase 3 — Close the chapter** · June 3 → June 30 · **Next**
+Theme: clean Enakl exit + first genuine EVF-tested opportunity surfaced. Warm graph in active rhythm, market archetypes named, zero shortcuts taken. Key results → Airtable Objectives table (60-day window).
 
 ## The shape
 
