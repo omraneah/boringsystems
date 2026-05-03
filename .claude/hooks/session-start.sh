@@ -11,6 +11,10 @@ if [ -n "$CLAUDE_ENV_FILE" ]; then
   echo "export CLAUDE_PROJECT_DIR=\"$CLAUDE_PROJECT_DIR\"" >> "$CLAUDE_ENV_FILE"
 fi
 
+# Ensure ~/.claude/ symlinks, git hooksPath, and Marky are wired.
+# setup.sh is idempotent: warm machines hit fast skip-paths; fresh VMs get wired.
+bash "$PROJ_DIR/.claude/setup.sh" >/dev/null 2>&1 || true
+
 git rev-parse --git-dir > /dev/null 2>&1 || exit 0
 
 CURRENT=$(git branch --show-current 2>/dev/null)

@@ -17,8 +17,11 @@ echo "Workspace: $WORKSPACE_DIR"
 if [ -L "$CLAUDE_DIR/skills" ]; then
   echo "skills symlink already exists — skipping"
 elif [ -d "$CLAUDE_DIR/skills" ]; then
-  echo "ERROR: $CLAUDE_DIR/skills is a real directory. Remove it first."
-  exit 1
+  echo "Backing up existing skills/ → skills.bak"
+  rm -rf "$CLAUDE_DIR/skills.bak"
+  mv "$CLAUDE_DIR/skills" "$CLAUDE_DIR/skills.bak"
+  ln -s "$WORKSPACE_DIR/.claude/personal-skills" "$CLAUDE_DIR/skills"
+  echo "Created: ~/.claude/skills → personal-skills/"
 else
   ln -s "$WORKSPACE_DIR/.claude/personal-skills" "$CLAUDE_DIR/skills"
   echo "Created: ~/.claude/skills → personal-skills/"
