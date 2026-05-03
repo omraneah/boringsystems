@@ -8,14 +8,17 @@ function mp() {
 
 export async function initMixpanel(): Promise<void> {
   const token = import.meta.env.PUBLIC_MIXPANEL_TOKEN;
-  if (!token) return;
+  if (!token) {
+    if (import.meta.env.PROD) console.warn('[analytics] PUBLIC_MIXPANEL_TOKEN not set — no events will fire');
+    return;
+  }
   const { default: mixpanel } = await import('mixpanel-browser');
   mixpanel.init(token, {
     api_host: 'https://api-eu.mixpanel.com',
     track_pageview: 'url-with-path',
     cross_subdomain_cookie: false,
     ip: false,
-    persistence: 'none' as any,
+    persistence: 'none' as any, // valid at runtime; missing from mixpanel-browser Persistence type
   });
   const lane = deriveLane(window.location.pathname);
   const language = document.documentElement.lang ?? 'en';

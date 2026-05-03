@@ -47,5 +47,4 @@ File: src/pages/en/writing/[slug].astro
 ## Guardrails
 
 - If a new event type is needed but not in the taxonomy: STOP. Do not add it. Surface the need to Ahmed with a one-line rationale. The v1 observation window (minimum 2 weeks post-launch) must close before the taxonomy expands.
-- `portfolio_visited` is reserved but has no wiring yet. Flag any portfolio link that lacks `data-track-outbound` but do not flag the absence of `trackPortfolioVisit()` calls until the portfolio link ships.
 - Internal links (`/en/...`, `/fr/...`) do not need `data-track-outbound`. Only external links (non-boringsystems.app domains) need it.
