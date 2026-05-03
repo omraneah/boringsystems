@@ -1,6 +1,8 @@
 # boringsystems — Workflow SOP
 
-The choreography for the three workflow types in this project, plus post-merge cleanup. Read this before starting any branch of work.
+Boringsystems-specific flow extensions. The general collaboration protocols (code change flow, structural change flow, research flow, card flows, autonomy gradient, per-flow skill checklist) live in the workspace SOP: `memory/medium-term/project-management/workspace-workflow.md`. Read that first.
+
+This file covers what's specific to boringsystems: article pipelines, Astro build gates, and post-merge cleanup.
 
 ---
 
@@ -56,50 +58,19 @@ For new articles or updates to existing articles — manual, step-by-step refere
 
 ---
 
-## Code change workflow
+## Code change and structural change
 
-For changes to layouts, components, config, scripts, or any non-content file.
+Follow the workspace code change flow (`memory/medium-term/project-management/workspace-workflow.md` §Code change flow and §Structural change flow).
 
-1. **Read context.** Before writing any plan: read `docs/constraints.md` + any domain-relevant doc for the work type. For analytics work: `docs/analytics.md` + `docs/target-audiences.md`. For i18n/routing: `docs/architecture-and-toolchain.md`. Do not infer from `CLAUDE.md` alone — the detail docs are the full context.
+**boringsystems-specific additions on top of the workspace flow:**
 
-2. **Write plan and confirm.** Write what files change, what decisions are required, what assumptions are being made. Confirm with Ahmed before executing. Especially: any decision that can't be easily reversed (removing a dep, choosing a taxonomy, mapping a derived dimension).
-
-3. **Check constraints.** Run `/check-constraints` before touching i18n, routing, content schema, deps, API surface, or enforcement tier. No exceptions — the pre-check surfaces conflicts before you're 200 lines in.
-
-4. **Branch.** Create a feature branch: `git checkout -b omraneah/<short-description>`.
-
-5. **Edit.** Keep to ≤3 concerns per branch. At four, stop and split. When a design decision changes mid-edit, update affected docs in the same commit as the code — never split them.
-
-6. **Verify locally.** Run `npm run build` before committing. Don't discover build failures at commit time.
-
-7. **Run review skills.** After editing, before committing:
-   - Analytics work (new outbound links, CTAs, conversion actions): `/analytics-audit` — fix all FIX-level findings, re-run until clean.
-   - Structural/architectural changes: `/arch-review`.
-   - "Build passed" is necessary but not sufficient. Skills catch wiring gaps and doc drift that the build doesn't.
-
-8. **Commit.** Run `/commit`. Pre-commit hook: `astro check` + `npm run verify` + `astro build`. Fix all failures; `--no-verify` is forbidden.
-
-9. **PR.** Run `/pr`. Ahmed opens the PR on GitHub.
-
-10. **Post-merge cleanup.** See below.
-
----
-
-## Structural change workflow
-
-For changes to content schema, routing architecture, i18n config, enforcement tier, or anything that would require an ADR.
-
-1. **Check constraints first.** Run `/check-constraints`. If the change conflicts with a constraint, resolve the constraint first — update `docs/constraints.md` and write an ADR if the deviation is significant.
-
-2. **Write an ADR if the decision is hard to reverse.** Threshold: does it affect project structure, a key quality attribute, or would it be painful to undo? If yes → `docs/adr-NNN-<name>.md`. If no → skip the ADR.
-
-3. **Branch.** Same as code change workflow.
-
-4. **Implement.** Reference the ADR number in the commit message if one was written.
-
-5. **Commit + PR.** Same as code change workflow.
-
-6. **Post-merge cleanup.** See below.
+- **Read context:** `docs/constraints.md` is mandatory. Domain-specific docs: analytics work → `docs/analytics.md` + `docs/target-audiences.md`; i18n/routing → `docs/architecture-and-toolchain.md`.
+- **Check constraints:** Run `/check-constraints` before touching i18n, routing, content schema, deps, API surface, or enforcement tier.
+- **Verify locally:** Run `npm run build` (not just type-check) before committing.
+- **Review skills:**
+  - Analytics work (new outbound links, CTAs, conversion actions): `/analytics-audit` — fix all FIX-level findings, re-run until clean.
+  - Structural/architectural changes: `/arch-review`.
+- **Commit gate:** Pre-commit hook runs `astro check` + `npm run verify` + `astro build`. Fix all failures; `--no-verify` is forbidden.
 
 ---
 
@@ -140,8 +111,8 @@ Then Ahmed opens the workspace PR on GitHub.
 |---|---|
 | New article | Draft both locales → `/article-review` → commit |
 | Updating existing article | Check slug stability (never rename post-publish) → edit → `/article-review` |
-| Layout / component change | Read context → confirm plan → `/check-constraints` → branch → edit → skills → `npm run build` |
-| Schema / routing / i18n change | `/check-constraints` → ADR decision → branch |
+| Layout / component change | See workspace code change flow → read context → `/pre-start` → confirm → edit → skills → `npm run build` |
+| Schema / routing / i18n change | `/check-constraints` → ADR decision → workspace structural change flow |
 | Any PR merged | Post-merge cleanup immediately (both steps) |
 | Pattern repeated twice in a session | Stop → propose codification before the third time |
 | llms.txt needs updating | Update `public/llms.txt` key pieces list when a high-signal article ships |
