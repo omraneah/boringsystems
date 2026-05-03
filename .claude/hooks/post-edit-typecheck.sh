@@ -8,7 +8,7 @@
 
 set -u
 
-PROJ_DIR="${CLAUDE_PROJECT_DIR}"
+PROJ_DIR="${CLAUDE_PROJECT_DIR:-}"
 [ -z "$PROJ_DIR" ] && exit 0
 cd "$PROJ_DIR" || exit 0
 
