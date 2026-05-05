@@ -59,7 +59,20 @@ The pivot is useful when:
 The pivot is NOT useful when:
 - The role is pure IC delivery with no judgment ownership
 - The company is at a stage where a short mission produces no lasting trace
-- The recruiter is low-quality and unlikely to forward a reframed proposal
+- The recruiter is external without direct mandate access — they cannot route a reframed proposal. Use the exchange for market intelligence instead.
+
+**Avoid "executive system builder."** No market-ready procurement bucket exists for it. Zero uptake across 5+ exchanges. Use "fractional CTO/CPO ou advisory sur un mandat complexe" when redirecting.
+
+## Pre-call filter — two mandatory questions
+
+Before booking any Head-of or CTO-tier call, surface these in the first reply:
+
+1. **"Building from zero vs. scaling existing?"** — catches the 0→1 builder vs. 25→100 scaler mismatch.
+2. **"Expected split between organizational governance and hands-on technical contribution?"** — catches the AI governance vs. AI practitioner mismatch.
+
+One extra message before booking. Avoids calls that close negatively on fit that was visible pre-call.
+
+**First-reply rule:** One qualifying question max. No condition lists (comp, stage, team size, salary belong in the conversation itself — not the opener). Listing conditions in a first reply reads as defensive in a French recruiter context.
 
 ## Reply register guide
 
@@ -70,10 +83,10 @@ Acknowledge the company or sector briefly. Name the mismatch on the role without
 Name the mismatch briefly. Stay warm. Leave the door open generically. No call needed.
 
 **Good internal recruiter, real mandate, close-but-not-quite:**
-Engage. Ask about the scope and decision altitude. One conversation is worth it even without clear fit — it is market intelligence.
+Engage. Ask the two pre-call filter questions. One conversation is worth it even without clear fit — it is market intelligence.
 
 **Low-quality external recruiter, generic or misleading outreach:**
-Short, warm, minimal. No energy spent. No lecture given.
+Short, warm, minimal. No energy spent. No lecture given. Extract one market intel question ("what problem is the company trying to solve?"), then close warmly. Do not introduce the freelance pivot — external recruiters have no forwarding pathway.
 
 ## Testing the freelance pivot
 
