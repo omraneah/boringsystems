@@ -22,7 +22,7 @@ The environment at that point carried a specific set of constraints:
 
 - no dedicated data engineer,
 - no DevOps capacity for new infrastructure surfaces,
-- a production RDS* indexed and partitioned for transactional load — not analytics queries,
+- a production Amazon RDS indexed and partitioned for transactional load — not analytics queries,
 - engineering capacity stretched across platform delivery,
 - and a business still in early stage — the KPI vocabulary needed to help customers buy and evaluate the platform, not support full operational intelligence.
 
@@ -46,15 +46,15 @@ A dedicated backend analytics module was built. It served two endpoint classes: 
 
 The KPI surface was deliberately narrow — only what an enterprise customer needed to evaluate the platform as a buyer and to operate it effectively. Deeper analytics belong in a different tool, on different infrastructure, owned by a different function.
 
-At this phase, the module read from the primary RDS. That was a temporary compromise, not a target state. The queries were simple and parameterized. The database was indexed for operational use and, coincidentally, well-suited to answering these bounded queries.
+At this phase, the module read from the primary Amazon RDS. That was a temporary compromise, not a target state. The queries were simple and parameterized. The database was indexed for operational use and, coincidentally, well-suited to answering these bounded queries.
 
 ---
 
-### Phase 2 — Isolate the Traffic: Read Replica on RDS
+### Phase 2 — Isolate the Traffic: Read Replica on Amazon RDS
 
-The risk of analytics reads hitting the primary RDS had a fix that required no application code change.
+The risk of analytics reads hitting the primary Amazon RDS had a fix that required no application code change.
 
-A read replica was provisioned via Terraform*, present only in high-availability environments. A dedicated read-only database user was created. The replica became the single analytics target for all consumers: the backend analytics module, Retool*, and direct database connections used for operational reporting.
+A read replica was provisioned via Terraform, present only in high-availability environments. A dedicated read-only database user was created. The replica became the single analytics target for all consumers: the backend analytics module, [Retool](https://retool.com), and direct database connections used for operational reporting.
 
 The replica is asynchronous. Lag is acceptable for monthly aggregates and is documented in the runbook. The replica's role is not real-time visibility — it is to absorb analytics read traffic without touching the primary.
 
@@ -62,11 +62,11 @@ The replica is asynchronous. Lag is acceptable for monthly aggregates and is doc
 
 ### Phase 3 — Wire the Isolation: Named DataSource, Read-Only by Construction
 
-The analytics module was wired to a dedicated TypeORM* DataSource — named `analytics`, registered separately from the primary DataSource. Configured with `synchronize: false`, `migrationsRun: false`, and no entity registration. No write operation is expressible through the framework against it. Read-only is a structural constraint, not a policy.
+The analytics module was wired to a dedicated TypeORM DataSource — named `analytics`, registered separately from the primary DataSource. Configured with `synchronize: false`, `migrationsRun: false`, and no entity registration. No write operation is expressible through the framework against it. Read-only is a structural constraint, not a policy.
 
-Queries run as parameterized raw SQL. No ORM entity references. No cross-DataSource joins. Tenant scoping is applied through the same mechanism as the primary DataSource: the same tenant pool hook sets the correct `search_path` from the CLS* context on every connection acquire, validated against the tenant allowlist. One tenancy model across the API — analytics queries are not exempt.
+Queries run as parameterized raw SQL. No ORM entity references. No cross-DataSource joins. Tenant scoping is applied through the same mechanism as the primary DataSource: the same tenant pool hook sets the correct `search_path` from the CLS context on every connection acquire, validated against the tenant allowlist. One tenancy model across the API — analytics queries are not exempt.
 
-Credentials are managed in AWS Secrets Manager* — `{username, password, host, port, dbname}` — loaded at boot through the same pattern as primary database credentials. The backend has no opinion on what is behind the analytics secret. Each environment configures its own. A missing or malformed secret fails loudly at boot; no silent fallback.
+Credentials are managed in AWS Secrets Manager — `{username, password, host, port, dbname}` — loaded at boot through the same pattern as primary database credentials. The backend has no opinion on what is behind the analytics secret. Each environment configures its own. A missing or malformed secret fails loudly at boot; no silent fallback.
 
 The resulting topology, once Phase 3 is complete:
 
@@ -83,7 +83,7 @@ graph LR
     end
 
     subgraph vpc ["Private VPC"]
-        PRDS[("Primary RDS\ntransactional")]
+        PRDS[("Amazon RDS\ntransactional")]
         REP[("Read Replica\nread-only")]
     end
 
@@ -101,7 +101,7 @@ graph LR
 
 The deliberate decision in this architecture was not the read replica. It was the secret boundary.
 
-The analytics DataSource does not know whether its target is an RDS replica or a purpose-built analytics database. It reads a secret. It connects. It runs queries.
+The analytics DataSource does not know whether its target is an Amazon RDS replica or a purpose-built analytics database. It reads a secret. It connects. It runs queries.
 
 When the business reaches the trigger — a data engineering hire, a KPI surface that outgrows raw SQL, a team that can own a warehouse and a modelling layer — the migration is:
 
@@ -121,7 +121,7 @@ Analytics traffic is physically isolated from the production database. Enterpris
 
 The operational outcomes were:
 
-- analytics requests no longer touch the primary RDS in any environment where the analytics secret is populated,
+- analytics requests no longer touch the primary Amazon RDS in any environment where the analytics secret is populated,
 - the same replica serves the backend dashboard, Retool, and direct database connections — one target, multiple consumers,
 - the swap path to a dedicated analytics database costs nothing in application code — a secret change and an application restart,
 - and the KPI surface is narrow enough that it does not distort the production system's indexing or query planner behavior.
@@ -144,7 +144,7 @@ This work was executed at [Enakl](https://enakl.com) — a VC-backed B2B/B2G mob
 
 Before the current architecture, there was a first attempt worth indexing here.
 
-During the vendor lock-in phase, the external provider made data available as weekly exports to Google Drive*. A dbt* project ran scheduled jobs on GitHub Actions* runners, transformed the export into a minimal data model, wrote results back to Google Drive, and fed a basic reporting surface in Google Data Studio*. Free. Fully automated. Technically coherent.
+During the vendor lock-in phase, the external provider made data available as weekly exports to Google Drive. A [dbt](https://www.getdbt.com) project ran scheduled jobs on GitHub Actions runners, transformed the export into a minimal data model, wrote results back to Google Drive, and fed a basic reporting surface in Google Data Studio. Free. Fully automated. Technically coherent.
 
 It ran correctly for months and barely moved anything.
 
@@ -153,7 +153,3 @@ The lesson was not that the tooling was wrong. It was that analytics infrastruct
 When internal platform ownership was established, Retool replaced that layer for internal ad-hoc needs — direct connection to the same data source, export and drill-down workflows that internal teams actually used, without the overhead of a pipeline nobody owned.
 
 The principle extracted: analytics tooling should scale forward, not backward. Introduce it when the function exists to own it — not when the engineering capacity exists to build it.
-
----
-
-**Tools referenced** — *RDS: Amazon Relational Database Service (managed relational database). *Terraform: infrastructure-as-code tool. *Retool: internal tooling platform (admin panels, dashboards). *TypeORM: ORM framework for Node.js / TypeScript. *CLS: continuation-local storage — async context tracking in Node.js. *AWS Secrets Manager: managed secrets vault (credentials, connection strings). *Google Drive: cloud file storage. *dbt: SQL-based data transformation framework. *GitHub Actions: cloud CI/CD and workflow automation platform. *Google Data Studio: BI reporting surface, now rebranded as Looker Studio.

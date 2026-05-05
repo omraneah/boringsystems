@@ -22,7 +22,7 @@ L'environnement portait à ce moment-là un ensemble de contraintes spécifiques
 
 - aucun data engineer dédié,
 - pas de capacité DevOps disponible pour de nouvelles surfaces d'infrastructure,
-- un RDS* de production indexé et partitionné pour la charge transactionnelle — pas pour des requêtes analytiques,
+- un Amazon RDS de production indexé et partitionné pour la charge transactionnelle — pas pour des requêtes analytiques,
 - une capacité engineering mobilisée sur la livraison produit,
 - et un business encore en phase précoce — le vocabulaire KPI devait aider les clients à évaluer et utiliser la plateforme, pas supporter une intelligence opérationnelle complète.
 
@@ -46,15 +46,15 @@ Un module backend analytics dédié a été construit. Il servait deux classes d
 
 La surface KPI était délibérément limitée — uniquement ce qu'un client enterprise avait besoin pour évaluer la plateforme en acheteur et l'opérer efficacement. Les analytics plus profondes appartiennent à un autre outil, sur une autre infrastructure, détenu par une autre fonction.
 
-À cette phase, le module lisait depuis le RDS primaire. C'était un compromis temporaire, pas un état cible. Les requêtes étaient simples et paramétrées. La base était indexée pour l'usage opérationnel et, par coincidence, bien adaptée à ces requêtes délimitées.
+À cette phase, le module lisait depuis l'Amazon RDS primaire. C'était un compromis temporaire, pas un état cible. Les requêtes étaient simples et paramétrées. La base était indexée pour l'usage opérationnel et, par coincidence, bien adaptée à ces requêtes délimitées.
 
 ---
 
-### Phase 2 — Isoler le trafic : read replica sur RDS
+### Phase 2 — Isoler le trafic : read replica sur Amazon RDS
 
-Le risque des lectures analytiques frappant le RDS primaire avait un correctif qui ne nécessitait aucun changement de code applicatif.
+Le risque des lectures analytiques frappant l'Amazon RDS primaire avait un correctif qui ne nécessitait aucun changement de code applicatif.
 
-Un read replica a été provisionné via Terraform*, présent uniquement dans les environnements haute disponibilité. Un utilisateur de base de données read-only dédié a été créé. Le replica est devenu la cible analytique unique pour tous les consommateurs : le module backend analytics, Retool*, et les connexions directes à la base utilisées pour le reporting opérationnel.
+Un read replica a été provisionné via Terraform, présent uniquement dans les environnements haute disponibilité. Un utilisateur de base de données read-only dédié a été créé. Le replica est devenu la cible analytique unique pour tous les consommateurs : le module backend analytics, [Retool](https://retool.com), et les connexions directes à la base utilisées pour le reporting opérationnel.
 
 Le replica est asynchrone. Le lag est acceptable pour des agrégats mensuels — documenté dans le runbook. Le rôle du replica n'est pas la visibilité temps réel : c'est d'absorber le trafic de lectures analytiques sans toucher la base primaire.
 
@@ -62,11 +62,11 @@ Le replica est asynchrone. Le lag est acceptable pour des agrégats mensuels —
 
 ### Phase 3 — Câbler l'isolation : DataSource nommée, read-only par construction
 
-Le module analytics a été câblé sur une DataSource TypeORM* dédiée — nommée `analytics`, enregistrée séparément de la DataSource primaire. Configurée avec `synchronize: false`, `migrationsRun: false`, et aucune entity enregistrée. Aucune opération d'écriture n'est exprimable via le framework contre elle. Le read-only est une contrainte structurelle, pas une politique.
+Le module analytics a été câblé sur une DataSource TypeORM dédiée — nommée `analytics`, enregistrée séparément de la DataSource primaire. Configurée avec `synchronize: false`, `migrationsRun: false`, et aucune entity enregistrée. Aucune opération d'écriture n'est exprimable via le framework contre elle. Le read-only est une contrainte structurelle, pas une politique.
 
-Les requêtes tournent en raw SQL paramétré. Pas de références aux entities ORM. Pas de joins cross-DataSource. Le tenant scoping est appliqué via le même mécanisme que la DataSource primaire : le même tenant pool hook positionne le bon `search_path` depuis le contexte CLS* à chaque acquisition de connexion, validé contre la allowlist de tenants. Un seul modèle de tenancy à travers l'API — les requêtes analytiques n'y font pas exception.
+Les requêtes tournent en raw SQL paramétré. Pas de références aux entities ORM. Pas de joins cross-DataSource. Le tenant scoping est appliqué via le même mécanisme que la DataSource primaire : le même tenant pool hook positionne le bon `search_path` depuis le contexte CLS à chaque acquisition de connexion, validé contre la allowlist de tenants. Un seul modèle de tenancy à travers l'API — les requêtes analytiques n'y font pas exception.
 
-Les credentials sont gérés dans AWS Secrets Manager* — `{username, password, host, port, dbname}` — chargés au démarrage selon le même pattern que les credentials de la base primaire. Le backend n'a pas d'opinion sur ce qui se trouve derrière le secret analytics. Chaque environnement configure le sien. Un secret manquant ou malformé fait échouer bruyamment au démarrage ; pas de fallback silencieux.
+Les credentials sont gérés dans AWS Secrets Manager — `{username, password, host, port, dbname}` — chargés au démarrage selon le même pattern que les credentials de la base primaire. Le backend n'a pas d'opinion sur ce qui se trouve derrière le secret analytics. Chaque environnement configure le sien. Un secret manquant ou malformé fait échouer bruyamment au démarrage ; pas de fallback silencieux.
 
 La topologie résultante, une fois la Phase 3 complète :
 
@@ -83,7 +83,7 @@ graph LR
     end
 
     subgraph vpc ["VPC Privé"]
-        PRDS[("Primary RDS\ntransactionnel")]
+        PRDS[("Amazon RDS\ntransactionnel")]
         REP[("Read Replica\nread-only")]
     end
 
@@ -101,7 +101,7 @@ graph LR
 
 La décision délibérée dans cette architecture n'était pas le read replica. C'était la frontière du secret.
 
-La DataSource analytics ne sait pas si sa cible est un replica RDS ou une base de données analytique dédiée. Elle lit un secret. Elle se connecte. Elle exécute des requêtes.
+La DataSource analytics ne sait pas si sa cible est un replica Amazon RDS ou une base de données analytique dédiée. Elle lit un secret. Elle se connecte. Elle exécute des requêtes.
 
 Quand le business atteint le déclencheur — un recrutement data engineering, une surface KPI qui dépasse le raw SQL, une équipe capable de prendre en charge un warehouse et une couche de modélisation — la migration se résume à :
 
@@ -121,7 +121,7 @@ Le trafic analytique est physiquement isolé de la base de production. Les clien
 
 Les outcomes opérationnels :
 
-- les requêtes analytiques ne touchent plus le RDS primaire dans aucun environnement où le secret analytics est correctement renseigné,
+- les requêtes analytiques ne touchent plus l'Amazon RDS primaire dans aucun environnement où le secret analytics est correctement renseigné,
 - le même replica sert le dashboard backend, Retool, et les connexions directes à la base — une cible unique, plusieurs consommateurs,
 - le chemin de migration vers une base analytique dédiée ne coûte rien en code applicatif — un changement de secret et un redémarrage d'application,
 - et la surface KPI est suffisamment limitée pour ne pas perturber l'indexation ou le comportement du query planner de la base de production.
@@ -144,7 +144,7 @@ Ce travail a été réalisé chez [Enakl](https://enakl.com) — une plateforme 
 
 Avant l'architecture actuelle, il y avait eu une première tentative — utile à indexer ici.
 
-Pendant la phase de vendor lock-in, le prestataire externe rendait les données disponibles sous forme d'exports hebdomadaires vers Google Drive*. Un projet dbt* faisait tourner des jobs planifiés sur GitHub Actions*, transformait l'export en un data model minimal, réécrivait les résultats sur Google Drive, et alimentait un reporting basique dans Google Data Studio*. Gratuit. Entièrement automatisé. Techniquement cohérent.
+Pendant la phase de vendor lock-in, le prestataire externe rendait les données disponibles sous forme d'exports hebdomadaires vers Google Drive. Un projet [dbt](https://www.getdbt.com) faisait tourner des jobs planifiés sur GitHub Actions, transformait l'export en un data model minimal, réécrivait les résultats sur Google Drive, et alimentait un reporting basique dans Google Data Studio. Gratuit. Entièrement automatisé. Techniquement cohérent.
 
 Il a tourné correctement pendant des mois et n'a pratiquement rien produit.
 
@@ -153,7 +153,3 @@ La leçon n'était pas que l'outillage était mauvais. C'était que de l'infrast
 Quand la propriété interne de la plateforme a été établie, Retool a remplacé cette couche pour les besoins ad hoc internes — connexion directe à la même source de données, workflows d'export et de drill-down que les équipes internes utilisaient réellement, sans la charge d'un pipeline dont personne n'était responsable.
 
 Le principe extrait : les outils analytiques doivent scaler vers l'avant, pas vers l'arrière. On les introduit quand la fonction existe pour les prendre en charge — pas quand la capacité engineering existe pour les construire.
-
----
-
-**Outils référencés** — *RDS : Amazon Relational Database Service (base de données relationnelle managée). *Terraform : outil d'infrastructure-as-code. *Retool : plateforme de tooling interne (panels admin, dashboards). *TypeORM : ORM pour Node.js / TypeScript. *CLS : continuation-local storage — suivi de contexte async en Node.js. *AWS Secrets Manager : coffre-fort de secrets managé (credentials, connection strings). *Google Drive : stockage de fichiers cloud. *dbt : framework de transformation SQL. *GitHub Actions : plateforme CI/CD et automation cloud. *Google Data Studio : interface de reporting BI, rebaptisée Looker Studio.
