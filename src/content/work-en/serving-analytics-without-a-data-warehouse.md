@@ -12,7 +12,7 @@ After the platform had been reclaimed from vendor dependency and hardened for en
 
 Not raw exports. Not a separate BI tool standing outside the product. Credible KPI visibility inside the backoffice dashboard they already used — scoped to their tenant, behind the same RBAC as the rest of the platform.
 
-The question was not whether to build it. It was what form to take, at what cost to the production system, and with what commitment to infrastructure that no one was ready to own.
+The question was not whether to build it. It was what form to take, at what cost to the production system, and with what commitment to infrastructure given the absence of a dedicated contributor to build or maintain it.
 
 ---
 
@@ -32,7 +32,7 @@ Adding a data warehouse, a modelling layer, and ETL pipelines was not the answer
 
 ## Objective
 
-Deliver tenant-scoped KPI visibility inside the existing backoffice dashboard — without adding new risk to the production database, without overcommitting to infrastructure that nobody was ready to own, and without creating a migration problem if the right infrastructure arrived later.
+Deliver tenant-scoped KPI visibility inside the existing backoffice dashboard — without adding new risk to the production database, without overcommitting to infrastructure that had no dedicated contributor to build or maintain it, and without creating a migration problem if the right infrastructure arrived later.
 
 ---
 
@@ -70,7 +70,7 @@ At this phase, the module read from the primary RDS. That was a temporary compro
 
 The risk of analytics reads hitting the primary RDS had a fix that required no application code change.
 
-A read replica was provisioned via Terraform under `cloud-infra/modules/rds/`, present only in high-availability environments. A dedicated read-only database user was created. The replica became the single analytics target for all consumers: the backend analytics module, Retool, and direct database connections used for operational reporting.
+A read replica was provisioned via Terraform, present only in high-availability environments. A dedicated read-only database user was created. The replica became the single analytics target for all consumers: the backend analytics module, Retool, and direct database connections used for operational reporting.
 
 The replica is asynchronous. Lag is acceptable for monthly aggregates and is documented in the runbook. The replica's role is not real-time visibility — it is to absorb analytics read traffic without touching the primary.
 
@@ -78,11 +78,33 @@ The replica is asynchronous. Lag is acceptable for monthly aggregates and is doc
 
 ### Phase 3 — Wire the Isolation: Named DataSource, Read-Only by Construction
 
-The analytics module was wired to a dedicated TypeORM DataSource — named `analytics`, registered separately from the primary in `common/database/`. Configured with `synchronize: false`, `migrationsRun: false`, and no entity registration. No write operation is expressible through the framework against it. Read-only is a structural constraint, not a policy.
+The analytics module was wired to a dedicated TypeORM DataSource — named `analytics`, registered separately from the primary DataSource. Configured with `synchronize: false`, `migrationsRun: false`, and no entity registration. No write operation is expressible through the framework against it. Read-only is a structural constraint, not a policy.
 
-Queries run as parameterized raw SQL via `DataSource.query()`. No ORM entity references. No cross-DataSource joins. Tenant scoping is applied through the same mechanism as the primary DataSource: `applyTenantPoolHooks` sets the correct `search_path` from the CLS context on every connection acquire, validated against the tenant allowlist. One tenancy model across the API — analytics queries are not exempt.
+Queries run as parameterized raw SQL. No ORM entity references. No cross-DataSource joins. Tenant scoping is applied through the same mechanism as the primary DataSource: the same tenant pool hook sets the correct `search_path` from the CLS context on every connection acquire, validated against the tenant allowlist. One tenancy model across the API — analytics queries are not exempt.
 
 Credentials are managed in AWS Secrets Manager — `{username, password, host, port, dbname}` — loaded at boot through the same pattern as primary database credentials. The backend has no opinion on what is behind the analytics secret. Each environment configures its own. A missing or malformed secret fails loudly at boot; no silent fallback.
+
+The resulting topology, once Phase 3 is complete:
+
+```mermaid
+graph LR
+    BO["Backoffice"]
+    BE["Backend API"]
+    RT["Retool"]
+
+    subgraph vpc ["Private VPC"]
+        BH["Bastion Host"]
+        PRDS[("Primary RDS\ntransactional")]
+        REP[("Read Replica\nread-only")]
+    end
+
+    BO -->|HTTPS| BE
+    BE -->|"CRUD operations"| PRDS
+    BE -->|"analytics queries\nread-only"| REP
+    PRDS -.->|async replication| REP
+    RT -->|SSH tunnel| BH
+    BH -->|read-only| REP
+```
 
 ---
 

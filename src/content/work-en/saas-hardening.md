@@ -134,8 +134,6 @@ That required:
 - removing structural ambiguity,
 - and ensuring the system could evolve toward cleaner separation without depending on destructive cleanup patterns later.
 
-The full execution of this layer — the analytics read isolation, the read replica, and the swap path to a future analytics database — is documented in [Serving Analytics Without a Data Warehouse](/en/work/serving-analytics-without-a-data-warehouse/).
-
 ---
 
 ### Layer 5 — Create a Safer Validation Path
@@ -181,5 +179,7 @@ Identity, access, contracts, data boundaries, and release discipline are not par
 They compound only when ordered correctly.
 
 The principles guiding the sequence — architecture boundary discipline, separation of concerns, root-cause fixes before workarounds — are the seven invariants in [Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack). The governance layer established during this work to keep those principles authoritative is documented in [Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance). For operators making the platform decisions this hardening addresses — especially the auth stack — the decision framework is in [The SaaS Authentication Stack Operators Keep Treating as One Decision](/en/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision).
+
+Adjacent to this hardening work, the platform also needed to surface KPI visibility for enterprise customers — a lightweight analytics capability that supported the sales pitch without adding data infrastructure the team was not ready to own. That work is documented in [Serving Analytics Without a Data Warehouse](/en/work/serving-analytics-without-a-data-warehouse/).
 
 This work was executed at [Enakl](https://enakl.com) — a VC-backed B2B/B2G mobility platform serving emerging markets.

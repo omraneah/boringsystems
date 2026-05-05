@@ -163,6 +163,8 @@ Grep the article text for explicit anti-patterns from the charter:
 - "Subscribe to our newsletter", popup/modal hooks → blocker.
 - Exit-intent, fake-urgency language — blocker.
 
+**Work lane — no internal project file paths (blocker):** If the article is in the `work` collection, grep the body for patterns matching internal project paths: strings that look like `src/`, `backend/`, `cloud-infra/`, `common/`, or any relative path containing `/` and suggesting a specific source tree location (e.g., `` `cloud-infra/modules/rds/` ``, `` `src/modules/analytics/` ``). Flag each occurrence as a **blocker**. Work articles describe decisions, architecture, and outcomes — never internal file system layout. The reader is a peer operator, not a contributor to the codebase.
+
 ### 8. Article tail check (optional)
 
 If the article has a trailing email-gated section (detected by a marker like `{/* email-gate */}` or a component like `<EmailGate />`):
