@@ -134,6 +134,8 @@ Cela nécessitait :
 - de supprimer l'ambiguïté structurelle,
 - et de s'assurer que le système pouvait évoluer vers une séparation plus propre sans dépendre de schémas de nettoyage destructifs plus tard.
 
+L'exécution complète de cette couche — l'isolation de lecture analytique, le read replica, et le chemin de migration vers une base analytique dédiée — est documentée dans [Servir l'analytics enterprise sans data warehouse](/fr/work/serving-analytics-without-a-data-warehouse/).
+
 ---
 
 ### Couche 5 — Créer un chemin de validation plus sûr

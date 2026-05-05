@@ -134,6 +134,8 @@ That required:
 - removing structural ambiguity,
 - and ensuring the system could evolve toward cleaner separation without depending on destructive cleanup patterns later.
 
+The full execution of this layer — the analytics read isolation, the read replica, and the swap path to a future analytics database — is documented in [Serving Analytics Without a Data Warehouse](/en/work/serving-analytics-without-a-data-warehouse/).
+
 ---
 
 ### Layer 5 — Create a Safer Validation Path
