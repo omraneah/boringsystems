@@ -18,6 +18,8 @@ It's **operational** — updated weekly as inbound lands and positioning iterate
 | `inbound-call-discipline.md` | Operating principles for inbound calls (Fractional CTO, Sprint, Transformation, advisory). Discovery-before-anchor, skin-in-the-game, slow-down, feedback ask. | When the discipline gets sharpened by a real conversation |
 | `credibility-map.md` | Three-zone map of what the resume sells credibly, with friction, or not at all. Constrains offer design and qualifies inbound live. | Re-read every 6 months against actual inbound |
 | `website.md` | Operational tactic for the `boringsystems.app` surface — funnel positioning, pre-funnel aesthetic-filter principle, rename-considered-and-rejected paragraph, secondary-domain experiment trigger conditions. Cross-references `strategy.md` § Surface 2. | When site positioning, tactics, or trigger conditions shift |
+| `inbound-recruiter-doctrine.md` | Operating principle for LinkedIn recruiter inbound — ~80% wrong altitude, treat as market intelligence, don't close immediately, French cultural calibration (register not bluntness), freelance pivot when complexity is present. Airtable (Professional Transition → LinkedIn Inbound) is the live log; read that for current state. | When a pattern from the Airtable invalidates or sharpens the doctrine |
+| `strategy.md` | The cornerstone GTM document — six surfaces, four paths, buyer modes, May 2026 signal-resolution prescription, sequencing held lightly. | Per significant session with Naomi |
 
 ## Relationship to other folders
 
