@@ -19,8 +19,7 @@
       "mcp__claude_ai_Airtable__list_records_for_page",
       "mcp__claude_ai_Airtable__get_record_for_page",
       "mcp__claude_ai_Airtable__search_records",
-      "mcp__claude_ai_Airtable__list_record_comments",
-      "mcp__claude_ai_Airtable__update_records_for_table"
+      "mcp__claude_ai_Airtable__list_record_comments"
     ]
   },
   "hooks": {

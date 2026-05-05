@@ -31,35 +31,40 @@ When an inbound lands:
 
 Do not ghost. Do not send a flat rejection. Both close a door that costs nothing to keep ajar.
 
-## French cultural calibration — the most important section
+## Register calibration — French vs. international
 
-Ahmed is German-trained in work mode and anglophone/Germanophone by professional formation. Direct, efficient, clean-close communication is the default register. In France, that register reads as cold, dismissive, or condescending — especially with recruiters who are doing their job in good faith.
+**~80% of inbound is French companies, in French. ~20% is international** (Germany-based or international firms in France), in English.
 
-The correction came from lived feedback: early exchanges (Jan–Feb 2026) were too direct — conversations pushed hard and closed that had residual value. The right calibration is not about being less honest — it is about register.
+**French (80%):** Ahmed's natural direct register reads as cold or dismissive in this context. The correction: one sentence of genuine acknowledgment before the redirect. Don't pretend the role is interesting — but soften the delivery. Don't lecture about altitude or signal that the outreach was low quality. The relationship survives or doesn't based on the tone of the refusal.
 
-- **Keep:** clarity on the mismatch. Don't pretend the role is interesting when it isn't.
-- **Soften:** the delivery. One sentence of genuine acknowledgment ("le profil est intéressant mais...") before the redirect costs nothing and changes the temperature of the whole exchange.
-- **Avoid:** lecturing about altitude, signaling that their outreach was low quality, implying they don't know their market. Even when accurate, this leaves no door. In France especially, the relationship survives or doesn't based on the tone of the refusal, not the refusal itself.
+**International (20%):** Ahmed's natural direct register is appropriate — especially for German companies, where efficiency and clarity are expected. No need to add warmth padding. Be direct, be clear, close cleanly.
 
-A recruiter who feels respected in a no today is a recruiter who routes a relevant mandate next quarter.
+The language of the exchange (French vs. English) is the signal for which register to use. Both tracks apply the same substance — honesty on fit, no door slammed — with different packaging.
 
-## The freelance pivot
+## Inbound outcomes — what to aim for
 
-When there is a clear altitude mismatch on the CDI / full-time side but the company or context has genuine interest, introduce the freelance track.
+Inbound from recruiters is a full-time channel. Companies hiring recruiters want a full-time hire. Do not pitch fractional or freelance through this channel — that offer goes outbound, directly to decision-makers, not through a recruiter who was briefed on a CDI.
 
-**The frame to use:** not "fractional CTO" — that label carries associations that don't fit the shape. The offer is: a freelance mission of one to several months to help manage a complex project. Hands-on involvement is possible but it is not the point. The complexity is the critical dimension — holding the business, product, and engineering decisions simultaneously without losing the thread, as the LinkedIn bio captures.
+**The three outcomes, in order of priority:**
 
-This is not execution. It is managing complexity — the kind that requires judgment at the intersection of multiple domains, not headcount.
+1. **Pursue** — genuine altitude match. Engage, run the pre-call filter, book the call.
 
-The pivot is useful when:
-- The company is real and funded, with a concrete problem that requires decision altitude, not just delivery
-- The problem involves meaningful complexity (cross-functional, multi-stakeholder, or technically ambiguous)
-- The recruiter is internal or has direct access to the decision-maker — the closer to the brief, the higher the conversion probability
+2. **Light contract mention** — role scope seems confused or uncommitted on the company side (unclear mandate, undecided between senior IC and leader, role not yet published). A one-sentence mention that a contract engagement could be a lower-risk way to validate fit. This is not a pitch — it is an option offered once, when the company itself seems unsure. Only worth doing with an internal recruiter who can actually carry the message.
 
-The pivot is NOT useful when:
-- The role is pure IC delivery with no judgment ownership
-- The company is at a stage where a short mission produces no lasting trace
-- The recruiter is low-quality and unlikely to forward a reframed proposal
+3. **Intel + warm close** — clear mismatch, especially with an external recruiter. Extract one useful question ("what problem is the company trying to solve?"), close warmly, move on. No alternative offer. The recruiter cannot route a reframed proposal and it is not worth the energy.
+
+**Avoid "executive system builder."** No market-ready procurement bucket exists for it. Use plain language about the mandate when redirecting.
+
+## Pre-call filter — two mandatory questions
+
+Before booking any Head-of or CTO-tier call, surface these in the first reply:
+
+1. **"Building from zero vs. scaling existing?"** — catches the 0→1 builder vs. 25→100 scaler mismatch.
+2. **"Expected split between organizational governance and hands-on technical contribution?"** — catches the AI governance vs. AI practitioner mismatch.
+
+One extra message before booking. Avoids calls that close negatively on fit that was visible pre-call.
+
+**First-reply rule:** One qualifying question max. No condition lists (comp, stage, team size, salary belong in the conversation itself — not the opener). Listing conditions in a first reply reads as defensive in a French recruiter context.
 
 ## Reply register guide
 
@@ -70,19 +75,14 @@ Acknowledge the company or sector briefly. Name the mismatch on the role without
 Name the mismatch briefly. Stay warm. Leave the door open generically. No call needed.
 
 **Good internal recruiter, real mandate, close-but-not-quite:**
-Engage. Ask about the scope and decision altitude. One conversation is worth it even without clear fit — it is market intelligence.
+Engage. Ask the two pre-call filter questions. One conversation is worth it even without clear fit — it is market intelligence.
 
 **Low-quality external recruiter, generic or misleading outreach:**
-Short, warm, minimal. No energy spent. No lecture given.
+Short, warm, minimal. No energy spent. No lecture given. Extract one market intel question ("what problem is the company trying to solve?"), then close warmly. Do not introduce the freelance pivot — external recruiters have no forwarding pathway.
 
-## Testing the freelance pivot
+## Tracking
 
-The pivot is being tested conversation by conversation. Do not systematize before the pattern is clear. Each use is a data point on:
-- Whether French recruiters know what to do with the reframe
-- Whether "managing complexity" as the offer frame resonates or needs translation
-- Whether internal vs. external recruiter quality predicts whether the pivot gets forwarded
-
-Log what happens in the Airtable (Professional Transition → LinkedIn Inbound). Notes field: record whether the pivot was introduced and what the response was.
+Log every exchange in Airtable (Professional Transition → LinkedIn Inbound). Notes field: what outcome was aimed for, what happened. The contract mention (outcome 2) is worth tracking when it occurs — note whether the recruiter was internal or external and whether it got forwarded.
 
 ## Airtable — the live log
 
