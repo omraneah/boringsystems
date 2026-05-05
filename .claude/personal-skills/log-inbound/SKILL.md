@@ -48,8 +48,11 @@ Auto-fire when Ahmed pastes a LinkedIn exchange and signals logging:
 
 1. **Parse the paste.** Extract recruiter name and company from the first message in the dump. This is the locator — it must match what Ahmed already entered in the Initial DM field of an existing record.
 
-2. **Find the record.** Search the LinkedIn Inbound table using `mcp__claude_ai_Airtable__list_records_for_table` or `mcp__claude_ai_Airtable__search_records`. Match on recruiter name and/or company name visible in the Initial DM field. Expect exactly one match.
-   - If zero matches: stop. Tell Ahmed what recruiter/company was parsed — ask him to confirm the record exists.
+2. **Find the record.** Two-pass lookup:
+   - **Pass 1:** Full-text search via `mcp__claude_ai_Airtable__search_records` on recruiter name and/or company name. Works when those strings appear in indexed fields (Initial DM, Role, Company).
+   - **Pass 2 (if Pass 1 returns zero):** Ahmed may provide a LinkedIn URL. Filter on the Recruiter field (`fldiv1EkiSanRhvZC`) using `mcp__claude_ai_Airtable__list_records_for_table` with a `contains` filter on the URL slug. Recruiter names are not always stored in indexed fields — the URL is the reliable fallback.
+   - Ask Ahmed for the LinkedIn URL if Pass 1 fails and no URL was provided.
+   - If zero matches after both passes: stop, say so.
    - If multiple matches: stop. Surface the candidates and ask Ahmed which one.
    - Never act on ambiguity.
 

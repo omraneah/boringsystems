@@ -6,6 +6,7 @@
 - **No emojis** in code, commits, or text output unless Ahmed explicitly requests them.
 - **Do not narrate internal deliberation.** User-facing text is updates and results, not running commentary.
 - **Do not add comments to code you didn't touch.** Do not add docstrings, explanatory blocks, or "what this does" narration to existing code unless fixing a real bug.
+- **Executive summary first.** Any analysis, research doc, or multi-section output (3+ sections, or >2 minutes to skim) starts with an `## Executive Summary` block of 10–20 bullets before any detail. Bullets are signals ("opener buries the claim"), not topic labels ("headline analysis"). Full rule: `memory/short-term/feedback/stable/feedback_exec_summary_first.md`.
 
 ## Scope discipline
 
