@@ -727,3 +727,12 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-05 — Skills canonical write path is Workspace/.claude/personal-skills/
+**Context:** While creating the `/log-inbound` skill, a new skill file was written to `~/.claude/skills/log-inbound/` instead of the canonical workspace path `Workspace/.claude/personal-skills/log-inbound/`. The file resolved correctly via symlink (`~/.claude/skills` → `Workspace/.claude/personal-skills`), so no functional breakage occurred — but the wrong path was used, exposing that the symlink relationship was not known before writing. The mistake only surfaced during git status, triggering a wasted permission prompt and operator frustration.
+**Decision:** New non-negotiable added to `CLAUDE.md`: skills always go to `Workspace/.claude/personal-skills/<name>/SKILL.md`. `~/.claude/skills/` is a symlink — never a write target. Before writing to any `~/.claude/` path, resolve it first (`ls -la`); if it's a symlink into the workspace, write to the workspace path directly. Codified simultaneously as a stable feedback rule at `memory/short-term/feedback/stable/feedback_skills_canonical_path.md`.
+**Why:** The workspace is the source of truth. Writing to a symlink instead of the source obscures version control, creates confusion about canonical location, and contradicts the laptop-agnostic constraint (everything must survive a fresh clone). The symlink exists so Claude Code finds skills at the expected user-level path — it is a read path, not a write path. The mistake was rooted in using `ls ~/.claude/skills/` to discover the skills location without checking whether that path was canonical.
+**Expected outcome:** All future skill creation goes directly to `Workspace/.claude/personal-skills/`. The feedback rule auto-loads every session. The CLAUDE.md non-negotiable is highest-weight enforcement. The symlink is never used as a write target again.
+**Actual outcome:** *(pending)*
+
+---
