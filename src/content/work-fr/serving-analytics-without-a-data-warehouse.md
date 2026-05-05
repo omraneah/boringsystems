@@ -22,7 +22,7 @@ L'environnement portait à ce moment-là un ensemble de contraintes spécifiques
 
 - aucun data engineer dédié,
 - pas de capacité DevOps disponible pour de nouvelles surfaces d'infrastructure,
-- un RDS de production indexé et partitionné pour la charge transactionnelle — pas pour des requêtes analytiques,
+- un RDS* de production indexé et partitionné pour la charge transactionnelle — pas pour des requêtes analytiques,
 - une capacité engineering mobilisée sur la livraison produit,
 - et un business encore en phase précoce — le vocabulaire KPI devait aider les clients à évaluer et utiliser la plateforme, pas supporter une intelligence opérationnelle complète.
 
@@ -33,22 +33,6 @@ Ajouter un data warehouse, une couche de modélisation et des pipelines ETL n'é
 ## Objectif
 
 Livrer une visibilité KPI scopée par tenant dans le backoffice existant — sans ajouter de risque à la base de production, sans s'engager sur une infrastructure en l'absence de contributeur dédié pour la construire ou la maintenir, et sans créer un problème de migration si la bonne infrastructure devait arriver plus tard.
-
----
-
-## Une expérience précoce — et ce qu'elle a enseigné
-
-Avant l'architecture actuelle, il y avait eu une première tentative.
-
-Pendant la phase de vendor lock-in, le prestataire externe rendait les données disponibles sous forme d'exports hebdomadaires vers Google Drive. Un projet dbt faisait tourner des jobs planifiés sur GitHub Actions runners, transformait l'export en un data model minimal, réécrivait les résultats sur Google Drive, et alimentait un reporting basique dans Google Data Studio. Gratuit. Entièrement automatisé. Techniquement cohérent.
-
-Il a tourné correctement pendant des mois et n'a pratiquement rien produit.
-
-La leçon n'était pas que l'outillage était mauvais. C'était que de l'infrastructure analytique sans une fonction pour la posséder, l'interpréter et l'intégrer aux décisions crée de la surface de maintenance sans valeur. Le pipeline tournait. Personne ne remarquait quand il le faisait, et personne ne remarquait quand l'attention se déplaçait ailleurs.
-
-Quand la propriété interne de la plateforme a été établie, Retool a remplacé cette couche pour les besoins ad hoc internes. Il se connecte directement à la même source de données, sert les workflows d'export et de drill-down que les équipes internes utilisent réellement — sans la charge d'un pipeline dont personne n'est responsable.
-
-Le principe extrait : les outils analytiques doivent scaler vers l'avant, pas vers l'arrière. On les introduit quand la fonction existe pour les prendre en charge — pas quand la capacité engineering existe pour les construire. Les construire tôt, même correctement, est la façon la plus rapide de ne rien produire.
 
 ---
 
@@ -70,7 +54,7 @@ La surface KPI était délibérément limitée — uniquement ce qu'un client en
 
 Le risque des lectures analytiques frappant le RDS primaire avait un correctif qui ne nécessitait aucun changement de code applicatif.
 
-Un read replica a été provisionné via Terraform, présent uniquement dans les environnements haute disponibilité. Un utilisateur de base de données read-only dédié a été créé. Le replica est devenu la cible analytique unique pour tous les consommateurs : le module backend analytics, Retool, et les connexions directes à la base utilisées pour le reporting opérationnel.
+Un read replica a été provisionné via Terraform*, présent uniquement dans les environnements haute disponibilité. Un utilisateur de base de données read-only dédié a été créé. Le replica est devenu la cible analytique unique pour tous les consommateurs : le module backend analytics, Retool*, et les connexions directes à la base utilisées pour le reporting opérationnel.
 
 Le replica est asynchrone. Le lag est acceptable pour des agrégats mensuels — documenté dans le runbook. Le rôle du replica n'est pas la visibilité temps réel : c'est d'absorber le trafic de lectures analytiques sans toucher la base primaire.
 
@@ -78,31 +62,36 @@ Le replica est asynchrone. Le lag est acceptable pour des agrégats mensuels —
 
 ### Phase 3 — Câbler l'isolation : DataSource nommée, read-only par construction
 
-Le module analytics a été câblé sur une DataSource TypeORM dédiée — nommée `analytics`, enregistrée séparément de la DataSource primaire. Configurée avec `synchronize: false`, `migrationsRun: false`, et aucune entity enregistrée. Aucune opération d'écriture n'est exprimable via le framework contre elle. Le read-only est une contrainte structurelle, pas une politique.
+Le module analytics a été câblé sur une DataSource TypeORM* dédiée — nommée `analytics`, enregistrée séparément de la DataSource primaire. Configurée avec `synchronize: false`, `migrationsRun: false`, et aucune entity enregistrée. Aucune opération d'écriture n'est exprimable via le framework contre elle. Le read-only est une contrainte structurelle, pas une politique.
 
-Les requêtes tournent en raw SQL paramétré. Pas de références aux entities ORM. Pas de joins cross-DataSource. Le tenant scoping est appliqué via le même mécanisme que la DataSource primaire : le même tenant pool hook positionne le bon `search_path` depuis le contexte CLS à chaque acquisition de connexion, validé contre la allowlist de tenants. Un seul modèle de tenancy à travers l'API — les requêtes analytiques n'y font pas exception.
+Les requêtes tournent en raw SQL paramétré. Pas de références aux entities ORM. Pas de joins cross-DataSource. Le tenant scoping est appliqué via le même mécanisme que la DataSource primaire : le même tenant pool hook positionne le bon `search_path` depuis le contexte CLS* à chaque acquisition de connexion, validé contre la allowlist de tenants. Un seul modèle de tenancy à travers l'API — les requêtes analytiques n'y font pas exception.
 
-Les credentials sont gérés dans AWS Secrets Manager — `{username, password, host, port, dbname}` — chargés au démarrage selon le même pattern que les credentials de la base primaire. Le backend n'a pas d'opinion sur ce qui se trouve derrière le secret analytics. Chaque environnement configure le sien. Un secret manquant ou malformé fait échouer bruyamment au démarrage ; pas de fallback silencieux.
+Les credentials sont gérés dans AWS Secrets Manager* — `{username, password, host, port, dbname}` — chargés au démarrage selon le même pattern que les credentials de la base primaire. Le backend n'a pas d'opinion sur ce qui se trouve derrière le secret analytics. Chaque environnement configure le sien. Un secret manquant ou malformé fait échouer bruyamment au démarrage ; pas de fallback silencieux.
 
 La topologie résultante, une fois la Phase 3 complète :
 
 ```mermaid
 graph LR
-    BO["Backoffice"]
-    BE["Backend API"]
-    RT["Retool"]
+    subgraph clients ["Clients"]
+        BO["Backoffice"]
+        RT["Retool"]
+    end
+
+    subgraph pub ["Couche publique"]
+        BE["Backend API"]
+        BH["Bastion Host"]
+    end
 
     subgraph vpc ["VPC Privé"]
-        BH["Bastion Host"]
         PRDS[("Primary RDS\ntransactionnel")]
         REP[("Read Replica\nread-only")]
     end
 
     BO -->|HTTPS| BE
+    RT -->|tunnel SSH| BH
     BE -->|"opérations CRUD"| PRDS
     BE -->|"requêtes analytiques\nread-only"| REP
     PRDS -.->|réplication async| REP
-    RT -->|tunnel SSH| BH
     BH -->|read-only| REP
 ```
 
@@ -148,3 +137,23 @@ Ce cas illustre que l'analytics en phase précoce est moins un problème d'infra
 Le chemin d'isolation des données décrit ici est l'une des couches du programme de hardening documenté dans [Renforcer une plateforme en production pour l'entreprise](/fr/work/saas-hardening/). Le contexte de vendor lock-in qui l'a précédé — et la première expérience dbt — est documenté dans [Reprendre la maîtrise du système face au verrouillage fournisseur](/fr/work/breaking-vendor-lock-in/). Les frontières architecturales qui gouvernent cette surface — intégrité des données de production, construction read-only, tenant scoping — sont maintenues sous le modèle de gouvernance décrit dans [Établir une gouvernance d'architecture transversale](/fr/work/architecture-governance/). Un cas de hardening parallèle — la séparation des frontières de couche d'authentification — est documenté dans [Délimiter les couches d'authentification dans un système en production](/fr/work/untangling-auth-layer-boundaries-in-a-running-system/).
 
 Ce travail a été réalisé chez [Enakl](https://enakl.com) — une plateforme B2B/B2G de mobilité en marchés émergents, soutenue par des VCs.
+
+---
+
+## Une expérience précoce
+
+Avant l'architecture actuelle, il y avait eu une première tentative — utile à indexer ici.
+
+Pendant la phase de vendor lock-in, le prestataire externe rendait les données disponibles sous forme d'exports hebdomadaires vers Google Drive*. Un projet dbt* faisait tourner des jobs planifiés sur GitHub Actions*, transformait l'export en un data model minimal, réécrivait les résultats sur Google Drive, et alimentait un reporting basique dans Google Data Studio*. Gratuit. Entièrement automatisé. Techniquement cohérent.
+
+Il a tourné correctement pendant des mois et n'a pratiquement rien produit.
+
+La leçon n'était pas que l'outillage était mauvais. C'était que de l'infrastructure analytique sans une fonction pour la posséder, l'interpréter et l'intégrer aux décisions crée de la surface de maintenance sans valeur. Le pipeline tournait. Personne ne remarquait quand il le faisait, et personne ne remarquait quand l'attention se déplaçait ailleurs.
+
+Quand la propriété interne de la plateforme a été établie, Retool a remplacé cette couche pour les besoins ad hoc internes — connexion directe à la même source de données, workflows d'export et de drill-down que les équipes internes utilisaient réellement, sans la charge d'un pipeline dont personne n'était responsable.
+
+Le principe extrait : les outils analytiques doivent scaler vers l'avant, pas vers l'arrière. On les introduit quand la fonction existe pour les prendre en charge — pas quand la capacité engineering existe pour les construire.
+
+---
+
+**Outils référencés** — *RDS : Amazon Relational Database Service (base de données relationnelle managée). *Terraform : outil d'infrastructure-as-code. *Retool : plateforme de tooling interne (panels admin, dashboards). *TypeORM : ORM pour Node.js / TypeScript. *CLS : continuation-local storage — suivi de contexte async en Node.js. *AWS Secrets Manager : coffre-fort de secrets managé (credentials, connection strings). *Google Drive : stockage de fichiers cloud. *dbt : framework de transformation SQL. *GitHub Actions : plateforme CI/CD et automation cloud. *Google Data Studio : interface de reporting BI, rebaptisée Looker Studio.

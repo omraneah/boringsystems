@@ -22,7 +22,7 @@ The environment at that point carried a specific set of constraints:
 
 - no dedicated data engineer,
 - no DevOps capacity for new infrastructure surfaces,
-- a production RDS indexed and partitioned for transactional load — not analytics queries,
+- a production RDS* indexed and partitioned for transactional load — not analytics queries,
 - engineering capacity stretched across platform delivery,
 - and a business still in early stage — the KPI vocabulary needed to help customers buy and evaluate the platform, not support full operational intelligence.
 
@@ -33,22 +33,6 @@ Adding a data warehouse, a modelling layer, and ETL pipelines was not the answer
 ## Objective
 
 Deliver tenant-scoped KPI visibility inside the existing backoffice dashboard — without adding new risk to the production database, without overcommitting to infrastructure that had no dedicated contributor to build or maintain it, and without creating a migration problem if the right infrastructure arrived later.
-
----
-
-## An Earlier Experiment — and What It Taught
-
-Before the current architecture, there was an earlier attempt.
-
-During the vendor lock-in phase, the external provider made data available as weekly exports to Google Drive. A dbt project ran scheduled jobs on GitHub Actions runners, transformed the export into a minimal data model, wrote results back to Google Drive, and fed a basic reporting surface in Google Data Studio. Free. Fully automated. Technically coherent.
-
-It ran correctly for months and barely moved anything.
-
-The lesson was not that the tooling was wrong. It was that analytics infrastructure without a function to own, interpret, and route it into decisions creates maintenance surface without value. The pipeline ran. Nobody noticed when it did, and nobody noticed when attention moved elsewhere.
-
-When internal platform ownership was established, Retool replaced that layer for internal ad-hoc needs — connecting directly to the same data source, serving the export and drill-down workflows that internal teams actually used, without the overhead of a managed pipeline that nobody was responsible for.
-
-The principle extracted: analytics tooling should scale forward, not backward. Introduce it when the function exists to own it — not when the engineering capacity exists to build it. Building it early, even correctly, is the faster path to producing nothing.
 
 ---
 
@@ -70,7 +54,7 @@ At this phase, the module read from the primary RDS. That was a temporary compro
 
 The risk of analytics reads hitting the primary RDS had a fix that required no application code change.
 
-A read replica was provisioned via Terraform, present only in high-availability environments. A dedicated read-only database user was created. The replica became the single analytics target for all consumers: the backend analytics module, Retool, and direct database connections used for operational reporting.
+A read replica was provisioned via Terraform*, present only in high-availability environments. A dedicated read-only database user was created. The replica became the single analytics target for all consumers: the backend analytics module, Retool*, and direct database connections used for operational reporting.
 
 The replica is asynchronous. Lag is acceptable for monthly aggregates and is documented in the runbook. The replica's role is not real-time visibility — it is to absorb analytics read traffic without touching the primary.
 
@@ -78,31 +62,36 @@ The replica is asynchronous. Lag is acceptable for monthly aggregates and is doc
 
 ### Phase 3 — Wire the Isolation: Named DataSource, Read-Only by Construction
 
-The analytics module was wired to a dedicated TypeORM DataSource — named `analytics`, registered separately from the primary DataSource. Configured with `synchronize: false`, `migrationsRun: false`, and no entity registration. No write operation is expressible through the framework against it. Read-only is a structural constraint, not a policy.
+The analytics module was wired to a dedicated TypeORM* DataSource — named `analytics`, registered separately from the primary DataSource. Configured with `synchronize: false`, `migrationsRun: false`, and no entity registration. No write operation is expressible through the framework against it. Read-only is a structural constraint, not a policy.
 
-Queries run as parameterized raw SQL. No ORM entity references. No cross-DataSource joins. Tenant scoping is applied through the same mechanism as the primary DataSource: the same tenant pool hook sets the correct `search_path` from the CLS context on every connection acquire, validated against the tenant allowlist. One tenancy model across the API — analytics queries are not exempt.
+Queries run as parameterized raw SQL. No ORM entity references. No cross-DataSource joins. Tenant scoping is applied through the same mechanism as the primary DataSource: the same tenant pool hook sets the correct `search_path` from the CLS* context on every connection acquire, validated against the tenant allowlist. One tenancy model across the API — analytics queries are not exempt.
 
-Credentials are managed in AWS Secrets Manager — `{username, password, host, port, dbname}` — loaded at boot through the same pattern as primary database credentials. The backend has no opinion on what is behind the analytics secret. Each environment configures its own. A missing or malformed secret fails loudly at boot; no silent fallback.
+Credentials are managed in AWS Secrets Manager* — `{username, password, host, port, dbname}` — loaded at boot through the same pattern as primary database credentials. The backend has no opinion on what is behind the analytics secret. Each environment configures its own. A missing or malformed secret fails loudly at boot; no silent fallback.
 
 The resulting topology, once Phase 3 is complete:
 
 ```mermaid
 graph LR
-    BO["Backoffice"]
-    BE["Backend API"]
-    RT["Retool"]
+    subgraph clients ["Clients"]
+        BO["Backoffice"]
+        RT["Retool"]
+    end
+
+    subgraph pub ["Public layer"]
+        BE["Backend API"]
+        BH["Bastion Host"]
+    end
 
     subgraph vpc ["Private VPC"]
-        BH["Bastion Host"]
         PRDS[("Primary RDS\ntransactional")]
         REP[("Read Replica\nread-only")]
     end
 
     BO -->|HTTPS| BE
+    RT -->|SSH tunnel| BH
     BE -->|"CRUD operations"| PRDS
     BE -->|"analytics queries\nread-only"| REP
     PRDS -.->|async replication| REP
-    RT -->|SSH tunnel| BH
     BH -->|read-only| REP
 ```
 
@@ -148,3 +137,23 @@ This case illustrates that analytics at an early stage is less an infrastructure
 The data isolation path described here is one layer of the broader platform hardening programme documented in [Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/). The vendor lock-in context that preceded it — and the first dbt experiment — is documented in [Reclaiming System Ownership Under Vendor Lock-In](/en/work/breaking-vendor-lock-in/). The architectural boundaries governing this surface — production data integrity, read-only construction, tenant scoping — are maintained under the governance model described in [Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance/). A parallel hardening case — auth layer boundary separation — is documented in [Untangling Auth Layer Boundaries in a Running System](/en/work/untangling-auth-layer-boundaries-in-a-running-system/).
 
 This work was executed at [Enakl](https://enakl.com) — a VC-backed B2B/B2G mobility platform serving emerging markets.
+
+---
+
+## An Earlier Experiment
+
+Before the current architecture, there was a first attempt worth indexing here.
+
+During the vendor lock-in phase, the external provider made data available as weekly exports to Google Drive*. A dbt* project ran scheduled jobs on GitHub Actions* runners, transformed the export into a minimal data model, wrote results back to Google Drive, and fed a basic reporting surface in Google Data Studio*. Free. Fully automated. Technically coherent.
+
+It ran correctly for months and barely moved anything.
+
+The lesson was not that the tooling was wrong. It was that analytics infrastructure without a function to own, interpret, and route it into decisions creates maintenance surface without value. The pipeline ran. Nobody noticed when it did, and nobody noticed when attention moved elsewhere.
+
+When internal platform ownership was established, Retool replaced that layer for internal ad-hoc needs — direct connection to the same data source, export and drill-down workflows that internal teams actually used, without the overhead of a pipeline nobody owned.
+
+The principle extracted: analytics tooling should scale forward, not backward. Introduce it when the function exists to own it — not when the engineering capacity exists to build it.
+
+---
+
+**Tools referenced** — *RDS: Amazon Relational Database Service (managed relational database). *Terraform: infrastructure-as-code tool. *Retool: internal tooling platform (admin panels, dashboards). *TypeORM: ORM framework for Node.js / TypeScript. *CLS: continuation-local storage — async context tracking in Node.js. *AWS Secrets Manager: managed secrets vault (credentials, connection strings). *Google Drive: cloud file storage. *dbt: SQL-based data transformation framework. *GitHub Actions: cloud CI/CD and workflow automation platform. *Google Data Studio: BI reporting surface, now rebranded as Looker Studio.
