@@ -4,7 +4,7 @@ Current public-facing positioning on LinkedIn. The headline + bio are the primar
 
 ---
 
-## Current — as of 2026-05-03 (v2 — shipped)
+## Current — as of 2026-05-05 (v3 — shipped)
 
 ### Headline
 
@@ -22,15 +22,30 @@ Current public-facing positioning on LinkedIn. The headline + bio are the primar
 >
 > **Previous Mandates:**
 >
-> — Vendor lock-in exit + SaaS transformation at Enakl (VC-backed · B2B/B2G mobility · emerging markets): proprietary TMS built from scratch, 10× operational scaling, zero-downtime migration; multi-tenant architecture, high availability, enterprise-grade security, revenue model shifted from service delivery to software. Built and led engineering teams from the ground up — 5 people + AI coding agents across both mandates.
+> — Tech (Product & engineering) function built from scratch + Vendor lock-in exit + SaaS transformation at Enakl (VC-backed · B2B/B2G mobility · emerging markets): proprietary TMS built from scratch, 10× operational scaling, zero-downtime migration; multi-tenant architecture, high availability, enterprise-grade security, revenue model shifted from service delivery to software.
 >    • Product Demo: https://www.youtube.com/watch?v=Cc4HTB_iRDs
 >    • Case files: https://boringsystems.app/en/work/
 >
-> — Data and analytics function built from scratch at The Fabulous (bootstrapped · 20M+ DAU · consumer wellness): attribution, growth metrics, reliable measurement enabling aggressive spend. Built and led a team of 5: data science, data analysis, analytics engineering.
+> — Data and analytics function built from scratch at The Fabulous (bootstrapped · 20M+ DAU · consumer wellness mobile apps): built and led the team, established attribution, growth metrics, reliable measurement enabling aggressive spend.
 >    • Website: thefabulous.co
 >    • Case files: https://medium.com/@ahmedomrane
 >
 > **Portfolio:** boringsystems.app — vision, architecture, and key decisions are mine; execution runs through AI-native delivery.
+
+---
+
+## Positioning delta — 2026-05-05 v2 → v3
+
+**Inbound signal analysis (24 records). Verdict: strip founding-engineer activation keywords, restore org-build signal.**
+
+**v2 → v3 changes:**
+- Enakl lead: "Tech (Product & engineering) function built from scratch +" prepended — surfaces the function-build mandate before the delivery proof, matching CPTO-altitude inbound.
+- Enakl: "Built and led engineering teams from the ground up — 5 people + AI coding agents across both mandates." removed — headcount + tooling list was triggering Founding Engineer / Lead Dev reads; the function-build framing already carries the org-build signal without the IC activation.
+- Fabulous: "Built and led a team of 5: data science, data analysis, analytics engineering." removed — same reason; specific role list reads as IC team lead, not function builder.
+- Fabulous: "built and led the team, established" added before outcomes — org-build signal restored without headcount; keeps the leadership read without the ceiling.
+- Fabulous context: "consumer wellness" → "consumer wellness mobile apps" — removes ambiguity about what 20M+ DAU refers to.
+
+**What to watch:** Whether altitude of CPTO/function-builder inbound increases vs. Founding Engineer / Lead Dev. Next audit: 2026-05-30 per existing schedule.
 
 ---
 
@@ -62,6 +77,36 @@ Current public-facing positioning on LinkedIn. The headline + bio are the primar
 - "Governed AI orchestration" paragraph distinguishes the approach from AI heroism.
 - Proof section: tightened to two mandates, merged Enakl items, added team-building language, hands-on via AI not personally.
 - "Currently" block removed — to be added after Enakl exit (end of June 2026).
+
+---
+
+## Archive — as of 2026-05-03 (v2)
+
+### Headline
+
+> Tech & Product Lead | Complex Transformations & Greenfield | AI-Native Execution
+
+### Bio
+
+> You're running a complex transformation or a greenfield build — and you need one person who holds the business, product, and engineering decisions simultaneously without losing the thread.
+>
+> You own the vision. I bring the playbook, build the system, lead the team — and own the outcome end-to-end.
+>
+> The arc runs in sequence — business first, product next, engineering last — and I own all three, including building and leading the teams that ship.
+>
+> Governed AI orchestration is how the team ships at higher resolution — structured agent workflows with judgment at every handoff, integrated into the team's daily practice.
+>
+> **Previous Mandates:**
+>
+> — Vendor lock-in exit + SaaS transformation at Enakl (VC-backed · B2B/B2G mobility · emerging markets): proprietary TMS built from scratch, 10× operational scaling, zero-downtime migration; multi-tenant architecture, high availability, enterprise-grade security, revenue model shifted from service delivery to software. Built and led engineering teams from the ground up — 5 people + AI coding agents across both mandates.
+>    • Product Demo: https://www.youtube.com/watch?v=Cc4HTB_iRDs
+>    • Case files: https://boringsystems.app/en/work/
+>
+> — Data and analytics function built from scratch at The Fabulous (bootstrapped · 20M+ DAU · consumer wellness): attribution, growth metrics, reliable measurement enabling aggressive spend. Built and led a team of 5: data science, data analysis, analytics engineering.
+>    • Website: thefabulous.co
+>    • Case files: https://medium.com/@ahmedomrane
+>
+> **Portfolio:** boringsystems.app — vision, architecture, and key decisions are mine; execution runs through AI-native delivery.
 
 ---
 
@@ -144,4 +189,5 @@ Current public-facing positioning on LinkedIn. The headline + bio are the primar
 |---|---|---|---|---|
 | 2026-04-22 | v0 | Moved positioning up-stack; closed door on IC-under-manager; surfaced AI-native + fractional. | Inbound quality was delivery-heavy, not decision-level. | — |
 | 2026-05-03 | v1 | Buyer-first opener; explicit leader-builder contract; three-domain arc; governed orchestration; IC titles + tooling list removed. | GTM audit round 1: identity-led opener + IC-fallback collapsed altitude. | — |
-| 2026-05-03 | v2 | Dropped third trigger ("AI adoption"); flipped headline order; "own the outcome end-to-end" replaces "deliver impact". | GTM audit round 2: third trigger was vague; "impact" was generic. | 2026-05-30 |
+| 2026-05-03 | v2 | Dropped third trigger ("AI adoption"); flipped headline order; "own the outcome end-to-end" replaces "deliver impact". | GTM audit round 2: third trigger was vague; "impact" was generic. | — |
+| 2026-05-05 | v3 | Added function-build lead to Enakl; removed headcount + tooling list from both mandates; restored org-build signal in Fabulous without headcount. | Inbound analysis: founding-engineer activation keywords were collapsing altitude to Lead Dev / Founding Engineer reads. | 2026-05-30 |

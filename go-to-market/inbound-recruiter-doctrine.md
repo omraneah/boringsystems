@@ -86,11 +86,27 @@ Log what happens in the Airtable (Professional Transition → LinkedIn Inbound).
 
 ## Airtable — the live log
 
-The Professional Transition base in Airtable (LinkedIn Inbound table) is where every recruiter inbound is logged: date, role, company, recruiter quality, status, notes, reply. This is the ground truth for how the doctrine is performing in practice — the file you are reading now is the operating principle; the Airtable is the evidence.
+The Professional Transition base in Airtable (LinkedIn Inbound table) is the live interactive log where every recruiter inbound is tracked: date, role, company, recruiter quality, status, notes, reply. This is the ground truth for how the doctrine is performing in practice — the file you are reading now is the operating principle; the Airtable is the evidence.
 
 When checking progress on any of the hypotheses in this doctrine (does the freelance pivot land? do French recruiters forward the reframe? does internal recruiter quality predict conversion?), read the Airtable directly. Use the Airtable MCP connector (`mcp__claude_ai_Airtable__search_bases` → search "Professional Transition" → LinkedIn Inbound table) to pull the latest records. The notes field is where Ahmed logs whether the pivot was introduced and what happened.
 
 The file stays healthy as long as the Airtable is kept current. Read the Airtable, not this file, for current state.
+
+## Division of labor — operator vs. agent
+
+Ahmed (the operator) owns record creation and outcome tracking:
+- Creating each record in Airtable as an inbound lands
+- Filling the Initial DM field verbatim from LinkedIn
+- Filling metadata: Date, Role, Company, Recruiter URL, Recruiter Quality, Status
+- Logging call notes, outcome, and status changes after conversations happen
+
+The agent (`/log-inbound` skill) owns the copy-paste relief:
+- Ahmed pastes the full exchange dump (everything from his first reply onward)
+- The skill parses it, finds the matching record by recruiter/company name, formats the thread chronologically, and writes it to the "Rest of Exchange" column
+- Confirms in one line: recruiter name, role, company, and what was logged
+- Stops and surfaces if the record can't be identified unambiguously — never acts on ambiguity
+
+This split exists because LinkedIn copy-paste is mechanical friction, not judgment work. Ahmed's judgment stays on the Initial DM, the metadata, and what happens after calls. Future skills may take on more of this load — the pattern is: anything that is purely copy-paste-and-format is agent territory; anything that requires reading a situation belongs to Ahmed.
 
 ## Cross-references
 
