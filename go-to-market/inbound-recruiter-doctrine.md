@@ -84,10 +84,18 @@ The pivot is being tested conversation by conversation. Do not systematize befor
 
 Log what happens in the Airtable (Professional Transition → LinkedIn Inbound). Notes field: record whether the pivot was introduced and what the response was.
 
+## Airtable — the live log
+
+The Professional Transition base in Airtable (LinkedIn Inbound table) is where every recruiter inbound is logged: date, role, company, recruiter quality, status, notes, reply. This is the ground truth for how the doctrine is performing in practice — the file you are reading now is the operating principle; the Airtable is the evidence.
+
+When checking progress on any of the hypotheses in this doctrine (does the freelance pivot land? do French recruiters forward the reframe? does internal recruiter quality predict conversion?), read the Airtable directly. Use the Airtable MCP connector (`mcp__claude_ai_Airtable__search_bases` → search "Professional Transition" → LinkedIn Inbound table) to pull the latest records. The notes field is where Ahmed logs whether the pivot was introduced and what happened.
+
+The file stays healthy as long as the Airtable is kept current. Read the Airtable, not this file, for current state.
+
 ## Cross-references
 
 - `credibility-map.md` — zone detection for live qualification once in a conversation
 - `inbound-call-discipline.md` — how to run the call once booked
 - `linkedin.md` — the positioning the freelance pivot grounds out in
 - `strategy.md` Surface 5 — private DMs as positioning experiments
-- Airtable: Professional Transition → LinkedIn Inbound
+- Airtable: Professional Transition base → LinkedIn Inbound table (live log, read this for current state)
