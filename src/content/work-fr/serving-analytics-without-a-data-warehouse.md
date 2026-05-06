@@ -8,7 +8,7 @@ order: 7
 
 ## Contexte
 
-Après que la plateforme ait été internalisée et durcie pour les cas d'usage enterprise, la demande suivante était prévisible : les clients enterprise avaient besoin de voir leurs données opérationnelles.
+Après que la plateforme ait été [internalisée](/fr/work/breaking-vendor-lock-in/) et [durcie pour les cas d'usage enterprise](/fr/work/saas-hardening/), la demande suivante était prévisible : les clients enterprise avaient besoin de voir leurs données opérationnelles.
 
 Pas des exports bruts. Pas un outil BI externe au produit. Une visibilité KPI crédible dans le backoffice qu'ils utilisaient déjà — scopée à leur tenant, derrière le même RBAC que le reste de la plateforme.
 

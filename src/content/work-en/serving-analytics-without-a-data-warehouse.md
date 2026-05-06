@@ -8,7 +8,7 @@ order: 7
 
 ## Context
 
-After the platform had been reclaimed from vendor dependency and hardened for enterprise readiness, the next demand was predictable: enterprise customers needed to see data about their operations.
+After the platform had been [reclaimed from vendor dependency](/en/work/breaking-vendor-lock-in/) and [hardened for enterprise readiness](/en/work/saas-hardening/), the next demand was predictable: enterprise customers needed to see data about their operations.
 
 Not raw exports. Not a separate BI tool standing outside the product. Credible KPI visibility inside the backoffice dashboard they already used — scoped to their tenant, behind the same RBAC as the rest of the platform.
 
