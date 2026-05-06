@@ -100,6 +100,30 @@ If `slug ≠ slugified(title)`, flag as a **warning** with the proposed slug. Re
 
 If the description register clashes with the voice target — engineer jargon in a builder-target piece, or consumer-soft language in a technical piece — flag as a **warning** with the offending phrase quoted and a one-line proposed rewrite. Also flag if the description merely repeats the title in different words rather than sharpening the angle.
 
+### 3e. Self-containment check
+
+Every article must be navigable cold — a reader arriving with no prior knowledge of this site must never encounter a reference and ask "what is the author talking about?"
+
+**What counts as a contextual reference requiring treatment:**
+- Named prior events ("after the platform was reclaimed", "once ownership was established", "during the transition")
+- Named systems, initiatives, or phases the article didn't introduce ("the vendor lock-in phase", "the hardening programme", "the governance layer")
+- Any implicit sequence — "the next step was X" where the previous step wasn't explained in this article
+
+**The two acceptable treatments:**
+1. **Inline explanation** — one sentence that gives the reader just enough to understand what it refers to ("the platform had previously been owned by an external provider — that transition is the subject of a prior case")
+2. **Immediate inline link** — hyperlink on the specific phrase, pointing to the article where that context lives (e.g., "[reclaimed from vendor dependency](/en/work/breaking-vendor-lock-in/)")
+
+**The test:** Remove all cross-links. Does the article still make sense to a reader with no prior context? If no → those references need inline explanation or links restored.
+
+**Flag as blocker** if a contextual reference has neither treatment. The reader must never have to leave the article to understand the starting condition.
+
+**Flag as warning** if the reference has a link but the linked text is so generic the reader can't predict what they'll find ("as documented elsewhere" → blocker; "as documented in [Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/)" → ✓).
+
+**Do not flag:**
+- Universal technical context ("in a SaaS multi-tenant system…") — no article needs to explain this
+- Industry-standard events or patterns ("CAP theorem", "the S3 2017 outage") — technical readers share this
+- Context fully introduced within the same article
+
 ### 3d. List-pretending-to-be-prose check
 
 When prose enumerates three or more items in sequence, each opening with a labelled term ("Short-term: … Mid-term: … Long-term: …" or "Business: … Product: … Engineering: …"), separated by periods rather than as bullets, that's a list pretending to be a paragraph. Lists scan; prose-with-colons doesn't. See `docs/design-charter.md` § Lists vs prose.
@@ -132,6 +156,33 @@ When prose enumerates three or more items in sequence, each opening with a label
   - `archive` → principle or framing stated up-front, not buried.
 - Flag mismatches as **warnings**. This check is judgment-heavy — report the discrepancy with quoted text, don't autofix.
 
+### 4a. Work-series structural invariants
+
+**Only applies when the article is in the `work` collection.** These are hard invariants derived from the established series shape. Flag violations as **blockers** unless noted.
+
+**1. Execution bridge required.**
+After `## Execution Overview` (or equivalent execution section heading), there must be a 1–2 sentence bridge paragraph before the first `###` phase heading. The bridge names the sequencing logic — what the phases share, what they preserve. Missing bridge = blocker.
+- ✓ "The transition followed a strict order of operations. Each layer was stabilized before the next one was allowed to depend on it."
+- ✗ `## Execution Overview` immediately followed by `### Phase 1`
+
+**2. No config-level code in phase descriptions.**
+Work articles stay at architectural/pattern level. Flag as **blocker** any phase body that includes:
+- Framework config flags inline (e.g., `` `synchronize: false` ``, `` `migrationsRun: false` ``)
+- Internal schema identifiers (e.g., `` `search_path` ``, `` `app.current_tenant` ``)
+- Internal function names or hook names (e.g., `` `applyTenantPoolHooks` ``, `` `DataSource.query()` ``)
+The test: could a technical peer at a different company, building a different stack, extract the same architectural principle? If not, it's too implementation-specific. Describe the mechanism and its guarantee — not the knobs.
+
+**3. No unexplained acronyms.**
+Any acronym that is not universally standard (SQL, API, HTTP, JWT, RBAC are fine) must be followed by a parenthetical on first use, or replaced with plain language. Flag as **warning**.
+- ✗ "from the CLS context" with no explanation
+- ✓ "from the per-request async context" (plain) or "from the CLS (continuation-local storage) context" (parenthetical)
+- ✓ JWT — universally known, no parenthetical needed
+
+**4. Company attribution is the absolute last line.**
+"This work was executed at [Company]…" must be the very last line of the article — after any appendix, earlier experiment, or supplementary section. Flag as **blocker** if anything appears after it.
+
+**5. No internal file paths.** *(already in Step 7 — enforced here as a reminder for Work lane)* Paths like `` `src/modules/` ``, `` `cloud-infra/modules/rds/` `` are blockers.
+
 ### 5. Cross-link scan
 
 Check whether this article connects to already-published pieces it should be linking to.
@@ -162,6 +213,8 @@ Grep the article text for explicit anti-patterns from the charter:
 - "🚀", "✨", "💡" as section markers → blocker.
 - "Subscribe to our newsletter", popup/modal hooks → blocker.
 - Exit-intent, fake-urgency language — blocker.
+
+**Work lane — no internal project file paths (blocker):** If the article is in the `work` collection, grep the body for patterns matching internal project paths: strings that look like `src/`, `backend/`, `cloud-infra/`, `common/`, or any relative path containing `/` and suggesting a specific source tree location (e.g., `` `cloud-infra/modules/rds/` ``, `` `src/modules/analytics/` ``). Flag each occurrence as a **blocker**. Work articles describe decisions, architecture, and outcomes — never internal file system layout. The reader is a peer operator, not a contributor to the codebase.
 
 ### 8. Article tail check (optional)
 

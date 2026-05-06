@@ -8,7 +8,7 @@ order: 4
 
 ## Context
 
-After internal ownership of the platform had been established, the next strategic move was to make the system viable for more demanding external use cases.
+After [internal ownership of the platform had been established](/en/work/breaking-vendor-lock-in/), the next strategic move was to make the system viable for more demanding external use cases.
 
 That required a different standard than simply running reliably for an existing operating model.
 
@@ -179,5 +179,7 @@ Identity, access, contracts, data boundaries, and release discipline are not par
 They compound only when ordered correctly.
 
 The principles guiding the sequence — architecture boundary discipline, separation of concerns, root-cause fixes before workarounds — are the seven invariants in [Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack). The governance layer established during this work to keep those principles authoritative is documented in [Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance). For operators making the platform decisions this hardening addresses — especially the auth stack — the decision framework is in [The SaaS Authentication Stack Operators Keep Treating as One Decision](/en/writing/the-saas-authentication-stack-operators-keep-treating-as-one-decision).
+
+Adjacent to this hardening work, the platform also needed to surface KPI visibility for enterprise customers — a lightweight analytics capability that supported the sales pitch without adding data infrastructure the team was not ready to own. That work is documented in [Serving Analytics Without a Data Warehouse](/en/work/serving-analytics-without-a-data-warehouse/).
 
 This work was executed at [Enakl](https://enakl.com) — a VC-backed B2B/B2G mobility platform serving emerging markets.

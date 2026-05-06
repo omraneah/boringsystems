@@ -183,7 +183,7 @@ This case illustrates that reclaiming control from a deeply embedded external de
 
 When internals are inaccessible, the path forward is to observe precisely, move authority inward in stages, and remove dependencies only after the owned path has become dependable.
 
-The next stage of this work — strengthening the reclaimed system for more demanding external use cases — is documented in [Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/).
+The next stage of this work — strengthening the reclaimed system for more demanding external use cases — is documented in [Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/). The analytics surface built alongside the reclaimed platform — including an early analytics experiment during this phase and what replaced it — is documented in [Serving Analytics Without a Data Warehouse](/en/work/serving-analytics-without-a-data-warehouse/).
 
 The engineering principles that governed this transition — architecture boundary discipline, root-cause fixes over workarounds, planning and reviewability — are the same seven invariants described in [Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack). The governance layer built on top of the reclaimed system is documented in [Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance). And the question of what technical leadership role was needed to drive work of this scope — CTO, fractional advisor, or something else — is the subject of [Does Your Early-Stage Startup Actually Need a CTO?](/en/writing/does-your-startup-need-a-cto).
 

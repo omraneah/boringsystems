@@ -8,7 +8,7 @@ order: 5
 
 ## Context
 
-Once platform ownership had been established, a different structural weakness became obvious:
+Once [platform ownership had been established](/en/work/breaking-vendor-lock-in/), a different structural weakness became obvious:
 
 - architectural knowledge existed,
 - but architectural governance did not.

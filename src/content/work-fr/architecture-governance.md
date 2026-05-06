@@ -8,7 +8,7 @@ date: 2026-04-19
 
 ## Contexte
 
-Une fois la propriété de la plateforme établie, une autre faiblesse structurelle est devenue évidente :
+Une fois [la propriété de la plateforme établie](/fr/work/breaking-vendor-lock-in/), une autre faiblesse structurelle est devenue évidente :
 
 - la connaissance architecturale existait,
 - mais la gouvernance architecturale, non.
