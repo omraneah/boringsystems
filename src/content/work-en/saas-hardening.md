@@ -8,7 +8,7 @@ order: 4
 
 ## Context
 
-After internal ownership of the platform had been established, the next strategic move was to make the system viable for more demanding external use cases.
+After [internal ownership of the platform had been established](/en/work/breaking-vendor-lock-in/), the next strategic move was to make the system viable for more demanding external use cases.
 
 That required a different standard than simply running reliably for an existing operating model.
 

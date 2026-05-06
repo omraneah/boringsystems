@@ -100,6 +100,30 @@ If `slug ≠ slugified(title)`, flag as a **warning** with the proposed slug. Re
 
 If the description register clashes with the voice target — engineer jargon in a builder-target piece, or consumer-soft language in a technical piece — flag as a **warning** with the offending phrase quoted and a one-line proposed rewrite. Also flag if the description merely repeats the title in different words rather than sharpening the angle.
 
+### 3e. Self-containment check
+
+Every article must be navigable cold — a reader arriving with no prior knowledge of this site must never encounter a reference and ask "what is the author talking about?"
+
+**What counts as a contextual reference requiring treatment:**
+- Named prior events ("after the platform was reclaimed", "once ownership was established", "during the transition")
+- Named systems, initiatives, or phases the article didn't introduce ("the vendor lock-in phase", "the hardening programme", "the governance layer")
+- Any implicit sequence — "the next step was X" where the previous step wasn't explained in this article
+
+**The two acceptable treatments:**
+1. **Inline explanation** — one sentence that gives the reader just enough to understand what it refers to ("the platform had previously been owned by an external provider — that transition is the subject of a prior case")
+2. **Immediate inline link** — hyperlink on the specific phrase, pointing to the article where that context lives (e.g., "[reclaimed from vendor dependency](/en/work/breaking-vendor-lock-in/)")
+
+**The test:** Remove all cross-links. Does the article still make sense to a reader with no prior context? If no → those references need inline explanation or links restored.
+
+**Flag as blocker** if a contextual reference has neither treatment. The reader must never have to leave the article to understand the starting condition.
+
+**Flag as warning** if the reference has a link but the linked text is so generic the reader can't predict what they'll find ("as documented elsewhere" → blocker; "as documented in [Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/)" → ✓).
+
+**Do not flag:**
+- Universal technical context ("in a SaaS multi-tenant system…") — no article needs to explain this
+- Industry-standard events or patterns ("CAP theorem", "the S3 2017 outage") — technical readers share this
+- Context fully introduced within the same article
+
 ### 3d. List-pretending-to-be-prose check
 
 When prose enumerates three or more items in sequence, each opening with a labelled term ("Short-term: … Mid-term: … Long-term: …" or "Business: … Product: … Engineering: …"), separated by periods rather than as bullets, that's a list pretending to be a paragraph. Lists scan; prose-with-colons doesn't. See `docs/design-charter.md` § Lists vs prose.

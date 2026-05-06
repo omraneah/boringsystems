@@ -8,7 +8,7 @@ date: 2026-04-19
 
 ## Contexte
 
-Après que la propriété interne de la plateforme avait été établie, le prochain mouvement stratégique était de rendre le système viable pour des cas d'usage externes plus exigeants.
+Après que [la propriété interne de la plateforme avait été établie](/fr/work/breaking-vendor-lock-in/), le prochain mouvement stratégique était de rendre le système viable pour des cas d'usage externes plus exigeants.
 
 Cela nécessitait un standard différent de simplement fonctionner de façon fiable pour un modèle opérationnel existant.
 
