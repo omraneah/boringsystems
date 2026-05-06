@@ -38,6 +38,10 @@ Deliver tenant-scoped KPI visibility inside the existing backoffice dashboard �
 
 ## Execution Overview
 
+The transition followed four phases, each one tightening isolation without foreclosing the option to upgrade infrastructure later.
+
+---
+
 ### Phase 1 — Build the Surface, Accept the Temporary Risk
 
 The first step was to expose analytics at all.
@@ -62,11 +66,11 @@ The replica is asynchronous. Lag is acceptable for monthly aggregates and is doc
 
 ### Phase 3 — Wire the Isolation: Named DataSource, Read-Only by Construction
 
-The analytics module was wired to a dedicated TypeORM DataSource — named `analytics`, registered separately from the primary DataSource. Configured with `synchronize: false`, `migrationsRun: false`, and no entity registration. No write operation is expressible through the framework against it. Read-only is a structural constraint, not a policy.
+The analytics module was wired to a dedicated TypeORM DataSource — named `analytics`, registered separately from the primary. No entity registration. The framework expresses no write operations against it. Read-only is a structural constraint, not a policy.
 
-Queries run as parameterized raw SQL. No ORM entity references. No cross-DataSource joins. Tenant scoping is applied through the same mechanism as the primary DataSource: the same tenant pool hook sets the correct `search_path` from the CLS context on every connection acquire, validated against the tenant allowlist. One tenancy model across the API — analytics queries are not exempt.
+Queries run as parameterized raw SQL. No ORM entity references. No cross-DataSource joins. Tenant scoping follows the same mechanism as the primary DataSource: a pool hook applies the correct schema scope on every connection acquire, validated against the tenant allowlist. One tenancy model across the API — analytics queries are not exempt.
 
-Credentials are managed in AWS Secrets Manager — `{username, password, host, port, dbname}` — loaded at boot through the same pattern as primary database credentials. The backend has no opinion on what is behind the analytics secret. Each environment configures its own. A missing or malformed secret fails loudly at boot; no silent fallback.
+Credentials are managed in AWS Secrets Manager and loaded at boot through the same pattern as primary database credentials. The backend has no opinion on what is behind the analytics secret. Each environment configures its own. A missing or malformed secret fails loudly at boot; no silent fallback.
 
 The resulting topology, once Phase 3 is complete:
 
@@ -130,16 +134,6 @@ The key outcome was not a dashboard. It was the decision not to overcommit.
 
 ---
 
-## Closing Note
-
-This case illustrates that analytics at an early stage is less an infrastructure problem than a sequencing problem. The right infrastructure at the wrong moment — before a function exists to own it, before the KPI vocabulary has stabilized — creates surface and cost without value. The right infrastructure at the right moment costs almost nothing to adopt.
-
-The data isolation path described here is one layer of the broader platform hardening programme documented in [Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/). The vendor lock-in context that preceded it — and the first dbt experiment — is documented in [Reclaiming System Ownership Under Vendor Lock-In](/en/work/breaking-vendor-lock-in/). The architectural boundaries governing this surface — production data integrity, read-only construction, tenant scoping — are maintained under the governance model described in [Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance/). A parallel hardening case — auth layer boundary separation — is documented in [Untangling Auth Layer Boundaries in a Running System](/en/work/untangling-auth-layer-boundaries-in-a-running-system/).
-
-This work was executed at [Enakl](https://enakl.com) — a VC-backed B2B/B2G mobility platform serving emerging markets.
-
----
-
 ## An Earlier Experiment
 
 Before the current architecture, there was a first attempt worth indexing here.
@@ -153,3 +147,13 @@ The lesson was not that the tooling was wrong. It was that analytics infrastruct
 When internal platform ownership was established, Retool replaced that layer for internal ad-hoc needs — direct connection to the same data source, export and drill-down workflows that internal teams actually used, without the overhead of a pipeline nobody owned.
 
 The principle extracted: analytics tooling should scale forward, not backward. Introduce it when the function exists to own it — not when the engineering capacity exists to build it.
+
+---
+
+## Closing Note
+
+This case illustrates that analytics at an early stage is less an infrastructure problem than a sequencing problem. The right infrastructure at the wrong moment — before a function exists to own it, before the KPI vocabulary has stabilized — creates surface and cost without value. The right infrastructure at the right moment costs almost nothing to adopt.
+
+The data isolation path described here is one layer of the broader platform hardening programme documented in [Hardening a Live Platform for Enterprise Readiness](/en/work/saas-hardening/). The vendor lock-in context that preceded it — and the first dbt experiment — is documented in [Reclaiming System Ownership Under Vendor Lock-In](/en/work/breaking-vendor-lock-in/). The architectural boundaries governing this surface — production data integrity, read-only construction, tenant scoping — are maintained under the governance model described in [Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance/). A parallel hardening case — auth layer boundary separation — is documented in [Untangling Auth Layer Boundaries in a Running System](/en/work/untangling-auth-layer-boundaries-in-a-running-system/).
+
+This work was executed at [Enakl](https://enakl.com) — a VC-backed B2B/B2G mobility platform serving emerging markets.

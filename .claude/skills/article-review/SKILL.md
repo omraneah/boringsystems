@@ -132,6 +132,33 @@ When prose enumerates three or more items in sequence, each opening with a label
   - `archive` → principle or framing stated up-front, not buried.
 - Flag mismatches as **warnings**. This check is judgment-heavy — report the discrepancy with quoted text, don't autofix.
 
+### 4a. Work-series structural invariants
+
+**Only applies when the article is in the `work` collection.** These are hard invariants derived from the established series shape. Flag violations as **blockers** unless noted.
+
+**1. Execution bridge required.**
+After `## Execution Overview` (or equivalent execution section heading), there must be a 1–2 sentence bridge paragraph before the first `###` phase heading. The bridge names the sequencing logic — what the phases share, what they preserve. Missing bridge = blocker.
+- ✓ "The transition followed a strict order of operations. Each layer was stabilized before the next one was allowed to depend on it."
+- ✗ `## Execution Overview` immediately followed by `### Phase 1`
+
+**2. No config-level code in phase descriptions.**
+Work articles stay at architectural/pattern level. Flag as **blocker** any phase body that includes:
+- Framework config flags inline (e.g., `` `synchronize: false` ``, `` `migrationsRun: false` ``)
+- Internal schema identifiers (e.g., `` `search_path` ``, `` `app.current_tenant` ``)
+- Internal function names or hook names (e.g., `` `applyTenantPoolHooks` ``, `` `DataSource.query()` ``)
+The test: could a technical peer at a different company, building a different stack, extract the same architectural principle? If not, it's too implementation-specific. Describe the mechanism and its guarantee — not the knobs.
+
+**3. No unexplained acronyms.**
+Any acronym that is not universally standard (SQL, API, HTTP, JWT, RBAC are fine) must be followed by a parenthetical on first use, or replaced with plain language. Flag as **warning**.
+- ✗ "from the CLS context" with no explanation
+- ✓ "from the per-request async context" (plain) or "from the CLS (continuation-local storage) context" (parenthetical)
+- ✓ JWT — universally known, no parenthetical needed
+
+**4. Company attribution is the absolute last line.**
+"This work was executed at [Company]…" must be the very last line of the article — after any appendix, earlier experiment, or supplementary section. Flag as **blocker** if anything appears after it.
+
+**5. No internal file paths.** *(already in Step 7 — enforced here as a reminder for Work lane)* Paths like `` `src/modules/` ``, `` `cloud-infra/modules/rds/` `` are blockers.
+
 ### 5. Cross-link scan
 
 Check whether this article connects to already-published pieces it should be linking to.

@@ -38,6 +38,10 @@ Livrer une visibilité KPI scopée par tenant dans le backoffice existant — sa
 
 ## Exécution
 
+La transition a suivi quatre phases, chacune resserrant l'isolation sans fermer la porte à une meilleure infrastructure plus tard.
+
+---
+
 ### Phase 1 — Exposer la surface, accepter le risque temporaire
 
 La première étape était d'exposer une analytics quelle qu'elle soit.
@@ -62,11 +66,11 @@ Le replica est asynchrone. Le lag est acceptable pour des agrégats mensuels —
 
 ### Phase 3 — Câbler l'isolation : DataSource nommée, read-only par construction
 
-Le module analytics a été câblé sur une DataSource TypeORM dédiée — nommée `analytics`, enregistrée séparément de la DataSource primaire. Configurée avec `synchronize: false`, `migrationsRun: false`, et aucune entity enregistrée. Aucune opération d'écriture n'est exprimable via le framework contre elle. Le read-only est une contrainte structurelle, pas une politique.
+Le module analytics a été câblé sur une DataSource TypeORM dédiée — nommée `analytics`, enregistrée séparément de la DataSource primaire. Aucune entity enregistrée. Le framework n'exprime aucune opération d'écriture contre elle. Le read-only est une contrainte structurelle, pas une politique.
 
-Les requêtes tournent en raw SQL paramétré. Pas de références aux entities ORM. Pas de joins cross-DataSource. Le tenant scoping est appliqué via le même mécanisme que la DataSource primaire : le même tenant pool hook positionne le bon `search_path` depuis le contexte CLS à chaque acquisition de connexion, validé contre la allowlist de tenants. Un seul modèle de tenancy à travers l'API — les requêtes analytiques n'y font pas exception.
+Les requêtes tournent en raw SQL paramétré. Pas de références aux entities ORM. Pas de joins cross-DataSource. Le tenant scoping suit le même mécanisme que la DataSource primaire : un pool hook applique le bon périmètre de schéma à chaque acquisition de connexion, validé contre la allowlist de tenants. Un seul modèle de tenancy à travers l'API — les requêtes analytiques n'y font pas exception.
 
-Les credentials sont gérés dans AWS Secrets Manager — `{username, password, host, port, dbname}` — chargés au démarrage selon le même pattern que les credentials de la base primaire. Le backend n'a pas d'opinion sur ce qui se trouve derrière le secret analytics. Chaque environnement configure le sien. Un secret manquant ou malformé fait échouer bruyamment au démarrage ; pas de fallback silencieux.
+Les credentials sont gérés dans AWS Secrets Manager et chargés au démarrage selon le même pattern que les credentials de la base primaire. Le backend n'a pas d'opinion sur ce qui se trouve derrière le secret analytics. Chaque environnement configure le sien. Un secret manquant ou malformé fait échouer bruyamment au démarrage ; pas de fallback silencieux.
 
 La topologie résultante, une fois la Phase 3 complète :
 
@@ -130,16 +134,6 @@ Le résultat clé n'était pas un dashboard. C'était la décision de ne pas s'e
 
 ---
 
-## Note de clôture
-
-Ce cas illustre que l'analytics en phase précoce est moins un problème d'infrastructure qu'un problème de séquençage. La bonne infrastructure au mauvais moment — avant qu'une fonction existe pour la prendre en charge, avant que le vocabulaire KPI se soit stabilisé — crée de la surface et du coût sans valeur. La bonne infrastructure au bon moment demande presque rien pour être adoptée.
-
-Le chemin d'isolation des données décrit ici est l'une des couches du programme de hardening documenté dans [Renforcer une plateforme en production pour l'entreprise](/fr/work/saas-hardening/). Le contexte de vendor lock-in qui l'a précédé — et la première expérience dbt — est documenté dans [Reprendre la maîtrise du système face au verrouillage fournisseur](/fr/work/breaking-vendor-lock-in/). Les frontières architecturales qui gouvernent cette surface — intégrité des données de production, construction read-only, tenant scoping — sont maintenues sous le modèle de gouvernance décrit dans [Établir une gouvernance d'architecture transversale](/fr/work/architecture-governance/). Un cas de hardening parallèle — la séparation des frontières de couche d'authentification — est documenté dans [Délimiter les couches d'authentification dans un système en production](/fr/work/untangling-auth-layer-boundaries-in-a-running-system/).
-
-Ce travail a été réalisé chez [Enakl](https://enakl.com) — une plateforme B2B/B2G de mobilité en marchés émergents, soutenue par des VCs.
-
----
-
 ## Une expérience précoce
 
 Avant l'architecture actuelle, il y avait eu une première tentative — utile à indexer ici.
@@ -153,3 +147,13 @@ La leçon n'était pas que l'outillage était mauvais. C'était que de l'infrast
 Quand la propriété interne de la plateforme a été établie, Retool a remplacé cette couche pour les besoins ad hoc internes — connexion directe à la même source de données, workflows d'export et de drill-down que les équipes internes utilisaient réellement, sans la charge d'un pipeline dont personne n'était responsable.
 
 Le principe extrait : les outils analytiques doivent scaler vers l'avant, pas vers l'arrière. On les introduit quand la fonction existe pour les prendre en charge — pas quand la capacité engineering existe pour les construire.
+
+---
+
+## Note de clôture
+
+Ce cas illustre que l'analytics en phase précoce est moins un problème d'infrastructure qu'un problème de séquençage. La bonne infrastructure au mauvais moment — avant qu'une fonction existe pour la prendre en charge, avant que le vocabulaire KPI se soit stabilisé — crée de la surface et du coût sans valeur. La bonne infrastructure au bon moment demande presque rien pour être adoptée.
+
+Le chemin d'isolation des données décrit ici est l'une des couches du programme de hardening documenté dans [Renforcer une plateforme en production pour l'entreprise](/fr/work/saas-hardening/). Le contexte de vendor lock-in qui l'a précédé — et la première expérience dbt — est documenté dans [Reprendre la maîtrise du système face au verrouillage fournisseur](/fr/work/breaking-vendor-lock-in/). Les frontières architecturales qui gouvernent cette surface — intégrité des données de production, construction read-only, tenant scoping — sont maintenues sous le modèle de gouvernance décrit dans [Établir une gouvernance d'architecture transversale](/fr/work/architecture-governance/). Un cas de hardening parallèle — la séparation des frontières de couche d'authentification — est documenté dans [Délimiter les couches d'authentification dans un système en production](/fr/work/untangling-auth-layer-boundaries-in-a-running-system/).
+
+Ce travail a été réalisé chez [Enakl](https://enakl.com) — une plateforme B2B/B2G de mobilité en marchés émergents, soutenue par des VCs.
