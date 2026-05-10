@@ -107,3 +107,13 @@ Do not describe yourself as:
 - Would this work strengthen a proof case within 30 days?
 
 Two consecutive weeks of drift require correction immediately.
+
+## 8) Park-Craft-Under-Unstable-Assumptions
+
+**Pattern:** When a craft decision depends on market or positioning signals that haven't been verified, park the craft work, do a light reconnaissance pass, then make a minimal targeted fix — rather than committing craft energy to a direction that might need reversing.
+
+**When to apply:** Craft work that touches positioning, copy, naming, or audience assumptions — before extensive work begins, ask: "Is the underlying assumption stable enough to build on?" If the answer is "probably not yet," park, look first, then fix at the right scope.
+
+**What the pattern isn't:** A license to delay indefinitely or to make all craft decisions await research. The reconnaissance should be light (a session, not a project) and the fix should be micro (address the validated signal, nothing more).
+
+**Compounding:** The pattern compounds because it prevents the sunk-cost pressure of "I already built it this way." Short reconnaissance + micro-fix is almost always faster than a craft rework after the wrong assumption is locked in.

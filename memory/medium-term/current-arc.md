@@ -20,7 +20,8 @@ Re-stabilize after the transition. The first phase that is fully on his own term
 - **Body, place, family, sleep, presence — non-negotiable, intact every day.** The Engagement Validity Filter (`operational-doctrine/Engagement-Validity-Filter.md`) is the operational test for any engagement — never replay the failure shape it names.
 - **Deep market analysis continuing.** How the market is shifting, what kinds of roles, what kinds of companies, what kinds of contracts, who the decision makers are. **Mapping is fun. Highest risk is shortcutting it.** Can run through Q3-Q4.
 - **Reactivation continuing.** Warm graph re-engagement, increasingly as a game (testing messaging, watching what resonates).
-- **Boringsystems publishing continuing.** Heat is there.
+- **Boringsystems publishing continuing.** Heat is there. Frame: harness is exhibit A, crystallized judgment doctrine is the argument — the published essay or case file that makes the operating mode legible compounds harder than refining the harness itself.
+- **Harness governance (active phase task).** The harness audit (skills + agents + hooks inventory) is overdue and load-bearing for cognition. Not a backlog item — a current-phase constraint on working clarity.
 - **Things in the world continuing.** Publishing apps where natural. Exploring agentic engineering + organization.
 
 ## The "fuck yes" rhythm — if it shows up
