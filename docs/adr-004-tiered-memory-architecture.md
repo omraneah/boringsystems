@@ -13,7 +13,7 @@ The workspace had a flat 37-file `memory/` folder at the auto-memory location pl
 The state had three real costs in practice:
 
 1. **No way to tell which rules to interrogate vs. which to trust.** Identity preferences and constitutional invariants sat alphabetically interleaved.
-2. **Active project state degraded long-term reasoning.** When BOR-24 deferred items lived next to laptop-agnostic, both got equal weight in routing.
+2. **Active project state degraded long-term reasoning.** When deferred backlog items lived next to laptop-agnostic constitutional rules, both got equal weight in routing.
 3. **No closed loop.** Rules accumulated. Nothing prompted condensation, promotion, or archival. The implicit assumption was that everything earned permanence on first write.
 
 ## Decision
