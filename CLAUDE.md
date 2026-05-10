@@ -37,8 +37,10 @@ All code is authored through Claude Code. No manual editing.
 | Architecture + toolchain + typed-registry pattern | `docs/architecture-and-toolchain.md` |
 | Home-page selection contract (featured/highlight/order) | `docs/adr-002-home-selection.md` |
 | Local-first enforcement tier (no CI, pre-commit hook, upgrade trigger) | `docs/adr-003-enforcement-tier.md` |
-| Design charter (voice, layout, lane alignment) | `docs/design-charter.md` |
-| Target audiences (technical vs builder voice targets) | `docs/target-audiences.md` |
+| Product context (compact agent-loadable: register, purpose, anti-references) | `PRODUCT.md` |
+| Design token spec (colors, typography, spacing, component rules) | `DESIGN.md` |
+| Design charter (voice, layout, lane alignment — full narrative) | `docs/design-charter.md` |
+| Target audiences (technical vs builder voice targets — full profiles) | `docs/target-audiences.md` |
 | French voice guide + do-not-translate list | `docs/french-guide.md` |
 | Analytics taxonomy, event schema, UTM template, tracking checklist | `docs/analytics.md` |
 | Analytics tooling decision (Mixpanel, GDPR posture, upgrade triggers) | `docs/adr-004-analytics-tooling.md` |
