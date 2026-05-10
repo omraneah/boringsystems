@@ -23,6 +23,14 @@ const highlights = allArticles
   })
   .slice(0, 4);
 
+const latestTimestamp = allArticles.length > 0
+  ? Math.max(...allArticles.map(({ entry }) => new Date(entry.data.date).getTime()))
+  : null;
+const kickerDate = latestTimestamp ? formatDate(new Date(latestTimestamp), 'fr') : null;
+const kicker = ['Ahmed Omrane', 'AI, Systems, Org-building', kickerDate]
+  .filter(Boolean)
+  .join(' · ');
+
 const laneLabelsFr: Record<'writing' | 'work' | 'building', string> = {
   'writing': 'Writing',
   'work': 'Work',
@@ -37,6 +45,7 @@ const laneLabelsFr: Record<'writing' | 'work' | 'building', string> = {
 >
   <div class="hero">
     <div class="hero-content">
+      <p class="hero-kicker">{kicker}</p>
       <h1 class="hero-heading">Des systèmes qui scalent.<br />Un jugement qui tient.</h1>
       <p class="hero-sub">Le leadership technique sous contrainte. Études de cas et cadres de l'intérieur.</p>
     </div>
@@ -89,6 +98,15 @@ const laneLabelsFr: Record<'writing' | 'work' | 'building', string> = {
   .hero-content {
     flex: 1 1 0;
     min-width: 0;
+  }
+
+  .hero-kicker {
+    font-family: var(--font-ui);
+    font-size: var(--size-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-md);
   }
 
   .hero-heading {
