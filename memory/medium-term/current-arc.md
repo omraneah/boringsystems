@@ -62,6 +62,17 @@ The 2-3yr sprint that builds the long-term path to the North Star starts emergin
 3. **Build small wins along the way.** Plural, not singular. Confidence comes from many tangible movements, not one big bet.
 4. **Body-first compass at every decision.** Heat = wherever the work feels deeply aligned with long-term being. Not surface-by-surface heat-mapping. Coherence-check, not heat-map.
 
+## Navigation compass (transition-period)
+
+During this phase, energy is often low, feelings heavy, confusion present. The compass is simple:
+
+**Lightness / clarity / fun increasing → continue.**
+**Heaviness increasing (sadness, confusion, fear, apathy, overwhelm, pettiness) → stop, change direction.**
+
+This is not a mood tracker. It's a directional signal. Example: a conversation about a potential collaboration that starts heavy and ends lighter = good direction. A scope that feels pressured and depleting from first contact = wrong direction, regardless of the money or the logic.
+
+Apply at decisions, conversations, engagement evaluations, and creative work alike. Feelings are data — they arrive faster than reasoning does.
+
 ## Cross-references
 
 - North star (being layer) → `../long-term/I-AM.md`
