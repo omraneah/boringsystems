@@ -43,7 +43,7 @@
 `medium-term/current-arc.md` — six-month re-stabilization plan (July → December 2026). Auto-loaded.
 `medium-term/current-context.md` — current life-phase context, capability profile, market specifics, re-entry posture. On-demand.
 `medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Engagement Validity Filter. On-demand.
-`medium-term/market/` — capability-led positioning, market lens, sales-mode tactics, visibility OS. On-demand.
+`medium-term/market/` — capability-led positioning, market lens, sales-mode tactics, visibility OS, engagement shapes & pricing. On-demand.
 `medium-term/projects/` — project metadata (advisory board composition, etc.). On-demand.
 
 The interpretive layer between short-term episodic record and long-term constitutional anchors. The `project-management/` sub-folder is structural (governs every session) and therefore auto-loads; the rest of medium-term is contextual and loads on demand.
