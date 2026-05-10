@@ -28,14 +28,6 @@ const highlights = allArticles
   })
   .slice(0, 4);
 
-const latestTimestamp = allArticles.length > 0
-  ? Math.max(...allArticles.map(({ entry }) => new Date(entry.data.date).getTime()))
-  : null;
-const kickerDate = latestTimestamp ? formatDate(new Date(latestTimestamp), 'en') : null;
-const kicker = ['Ahmed Omrane', 'AI, Systems, Org-building', kickerDate]
-  .filter(Boolean)
-  .join(' · ');
-
 const laneLabels: Record<'writing' | 'work' | 'building', string> = {
   'writing': 'Writing',
   'work': 'Work',
@@ -49,7 +41,6 @@ const laneLabels: Record<'writing' | 'work' | 'building', string> = {
 >
   <div class="hero">
     <div class="hero-content">
-      <p class="hero-kicker">{kicker}</p>
       <h1 class="hero-heading">Systems that scale.<br />Judgment that holds.</h1>
       <p class="hero-sub">Engineering leadership under constraint. Case files and frameworks from the inside.</p>
     </div>
@@ -102,15 +93,6 @@ const laneLabels: Record<'writing' | 'work' | 'building', string> = {
   .hero-content {
     flex: 1 1 0;
     min-width: 0;
-  }
-
-  .hero-kicker {
-    font-family: var(--font-ui);
-    font-size: var(--size-xs);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: var(--space-md);
   }
 
   .hero-heading {
