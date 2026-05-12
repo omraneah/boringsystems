@@ -1,6 +1,6 @@
 ---
 title: "Engineering AI Adoption on a Live Platform"
-description: "Engineering AI adoption on a live platform from first adopter to 90% LLM-written code in 14 months — no quality drop, no forced departures."
+description: "Engineering AI adoption on a live platform from first adopter to 90% AI-written code in 14 months — no quality drop, no forced departures."
 date: 2026-05-12
 highlight: true
 featured: true
@@ -102,7 +102,7 @@ This was not a sign to retreat. It was the signal that governance was now needed
 
 The first governance moves:
 
-- **Architectural rules codified in a form an LLM could apply.** The team's architectural-decision records were rewritten with explicit invariants, allowed/forbidden zones, and responsibility boundaries — phrased so a model loading them as context would respect them at generation time. The same discipline is documented end-to-end in *[Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance)*.
+- **Architectural rules codified in a form an AI agent could apply.** The team's architectural-decision records were rewritten with explicit invariants, allowed/forbidden zones, and responsibility boundaries — phrased so a model loading them as context would respect them at generation time. The same discipline is documented end-to-end in *[Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance)*.
 - **The rules indexed inside the IDE.** The codified rules were made available through the team's Cursor integration so every session loaded them before any code was generated.
 - **A standing skill — a project-scoped command — to invoke these rules on demand**, so engineers could run a structural check against the codified bar before opening a review.
 
@@ -118,7 +118,7 @@ The momentum was uneven. Some of the next wave moved fast — they had been watc
 
 **Resistance pattern 1 — the engineer hiding behind hacks.**
 
-One engineer had been operating slightly below the team's standard for some time, shipping through assertiveness and informal workarounds rather than clean engineering. The new tooling, particularly the codified rule layer and the LLM-as-reviewer step that came later, exposed this more sharply than the pre-AI environment had.
+One engineer had been operating slightly below the team's standard for some time, shipping through assertiveness and informal workarounds rather than clean engineering. The new tooling, particularly the codified rule layer and the agent-as-reviewer step that came later, exposed this more sharply than the pre-AI environment had.
 
 Quality on this engineer's branches deteriorated visibly. The friction was not the tooling. The friction was that the floor had risen and the gap was now legible.
 
@@ -144,9 +144,9 @@ By mid-period, the team was operating with most of the engineers using the tooli
 
 Three additions:
 
-- **A second LLM as first-pass reviewer.** The agent read every PR against the codified rules and architectural boundaries before any human reviewer engaged. The engineer corrected on the agent's feedback first. The human reviewer then came in last, judging substance instead of catching trivia.
+- **A second AI agent as first-pass reviewer.** The agent read every PR against the codified rules and architectural boundaries before any human reviewer engaged. The engineer corrected on the agent's feedback first. The human reviewer then came in last, judging substance instead of catching trivia.
 - **CI/CD guardrails enforcing the rule layer at machine level.** Tests, principle-violation checks, boundary-crossing checks. Cheap mistakes caught at the cheapest possible moment.
-- **Codified engineering principles distilled for both LLMs and engineers.** Not a documentation site. A small, dense set of rules loaded into every session by every engineer, regardless of which agent they were running. The principles are the same ones documented separately in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*.
+- **Codified engineering principles distilled for both AI agents and engineers.** Not a documentation site. A small, dense set of rules loaded into every session by every engineer, regardless of which agent they were running. The principles are the same ones documented separately in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*.
 
 The orchestration discipline that holds this kind of multi-agent layer together — what gets written down, how memory is tiered, how the loop stays closed — is the substrate described in *[Agentic AI Orchestration — 7 Operating Principles](/en/writing/orchestration-principles-that-outlive-the-model)*.
 

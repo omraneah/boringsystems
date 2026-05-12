@@ -39,6 +39,10 @@ Chaque déploiement technologique en engineering suit la même forme. Les noms c
 
 **Le chasm de Moore** se loge entre Early Adopters et Early Majority. Les visionnaires de gauche tolèrent la discontinuité ; les pragmatiques de droite exigent de la productivité prouvée. La plupart des rollouts s'enlisent là.
 
+![Courbe en cloche montrant les cinq catégories d'adopteurs selon la Diffusion of Innovations de Rogers : Innovators 2,5 %, Early Adopters 13,5 %, Early Majority 34 %, Late Majority 34 %, Laggards 16 %, avec le Chasm de Moore marqué entre Early Adopters et Early Majority.](/diffusion-of-innovations.svg)
+
+*Schéma : « Innovation Adoption Curve » par Jim McKeeth, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Innovation_Adoption_Curve.svg).*
+
 Où se situent vraiment les équipes engineering en 2026 — c'est le point que la plupart des executives lisent à l'envers :
 
 - **L'usage brut des outils est post-chasm.** L'enquête Stack Overflow 2025 mesure 84 % des développeurs en usage IA, contre 76 % l'année précédente. Le rapport DORA 2025 le place à 95 %, avec une corrélation désormais positive entre IA et throughput de livraison.
@@ -115,9 +119,9 @@ La dérive n'est pas un échec de le tooling IA. C'est le résultat naturel de d
 
 La gouvernance se loge à trois endroits :
 
-- **Des règles architecturales codifiées**, écrites dans une forme qu'un LLM peut appliquer au moment de la génération. Pas de la documentation. Des contraintes opérationnelles, chargées avant chaque session. Le mécanisme est le même que dans *[Establishing Cross-Surface Architecture Governance](/fr/work/architecture-governance)*.
+- **Des règles architecturales codifiées**, écrites dans une forme qu'un agent IA peut appliquer au moment de la génération. Pas de la documentation. Des contraintes opérationnelles, chargées avant chaque session. Le mécanisme est le même que dans *[Establishing Cross-Surface Architecture Governance](/fr/work/architecture-governance)*.
 - **Des garde-fous CI/CD** qui attrapent les modes d'échec évidents — tests non lancés, principes violés, frontières franchies. Erreurs bon marché attrapées au moment le moins cher possible.
-- **LLM-as-reviewer avant human-as-reviewer.** L'agent lit la PR contre les règles codifiées en premier. L'engineer corrige sur le feedback de l'agent. Le reviewer humain arrive en dernier, jugeant la substance au lieu d'attraper les détails.
+- **agent-as-reviewer avant human-as-reviewer.** L'agent lit la PR contre les règles codifiées en premier. L'engineer corrige sur le feedback de l'agent. Le reviewer humain arrive en dernier, jugeant la substance au lieu d'attraper les détails.
 
 La gouvernance n'est pas ajoutée au démarrage. L'ajouter au démarrage signale la méfiance et ralentit les champions. On l'ajoute au moment où la première dérive qualité durable apparaît dans le travail — et on traite ce moment comme étant à l'heure, pas en retard.
 
@@ -150,7 +154,7 @@ Deux schémas apparaissent de façon constante dans les équipes engineering pen
 
 **Schéma 1 — L'engineer qui se cache derrière des hacks.**
 
-Cet engineer était déjà légèrement en-dessous du standard avant le rollout. Il livrait via des hacks et des overrides au ton assuré. Le nouveau tooling — particulièrement les règles architecturales codifiées et le reviewer LLM — expose ces hacks plus agressivement. L'engineer sent le plancher monter et pousse en retour.
+Cet engineer était déjà légèrement en-dessous du standard avant le rollout. Il livrait via des hacks et des overrides au ton assuré. Le nouveau tooling — particulièrement les règles architecturales codifiées et le reviewer agent — expose ces hacks plus agressivement. L'engineer sent le plancher monter et pousse en retour.
 
 Le traitement est direct. Mentorer, coacher, monter la barre en privé. Le pairer avec un champion. Poser des attentes explicites et une intensité de revue explicite. La plupart des engineers de ce schéma rentrent dans le nouveau standard. Quelques-uns non — et à ce moment-là, la situation devient une conversation de performance, pas une conversation d'adoption. Garder les deux séparées publiquement. Les confondre empoisonne le rollout pour le reste de l'équipe.
 

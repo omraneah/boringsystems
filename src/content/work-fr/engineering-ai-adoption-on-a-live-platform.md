@@ -1,6 +1,6 @@
 ---
 title: "Adoption IA en engineering sur une plateforme en production"
-description: "Conduire l'adoption IA sur une plateforme en production, du premier adopter à 90 % de code LLM en 14 mois — sans dérive qualité, sans départ forcé."
+description: "Conduire l'adoption IA sur une plateforme en production, du premier adopter à 90 % de code écrit par IA en 14 mois — sans dérive qualité, sans départ forcé."
 date: 2026-05-12
 highlight: true
 featured: true
@@ -102,7 +102,7 @@ Ce n'était pas un signal de battre en retraite. C'était le signal que la gouve
 
 Les premiers mouvements de gouvernance :
 
-- **Règles architecturales codifiées dans une forme qu'un LLM peut appliquer.** Les ADR de l'équipe ont été réécrits avec des invariants explicites, des zones autorisées/interdites, et des limites de responsabilité — formulés pour qu'un modèle les chargeant en contexte les respecte au moment de la génération. La même discipline est documentée de bout en bout dans *[Établir une gouvernance d'architecture transversale](/fr/work/architecture-governance)*.
+- **Règles architecturales codifiées dans une forme qu'un agent IA peut appliquer.** Les ADR de l'équipe ont été réécrits avec des invariants explicites, des zones autorisées/interdites, et des limites de responsabilité — formulés pour qu'un modèle les chargeant en contexte les respecte au moment de la génération. La même discipline est documentée de bout en bout dans *[Établir une gouvernance d'architecture transversale](/fr/work/architecture-governance)*.
 - **Règles indexées dans l'IDE.** Les règles codifiées ont été rendues accessibles via l'intégration Cursor de l'équipe, pour que chaque session les charge avant toute génération de code.
 - **Une skill standing — une commande project-scoped — pour invoquer ces règles à la demande**, pour que les engineers puissent lancer un check structurel contre la barre codifiée avant d'ouvrir une revue.
 
@@ -118,7 +118,7 @@ L'élan était inégal. Une partie de la vague suivante a bougé vite — ils ob
 
 **Schéma de résistance 1 — l'engineer qui se cache derrière des hacks.**
 
-Un engineer opérait depuis un certain temps légèrement en-dessous du standard de l'équipe, livrant par l'assertivité et des contournements informels plutôt que par un engineering propre. Le nouveau tooling, particulièrement la couche de règles codifiées et l'étape LLM-as-reviewer arrivée plus tard, a exposé cela plus nettement que l'environnement pré-IA ne le faisait.
+Un engineer opérait depuis un certain temps légèrement en-dessous du standard de l'équipe, livrant par l'assertivité et des contournements informels plutôt que par un engineering propre. Le nouveau tooling, particulièrement la couche de règles codifiées et l'étape agent-as-reviewer arrivée plus tard, a exposé cela plus nettement que l'environnement pré-IA ne le faisait.
 
 La qualité sur les branches de cet engineer s'est dégradée visiblement. La friction n'était pas le tooling. La friction venait du fait que le plancher avait monté et que l'écart était maintenant lisible.
 
@@ -144,9 +144,9 @@ La discipline plus large pour faire tourner ces deux schémas en parallèle — 
 
 Trois ajouts :
 
-- **Un second LLM en first-pass reviewer.** L'agent lisait chaque PR contre les règles codifiées et les limites architecturales avant qu'aucun reviewer humain ne s'engage. L'engineer corrigeait sur le feedback de l'agent en premier. Le reviewer humain arrivait en dernier, jugeant la substance au lieu d'attraper les détails.
+- **Un second agent IA en first-pass reviewer.** L'agent lisait chaque PR contre les règles codifiées et les limites architecturales avant qu'aucun reviewer humain ne s'engage. L'engineer corrigeait sur le feedback de l'agent en premier. Le reviewer humain arrivait en dernier, jugeant la substance au lieu d'attraper les détails.
 - **Garde-fous CI/CD appliquant la couche de règles au niveau machine.** Tests, checks de violation de principes, checks de franchissement de frontière. Erreurs bon marché attrapées au moment le moins cher possible.
-- **Principes engineering codifiés et distillés pour les LLM comme pour les engineers.** Pas un site de documentation. Un petit ensemble dense de règles, chargé dans chaque session par chaque engineer, quel que soit l'agent en cours. Les principes sont les mêmes que ceux documentés séparément dans *[Engineering Practice Boundaries — One Bar for Engineers and AI](/fr/writing/engineering-principles-that-outlive-the-stack)*.
+- **Principes engineering codifiés et distillés pour les agents IA comme pour les engineers.** Pas un site de documentation. Un petit ensemble dense de règles, chargé dans chaque session par chaque engineer, quel que soit l'agent en cours. Les principes sont les mêmes que ceux documentés séparément dans *[Engineering Practice Boundaries — One Bar for Engineers and AI](/fr/writing/engineering-principles-that-outlive-the-stack)*.
 
 La discipline d'orchestration qui tient ce type de couche multi-agent — ce qui est écrit, comment la mémoire est tiered, comment la boucle reste fermée — est le substrat décrit dans *[Agentic AI Orchestration — 7 principes opérationnels](/fr/writing/orchestration-principles-that-outlive-the-model)*.
 

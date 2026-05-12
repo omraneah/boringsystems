@@ -39,6 +39,10 @@ Every technology rollout in engineering follows the same shape. The names matter
 
 **Moore's chasm** sits between Early Adopters and Early Majority. Visionaries on the left tolerate discontinuity; pragmatists on the right demand proven productivity. Most rollouts stall there.
 
+![Bell curve showing the five categories of innovation adopters per Rogers' Diffusion of Innovations: Innovators 2.5%, Early Adopters 13.5%, Early Majority 34%, Late Majority 34%, Laggards 16%, with Moore's Chasm marked between Early Adopters and Early Majority.](/diffusion-of-innovations.svg)
+
+*Diagram: "Innovation Adoption Curve" by Jim McKeeth, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Innovation_Adoption_Curve.svg).*
+
 Where engineering teams actually sit in 2026 is the bit most executives misread:
 
 - **Raw tool-touch is post-chasm.** Stack Overflow's 2025 survey puts developer AI use at 84%, up from 76% the year before. DORA's 2025 report puts it at 95%, with AI now positively correlated with delivery throughput.
@@ -115,9 +119,9 @@ The drift is not a failure of AI tooling. It is the natural result of giving cap
 
 Governance shows up in three places:
 
-- **Codified architectural rules**, written in a form an LLM can apply at generation time. Not documentation. Operational constraints, loaded before every session. The mechanism is the same one in *[Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance)*.
+- **Codified architectural rules**, written in a form an AI agent can apply at generation time. Not documentation. Operational constraints, loaded before every session. The mechanism is the same one in *[Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance)*.
 - **CI/CD guardrails** that catch the obvious failure modes — tests not run, principles violated, boundaries crossed. Cheap mistakes caught at the cheapest possible moment.
-- **LLM-as-reviewer before human-as-reviewer.** The agent reads the PR against codified rules first. The engineer corrects on the agent's feedback. The human reviewer comes in last, judging substance instead of catching trivia.
+- **agent-as-reviewer before human-as-reviewer.** The agent reads the PR against codified rules first. The engineer corrects on the agent's feedback. The human reviewer comes in last, judging substance instead of catching trivia.
 
 Governance is not added at the start. Adding it at the start signals distrust and slows the champions. Add it the moment the first sustained quality drift appears in the work — and treat that moment as on-time, not late.
 
@@ -150,7 +154,7 @@ Two patterns appear consistently in engineering teams during AI rollouts. They l
 
 **Pattern 1 — The engineer hiding behind hacks.**
 
-This engineer was already slightly off the standard before the rollout. They shipped through hacks and assertive-sounding overrides. The new tooling — particularly the codified architectural rules and the LLM reviewer — exposes those hacks more aggressively. The engineer feels the floor rising and pushes back.
+This engineer was already slightly off the standard before the rollout. They shipped through hacks and assertive-sounding overrides. The new tooling — particularly the codified architectural rules and the agent reviewer — exposes those hacks more aggressively. The engineer feels the floor rising and pushes back.
 
 The handling is direct. Mentor, coach, raise the bar privately. Pair them with a champion. Set explicit expectations and explicit review intensity. Most engineers in this pattern grow into the new standard. A few do not — and at that point the situation becomes a performance conversation, not an adoption conversation. Keep the two separate publicly. Conflating them poisons the rollout for the rest of the team.
 
