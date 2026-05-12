@@ -59,11 +59,11 @@ La colonne de droite compte autant que celle de gauche. *Ce qu'on ne fait pas en
 
 **1. De l'idée à l'Innovator — montrer l'exemple.**
 
-Adopter en premier, mains dans le code, sur de vraies surfaces. La fluidité personnelle est l'étape de credentialing. L'équipe ne fera pas confiance au rollout si on opère depuis des briefings. Cette phase a un seul output : on gagne le droit d'introduire.
+Adopter en premier, mains dans le cambouis, sur du travail réel — pas dans un sandbox. La fluidité personnelle est l'étape de credentialing. L'équipe ne fera pas confiance au rollout si on opère depuis des briefings. Cette phase a un seul output : on gagne le droit d'introduire.
 
 **2. Innovator vers Early Adopters — trouver les champions.**
 
-Ils sont déjà dans l'équipe. Les identifier, les armer, les pairer entre eux. Ne pas annoncer le changement encore. Les champions livrent ; leur travail apparaît en standup, en planning, en review. Les autres membres de l'équipe commencent à poser des questions d'eux-mêmes. Parler trop tôt fige les positions avant que la preuve n'atterrisse.
+Ils sont déjà dans l'équipe. Les identifier, les armer, les pairer entre eux. Ne pas annoncer le changement encore. Les champions livrent ; leur travail apparaît dans les rythmes de l'équipe — réunions, planning, reviews. Les autres membres de l'équipe commencent à poser des questions d'eux-mêmes. Parler trop tôt fige les positions avant que la preuve n'atterrisse.
 
 La cristallisation la plus proche de cette discipline vit dans *[Change Injection: Shaping Systems Without Collapse](/fr/archive/s2-p2-change-injection)* — précisément la séquence *« Silencieux → Visible → Absorbé »*.
 
@@ -105,7 +105,7 @@ La discipline opérationnelle plus large pour faire tourner ces patterns en para
 
 ## L'état final — la barre se verrouille elle-même
 
-Quand le playbook marche, la nouvelle barre se maintient seule — non parce que la culture s'est déplacée, mais parce que les incentives s'alignent maintenant pour garder le nouvel état. Objectifs, bonus, critères de promo, normes des pairs, application de la gouvernance — pointent tous dans la même direction. Régresser demanderait de combattre le système que le système est devenu.
+Quand le playbook marche, la nouvelle barre se maintient seule — non parce que la culture s'est déplacée, mais parce que les incentives s'alignent maintenant pour garder le nouvel état. Objectifs, bonus, critères de promo, normes des pairs, application de la gouvernance — pointent tous dans la même direction. Régresser demanderait de combattre ce que le système est devenu.
 
 Le *« refreeze »* classique de Lewin est le concept le plus proche, mais le mécanisme est différent — Lewin le traite comme absorption culturelle. En pratique, c'est de la géométrie d'incentives.
 

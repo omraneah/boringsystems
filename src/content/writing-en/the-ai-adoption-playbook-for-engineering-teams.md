@@ -59,11 +59,11 @@ The right column matters as much as the left. *What you do not do yet* is what p
 
 **1. From idea to Innovator — you lead.**
 
-You adopt first, hands-on, on real surfaces. Personal fluency is the credentialing step. The team will not trust the rollout if you are operating from briefings. This phase has one output: you earn the right to introduce.
+You adopt first, hands-on, on real work — not in a sandbox. Personal fluency is the credentialing step. The team will not trust the rollout if you are operating from briefings. This phase has one output: you earn the right to introduce.
 
 **2. Innovator to Early Adopters — find the champions.**
 
-They are already in the team. Identify them, enable them, pair them with each other. Do not announce the change yet. Champions ship; their work appears in standups, planning, reviews. Adjacent team members start asking on their own. Talking too early hardens positions before the proof lands.
+They are already in the team. Identify them, enable them, pair them with each other. Do not announce the change yet. Champions deliver; their work shows up in the team's rhythms — meetings, planning, reviews. Adjacent team members start asking on their own. Talking too early hardens positions before the proof lands.
 
 The closest crystallization of this discipline lives in *[Change Injection: Shaping Systems Without Collapse](/en/archive/s2-p2-change-injection)* — specifically the *"Quiet → Visible → Absorbed"* sequence.
 
@@ -105,7 +105,7 @@ The broader operating discipline for running these patterns in parallel — coac
 
 ## The end-state — the bar locks itself
 
-When the playbook works, the new bar self-maintains — not because culture has shifted, but because incentives now align toward keeping the new state. Objectives, bonuses, promo criteria, peer norms, governance enforcement — all point the same direction. Regressing back to the old way would require fighting the system the system has become.
+When the playbook works, the new bar self-maintains — not because culture has shifted, but because incentives now align toward keeping the new state. Objectives, bonuses, promo criteria, peer norms, governance enforcement — all point the same direction. Regressing back to the old way would require fighting what the system has become.
 
 Lewin's classical *"refreeze"* is the closest concept, but the mechanism is different — Lewin treats it as cultural absorption. In practice it is incentive geometry.
 
