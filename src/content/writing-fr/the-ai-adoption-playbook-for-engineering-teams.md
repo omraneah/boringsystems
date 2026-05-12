@@ -2,7 +2,7 @@
 title: "Change management pour operators : un playbook éprouvé sur trois runs"
 description: "Trois rollouts de change-management sous différentes vagues, sponsors et autorités. Un playbook — la mécanique que les frameworks ne montrent pas."
 date: 2026-05-12
-highlight: true
+highlight: false
 featured: true
 order: 1
 ---

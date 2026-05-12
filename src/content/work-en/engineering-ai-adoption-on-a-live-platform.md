@@ -2,7 +2,7 @@
 title: "Engineering AI Adoption on a Live Platform"
 description: "Engineering AI adoption on a live platform from first adopter to 90% AI-written code in 14 months — no quality drop, no forced departures."
 date: 2026-05-12
-highlight: false
+highlight: true
 featured: true
 order: 2
 ---

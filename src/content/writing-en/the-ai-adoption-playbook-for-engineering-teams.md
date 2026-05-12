@@ -2,7 +2,7 @@
 title: "Change Management for Operators: A Battle-Tested Playbook from Three Runs"
 description: "Three change rollouts under different waves, sponsors, and authority shapes. One playbook — the mechanic most frameworks won't show you how to build."
 date: 2026-05-12
-highlight: true
+highlight: false
 featured: true
 order: 1
 ---

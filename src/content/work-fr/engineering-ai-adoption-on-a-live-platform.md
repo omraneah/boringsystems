@@ -2,7 +2,7 @@
 title: "Adoption IA en engineering sur une plateforme en production"
 description: "Conduire l'adoption IA sur une plateforme en production, du premier adopter à 90 % de code écrit par IA en 14 mois — sans dérive qualité, sans départ forcé."
 date: 2026-05-12
-highlight: false
+highlight: true
 featured: true
 order: 2
 ---
