@@ -13,7 +13,7 @@ Voici la mécanique — ce qui se passe vraiment quand on mène le changement so
 
 ## Quand le changement commence
 
-Pas d'une décision. D'un ressenti.
+L'intuition d'abord — gut feeling. La décision suit.
 
 Les operators n'analysent pas leur chemin vers *« c'est maintenant »*. Ils sentent que le coût de ne pas changer devient plus lourd que le coût de changer. Plusieurs signaux poussent dans la même direction — clients, pairs, marché, leadership au-dessus, attrition dans l'équipe. La douleur passe d'arrière-plan à premier plan.
 

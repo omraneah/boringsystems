@@ -13,7 +13,7 @@ This is the mechanic — what actually happens when you run the change yourself,
 
 ## When change starts
 
-Not from a decision. From a feeling.
+Intuition first — gut feeling. The decision follows.
 
 Operators don't analyze their way to *"now is the time."* They feel the cost of not changing become heavier than the cost of changing. Multiple signals start pressing the same direction — customers, peers, market, leadership above, attrition inside the team. Pain moves from background to foreground.
 
