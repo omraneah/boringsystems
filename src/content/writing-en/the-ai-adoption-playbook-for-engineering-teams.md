@@ -63,7 +63,7 @@ You adopt first, hands-on, on real surfaces. Personal fluency is the credentiali
 
 **2. Innovator to Early Adopters — find the champions.**
 
-They are already in the team. Identify them, enable them, pair them with each other. Do not announce the change yet. Champions ship; their work appears in standups, planning, reviews. Adjacent engineers start asking on their own. Talking too early hardens positions before the proof lands.
+They are already in the team. Identify them, enable them, pair them with each other. Do not announce the change yet. Champions ship; their work appears in standups, planning, reviews. Adjacent team members start asking on their own. Talking too early hardens positions before the proof lands.
 
 The closest crystallization of this discipline lives in *[Change Injection: Shaping Systems Without Collapse](/en/archive/s2-p2-change-injection)* — specifically the *"Quiet → Visible → Absorbed"* sequence.
 
@@ -71,8 +71,8 @@ The closest crystallization of this discipline lives in *[Change Injection: Shap
 
 Late Early Adopters start applying pressure — *"why aren't we all using this?"* That is the signal that momentum is real. Resist accelerating. Three things land here:
 
-- **First governance layer** — codified rules, guardrails, the structural constraints that prevent quality drift as more engineers adopt.
-- **Early KPIs as observation only** — leading and lagging indicators, input and output, tracked per project and per engineer. Do not yet attach incentives.
+- **First governance layer** — codified rules, guardrails, the structural constraints that prevent quality drift as more people adopt.
+- **Early KPIs as observation only** — leading and lagging indicators, input and output, tracked per project and per person. Do not yet attach incentives.
 - **Mentoring for those asking to be coached** — not for resisters yet; for adopters who want help getting fluent faster.
 
 **4. Early Majority crosses — formalize what works.**
@@ -125,6 +125,6 @@ Three different surfaces — analytics inside a cross-functional team I did not 
 
 Frameworks built by consultants describe the shape of change from outside the work. They are useful as vocabulary.
 
-The mechanic — what to do when the senior engineer is two months into mentoring and the bar still is not holding; what to do when the saboteur escalates; when to add governance and when to wait; when to talk and when to let the work speak — lives inside the running.
+The mechanic — what to do when the senior team member is two months into mentoring and the bar still is not holding; what to do when the saboteur escalates; when to add governance and when to wait; when to talk and when to let the work speak — lives inside the running.
 
 This is one playbook from three runs, three waves, and three sponsor configurations. It held in each. The companion case file — *[Engineering AI Adoption on a Live Platform](/en/work/engineering-ai-adoption-on-a-live-platform)* — shows it end-to-end on one surface.

@@ -63,7 +63,7 @@ Adopter en premier, mains dans le code, sur de vraies surfaces. La fluidité per
 
 **2. Innovator vers Early Adopters — trouver les champions.**
 
-Ils sont déjà dans l'équipe. Les identifier, les armer, les pairer entre eux. Ne pas annoncer le changement encore. Les champions livrent ; leur travail apparaît en standup, en planning, en review. Les engineers adjacents commencent à poser des questions d'eux-mêmes. Parler trop tôt fige les positions avant que la preuve n'atterrisse.
+Ils sont déjà dans l'équipe. Les identifier, les armer, les pairer entre eux. Ne pas annoncer le changement encore. Les champions livrent ; leur travail apparaît en standup, en planning, en review. Les autres membres de l'équipe commencent à poser des questions d'eux-mêmes. Parler trop tôt fige les positions avant que la preuve n'atterrisse.
 
 La cristallisation la plus proche de cette discipline vit dans *[Change Injection: Shaping Systems Without Collapse](/fr/archive/s2-p2-change-injection)* — précisément la séquence *« Silencieux → Visible → Absorbé »*.
 
@@ -71,8 +71,8 @@ La cristallisation la plus proche de cette discipline vit dans *[Change Injectio
 
 Les Early Adopters tardifs commencent à pousser — *« pourquoi on n'utilise pas tous ça ? »* C'est le signal que l'élan est réel. Résister à l'accélération. Trois choses atterrissent ici :
 
-- **Première couche de gouvernance** — règles codifiées, garde-fous, contraintes structurelles qui empêchent la dérive qualité quand davantage d'engineers adoptent.
-- **Premiers KPI en pure observation** — indicateurs leading et lagging, input et output, suivis par projet et par engineer. Ne pas encore attacher d'incentives.
+- **Première couche de gouvernance** — règles codifiées, garde-fous, contraintes structurelles qui empêchent la dérive qualité quand davantage de personnes adoptent.
+- **Premiers KPI en pure observation** — indicateurs leading et lagging, input et output, suivis par projet et par personne. Ne pas encore attacher d'incentives.
 - **Mentoring pour ceux qui demandent du coaching** — pas pour les résistants encore ; pour les adopters qui veulent aller plus vite vers la fluidité.
 
 **4. L'Early Majority traverse — formaliser ce qui marche.**
@@ -125,6 +125,6 @@ Trois surfaces différentes — analytics dans une équipe cross-fonctionnelle q
 
 Les frameworks construits par les consultants décrivent la forme depuis l'extérieur du travail. Ils donnent un vocabulaire.
 
-La mécanique — quoi faire quand le senior engineer est à deux mois de mentoring et ne tient toujours pas la barre ; quoi faire quand le saboteur escalade ; quand ajouter la gouvernance et quand attendre ; quand parler et quand laisser le travail parler — vit à l'intérieur du run.
+La mécanique — quoi faire quand le senior team member est à deux mois de mentoring et ne tient toujours pas la barre ; quoi faire quand le saboteur escalade ; quand ajouter la gouvernance et quand attendre ; quand parler et quand laisser le travail parler — vit à l'intérieur du run.
 
 C'est un playbook issu de trois runs, trois vagues et trois configurations de sponsor. Il a tenu sur chacune. Le case file compagnon — *[Engineering AI Adoption on a Live Platform](/fr/work/engineering-ai-adoption-on-a-live-platform)* — le montre de bout en bout sur une surface.
