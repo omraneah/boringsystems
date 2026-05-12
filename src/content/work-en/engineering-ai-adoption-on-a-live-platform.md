@@ -118,7 +118,7 @@ The momentum was uneven. Some of the next wave moved fast — they had been watc
 
 **Resistance pattern 1 — the engineer hiding behind hacks.**
 
-One engineer had been operating slightly below the team's standard for some time, shipping through assertiveness and informal workarounds rather than clean engineering. The new tooling, particularly the codified rule layer and the agent-as-reviewer step that came later, exposed this more sharply than the pre-AI environment had.
+One engineer had been operating slightly below the team's standard for some time. The new tooling — particularly the codified rule layer and the agent-as-reviewer step that came later — exposed the gap more sharply than the pre-AI environment had.
 
 Quality on this engineer's branches deteriorated visibly. The friction was not the tooling. The friction was that the floor had risen and the gap was now legible.
 
@@ -161,7 +161,7 @@ The final phase formalized the new standard.
 - Adoption became part of standing engineering practice — referenced in onboarding, in performance conversations, in OKRs.
 - KPIs were tracked per project and per engineer: percentage of AI-generated code, velocity delta, defect rate, review iteration count, governance violation count.
 - New rules and new commands kept being added in response to specific failure modes, with the system designed to absorb them without restarts.
-- Newer models — Claude Opus 4.6 in particular — multiplied what was already working. The substrate was ready for the upgrade; the upgrade did not require re-running the rollout.
+- By Q1 2026, newer models — Claude Opus 4.6 in particular — multiplied what was already working. The substrate was ready for the upgrade; the upgrade did not require re-running the rollout.
 
 By this point, the operating pattern had absorbed. It no longer felt like a transition.
 

@@ -21,6 +21,8 @@ Voici la mécanique — ce qui se passe vraiment quand on mène le changement so
 
 Trois surfaces différentes — analytics dans une équipe cross-fonctionnelle que je ne managéais pas, élévation des pratiques engineering internes, adoption d'outillage IA sur la plateforme. Le même playbook a tenu sur les trois.
 
+L'engagement chez The Fabulous est clos, donc nommé. Les deux cas de l'entreprise actuelle sont anonymisés — convention d'engagement en cours, cohérente avec les case files liés.
+
 ## Quand le changement commence
 
 Pas d'une décision. D'un ressenti.

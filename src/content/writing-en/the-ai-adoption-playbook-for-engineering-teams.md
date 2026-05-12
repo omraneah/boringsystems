@@ -21,6 +21,8 @@ This is the mechanic — what actually happens when you run the change yourself,
 
 Three different surfaces — analytics inside a cross-functional team I didn't manage, internal engineering practice elevation, AI tooling adoption across the platform. The same playbook held on all three.
 
+The Fabulous engagement is closed, so it is named. The two current-company cases are anonymized — ongoing-engagement convention, consistent with the linked case files.
+
 ## When change starts
 
 Not from a decision. From a feeling.

@@ -118,7 +118,7 @@ L'élan était inégal. Une partie de la vague suivante a bougé vite — ils ob
 
 **Schéma de résistance 1 — l'engineer qui se cache derrière des hacks.**
 
-Un engineer opérait depuis un certain temps légèrement en-dessous du standard de l'équipe, livrant par l'assertivité et des contournements informels plutôt que par un engineering propre. Le nouveau tooling, particulièrement la couche de règles codifiées et l'étape agent-as-reviewer arrivée plus tard, a exposé cela plus nettement que l'environnement pré-IA ne le faisait.
+Un engineer opérait depuis un certain temps légèrement en-dessous du standard de l'équipe. Le nouveau tooling — particulièrement la couche de règles codifiées et l'étape agent-as-reviewer arrivée plus tard — a exposé l'écart plus nettement que l'environnement pré-IA ne le faisait.
 
 La qualité sur les branches de cet engineer s'est dégradée visiblement. La friction n'était pas le tooling. La friction venait du fait que le plancher avait monté et que l'écart était maintenant lisible.
 
@@ -161,7 +161,7 @@ La dernière phase a formalisé le nouveau standard.
 - L'adoption est entrée dans la pratique engineering standing — référencée dans l'onboarding, dans les conversations de performance, dans les OKR.
 - Les KPI étaient suivis par projet et par engineer : pourcentage de code généré par IA, delta de vélocité, taux de défauts, nombre d'itérations de revue, nombre de violations de gouvernance.
 - De nouvelles règles et de nouvelles commandes continuaient d'être ajoutées en réponse à des modes d'échec spécifiques, le système étant conçu pour les absorber sans redémarrage.
-- Des modèles plus récents — Claude Opus 4.6 en particulier — ont multiplié ce qui marchait déjà. Le substrat était prêt pour l'upgrade ; l'upgrade n'a pas nécessité de relancer le rollout.
+- Au T1 2026, des modèles plus récents — Claude Opus 4.6 en particulier — ont multiplié ce qui marchait déjà. Le substrat était prêt pour l'upgrade ; l'upgrade n'a pas nécessité de relancer le rollout.
 
 À ce stade, le pattern opérationnel était absorbé. Cela ne ressemblait plus à une transition.
 
