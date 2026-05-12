@@ -1,203 +1,126 @@
 ---
-title: "The AI Adoption Playbook for Engineering Teams"
-description: "AI adoption is change-management before tooling. Lead from the front, find champions, add governance when quality drifts, mentor the resistant — not mandate."
+title: "Change Management for Operators: A Battle-Tested Playbook from Three Runs"
+description: "Three change rollouts under different waves, sponsors, and authority shapes. One playbook — the mechanic most frameworks won't show you how to build."
 date: 2026-05-12
 highlight: true
 featured: true
 order: 1
 ---
 
-AI adoption is a change-management problem before it's a tooling problem.
+Most change-management frameworks describe what *should* happen.
 
-## Purpose
+This is the mechanic — what actually happens when you run the change yourself, three times, across three waves, from inside the work rather than outside it.
 
-The teams that move two-to-five times faster in 2026 are not the teams with better licenses. They are the teams that engineered the transition properly.
+## The three runs
 
-Most senior engineering leaders know AI is here to stay. Fewer know that the speed of arrival inside the team is a leadership question, not a technology question. Each month not picked up is a month the next-generation builders compound a lead. Incumbents carry more friction than greenfield teams, by definition — their problem is harder than people give them credit for.
+**At [The Fabulous](https://thefabulous.co) (previous company).** A product-growth team — not mine — had spent two consecutive quarters running A/B experiments that produced no measurable lift on the company's product-growth KPIs. Internal confidence eroded. Management started questioning whether the function was viable at all. The CEO sponsored the rebuild; I ran it with influence; one champion inside the growth team carried it day-to-day, with no growth head in the org at the time. The change was statistical rigor — sample size, false positive and false negative rates, statistical power, guardrails (the KPIs that should *not* move), leading and lagging indicators, and a holdout group to measure against a no-experiment baseline. Outcome: shared language across the team, recovered trust from management, better causal reasoning about what actually moved the bar versus what didn't, and disciplined abandonment of experiments that were never going to validate.
 
-This piece formalizes the playbook. The companion case file — *[Engineering AI Adoption on a Live Platform](/en/work/engineering-ai-adoption-on-a-live-platform)* — shows it run end-to-end on one production team.
+**Current company — leveling-up (post-in-housing).** Survival speed during the *[in-housing migration](/en/work/breaking-vendor-lock-in)* — vendor lock-in handcuffs, ship-first, tolerated hacks, deferred quality bars — had to give way to production-grade engineering once the platform was on its own infrastructure. The *[hardening cycle](/en/work/saas-hardening)* was the engineering side; this is the people-and-practice side. I sponsored and held the authority directly, with CTO mandate behind it; senior devs as champions. The change was practice elevation — testing, ADRs documented for both humans and agents, architectural rules, the Boy-Scout principle, stricter reviews, security discipline. Outcome: zero security hotspots, ADRs codified, test coverage 50% → 70%, bug rate 1–2 per week to 1–2 per month, velocity up after refactor.
 
----
+**Current company — AI adoption.** Documented end-to-end in *[Engineering AI Adoption on a Live Platform](/en/work/engineering-ai-adoption-on-a-live-platform)*. Same sponsor and authority shape as the leveling-up run — I sponsored, CTO authority, champions among the senior engineers. Endpoint: more than 90% of new code AI-written, 2–3x velocity on most surfaces, 5–10x on greenfield work, straightforward bug-fixing, and abstraction-heavy surfaces.
 
-## The Premise
+Three different surfaces — analytics inside a cross-functional team I didn't manage, internal engineering practice elevation, AI tooling adoption across the platform. The same playbook held on all three.
 
-Three positions to hold at once.
+## When change starts
 
-**AI in engineering is permanent.** Agentic coding became a default in 2025 for new builds. The teams starting after that date carry it in their muscle memory. The teams that built before it have to retrofit. The gap is real, the gap compounds monthly, and pretending otherwise is a strategic error.
+Not from a decision. From a feeling.
 
-**The speedup is operator-dependent.** Two-to-five times is the realistic envelope for engineering teams that adopt with discipline. In some surfaces and some phases it goes higher — fast prototyping, well-bounded greenfield work, repetitive scaffolding. In other surfaces it stays modest — gnarly distributed infrastructure, security-critical paths, ambiguous product specs. The multiplier compounds with engineering judgment and product literacy, not with token count.
+Operators don't analyze their way to *"now is the time."* They feel the cost of not changing become heavier than the cost of changing. Multiple signals start pressing the same direction — customers, peers, market, leadership above, attrition inside the team. Pain moves from background to foreground.
 
-**The work is human, not technical.** The licensing is trivial. The training material exists. What slows teams down is psychology — fear of replacement, threatened craft identity, misaligned incentives, no air-cover from leadership when something goes wrong. Adoption is not a procurement problem.
+Below that threshold: you tolerate. At it: you run the playbook.
 
----
+## Pre-conditions
 
-## The Adoption Curve
+Two things must be true before the playbook is worth starting.
 
-Every technology rollout in engineering follows the same shape. The names matter, the percentages matter, the chasm matters.
+**Net benefit visible.** Either you can see it, or the relevant stakeholders see it after a conversation. If nobody can see it, you are not ready to lead the change — you are ready to do the diagnostic that surfaces it.
 
-**Rogers' diffusion curve** (1962) names the five segments: Innovators (2.5%), Early Adopters (13.5%), Early Majority (34%), Late Majority (34%), Laggards (16%). The shape is the same across decades and technologies.
+**Buy-in or full ownership.** Either the people whose context you are affecting have signaled support, or you own that context completely. Without one of the two, you do not have the surface to act.
 
-**Moore's chasm** sits between Early Adopters and Early Majority. Visionaries on the left tolerate discontinuity; pragmatists on the right demand proven productivity. Most rollouts stall there.
+## Authority, influence, coalition
+
+This is the part most frameworks oversimplify. The shape varies per wave.
+
+- **Sponsor and operator can be the same person, or split.** At Fabulous, the CEO sponsored and I operated with influence. At the current company, I held both.
+- **Authority can be yours, borrowed from a sponsor, or paired with someone else's.** Borrowed authority works — when stakes are high, the sponsor's air-cover is what keeps the operator credible.
+- **Influence-only is viable** when you have a credible sponsor. **Authority-only is viable** when the stakes are low enough that backlash is tolerable.
+- **Coalition is conditional, not default.** Build it when you do not own the context (Fabulous: CEO plus a champion inside the growth team). Skip it when you own the context (current company cases). Coalition is the tool that compensates for missing ownership.
+
+## The playbook, mapped to the adoption curve
+
+Operator actions do not sequence as discrete checkboxes. They layer onto each other, timed to where the team sits on Rogers' diffusion-of-innovations curve.
 
 ![Bell curve showing the five categories of innovation adopters per Rogers' Diffusion of Innovations: Innovators 2.5%, Early Adopters 13.5%, Early Majority 34%, Late Majority 34%, Laggards 16%, with Moore's Chasm marked between Early Adopters and Early Majority.](/diffusion-of-innovations.svg)
 
 *Diagram: "Innovation Adoption Curve" by Jim McKeeth, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Innovation_Adoption_Curve.svg).*
 
-Where engineering teams actually sit in 2026 is the bit most executives misread:
+| Adoption stage | What you do | What you do NOT do yet |
+|---|---|---|
+| **Innovators** (~2.5% — you) | Lead the way. Earn fluency before introducing. | Talk about it broadly. |
+| **Early Adopters** (~13.5%) | Find champions. Enable them. Build momentum quietly. | Add governance. Set KPIs. |
+| **Chasm crossing** | First governance layer. Early KPIs (observe-only). Mentor adopters asking for coaching. | Accelerate. Formalize. |
+| **Early Majority** (~34%) | Mature the governance. Mature the KPIs. Start formalizing process. | Set objectives. |
+| **Late Majority** (~34%) | Formalize fully — KPIs, objectives, the new bar. Mentor remaining resistance. | Tolerate misalignment. |
+| **Laggards** (~16%) | Handle the final misalignment — re-role, performance plan after deep mentoring, or part ways. | Punish broadly. |
 
-- **Raw tool-touch is post-chasm.** Stack Overflow's 2025 survey puts developer AI use at 84%, up from 76% the year before. DORA's 2025 report puts it at 95%, with AI now positively correlated with delivery throughput.
-- **Trust is pre-chasm.** The same Stack Overflow survey shows trust in AI accuracy at 29% — down eleven points year-over-year — with 46% actively distrusting it.
-- **Production-grade agentic use is firmly Early-Adopter territory.** Most teams use AI as autocomplete-plus. Few have moved to agents-do-the-work, humans-review.
+The right column matters as much as the left. *What you do not do yet* is what protects the early-stage signal from premature pressure. Most rollouts fail by adding governance, KPIs, or formal objectives too early — before the champions have produced the proof that earns them the right to govern.
 
-The chasm in 2026 is not *"does the team use AI."* It is *"does the team trust AI enough to let it drive, with governance instead of supervision."*
+## The five crossings
 
-That is the chasm leaders are paid to cross.
+**1. From idea to Innovator — you lead.**
 
----
+You adopt first, hands-on, on real surfaces. Personal fluency is the credentialing step. The team will not trust the rollout if you are operating from briefings. This phase has one output: you earn the right to introduce.
 
-## Authority and Influence — Both, or Neither
+**2. Innovator to Early Adopters — find the champions.**
 
-The single most common failure mode is operating with one and missing the other.
+They are already in the team. Identify them, enable them, pair them with each other. Do not announce the change yet. Champions ship; their work appears in standups, planning, reviews. Adjacent engineers start asking on their own. Talking too early hardens positions before the proof lands.
 
-**Influence without authority stalls at the chasm.** Champions can win Early Adopters. They cannot bring the Early Majority across, because pragmatists watch the org's incentive structure more than they watch the champions' demos. If the bonus, the OKR, the promo committee, and the manager's calendar say nothing has changed, the pragmatists conclude — correctly — that nothing has changed.
+The closest crystallization of this discipline lives in *[Change Injection: Shaping Systems Without Collapse](/en/archive/s2-p2-change-injection)* — specifically the *"Quiet → Visible → Absorbed"* sequence.
 
-**Authority without influence triggers backlash.** Top-down mandates without a credible peer-led story produce two reactions: malicious compliance from the talented (who go through the motions and quietly job-search), and visible resistance from the bottom third (who frame the mandate as an attack on their craft). Both outcomes are expensive.
+**3. Crossing the chasm — let it bake.**
 
-The pair is non-negotiable. If you have both, you use both. If you only have influence, you find — or borrow — the authority voice for the moments that need it, especially when fear-of-replacement is in the room.
+Late Early Adopters start applying pressure — *"why aren't we all using this?"* That is the signal that momentum is real. Resist accelerating. Three things land here:
 
-The cultural dimension matters. French engineering teams in particular respond poorly to top-down tooling mandates issued without ground-level proof. The historical pattern of authority-only rollouts producing the four resistance forms — *inertie, argumentation, révolte, sabotage* — is well-documented in the French organizational-psychology literature. The fix is not to drop authority. The fix is to issue authority after the peer-led proof has already absorbed.
+- **First governance layer** — codified rules, guardrails, the structural constraints that prevent quality drift as more engineers adopt.
+- **Early KPIs as observation only** — leading and lagging indicators, input and output, tracked per project and per engineer. Do not yet attach incentives.
+- **Mentoring for those asking to be coached** — not for resisters yet; for adopters who want help getting fluent faster.
 
-The full discipline on this — when to use authority, when to use influence, and how to convert one into the other — is in *[Influence-First Cross-Functional Leadership](/en/archive/s2-p3-influence-first)*. The clause that matters most for AI rollouts: *"influence quietly when visibility breeds resistance; publicly when it builds momentum."*
+**4. Early Majority crosses — formalize what works.**
 
----
+The center of the curve absorbs. Mature the governance. Mature the KPIs. Start formalizing process. Champion habits become team conventions. Reviews enforce the new bar without long debates.
 
-## The Sequence
+**5. Late Majority and Laggards — formalize fully and handle resistance.**
 
-Six moves, in order. The order is not optional. Each move builds on the substrate the previous move produced.
+The remaining pragmatists adopt because the new way is now the path of least resistance. Bonuses, OKRs, the promo bar — attached. Objectives set. The new bar is the standard.
 
-### 1. Lead From the Front
+The final laggards reveal themselves here. This is where resistance handling matters most.
 
-The leader adopts first.
+## Resistance — all of it is misaligned incentive
 
-Not as performance. As fluency. Real hands-on use, on real code, in real branches. Stress-test the tools personally, find their edges, understand where they break. The team will not trust the rollout if the leader is operating on briefings instead of fingertip knowledge.
+Resistance is not a personality trait. It is incentive structure showing through. Sometimes the incentive can be re-aligned. Sometimes it cannot. The handling follows the root cause.
 
-This is not a one-week sprint. It is a months-long investment in personal capability that runs in parallel to everything else.
+| Pattern | What is misaligned | Can re-align? | Handling |
+|---|---|---|---|
+| **Hider** (capability gap) | The floor rose faster than the person's skill | Usually yes | Private mentoring, paired sessions, clear expectations, sustained coaching |
+| **Purist** (correct prior judgment) | Identity around the old bar; principled non-adopter | Usually yes — time and evidence | Zero pressure. Continued access, continued visibility into champions' work. They arrive on their own. |
+| **Saboteur** (power loss) | Held power in the old system; loses it in the new | **Usually no** — the misalignment IS the power loss | Authority intervention from the sponsor. Re-role inside the org, or part ways. |
 
-The phase has one output: the leader earns the right to speak about adoption with weight.
+At Fabulous, one person sat in the saboteur pattern — the new statistical framework reduced their gatekeeping influence over what counted as a "valid" experiment. The CEO eventually handled it directly; the person was re-roled into a different function.
 
-The deeper version of this — why personal fluency in the harness is the prerequisite for credibly leading any AI rollout — is in *[The Harness Behind the Agent](/en/writing/harness-behind-the-agent)*.
+In the leveling-up phase at the current company, one engineer hit the hider pattern. Two months of deep mentoring before the situation moved into a performance improvement plan. Mentoring exhausts before performance management starts — that is the order. The reverse poisons the rollout for everyone else.
 
-### 2. Find the Champions
+In the AI adoption case, both hider and purist patterns appeared. Both are detailed in the companion case file. The broader operating discipline for running these patterns in parallel — coaching one set up, holding space for another set to come around — is the principle in *[Influence-First Cross-Functional Leadership](/en/archive/s2-p3-influence-first)*.
 
-Early adopters are already in the team. Find them.
+## The end-state — the bar locks itself
 
-The tells are simple. They are the engineers already running side projects on weekends. They are the ones whose Slack messages mention model names. They are the ones who installed the IDE plugin without asking.
+When the playbook works, the new bar self-maintains — not because culture has shifted, but because incentives now align toward keeping the new state. Objectives, bonuses, promo criteria, peer norms, governance enforcement — all point the same direction. Regressing back to the old way would require fighting the system the system has become.
 
-You enable them:
+Lewin's classical *"refreeze"* is the closest concept, but the mechanism is different — Lewin treats it as cultural absorption. In practice it is incentive geometry.
 
-- **Give them tools they would otherwise have to justify.** Licenses, API quotas, time to explore without a deliverable attached.
-- **Pair them with each other.** Champion-to-champion energy compounds. Champion-to-skeptic energy depletes prematurely.
-- **Take their feedback as the primary input signal.** What's breaking, what's unblocking, what governance gaps will appear once the rest of the team picks up.
+## Why operator-built matters
 
-The output of this phase is momentum that didn't exist before. Not metrics, not slides — visible delta in what gets shipped per week.
+Frameworks built by consultants describe the shape of change from outside the work. They are useful as vocabulary.
 
-### 3. Build Momentum Quietly
+The mechanic — what to do when the senior engineer is two months into mentoring and the bar still is not holding; what to do when the saboteur escalates; when to add governance and when to wait; when to talk and when to let the work speak — lives inside the running.
 
-Do not declare the transformation yet.
-
-Let the champions ship. Let their work appear in standups and code reviews. Let the curious engineers — the Early Majority's leading edge — start asking questions on their own initiative.
-
-This phase is about quiet absorption. Talking about the change too early hardens positions before the evidence lands.
-
-The closest crystallization of this discipline lives in *[Change Injection: Shaping Systems Without Collapse](/en/archive/s2-p2-change-injection)* — specifically the *"Quiet → Visible → Absorbed"* sequence. Read that piece alongside this one.
-
-### 4. Add Governance When Quality Drifts
-
-Quality will drift. Plan for it.
-
-The drift is not a failure of AI tooling. It is the natural result of giving capable tools to engineers with varying ceilings of judgment. Weak engineers hide weaknesses behind hacks; AI tools let them hide larger weaknesses faster. The governance layer is what prevents that from becoming the new baseline.
-
-Governance shows up in three places:
-
-- **Codified architectural rules**, written in a form an AI agent can apply at generation time. Not documentation. Operational constraints, loaded before every session. The mechanism is the same one in *[Establishing Cross-Surface Architecture Governance](/en/work/architecture-governance)*.
-- **CI/CD guardrails** that catch the obvious failure modes — tests not run, principles violated, boundaries crossed. Cheap mistakes caught at the cheapest possible moment.
-- **agent-as-reviewer before human-as-reviewer.** The agent reads the PR against codified rules first. The engineer corrects on the agent's feedback. The human reviewer comes in last, judging substance instead of catching trivia.
-
-Governance is not added at the start. Adding it at the start signals distrust and slows the champions. Add it the moment the first sustained quality drift appears in the work — and treat that moment as on-time, not late.
-
-### 5. Set Standards and KPIs
-
-After governance lands, the broader rollout begins.
-
-This is where authority enters the room.
-
-- **Explicit message: the new tooling is now the standard.** Not a recommendation. Not an experiment.
-- **Time and incentives attached.** Engineers get explicit exploration budgets — but the exploration uses the new tooling. Bonuses and OKRs include adoption milestones. Promotions reference the new bar.
-- **KPIs visible per project, per team, per engineer.** Both leading and lagging. Both input and output.
-
-A practical metric stack for AI-assisted engineering:
-
-- **Input (leading):** percentage of code generated by AI per project, per engineer, per surface. Trend over weeks.
-- **Output (lagging):** velocity delta per engineer (ticket throughput pre- and post-adoption), defect rate, time-to-merge, time-from-merge-to-prod.
-- **Quality (lagging):** code-review iteration count, post-merge regression rate, P1 incident rate by code-author class (AI-heavy vs AI-light).
-- **Adoption shape (leading):** weekly active license use, agent-invocation count, governance-rule violation count caught at PR time.
-
-Track these per surface. Some surfaces are harder to adopt than others — infrastructure, security-critical code, legacy hot paths. The trend per surface tells the truth about where mentoring or surface-specific governance is needed. The headline number alone tells you nothing.
-
-The principle behind all of this — input metrics keep the system honest about the work being done, output metrics keep the system honest about the work being valuable — is downstream of the broader engineering practice bar in *[Engineering Practice Boundaries — One Bar for Engineers and AI](/en/writing/engineering-principles-that-outlive-the-stack)*.
-
-### 6. Mentor the Resistant
-
-Resistance is not failure. Resistance is signal.
-
-Two patterns appear consistently in engineering teams during AI rollouts. They look superficially similar and require opposite handling.
-
-**Pattern 1 — The engineer hiding behind hacks.**
-
-This engineer was already slightly off the standard before the rollout. They shipped through hacks and assertive-sounding overrides. The new tooling — particularly the codified architectural rules and the agent reviewer — exposes those hacks more aggressively. The engineer feels the floor rising and pushes back.
-
-The handling is direct. Mentor, coach, raise the bar privately. Pair them with a champion. Set explicit expectations and explicit review intensity. Most engineers in this pattern grow into the new standard. A few do not — and at that point the situation becomes a performance conversation, not an adoption conversation. Keep the two separate publicly. Conflating them poisons the rollout for the rest of the team.
-
-**Pattern 2 — The purist engineer.**
-
-This engineer is good. They are protective of their craft. They tried the early versions of the tools eighteen months ago and decided — correctly — that the output was below their bar. They have built an identity around being a careful, principled engineer who does not chase trends.
-
-The handling is the opposite of Pattern 1.
-
-You do not push. You give them space, you keep them informed, you make sure they hear what the champions are shipping. The tools will improve. The model that was correctly judged inadequate eighteen months ago is no longer the model in the room. Most purist engineers, given time and zero pressure, will explore on their own and arrive — slowly, on their terms.
-
-The mistake to avoid in both patterns is the same: do not use the rollout as a way to fire people. The moment the rollout becomes confused with restructuring, every engineer in the team — including the champions — recalibrates against the survival question. Adoption velocity collapses. This is where authority matters most. A clear, credible signal from leadership that the rollout is not a layoff vehicle is the single most expensive thing to skip and the single most valuable thing to deliver.
-
----
-
-## What Not to Do
-
-The failure modes are not exotic. They appear in roughly the same order across teams.
-
-- **Do not accelerate before quality is stable.** Adding KPI pressure before governance exists guarantees that quality drift becomes permanent. The new floor will be lower than the old floor.
-- **Do not skip the leader's personal fluency.** Briefings are not enough. The team can tell.
-- **Do not break the system to rebuild it.** This is not a restructuring. The current system has value. New behavior absorbs into it; it does not replace it overnight.
-- **Do not let the curious feel they are taking a career risk.** Most attrition during AI rollouts is not from the resisters. It is from the engineers who tried, did not get cover when something went sideways, and concluded the org isn't a safe place to explore.
-- **Do not ignore the cultural specifics.** In France, that means engaging the CSE early on tooling that materially affects work conditions, treating consultation as part of the rollout, not as a compliance afterthought. In every culture, it means knowing how that culture handles top-down change and calibrating authority deployment accordingly.
-
----
-
-## The End State
-
-A team that has been through this sequence — done in order, paced honestly — ends up with a particular shape.
-
-- A majority of code is AI-generated. The realistic envelope in 2026 sits at 70–90% on most surfaces, lower on the hard surfaces, higher on the well-bounded ones.
-- Velocity is 2–5x baseline. In specific surfaces and phases the multiplier is higher.
-- Quality is not lower than the pre-adoption baseline. On the rule-heavy surfaces, it is meaningfully higher.
-- The engineers who were curious from day one operate at multiplied capacity. They are the team's new core leverage surface.
-- The engineers who needed mentoring have come up. A small number have moved on, and the rest of the team understands why.
-- Governance is operational, not advisory. New rules absorb into the system without long debates.
-- The team is structurally ready for whatever lands next — better models, new agent shapes, harness changes. The substrate is in place.
-
-This is what the companion case file documents in detail: *[Engineering AI Adoption on a Live Platform](/en/work/engineering-ai-adoption-on-a-live-platform)*.
-
----
-
-## Closing Note
-
-What this produces, when run honestly, is not a rollout but a substrate. From that substrate, the next model, the next harness, and the next agent shape land as upgrades — not as transitions.
+This is one playbook from three runs, two companies, three waves, and three sponsor configurations. It held in each. The companion case file — *[Engineering AI Adoption on a Live Platform](/en/work/engineering-ai-adoption-on-a-live-platform)* — shows it end-to-end on one surface.

@@ -17,7 +17,7 @@ Ce qui a commencé comme une exploration personnelle fin 2024 s'est transformé,
 
 Voici la séquence qui a produit ce résultat — ce qui a été fait, dans quel ordre, et pourquoi.
 
-Le texte compagnon — *[Le playbook d'adoption IA pour les équipes engineering](/fr/writing/the-ai-adoption-playbook-for-engineering-teams)* — formalise le playbook que ce case file démontre en pratique.
+Le texte compagnon — *[Change management pour operators : un playbook éprouvé sur trois runs](/fr/writing/the-ai-adoption-playbook-for-engineering-teams)* — formalise le playbook que ce case file démontre en pratique.
 
 ---
 
@@ -184,8 +184,6 @@ Le substrat se compose désormais. Le prochain upgrade de modèle ajoute du thro
 
 ## Note de clôture
 
-La transition décrite ici n'a pas cassé le système, n'a pas produit de backlash, et n'a pas dépendu de la survie d'un seul outil. Le substrat qu'elle a produit — règles codifiées, gouvernance multi-agent, chemin de mentoring pour les résistants, KPI clairs visibles dans toute l'équipe — est portable entre stacks, entre équipes, et à travers la prochaine vague de modèles.
+La transition décrite ici n'a pas cassé le système, n'a pas produit de backlash, et n'a pas dépendu de la survie d'un seul outil. Le substrat qu'elle a produit — règles codifiées, gouvernance multi-agent, chemin de mentoring pour les résistants, KPI clairs visibles dans toute l'équipe — est portable entre stacks, entre équipes, et à travers la prochaine vague de modèles. Les principes transversaux pour un changement de cette forme — quand agir, comment ancrer, quoi protéger — sont cristallisés à part dans *[Change Injection: Shaping Systems Without Collapse](/fr/archive/s2-p2-change-injection)*.
 
-La même forme a déjà été jouée, sur d'autres vagues technologiques, sous d'autres noms. Les principes transversaux — quand agir, comment ancrer, quoi protéger — sont cristallisés dans *[Change Injection: Shaping Systems Without Collapse](/fr/archive/s2-p2-change-injection)*.
-
-Le playbook que ce case file démontre en pratique est dans *[Le playbook d'adoption IA pour les équipes engineering](/fr/writing/the-ai-adoption-playbook-for-engineering-teams)*. Les deux sont appariés : celui-ci est la preuve, celui-là est la barre.
+Le playbook que ce case file démontre en pratique est dans *[Change management pour operators : un playbook éprouvé sur trois runs](/fr/writing/the-ai-adoption-playbook-for-engineering-teams)*. Les deux sont appariés : celui-ci est la preuve, celui-là est la barre.

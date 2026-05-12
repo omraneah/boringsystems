@@ -17,7 +17,7 @@ What started as personal exploration at the end of 2024 turned, over fourteen mo
 
 This is the sequence that produced that outcome — what was done, in what order, and why.
 
-The companion piece — *[The AI Adoption Playbook for Engineering Teams](/en/writing/the-ai-adoption-playbook-for-engineering-teams)* — formalizes the playbook this case file demonstrates in practice.
+The companion piece — *[Change Management for Operators: A Battle-Tested Playbook from Three Runs](/en/writing/the-ai-adoption-playbook-for-engineering-teams)* — formalizes the playbook this case file demonstrates in practice.
 
 ---
 
@@ -184,8 +184,6 @@ The substrate now compounds. The next model upgrade adds throughput without dist
 
 ## Closing Note
 
-The transition described here did not break the system, did not produce backlash, and did not depend on any single tool surviving. The substrate it produced — codified rules, multi-agent governance, a mentoring path for resisters, clear KPIs visible across the team — is portable across stacks, across teams, and across the next wave of models.
+The transition described here did not break the system, did not produce backlash, and did not depend on any single tool surviving. The substrate it produced — codified rules, multi-agent governance, a mentoring path for resisters, clear KPIs visible across the team — is portable across stacks, across teams, and across the next wave of models. The cross-cutting principles for change of this shape — when to act, how to anchor, what to protect — are crystallized separately in *[Change Injection: Shaping Systems Without Collapse](/en/archive/s2-p2-change-injection)*.
 
-The same shape has been run before, on other technology waves, under other names. The cross-cutting principles — when to act, how to anchor, what to protect — are crystallized in *[Change Injection: Shaping Systems Without Collapse](/en/archive/s2-p2-change-injection)*.
-
-The playbook this case file demonstrates in practice is in *[The AI Adoption Playbook for Engineering Teams](/en/writing/the-ai-adoption-playbook-for-engineering-teams)*. The two are paired: this one is the proof, that one is the bar.
+The playbook this case file demonstrates in practice is in *[Change Management for Operators: A Battle-Tested Playbook from Three Runs](/en/writing/the-ai-adoption-playbook-for-engineering-teams)*. The two are paired: this one is the proof, that one is the bar.
