@@ -11,9 +11,9 @@ order: 2
 
 In the fourth quarter of 2024, the engineering organization in this case carried a stable architecture, a mid-sized team mixing senior and mid-level engineers, and no AI-assisted development practice. Cursor had just become credible. Copilot was widely available but rarely used in production paths. Agentic coding — agents writing branches end-to-end with human review — was still mostly demoware.
 
-The team had a clear technical direction, an in-flight migration off vendor-managed infrastructure, and several active product surfaces under simultaneous development. The pace was already constrained by judgment, not by hands.
+The team had a clear technical direction, an in-flight migration off vendor-managed infrastructure — the in-housing transition documented in *[Reclaiming System Ownership Under Vendor Lock-In](/en/work/breaking-vendor-lock-in)*, completed mid-period — and several active product surfaces under simultaneous development. The pace was already constrained by judgment, not by hands.
 
-What started as personal exploration at the end of 2024 turned, over fourteen months, into a sustained shift in how the team built software. By the start of 2026, more than 90% of new code in the platform was AI-generated, the team's velocity ranged between 2x and 5x baseline depending on the surface, and the operating discipline had been codified, enforced, and absorbed.
+What started as personal exploration at the end of 2024 turned, over fourteen months, into a sustained shift in how the team built software. By the start of 2026, more than 90% of new code in the platform was AI-generated, the team's velocity ranged 2–3x baseline on most surfaces and 5–10x on greenfield work, straightforward bug-fixing, and abstraction-heavy surfaces, and the operating discipline had been codified, enforced, and absorbed.
 
 This is the sequence that produced that outcome — what was done, in what order, and why.
 
@@ -73,7 +73,7 @@ The same context discipline that made this transition stable later — what cont
 
 ---
 
-### Phase 2 — Introducing the First Adopter
+### Phase 2 — Introducing the First Adopter (Q1 2025)
 
 Once the leader's fluency was real, the next move was not a team announcement. It was a one-on-one.
 
@@ -112,7 +112,7 @@ The point of the governance layer was not to slow the first adopter. The point w
 
 ### Phase 4 — Momentum and Differentiated Mentoring
 
-Other engineers started picking up the tooling.
+Other engineers started picking up the tooling. By this stage, the AI toolchain had crossed from a side exploration into the team's standard workflow.
 
 The momentum was uneven. Some of the next wave moved fast — they had been watching the first adopter and were ready. Others lagged. Two distinct resistance patterns emerged.
 
@@ -172,7 +172,7 @@ By this point, the operating pattern had absorbed. It no longer felt like a tran
 The material outcomes after fourteen months:
 
 - more than 90% of new code on the platform AI-generated,
-- 2–3x velocity baseline across most surfaces; 5x or higher in well-bounded surfaces and prototyping phases,
+- 2–3x velocity baseline across most surfaces; 5–10x on greenfield work, straightforward bug-fixing, and abstraction-heavy surfaces,
 - no measurable degradation in quality versus the pre-adoption baseline; on the rule-heavy surfaces, a measurable improvement,
 - an engineering team operating fluently in agentic workflows, with a shared vocabulary for the new bar,
 - a governance layer codified inside the repository and inside CI, capable of absorbing new tooling without rewrite,

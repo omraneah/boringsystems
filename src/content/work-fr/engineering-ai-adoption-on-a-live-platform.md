@@ -11,9 +11,9 @@ order: 2
 
 Au quatrième trimestre 2024, l'organisation engineering de ce cas portait une architecture stable, une équipe de taille moyenne mêlant seniors et profils intermédiaires, et aucune pratique de développement assisté par IA. Cursor venait juste de devenir crédible. Copilot était largement disponible mais rarement utilisé sur les chemins de production. Le coding agentique — des agents écrivant des branches de bout en bout avec revue humaine — restait pour l'essentiel de la démo.
 
-L'équipe avait une direction technique claire, une migration en cours hors d'une infrastructure managée par un vendor, et plusieurs surfaces produit actives en développement simultané. Le rythme était déjà contraint par le jugement, pas par les mains.
+L'équipe avait une direction technique claire, une migration en cours hors d'une infrastructure managée par un vendor — la transition d'in-housing documentée dans *[Reclaiming System Ownership Under Vendor Lock-In](/fr/work/breaking-vendor-lock-in)*, achevée en cours de période — et plusieurs surfaces produit actives en développement simultané. Le rythme était déjà contraint par le jugement, pas par les mains.
 
-Ce qui a commencé comme une exploration personnelle fin 2024 s'est transformé, sur quatorze mois, en un changement durable de la façon dont l'équipe construit du software. Au début de 2026, plus de 90 % du nouveau code sur la plateforme était généré par IA, la vélocité de l'équipe variait entre 2x et 5x la baseline selon la surface, et la discipline opérationnelle avait été codifiée, appliquée et absorbée.
+Ce qui a commencé comme une exploration personnelle fin 2024 s'est transformé, sur quatorze mois, en un changement durable de la façon dont l'équipe construit du software. Au début de 2026, plus de 90 % du nouveau code sur la plateforme était généré par IA, la vélocité de l'équipe variait entre 2x et 3x la baseline sur la plupart des surfaces, et entre 5x et 10x sur le greenfield, le bug-fixing rapide et les surfaces lourdes en abstractions, et la discipline opérationnelle avait été codifiée, appliquée et absorbée.
 
 Voici la séquence qui a produit ce résultat — ce qui a été fait, dans quel ordre, et pourquoi.
 
@@ -73,7 +73,7 @@ La même discipline de contexte qui a rendu cette transition stable plus tard �
 
 ---
 
-### Phase 2 — Introduire le premier adopter
+### Phase 2 — Introduire le premier adopter (T1 2025)
 
 Une fois la fluidité du leader réelle, le mouvement suivant n'était pas une annonce à l'équipe. C'était un tête-à-tête.
 
@@ -112,7 +112,7 @@ Le point de la couche de gouvernance n'était pas de ralentir le premier adopter
 
 ### Phase 4 — Élan et mentoring différencié
 
-D'autres engineers ont commencé à prendre le tooling.
+D'autres engineers ont commencé à prendre le tooling. À ce stade, le toolchain IA était passé d'une exploration sur le côté au workflow standard de l'équipe.
 
 L'élan était inégal. Une partie de la vague suivante a bougé vite — ils observaient le premier adopter et étaient prêts. D'autres ont traîné. Deux schémas de résistance distincts ont émergé.
 
@@ -172,7 +172,7 @@ La dernière phase a formalisé le nouveau standard.
 Les résultats matériels après quatorze mois :
 
 - plus de 90 % du nouveau code sur la plateforme généré par IA,
-- vélocité à 2-3x la baseline sur la plupart des surfaces ; 5x ou plus sur les surfaces bien bornées et les phases de prototypage,
+- vélocité à 2-3x la baseline sur la plupart des surfaces ; 5-10x sur le greenfield, le bug-fixing rapide et les surfaces lourdes en abstractions,
 - aucune dégradation mesurable de la qualité par rapport à la baseline pré-adoption ; sur les surfaces denses en règles, une amélioration mesurable,
 - une équipe engineering opérant avec fluidité dans des workflows agentiques, avec un vocabulaire partagé pour la nouvelle barre,
 - une couche de gouvernance codifiée dans le repo et dans le CI, capable d'absorber le nouveau tooling sans réécriture,
