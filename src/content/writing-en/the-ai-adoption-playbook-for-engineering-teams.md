@@ -13,15 +13,13 @@ This is the mechanic — what actually happens when you run the change yourself,
 
 ## The three runs
 
-**At [The Fabulous](https://thefabulous.co) (previous company).** A product-growth team — not mine — had spent two consecutive quarters running A/B experiments that produced no measurable lift on the company's product-growth KPIs. Internal confidence eroded. Management started questioning whether the function was viable at all. The CEO sponsored the rebuild; I ran it with influence; one champion inside the growth team carried it day-to-day, with no growth head in the org at the time. The change was statistical rigor — sample size, false positive and false negative rates, statistical power, guardrails (the KPIs that should *not* move), leading and lagging indicators, and a holdout group to measure against a no-experiment baseline. Outcome: shared language across the team, recovered trust from management, better causal reasoning about what actually moved the bar versus what didn't, and disciplined abandonment of experiments that were never going to validate.
+**Previous engagement — A/B framework rollout in a product-growth team.** A product-growth team — not mine — had spent two consecutive quarters running A/B experiments that produced no measurable lift on the company's product-growth KPIs. Internal confidence eroded. Management started questioning whether the function was viable at all. The CEO sponsored the rebuild; I ran it with influence; one champion inside the growth team carried it day-to-day, with no growth head in the org at the time. The change was statistical rigor — sample size, false positive and false negative rates, statistical power, guardrails (the KPIs that should *not* move), leading and lagging indicators, and a holdout group to measure against a no-experiment baseline. Outcome: shared language across the team, recovered trust from management, better causal reasoning about what actually moved the bar versus what didn't, and disciplined abandonment of experiments that were never going to validate.
 
 **Current company — leveling-up (post-in-housing).** Survival speed during the *[in-housing migration](/en/work/breaking-vendor-lock-in)* — vendor lock-in handcuffs, ship-first, tolerated hacks, deferred quality bars — had to give way to production-grade engineering once the platform was on its own infrastructure. The *[hardening cycle](/en/work/saas-hardening)* was the engineering side; this is the people-and-practice side. I sponsored and held the authority directly, with CTO mandate behind it; senior devs as champions. The change was practice elevation — testing, ADRs documented for both humans and agents, architectural rules, the Boy-Scout principle, stricter reviews, security discipline. Outcome: zero security hotspots, ADRs codified, test coverage 50% → 70%, bug rate 1–2 per week to 1–2 per month, velocity up after refactor.
 
 **Current company — AI adoption.** Documented end-to-end in *[Engineering AI Adoption on a Live Platform](/en/work/engineering-ai-adoption-on-a-live-platform)*. Same sponsor and authority shape as the leveling-up run — I sponsored, CTO authority, champions among the senior engineers. Endpoint: more than 90% of new code AI-written, 2–3x velocity on most surfaces, 5–10x on greenfield work, straightforward bug-fixing, and abstraction-heavy surfaces.
 
 Three different surfaces — analytics inside a cross-functional team I didn't manage, internal engineering practice elevation, AI tooling adoption across the platform. The same playbook held on all three.
-
-The Fabulous engagement is closed, so it is named. The two current-company cases are anonymized — ongoing-engagement convention, consistent with the linked case files.
 
 ## When change starts
 
@@ -43,10 +41,10 @@ Two things must be true before the playbook is worth starting.
 
 This is the part most frameworks oversimplify. The shape varies per wave.
 
-- **Sponsor and operator can be the same person, or split.** At Fabulous, the CEO sponsored and I operated with influence. At the current company, I held both.
+- **Sponsor and operator can be the same person, or split.** In the previous engagement, the CEO sponsored and I operated with influence. In the current-company runs, I held both.
 - **Authority can be yours, borrowed from a sponsor, or paired with someone else's.** Borrowed authority works — when stakes are high, the sponsor's air-cover is what keeps the operator credible.
 - **Influence-only is viable** when you have a credible sponsor. **Authority-only is viable** when the stakes are low enough that backlash is tolerable.
-- **Coalition is conditional, not default.** Build it when you do not own the context (Fabulous: CEO plus a champion inside the growth team). Skip it when you own the context (current company cases). Coalition is the tool that compensates for missing ownership.
+- **Coalition is conditional, not default.** Build it when you do not own the context (previous engagement: CEO plus a champion inside the growth team, no growth head at the time). Skip it when you own the context (current company cases). Coalition is the tool that compensates for missing ownership.
 
 ## The playbook, mapped to the adoption curve
 
@@ -107,7 +105,7 @@ Resistance is not a personality trait. It is incentive structure showing through
 | **Purist** (correct prior judgment) | Identity around the old bar; principled non-adopter | Usually yes — time and evidence | Zero pressure. Continued access, continued visibility into champions' work. They arrive on their own. |
 | **Saboteur** (power loss) | Held power in the old system; loses it in the new | **Usually no** — the misalignment IS the power loss | Authority intervention from the sponsor. Re-role inside the org, or part ways. |
 
-At Fabulous, one person sat in the saboteur pattern — the new statistical framework reduced their gatekeeping influence over what counted as a "valid" experiment. The CEO eventually handled it directly; the person was re-roled into a different function.
+In the previous engagement, one person sat in the saboteur pattern — the new statistical framework reduced their gatekeeping influence over what counted as a "valid" experiment. The CEO eventually handled it directly; the person was re-roled into a different function.
 
 In the leveling-up phase at the current company, one engineer hit the hider pattern. Two months of deep mentoring before the situation moved into a performance improvement plan. Mentoring exhausts before performance management starts — that is the order. The reverse poisons the rollout for everyone else.
 

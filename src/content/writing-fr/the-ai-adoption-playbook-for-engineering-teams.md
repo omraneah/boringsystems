@@ -13,15 +13,13 @@ Voici la mécanique — ce qui se passe vraiment quand on mène le changement so
 
 ## Les trois runs
 
-**Chez [The Fabulous](https://thefabulous.co) (entreprise précédente).** Une équipe product-growth — pas la mienne — avait passé deux trimestres consécutifs à faire tourner des A/B tests sans gain mesurable sur les KPI de croissance. La confiance interne s'est érodée. Le management a commencé à remettre en question la viabilité même de la fonction. Le CEO a sponsorisé la reconstruction ; je l'ai menée avec de l'influence ; un seul champion à l'intérieur de l'équipe growth la portait au jour le jour, sans growth head dans l'org à ce moment-là. Le changement portait sur la rigueur statistique — taille d'échantillon, taux de faux positifs et faux négatifs, statistical power, guardrails (les KPI qui ne *doivent pas* bouger), indicateurs leading et lagging, et un holdout group pour mesurer contre une baseline sans expérience. Outcome : langage partagé dans l'équipe, confiance restaurée côté management, meilleure causalité sur ce qui faisait vraiment bouger la barre, et abandon discipliné des expériences qui n'allaient jamais valider.
+**Engagement précédent — rollout de framework A/B dans une équipe product-growth.** Une équipe product-growth — pas la mienne — avait passé deux trimestres consécutifs à faire tourner des A/B tests sans gain mesurable sur les KPI de croissance. La confiance interne s'est érodée. Le management a commencé à remettre en question la viabilité même de la fonction. Le CEO a sponsorisé la reconstruction ; je l'ai menée avec de l'influence ; un seul champion à l'intérieur de l'équipe growth la portait au jour le jour, sans growth head dans l'org à ce moment-là. Le changement portait sur la rigueur statistique — taille d'échantillon, taux de faux positifs et faux négatifs, statistical power, guardrails (les KPI qui ne *doivent pas* bouger), indicateurs leading et lagging, et un holdout group pour mesurer contre une baseline sans expérience. Outcome : langage partagé dans l'équipe, confiance restaurée côté management, meilleure causalité sur ce qui faisait vraiment bouger la barre, et abandon discipliné des expériences qui n'allaient jamais valider.
 
 **Entreprise actuelle — leveling-up (post-in-housing).** La vitesse de survie pendant la *[migration d'in-housing](/fr/work/breaking-vendor-lock-in)* — handcuffs vendor lock-in, ship-first, hacks tolérés, barre de qualité reportée — devait céder la place à un engineering production-grade une fois la plateforme sur sa propre infrastructure. Le *[cycle de hardening](/fr/work/saas-hardening)* portait le côté engineering ; ici c'est le côté humain et pratiques. Je sponsorisais et tenais l'autorité directement, mandat CTO derrière ; senior devs comme champions. Le changement portait sur l'élévation des pratiques — tests, ADR documentés pour humains et agents, règles d'architecture, principe Boy-Scout, reviews plus strictes, discipline de sécurité. Outcome : zéro hotspot de sécurité, ADR codifiés, couverture de tests 50 % → 70 %, taux de bugs 1–2 par semaine → 1–2 par mois, vélocité en hausse après refactor.
 
 **Entreprise actuelle — adoption IA.** Documenté de bout en bout dans *[Engineering AI Adoption on a Live Platform](/fr/work/engineering-ai-adoption-on-a-live-platform)*. Même configuration de sponsor et d'autorité que le run leveling-up — je sponsorisais, autorité CTO, champions parmi les senior engineers. Endpoint : plus de 90 % du nouveau code écrit par IA, 2–3x de vélocité sur la plupart des surfaces, 5–10x sur le greenfield, le bug-fixing rapide et les surfaces lourdes en abstractions.
 
 Trois surfaces différentes — analytics dans une équipe cross-fonctionnelle que je ne managéais pas, élévation des pratiques engineering internes, adoption d'outillage IA sur la plateforme. Le même playbook a tenu sur les trois.
-
-L'engagement chez The Fabulous est clos, donc nommé. Les deux cas de l'entreprise actuelle sont anonymisés — convention d'engagement en cours, cohérente avec les case files liés.
 
 ## Quand le changement commence
 
@@ -43,10 +41,10 @@ Deux choses doivent être vraies avant que le playbook vaille la peine d'être l
 
 C'est la partie que la plupart des frameworks simplifient à outrance. La forme varie par vague.
 
-- **Sponsor et operator peuvent être la même personne, ou séparés.** À Fabulous, le CEO sponsorisait, j'opérais avec l'influence. À l'entreprise actuelle, je tenais les deux.
+- **Sponsor et operator peuvent être la même personne, ou séparés.** Dans l'engagement précédent, le CEO sponsorisait et j'opérais avec l'influence. Dans les runs de l'entreprise actuelle, je tenais les deux.
 - **L'autorité peut être à soi, empruntée à un sponsor, ou couplée.** L'autorité empruntée fonctionne — quand les stakes sont hauts, la couverture du sponsor est ce qui maintient la crédibilité de l'operator.
 - **Influence seule reste viable** avec un sponsor crédible. **Autorité seule reste viable** quand les stakes sont bas et que le backlash reste tolérable.
-- **La coalition est conditionnelle, pas par défaut.** À construire quand on n'owne pas le contexte (Fabulous : CEO plus un champion dans l'équipe growth). À sauter quand on owne le contexte (cas entreprise actuelle). La coalition est l'outil qui compense un ownership manquant.
+- **La coalition est conditionnelle, pas par défaut.** À construire quand on n'owne pas le contexte (engagement précédent : CEO plus un champion dans l'équipe growth, sans growth head à l'époque). À sauter quand on owne le contexte (cas entreprise actuelle). La coalition est l'outil qui compense un ownership manquant.
 
 ## Le playbook, mappé sur la courbe d'adoption
 
@@ -107,7 +105,7 @@ La résistance n'est pas un trait de personnalité. C'est une structure d'incent
 | **Purist** (jugement antérieur correct) | Identité autour de l'ancienne barre ; non-adopter de principe | Généralement oui — temps et preuves | Zéro pression. Accès continu, visibilité continue sur ce que livrent les champions. Ils arrivent d'eux-mêmes. |
 | **Saboteur** (perte de pouvoir) | Tenait le pouvoir dans l'ancien système ; le perd dans le nouveau | **Généralement non** — le misalignement EST la perte de pouvoir | Intervention d'autorité par le sponsor. Réaffectation dans l'org, ou séparation. |
 
-À Fabulous, une personne se trouvait dans le pattern saboteur — le nouveau framework statistique réduisait son rôle de gatekeeping sur ce qui comptait comme « expérience valide ». Le CEO a fini par traiter directement ; la personne a été réaffectée à une autre fonction.
+Dans l'engagement précédent, une personne se trouvait dans le pattern saboteur — le nouveau framework statistique réduisait son rôle de gatekeeping sur ce qui comptait comme « expérience valide ». Le CEO a fini par traiter directement ; la personne a été réaffectée à une autre fonction.
 
 Dans la phase de leveling-up à l'entreprise actuelle, un engineer se trouvait dans le pattern hider. Deux mois de mentoring profond avant que la situation ne bascule en performance improvement plan. Le mentoring s'épuise avant que la performance management ne commence — c'est l'ordre. L'inverse empoisonne le rollout pour tout le monde.
 
