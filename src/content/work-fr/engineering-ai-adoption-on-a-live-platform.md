@@ -1,6 +1,6 @@
 ---
 title: "Adoption IA en engineering sur une plateforme en production"
-description: "Conduire l'adoption IA sur une plateforme en production, du premier adopter à 90 % de code LLM en 14 mois — sans dérive qualité, sans départ forcé."
+description: "Conduire l'adoption IA sur une plateforme en production, du premier adopter à 90 % de code écrit par IA en 14 mois — sans dérive qualité, sans départ forcé."
 date: 2026-05-12
 highlight: true
 featured: true
@@ -11,13 +11,13 @@ order: 2
 
 Au quatrième trimestre 2024, l'organisation engineering de ce cas portait une architecture stable, une équipe de taille moyenne mêlant seniors et profils intermédiaires, et aucune pratique de développement assisté par IA. Cursor venait juste de devenir crédible. Copilot était largement disponible mais rarement utilisé sur les chemins de production. Le coding agentique — des agents écrivant des branches de bout en bout avec revue humaine — restait pour l'essentiel de la démo.
 
-L'équipe avait une direction technique claire, une migration en cours hors d'une infrastructure managée par un vendor, et plusieurs surfaces produit actives en développement simultané. Le rythme était déjà contraint par le jugement, pas par les mains.
+L'équipe avait une direction technique claire, une migration en cours hors d'une infrastructure managée par un vendor — la transition d'in-housing documentée dans *[Reclaiming System Ownership Under Vendor Lock-In](/fr/work/breaking-vendor-lock-in)*, achevée en cours de période — et plusieurs surfaces produit actives en développement simultané. Le rythme était déjà contraint par le jugement, pas par les mains.
 
-Ce qui a commencé comme une exploration personnelle fin 2024 s'est transformé, sur quatorze mois, en un changement durable de la façon dont l'équipe construit du software. Au début de 2026, plus de 90 % du nouveau code sur la plateforme était généré par IA, la vélocité de l'équipe variait entre 2x et 5x la baseline selon la surface, et la discipline opérationnelle avait été codifiée, appliquée et absorbée.
+Ce qui a commencé comme une exploration personnelle fin 2024 s'est transformé, sur quatorze mois, en un changement durable de la façon dont l'équipe construit du software. Au début de 2026, plus de 90 % du nouveau code sur la plateforme était généré par IA, la vélocité de l'équipe variait entre 2x et 3x la baseline sur la plupart des surfaces, et entre 5x et 10x sur le greenfield, le bug-fixing rapide et les surfaces lourdes en abstractions, et la discipline opérationnelle avait été codifiée, appliquée et absorbée.
 
 Voici la séquence qui a produit ce résultat — ce qui a été fait, dans quel ordre, et pourquoi.
 
-Le texte compagnon — *[Le playbook d'adoption IA pour les équipes engineering](/fr/writing/the-ai-adoption-playbook-for-engineering-teams)* — formalise le playbook que ce case file démontre en pratique.
+Le texte compagnon — *[Change management pour operators : un playbook éprouvé sur trois runs](/fr/writing/the-ai-adoption-playbook-for-engineering-teams)* — formalise le playbook que ce case file démontre en pratique.
 
 ---
 
@@ -73,7 +73,7 @@ La même discipline de contexte qui a rendu cette transition stable plus tard �
 
 ---
 
-### Phase 2 — Introduire le premier adopter
+### Phase 2 — Introduire le premier adopter (T1 2025)
 
 Une fois la fluidité du leader réelle, le mouvement suivant n'était pas une annonce à l'équipe. C'était un tête-à-tête.
 
@@ -102,7 +102,7 @@ Ce n'était pas un signal de battre en retraite. C'était le signal que la gouve
 
 Les premiers mouvements de gouvernance :
 
-- **Règles architecturales codifiées dans une forme qu'un LLM peut appliquer.** Les ADR de l'équipe ont été réécrits avec des invariants explicites, des zones autorisées/interdites, et des limites de responsabilité — formulés pour qu'un modèle les chargeant en contexte les respecte au moment de la génération. La même discipline est documentée de bout en bout dans *[Établir une gouvernance d'architecture transversale](/fr/work/architecture-governance)*.
+- **Règles architecturales codifiées dans une forme qu'un agent IA peut appliquer.** Les ADR de l'équipe ont été réécrits avec des invariants explicites, des zones autorisées/interdites, et des limites de responsabilité — formulés pour qu'un modèle les chargeant en contexte les respecte au moment de la génération. La même discipline est documentée de bout en bout dans *[Établir une gouvernance d'architecture transversale](/fr/work/architecture-governance)*.
 - **Règles indexées dans l'IDE.** Les règles codifiées ont été rendues accessibles via l'intégration Cursor de l'équipe, pour que chaque session les charge avant toute génération de code.
 - **Une skill standing — une commande project-scoped — pour invoquer ces règles à la demande**, pour que les engineers puissent lancer un check structurel contre la barre codifiée avant d'ouvrir une revue.
 
@@ -112,13 +112,13 @@ Le point de la couche de gouvernance n'était pas de ralentir le premier adopter
 
 ### Phase 4 — Élan et mentoring différencié
 
-D'autres engineers ont commencé à prendre le tooling.
+D'autres engineers ont commencé à prendre le tooling. À ce stade, le toolchain IA était passé d'une exploration sur le côté au workflow standard de l'équipe.
 
 L'élan était inégal. Une partie de la vague suivante a bougé vite — ils observaient le premier adopter et étaient prêts. D'autres ont traîné. Deux schémas de résistance distincts ont émergé.
 
 **Schéma de résistance 1 — l'engineer qui se cache derrière des hacks.**
 
-Un engineer opérait depuis un certain temps légèrement en-dessous du standard de l'équipe, livrant par l'assertivité et des contournements informels plutôt que par un engineering propre. Le nouveau tooling, particulièrement la couche de règles codifiées et l'étape LLM-as-reviewer arrivée plus tard, a exposé cela plus nettement que l'environnement pré-IA ne le faisait.
+Un engineer opérait depuis un certain temps légèrement en-dessous du standard de l'équipe. Le nouveau tooling — particulièrement la couche de règles codifiées et l'étape agent-as-reviewer arrivée plus tard — a exposé l'écart plus nettement que l'environnement pré-IA ne le faisait.
 
 La qualité sur les branches de cet engineer s'est dégradée visiblement. La friction n'était pas le tooling. La friction venait du fait que le plancher avait monté et que l'écart était maintenant lisible.
 
@@ -144,9 +144,9 @@ La discipline plus large pour faire tourner ces deux schémas en parallèle — 
 
 Trois ajouts :
 
-- **Un second LLM en first-pass reviewer.** L'agent lisait chaque PR contre les règles codifiées et les limites architecturales avant qu'aucun reviewer humain ne s'engage. L'engineer corrigeait sur le feedback de l'agent en premier. Le reviewer humain arrivait en dernier, jugeant la substance au lieu d'attraper les détails.
+- **Un second agent IA en first-pass reviewer.** L'agent lisait chaque PR contre les règles codifiées et les limites architecturales avant qu'aucun reviewer humain ne s'engage. L'engineer corrigeait sur le feedback de l'agent en premier. Le reviewer humain arrivait en dernier, jugeant la substance au lieu d'attraper les détails.
 - **Garde-fous CI/CD appliquant la couche de règles au niveau machine.** Tests, checks de violation de principes, checks de franchissement de frontière. Erreurs bon marché attrapées au moment le moins cher possible.
-- **Principes engineering codifiés et distillés pour les LLM comme pour les engineers.** Pas un site de documentation. Un petit ensemble dense de règles, chargé dans chaque session par chaque engineer, quel que soit l'agent en cours. Les principes sont les mêmes que ceux documentés séparément dans *[Engineering Practice Boundaries — One Bar for Engineers and AI](/fr/writing/engineering-principles-that-outlive-the-stack)*.
+- **Principes engineering codifiés et distillés pour les agents IA comme pour les engineers.** Pas un site de documentation. Un petit ensemble dense de règles, chargé dans chaque session par chaque engineer, quel que soit l'agent en cours. Les principes sont les mêmes que ceux documentés séparément dans *[Engineering Practice Boundaries — One Bar for Engineers and AI](/fr/writing/engineering-principles-that-outlive-the-stack)*.
 
 La discipline d'orchestration qui tient ce type de couche multi-agent — ce qui est écrit, comment la mémoire est tiered, comment la boucle reste fermée — est le substrat décrit dans *[Agentic AI Orchestration — 7 principes opérationnels](/fr/writing/orchestration-principles-that-outlive-the-model)*.
 
@@ -161,7 +161,7 @@ La dernière phase a formalisé le nouveau standard.
 - L'adoption est entrée dans la pratique engineering standing — référencée dans l'onboarding, dans les conversations de performance, dans les OKR.
 - Les KPI étaient suivis par projet et par engineer : pourcentage de code généré par IA, delta de vélocité, taux de défauts, nombre d'itérations de revue, nombre de violations de gouvernance.
 - De nouvelles règles et de nouvelles commandes continuaient d'être ajoutées en réponse à des modes d'échec spécifiques, le système étant conçu pour les absorber sans redémarrage.
-- Des modèles plus récents — Claude Opus 4.6 en particulier — ont multiplié ce qui marchait déjà. Le substrat était prêt pour l'upgrade ; l'upgrade n'a pas nécessité de relancer le rollout.
+- Au T1 2026, des modèles plus récents — Claude Opus 4.6 en particulier — ont multiplié ce qui marchait déjà. Le substrat était prêt pour l'upgrade ; l'upgrade n'a pas nécessité de relancer le rollout.
 
 À ce stade, le pattern opérationnel était absorbé. Cela ne ressemblait plus à une transition.
 
@@ -172,7 +172,7 @@ La dernière phase a formalisé le nouveau standard.
 Les résultats matériels après quatorze mois :
 
 - plus de 90 % du nouveau code sur la plateforme généré par IA,
-- vélocité à 2-3x la baseline sur la plupart des surfaces ; 5x ou plus sur les surfaces bien bornées et les phases de prototypage,
+- vélocité à 2-3x la baseline sur la plupart des surfaces ; 5-10x sur le greenfield, le bug-fixing rapide et les surfaces lourdes en abstractions,
 - aucune dégradation mesurable de la qualité par rapport à la baseline pré-adoption ; sur les surfaces denses en règles, une amélioration mesurable,
 - une équipe engineering opérant avec fluidité dans des workflows agentiques, avec un vocabulaire partagé pour la nouvelle barre,
 - une couche de gouvernance codifiée dans le repo et dans le CI, capable d'absorber le nouveau tooling sans réécriture,
@@ -184,8 +184,6 @@ Le substrat se compose désormais. Le prochain upgrade de modèle ajoute du thro
 
 ## Note de clôture
 
-La transition décrite ici n'a pas cassé le système, n'a pas produit de backlash, et n'a pas dépendu de la survie d'un seul outil. Le substrat qu'elle a produit — règles codifiées, gouvernance multi-agent, chemin de mentoring pour les résistants, KPI clairs visibles dans toute l'équipe — est portable entre stacks, entre équipes, et à travers la prochaine vague de modèles.
+La transition décrite ici n'a pas cassé le système, n'a pas produit de backlash, et n'a pas dépendu de la survie d'un seul outil. Le substrat qu'elle a produit — règles codifiées, gouvernance multi-agent, chemin de mentoring pour les résistants, KPI clairs visibles dans toute l'équipe — est portable entre stacks, entre équipes, et à travers la prochaine vague de modèles. Les principes transversaux pour un changement de cette forme — quand agir, comment ancrer, quoi protéger — sont cristallisés à part dans *[Change Injection: Shaping Systems Without Collapse](/fr/archive/s2-p2-change-injection)*.
 
-La même forme a déjà été jouée, sur d'autres vagues technologiques, sous d'autres noms. Les principes transversaux — quand agir, comment ancrer, quoi protéger — sont cristallisés dans *[Change Injection: Shaping Systems Without Collapse](/fr/archive/s2-p2-change-injection)*.
-
-Le playbook que ce case file démontre en pratique est dans *[Le playbook d'adoption IA pour les équipes engineering](/fr/writing/the-ai-adoption-playbook-for-engineering-teams)*. Les deux sont appariés : celui-ci est la preuve, celui-là est la barre.
+Le playbook que ce case file démontre en pratique est dans *[Change management pour operators : un playbook éprouvé sur trois runs](/fr/writing/the-ai-adoption-playbook-for-engineering-teams)*. Les deux sont appariés : celui-ci est la preuve, celui-là est la barre.

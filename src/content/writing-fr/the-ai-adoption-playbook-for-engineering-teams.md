@@ -1,201 +1,130 @@
 ---
-title: "Le playbook d'adoption IA pour les équipes engineering"
-description: "L'adoption IA est du change-management avant tooling. Montrer l'exemple, trouver les champions, gouverner quand la qualité dérive, mentorer pas forcer."
+title: "Change management pour operators : un playbook éprouvé sur trois runs"
+description: "Trois rollouts de change-management sous différentes vagues, sponsors et autorités. Un playbook — la mécanique que les frameworks ne montrent pas."
 date: 2026-05-12
-highlight: true
+highlight: false
 featured: true
 order: 1
 ---
 
-L'adoption IA est un problème de change-management avant d'être un problème de tooling.
+La plupart des frameworks de change-management décrivent ce qui *devrait* se passer.
 
-## Objectif
+Voici la mécanique — ce qui se passe vraiment quand on mène le changement soi-même, trois fois, sur trois vagues, depuis l'intérieur du travail et non depuis l'extérieur.
 
-Les équipes qui avancent deux à cinq fois plus vite en 2026 ne sont pas celles qui ont les meilleures licences. Ce sont celles qui ont travaillé la transition correctement.
+## Quand le changement commence
 
-La plupart des leaders engineering savent que l'IA est là pour durer. Moins nombreux sont ceux qui voient que la vitesse à laquelle elle s'installe dans l'équipe est une question de leadership, pas une question de technologie. Chaque mois sans adoption est un mois pendant lequel les builders de nouvelle génération creusent l'écart. Les acteurs en place portent plus de friction que les équipes greenfield, par construction — leur problème est plus dur qu'on ne le crédite. Mais le playbook existe. Il a déjà été joué, sous d'autres noms, contre d'autres vagues technologiques.
+L'intuition d'abord — gut feeling. La décision suit.
 
-Ce texte formalise le playbook. Le case file compagnon — *[Engineering AI Adoption on a Live Platform](/fr/work/engineering-ai-adoption-on-a-live-platform)* — le montre déroulé de bout en bout sur une équipe en production.
+Les operators n'analysent pas leur chemin vers *« c'est maintenant »*. Ils sentent que le coût de ne pas changer devient plus lourd que le coût de changer. Plusieurs signaux poussent dans la même direction — clients, pairs, marché, leadership au-dessus, attrition dans l'équipe. La douleur passe d'arrière-plan à premier plan.
 
----
+En-dessous de ce seuil : on tolère. Au seuil : on déclenche le playbook.
 
-## Le constat
+## Pré-conditions
 
-Trois positions à tenir en même temps.
+Deux choses doivent être vraies avant que le playbook vaille la peine d'être lancé.
 
-**L'IA en engineering est permanente.** Le coding agentique est devenu un default en 2025 sur les nouveaux builds. Les équipes qui démarrent après cette date l'ont dans la mémoire musculaire. Celles qui ont construit avant doivent rétrofiter. L'écart est réel, il se compose chaque mois, et prétendre l'inverse est une erreur stratégique.
+**Net benefit visible.** Soit on le voit soi-même, soit les stakeholders pertinents le voient après une conversation. Si personne ne le voit, on n'est pas prêt à mener le changement — on est prêt à faire le diagnostic qui le révèle.
 
-**Le gain dépend de l'opérateur.** Deux à cinq fois est l'enveloppe réaliste pour des équipes engineering qui adoptent avec discipline. Sur certaines surfaces et certaines phases, on monte plus haut — prototypage rapide, greenfield bien borné, scaffolding répétitif. Sur d'autres, le multiplicateur reste modeste — infrastructure distribuée complexe, code critique pour la sécurité, specs produit ambiguës. Le multiplicateur se compose avec le jugement engineering et la maîtrise produit, pas avec le nombre de tokens.
+**Buy-in ou ownership complet.** Soit les gens dont on affecte le contexte ont signalé leur support, soit on owne ce contexte complètement. Sans l'un des deux, on n'a pas la surface pour agir.
 
-**Le travail est humain, pas technique.** Les licences sont triviales. Le matériel de formation existe. Ce qui ralentit les équipes, c'est la psychologie — peur du remplacement, identité de craft menacée, incentives désalignés, absence de couverture du leadership quand quelque chose tourne mal. L'adoption n'est pas un problème d'achat.
+## Autorité, influence, coalition
 
----
+C'est la partie que la plupart des frameworks simplifient à outrance. La forme varie par run.
 
-## La courbe d'adoption
+- **Sponsor et operator peuvent être la même personne, ou séparés.** Parfois on tient les deux ; parfois un sponsor au-dessus tient l'autorité, et on opère avec l'influence.
+- **L'autorité peut être à soi, empruntée à un sponsor, ou couplée.** L'autorité empruntée fonctionne — quand les stakes sont hauts, la couverture du sponsor est ce qui maintient la crédibilité de l'operator.
+- **Influence seule reste viable** avec un sponsor crédible. **Autorité seule reste viable** quand les stakes sont bas et que le backlash reste tolérable.
+- **La coalition est conditionnelle, pas par défaut.** À construire quand on n'owne pas le contexte — alignement cross-fonctionnel avec celui qui owne. À sauter quand on owne le contexte. La coalition est l'outil qui compense un ownership manquant.
 
-Chaque déploiement technologique en engineering suit la même forme. Les noms comptent, les pourcentages comptent, le chasm compte.
+## Le playbook, mappé sur la courbe d'adoption
 
-**La courbe de diffusion de Rogers** (1962) nomme les cinq segments : Innovators (2,5 %), Early Adopters (13,5 %), Early Majority (34 %), Late Majority (34 %), Laggards (16 %). La forme tient à travers les décennies et les technologies.
+Les actions d'operator ne s'enchaînent pas en checkboxes discrètes. Elles se superposent, timées sur l'endroit où l'équipe se trouve sur la courbe de diffusion des innovations de Rogers.
 
-**Le chasm de Moore** se loge entre Early Adopters et Early Majority. Les visionnaires de gauche tolèrent la discontinuité ; les pragmatiques de droite exigent de la productivité prouvée. La plupart des rollouts s'enlisent là.
+![Courbe en cloche montrant les cinq catégories d'adopteurs selon la Diffusion of Innovations de Rogers : Innovators 2,5 %, Early Adopters 13,5 %, Early Majority 34 %, Late Majority 34 %, Laggards 16 %, avec le Chasm de Moore marqué entre Early Adopters et Early Majority.](/diffusion-of-innovations.svg)
 
-Où se situent vraiment les équipes engineering en 2026 — c'est le point que la plupart des executives lisent à l'envers :
+*Schéma : « Innovation Adoption Curve » par Jim McKeeth, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Innovation_Adoption_Curve.svg).*
 
-- **L'usage brut des outils est post-chasm.** L'enquête Stack Overflow 2025 mesure 84 % des développeurs en usage IA, contre 76 % l'année précédente. Le rapport DORA 2025 le place à 95 %, avec une corrélation désormais positive entre IA et throughput de livraison.
-- **La confiance est pré-chasm.** La même enquête Stack Overflow donne 29 % de confiance dans la précision de l'IA — en baisse de onze points sur un an — et 46 % qui s'en méfient activement.
-- **L'usage agentique en production est fermement Early-Adopter.** La plupart des équipes utilisent l'IA comme autocomplete-plus. Peu sont passées à *les agents font, les humains revoient.*
+| Étape d'adoption | Ce qu'on fait | Ce qu'on ne fait PAS encore |
+|---|---|---|
+| **Innovators** (~2,5 % — vous) | Montrer l'exemple. Gagner la fluidité avant d'introduire. | Communiquer largement. |
+| **Early Adopters** (~13,5 %) | Trouver les champions. Les armer. Construire l'élan en silence. | Ajouter la gouvernance. Poser des KPI. |
+| **Traversée du chasm** | Première couche de gouvernance. Premiers KPI (observation seule). Mentorer les adopters qui demandent du coaching. | Accélérer. Formaliser. |
+| **Early Majority** (~34 %) | Mûrir la gouvernance. Mûrir les KPI. Commencer à formaliser le process. | Poser des objectifs. |
+| **Late Majority** (~34 %) | Formaliser complètement — KPI, objectifs, nouvelle barre. Mentorer la résistance restante. | Tolérer le misalignement. |
+| **Laggards** (~16 %) | Traiter le misalignement final — réaffectation, performance plan après mentoring profond, ou séparation. | Punir largement. |
 
-Le chasm de 2026 n'est pas *« l'équipe utilise-t-elle l'IA. »* C'est *« l'équipe lui fait-elle assez confiance pour la laisser conduire, avec gouvernance plutôt que supervision. »*
+La colonne de droite compte autant que celle de gauche. *Ce qu'on ne fait pas encore* protège le signal des premières étapes contre la pression prématurée. La plupart des rollouts échouent en ajoutant gouvernance, KPI ou objectifs formels trop tôt — avant que les champions n'aient produit la preuve qui donne le droit de gouverner.
 
-C'est ce chasm que les leaders sont payés pour traverser.
+## Les cinq traversées
 
----
+**1. De l'idée à l'Innovator — montrer l'exemple.**
 
-## Autorité et influence — les deux, ou ni l'une ni l'autre
+Adopter en premier, mains dans le cambouis, sur du travail réel — pas dans un sandbox. La fluidité personnelle est l'étape de credentialing. L'équipe ne fera pas confiance au rollout si on opère depuis des briefings. Cette phase a un seul output : on gagne le droit d'introduire.
 
-Le mode d'échec le plus fréquent est d'opérer avec l'une et de rater l'autre.
+**2. Innovator vers Early Adopters — trouver les champions.**
 
-**L'influence sans l'autorité cale au chasm.** Les champions gagnent les Early Adopters. Ils ne font pas passer l'Early Majority, parce que les pragmatiques regardent la structure d'incentives de l'org plus qu'ils ne regardent les démos des champions. Si le bonus, l'OKR, le comité de promo et le calendrier du manager ne disent rien de nouveau, les pragmatiques concluent — correctement — que rien n'a changé.
+Ils sont déjà dans l'équipe. Les identifier, les armer, les pairer entre eux. Ne pas annoncer le changement encore. Les champions livrent ; leur travail apparaît dans les rythmes de l'équipe — réunions, planning, reviews. Les autres membres de l'équipe commencent à poser des questions d'eux-mêmes. Parler trop tôt fige les positions avant que la preuve n'atterrisse.
 
-**L'autorité sans l'influence déclenche le backlash.** Les mandats top-down sans story crédible portée par les pairs produisent deux réactions : la conformité malicieuse des talents (qui font le minimum syndical et cherchent silencieusement ailleurs), et la résistance visible du tiers inférieur (qui formate le mandat comme une attaque sur leur craft). Les deux sorties coûtent cher.
+La cristallisation la plus proche de cette discipline vit dans *[Change Injection: Shaping Systems Without Collapse](/fr/archive/s2-p2-change-injection)* — précisément la séquence *« Silencieux → Visible → Absorbé »*.
 
-Le binôme n'est pas négociable. Si on a les deux, on utilise les deux. Si on n'a que l'influence, on trouve — ou on emprunte — la voix d'autorité pour les moments qui l'exigent, surtout quand la peur du remplacement est dans la salle.
+**3. Traversée du chasm — laisser cuire.**
 
-La dimension culturelle compte. Les équipes engineering françaises répondent particulièrement mal aux mandats de tooling top-down émis sans preuve terrain. Le schéma historique des rollouts purement autoritaires produisant les quatre formes de résistance — *inertie, argumentation, révolte, sabotage* — est bien documenté dans la littérature française de psychologie organisationnelle. Le correctif n'est pas de retirer l'autorité. Le correctif est d'émettre l'autorité après que la preuve par les pairs a déjà été absorbée.
+Les Early Adopters tardifs commencent à pousser — *« pourquoi on n'utilise pas tous ça ? »* C'est le signal que l'élan est réel. Résister à l'accélération. Trois choses atterrissent ici :
 
-La discipline complète sur ce point — quand utiliser l'autorité, quand l'influence, comment convertir l'une en l'autre — est dans *[Influence-First Cross-Functional Leadership](/fr/archive/s2-p3-influence-first)*. La clause qui compte le plus pour les rollouts IA : *« influencer en silence quand la visibilité nourrit la résistance ; publiquement quand elle construit l'élan. »*
+- **Première couche de gouvernance** — règles codifiées, garde-fous, contraintes structurelles qui empêchent la dérive qualité quand davantage de personnes adoptent.
+- **Premiers KPI en pure observation** — indicateurs leading et lagging, input et output, suivis par projet et par personne. Ne pas encore attacher d'incentives.
+- **Mentoring pour ceux qui demandent du coaching** — pas pour les résistants encore ; pour les adopters qui veulent aller plus vite vers la fluidité.
 
----
+**4. L'Early Majority traverse — formaliser ce qui marche.**
 
-## La séquence
+Le centre de la courbe absorbe. Mûrir la gouvernance. Mûrir les KPI. Commencer à formaliser le process. Les habitudes des champions deviennent les conventions de l'équipe. Les reviews appliquent la nouvelle barre sans longs débats.
 
-Six mouvements, dans l'ordre. L'ordre n'est pas optionnel. Chaque mouvement s'appuie sur le substrat produit par le précédent.
+**5. Late Majority et Laggards — formaliser à fond et traiter la résistance.**
 
-### 1. Montrer l'exemple
+Les pragmatiques restants adoptent parce que la nouvelle voie est désormais le chemin de moindre résistance. Bonus, OKR, barre de promo — rattachés. Objectifs posés. La nouvelle barre est le standard.
 
-Le leader adopte en premier.
+Les derniers laggards se révèlent ici. C'est là que le traitement de la résistance compte le plus.
 
-Pas en performance. En fluidité. Usage mains dans le cambouis, sur du vrai code, dans de vraies branches. Tester les outils personnellement, trouver leurs limites, comprendre où ils cassent. L'équipe ne fera pas confiance au rollout si le leader opère sur des briefings au lieu d'une connaissance au bout des doigts.
+## La résistance — toujours un incentive misaligné
 
-Ce n'est pas un sprint d'une semaine. C'est un investissement personnel sur plusieurs mois, qui tourne en parallèle de tout le reste.
+La résistance n'est pas un trait de personnalité. C'est une structure d'incentives qui transparaît. Parfois l'incentive peut être réaligné. Parfois non. Le traitement suit la cause racine.
 
-La phase a un seul output : le leader gagne le droit de parler de l'adoption avec du poids.
+| Pattern | Ce qui est misaligné | Réalignable ? | Traitement |
+|---|---|---|---|
+| **Hider** (gap de compétence) | Le plancher est monté plus vite que la compétence | Généralement oui | Mentoring privé, sessions en binôme, attentes claires, coaching soutenu |
+| **Purist** (jugement antérieur correct) | Identité autour de l'ancienne barre ; non-adopter de principe | Généralement oui — temps et preuves | Zéro pression. Accès continu, visibilité continue sur ce que livrent les champions. Ils arrivent d'eux-mêmes. |
+| **Saboteur** (perte de pouvoir) | Tenait le pouvoir dans l'ancien système ; le perd dans le nouveau | **Généralement non** — le misalignement EST la perte de pouvoir | Intervention d'autorité par le sponsor. Réaffectation dans l'org, ou séparation. |
 
-La version profonde de ce point — pourquoi la fluidité personnelle dans le harness est le prérequis pour porter crédiblement n'importe quel rollout IA — est dans *[The Harness Behind the Agent](/fr/writing/harness-behind-the-agent)*.
+Le pattern hider est le plus fréquent. Deux mois de mentoring profond avant que la performance management ne commence — c'est l'ordre. L'inverse empoisonne le rollout pour tout le monde.
 
-### 2. Trouver les champions
+Le pattern purist se résout de lui-même, avec du temps et des preuves. L'erreur, c'est de pousser.
 
-Les early adopters sont déjà dans l'équipe. Les repérer.
+Le pattern saboteur est là où l'intervention d'autorité compte. Le misalignement passe par l'identité et le pouvoir, pas par la compétence. Traitement par le sponsor, pas par l'operator.
 
-Les signaux sont simples. Ce sont les engineers qui font tourner des side projects le week-end. Ceux dont les messages Slack mentionnent des noms de modèles. Ceux qui ont installé le plugin IDE sans demander.
+La discipline opérationnelle plus large pour faire tourner ces patterns en parallèle — coacher un groupe à la hausse, tenir l'espace pour qu'un autre arrive à son rythme — est le principe dans *[Influence-First Cross-Functional Leadership](/fr/archive/s2-p3-influence-first)*.
 
-On les arme :
+## L'état final — la barre se verrouille elle-même
 
-- **Leur donner les outils qu'ils devraient autrement justifier.** Licences, quotas API, temps pour explorer sans livrable rattaché.
-- **Les paire entre eux.** L'énergie champion-à-champion se compose. L'énergie champion-à-sceptique s'épuise prématurément.
-- **Prendre leur feedback comme signal d'entrée principal.** Ce qui casse, ce qui débloque, quels trous de gouvernance vont apparaître quand le reste de l'équipe prendra le relais.
+Quand le playbook marche, la nouvelle barre se maintient seule — non parce que la culture s'est déplacée, mais parce que les incentives s'alignent maintenant pour garder le nouvel état. Objectifs, bonus, critères de promo, normes des pairs, application de la gouvernance — pointent tous dans la même direction. Régresser demanderait de combattre ce que le système est devenu.
 
-L'output de cette phase est un élan qui n'existait pas avant. Pas des métriques, pas des slides — un delta visible dans ce qui sort chaque semaine.
+Le *« refreeze »* classique de Lewin est le concept le plus proche, mais le mécanisme est différent — Lewin le traite comme absorption culturelle. En pratique, c'est de la géométrie d'incentives.
 
-### 3. Construire l'élan en silence
+## Trois runs sur le terrain
 
-Ne pas encore déclarer la transformation.
+Le playbook ci-dessus n'a pas émergé dans l'abstrait. Il vient de trois runs sur trois vagues différentes, trois configurations de sponsor, et trois surfaces. Chaque run a tenu la même forme.
 
-Laisser les champions livrer. Laisser leur travail apparaître en standup et en code review. Laisser les engineers curieux — la pointe avancée de l'Early Majority — commencer à poser des questions de leur propre initiative.
+**Run 1 — Rollout de framework statistique dans une équipe product-growth.** Mandat cross-fonctionnel ; pas mon équipe. Deux trimestres consécutifs d'A/B tests sans gain mesurable sur les KPI de product-growth. La confiance interne s'était érodée. Le management remettait en question la viabilité de la fonction. Un mandat CEO sponsorisait la reconstruction ; je l'ai menée avec de l'influence ; un seul champion à l'intérieur de l'équipe growth la portait au jour le jour, sans growth head en place à l'époque. Le changement : rigueur statistique — taille d'échantillon, taux de faux positifs et faux négatifs, statistical power, guardrails (les KPI qui ne *doivent pas* bouger), indicateurs leading et lagging, et un holdout group pour mesurer contre une baseline sans expérience. Le pattern saboteur a émergé ici — une personne dont le rôle de gatekeeping sur ce qui comptait comme « expérience valide » était réduit par le nouveau framework. Intervention du sponsor ; la personne a été réaffectée. Outcome : langage partagé dans l'équipe, confiance restaurée côté management, meilleure causalité, abandon discipliné des expériences qui n'allaient jamais valider.
 
-Cette phase est faite d'absorption silencieuse. Parler du changement trop tôt fige les positions avant que les preuves ne se posent.
+**Run 2 — Élévation des pratiques engineering après une transition d'in-housing.** Une autre vague sous un mandat CTO. La vitesse de survie pendant la *[migration d'in-housing](/fr/work/breaking-vendor-lock-in)* — handcuffs vendor lock-in, ship-first, hacks tolérés, barre de qualité reportée — devait céder la place à un engineering production-grade une fois la plateforme sur sa propre infrastructure. Le *[cycle de hardening](/fr/work/saas-hardening)* documente le côté engineering ; ce run est le côté humain et pratiques. Je sponsorisais et tenais l'autorité directement ; senior devs comme champions. Le changement : discipline de tests, ADR documentés pour humains et agents, règles d'architecture, principe Boy-Scout, reviews plus strictes, discipline de sécurité. Le pattern hider a émergé — un engineer à deux mois de mentoring profond avant que la performance management ne commence. Outcome : zéro hotspot de sécurité, ADR codifiés, couverture de tests 30 % → 50 % → 70 %, taux de bugs 1–2 par semaine → 1–2 par mois, vélocité en hausse après refactor.
 
-La cristallisation la plus proche de cette discipline vit dans *[Change Injection: Shaping Systems Without Collapse](/fr/archive/s2-p2-change-injection)* — précisément la séquence *« Silencieux → Visible → Absorbé »*. À lire à côté de ce texte.
+**Run 3 — Adoption IA sur une plateforme en production.** Une vague supplémentaire sous le même mandat. Documenté de bout en bout dans *[Engineering AI Adoption on a Live Platform](/fr/work/engineering-ai-adoption-on-a-live-platform)*. Je sponsorisais et tenais l'autorité directement ; champions parmi les senior engineers. Endpoint : plus de 90 % du nouveau code écrit par IA, 2–3x de vélocité sur la plupart des surfaces, 5–10x sur le greenfield, le bug-fixing rapide et les surfaces lourdes en abstractions. Les patterns hider et purist sont apparus tous les deux ; détaillés dans le case file compagnon.
 
-### 4. Ajouter la gouvernance quand la qualité dérive
+Trois surfaces différentes — analytics dans une équipe cross-fonctionnelle que je ne managéais pas, élévation des pratiques engineering internes, adoption d'outillage IA sur la plateforme. Le même playbook a tenu sur les trois.
 
-La qualité va dériver. Le planifier.
+## Pourquoi operator-built compte
 
-La dérive n'est pas un échec de le tooling IA. C'est le résultat naturel de donner des outils capables à des engineers dont le plafond de jugement varie. Les engineers faibles cachent leurs faiblesses derrière des hacks ; les outils IA leur permettent de cacher des faiblesses plus grosses plus vite. La couche de gouvernance est ce qui empêche que cela devienne la nouvelle baseline.
+Les frameworks construits par les consultants décrivent la forme depuis l'extérieur du travail. Ils donnent un vocabulaire.
 
-La gouvernance se loge à trois endroits :
+La mécanique — quoi faire quand le senior team member est à deux mois de mentoring et ne tient toujours pas la barre ; quoi faire quand le saboteur escalade ; quand ajouter la gouvernance et quand attendre ; quand parler et quand laisser le travail parler — vit à l'intérieur du run.
 
-- **Des règles architecturales codifiées**, écrites dans une forme qu'un LLM peut appliquer au moment de la génération. Pas de la documentation. Des contraintes opérationnelles, chargées avant chaque session. Le mécanisme est le même que dans *[Establishing Cross-Surface Architecture Governance](/fr/work/architecture-governance)*.
-- **Des garde-fous CI/CD** qui attrapent les modes d'échec évidents — tests non lancés, principes violés, frontières franchies. Erreurs bon marché attrapées au moment le moins cher possible.
-- **LLM-as-reviewer avant human-as-reviewer.** L'agent lit la PR contre les règles codifiées en premier. L'engineer corrige sur le feedback de l'agent. Le reviewer humain arrive en dernier, jugeant la substance au lieu d'attraper les détails.
-
-La gouvernance n'est pas ajoutée au démarrage. L'ajouter au démarrage signale la méfiance et ralentit les champions. On l'ajoute au moment où la première dérive qualité durable apparaît dans le travail — et on traite ce moment comme étant à l'heure, pas en retard.
-
-### 5. Poser les standards et les KPI
-
-Une fois la gouvernance posée, le rollout large commence.
-
-C'est là que l'autorité entre dans la salle.
-
-- **Message explicite : le nouveau tooling est désormais le standard.** Pas une recommandation. Pas une expérience.
-- **Temps et incentives attachés.** Les engineers reçoivent des budgets d'exploration explicites — mais l'exploration se fait avec le nouveau tooling. Les bonus et les OKR intègrent des jalons d'adoption. Les promotions référencent la nouvelle barre.
-- **KPI visibles par projet, par équipe, par engineer.** Leading et lagging. Input et output.
-
-Une stack de métriques pratique pour l'engineering AI-assisté :
-
-- **Input (leading) :** pourcentage de code généré par IA par projet, par engineer, par surface. Tendance sur les semaines.
-- **Output (lagging) :** delta de vélocité par engineer (throughput de tickets avant et après adoption), taux de défauts, time-to-merge, time-from-merge-to-prod.
-- **Qualité (lagging) :** nombre d'itérations de code review, taux de régressions post-merge, taux d'incidents P1 par classe d'auteur (AI-heavy vs AI-light).
-- **Forme de l'adoption (leading) :** usage hebdomadaire actif des licences, nombre d'invocations d'agents, nombre de violations de règles de gouvernance attrapées au moment de la PR.
-
-Suivre ça par surface. Certaines surfaces sont plus dures à adopter — infrastructure, code critique pour la sécurité, hot paths legacy. La tendance par surface dit la vérité sur où le mentoring ou la gouvernance spécifique à la surface est nécessaire. Le chiffre global, seul, ne dit rien.
-
-Le principe qui sous-tend tout cela — les métriques d'input gardent le système honnête sur le travail qui se fait, les métriques d'output gardent le système honnête sur la valeur du travail — est en aval de la barre engineering plus large dans *[Engineering Practice Boundaries — One Bar for Engineers and AI](/fr/writing/engineering-principles-that-outlive-the-stack)*.
-
-### 6. Mentorer les réfractaires
-
-La résistance n'est pas un échec. La résistance est un signal.
-
-Deux schémas apparaissent de façon constante dans les équipes engineering pendant les rollouts IA. Ils se ressemblent en surface et exigent un traitement opposé.
-
-**Schéma 1 — L'engineer qui se cache derrière des hacks.**
-
-Cet engineer était déjà légèrement en-dessous du standard avant le rollout. Il livrait via des hacks et des overrides au ton assuré. Le nouveau tooling — particulièrement les règles architecturales codifiées et le reviewer LLM — expose ces hacks plus agressivement. L'engineer sent le plancher monter et pousse en retour.
-
-Le traitement est direct. Mentorer, coacher, monter la barre en privé. Le pairer avec un champion. Poser des attentes explicites et une intensité de revue explicite. La plupart des engineers de ce schéma rentrent dans le nouveau standard. Quelques-uns non — et à ce moment-là, la situation devient une conversation de performance, pas une conversation d'adoption. Garder les deux séparées publiquement. Les confondre empoisonne le rollout pour le reste de l'équipe.
-
-**Schéma 2 — L'engineer puriste.**
-
-Cet engineer est bon. Il protège son craft. Il a essayé les premières versions des outils il y a dix-huit mois et a décidé — correctement — que la sortie était sous sa barre. Il a construit une identité autour d'être un engineer rigoureux, attaché aux principes, qui ne court pas après les tendances.
-
-Le traitement est l'inverse du Schéma 1.
-
-On ne pousse pas. On lui donne de l'espace, on le tient informé, on s'assure qu'il entende ce que les champions livrent. Les outils vont s'améliorer. Le modèle correctement jugé insuffisant il y a dix-huit mois n'est plus le modèle qui est dans la salle. La plupart des engineers puristes, à qui on donne du temps et zéro pression, vont explorer d'eux-mêmes et arriver — lentement, à leurs conditions.
-
-L'erreur à éviter dans les deux schémas est la même : ne pas utiliser le rollout comme un moyen de licencier. Au moment où le rollout se confond avec une restructuration, chaque engineer dans l'équipe — y compris les champions — se recalibre sur la question de la survie. La vélocité d'adoption s'effondre. C'est ici que l'autorité compte le plus. Un signal clair et crédible du leadership disant que le rollout n'est pas un véhicule de plan social est la chose la plus coûteuse à sauter et la plus précieuse à délivrer.
-
----
-
-## Ce qu'il ne faut pas faire
-
-Les modes d'échec ne sont pas exotiques. Ils apparaissent à peu près dans le même ordre d'une équipe à l'autre.
-
-- **Ne pas accélérer avant que la qualité soit stable.** Mettre la pression KPI avant que la gouvernance existe garantit que la dérive qualité devient permanente. Le nouveau plancher sera plus bas que l'ancien.
-- **Ne pas sauter la fluidité personnelle du leader.** Les briefings ne suffisent pas. L'équipe le sent.
-- **Ne pas casser le système pour le reconstruire.** Ce n'est pas une restructuration. Le système actuel a de la valeur. Le nouveau comportement s'absorbe dedans ; il ne le remplace pas du jour au lendemain.
-- **Ne pas laisser les curieux sentir qu'ils prennent un risque de carrière.** La majorité de l'attrition pendant les rollouts IA ne vient pas des résistants. Elle vient des engineers qui ont essayé, n'ont pas eu de couverture quand quelque chose a dérapé, et ont conclu que l'org n'est pas un endroit sûr pour explorer.
-- **Ne pas ignorer les spécificités culturelles.** En France, cela veut dire engager le CSE tôt sur le tooling qui affecte matériellement les conditions de travail, traiter la consultation comme une partie du rollout, pas comme une formalité de conformité après coup. Dans toutes les cultures, cela veut dire savoir comment cette culture gère le changement top-down et calibrer le déploiement de l'autorité en conséquence.
-
----
-
-## L'état d'arrivée
-
-Une équipe qui a traversé cette séquence — faite dans l'ordre, rythmée honnêtement — finit avec une forme particulière.
-
-- Une majorité du code est générée par IA. L'enveloppe réaliste en 2026 se situe entre 70 et 90 % sur la plupart des surfaces, plus bas sur les surfaces dures, plus haut sur celles bien bornées.
-- La vélocité est à 2-5x la baseline. Sur des surfaces et des phases spécifiques, le multiplicateur est plus haut.
-- La qualité n'est pas plus basse que la baseline pré-adoption. Sur les surfaces denses en règles, elle est significativement plus haute.
-- Les engineers qui étaient curieux dès le premier jour opèrent à capacité multipliée. Ils sont le nouveau noyau de levier de l'équipe.
-- Les engineers qui avaient besoin de mentoring sont remontés. Une petite poignée est partie, et le reste de l'équipe comprend pourquoi.
-- La gouvernance est opérationnelle, pas consultative. Les nouvelles règles s'absorbent dans le système sans longs débats.
-- L'équipe est structurellement prête pour ce qui arrive ensuite — meilleurs modèles, nouvelles formes d'agents, changements de harness. Le substrat est en place.
-
-C'est ce que le case file compagnon documente en détail : *[Engineering AI Adoption on a Live Platform](/fr/work/engineering-ai-adoption-on-a-live-platform)*.
-
----
-
-## Note de clôture
-
-L'adoption IA est le troisième cycle majeur de change-management que la plupart des leaders engineering vont faire tourner dans cette décennie. Les deux premiers — cloud et microservices — ont enseigné les mêmes leçons. Les leaders qui les ont traités comme des décisions d'achat ont perdu du temps. Ceux qui les ont traités comme des décisions de systèmes humains, non.
-
-Le playbook est le même. Le tooling sous le playbook change plus vite maintenant. La discipline derrière, non.
+C'est un playbook issu de trois runs, trois vagues et trois configurations de sponsor. Il a tenu sur chacune. Le case file compagnon — *[Engineering AI Adoption on a Live Platform](/fr/work/engineering-ai-adoption-on-a-live-platform)* — le montre de bout en bout sur une surface.
