@@ -13,7 +13,7 @@ L'adoption IA est un problème de change-management avant d'être un problème d
 
 Les équipes qui avancent deux à cinq fois plus vite en 2026 ne sont pas celles qui ont les meilleures licences. Ce sont celles qui ont travaillé la transition correctement.
 
-La plupart des leaders engineering savent que l'IA est là pour durer. Moins nombreux sont ceux qui voient que la vitesse à laquelle elle s'installe dans l'équipe est une question de leadership, pas une question de technologie. Chaque mois sans adoption est un mois pendant lequel les builders de nouvelle génération creusent l'écart. Les acteurs en place portent plus de friction que les équipes greenfield, par construction — leur problème est plus dur qu'on ne le crédite. Mais le playbook existe. Il a déjà été joué, sous d'autres noms, contre d'autres vagues technologiques.
+La plupart des leaders engineering savent que l'IA est là pour durer. Moins nombreux sont ceux qui voient que la vitesse à laquelle elle s'installe dans l'équipe est une question de leadership, pas une question de technologie. Chaque mois sans adoption est un mois pendant lequel les builders de nouvelle génération creusent l'écart. Les acteurs en place portent plus de friction que les équipes greenfield, par construction — leur problème est plus dur qu'on ne le crédite.
 
 Ce texte formalise le playbook. Le case file compagnon — *[Engineering AI Adoption on a Live Platform](/fr/work/engineering-ai-adoption-on-a-live-platform)* — le montre déroulé de bout en bout sur une équipe en production.
 
@@ -200,6 +200,4 @@ C'est ce que le case file compagnon documente en détail : *[Engineering AI Adop
 
 ## Note de clôture
 
-L'adoption IA est le troisième cycle majeur de change-management que la plupart des leaders engineering vont faire tourner dans cette décennie. Les deux premiers — cloud et microservices — ont enseigné les mêmes leçons. Les leaders qui les ont traités comme des décisions d'achat ont perdu du temps. Ceux qui les ont traités comme des décisions de systèmes humains, non.
-
-Le playbook est le même. Le tooling sous le playbook change plus vite maintenant. La discipline derrière, non.
+Ce que ça produit, joué honnêtement, n'est pas un rollout mais un substrat. Depuis ce substrat, le prochain modèle, le prochain harness, la prochaine forme d'agent arrivent en upgrades — pas en transitions.

@@ -13,7 +13,7 @@ AI adoption is a change-management problem before it's a tooling problem.
 
 The teams that move two-to-five times faster in 2026 are not the teams with better licenses. They are the teams that engineered the transition properly.
 
-Most senior engineering leaders know AI is here to stay. Fewer know that the speed of arrival inside the team is a leadership question, not a technology question. Each month not picked up is a month the next-generation builders compound a lead. Incumbents carry more friction than greenfield teams, by definition — their problem is harder than people give them credit for. But the playbook is known. It has been run before, under other names, against other technology waves.
+Most senior engineering leaders know AI is here to stay. Fewer know that the speed of arrival inside the team is a leadership question, not a technology question. Each month not picked up is a month the next-generation builders compound a lead. Incumbents carry more friction than greenfield teams, by definition — their problem is harder than people give them credit for.
 
 This piece formalizes the playbook. The companion case file — *[Engineering AI Adoption on a Live Platform](/en/work/engineering-ai-adoption-on-a-live-platform)* — shows it run end-to-end on one production team.
 
@@ -200,6 +200,4 @@ This is what the companion case file documents in detail: *[Engineering AI Adopt
 
 ## Closing Note
 
-AI adoption is the third major change-management cycle most engineering leaders will run in this decade. The first two — cloud and microservices — taught the same lessons. The leaders who treated them as procurement decisions lost time. The ones who treated them as human-systems decisions did not.
-
-The playbook is the same. The tooling under the playbook changes faster now. The discipline behind it does not.
+What this produces, when run honestly, is not a rollout but a substrate. From that substrate, the next model, the next harness, and the next agent shape land as upgrades — not as transitions.
