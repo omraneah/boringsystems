@@ -5,8 +5,8 @@ colors:
   bg: "#0a0a0a"
   bg-elevated: "#111111"
   border: "#1e1e1e"
-  text: "#e8e6e1"
-  text-muted: "#6b6b6b"
+  text: "#d6d2c8"
+  text-muted: "#8a8780"
   accent: "#c8a96e"
   accent-dim: "#8a7248"
   bg-light: "#faf9f7"
@@ -33,10 +33,10 @@ typography:
     fontWeight: 700
     lineHeight: 1.3
   body:
-    fontFamily: "Playfair Display, Georgia, serif"
+    fontFamily: "Source Serif 4, Georgia, serif"
     fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.7
+    lineHeight: 1.6
   label:
     fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "0.75rem"
@@ -98,17 +98,22 @@ Machine-readable token spec. Load alongside `PRODUCT.md` for design/copy work. N
 
 Dark ground: `#0a0a0a` (Logbook Black) over `#111111` elevated. Light ground: `#faf9f7` (Logbook Cream). Borders: `#1e1e1e` dark / `#d4cfc9` light.
 
+**Body text in dark mode is `#d6d2c8`, not pure white.** High contrast ratios over near-black grounds cause halation — letterforms glow and shimmer, fatiguing eyes during long reads (especially at night). The current value sits at ~11:1 contrast — safely above the WCAG 4.5:1 floor, well below the halation threshold. Muted text is `#8a8780` — tuned to the new body level. Never raise body text toward `#fff` for "more contrast"; that direction makes legibility worse, not better.
+
 No gradients. No `#000` or `#fff`. No shadows.
 
 ## Typography
 
-Three faces, three non-overlapping jobs:
+Four faces, four non-overlapping jobs:
 
 | Face | Job |
 |---|---|
-| Playfair Display | Body prose, headlines — editorial weight |
+| Playfair Display | Headlines only (h1–h3, display) — editorial weight at 32px+ |
+| Source Serif 4 | Body prose — screen-optimized text serif, opsz 8..60 |
 | Inter | Nav, buttons, labels, form chrome — never in body |
 | IBM Plex Mono | Code, file paths, IDs — signal, not texture |
+
+**Playfair Display is never used below 32px.** It is a high-contrast didone display face; at body sizes the thin strokes shimmer and tire the eye. Source Serif 4 carries body prose — designed by Adobe for screen reading, optical-size axis tuned per use.
 
 ## Elevation
 

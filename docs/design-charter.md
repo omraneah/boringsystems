@@ -66,15 +66,22 @@ Four typefaces do four specific jobs. Mixing them outside their job is the most 
 
 | Face | CSS var | Job |
 |---|---|---|
-| Playfair Display | `--font-display`, `--font-body` | Headlines, body prose of essays and case files. Carries editorial weight. |
+| Playfair Display | `--font-display` | Headlines only (h1–h3, display titles) at 32px and above. High-contrast display serif — its drama is the point at headline size. |
+| Source Serif 4 | `--font-body` | Body prose of essays, case files, descriptions. Screen-optimized text serif with an optical-size axis (`opsz 8..60`). |
 | IBM Plex Mono | `--font-mono` | Code, file paths, commands, IDs, metadata that needs to feel machine-native. |
 | Inter | `--font-ui` | Nav, buttons, labels, form chrome. Never in body. |
 
 **Rules.**
-- Never use Inter for article body. Never use Playfair for buttons or labels.
+- **Playfair Display is headlines-only.** Never below 32px. Its high stroke-contrast (thick/thin) makes thin strokes shimmer at body sizes — known anti-pattern, especially in dark mode where halation amplifies the effect. If a heading shrinks below 32px (sub-section, card title), it switches to Source Serif 4 at weight 600.
+- **Source Serif 4 owns body prose.** Designed by Adobe for screen reading. The optical-size axis lets the same family scale from caption to subhead without changing face.
+- Never use Inter for article body. Never use Playfair for buttons, labels, or any chrome.
 - Mono is a signal, not a texture. A paragraph typeset in mono says "this is literally machine output or a literal path." Don't use it for emphasis.
 - Italics are used for titles of external works and for genuine semantic emphasis. Not for decoration.
 - Bold is used sparingly inside body prose — typically for the one word that would be lost if the reader scanned.
+
+**Sizing and rhythm.**
+- Root font-size is 17px. Body line-height is 1.6. The earlier defaults (16px / 1.7) suited Playfair-as-body; both moved when body switched to Source Serif 4. Do not regress.
+- Headlines stay at line-height 1.2. Sub-section titles (`h3`/`h4`) use 1.3.
 
 ---
 
@@ -84,7 +91,7 @@ Palette from `src/styles/global.css`:
 
 **Dark (default).**
 - `--bg: #0a0a0a`, `--bg-elevated: #111111`, `--border: #1e1e1e`
-- `--text: #e8e6e1`, `--text-muted: #6b6b6b`
+- `--text: #d6d2c8`, `--text-muted: #8a8780`
 - `--accent: #c8a96e` (warm gold), `--accent-dim: #8a7248`
 
 **Light.**
@@ -94,6 +101,8 @@ Palette from `src/styles/global.css`:
 
 **Rules.**
 - **Accent is signal.** Use for links, active nav state, primary CTAs, one emphasized metric. If the page has accent color in more than ~5% of the visible area, it's wrong.
+- **Dark-mode body text never goes above `#d6d2c8`.** Pure white (`#fff`) or near-white (`#e8e6e1`+) on near-black grounds causes halation — letterforms glow and shimmer, fatigue eyes on long reads (especially at night, especially for readers with astigmatism). The current value sits at ~11:1 contrast, well above the WCAG 4.5:1 floor. "More contrast" is not the same as "more readable" — in dark mode they diverge after ~12:1.
+- **Muted text is tuned to body text, not to background.** When `--text` moves, `--text-muted` moves with it. Current dark pair: `#d6d2c8` / `#8a8780`. Never raise muted to body level — the hierarchy depends on the gap.
 - **No gradients.** No hero washes, no accent-to-bg fades, no radial glows. Flat color only.
 - **No additional colors.** If a new semantic state needs a color (success, warning, danger), propose it here first.
 - **Borders carry structure.** `--border` defines rhythm. Don't substitute shadow for border.
