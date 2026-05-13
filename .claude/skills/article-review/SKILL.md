@@ -142,6 +142,56 @@ When prose enumerates three or more items in sequence, each opening with a label
 - Items already correctly formatted as `<ul>` / markdown bullets.
 - Parallel-structure rhetoric where labels are anaphora (rhetorical repetition for cadence, not enumeration). **Heuristic**: if you remove the labels and the descriptions still read as continuous prose, it's an enumeration → flag. If removing the labels breaks the flow, it's rhetoric → leave.
 
+### 3f. Character-judgment phrasing about identifiable colleagues
+
+When an article describes individuals (named or anonymized) who are still in-role at the organization being discussed, scan for **person-level characterization** that could read as personal critique rather than a system-level observation.
+
+The risk is asymmetric: a senior reader pauses on phrasing that they would not want a peer using about them. Once it lands as "talks about colleagues in a way I would not want them talking about me," the article's credibility takes damage that no other section can recover. This is among the highest interview-cost defects on the site.
+
+**Detection pattern.** Look for:
+
+- Trait adjectives applied to the person (`assertive`, `aggressive`, `arrogant`, `lazy`, `slow`, `weak`).
+- Action verbs that imply moral or character judgment (`hiding`, `bullshitting`, `shipping through hacks`, `playing politics`).
+- Comparative phrasing that locates the person below a bar (`operating below standard`, `failing to keep up`).
+- Any sentence where the subject of the verb is the colleague rather than the system, AND the verb carries judgment.
+
+**Acceptable pattern.** State the **system-level fact**:
+
+- ✓ "The new tooling exposed the gap more sharply than the pre-AI environment had."
+- ✓ "One engineer had been operating slightly below the team's standard for some time." (Neutral statement; no characterization of *why*.)
+- ✗ "One engineer had been shipping through assertiveness and informal workarounds rather than clean engineering." (Personal characterization of the *how* — the risk.)
+
+**Test.** Read each sentence describing a colleague aloud as if the colleague were in the room. If you would not say it that way in front of them, the phrasing is wrong.
+
+Flag as **warning** with the quoted phrasing and a proposed system-level rewrite. Do not flag neutral statements of fact ("the engineer made progress over the following months"), only character-judgment phrasing.
+
+### 3g. Disclosure symmetry
+
+If the article references more than one organization, engagement, or past employer, the disclosure stance must be **consistent or explicitly explained**:
+
+- **All named** with first-mention link, OR
+- **All anonymized**, OR
+- One explicit sentence acknowledging the asymmetry — e.g., why a closed engagement is named but ongoing ones aren't.
+
+**The failure mode.** One organization is named with a link (because the engagement is closed and convenient to reference) while others are anonymized as "current company" or "previous role." This reads as cagey rather than discreet to senior readers. The half-state is what damages the artifact, not anonymization itself.
+
+**Detection pattern.** Scan the article for:
+
+- Named organizations with first-mention links (e.g., `[Company X](https://x.com)`).
+- Anonymized organization references (`current company`, `previous engagement`, `at one engagement`, `in the prior role`).
+
+If both patterns appear in the same article without an explicit acknowledgment of why, flag.
+
+**Acceptable resolutions:**
+
+- ✓ All named with links.
+- ✓ All anonymized — describe runs by mandate type, sponsor configuration, or domain.
+- ✓ Explicit acknowledgment: "X is named because the engagement is closed; the current-role cases are anonymized per ongoing-engagement convention."
+
+**The disclosure-asymmetry trap is most common when:** an operator has a closed past engagement that's natural to link, AND a current role they cannot name. The instinct is to name the closed one. The trap is what that asymmetry signals to a peer.
+
+Flag as **warning** with the named organization quoted, the anonymous references quoted, and a one-line proposed resolution.
+
 ### 4. Lane / voice alignment
 
 - Resolve the article's lane from its collection path (`writing` / `work` / `building` / `archive`).
