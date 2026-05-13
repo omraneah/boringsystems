@@ -91,12 +91,13 @@
     ]
   },
   "enabledPlugins": {},
-  "effortLevel": "xhigh",
+  "effortLevel": "medium",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
   "skipDangerousModePermissionPrompt": true,
+  "theme": "auto",
   "agentPushNotifEnabled": true,
   "voiceEnabled": true
 }
