@@ -94,6 +94,48 @@ Time-box every fractional engagement as if it could end at the next milestone. T
 
 ---
 
+## The default posture — walk-with-gates
+
+For studio-routed fractional opportunities, the default mental posture is **80 % walk, 20 % maybe**. Not because the opportunities are bad — because the structural shape (non-technical founder + fragile base + external studio + AI / R&D ambition + 1 junior dev) is the **replay archetype** that produces entanglement on every recurrence.
+
+The 20 % is real. Some founders do pass the probes. Some studios do offer transparency. The right relational stance is **not pre-committed to either yes or no** — it's pre-committed to **gates**. The gates are nearly free (60–90 minutes of call time). The walk is clean. The yes only happens when **all** five non-negotiables hold and the founder demonstrates technical depth + viable cash plan + acceptance of foundations-only reframe.
+
+**The mistake to avoid:** treating the engagement as the prize and the walk as the loss. The walk is the more frequent correct answer. The relationship with the studio (warm no) compounds longer than any single engagement.
+
+---
+
+## Sharing the playbook as part of the probe
+
+When Ahmed brings a portable playbook (e.g., the `cross-stack-architecture-starter-pack`, tech-debt classification framework, API cleanup discipline) into a fractional opportunity conversation, the instinct may be to **guard it as proprietary**. That is wrong.
+
+**Sharing the playbook openly is the probe.**
+
+Why:
+- A founder who engages with the playbook (asks structural questions, maps it to their reality, proposes how to adapt it) is technically literate and collaborative. **Probe passed.**
+- A founder who deflects ("interesting, send it to the dev", "we'll look at it later", "but we need the AI work first") is not in the loop and will not be a workable partner. **Probe failed.**
+- The studio that uses the shared artifact as a learning asset (citing it, recommending it to other portfolio companies) treats Ahmed as a peer. A studio that absorbs it silently or repackages it without attribution treats him as a resource. **Tells you who they are.**
+
+The playbook is **already public-shaped** (codified, portable, decoupled from specific clients). Sharing it costs nothing. It is a leverage artifact, not a secret. The act of sharing is what generates signal.
+
+**Frame for the conversation:** "This is the playbook I built over four years on a similar-shape codebase. Same archetype, equally risky. These are the conversion points I'd recommend foundationally. You can do it yourselves. I can help you do it. Either way, you have the playbook — and the risks you carry remain yours."
+
+This framing does three things at once:
+1. Establishes credibility through evidence (4 years, real system, named artifacts).
+2. Refuses the founder-grade-incentive trap (their risks stay theirs).
+3. De-risks the engagement decision for both sides — if they say no, you walked clean and they gained something.
+
+---
+
+## The studio re-audit as exit mechanism
+
+When the studio that introduced the engagement is also the entity that produced the initial audit, **the re-audit at a milestone gate becomes the natural exit mechanism**. The studio re-runs the audit at Month-2 against the foundations work delivered. If the delta is material, conversation continues. If not, the studio (not Ahmed) tells the founder the foundations aren't ready for R&D — and Ahmed exits clean without being the bad-news messenger.
+
+This decouples Ahmed's exit from any founder-relationship friction. The studio owns the audit verdict; Ahmed delivered the scoped work. **The walk is a structural feature of the engagement, not a personal decision.**
+
+Build this in from the engagement start: "Deepika re-audits at Month-2. The audit verdict gates the next decision. I deliver scoped foundations work; the studio measures the result." Three sides aligned, no one carrying the bad-news cost.
+
+---
+
 ## Cross-references
 
 - [[Engagement-Validity-Filter]] — the upstream universal filter this refines.
