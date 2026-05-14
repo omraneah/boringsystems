@@ -103,6 +103,8 @@ The positioning is **capability-led, not shape-locked.** The capability profile 
 
 **Selection filter (post-July 2026):** alignment first (per `../../long-term/inner-game/Path-Doctrine.md` necessary conditions). Within alignment, relationship leverage and sponsor proximity are strong amplifiers — but they're not the only valid amplifier. A well-aligned employment role at a deeply compatible organization can outweigh a fractional engagement with a high-quality sponsor if the rest of the path-doctrine is better served by the former.
 
+**Role-shape filter (hard constraint, not a preference):** coding and direct technical execution must stay at or below **20–30%** of time. Temporarily 40–50% is acceptable, then it must drop back. The primary contribution is **systems judgment, change accompaniment, and enabling others to execute** — not execution itself. Any role where coding is the dominant daily activity is wrong-shaped, regardless of compensation or title. This applies whether the role is fractional, employed, or advisory. Founding-engineer / IC-heavy roles fail this filter by construction and have been consistently declined on that basis. The signal is body-level: roles that primarily contain the contribution inside a terminal or IDE are wrong, even when the engineering itself is interesting.
+
 ---
 
 ## 6. Advisor Evaluation Questions
@@ -129,5 +131,5 @@ Independent / hybrid / fractional paths are leverage-amplification options when 
 
 - Must remain selective (alignment over urgency).
 - Must produce visible outcomes (proof, but not for-its-own-sake).
-- Must not degrade into pure execution capacity (regardless of shape).
+- Must not degrade into pure execution capacity (regardless of shape). **Qualifier:** working below cognitive altitude is acceptable when the trade is ease of mind, no toxicity, and genuine freedom. The constraint is against execution-only *without* those conditions, not against accepting a role below the ceiling per se. A role that pays less, sits below altitude, and protects freedom + ease of mind + non-toxicity is correctly calibrated — not a downgrade.
 - Must pass the Engagement Validity Filter (`../operational-doctrine/Engagement-Validity-Filter.md`).

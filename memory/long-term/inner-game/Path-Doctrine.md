@@ -28,6 +28,7 @@ The sprint is done **in a fun, loving, North-Star-aligned way.** Not in striving
 A valid path-shape during the sprint must satisfy ALL of the following. If any fails, the path is wrong, regardless of how compelling other dimensions look.
 
 1. **Day-to-day texture intact.** Body, sleep, family, presence, kindness, no haste — every day, repeatedly. The *Day-to-day texture* section of `../I-AM.md` is the felt-test. If a path violates it more than briefly, the path is wrong.
+   - **Sub-note on money:** Salary reduction is explicitly acceptable when the trade is ease of mind, no toxicity, and intact freedom. The wealth condition (from `../I-AM.md`) is about felt-state, not floor amount. A path that pays less but holds the texture intact is **not a downgrade — it is correctly calibrated.** This is a durable posture, not a phase-bound concession; it overrides any "money is not the focus right now" framing in shorter-horizon docs.
 2. **Aligned with the I AM.** Sovereign, calm, present, content, loving, kind-not-nice, **relational**, courageous-not-striving, curious, free, wealthy, creator. If the path requires becoming any anti-being (scarce, striving, status-performing, validation-seeking, captured, etc.) — no.
 3. **Relational architecture honored.** No extraction in either direction. Anti-fragility is the lens. Diverse layers (Layer 1 deep trust + Layer 2 mutual exchange + Layer 3 connector routing) all active. See `Relational-Architecture.md` for the full filter. **A path that violates the relational architecture is wrong, even if all other conditions hold.**
 4. **Enough time and space for own things to accumulate.** The sprint isn't pure for-others. Own creations — writing, experiments, tools, communities, whatever shape emerges — need room to pile up, accumulate, concretize on their own terms. Without that room, the sovereign-creator dimension dies.
@@ -46,6 +47,15 @@ An operating frame that satisfies the necessary conditions:
 **The 80/20 ratio isn't fixed.** Could be 50/50. Could be 90/10. Could be seasonal (heavy for-others one quarter, heavier own-things the next). The split serves the necessary conditions; it's not enforced for its own sake.
 
 Other valid blueprints: full-time employment in a deeply aligned organization with own-things compounded on the side; multi-client fractional with own-things in the gaps; sabbatical-shaped own-things bursts between for-others sprints; etc. **Shape is open. Conditions are not.**
+
+### Confirmed shape of the for-others work (2026-05-14)
+
+The container shape stays open. The **altitude** of the for-others work has been decided.
+
+- **Destination (2–3 year horizon):** enterprise-scale AI transformation work — driving AI adoption inside a complex organization, with the actual surface being maps, psychologies, incentives, influence, and change management on top of a deep technical foundation. **Transformation / accompaniment altitude, not execution altitude.** The technical depth is what makes the transformation credible; it is not the deliverable.
+- **Bridge (now → destination):** fractional CTO / early-stage-from-outside work. Generates income, protects optionality, keeps the relational and sponsor surface live while the named transformation credential gets built (e.g., a deep enterprise-AI mandate — Free/Iliad-shape if that closes, or its equivalent).
+- **What this rules out:** for-others work whose altitude is execution-only — founding engineer, IC-heavy fractional, build-this-thing contracts. Those fail the role-shape filter in `../../medium-term/market/Leverage-Profile-and-Market-Lens.md` Section 5 (coding ≤ 20–30% of time, body-level signal). They are not candidate paths under this doctrine regardless of compensation or title.
+- **Status:** decided, not exploratory. The shape (employment, fractional, hybrid) stays open; the direction does not.
 
 ---
 
