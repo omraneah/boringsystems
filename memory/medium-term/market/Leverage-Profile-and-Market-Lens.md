@@ -129,5 +129,5 @@ Independent / hybrid / fractional paths are leverage-amplification options when 
 
 - Must remain selective (alignment over urgency).
 - Must produce visible outcomes (proof, but not for-its-own-sake).
-- Must not degrade into pure execution capacity (regardless of shape).
+- Must not degrade into pure execution capacity (regardless of shape). **Qualifier:** working below cognitive altitude is acceptable when the trade is ease of mind, no toxicity, and genuine freedom. The constraint is against execution-only *without* those conditions, not against accepting a role below the ceiling per se. A role that pays less, sits below altitude, and protects freedom + ease of mind + non-toxicity is correctly calibrated — not a downgrade.
 - Must pass the Engagement Validity Filter (`../operational-doctrine/Engagement-Validity-Filter.md`).

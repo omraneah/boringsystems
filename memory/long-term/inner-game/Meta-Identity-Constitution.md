@@ -140,6 +140,9 @@ When things get difficult, the first move is self-sufficiency. This is reliable 
 **Kindness underground.**
 My warmth goes invisible under threat. This protects me from predators and also from intimacy. The people worth staying for can only find me if I let them see it.
 
+**Absorbing structural fragility as load.**
+The pattern of entering an engagement with a structurally fragile counterpart — non-technical-enough founder, fragile codebase, no real mandate, unclear authority — and gradually becoming the load-bearer for their fragility. Happens across multiple engagements. The fragility isn't visible at entry; it surfaces in months 2–4, when the translation tax, the scope creep, and the structural gap become the daily problem to carry. The cost is not the work — it's the energy spent sustaining a structure that was never mine to sustain. The fix is not better evaluation at entry (already handled via the Engagement Validity Filter and Fractional Engagement Guardrails) — it is **exit velocity when the pattern activates mid-engagement, rather than staying to "make it work."** Catching it at month 3 instead of month 9 is the discipline.
+
 ---
 
 ## 5. Conscious Upgrades
