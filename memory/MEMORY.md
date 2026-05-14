@@ -42,7 +42,7 @@
 `medium-term/project-management/github-sop.md` — **Auto-loaded.** How we manage GitHub: branch rules, PR division of labor, commit discipline, hooks, submodule workflow.
 `medium-term/current-arc.md` — six-month re-stabilization plan (July → December 2026). Auto-loaded.
 `medium-term/current-context.md` — current life-phase context, capability profile, market specifics, re-entry posture. On-demand.
-`medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Engagement Validity Filter. On-demand.
+`medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Engagement Validity Filter, Fractional Engagement Guardrails. On-demand.
 `medium-term/market/` — capability-led positioning, market lens, sales-mode tactics, visibility OS, engagement shapes & pricing. On-demand.
 `medium-term/projects/` — project metadata (advisory board composition, etc.). On-demand.
 
