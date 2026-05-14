@@ -48,6 +48,15 @@ An operating frame that satisfies the necessary conditions:
 
 Other valid blueprints: full-time employment in a deeply aligned organization with own-things compounded on the side; multi-client fractional with own-things in the gaps; sabbatical-shaped own-things bursts between for-others sprints; etc. **Shape is open. Conditions are not.**
 
+### Confirmed shape of the for-others work (2026-05-14)
+
+The container shape stays open. The **altitude** of the for-others work has been decided.
+
+- **Destination (2–3 year horizon):** enterprise-scale AI transformation work — driving AI adoption inside a complex organization, with the actual surface being maps, psychologies, incentives, influence, and change management on top of a deep technical foundation. **Transformation / accompaniment altitude, not execution altitude.** The technical depth is what makes the transformation credible; it is not the deliverable.
+- **Bridge (now → destination):** fractional CTO / early-stage-from-outside work. Generates income, protects optionality, keeps the relational and sponsor surface live while the named transformation credential gets built (e.g., a deep enterprise-AI mandate — Free/Iliad-shape if that closes, or its equivalent).
+- **What this rules out:** for-others work whose altitude is execution-only — founding engineer, IC-heavy fractional, build-this-thing contracts. Those fail the role-shape filter in `../../medium-term/market/Leverage-Profile-and-Market-Lens.md` Section 5 (coding ≤ 20–30% of time, body-level signal). They are not candidate paths under this doctrine regardless of compensation or title.
+- **Status:** decided, not exploratory. The shape (employment, fractional, hybrid) stays open; the direction does not.
+
 ---
 
 ## The Singer-echo
