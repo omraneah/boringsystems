@@ -22,6 +22,7 @@
       "mcp__claude_ai_Airtable__list_record_comments"
     ]
   },
+  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {
@@ -99,6 +100,5 @@
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
   "agentPushNotifEnabled": true,
-  "voiceEnabled": true,
-  "model": "sonnet"
+  "voiceEnabled": true
 }
