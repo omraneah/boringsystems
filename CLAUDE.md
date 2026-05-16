@@ -51,6 +51,7 @@ All code is authored through Claude Code. No manual editing.
 |---|---|
 | `/article-capture` | When a conversation produces publishable insight |
 | `/article-review` | Before publishing any article (EN + FR together) |
+| `/article-comparative-review` | After `/article-review`, before `/commit` — for any technical-voice article making contested historical/behavioral claims |
 | `/french-audit` | After drafting or updating any FR content |
 | `/verify-home` | After any change to home layout, redirects, or home-selection flags |
 | `/check-constraints` | Before writing structural code (i18n, routing, caching, auth, deps) |
