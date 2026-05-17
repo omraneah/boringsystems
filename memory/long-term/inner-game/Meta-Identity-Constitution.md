@@ -209,6 +209,8 @@ This is the structural gap between my current identity architecture and my state
 
 (Crystallized expression in `../I-AM.md`: "I am present" + "I am content. I am at peace with what is.")
 
+Operational practice form (Singer-rooted — "I can handle it," 3-second pause, signal/noise discrimination, traps at altitude) → `Surrender-Doctrine.md`.
+
 ---
 
 ## 6. What This Document Is Not Allowed To Become

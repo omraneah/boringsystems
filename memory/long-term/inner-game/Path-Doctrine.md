@@ -71,6 +71,8 @@ Almost never "build my own pure thing in isolation." Singer's life was for-other
 
 For-others CAN BE the path, when chosen freely from anchored kindness, when aligned with the necessary conditions above. This dissolves a common false conflict that affects technical operators of his profile: *"if I take a job, I'm betraying my sovereignty."* False. The job (or the contract, or the mandate) is fine if the conditions hold.
 
+→ Operational practice form (how the surrender-posture is actually run in daily life — "I can handle it," 3-second pause, signal/noise, traps at altitude) → `Surrender-Doctrine.md`.
+
 ---
 
 ## Anti-pattern (the single-dimension trap — not this)

@@ -28,6 +28,7 @@
 `long-term/inner-game/Path-Doctrine.md` — doctrine for the 2–3 year sprint to the North Star. Necessary conditions + Singer-echo (for-others is a valid path) + the single-dimension-trap as anti-pattern. Shape stays open.
 `long-term/inner-game/Relational-Architecture.md` — depth-expansion of the I-AM Relational architecture section. Diversity layers, exit protocols, application across domains.
 `long-term/inner-game/Trait-Architecture.md` — descriptive read on the wiring underneath the I AM (trait cluster, founder-archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, psychological type).
+`long-term/inner-game/Surrender-Doctrine.md` — operational depth of the surrender practice. Singer-rooted: "I can handle it," the 3-second pause, signal/noise discrimination, traps at altitude, current-phase reduced-exposure posture. Living, enriched across sessions.
 
 > **Being → Doing → Having.** The long-term tier holds the BEING. The being attracts the rest.
 
