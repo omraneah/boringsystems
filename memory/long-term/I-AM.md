@@ -206,3 +206,4 @@ Cross-references:
 - Descriptive read on the wiring underneath (trait cluster, archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, psychological type) → `inner-game/Trait-Architecture.md`
 - Relational architecture depth-expansion (diversity layers, exit protocols, application across domains) → `inner-game/Relational-Architecture.md`
 - 2-3 year sprint to the North Star (path doctrine) → `inner-game/Path-Doctrine.md`
+- Operational depth of the surrender practice (Singer-rooted — "I can handle it," 3-second pause, signal/noise, traps at altitude) → `inner-game/Surrender-Doctrine.md`
