@@ -13,7 +13,7 @@
 3. **Read every file in `short-term/feedback/stable/` and `short-term/feedback/in-flight/`.** Active behavioural rules — how Claude has been told to operate. Always auto-loads (both sub-folders). Feedback is the live discipline layer; it lives in short-term because Ahmed consolidates on top of it weekly. The `stable/` vs `in-flight/` split is for audit purposes only; both are equally in-scope at runtime.
 4. **Read `medium-term/current-arc.md`.** The current-direction snapshot for the re-stabilization phase (July → December 2026). Bridges short-term reality and long-term north star.
 5. **Read `medium-term/Drivers-and-Filters.md`.** The operational center for this next step: eight drivers, ten filters, position synthesis. Codified 2026-05-20. Upstream of every engagement decision.
-6. **Read `medium-term/Engagement-Shapes.md`.** The two valid surface shapes: Shape A (mandate inside a company), Shape B (fractional / freelance via warm network, with B.1 fractional CTO/CPO and B.2 transformation freelance sub-shapes).
+6. **Read `medium-term/Engagement-Shapes.md`.** The two valid surface shapes: Shape A (mandate inside a company, with A.1 full-time CPTO/CTPO sub-shape — load-bearing wariness caveat), Shape B (fractional / freelance via warm network, with B.1 fractional CTO/CPO and B.2 transformation freelance sub-shapes).
 7. **Read `short-term/current-arc.md`.** The active 2-month plan (May → end June 2026). Bound to the current-chapter-closing window.
 8. **Read `short-term/extraction-os.md`.** Proof-asset extraction discipline (2-month bound, transition-period).
 9. **Read all `.md` files in `short-term/<this-week>/` and `short-term/<last-week>/`.** Continuity. Decisions, state, conflicts from the past two weeks.
@@ -46,7 +46,7 @@
 `medium-term/project-management/github-sop.md` — **Auto-loaded.** How we manage GitHub: branch rules, PR division of labor, commit discipline, hooks, submodule workflow.
 `medium-term/current-arc.md` — six-month re-stabilization plan (July → December 2026). Auto-loaded.
 `medium-term/Drivers-and-Filters.md` — **Auto-loaded.** Operational center for this next step: eight drivers (what pulls), ten filters (what disqualifies), position synthesis (the narrow middle). Codified 2026-05-20. The qualification layer upstream of every engagement decision.
-`medium-term/Engagement-Shapes.md` — **Auto-loaded.** The two operational surfaces: Shape A (mandate inside a company) and Shape B (fractional / freelance via warm network, with B.1 fractional CTO/CPO and B.2 transformation freelance sub-shapes). Includes contained-risk principle.
+`medium-term/Engagement-Shapes.md` — **Auto-loaded.** The two operational surfaces: Shape A (mandate inside a company, with A.1 full-time CPTO/CTPO sub-shape carrying load-bearing wariness caveat) and Shape B (fractional / freelance via warm network, with B.1 fractional CTO/CPO and B.2 transformation freelance sub-shapes). Includes contained-risk principle.
 `medium-term/current-context.md` — current life-phase context, geography, market specifics, re-entry posture. On-demand.
 `medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Engagement Validity Filter. On-demand.
 `medium-term/market/` — operational market doctrine: sales-mode tactics, visibility OS, pre-funnel aesthetic filter. On-demand.

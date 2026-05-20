@@ -25,6 +25,12 @@ The qualification layer (drivers + filters + position synthesis) is in `memory/m
 
 **Sourcing:** Inbound through LinkedIn / recruiters / warm intros to senior mandates.
 
+### Sub-shape A.1 — Full-time CPTO / CTPO
+
+Same scope as Shape B.1 (fractional CTO/CPO — level practices, hold standards, audit and automate, decide architectural trade-offs, ensure the team can deliver) — but as a full mandate inside one company at the C-tier altitude.
+
+The door is deliberately open because the shape itself is not the problem; the prior-company context was. In a healthy context (clean sponsor, contained risk, drivers/filters satisfied), this shape can be the right fit. Operator wariness is load-bearing — the filters run especially hard on opportunities of this shape. See `memory/medium-term/Engagement-Shapes.md` § Sub-shape A.1.
+
 ---
 
 ## Shape B — Fractional / Freelance via warm network

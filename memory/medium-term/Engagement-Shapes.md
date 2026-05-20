@@ -32,6 +32,22 @@ Two shapes. Not categories of the same thing; structurally distinct surfaces wit
 
 **Validity test for Shape A.** Per [[Engagement-Validity-Filter]] + [[Path-Doctrine]] necessary conditions — day-to-day texture intact, I-AM aligned, room for own-things to accumulate, real epistemic upside, structural safety (exit rights, no identity foreclosure). If all hold, Shape A is valid. Employment is **not** disqualified by being employment — only by misalignment.
 
+### Sub-shape A.1 — Full-time CPTO / CTPO
+
+A specific shape inside Shape A that earns its own slot because of operator history.
+
+**What it is.** Full-time engagement with the same scope as the Shape B.1 fractional CTO/CPO work — level practices, hold standards, audit and automate, decide architectural trade-offs, ensure the team can deliver — but as a full mandate inside one company at the C-tier altitude.
+
+**Why it earns its own slot.** It is the continuation of what was done at the current company — the same shape of work — in a (hopefully) healthier and more mature context.
+
+**Caveat (load-bearing).** The operator was burned by this exact shape at the current company. There is real wariness about it. **The door is deliberately kept open because the shape itself is not the problem — the context was.** In a healthy context (clean sponsor, contained risk, drivers/filters satisfied), this shape can be the right fit. The [[Engagement-Validity-Filter]] and [[Drivers-and-Filters]] must run **especially hard** on any opportunity of this shape, given history.
+
+**Filter overlay (A.1-specific, on top of standard Shape A filters).** Body-check for *prove-something* / *repair-the-past* pulls when this shape surfaces. If the interest reads as "show that this shape can work, given what happened," that is the failure shape priming itself; pause. Per [[Surrender-Doctrine]] — the surrender is to what life arranges, not to compensating for what life broke.
+
+**Sourcing.** Same as Shape A (LinkedIn / recruiters / warm intros to senior mandates) — typically arriving in CPTO / CTPO / CTO / VP-Engineering language.
+
+**Validity test.** Standard Shape A test, plus: the operator's body reads neutral or alive on the opportunity — not vigilant, not over-eager, not relieved-it-arrived.
+
 ---
 
 ## Shape B — Fractional / Freelance via warm network
@@ -86,16 +102,19 @@ Founder-level risk ownership, hands-on > 50 %, becoming the main dev, infrastruc
 
 ## Comparison
 
-| Dimension | Shape A | Shape B |
-|---|---|---|
-| Cadence | Full-time | ≤ 2 days/week (B.1) · scoped time-box (B.2) |
-| Count | 1 mandate | Possibly multiple (light) or one at a time |
-| Commitment | Open-ended (CDI) or fixed-term | Multi-month with milestone gates |
-| Risk owned | Salary-employee scope | Contained on what's delivered; never founder-grade |
-| Capture risk | Higher (single relationship) | Lower (multiple relationships, time-boxed) |
-| Time-to-close | Weeks to months | Days to weeks |
-| Income | Stable salary | Per-engagement, fee-based |
-| Sourcing | LinkedIn / recruiters / warm intros to senior mandates | Warm network primarily; studio/agency routing secondarily |
+| Dimension | A — Mandate inside company | A.1 — Full-time CPTO/CTPO | B — Fractional / Freelance |
+|---|---|---|---|
+| Engagement depth | Full | Full | Part-time |
+| Scope altitude | Variable | CPTO / CTPO scope | Judgment-altitude (CTO-as-service) |
+| Cadence | Full-time | Full-time | ≤ 2 days/week (B.1) · scoped time-box (B.2) |
+| Count | 1 mandate | 1 mandate | Possibly multiple (light) or one at a time |
+| Commitment | Open-ended (CDI) or fixed-term | Open-ended (CDI) or fixed-term | Multi-month with milestone gates |
+| Risk owned | Salary-employee scope | C-tier salary-employee scope | Contained on what's delivered; never founder-grade |
+| Risk history | None | Burned at current company — extra vigilance | None |
+| Capture risk | Higher | Higher | Lower by design |
+| Time-to-close | Weeks to months | Weeks to months | Days to weeks |
+| Income | Stable salary | Stable salary (C-tier) | Per-engagement, fee-based |
+| Sourcing | LinkedIn / recruiters / warm intros to senior mandates | LinkedIn / recruiters / warm intros in CPTO / CTPO language | Warm network primarily; studio/agency routing secondarily |
 
 Both shapes are valid. The shape that satisfies the [[Drivers-and-Filters]] AND [[Engagement-Validity-Filter]] AND [[Path-Doctrine]] necessary conditions wins. Ideology about preferred shape doesn't.
 

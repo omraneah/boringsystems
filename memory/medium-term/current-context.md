@@ -38,7 +38,7 @@ Not a standard market category. Each engagement gets co-scoped. Full drivers + f
 
 ## Re-entry posture
 
-- **Two valid engagement shapes** (per [[Engagement-Shapes]]): Shape A (mandate inside a company, full-time, LinkedIn/recruiters inbound) and Shape B (fractional / freelance via warm network, judgment-altitude, contained risk only). Both are valid IF aligned with [[Drivers-and-Filters]] + [[Engagement-Validity-Filter]] + [[Path-Doctrine]] necessary conditions.
+- **Two valid engagement shapes** (per [[Engagement-Shapes]]): Shape A (mandate inside a company, full-time, LinkedIn/recruiters inbound — with sub-shape A.1 full-time CPTO/CTPO carrying a load-bearing wariness caveat from operator history) and Shape B (fractional / freelance via warm network, judgment-altitude, contained risk only). All shapes are valid IF aligned with [[Drivers-and-Filters]] + [[Engagement-Validity-Filter]] + [[Path-Doctrine]] necessary conditions; A.1 requires especially-hard filter runs.
 - **Strong preference (not rule):** direct access to decision-maker; real authority; system-level scope; sponsor proximity.
 - **Strong preference (not rule):** short-cycle wedges to de-risk before deeper commitment (especially Shape B).
 - **Target:** relationships that compound forward — sponsor proximity, real conversations, mutual value-exchange. Whether the engagement-shape is A or B is downstream of alignment.

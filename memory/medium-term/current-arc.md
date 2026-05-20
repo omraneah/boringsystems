@@ -21,7 +21,7 @@ Re-stabilize after the transition. The first phase fully on his own terms in yea
 
 [[Engagement-Shapes]] holds the two surface shapes:
 
-- **Shape A** — mandate inside a company (full-time, longer time-to-close, single mandate, stable salary, inbound through LinkedIn/recruiters).
+- **Shape A** — mandate inside a company (full-time, longer time-to-close, single mandate, stable salary, inbound through LinkedIn/recruiters). Includes sub-shape A.1 — full-time CPTO/CTPO — which carries a load-bearing wariness caveat given the operator was burned by this exact shape at the current company.
 - **Shape B** — fractional / freelance via warm network (judgment-altitude, ≤ 2 days/week or scoped time-box, contained risk only, paid threshold 100 €/h · 800 €/day, discovery-session-first).
 
 Both shapes are valid. The shape that satisfies the drivers AND clears the filters AND passes [[Engagement-Validity-Filter]] AND respects [[Path-Doctrine]] necessary conditions wins. Ideology about preferred shape doesn't.
