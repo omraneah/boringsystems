@@ -90,6 +90,12 @@ Knowing *why* lets future-Claude judge edge cases instead of blindly following t
 
 `feedback_<short-name>.md` — snake_case, descriptive of the rule. The frontmatter `name:` field is the canonical title.
 
+## Where lifecycle history lives after resolution
+
+When a feedback file is resolved (crystallized into the harness, promoted to long-term doctrine, deleted as subsumed, or archived), the source file is removed but the **per-rule lifecycle is preserved** in `.claude/decisions/DECISIONS.md` as a **lifecycle table** inside the corresponding decision entry. Each table row captures: given date (first commit), stabilization date (in-flight → stable promotion, or "(never promoted)"), resolution kind (crystallized / promoted / deleted / archived), and the canonical surface the rule now lives at.
+
+To find any resolved rule's history: search `DECISIONS.md` for the resolution entry (e.g., `grep -n "Crystallize article-discipline" .claude/decisions/DECISIONS.md`) — the table lives in that entry. The `/log-decision` skill enforces this format for any decision that touches feedback rules.
+
 ## Companion: weekly consolidation + deliberate audit
 
 - **Weekly consolidation** (`/consolidate-week`, fired Mondays per a feedback rule that lives here) handles small deltas — surfacing drift candidates from the past week's daily entries, proposing minor moves.

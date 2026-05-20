@@ -736,3 +736,24 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-20 — Crystallize article-discipline cluster to boringsystems/docs/article-discipline.md
+**Context:** Six feedback rules covered the same surface (boringsystems article workflow): EN+FR bilingual ship, `/article-review` + `/french-audit` mandatory passes, cross-reference discipline, title-options for work case files, no pricing figures, proactive capture. Six files of behavioral-correction voice instead of one canonical protocol doc in the project where the rules apply.
+**Decision:** Crystallized into `boringsystems/docs/article-discipline.md` (protocol voice, 6 sections + quick checklist). Six source feedback files deleted from `memory/short-term/feedback/`. Boringsystems pointer bumped in workspace to reference merged main.
+**Why:** Rules about boringsystems article workflow belong in the boringsystems project, not in workspace memory. Feedback files were carrying protocol weight they were not shaped for. Crystallization collapses six files into one canonical doc + clears feedback noise. Aligns with the crystallization path in `memory/short-term/feedback/TODO.md`.
+
+**Per-feedback lifecycle (given → stabilized → crystallized into harness):**
+
+| Feedback rule | Given (first commit) | Stabilized | Crystallized into harness | Now lives at |
+|---|---|---|---|---|
+| Always run /article-review + /french-audit | 2026-04-28 | 2026-04-28 (born stable, in stable/ from the audit-folder split) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Review skills |
+| Boringsystems articles ship EN + FR | 2026-04-28 | 2026-04-28 (born stable) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Bilingual |
+| Articles cross-reference bidirectionally | 2026-05-01 | (never promoted — stayed in-flight until crystallized) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Cross-references |
+| Propose title options for work case files | 2026-05-01 | (never promoted) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Title proposals |
+| No pricing figures in articles | 2026-05-01 | (never promoted) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § No pricing |
+| Article capture behavior | 2026-04-20 | (never promoted) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Proactive capture |
+
+**Expected outcome:** Single source of truth for article workflow in the project that owns it. Six fewer feedback files. Future article-discipline updates land in one doc instead of fanning out across feedback files. Per-feedback traceability preserved in this entry (timestamps + canonical landing surface).
+**Actual outcome:** *(pending)*
+
+---

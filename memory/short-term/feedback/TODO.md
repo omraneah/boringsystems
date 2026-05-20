@@ -46,17 +46,9 @@ Many files in `stable/` are protocol rules — structured workflows in behaviora
 
 ---
 
-## Article-discipline cluster — candidate for boringsystems crystallization
+## Article-discipline cluster — decided + executed 2026-05-20
 
-Six article-shaped feedback files form a cluster that could crystallize into a single `boringsystems/docs/article-discipline.md` section:
-- `stable/feedback_always_run_article_review_and_french_audit.md`
-- `stable/feedback_boringsystems_articles_en_and_fr.md`
-- `in-flight/feedback_article_cross_referencing.md`
-- `in-flight/feedback_title_proposals_work_articles.md`
-- `in-flight/feedback_no_pricing_in_articles.md`
-- `in-flight/feedback_article_capture.md`
-
-Crystallizing them lives in the boringsystems repo, not memory. Defer until a boringsystems-touching session.
+Six article-shaped feedback files crystallized into `boringsystems/docs/article-discipline.md`. Source feedback files deleted (not stubbed). See `.claude/decisions/DECISIONS.md` 2026-05-20 entry "Crystallize article-discipline cluster to boringsystems/docs/article-discipline.md".
 
 ---
 
