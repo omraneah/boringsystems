@@ -21,7 +21,7 @@ Enforcement: `.claude/hooks/block-protected-push.sh` blocks any such push at the
 
 ## PR creation — division of labor
 
-**Claude never opens the PR.** Claude pushes the branch, prepares the title + body, and surfaces the GitHub PR-creation URL. Ahmed opens the PR manually. This is the rule in `memory/feedback_pr_creation.md` — no `gh pr create`, no `mcp__github__create_pull_request`.
+**Claude never opens the PR.** Claude pushes the branch, prepares the title + body, and surfaces the GitHub PR-creation URL. Ahmed opens the PR manually. This is the rule in `memory/medium-term/project-management/workspace-workflow.md` § PR handoff — no `gh pr create`, no `mcp__github__create_pull_request`.
 
 The `/pr` skill handles this workflow: verifies branch, pushes if needed, constructs the creation URL, drafts title and body.
 
