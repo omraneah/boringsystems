@@ -737,23 +737,26 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 
 ---
 
-## 2026-05-20 — Crystallize article-discipline cluster to boringsystems/docs/article-discipline.md
-**Context:** Six feedback rules covered the same surface (boringsystems article workflow): EN+FR bilingual ship, `/article-review` + `/french-audit` mandatory passes, cross-reference discipline, title-options for work case files, no pricing figures, proactive capture. Six files of behavioral-correction voice instead of one canonical protocol doc in the project where the rules apply.
-**Decision:** Crystallized into `boringsystems/docs/article-discipline.md` (protocol voice, 6 sections + quick checklist). Six source feedback files deleted from `memory/short-term/feedback/`. Boringsystems pointer bumped in workspace to reference merged main.
-**Why:** Rules about boringsystems article workflow belong in the boringsystems project, not in workspace memory. Feedback files were carrying protocol weight they were not shaped for. Crystallization collapses six files into one canonical doc + clears feedback noise. Aligns with the crystallization path in `memory/short-term/feedback/TODO.md`.
+## 2026-05-20 — Crystallize 7 protocol-shaped feedback rules into workspace-workflow.md
+**Context:** Nine feedback files (7 protocols spanning 9 source files: code-change-gate, parallel-by-default + parallel-agent-recap + lane-change-announcement triplet, pr-creation, scope-discipline, linear-card-lifecycle, brief-approval-gate, model-effort-matrix) had crystallized as protocol rules but lived in `memory/short-term/feedback/` as behavioral-correction files. The canonical home for cross-project protocol SOPs is `memory/medium-term/project-management/workspace-workflow.md`.
+**Decision:** Added 7 new sections to workspace-workflow.md (Scope discipline, 3-gate Code change flow, PR handoff, Advisory/strategic session flow, Parallel and lane-change protocols, Model and effort defaults, Card lifecycle absorbed into existing creation/pickup flows). Deleted 9 source feedback files. Updated CLAUDE.md non-negotiables (5 paths) and 3 sibling feedback files (4 cross-refs) to point at workspace-workflow.md sections directly.
+**Why:** Protocol rules in a behavioral-correction folder is structurally wrong — they outgrew the in-flight/stable distinction long ago. Crystallizing into the SOP doc that already houses related workflow logic (research, card creation, code change, structural change) consolidates the protocol layer in one place. Per the in-flight→decision rule: when work is decided and executed, log the decision and delete the transitional stubs (do not leave breadcrumbs that become noise).
 
-**Per-feedback lifecycle (given → stabilized → crystallized into harness):**
+**Per-feedback lifecycle (given → stabilized → resolved):**
 
-| Feedback rule | Given (first commit) | Stabilized | Crystallized into harness | Now lives at |
+| Feedback rule | Given (first commit) | Stabilized | Resolved into | Now lives at |
 |---|---|---|---|---|
-| Always run /article-review + /french-audit | 2026-04-28 | 2026-04-28 (born stable, in stable/ from the audit-folder split) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Review skills |
-| Boringsystems articles ship EN + FR | 2026-04-28 | 2026-04-28 (born stable) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Bilingual |
-| Articles cross-reference bidirectionally | 2026-05-01 | (never promoted — stayed in-flight until crystallized) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Cross-references |
-| Propose title options for work case files | 2026-05-01 | (never promoted) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Title proposals |
-| No pricing figures in articles | 2026-05-01 | (never promoted) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § No pricing |
-| Article capture behavior | 2026-04-20 | (never promoted) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Proactive capture |
+| Code change gate | 2026-05-03 | (born stable) | crystallized | `memory/medium-term/project-management/workspace-workflow.md` § Code change flow |
+| Parallel-by-default | 2026-04-25 | (born stable) | crystallized | `memory/medium-term/project-management/workspace-workflow.md` § Parallel and lane-change protocols |
+| Parallel-agent recap | 2026-04-26 | (born stable) | crystallized | `memory/medium-term/project-management/workspace-workflow.md` § Parallel and lane-change protocols |
+| Lane-change announcement | 2026-04-26 | (born stable) | crystallized | `memory/medium-term/project-management/workspace-workflow.md` § Parallel and lane-change protocols |
+| PR creation division of labor | 2026-04-21 | (born stable) | crystallized | `memory/medium-term/project-management/workspace-workflow.md` § PR handoff |
+| Scope discipline (max 3 concerns) | 2026-04-21 | (born stable) | crystallized | `memory/medium-term/project-management/workspace-workflow.md` § Scope discipline |
+| Linear card lifecycle | 2026-05-01 | 2026-05-20 (promoted from in-flight via Pass 1, then crystallized same day) | crystallized | `memory/medium-term/project-management/workspace-workflow.md` § Card creation flow + § Card pickup flow |
+| Brief approval gate | 2026-04-26 | (never promoted — went from in-flight straight to crystallization) | crystallized | `memory/medium-term/project-management/workspace-workflow.md` § Advisory / strategic session flow |
+| Model × Effort × Lane matrix | 2026-04-26 | (never promoted — went from in-flight straight to crystallization) | crystallized | `memory/medium-term/project-management/workspace-workflow.md` § Model and effort defaults |
 
-**Expected outcome:** Single source of truth for article workflow in the project that owns it. Six fewer feedback files. Future article-discipline updates land in one doc instead of fanning out across feedback files. Per-feedback traceability preserved in this entry (timestamps + canonical landing surface).
+**Expected outcome:** Workflow protocols live in one canonical doc (workspace-workflow.md). 9 fewer files in feedback/. CLAUDE.md non-negotiables point at the SOP doc not the feedback files. Sibling cross-refs point at canonical sections not stale stubs. Per-feedback traceability preserved (given dates + stabilization timing + canonical landing section).
 **Actual outcome:** *(pending)*
 
 ---
