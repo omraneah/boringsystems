@@ -55,8 +55,8 @@ Before submitting a card, ask: *"If a fresh agent opens this card right now with
 
 ## Companion rules
 
-- `feedback_card_fanout_discipline.md` (in-flight) — before creating multiple cards, check for container patterns. Fires first in the creation pipeline.
-- `feedback_linear_card_lifecycle.md` (in-flight) — covers the surrounding lifecycle: on creation (5-bullet summary + URL + `open <url>`), on start (In Progress + comment), on done (In Review + summary). The self-contained rule governs *what's in the card*; the lifecycle rule governs *how to surface it*. Both apply at creation.
+- `feedback_card_fanout_discipline.md` (stable) — before creating multiple cards, check for container patterns. Fires first in the creation pipeline.
+- `feedback_linear_card_lifecycle.md` (stable) — covers the surrounding lifecycle: on creation (5-bullet summary + URL + `open <url>`), on start (In Progress + comment), on done (In Review + summary). The self-contained rule governs *what's in the card*; the lifecycle rule governs *how to surface it*. Both apply at creation.
 - `feedback_pr_creation.md` (stable) — the 3-part end-of-turn shape (summary + URL + auto-open in browser) that the card creation surface mirrors.
 - `feedback_no_recap_after_link.md` (stable) — once the card exists, the link IS the recap. The 5-bullet creation summary is the bounded exception (because it lands at the same moment as the link, not after it).
 - `feedback_promote_tmp_artifacts_before_session_boundary.md` (stable) — adjacent: anything in `tmp/` that should outlive the session must be promoted before the session ends. The self-containment rule is the upstream move — don't create the dependency in the first place when shipping a card.

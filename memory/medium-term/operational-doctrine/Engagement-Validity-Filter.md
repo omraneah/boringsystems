@@ -55,9 +55,15 @@ If the failure shape is detected at in-engagement altitude, the response is:
 2. Check whether the trade-off is a brief calibration period (acceptable, time-boxed) or a structural feature of the engagement (not acceptable).
 3. If structural: plan exit. Two weeks of structural mis-alignment is enough to confirm; do not wait longer hoping it will shift.
 
+## Contained-risk vs founder-risk (Shape B)
+
+For Shape B engagements (fractional / freelance), the contained-risk-vs-founder-risk principle is the upstream failure to refuse. Canonical home: [[Engagement-Shapes]] § Shape B contained-risk principle. Wrong-shape Shape B engagements fire the single-dimension trap by intensifying ownership without upside.
+
 ## Cross-references
 
 - I AM (north star) → `../../long-term/I-AM.md`
+- Drivers and filters (medium-term expression of this filter for the next step) → [[Drivers-and-Filters]]
+- Engagement shapes (Shape A and Shape B — the two surfaces this filter qualifies) → [[Engagement-Shapes]]
 - Path Doctrine (necessary conditions for the 2-3yr sprint) → `../../long-term/inner-game/Path-Doctrine.md`
 - Relational Architecture (depth-expansion of relational North Star) → `../../long-term/inner-game/Relational-Architecture.md`
 - Identity & Exit Doctrine (life-level exit triggers) → `Identity-and-Exit-Doctrine.md`

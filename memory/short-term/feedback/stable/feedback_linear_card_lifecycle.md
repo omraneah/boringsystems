@@ -36,5 +36,5 @@ When Claude creates or works a Linear card (or a bundle of cards on a single PR)
 ## Companion rules
 
 - `feedback_linear_cards_self_contained.md` (stable) — what the card body must contain at creation time so a clean-slate agent can execute it. The lifecycle rule covers *how to surface* the card after creation; the self-contained rule covers *what to put in* the card before submitting. Both apply at creation.
-- `feedback_card_fanout_discipline.md` (in-flight) — before creating multiple cards, check for container patterns and mirror them. Sequence: fan-out check → self-contained content → lifecycle surfacing.
+- `feedback_card_fanout_discipline.md` (stable) — before creating multiple cards, check for container patterns and mirror them. Sequence: fan-out check → self-contained content → lifecycle surfacing.
 - `feedback_pr_creation.md` (stable) — the 3-part end-of-turn shape (summary + URL + auto-open) for branch pushes. Card creation mirrors it, by design.

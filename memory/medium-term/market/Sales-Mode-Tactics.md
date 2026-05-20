@@ -3,7 +3,7 @@
 **Status:** Operational — invoked when actual sales conversations / negotiations / sponsor-pitches happen.
 **Folder:** market/
 
-> **This file is tactics, not strategy.** It governs HOW to behave when actually selling. The strategic question of WHEN to be in sales-mode at all (vs. exploration-mode, vs. employment-conversation-mode, vs. "having coffee") is upstream — see `../plan.md` and `../../long-term/inner-game/Path-Doctrine.md`.
+> **This file is tactics, not strategy.** It governs HOW to behave when actually selling. The strategic question of WHEN to be in sales-mode at all (vs. exploration-mode, vs. employment-conversation-mode, vs. "having coffee") is upstream — see `../Drivers-and-Filters.md`, `../Engagement-Shapes.md`, `../current-arc.md`, and `../../long-term/inner-game/Path-Doctrine.md`.
 >
 > **Frame correction (2026-04-30):** the earlier framing — *"You are selling a high-ticket judgment capability, not applying for a job"* — over-committed the shape. Live frame: employment-shape is valid if aligned. The tactics below apply when the conversation IS sales-shaped (high-ticket judgment, advisory, fractional). They do not apply to a friendly chat or an aligned employment exploration.
 
@@ -103,8 +103,8 @@ Two red flags → downgrade or exit.
 
 ## 7. Routing
 
-- Positioning + selection filters → `AI-Native-Builder-Positioning.md`
-- Capability profile + leverage / ugliness detection → `Leverage-Profile-and-Market-Lens.md`
+- Drivers + filters + position synthesis → `../Drivers-and-Filters.md`
+- Engagement shapes (Shape A, Shape B) → `../Engagement-Shapes.md`
 - Sponsor conversation altitude + interaction discipline → `../operational-doctrine/Relational-Altitude-OS.md`
 - Visibility and publishing → `Visibility-OS.md`
 - Path-shape doctrine (the 2-3yr sprint) → `../../long-term/inner-game/Path-Doctrine.md`

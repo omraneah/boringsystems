@@ -13,6 +13,8 @@ Three horizons of memory, each with its own decay model. One source of truth, ve
 memory/
 ├── README.md              ← this file (human governance, source of truth)
 ├── MEMORY.md              ← machine entry (auto-loaded by Claude Code every turn)
+├── TODO.md                ← improvement backlog spanning multiple tiers
+├── _outdated/             ← superseded files preserved for reference (do not auto-read)
 ├── long-term/             ← north star: identity, distilled doctrine, path doctrine
 │   ├── README.md
 │   ├── I-AM.md
@@ -20,14 +22,18 @@ memory/
 │       ├── Meta-Identity-Constitution.md
 │       ├── Path-Doctrine.md
 │       ├── Relational-Architecture.md
+│       ├── Surrender-Doctrine.md
 │       └── Trait-Architecture.md
 ├── medium-term/           ← current direction (1–6 month horizon, evolving)
 │   ├── README.md
-│   ├── current-arc.md
-│   ├── current-context.md
-│   ├── market/
-│   ├── operational-doctrine/
-│   └── projects/
+│   ├── current-arc.md         ← phase narrative (auto-load)
+│   ├── current-context.md     ← geography + market + stack (on demand)
+│   ├── Drivers-and-Filters.md ← drivers + filters + position synthesis (auto-load)
+│   ├── Engagement-Shapes.md   ← Shape A (incl. A.1) + Shape B (auto-load)
+│   ├── market/                ← Sales-Mode-Tactics, Visibility-OS, pre-funnel-filter
+│   ├── operational-doctrine/  ← EVF, Identity-and-Exit, State-and-Guardrails, etc.
+│   ├── project-management/    ← workspace-workflow, linear-sop, github-sop (auto-load)
+│   └── projects/              ← advisory-board metadata
 └── short-term/            ← episodic record + active discipline
     ├── README.md
     ├── feedback/          ← active behavioural rules (auto-loaded)
@@ -46,8 +52,8 @@ memory/
 
 | Tier | Horizon | What goes here | Lives in |
 |---|---|---|---|
-| **Long-term** | Years | Identity profile, distilled identity-constitution content, path doctrine, relational architecture. North star. | `long-term/` |
-| **Medium-term** | 1–6 months, evolving | Current direction (`current-arc.md`), current context, market doctrine, operational doctrine, project metadata. Project-management SOPs (`workspace-workflow.md`, `linear-sop.md`, `github-sop.md`) auto-load every session; rest loads on demand. | `medium-term/` |
+| **Long-term** | Years | Identity profile, identity-constitution depth-expansion, path doctrine, relational architecture, surrender doctrine, trait architecture. North star. | `long-term/` |
+| **Medium-term** | 1–6 months, evolving | Phase narrative (`current-arc.md`), geography + market context (`current-context.md`), drivers + filters (`Drivers-and-Filters.md`), engagement shapes (`Engagement-Shapes.md`), market doctrine, operational doctrine, project-management SOPs, project metadata. Auto-loaded: `current-arc.md`, `Drivers-and-Filters.md`, `Engagement-Shapes.md`, and all `project-management/` files. Rest on demand. | `medium-term/` |
 | **Short-term** | ≤4 weeks episodic + active discipline | Daily entries, weekly consolidation, active feedback rules, current 2-month plan, extraction discipline. | `short-term/` |
 
 ## On feedback
@@ -73,12 +79,15 @@ Both auto-load with the rest of the discipline layer (long-term + current-arc + 
 | Medium-term — `project-management/workspace-workflow.md` | Full content (collaboration SOP — governs every session) |
 | Medium-term — `project-management/linear-sop.md` | Full content (card rules — governs every session) |
 | Medium-term — `project-management/github-sop.md` | Full content (branch rules — governs every session) |
-| Medium-term — `current-arc.md` | Full content (live direction snapshot) |
+| Medium-term — `current-arc.md` | Full content (phase narrative) |
+| Medium-term — `Drivers-and-Filters.md` | Full content (operational center for this next step) |
+| Medium-term — `Engagement-Shapes.md` | Full content (the two valid surface shapes) |
 | Medium-term — rest | Routing-only references in `MEMORY.md`; full content on demand |
 | Short-term — `feedback/` | Full content (active discipline layer) |
 | Short-term — `current-arc.md` | Full content (active 2-month plan) |
 | Short-term — `extraction-os.md` | Full content (proof-asset extraction discipline) |
 | Short-term — current week + last week | Full content (continuity) |
+| `_outdated/` | Not read unless Ahmed explicitly points to a file |
 
 ## Weighting rules (when sources conflict)
 

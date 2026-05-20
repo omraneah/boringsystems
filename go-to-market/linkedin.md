@@ -2,6 +2,10 @@
 
 Current public-facing positioning on LinkedIn. The headline + bio are the primary inbound funnel; every edit here changes what kind of conversation walks through the door.
 
+**Scope note:** This surface is for the full-time shapes (Shape A and sub-shape A.1 — full-time CPTO/CTPO). Shape B (fractional / freelance via warm network) does not flow through LinkedIn cold inbound in France; it flows through warm intros and discovery sessions. See `strategy.md` and `memory/medium-term/Engagement-Shapes.md`.
+
+> **Considered, not applied — 2026-05-20.** A v4 reframe was drafted alongside the [[Drivers-and-Filters]] codification. Direction: drop the "lead the team / own the outcome end-to-end" foregrounding (team-leadership-as-main-mandate is filtered out for this period), soften the ownership register, surface serve / influence / judgment, replace "Execution" with "Judgment" in the headline altitude. **Not applied** — v3 is good enough for the full-time shapes; sharper reframing waits for the pull from life (positioning clearer after real warm-graph conversations + first inbound shapes against the new drivers). When revisited: re-read [[Drivers-and-Filters]] § Filters before drafting, especially the team-leadership-as-main-mandate filter and the body-check overlay for the A.1 sub-shape (prove-something / repair-the-past pulls).
+
 ---
 
 ## Current — as of 2026-05-05 (v3 — shipped)

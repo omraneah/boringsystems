@@ -67,7 +67,7 @@ Allowed only when it is declining and produces an artifact.
 
 Valid:
 - bootstrap a new execution loop
-- define an initial AI-native workflow
+- define an initial system-level workflow
 - shape a first decision framework
 
 Invalid:

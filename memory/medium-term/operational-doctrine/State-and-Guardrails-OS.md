@@ -101,28 +101,7 @@ If manipulation appears:
 
 ---
 
-## 7) Belief upgrades
-
-Old -> new belief:
-- Safety: control -> discernment.
-- Relationships: chaos to manage -> mirrors of resonance.
-- Trust: prediction -> mutual clarity and feedback.
-- Growth: output -> ease within ambiguity.
-- Worth: competence -> presence.
-- Power: autonomy -> co-creation.
-- Value: output -> state influence.
-- Visibility: image -> authenticity.
-
-Emerging beliefs:
-- Safety lives in discernment, not defense.
-- Trust compounds through transparency.
-- Power flows through coherence, not volume.
-- Resonance attracts what control chases.
-- Ease is evidence of alignment.
-
----
-
-## 8) Integration loops
+## 7) Integration loops
 
 Weekly:
 - One deliberate "no" to build boundary muscle.
@@ -139,7 +118,7 @@ Quarterly:
 
 ---
 
-## 9) Mantras
+## 8) Mantras
 
 - My stillness is my leverage.
 - Discernment over control.

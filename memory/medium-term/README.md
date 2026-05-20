@@ -7,23 +7,24 @@
 ## Top-level files
 
 - **`current-arc.md`** — six-month re-stabilization plan (July → December 2026). Auto-loaded.
-- **`current-context.md`** — current life-phase context, capability profile, geographic and market specifics. Updates as the phase evolves; archive when re-entry phase ends.
+- **`Drivers-and-Filters.md`** — **Auto-loaded.** Operational center for this next step: drivers (what pulls), filters (what disqualifies), position synthesis (the narrow middle). Codified 2026-05-20.
+- **`Engagement-Shapes.md`** — **Auto-loaded.** The two valid surface shapes (A — mandate inside a company; B — fractional / freelance via warm network). Includes contained-risk principle.
+- **`current-context.md`** — current life-phase context, geographic and market specifics. Updates as the phase evolves; archive when re-entry phase ends.
 
 ## Subfolders
 
-### `market/` — market doctrine
+### `market/` — operational market doctrine
 
-Capability-led positioning, market lens, sales-mode tactics, visibility OS.
+Sales-mode tactics, visibility, pre-funnel aesthetic filter. (Capability-led positioning and AI-native-builder positioning files were deprecated 2026-05-20 — superseded by `Drivers-and-Filters.md` + `Engagement-Shapes.md`. See `../_outdated/`.)
 
 Files:
-- `Leverage-Profile-and-Market-Lens.md` — capability profile + AI-driven shift + ugliness detection.
-- `AI-Native-Builder-Positioning.md` — entry strategy + selection filters + failure modes.
 - `Sales-Mode-Tactics.md` — when in sales-mode, run it as one. Tactics not strategy.
 - `Visibility-OS.md` — publishing posture + tone + content shape.
+- `pre-funnel-filter.md` — register filter before the funnel, thesis filter inside it. Universal touchpoint rule.
 
 ### `operational-doctrine/` — operational discipline
 
-State regulation, work hygiene, exit triggers, recovery markers, relational altitude, derailment-archetype filter.
+State regulation, work hygiene, exit triggers, recovery markers, relational altitude.
 
 Files:
 - `Identity-and-Exit-Doctrine.md` — Freedom-Wealth-Experience doctrine + life-level exit triggers + walking modes.
@@ -31,7 +32,8 @@ Files:
 - `Work-Hygiene-Doctrine.md` — clean work / dirty work / disengagement protocol / weekly check.
 - `Recovery-Signals.md` — felt markers indicating depletion is lifting. Transition-period; expires end of 2026.
 - `Relational-Altitude-OS.md` — sponsor-facing posture + altitude levels + French warmth floor.
-- `Engagement-Validity-Filter.md` — non-negotiable filter for engagement-validity.
+- `Engagement-Validity-Filter.md` — non-negotiable filter for engagement-validity. Universal upstream filter; `Drivers-and-Filters.md` is its medium-term expression for this next step.
+- `Portable-Doctrine-Design.md` — how portable doctrine packs travel between engagements.
 
 ### `projects/` — project metadata
 
@@ -53,6 +55,9 @@ If yes → medium-term.
 | Sub-area | Auto-load behaviour |
 |---|---|
 | `current-arc.md` | Full content every turn |
+| `Drivers-and-Filters.md` | Full content every turn (operational center for this next step) |
+| `Engagement-Shapes.md` | Full content every turn (the two surface shapes) |
+| `project-management/` | Full content every turn (structural SOPs) |
 | Everything else | Routing reference only in `MEMORY.md`; full content on demand |
 
 ## The interpretive role

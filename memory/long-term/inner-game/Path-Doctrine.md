@@ -48,14 +48,11 @@ An operating frame that satisfies the necessary conditions:
 
 Other valid blueprints: full-time employment in a deeply aligned organization with own-things compounded on the side; multi-client fractional with own-things in the gaps; sabbatical-shaped own-things bursts between for-others sprints; etc. **Shape is open. Conditions are not.**
 
-### Confirmed shape of the for-others work (2026-05-14)
+### Altitude of the for-others work
 
-The container shape stays open. The **altitude** of the for-others work has been decided.
+Transformation / accompaniment altitude, not execution altitude. Influence-based change leadership in complex orgs rooted in real constraints — engineering, systems, teams, operations. Technical depth is what makes the change credible; it is not the deliverable.
 
-- **Destination (2–3 year horizon):** enterprise-scale AI transformation work — driving AI adoption inside a complex organization, with the actual surface being maps, psychologies, incentives, influence, and change management on top of a deep technical foundation. **Transformation / accompaniment altitude, not execution altitude.** The technical depth is what makes the transformation credible; it is not the deliverable.
-- **Bridge (now → destination):** fractional CTO / early-stage-from-outside work. Generates income, protects optionality, keeps the relational and sponsor surface live while the named transformation credential gets built (e.g., a deep enterprise-AI mandate — Free/Iliad-shape if that closes, or its equivalent).
-- **What this rules out:** for-others work whose altitude is execution-only — founding engineer, IC-heavy fractional, build-this-thing contracts. Those fail the role-shape filter in `../../medium-term/market/Leverage-Profile-and-Market-Lens.md` Section 5 (coding ≤ 20–30% of time, body-level signal). They are not candidate paths under this doctrine regardless of compensation or title.
-- **Status:** decided, not exploratory. The shape (employment, fractional, hybrid) stays open; the direction does not.
+The container shape stays open; the altitude does not. **The medium-term expression of this — the two engagement shapes (A, A.1, B) and the filters that disqualify wrong-shape opportunities — lives in [[Drivers-and-Filters]] and [[Engagement-Shapes]].**
 
 ---
 
@@ -75,7 +72,9 @@ For-others CAN BE the path, when chosen freely from anchored kindness, when alig
 
 ---
 
-## Anti-pattern (the single-dimension trap — not this)
+## Anti-patterns (not this)
+
+### The single-dimension trap
 
 The shape that drains while looking exciting:
 
@@ -86,6 +85,14 @@ A path that satisfies *only* deep curiosity (e.g., "interesting engineering," "e
 The sprint must pay across multiple dimensions simultaneously. Not just curiosity. Not just income. Not just status. **Body + family + place + network + health + own-creation accumulation + financial stability + curiosity. Multiple at once.** Where any of these is being silently traded off, the path is in drift.
 
 → Engagement Validity Filter (operational test) → `../../medium-term/operational-doctrine/Engagement-Validity-Filter.md`
+
+### Team-leadership-as-main-mandate (this period)
+
+A path whose primary mandate is to *lead a team* (manage direct reports, carry headcount, run an org function) fails the period-specific filter. The work this period is **influence over authority** — change leadership through judgment, presence, and the system layer, not through reporting lines. A team-lead-shaped role is wrong regardless of altitude or compensation while this period holds.
+
+(This is a *this-period* anti-pattern, not a life-level one. It may change in a later sprint chapter. Currently load-bearing.)
+
+→ Full filter list → [[Drivers-and-Filters]] § Filters.
 
 ---
 

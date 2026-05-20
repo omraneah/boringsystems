@@ -1,6 +1,6 @@
 # Inbound Call Discipline
 
-Operating principles for the conversations the four engagement shapes are designed to attract. Applies to first contact through to scope/price agreement — Fractional CTO calls, Sprint Founder-Builder discovery, Transformation Lead intros, and any advisory-shaped inbound that lands via LinkedIn or referral.
+Operating principles for the conversations the two engagement shapes are designed to attract. Applies to first contact through to scope/price agreement — Shape A (mandate) scoping, Shape B.1 (fractional CTO / CPO) discovery, Shape B.2 (transformation freelance) intros, and any advisory-shaped inbound that lands via LinkedIn or referral.
 
 Not negotiation theatre. Discipline for staying in the frame the positioning was built to hold.
 

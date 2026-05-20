@@ -24,7 +24,7 @@ If a post helps beginners more than sponsors, it is mis-scoped.
 
 ## 3) Audience
 - Founders with active execution problems.
-- Sponsors funding AI-native change.
+- Sponsors and operators driving change in complex orgs (per `../Drivers-and-Filters.md` position synthesis).
 - Builders and operators who recognize high-constraint environments.
 - Connectors who can route toward decision-makers.
 
@@ -76,3 +76,11 @@ Before publishing, ask:
 - Does it serve at least one of: a sponsor already in conversation / a peer who'd recognize the shape / a builder facing the same problem / future-Ahmed re-reading and learning from the externalization?
 
 If yes to all four → publish. If not → don't.
+
+## 9) Routing
+
+- Drivers + filters + position synthesis → `../Drivers-and-Filters.md`
+- Engagement shapes (Shape A, B) → `../Engagement-Shapes.md`
+- Sales-mode tactics (when in sales conversation) → `Sales-Mode-Tactics.md`
+- Pre-funnel aesthetic filter (cold-stranger touchpoints) → `pre-funnel-filter.md`
+- Long-term being layer → `../../long-term/I-AM.md`

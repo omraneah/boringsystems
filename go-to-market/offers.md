@@ -1,77 +1,93 @@
-# Freelance Offers
+# Engagement Options
 
-Three offers on the table for the six-month freelance window that starts after the current role exits (~mid-2026). Ranked by Ahmed's current preference and by where he expects the highest-leverage conversations to concentrate.
+Two shapes. The full structural definitions live in `memory/medium-term/Engagement-Shapes.md`; this file is the operational surface that prospects see.
 
-The second half of 2026 is explicitly a freelance + solopreneur exploration window — not a bridge to the next full-time role. Offers are designed for that window, not as consulting-as-job-search.
+The qualification layer (drivers + filters + position synthesis) is in `memory/medium-term/Drivers-and-Filters.md`.
 
 ---
 
-## Offer 1 — Fractional CTO
+## Shape A — Mandate inside a company
 
-**Shape.** 1–2 days per week, billed on a monthly quota with unused days rolling over to the following month. Longer engagements preferred (3–6 months) so the rolling quota can absorb week-to-week variability without the buyer feeling they're losing value on a slow week.
+**For:** AI-native or transformation-shaped organizations looking for a senior technical-decision-maker to take on a mandate inside the org.
 
-**Target buyer.** Early-stage and growth-stage founders, Seed → Series B, where an executive-level technical decision-maker is needed but a full-time CTO hire is either premature or blocked on runway / fit / timing. Also post-CTO-departure interim coverage.
+**Shape:** Full-time engagement. CDI / employment, or equivalent fixed-mandate inside an existing org.
 
-**What the buyer gets.**
+**What you get:**
+- Influence-based change leadership at the intersection of engineering, systems, teams, and operations.
+- Cross-functional system thinking — tech, product, ops, business — without losing coherence.
+- AI-native execution: judgment compressed, not outsourced.
+- A senior operator who reads the room, the constraint, and the system simultaneously.
+
+**Not for:**
+- Pure execution roles (founding engineer, kernel-IC, lead-dev-with-a-team-attached).
+- Mandates whose primary surface is direct-report-heavy team leadership.
+- Cultures whose operating tempo demands self-erasure.
+
+**Sourcing:** Inbound through LinkedIn / recruiters / warm intros to senior mandates.
+
+### Sub-shape A.1 — Full-time CPTO / CTPO
+
+Same scope as Shape B.1 (fractional CTO/CPO — level practices, hold standards, audit and automate, decide architectural trade-offs, ensure the team can deliver) — but as a full mandate inside one company at the C-tier altitude.
+
+The door is deliberately open because the shape itself is not the problem; the prior-company context was. In a healthy context (clean sponsor, contained risk, drivers/filters satisfied), this shape can be the right fit. Operator wariness is load-bearing — the filters run especially hard on opportunities of this shape. See `memory/medium-term/Engagement-Shapes.md` § Sub-shape A.1.
+
+---
+
+## Shape B — Fractional / Freelance via warm network
+
+Two sub-shapes.
+
+### B.1 — Fractional CTO / CPO, early-stage
+
+**For:** Early-stage founders who need executive-layer technical decision-making but don't yet need (or can't afford) a full-time CTO hire.
+
+**Shape:** ≤ 2 days/week. Multi-month commit. Judgment-altitude — level practices, hold standards, audit, decide trade-offs, ensure the team can deliver.
+
+**What you get:**
 - Architecture and technical-decision ownership at the executive layer.
-- Hands-on contribution via AI-agent orchestration — not pure advisory.
-- Hiring and team-shape input.
-- Vendor / stack decisions made with business-model awareness.
-- Translation of technical reality to the rest of the exec team and the board.
+- Standards and practices that survive my exit.
+- Coaching the existing dev(s); never replacing them.
+- Decision artifacts (in-repo, in-doc) that travel with the team.
 
-**What the buyer does not get.** IC-under-a-lead delivery work. Ticket-queue consumption. Pure code review.
+**Not for:**
+- Owning delivery of the codebase.
+- Carrying founder-grade risk on business outcome, market fit, or runway.
+- Being the only one who can deploy / has the tools / knows the system.
 
-**Pricing logic.** Day-rate × monthly quota. Quota rollover is the key differentiator — removes the "I'm paying for days I didn't use" objection that kills most fractional arrangements.
+### B.2 — Transformation freelance for established orgs
 
----
+**For:** Larger organizations with an in-flight transformation (migration, vendor exit, SaaS transition, platform consolidation, tech-debt unwind) that internally lack someone at the right altitude to own end-to-end.
 
-## Offer 2 — Sprint Founder-Builder
+**Shape:** Scoped, time-boxed, multi-week to multi-month. Advisory-heavy. Lead role — architect, sequence, coordinate. Not IC delivery.
 
-**Shape.** Multi-week intensive engagement (typically 3–8 weeks) to accompany a founder through building their first go-to-market product. Fixed scope, fixed timeline, fixed outcome — a shipped, operable product with solid architecture and the documentation to hand it off.
-
-**Target buyer.** Non-technical or semi-technical founders with product conviction who need the first real version built, not an MVP that has to be rewritten the moment it gets traction. Often founders who've tried agency work or no-code and hit the quality ceiling.
-
-**What the buyer gets.**
-- A shipped product with architecture that survives the transition from launch to first 100–1000 users.
-- Decision documentation — why each choice was made, what the alternatives were, what the invalidation triggers are.
-- Technical onboarding package for the first engineering hire.
-- The judgment layer: Ahmed's trade-off reasoning captured in-repo, not just in the founder's head.
-
-**Why this is distinct from agency work.** Agencies deliver code against a spec. This offer delivers code + the *reasons for the code*, so the founder can defend and evolve it after handoff. Architecture is not a deliverable; documented judgment is.
-
-**Pricing logic.** Fixed-price engagement, scoped up-front. Higher margin than fractional because it's concentrated and outcome-priced.
-
----
-
-## Offer 3 — Transformation Lead
-
-**Shape.** 2–6 month engagement at larger corporations for a bounded migration, transformation, or digital-transition program. Lead role — architect, coordinate, and drive — not IC delivery.
-
-**Target buyer.** Larger companies (50+ engineers, typically) with an in-flight transformation: vendor exit, SaaS transition, cloud migration, tech-debt unwind, platform consolidation. Internally have the capacity but lack someone at the right altitude to own the end-to-end outcome.
-
-**What the buyer gets.**
-- End-to-end program ownership — architecture, sequencing, risk surface, stakeholder alignment.
-- Written post-mortems and decision logs that survive Ahmed's departure.
+**What you get:**
+- End-to-end program ownership: architecture, sequencing, risk surface, stakeholder alignment.
+- Written post-mortems and decision logs that survive my departure.
 - Team coordination across multiple squads without adding a permanent org-chart line.
 
-**Why this is on the list.** It's a known-good fit for Ahmed's prior-chapter capability (infrastructure rebuilds, vendor exits, SaaS transformations done on team-of-3-to-5 budgets). It's also the offer that's least dependent on the "fractional CTO" market being receptive, which diversifies the bet.
+### Shape B engagement principles (both sub-shapes)
 
-**Credibility check.** Per `credibility-map.md`: this offer is borderline — the "50+ engineer larger corporation" framing brushes the hyperscale wall. The actual proof point is *transformation on team-of-3-to-5 budgets*. Qualify hard in discovery: if the buyer is implicitly asking for VP-of-Engineering-during-migration shape (Zone 3), refer out rather than pursue.
+- **Discovery session first.** 2–3 hour in-person or video session, no scope pre-decided. Scope emerges from the session, or a clean no.
+- **Paid threshold.** 100 €/h · 800 €/day. Below this, the engagement is priced as labor, not leverage.
+- **Contained scope.** Time-boxed. Renewable on explicit re-evaluation, not by default.
+- **Contained risk.** I carry risk on what I own (architecture, standards, scoped delivery). I do not carry founder-grade risk (business outcome, market fit, runway).
 
-**Pricing logic.** Weekly or monthly retainer, scoped to the transformation timeline. Closer to traditional consulting than offers 1 and 2.
+**Sourcing:** Warm network primarily. Studio / agency routing secondarily, with margin transparency required.
 
 ---
 
-## Prioritization
+## Retired offers
 
-| Offer | Preference | Why |
-|---|---|---|
-| Fractional CTO | High | Highest leverage per hour, repeatable, compounds Ahmed's positioning. |
-| Sprint Founder-Builder | High | Highest margin, highest craft satisfaction, directly exercises the AI-native build claim. |
-| Transformation Lead | Medium | Safety net. Known-good fit. Activate if 1 + 2 don't concentrate traction in the first 60–90 days. |
+The prior **Sprint Founder-Builder** offer (multi-week intensive ship-a-founder's-first-product engagement) was retired in the 2026-05-20 distillation. Reason: high hands-on percentage (> 50 %) and a structural tendency to drift into founder-grade risk shape. Both fire the [[Drivers-and-Filters]] filters.
 
-## Open questions
+If a sprint-shape opportunity appears, evaluate against [[Engagement-Shapes]] Shape B.1 or B.2 — never as a separate offer that bypasses the filters.
 
-- Do any of the three naturally bridge into a *productized* offer (e.g., a Claude-skill-driven fractional-CTO starter pack)?
-- Is there a pricing structure that makes offer 2 referable by offer-1 clients without cannibalizing?
-- What's the minimum retainer for offer 1 that protects against attention fragmentation — running too many in parallel degrades the quality of each?
+---
+
+## Cross-references
+
+- Full Shape A / Shape B structural definitions → `memory/medium-term/Engagement-Shapes.md`
+- Drivers + filters → `memory/medium-term/Drivers-and-Filters.md`
+- Position synthesis → `memory/medium-term/Drivers-and-Filters.md` § Position synthesis
+- LinkedIn surface (Shape A inbound) → `linkedin.md`
+- Distribution architecture → `strategy.md`

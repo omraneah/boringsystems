@@ -39,21 +39,21 @@ This is honest market reality, not aspiration. Inbound that lands inside the eas
 
 ---
 
-## How this constrains the offers
+## How this constrains the shapes
 
-Each of the three offers in `offers.md` checked against the map:
+Each of the two engagement shapes (Shape A — mandate; Shape B — fractional / freelance) checked against the map. Full structural definitions in `memory/medium-term/Engagement-Shapes.md`; operational surfaces in `offers.md`.
 
-### Offer 1 — Fractional CTO
+### Shape A — Mandate inside a company
+**Zone:** Easy sell at Seed → Series B or transformation-shaped mid-stage. Lived experience verbatim. At hyperscale / VP-with-direct-reports altitude, borderline — VP-of-VPs scope is borrowed credibility.
+**Verdict:** Inside credibility for AI-native / transformation-shaped orgs at 5–200 people. Qualify hard if the role-shape is a VP-of-VPs / direct-report-heavy mandate (filter: team-leadership-as-main-mandate, out — see `memory/medium-term/Drivers-and-Filters.md`).
+
+### Shape B.1 — Fractional CTO / CPO, early-stage
 **Zone:** Easy sell. Seed → Series B is exactly the early-stage zone. Executive-level technical decisions for 5–50 person companies is the lived experience verbatim.
-**Verdict:** Offer is inside credibility. Default offer for inbound.
+**Verdict:** Inside credibility. Default Shape B engagement.
 
-### Offer 2 — Sprint Founder-Builder
-**Zone:** Easy sell. 0→1 build for a non-technical founder is the most credibility-dense version of the lived experience. AI-native execution sharpens it further.
-**Verdict:** Offer is inside credibility. Highest margin and highest craft satisfaction.
-
-### Offer 3 — Transformation Lead
-**Zone:** **Borderline.** The "50+ engineer larger corporation" framing brushes the hyperscale wall. The actual proof point is *transformation on team-of-3-to-5 budgets* — which is genuine, but the offer copy currently invites buyers from a tier where credibility is borrowed.
-**Verdict:** Reframe the offer's target buyer to *mid-stage companies in transformation moments where the migration is owned at operator altitude, not VP/Director altitude*. Or accept that this offer is the safety net (current framing) and qualify hard during discovery: if the buyer is asking for VP-of-Engineering-during-migration shape, refer out rather than pursue.
+### Shape B.2 — Transformation freelance for established orgs
+**Zone:** **Borderline.** The "50+ engineer larger corporation" framing brushes the hyperscale wall. The actual proof point is *transformation on team-of-3-to-5 budgets* — which is genuine, but the offer copy must avoid inviting buyers from a tier where credibility is borrowed.
+**Verdict:** Target *mid-stage companies in transformation moments where the migration is owned at operator altitude, not VP/Director altitude*. Qualify hard during discovery: if the buyer is asking for VP-of-Engineering-during-migration shape, refer out rather than pursue.
 
 ---
 
@@ -72,7 +72,7 @@ If two or more answers land in Zone 3, walk with care (per the `inbound-call-dis
 
 ## What this map is *not*
 
-- Not a fixed identity. The map evolves — Sprint Founder-Builder engagements will, over 12–24 months, build the case for Zone 2 expansion. The lab/ exploration probe may produce evidence that shifts a credibility wall.
+- Not a fixed identity. The map evolves — Shape B engagements will, over 12–24 months, build the case for Zone 2 expansion. The lab/ exploration probe may produce evidence that shifts a credibility wall.
 - Not a confidence statement. Credibility ≠ capability. Ahmed can *execute* in some Zone 3 contexts; the map says the *sale* costs more than it returns.
 - Not permanent. Re-read this file every 6 months against actual inbound. Move claims between zones as evidence accumulates.
 
@@ -80,6 +80,7 @@ If two or more answers land in Zone 3, walk with care (per the `inbound-call-dis
 
 ## References
 
-- `offers.md` — the three offers, now constrained by this map
+- `offers.md` — engagement options (Shape A, Shape B.1, Shape B.2), constrained by this map
 - `inbound-call-discipline.md` — discovery questions surface zone before anchoring
-- `memory/medium-term/market/Leverage Profile & Market Lens.md` — the strategic-tier source material on capability-based vs. credential-based leverage
+- `memory/medium-term/Drivers-and-Filters.md` — qualification layer (drivers + filters + position synthesis)
+- `memory/medium-term/Engagement-Shapes.md` — structural definitions of Shape A and Shape B

@@ -92,4 +92,4 @@ The dual-audit pattern — one LLM audit, one human peer audit — catches more 
 
 - `cross-stack-architecture-starter-pack` — the artifact this doctrine is distilled from.
 - `Engagement-Validity-Filter.md` — the upstream filter for which engagements deserve this kind of artifact in the first place.
-- `Fractional-Engagement-Guardrails.md` — when applying this kind of pack to a fractional engagement.
+- `../Engagement-Shapes.md` — when applying this kind of pack to a Shape B fractional / freelance engagement.
