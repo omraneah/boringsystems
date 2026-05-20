@@ -4,81 +4,78 @@ Bets currently in play. Each one names the hypothesis, the reason for believing 
 
 A hypothesis is not a strategy — it's a falsifiable claim. If none of these are falsifiable within 60 days, the positioning is vague and needs sharpening.
 
----
-
-## H1 — Freelance-first is the right path for 2026 H2
-
-**Claim.** The six months following the current role's exit (roughly mid-2026 through end-2026) are best spent freelancing and exploring solopreneurship, not taking a full-time role.
-
-**Reason to believe.**
-- Gut feel after closing a 3-year chapter: the appetite is for optionality and variety, not a single-context bet.
-- The AI-native execution claim is sharper when demonstrated across multiple client contexts than inside one company.
-- A full-time role locks positioning into the hiring market's vocabulary; freelancing keeps the vocabulary Ahmed's own.
-- France 2026 timing: market absorption for AI-native senior roles is still forming. Better to sell capability directly than to be categorized by a recruiter.
-
-**Invalidation triggers.**
-- A full-time opportunity lands that materially outstrips the freelance EV and aligns with the positioning (Principal/Staff/Head-of with real mandate, AI-native posture, decision-level ownership).
-- Freelance inbound fails to concentrate within 90 days of starting — meaning: not enough qualified DMs, conversions, or pipeline to justify staying solo.
-- Cash pressure forces a pragmatic full-time hire.
-
-**Re-evaluate.** 2026-09-01 (~60 days after current-role exit).
+> **2026-05-20 audit pass.** Substance reframed against the two engagement shapes (A and B) codified in `memory/medium-term/Engagement-Shapes.md`. Prior money-target hypotheses retired with the money-framing release.
 
 ---
 
-## H2 — The LinkedIn positioning shift attracts higher-quality inbound
+## H1 — Two valid shapes is the right portfolio
 
-**Claim.** The 2026-04-22 positioning edit (framing up-stack to decisions, closing the door on IC-under-manager, surfacing AI-native + fractional) will shift DM quality from delivery-heavy founding-engineer asks toward decision-level conversations within 30–60 days.
+**Claim.** Holding two shapes simultaneously (Shape A — full-time mandate; Shape B — fractional / freelance via warm network) creates enough surface for the right alignment to land without forcing premature commitment.
 
 **Reason to believe.**
-- Prior positioning was ambiguous about altitude — "CTO" co-existed with language that read as senior-IC. The edit resolves that ambiguity in one direction.
-- AI-native + fractional is a relatively uncontested niche — most LinkedIn senior-engineer bios don't claim both credibly.
+- Each shape has a distinct sourcing channel (LinkedIn vs. warm network) so they don't cannibalize.
+- Each shape has a distinct buyer (recruiter / hiring manager vs. founder / sponsor) so they don't confuse.
+- The position synthesis (influence-based change leadership in complex orgs) reads coherently across both.
+- Reducing from four paths (prior framing) to two shapes resolved a known signal-confusion problem.
 
 **Invalidation triggers.**
-- DM volume drops without a corresponding quality lift (positioning narrowed too hard).
-- Inbound keeps arriving from delivery-heavy IC contexts (the signal didn't land where expected).
-- Inbound arrives but is misaligned with all three offers (positioning attracts curiosity, not buyers).
+- Buyers in either flow consistently misread the offer as the other shape.
+- One shape consistently outperforms the other to the point of making the other a distraction.
+- A third valid shape emerges from real conversations that doesn't fit either A or B.
 
-**Re-evaluate.** 2026-06-22 (60 days post-edit).
-
-**Tracking.** Log every inbound in `signals.md` with source, altitude, offer-fit, outcome.
+**Re-evaluate.** End of October 2026 (~5 months after the distillation pass).
 
 ---
 
-## H3 — Offer 2 (Sprint Founder-Builder) has the highest margin-to-effort ratio
+## H2 — The position synthesis lands in warm-graph conversations
 
-**Claim.** A fixed-price, outcome-scoped multi-week engagement delivering a shipped product + judgment layer will outperform hourly fractional work on margin per week and craft satisfaction per engagement.
+**Claim.** The phrase "influence-based change leadership in complex orgs rooted in real constraints — engineering, systems, teams, operations" lands with warm-graph contacts as both legible and differentiated. They can repeat it. They can forward it.
 
 **Reason to believe.**
-- AI-agent orchestration compresses the build time for this kind of scope without compressing the quality of the judgment work — the differentiated part.
-- Founders paying for "the decisions are mine" clarity pay more per week than founders buying fractional advisory.
-- The boringsystems case files are already the credential that sells this offer — no separate marketing lift needed.
+- The synthesis names what's actually happening at the work-altitude (judgment, presence, system-level) without title-vocabulary.
+- "Change leadership in complex orgs" maps to a known buyer-shape (transformation, AI adoption, post-CTO interim).
+- "Rooted in real constraints" rules out the vague-AI-strategy frame that everyone else is using.
 
 **Invalidation triggers.**
-- Two engagements run and either: margin compression due to scope-creep not priced in, or founders not willing to pay the implied premium.
-- The offer attracts founders who want MVP-grade work at agency pricing.
+- Warm contacts repeatedly ask "so what do you actually do?" after hearing it.
+- Referrals continue to land in the wrong shape (founding engineer, IC delivery, AI strategy advisory).
+- The synthesis itself starts producing weight rather than energy during conversations.
 
-**Re-evaluate.** After the first and second sold engagement — whichever comes first by 2026-10-01.
+**Re-evaluate.** After ~10 deployments in real warm-graph conversations, or by 2026-08-01, whichever comes first.
 
 ---
 
-## H4 — Three offers in parallel is the right portfolio shape
+## H3 — Shape B contained-risk principle holds in market
 
-**Claim.** Holding all three offers (Fractional CTO + Sprint Founder-Builder + Transformation Lead) in the market simultaneously creates enough surface for any one of them to catch without forcing premature commitment.
+**Claim.** Saying out loud — *external parties cannot carry founder-grade incentives on a project that is not theirs* — does not collapse the conversation. The right founders engage with it; the wrong ones reveal themselves.
 
 **Reason to believe.**
-- Low marginal cost: positioning already carries all three implicitly.
-- Each offer has a distinct buyer, so they don't cannibalize.
-- Diversifies the bet — if fractional is cold, transformation can still land.
+- Stated upfront, it functions as a probe (per [[Engagement-Shapes]] § Shape B).
+- It immediately surfaces the asymmetry that would otherwise compound silently into resentment.
+- Right-shape founders read it as honesty; wrong-shape founders read it as refusal.
 
 **Invalidation triggers.**
-- Buyers get confused about what Ahmed actually does — inbound keeps asking "so which is it?".
-- Carrying three offers dilutes the positioning message below legibility.
-- One offer consistently outperforms the other two, making the other two distractions.
+- Every Shape B conversation collapses on this point.
+- Right-shape founders also push back (suggests the framing is too sharp, not just the wrong-shape ones).
 
-**Re-evaluate.** 2026-09-01.
+**Re-evaluate.** After ~3 Shape B scoping conversations have surfaced this point.
 
 ---
 
 ## Retired / invalidated hypotheses
 
-*(None yet. Move entries here with a one-paragraph post-mortem when invalidation triggers fire.)*
+### H1 (prior) — Freelance-first is the right path for 2026 H2
+
+**Retired 2026-05-20.** Superseded by H1 (current) — *two valid shapes is the right portfolio*. The prior frame ("freelance-first vs. full-time") collapsed into the explicit Shape A / Shape B dual-track that does not pre-rank shape.
+
+### H2 (prior) — The LinkedIn positioning shift attracts higher-quality inbound
+
+**Retained as background, not active.** The positioning has continued evolving (v3 shipped 2026-05-05; v4 in preparation per the 2026-05-20 distillation). LinkedIn-as-Shape-A-inbound-channel is now the operating frame; quality of Shape A inbound is the only relevant metric, not "higher-quality" in the abstract.
+
+### H3 (prior) — Sprint Founder-Builder has the highest margin-to-effort ratio
+
+**Retired 2026-05-20.** The Sprint Founder-Builder offer itself was retired (high hands-on percentage, founder-grade-risk-prone) per the new filters. The hypothesis is moot.
+
+### H4 (prior) — Three offers in parallel is the right portfolio shape
+
+**Retired 2026-05-20.** Superseded by H1 (current). Three offers (Fractional CTO + Sprint + Transformation) collapsed into Shape A + Shape B.1 + Shape B.2 — a structurally clearer two-shape (with sub-shapes) framing.

@@ -15,7 +15,7 @@ One entry per inbound. Keep it terse.
 - Who: role / company / stage (if known)
 - Ask: what they want
 - Altitude: IC / Lead / Principal / Staff / Head / CxO / Founder / Advisor
-- Offer-fit: which of the three offers (if any) this maps to
+- Shape-fit: which engagement shape (Shape A, Shape B.1, Shape B.2) this maps to, if any
 - Outcome: replied / call booked / declined / ghosted / converted
 - Note: one line of what this signal says about positioning
 ```
@@ -26,11 +26,11 @@ One entry per inbound. Keep it terse.
 
 Review this log weekly or at each hypothesis re-evaluation date. Ask:
 
-1. **Altitude distribution** — what proportion of inbound is at or above Principal / Staff / Head-of? That's the signal for H2.
-2. **Offer-fit distribution** — where is inbound clustering? That's the signal for H4 (three-offer portfolio).
-3. **Source distribution** — LinkedIn vs. referral vs. article-driven. If LinkedIn dominates, positioning there is the lever. If referrals dominate, networks are.
+1. **Altitude distribution** — what proportion of inbound is at or above Principal / Staff / Head-of altitude in Shape A; at judgment-altitude (not main-dev altitude) in Shape B. That's the signal for whether the position synthesis is landing.
+2. **Shape-fit distribution** — where is inbound clustering? Shape A vs Shape B.1 vs Shape B.2. That's the signal for H1 (two-shape portfolio).
+3. **Source distribution** — LinkedIn vs. warm referral vs. article-driven. LinkedIn should map to Shape A inbound; warm referrals should map to Shape B inbound. Misalignment is signal.
 4. **Decline / ghost patterns** — what kind of inbound Ahmed declines or lets lapse. That's the negative space of the positioning — tells you what the headline is *attracting that you don't want*.
-5. **Unexpected asks** — anything that doesn't fit the three offers. Could be noise, could be an emerging offer Ahmed hasn't named yet.
+5. **Unexpected asks** — anything that doesn't fit Shape A or Shape B. Could be noise, could be an emerging shape Ahmed hasn't named yet.
 
 ---
 

@@ -103,8 +103,8 @@ Two red flags → downgrade or exit.
 
 ## 7. Routing
 
-- Positioning + selection filters → `AI-Native-Builder-Positioning.md`
-- Capability profile + leverage / ugliness detection → `Leverage-Profile-and-Market-Lens.md`
+- Drivers + filters + position synthesis → `../Drivers-and-Filters.md`
+- Engagement shapes (Shape A, Shape B) → `../Engagement-Shapes.md`
 - Sponsor conversation altitude + interaction discipline → `../operational-doctrine/Relational-Altitude-OS.md`
 - Visibility and publishing → `Visibility-OS.md`
 - Path-shape doctrine (the 2-3yr sprint) → `../../long-term/inner-game/Path-Doctrine.md`

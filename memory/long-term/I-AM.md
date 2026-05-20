@@ -33,6 +33,7 @@ The canonical list. Each is a being-statement — already-true, not aspirational
 ### Sovereignty / freedom
 - **I am sovereign.**
 - **I am free.** Free *within* a chosen life. Increasingly free of the traumas that used to dictate — they soften as they're seen, not by force.
+- **I am rooted.** I do not run from locations. I anchor and expand from where I am. Geography itself doesn't matter; the *posture* of being rooted does. The medium-term application is France / Paris; the being-statement is location-independent.
 
 ### Wealth
 - **I am wealthy.** I do not act from scarcity. I am not driven by scarcity. I am not afraid of money.
@@ -54,6 +55,7 @@ The canonical list. Each is a being-statement — already-true, not aspirational
 - **Curious** — because curiosity is the texture of being alive.
 - **Sovereign** — because freedom is what I am, not a goal. Anything that captures me deteriorates me.
 - **Free** — because I refuse to be slave to money, to perishable pleasures, to digital noise, to hustle culture, to my own past traumas.
+- **Rooted** — because what compounds, compounds in place. Running between locations is a way to never let anything take root, including me. Anchored, I expand. Floating, I dissipate.
 - **Wealthy / not from scarcity** — because acting from scarcity is the failure mode that makes everything else collapse. Wealth is felt-state, not bank balance.
 - **Creator** — because expression is the natural overflow of being lived. The work is a way of living, not what I do for a living.
 
@@ -142,7 +144,7 @@ The day repeats this way. Tomorrow same. Year after, same texture, different det
 
 These are not aspirational. They are durable felt-preferences that hold across chapters.
 
-- **Anchored, not floaty.** Geography itself doesn't matter; the felt-state of being anchored does.
+- **Anchored, not floaty.** Geography itself doesn't matter; the felt-state of being anchored does. (Promoted to being-statement *I am rooted* — see § I AM.)
 - **Nature.** Daily / weekly contact. Nature is constitutional, not a wellness add-on.
 - **Depth.** No surface in ideas, relationships, work, or places.
 - **Body-first navigation.** Yoga, movement, intuitive felt-sense as primary compass.

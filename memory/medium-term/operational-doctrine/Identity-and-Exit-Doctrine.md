@@ -54,8 +54,9 @@ A move is valid only if all are true:
 - **Epistemic upside** (something real to learn).
 - **Structural safety** (no long-term capture).
 - **Passes the Engagement Validity Filter** (`Engagement-Validity-Filter.md`).
+- **Clears the medium-term filters** (see [[Drivers-and-Filters]]). Specifically: not team-leadership-as-main-mandate (this period), not founder-level-risk ownership on a non-founder engagement, not engineering-as-only-surface, not hands-on > 50 %.
 
-> **Wealth-trajectory was previously the third filter; demoted as of 2026-04-30.** Money compounds where the necessary conditions hold; it is not an independent filter. The frame "make €X by date Y" was released in favor of "live the path, money follows." Soft monetary gut-feels exist (see `../plan.md` for current ones) but they explicitly do not move the frame.
+> **Wealth-trajectory was previously the third filter; demoted as of 2026-04-30.** Money compounds where the necessary conditions hold; it is not an independent filter. The frame "make €X by date Y" was released in favor of "live the path, money follows."
 
 ---
 
@@ -79,7 +80,7 @@ A move is valid only if all are true:
 - Return to movement without performance pressure.
 - Increase nature exposure in France and Tunisia.
 - Remove coercion and scarcity posture from career decisions.
-- **Money is not the focus.** Trajectory + alignment + happily-freely-living is the focus. Soft monetary gut-feels (see `../plan.md`) are useful only as long as they do not move the frame.
+- **Money is not the focus.** Trajectory + alignment + happily-freely-living is the focus. At some point this year, an income source resumes — amount and shape: open.
 
 ---
 

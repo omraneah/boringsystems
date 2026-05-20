@@ -136,7 +136,7 @@ Each item ships when the trigger fires. None of these are scheduled.
 - Newsletter. No subscribe popups. No mailing list capture beyond the current lead-magnet system.
 - Audience-building cadence — no calendar pressure, no commit-to-publish rhythm. Heat-led, per `memory/medium-term/market/Visibility-OS.md` § 7.
 - Performative content — no "future of X," no hot takes, no manifestos.
-- Sales surface for offers. The "How to work with me" engagement-shapes page (in flight per `strategy.md`) is a separate internal-linked surface, not part of this tactic doc's scope.
+- Sales surface for offers. The engagement-shapes content lives in `offers.md` (operational surface) and `memory/medium-term/Engagement-Shapes.md` (codified). A boringsystems "How to work with me" page, if shipped, would mirror `offers.md` and be internal-linked only.
 
 ## The funnel — distilled
 
@@ -156,7 +156,7 @@ Five stages. Schwartz awareness levels (1–5: unaware → most aware) sit *insi
 - **Awareness.** Memorable, low-cost-to-process. Single-word handle ("boringsystems") survives the noisy LinkedIn / search-result environment.
 - **Interest.** The click-or-bounce moment. Currently filters more aggressively than calmer alternatives would — by design. This is where pre-funnel-filter compounds.
 - **Consideration.** The first screen does the work — hero copy ("systems that scale, judgment that holds") plus case-file format converts "boring" from strange to deliberate within ~6 seconds. Once the reader is on the site, the name's strangeness collapses into coherence.
-- **Conversion.** Currently lossy. The "How to work with me" engagement-shapes page is the missing artifact (tracked in `strategy.md`). Without it, a P2 builder reaching conversion-readiness has no clear next step.
+- **Conversion.** Currently lossy. The engagement-shapes content now lives in `offers.md` (and codified in `memory/medium-term/Engagement-Shapes.md`). A boringsystems-side mirror page is optional, not blocking — warm-graph contacts can be sent directly to `offers.md` or its boringsystems mirror once shipped.
 - **Retention / Advocacy.** Strongest with P1 technical peers — they refer Ahmed into rooms he didn't apply to. P2 builders convert directly more than they refer.
 
 ## Pre-funnel aesthetic filter — the principle
@@ -217,7 +217,7 @@ A second domain (e.g. `omrane.work`, `ahmedomrane.com`) could 301 to the same As
 - **Crossover point.** Pre-funnel filter cost is currently low because volume is verification-heavy. As cold-stranger flow grows, the filter cost grows linearly. Crossover unknown; watch.
 - **The rename revisit.** Don't relitigate for 6 months minimum. If revisited, run the same seven-axis frame; don't re-decide on intuition.
 - **LinkedIn CTR tracking.** Loose, not rigorous A/B — note relative CTR on the strongest pieces monthly. Structurally low CTR compared to peer operators is pre-funnel-friction signal.
-- **The "How to work with me" engagement-shapes page.** Conversion-stage gap. Tracked in `strategy.md` § Surface 2 + § May focus points. When shipped, conversion-stage performance should improve — track.
+- **The boringsystems "How to work with me" mirror page.** Optional. The content already exists in `offers.md` and is codified in `memory/medium-term/Engagement-Shapes.md`. A boringsystems-side mirror would close the conversion-stage gap for warm-graph contacts who reach the site without a direct send.
 - **Lead-magnet conversion rates.** Currently live on one piece. Worth reviewing once 2-3 more pieces have it wired in.
 - **AI-discoverability (AEO) consolidation.** Plan in flight. Compounds under `boringsystems.app` (now decided canonical). Revisit after first ~3 months of consolidation work.
 - **Voice-personas + reader-tag dimension** (BOR-20 in Linear) — currently deferred-by-design. If inbound clusters force the question, revisit.

@@ -27,13 +27,15 @@ Two months. Structurally bound to Enakl until exit.
 - **10 hours/week at Enakl.** Extraction (clean handover of context, asset preservation, knowledge transfer) + ensuring the team can survive after departure. That's the contract.
 - **80% of remaining time on explorative moves.** Not "preparing the next thing" in the haste-shaped sense — exploring, putting things in the world, seeing what resonates.
 
-## Active moves (allowed, low-haste)
+## Active moves (allowed, low-haste, receptive register)
 
-- **Reconnect with market.** Reactivation conversations, increasingly as a game (testing messaging, watching what resonates). Recruiter inbound responses (NOT applying — only inbound).
-- **Publish on boringsystems.app.** Continue at current rhythm. Heat is real (writing about agentic engineering / agentic daily-task management — that's what's being lived, that's what's fun).
+- **Real conversations with the warm graph.** Receptive, not reactivation-as-campaign. Recruiter inbound responses (NOT applying — only inbound). The graph deepens through real exchange; it does not get *processed*.
+- **Publish on boringsystems.app.** Continue at current rhythm. Heat is real (agentic engineering / agentic daily-task management — that's what's being lived, that's what's fun).
 - **Explore agentic engineering + agentic org design.** Deepest enthusiasm right now. Long-term creations may emerge agentic-shaped.
 - **Events + meetups.** Where they fit. Not optimized.
 - **Putting things in the world.** Less to "build audience," more to externalize and feel resonance.
+
+The two engagement shapes for any opportunity that arrives: see [[Engagement-Shapes]] (Shape A — mandate inside a company; Shape B — fractional / freelance via warm network). The qualification layer for any opportunity: see [[Drivers-and-Filters]].
 
 ## The non-negotiables
 

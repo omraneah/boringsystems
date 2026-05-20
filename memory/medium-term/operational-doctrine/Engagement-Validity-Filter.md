@@ -55,9 +55,21 @@ If the failure shape is detected at in-engagement altitude, the response is:
 2. Check whether the trade-off is a brief calibration period (acceptable, time-boxed) or a structural feature of the engagement (not acceptable).
 3. If structural: plan exit. Two weeks of structural mis-alignment is enough to confirm; do not wait longer hoping it will shift.
 
+## Contained-risk vs founder-risk (Shape B addition)
+
+For Shape B engagements (fractional / freelance — see [[Engagement-Shapes]]), one specific failure shape gets named upstream of the universal filter:
+
+> A fractional CTO / freelance lead carries **contained risk** on what they own (architecture, standards, team velocity, scoped delivery). They do NOT carry **founder-grade risk** (business outcome, market fit, runway, equity-grade incentive alignment).
+
+Early-stage founders implicitly want the second. Studios sometimes propose it under the banner of "alignment" or "co-direction." Both fire the *single-dimension trap* — interesting work, intensifying ownership, no upside, multiple dimensions silently degrading.
+
+Name the asymmetry out loud: *external parties cannot carry founder-grade incentives on a project that is not theirs.* Then keep what's contained; refuse what's founder-grade.
+
 ## Cross-references
 
 - I AM (north star) → `../../long-term/I-AM.md`
+- Drivers and filters (medium-term expression of this filter for the next step) → [[Drivers-and-Filters]]
+- Engagement shapes (Shape A and Shape B — the two surfaces this filter qualifies) → [[Engagement-Shapes]]
 - Path Doctrine (necessary conditions for the 2-3yr sprint) → `../../long-term/inner-game/Path-Doctrine.md`
 - Relational Architecture (depth-expansion of relational North Star) → `../../long-term/inner-game/Relational-Architecture.md`
 - Identity & Exit Doctrine (life-level exit triggers) → `Identity-and-Exit-Doctrine.md`
