@@ -757,3 +757,24 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-20 — In-flight feedback interrogation pass (5 rules, liveness check)
+**Context:** Six rules had been sitting in `memory/short-term/feedback/in-flight/` for weeks. Audit needed to determine whether each was still tied to a live situation or had crystallized / been subsumed / become stale. Continuation of the broader 2026-05-20 memory consolidation work.
+**Decision:** Per-file outcomes — `feedback_advisor_brief_craft.md`, `feedback_batch_permission_for_skill_edits.md`, `feedback_infrastructure_first.md`, `feedback_avoid_tool_comparison_decoration.md`, `feedback_tool_comparison_categories.md` promoted to `stable/` (rules still live, no longer transient). `feedback_audit_fix_isolation.md` deleted — fully subsumed by `boringsystems/.claude/skills/audit-fix/SKILL.md` which is the canonical home. Cross-ref updated in `go-to-market/sessions/2026-04-25-board-convergence.md`.
+**Why:** In-flight is for rules tied to current workflow / specific tooling / recent corrections. Once a rule has held across enough domains and time without tool-specificity, it belongs in stable. Once a rule has been fully absorbed into a skill or doctrine, the feedback file becomes noise. Boundary-drift cleanup is part of the regular consolidation cadence.
+
+**Per-feedback lifecycle (given → stabilized → resolved):**
+
+| Feedback rule | Given (first commit) | Stabilized | Resolved into | Now lives at |
+|---|---|---|---|---|
+| Advisor brief craft | 2026-04-25 | 2026-05-20 (promoted from in-flight via this pass) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_advisor_brief_craft.md` |
+| Audit-fix isolation | 2026-04-21 | (never promoted — went from in-flight straight to resolution) | deleted-as-subsumed | `boringsystems/.claude/skills/audit-fix/SKILL.md` |
+| Batch permission for skill edits | 2026-04-24 | 2026-05-20 (promoted from in-flight via this pass) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_batch_permission_for_skill_edits.md` |
+| Infrastructure first | 2026-04-21 | 2026-05-20 (promoted from in-flight via this pass) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_infrastructure_first.md` |
+| Avoid tool-comparison decoration | 2026-05-01 | 2026-05-20 (promoted from in-flight via this pass) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_avoid_tool_comparison_decoration.md` |
+| Tool-comparison categories | 2026-05-01 | 2026-05-20 (promoted from in-flight via this pass) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_tool_comparison_categories.md` |
+
+**Expected outcome:** Five rules promoted to stable (clearer audit signal next pass). One stale file removed. In-flight folder shrinks to only genuinely transient rules. Per-feedback traceability preserved (given dates + stabilization timing + canonical landing surface).
+**Actual outcome:** *(pending)*
+
+---
