@@ -46,16 +46,9 @@ Many files in `stable/` are protocol rules — structured workflows in behaviora
 
 ---
 
-## Article-discipline cluster — crystallized 2026-05-20
+## Article-discipline cluster — decided + executed 2026-05-20
 
-Six article-shaped feedback files crystallized into `boringsystems/docs/article-discipline.md`. The six source files in memory now hold only their frontmatter + a one-line pointer to the canonical doc. Archive at the next consolidation pass.
-
-- `stable/feedback_always_run_article_review_and_french_audit.md` — stubbed
-- `stable/feedback_boringsystems_articles_en_and_fr.md` — stubbed
-- `in-flight/feedback_article_cross_referencing.md` — stubbed
-- `in-flight/feedback_title_proposals_work_articles.md` — stubbed
-- `in-flight/feedback_no_pricing_in_articles.md` — stubbed
-- `in-flight/feedback_article_capture.md` — stubbed
+Six article-shaped feedback files crystallized into `boringsystems/docs/article-discipline.md`. Source feedback files deleted (not stubbed). See `.claude/decisions/DECISIONS.md` 2026-05-20 entry "Crystallize article-discipline cluster to boringsystems/docs/article-discipline.md".
 
 ---
 

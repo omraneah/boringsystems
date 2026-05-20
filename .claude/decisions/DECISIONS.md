@@ -736,3 +736,12 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-20 — Crystallize article-discipline cluster to boringsystems/docs/article-discipline.md
+**Context:** Six feedback rules covered the same surface (boringsystems article workflow): EN+FR bilingual ship, `/article-review` + `/french-audit` mandatory passes, cross-reference discipline, title-options for work case files, no pricing figures, proactive capture. Six files of behavioral-correction voice instead of one canonical protocol doc in the project where the rules apply.
+**Decision:** Crystallized into `boringsystems/docs/article-discipline.md` (protocol voice, 6 sections + quick checklist). Six source feedback files deleted from `memory/short-term/feedback/`. Boringsystems pointer bumped in workspace to reference merged main.
+**Why:** Rules about boringsystems article workflow belong in the boringsystems project, not in workspace memory. Feedback files were carrying protocol weight they were not shaped for. Crystallization collapses six files into one canonical doc + clears feedback noise. Aligns with the crystallization path in `memory/short-term/feedback/TODO.md`.
+**Expected outcome:** Single source of truth for article workflow in the project that owns it. Six fewer feedback files. Future article-discipline updates land in one doc instead of fanning out across feedback files.
+**Actual outcome:** *(pending)*
+
+---
