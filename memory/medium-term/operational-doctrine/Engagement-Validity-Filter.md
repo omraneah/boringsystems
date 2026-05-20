@@ -55,15 +55,9 @@ If the failure shape is detected at in-engagement altitude, the response is:
 2. Check whether the trade-off is a brief calibration period (acceptable, time-boxed) or a structural feature of the engagement (not acceptable).
 3. If structural: plan exit. Two weeks of structural mis-alignment is enough to confirm; do not wait longer hoping it will shift.
 
-## Contained-risk vs founder-risk (Shape B addition)
+## Contained-risk vs founder-risk (Shape B)
 
-For Shape B engagements (fractional / freelance — see [[Engagement-Shapes]]), one specific failure shape gets named upstream of the universal filter:
-
-> A fractional CTO / freelance lead carries **contained risk** on what they own (architecture, standards, team velocity, scoped delivery). They do NOT carry **founder-grade risk** (business outcome, market fit, runway, equity-grade incentive alignment).
-
-Early-stage founders implicitly want the second. Studios sometimes propose it under the banner of "alignment" or "co-direction." Both fire the *single-dimension trap* — interesting work, intensifying ownership, no upside, multiple dimensions silently degrading.
-
-Name the asymmetry out loud: *external parties cannot carry founder-grade incentives on a project that is not theirs.* Then keep what's contained; refuse what's founder-grade.
+For Shape B engagements (fractional / freelance), the contained-risk-vs-founder-risk principle is the upstream failure to refuse. Canonical home: [[Engagement-Shapes]] § Shape B contained-risk principle. Wrong-shape Shape B engagements fire the single-dimension trap by intensifying ownership without upside.
 
 ## Cross-references
 

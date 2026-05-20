@@ -31,3 +31,9 @@ The instinct is to front-load the argument at every touchpoint ("here's what I d
 Any new cold-stranger touchpoint: ask "is this pre-funnel or inside-funnel?" before writing copy. Pre-funnel → optimize register. Inside-funnel → optimize argument.
 
 When evaluating existing copy for a new channel: same question first.
+
+## Cross-references
+
+- Publishing posture (what to write, tone, cadence) → `Visibility-OS.md`
+- Sales-mode tactics (when in active sales conversation) → `Sales-Mode-Tactics.md`
+- Drivers + filters + position synthesis → `../Drivers-and-Filters.md`

@@ -1,6 +1,6 @@
 ---
 name: Medium-term Current Arc — Re-Stabilize Phase (July → December 2026)
-description: Six-month re-stabilization phase. The first phase fully on his own terms in years. Drivers and filters from Drivers-and-Filters.md are the operational center. Two engagement shapes (A and B) are the surface architecture. Money is not the focus; alignment is.
+description: Six-month re-stabilization phase. The first phase fully on his own terms in years. Phase narrative, hard rules, navigation compass. Doctrine lives in Drivers-and-Filters + Engagement-Shapes; this file is the phase frame around them.
 horizon: 2026-07-01 → 2026-12-31 (~6 months)
 last_reviewed: 2026-05-20
 ---
@@ -13,18 +13,9 @@ last_reviewed: 2026-05-20
 
 Re-stabilize after the transition. The first phase fully on his own terms in years.
 
-**The principle that governs everything: money is not the focus.** Trajectory + alignment + living happily, freely is the focus. **At some point this year, an income source resumes. Amount and shape: open.**
+**Money is not the focus.** Trajectory + alignment + living happily, freely is. **At some point this year, an income source resumes. Amount and shape: open.**
 
-## Operational center
-
-[[Drivers-and-Filters]] holds the eight drivers (serve, curiosity about change in complex orgs, alignment with people, freedom, calm aliveness, geographic rootedness, rootedness in reality, serendipity) and the ten filters that disqualify. Read it at every engagement-decision.
-
-[[Engagement-Shapes]] holds the two surface shapes:
-
-- **Shape A** — mandate inside a company (full-time, longer time-to-close, single mandate, stable salary, inbound through LinkedIn/recruiters). Includes sub-shape A.1 — full-time CPTO/CTPO — which carries a load-bearing wariness caveat given the operator was burned by this exact shape at the current company.
-- **Shape B** — fractional / freelance via warm network (judgment-altitude, ≤ 2 days/week or scoped time-box, contained risk only, paid threshold 100 €/h · 800 €/day, discovery-session-first).
-
-Both shapes are valid. The shape that satisfies the drivers AND clears the filters AND passes [[Engagement-Validity-Filter]] AND respects [[Path-Doctrine]] necessary conditions wins. Ideology about preferred shape doesn't.
+The qualification layer ([[Drivers-and-Filters]]) and the surface shapes ([[Engagement-Shapes]]) are canonical elsewhere. This file holds the phase frame around them.
 
 ## What "re-stabilize" means concretely
 
@@ -33,10 +24,6 @@ Both shapes are valid. The shape that satisfies the drivers AND clears the filte
 - **Warm graph in real rhythm.** Conversations from receptive register, not reactivation-as-campaign. The graph deepens through real exchange; it does not get *processed*.
 - **boringsystems publishing continuing.** Crystallized judgment doctrine is the argument; the harness is exhibit A. The published essay or case file that makes the operating mode legible compounds harder than refining the harness itself.
 - **Things in the world continuing.** Publishing apps where natural. Exploring agentic engineering + organization.
-
-## Employment is a valid shape
-
-Shape A (full-time mandate) is on the table — *if aligned with trajectory*. The constraint is **alignment**, not "stay out of employment at all costs." The "real failure" is misalignment (any path that violates the necessary conditions in [[Path-Doctrine]]), not income source.
 
 ## What this hints at (without committing)
 
@@ -64,9 +51,10 @@ Apply at decisions, conversations, engagement evaluations, and creative work ali
 
 - North star (being layer) → [[I-AM]]
 - Drivers and filters (operational center for this next step) → [[Drivers-and-Filters]]
-- Engagement shapes (Shape A and Shape B) → [[Engagement-Shapes]]
+- Engagement shapes (Shape A, A.1, B) → [[Engagement-Shapes]]
 - Path doctrine (2-3yr sprint) → [[Path-Doctrine]]
 - Surrender doctrine (inner mechanic) → [[Surrender-Doctrine]]
 - Relational architecture → [[Relational-Architecture]]
 - Engagement Validity Filter → [[Engagement-Validity-Filter]]
+- Geography + market + stack context → [[current-context]]
 - Short-term current arc (active 2 months) → `../short-term/current-arc.md`

@@ -48,14 +48,11 @@ An operating frame that satisfies the necessary conditions:
 
 Other valid blueprints: full-time employment in a deeply aligned organization with own-things compounded on the side; multi-client fractional with own-things in the gaps; sabbatical-shaped own-things bursts between for-others sprints; etc. **Shape is open. Conditions are not.**
 
-### Confirmed shape of the for-others work (2026-05-14, refined 2026-05-20)
+### Altitude of the for-others work
 
-The container shape stays open. The **altitude** of the for-others work has been decided.
+Transformation / accompaniment altitude, not execution altitude. Influence-based change leadership in complex orgs rooted in real constraints — engineering, systems, teams, operations. Technical depth is what makes the change credible; it is not the deliverable.
 
-- **Destination (2–3 year horizon):** influence-based change leadership in complex orgs rooted in real constraints — engineering, systems, teams, operations. Transformation / accompaniment altitude, not execution altitude. The technical depth is what makes the change credible; it is not the deliverable.
-- **Bridge (now → destination):** the two engagement shapes in [[Engagement-Shapes]] — Shape A (mandate inside a company) and Shape B (fractional / freelance via warm network). Both are valid; the shape that satisfies the necessary conditions wins.
-- **What this rules out** (per [[Drivers-and-Filters]] filters): hands-on > 50 %, kernel-IC, founder-level risk on non-founder engagements, team-leadership-as-main-mandate (this period), engineering-as-only-surface, analytics-as-tail-of-business. Body-level signal: roles that primarily contain the contribution inside a terminal or IDE are wrong, even when the engineering itself is interesting.
-- **Status:** decided, not exploratory. The shape (A or B) stays open; the direction does not.
+The container shape stays open; the altitude does not. **The medium-term expression of this — the two engagement shapes (A, A.1, B) and the filters that disqualify wrong-shape opportunities — lives in [[Drivers-and-Filters]] and [[Engagement-Shapes]].**
 
 ---
 

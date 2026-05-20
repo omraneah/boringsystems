@@ -144,7 +144,6 @@ The day repeats this way. Tomorrow same. Year after, same texture, different det
 
 These are not aspirational. They are durable felt-preferences that hold across chapters.
 
-- **Anchored, not floaty.** Geography itself doesn't matter; the felt-state of being anchored does. (Promoted to being-statement *I am rooted* — see § I AM.)
 - **Nature.** Daily / weekly contact. Nature is constitutional, not a wellness add-on.
 - **Depth.** No surface in ideas, relationships, work, or places.
 - **Body-first navigation.** Yoga, movement, intuitive felt-sense as primary compass.

@@ -54,9 +54,9 @@ A move is valid only if all are true:
 - **Epistemic upside** (something real to learn).
 - **Structural safety** (no long-term capture).
 - **Passes the Engagement Validity Filter** (`Engagement-Validity-Filter.md`).
-- **Clears the medium-term filters** (see [[Drivers-and-Filters]]). Specifically: not team-leadership-as-main-mandate (this period), not founder-level-risk ownership on a non-founder engagement, not engineering-as-only-surface, not hands-on > 50 %.
+- **Clears the medium-term filters** (see [[Drivers-and-Filters]] § Filters for the canonical list).
 
-> **Wealth-trajectory was previously the third filter; demoted as of 2026-04-30.** Money compounds where the necessary conditions hold; it is not an independent filter. The frame "make €X by date Y" was released in favor of "live the path, money follows."
+> Money is not an independent filter. Money compounds where the necessary conditions hold.
 
 ---
 
@@ -102,7 +102,6 @@ If two or more persist, exit planning begins:
 - Context stability depends on my silence or restraint.
 - Freedom preserved only through continuous self-regulation.
 - Relief (not fear) when imagining exit.
-- Reaching Q1 2027 without credible pull or upward trajectory triggers mandatory transition planning.
 
 ### Anti-rumination rule
 If I debate leaving longer than a defined window, the decision is already made. Only timing remains.
@@ -145,53 +144,16 @@ If 3 of 5 are true, I am walking.
 - Technical, product, and people synthesis.
 
 ### Expansion vector (current)
-- Outgrowing containers I do not own.
-- Entering a creative-autonomous phase.
-- Entrepreneurship as structural authorship, not hype.
+The shape and altitude of expansion in this next step live in the medium-term layer:
+- **What pulls and what disqualifies** → [[Drivers-and-Filters]]
+- **The two valid surfaces** → [[Engagement-Shapes]]
 
 ### "Walk until the mountain appears"
 Keep steady motion across the walking modes and let authorship emerge without forcing.
 
 ---
 
-## 5) Distilled Dimensions (Reference Layer)
-
-Use this as a diagnostic, not a daily operating surface.
-
-1) Local leverage
-- Signal: systems reinforce without my intervention.
-- Rule: design once, observe, intervene only on violation.
-
-2) Plateau horizon
-- Signal: marginal returns are psychological, not strategic.
-- Rule: comfort is allowed, drift is not.
-
-3) Transferability gap
-- Signal: internal role is illegible externally.
-- Rule: hide edge cases, sell invariants.
-
-4) Narrative discipline
-- Signal: truth vs market legibility diverge.
-- Rule: narrative is abstraction, not confession.
-
-5) Credible vouching
-- Signal: identity hardens when others repeat it without prompting.
-
-6) BATNA integrity
-- Rule: BATNA protects agency, narrative protects future leverage.
-
-7) Exit optionality
-- Rule: define conditions and a latest acceptable window without emotional pressure.
-
-8) Selection filters
-- Rule: selectivity preserves leverage, not scarcity.
-
-9) Energy economics
-- Rule: energy is fuel, direction determines outcome.
-
----
-
-## 6) Pointers
+## 5) Pointers
 
 - Being layer (north star at 3-5 years) → `long-term/I-AM.md`
 - Depth-expansion of immovable core → `long-term/inner-game/Meta-Identity-Constitution.md`

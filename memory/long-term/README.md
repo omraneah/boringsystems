@@ -11,6 +11,12 @@
 
 **`inner-game/Trait-Architecture.md`** is the descriptive read on the wiring underneath the I AM — trait cluster, founder-archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, psychological type. Distilled from the 2026-04-28 deep-dive.
 
+**`inner-game/Path-Doctrine.md`** is doctrine for the 2-3 year sprint to the North Star — necessary conditions, the Singer-echo, anti-patterns. Shape stays open by design.
+
+**`inner-game/Relational-Architecture.md`** is the depth-expansion of the I AM Relational architecture section — diversity layers, exit protocols, application across domains.
+
+**`inner-game/Surrender-Doctrine.md`** is the operational depth of the surrender practice — Singer-rooted, "I can handle it," 3-second pause, signal/noise discrimination, traps at altitude.
+
 ## Philosophy of this tier
 
 > **Being → Doing → Having.** Always start from being. Never start from having. The being attracts the rest.
