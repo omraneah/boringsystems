@@ -21,6 +21,10 @@ It's **operational** — updated weekly as inbound lands and positioning iterate
 | `inbound-recruiter-doctrine.md` | Operating principle for LinkedIn recruiter inbound — ~80% wrong altitude, treat as market intelligence, don't close immediately, French cultural calibration (register not bluntness), freelance pivot when complexity is present. Airtable (Professional Transition → LinkedIn Inbound) is the live log; read that for current state. | When a pattern from the Airtable invalidates or sharpens the doctrine |
 | `strategy.md` | Lean distribution architecture — three surfaces (LinkedIn → Shape A, warm network → Shape B, boringsystems → reputation currency). Position synthesis + drivers + filters live in `memory/medium-term/`. Prior cornerstone (2026-04-24, four-path framework) archived at `_outdated/strategy-2026-04-24.md`. | When distribution architecture shifts |
 
+## `_outdated/` — do not read unless directed
+
+Files superseded by the 2026-05-20 distillation pass are preserved in `_outdated/` for reference. **Do not read `go-to-market/_outdated/` unless Ahmed explicitly points to it.** The current files are downstream of those; reading them now risks drift back into a released frame. See `_outdated/README.md`.
+
 ## Relationship to other folders
 
 - **`memory/medium-term/Drivers-and-Filters.md`** — qualification layer (what pulls, what disqualifies, position synthesis). Read-only. Upstream of every GTM decision.
