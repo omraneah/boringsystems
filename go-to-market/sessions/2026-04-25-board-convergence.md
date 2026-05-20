@@ -41,7 +41,7 @@ This memo is the *succinct* artifact of the session — what converged, what div
 1. **`/en/work-with-me` and `/fr/work-with-me`** on boringsystems — the engagement-shapes page. Four shapes: fractional CTO/CPO/tech-product-builder · complex project lead · founder/builder sprint · AI-agent training. Each shape: what it is / when it fits / first two weeks / cadence. No prices. No CTA. Email at the bottom. Versioned with an "updated" date.
 2. **Linking discipline.** Page is **not** in main nav. Linked from About (next to LinkedIn, end of page) and from the home contact section. Sent in conversation when someone asks *"how can we work together?"*.
 3. **Advisor calibration fixes.** Generic guard added to all six advisor persona files: no citing or listing file paths in responses. Stronger reinforcement on advisor-3 (Singer), where the drift was observed — explicitly suppress the "files referenced" footer.
-4. **Brief-craft feedback memory** saved to `memory/feedback_advisor_brief_craft.md` and indexed in `MEMORY.md` — to prevent the rabbit hole that occurred mid-session when an outdated single-sentence personal detail was inflated into a load-bearing variable in the brief.
+4. **Brief-craft feedback memory** saved to `memory/short-term/feedback/stable/feedback_advisor_brief_craft.md` and indexed in `MEMORY.md` — to prevent the rabbit hole that occurred mid-session when an outdated single-sentence personal detail was inflated into a load-bearing variable in the brief.
 5. **convene-board skill** updated with the three-pass output convention (TL;DR → per-advisor → analytical recap) and an always-recap rule for follow-up turns.
 
 ---
