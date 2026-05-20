@@ -2,56 +2,13 @@
 
 Current public-facing positioning on LinkedIn. The headline + bio are the primary inbound funnel; every edit here changes what kind of conversation walks through the door.
 
----
+**Scope note:** This surface is for the full-time shapes (Shape A and sub-shape A.1 — full-time CPTO/CTPO). Shape B (fractional / freelance via warm network) does not flow through LinkedIn cold inbound in France; it flows through warm intros and discovery sessions. See `strategy.md` and `memory/medium-term/Engagement-Shapes.md`.
 
-## Current — v4 (drafted 2026-05-20, not yet shipped)
-
-### Headline
-
-> Senior Operator | Change in Complex Orgs | AI-Native Judgment
-
-### Bio
-
-> Complex organizations move when judgment, presence, and the system layer move together — not when a strategy deck lands.
->
-> I work alongside teams already in motion. The surface is influence, not authority — reading the constraint, naming the trade-off, accompanying the change through the engineering, product, and operational layers without breaking what's working.
->
-> AI-native means judgment compressed, not outsourced. Structured agent workflows where they earn their place; human decisions where they hold the system together.
->
-> **Previous mandates:**
->
-> — Vendor lock-in exit + SaaS transformation at Enakl (VC-backed · B2B/B2G mobility · emerging markets): proprietary TMS built from scratch, 10× operational scaling, zero-downtime migration; multi-tenant architecture, enterprise-grade security, revenue model shifted from service delivery to software.
->    • Product Demo: https://www.youtube.com/watch?v=Cc4HTB_iRDs
->    • Case files: https://boringsystems.app/en/work/
->
-> — Data and analytics function built from scratch at The Fabulous (bootstrapped · 20M+ DAU · consumer wellness mobile apps): attribution, growth metrics, reliable measurement enabling aggressive spend.
->    • Website: thefabulous.co
->    • Case files: https://medium.com/@ahmedomrane
->
-> **Portfolio:** boringsystems.app — case files on engineering, transformation, and the AI-native operating mode.
+> **Considered, not applied — 2026-05-20.** A v4 reframe was drafted alongside the [[Drivers-and-Filters]] codification. Direction: drop the "lead the team / own the outcome end-to-end" foregrounding (team-leadership-as-main-mandate is filtered out for this period), soften the ownership register, surface serve / influence / judgment, replace "Execution" with "Judgment" in the headline altitude. **Not applied** — v3 is good enough for the full-time shapes; sharper reframing waits for the pull from life (positioning clearer after real warm-graph conversations + first inbound shapes against the new drivers). When revisited: re-read [[Drivers-and-Filters]] § Filters before drafting, especially the team-leadership-as-main-mandate filter and the body-check overlay for the A.1 sub-shape (prove-something / repair-the-past pulls).
 
 ---
 
-## Positioning delta — 2026-05-05 v3 → 2026-05-20 v4 (draft)
-
-**Source:** 2026-05-20 distillation pass codifying the [[Drivers-and-Filters]] (influence over authority; team-leadership-as-main-mandate explicitly out for this period; serve/freedom/calm-aliveness as drivers).
-
-**v3 → v4 changes:**
-- Headline altitude shifted from "Tech & Product Lead" (operational title) to "Senior Operator" (altitude, not title). "Complex Transformations & Greenfield" replaced with "Change in Complex Orgs" — names the actual surface (organizations in motion), not the project shape. "AI-Native Execution" → "AI-Native Judgment" — execution is the wrong altitude given the new position synthesis.
-- Bio opener: drops the "you're running X or Y" buyer-pain frame for a position-of-work statement — *complex organizations move when judgment, presence, and the system layer move together*. Reads quieter, more confident.
-- "You own the vision. I bring the playbook, build the system, lead the team — and own the outcome end-to-end." — **removed entirely**. "Lead the team" + "own the outcome end-to-end" foregrounded the team-leadership-as-main-mandate frame that is now explicitly out per the filters.
-- "The arc runs in sequence — business first, product next, engineering last — and I own all three, including building and leading the teams that ship." — **removed**. Same reason; over-stated authority/ownership register.
-- "Governed AI orchestration is how the team ships at higher resolution" → softened to *AI-native means judgment compressed, not outsourced. Structured agent workflows where they earn their place; human decisions where they hold the system together.* Drops "the team ships" framing; surfaces the judgment principle directly.
-- "Built and led the team" / "function built from scratch" prefixes on mandates — softened. Function-build credibility carried by the substance (vendor exit, TMS built, 10× scaling, attribution from scratch) without leading with team-build register.
-- Portfolio framing softened: removes "vision, architecture, and key decisions are mine; execution runs through AI-native delivery" — that line was performing ownership rather than showing it.
-
-**Why this matters.** The prior register (lead/own/build-the-team) was attracting team-lead and founding-engineer reads that fail the current filters. The new register foregrounds the surface that's actually load-bearing for this period: *influence in complex orgs through judgment and presence*. Right reader self-selects in; wrong reader self-selects out earlier.
-
-**Status:** v4 drafted, not yet shipped. Decision on shipping pending alignment check + observation of how warm-graph contacts read it.
-
----
-
-## Archive — as of 2026-05-05 (v3 — shipped)
+## Current — as of 2026-05-05 (v3 — shipped)
 
 ### Headline
 
@@ -238,4 +195,3 @@ Current public-facing positioning on LinkedIn. The headline + bio are the primar
 | 2026-05-03 | v1 | Buyer-first opener; explicit leader-builder contract; three-domain arc; governed orchestration; IC titles + tooling list removed. | GTM audit round 1: identity-led opener + IC-fallback collapsed altitude. | — |
 | 2026-05-03 | v2 | Dropped third trigger ("AI adoption"); flipped headline order; "own the outcome end-to-end" replaces "deliver impact". | GTM audit round 2: third trigger was vague; "impact" was generic. | — |
 | 2026-05-05 | v3 | Added function-build lead to Enakl; removed headcount + tooling list from both mandates; restored org-build signal in Fabulous without headcount. | Inbound analysis: founding-engineer activation keywords were collapsing altitude to Lead Dev / Founding Engineer reads. | 2026-05-30 |
-| 2026-05-20 | v4 (draft) | Dropped "lead the team / own the outcome end-to-end" foregrounding; softened ownership register; replaced "Execution" with "Judgment" in headline; replaced buyer-pain opener with position-of-work statement. | 2026-05-20 distillation: team-leadership-as-main-mandate explicitly filtered out; serve/influence/freedom now load-bearing drivers. | TBD (ship decision pending) |
