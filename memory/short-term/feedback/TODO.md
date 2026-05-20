@@ -66,9 +66,11 @@ Tertiary: garbage collection (situation changed, tooling changed, operator chang
 
 Some in-flight files have been in-flight since April 2026 and are no longer tied to a current situation. During the next audit pass, interrogate every in-flight file: "Is the triggering situation still live?" If not: promote to stable, crystallize, or archive.
 
-Files to interrogate next audit:
-- `in-flight/feedback_advisor_brief_craft.md` — tied to a single April incident; verify if still firing or codified into `convene-board` skill.
-- `in-flight/feedback_audit_fix_isolation.md` — already encoded in `/audit-fix` skill if it exists; the feedback file may be redundant.
-- `in-flight/feedback_batch_permission_for_skill_edits.md` — tied to a permissions UX that may have changed.
-- `in-flight/feedback_infrastructure_first.md` — possibly subsumed by `ENGINEERING-PRINCIPLES.md`; consider stub-pointing there.
-- `in-flight/feedback_avoid_tool_comparison_decoration.md` + `in-flight/feedback_tool_comparison_categories.md` — different surfaces (scope vs structure) but both about comparison work; consider whether they should live together.
+### 2026-05-20 interrogation pass (completed)
+
+- `feedback_advisor_brief_craft.md` → **promoted to stable/**. Partly codified into convene-board skill (editorial-stripping, approval gate), but rules on grepping live-state files and never importing personal/relational/health details without confirmation remain distinct and live.
+- `feedback_audit_fix_isolation.md` → **stubbed in-flight/**. Body replaced with one-line pointer to `boringsystems/.claude/skills/audit-fix/SKILL.md` (which back-references this file). Kept in in-flight as a stub for one consolidation cycle per crystallization protocol.
+- `feedback_batch_permission_for_skill_edits.md` → **promoted to stable/**. Generic multi-file edit discipline, no longer tied to a transient permissions UX.
+- `feedback_infrastructure_first.md` → **promoted to stable/**. Overlaps with ENGINEERING-PRINCIPLES §5 (KISS/YAGNI/DRY) but is operationally distinct (typed-registry pattern, concrete examples from `lead-magnets.ts`, `article-meta.ts`). Kept as concrete companion.
+- `feedback_avoid_tool_comparison_decoration.md` → **promoted to stable/**. Multi-incident provenance (Airtable + PostHog/Mixpanel), crystallized as a cognitive-load discipline downstream of meta-principle #5.
+- `feedback_tool_comparison_categories.md` → **promoted to stable/**. Structural-rule for when comparison IS warranted. Complement to the above, not duplicate (different decision points: drop-the-table vs how-to-structure-the-table). Prior audit's no-merge judgment confirmed.
