@@ -13,7 +13,7 @@
 - **Surgical only.** Do not refactor, restructure, or add features beyond what was asked. A bug fix does not need surrounding cleanup. A one-shot operation does not need a helper.
 - **No speculative abstractions.** Three similar lines is better than a premature abstraction. Only abstract when reuse is actively happening, not when it might happen.
 - **Do not add error handling for scenarios that cannot happen.** Trust internal code. Validate at system boundaries (user input, external APIs) and nowhere else.
-- **If a session accumulates more than three distinct concerns, stop and propose splitting** into separate feature branches. Wide-scope sessions degrade quality and make PRs un-reviewable. Narrow sessions compound. See `memory/feedback_scope_discipline.md`.
+- **If a session accumulates more than three distinct concerns, stop and propose splitting** into separate feature branches. Wide-scope sessions degrade quality and make PRs un-reviewable. Narrow sessions compound. See `memory/medium-term/project-management/workspace-workflow.md` § Scope discipline.
 
 ## Research before writing
 
