@@ -27,5 +27,5 @@ The `card-against-pattern` skill enforces this — invoke it (or its logic) befo
 
 - `.claude/personal-skills/card-against-pattern/SKILL.md` — the enforcement skill
 - `memory/short-term/feedback/stable/feedback_linear_cards_self_contained.md` — every card (single or container) must stand alone for a clean-slate agent. Fan-out check fires first; self-contained content fires when each card is being filled in.
-- `memory/short-term/feedback/in-flight/feedback_linear_card_lifecycle.md` — the surrounding lifecycle (creation surface, start, done). Apply after the fan-out shape is settled.
+- `memory/medium-term/project-management/workspace-workflow.md` § Card creation flow + § Card pickup flow — the surrounding lifecycle (creation surface, start, done). Apply after the fan-out shape is settled.
 - `memory/short-term/feedback/stable/feedback_no_recap_after_link.md` — sister rule on cognitive-load discipline

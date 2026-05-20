@@ -46,6 +46,6 @@ Read before suggesting. Never propose changes to code you haven't read.
 
 Never push directly to main, master, or development (or any default branch). Always work on a feature branch, push to it, and surface the GitHub PR-creation URL for Ahmed to open the PR himself.
 
-**Why:** Non-negotiable workflow rule. No exceptions. Claude does the branch + push work; Ahmed opens the PR manually so he always does the final inspection before anything goes to review. See `feedback_pr_creation.md` for the full division-of-labor rule.
+**Why:** Non-negotiable workflow rule. No exceptions. Claude does the branch + push work; Ahmed opens the PR manually so he always does the final inspection before anything goes to review. See `memory/medium-term/project-management/workspace-workflow.md` § PR handoff for the full division-of-labor rule.
 
 **How to apply:** Every session that involves commits: `git checkout -b <feature-branch>` first, then `git push -u origin <branch>`, then end the turn with the PR-creation URL and a pre-drafted title/body Ahmed can paste. **Never** run `gh pr create` or `mcp__github__create_pull_request`. **Never** `git push origin main`.
