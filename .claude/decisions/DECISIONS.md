@@ -737,6 +737,50 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 
 ---
 
+## 2026-05-20 — Crystallize article-discipline cluster to boringsystems/docs/article-discipline.md
+**Context:** Six feedback rules covered the same surface (boringsystems article workflow): EN+FR bilingual ship, `/article-review` + `/french-audit` mandatory passes, cross-reference discipline, title-options for work case files, no pricing figures, proactive capture. Six files of behavioral-correction voice instead of one canonical protocol doc in the project where the rules apply.
+**Decision:** Crystallized into `boringsystems/docs/article-discipline.md` (protocol voice, 6 sections + quick checklist). Six source feedback files deleted from `memory/short-term/feedback/`. Boringsystems pointer bumped in workspace to reference merged main.
+**Why:** Rules about boringsystems article workflow belong in the boringsystems project, not in workspace memory. Feedback files were carrying protocol weight they were not shaped for. Crystallization collapses six files into one canonical doc + clears feedback noise. Aligns with the crystallization path in `memory/short-term/feedback/TODO.md`.
+
+**Per-feedback lifecycle (given → stabilized → crystallized into harness):**
+
+| Feedback rule | Given (first commit) | Stabilized | Crystallized into harness | Now lives at |
+|---|---|---|---|---|
+| Always run /article-review + /french-audit | 2026-04-28 | 2026-04-28 (born stable, in stable/ from the audit-folder split) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Review skills |
+| Boringsystems articles ship EN + FR | 2026-04-28 | 2026-04-28 (born stable) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Bilingual |
+| Articles cross-reference bidirectionally | 2026-05-01 | (never promoted — stayed in-flight until crystallized) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Cross-references |
+| Propose title options for work case files | 2026-05-01 | (never promoted) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Title proposals |
+| No pricing figures in articles | 2026-05-01 | (never promoted) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § No pricing |
+| Article capture behavior | 2026-04-20 | (never promoted) | 2026-05-20 | `boringsystems/docs/article-discipline.md` § Proactive capture |
+
+**Expected outcome:** Single source of truth for article workflow in the project that owns it. Six fewer feedback files. Future article-discipline updates land in one doc instead of fanning out across feedback files. Per-feedback traceability preserved in this entry (timestamps + canonical landing surface).
+**Actual outcome:** *(pending)*
+
+---
+
+## 2026-05-20 — Memory consolidation pass (Pass 1: promotions + deletions)
+**Context:** Pre-2026-05-20 audit identified two stale feedback files and 6 in-flight rules that had crystallized but were still labeled in-flight. Routine consolidation, separate from the larger same-day crystallization passes.
+**Decision:** Six in-flight rules promoted to stable (`feedback_card_fanout_discipline`, `feedback_linear_card_lifecycle`, `feedback_retry_silently_on_transient_platform_errors`, `feedback_living_doctrine_append_not_fork`, `feedback_load_bearing_rules_need_auto_load`, `feedback_no_role_headcount_framing_in_doctrine`). Two files deleted as subsumed: `feedback_corpus_is_malleable` (covered by `META-PRINCIPLES.md`) and `feedback_context_architecture` (architectural decision belongs in an ADR, not feedback).
+**Why:** Boundary-drift cleanup. In-flight is for rules tied to current workflow / specific tooling / recent corrections. Once a rule has held without tool-specificity, it belongs in stable. Subsumed rules become noise.
+
+**Per-feedback lifecycle (given → stabilized → resolved):**
+
+| Feedback rule | Given (first commit) | Stabilized | Resolved into | Now lives at |
+|---|---|---|---|---|
+| Card-fanout discipline | (pre-2026-05-20) | 2026-05-20 (promoted from in-flight) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_card_fanout_discipline.md` |
+| Linear card lifecycle | 2026-05-01 | 2026-05-20 (promoted from in-flight; same day crystallized — see protocol-crystallization entry below) | promoted-then-crystallized | `memory/medium-term/project-management/workspace-workflow.md` § Card flows |
+| Retry silently on transient platform errors | (pre-2026-05-20) | 2026-05-20 (promoted from in-flight) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_retry_silently_on_transient_platform_errors.md` |
+| Living doctrine — append, not fork | (pre-2026-05-20) | 2026-05-20 (promoted from in-flight) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_living_doctrine_append_not_fork.md` |
+| Load-bearing rules need auto-load | (pre-2026-05-20) | 2026-05-20 (promoted from in-flight) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_load_bearing_rules_need_auto_load.md` |
+| No role/headcount framing in doctrine | (pre-2026-05-20) | 2026-05-20 (promoted from in-flight) | promoted-to-stable | `memory/short-term/feedback/stable/feedback_no_role_headcount_framing_in_doctrine.md` |
+| Corpus is malleable | (pre-2026-05-20) | (born stable) | deleted-as-subsumed | `META-PRINCIPLES.md` (workspace root) |
+| Context architecture | (pre-2026-05-20) | (never promoted — architectural decision misclassified as feedback) | deleted-as-subsumed | n/a (belongs in an ADR; no current home) |
+
+**Expected outcome:** Six rules earn stable status (clearer audit signal). Two subsumed files removed. Net feedback count unchanged but clarity improved.
+**Actual outcome:** *(pending)*
+
+---
+
 ## 2026-05-20 — Crystallize 7 protocol-shaped feedback rules into workspace-workflow.md
 **Context:** Nine feedback files (7 protocols spanning 9 source files: code-change-gate, parallel-by-default + parallel-agent-recap + lane-change-announcement triplet, pr-creation, scope-discipline, linear-card-lifecycle, brief-approval-gate, model-effort-matrix) had crystallized as protocol rules but lived in `memory/short-term/feedback/` as behavioral-correction files. The canonical home for cross-project protocol SOPs is `memory/medium-term/project-management/workspace-workflow.md`.
 **Decision:** Added 7 new sections to workspace-workflow.md (Scope discipline, 3-gate Code change flow, PR handoff, Advisory/strategic session flow, Parallel and lane-change protocols, Model and effort defaults, Card lifecycle absorbed into existing creation/pickup flows). Deleted 9 source feedback files. Updated CLAUDE.md non-negotiables (5 paths) and 3 sibling feedback files (4 cross-refs) to point at workspace-workflow.md sections directly.
