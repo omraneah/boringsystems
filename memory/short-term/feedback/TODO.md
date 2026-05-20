@@ -2,75 +2,35 @@
 
 Known limitations specific to `memory/short-term/feedback/`. Concerns spanning multiple tiers live in `memory/TODO.md`.
 
----
-
-## 2026-05-20 consolidation pass (completed)
-
-Six in-flight rules promoted to stable (had crystallized, not tool-specific):
-- `feedback_card_fanout_discipline.md`
-- `feedback_linear_card_lifecycle.md`
-- `feedback_retry_silently_on_transient_platform_errors.md`
-- `feedback_living_doctrine_append_not_fork.md`
-- `feedback_load_bearing_rules_need_auto_load.md`
-- `feedback_no_role_headcount_framing_in_doctrine.md`
-
-Two files deleted (subsumed):
-- `feedback_corpus_is_malleable.md` — covered by `META-PRINCIPLES.md`.
-- `feedback_context_architecture.md` — architectural decision, belongs in an ADR not feedback.
+Decided + executed work lives in `.claude/decisions/DECISIONS.md` (search "2026-05-20"). This file holds only the **remaining backlog**.
 
 ---
 
-## Crystallization into mid-term SOPs (still pending)
+## Pending — Crystallization candidates (protocol-shaped → workspace-workflow.md)
 
-Many files in `stable/` are protocol rules — structured workflows in behavioral-correction form. These should be rewritten as SOP sections in `memory/medium-term/project-management/workspace-workflow.md` rather than staying as individual feedback files.
+Files still in feedback that describe a protocol (not a constitutional rule) and should rewrite as SOP sections in `memory/medium-term/project-management/workspace-workflow.md`. Stub-replace then archive after one consolidation cycle.
 
-**How crystallization works:**
-1. Identify a feedback file that describes a workflow or protocol (not a constitutional rule).
-2. Rewrite it as a structured section in `workspace-workflow.md` — protocol voice, not correction voice.
-3. Replace the feedback file body with a one-line pointer: "See `workspace-workflow.md` §[section]."
-4. Archive the feedback file during the next audit pass (do not delete immediately — keep pointer in place for one consolidation cycle).
+| Source file | Target section in workspace-workflow.md |
+|---|---|
+| `stable/feedback_code_change_gate.md` | § Code change flow |
+| `stable/feedback_parallel_by_default.md` + `feedback_parallel_agent_recap.md` + `feedback_lane_change_announcement.md` | § Parallel and lane-change protocols (condense) |
+| `stable/feedback_pr_creation.md` | § PR handoff |
+| `stable/feedback_scope_discipline.md` | § Code change flow (max 3 concerns) |
+| `stable/feedback_linear_card_lifecycle.md` | § Card creation flow + § Card pickup flow |
+| `in-flight/feedback_brief_approval_gate.md` | § Advisory and strategic session flow |
+| `in-flight/feedback_model_effort_matrix.md` | § Model and effort defaults |
 
-**Crystallization candidates (protocol-shaped → workspace-workflow.md):**
+## Pending — Constitutional-shaped → long-term or keep in feedback
 
-- `stable/feedback_code_change_gate.md` → §Code change flow (gates 1/2/3 already in workspace-workflow.md; this file can point there).
-- `stable/feedback_parallel_by_default.md` + `stable/feedback_parallel_agent_recap.md` + `stable/feedback_lane_change_announcement.md` → condense → workspace-workflow.md §Parallel and lane-change protocols.
-- `stable/feedback_pr_creation.md` → workspace-workflow.md §PR handoff.
-- `stable/feedback_scope_discipline.md` → workspace-workflow.md §Code change flow (max 3 concerns rule).
-- `stable/feedback_linear_card_lifecycle.md` → workspace-workflow.md §Card creation flow / Card pickup flow.
-- `in-flight/feedback_brief_approval_gate.md` → workspace-workflow.md §Advisory and strategic session flow.
-- `in-flight/feedback_model_effort_matrix.md` → workspace-workflow.md §Model and effort defaults (or keep as standalone reference — evaluate).
-
-**Constitutional-shaped → long-term or keep in feedback:**
-- `stable/feedback_laptop_agnostic.md` → long-term doctrine (it's an invariant, not a protocol).
+- `stable/feedback_laptop_agnostic.md` → long-term doctrine candidate (it's an invariant, not a protocol).
 - `stable/feedback_collaboration.md` → evaluate: pair-audit with Ahmed.
-
----
-
-## Article-discipline cluster — decided + executed 2026-05-20
-
-Six article-shaped feedback files crystallized into `boringsystems/docs/article-discipline.md`. Source feedback files deleted (not stubbed). See `.claude/decisions/DECISIONS.md` 2026-05-20 entry "Crystallize article-discipline cluster to boringsystems/docs/article-discipline.md".
 
 ---
 
 ## File count target
 
-Target: 15-20 total files in `feedback/` (down from 46 as of 2026-05-03; current count after 2026-05-20 pass = ~53 minus 2 deleted = ~51).
+Target: 15-20 total files in `feedback/`. Trajectory tracked via `.claude/decisions/DECISIONS.md` (search "2026-05-20" entries).
 
 Primary mechanism: crystallization (protocols → workspace-workflow.md SOP sections).
 Secondary: condensation (related files → single principle).
 Tertiary: garbage collection (situation changed, tooling changed, operator changed).
-
----
-
-## stable/ vs in-flight/ boundary drift
-
-Some in-flight files have been in-flight since April 2026 and are no longer tied to a current situation. During the next audit pass, interrogate every in-flight file: "Is the triggering situation still live?" If not: promote to stable, crystallize, or archive.
-
-### 2026-05-20 interrogation pass (completed)
-
-- `feedback_advisor_brief_craft.md` → **promoted to stable/**. Partly codified into convene-board skill (editorial-stripping, approval gate), but rules on grepping live-state files and never importing personal/relational/health details without confirmation remain distinct and live.
-- `feedback_audit_fix_isolation.md` → **stubbed in-flight/**. Body replaced with one-line pointer to `boringsystems/.claude/skills/audit-fix/SKILL.md` (which back-references this file). Kept in in-flight as a stub for one consolidation cycle per crystallization protocol.
-- `feedback_batch_permission_for_skill_edits.md` → **promoted to stable/**. Generic multi-file edit discipline, no longer tied to a transient permissions UX.
-- `feedback_infrastructure_first.md` → **promoted to stable/**. Overlaps with ENGINEERING-PRINCIPLES §5 (KISS/YAGNI/DRY) but is operationally distinct (typed-registry pattern, concrete examples from `lead-magnets.ts`, `article-meta.ts`). Kept as concrete companion.
-- `feedback_avoid_tool_comparison_decoration.md` → **promoted to stable/**. Multi-incident provenance (Airtable + PostHog/Mixpanel), crystallized as a cognitive-load discipline downstream of meta-principle #5.
-- `feedback_tool_comparison_categories.md` → **promoted to stable/**. Structural-rule for when comparison IS warranted. Complement to the above, not duplicate (different decision points: drop-the-table vs how-to-structure-the-table). Prior audit's no-merge judgment confirmed.
