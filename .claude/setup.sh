@@ -1,7 +1,8 @@
 #!/bin/bash
 # setup.sh — wire ~/.claude/ to this workspace on a new machine.
+# Claude Code-specific: symlinks into ~/.claude/, memory, git hooksPath, Marky.
 # Run once after cloning: bash /path/to/Workspace/.claude/setup.sh
-# Also run by session-start.sh to keep the harness in sync each session.
+# Also run by .claude/hooks/session-start.sh each session.
 
 set -e
 
@@ -37,22 +38,7 @@ else
   echo "Created: ~/.claude/skills → .agent-skills/"
 fi
 
-# 2. Sync skills to Codex path (.agents/skills/) — copy, not symlink (Codex cloud VMs)
-CODEX_SKILLS_DIR="$WORKSPACE_DIR/.agents/skills"
-if [ -d "$WORKSPACE_DIR/.agent-skills" ]; then
-  mkdir -p "$CODEX_SKILLS_DIR"
-  rsync -a --delete "$WORKSPACE_DIR/.agent-skills/" "$CODEX_SKILLS_DIR/"
-  echo "Synced: .agent-skills/ → .agents/skills/ ($(ls "$CODEX_SKILLS_DIR" | wc -l | tr -d ' ') skills)"
-fi
-
-# 3. Generate Codex agent TOML files from canonical personas
-if command -v python3 >/dev/null 2>&1; then
-  python3 "$WORKSPACE_DIR/scripts/generate-codex-agents.py"
-else
-  echo "WARN: python3 not found — skipping Codex TOML generation (committed copies still active)"
-fi
-
-# 4. Settings: symlink ~/.claude/settings.json to workspace canonical
+# 2. Settings: symlink ~/.claude/settings.json to workspace canonical
 SETTINGS_SRC="$WORKSPACE_DIR/.claude/settings.json"
 SETTINGS_DST="$CLAUDE_DIR/settings.json"
 if [ -L "$SETTINGS_DST" ]; then
@@ -74,7 +60,7 @@ else
   echo "Created: ~/.claude/settings.json → .claude/settings.json"
 fi
 
-# 5. Memory: symlink Claude Code's auto-memory location to workspace memory tier root
+# 3. Memory: symlink Claude Code's auto-memory location to workspace memory tier root
 if [ -L "$MEMORY_DST" ]; then
   EXISTING_TARGET="$(readlink "$MEMORY_DST")"
   if [ "$EXISTING_TARGET" = "$MEMORY_SRC" ]; then
@@ -93,7 +79,7 @@ else
   echo "Created: $MEMORY_DST → workspace/memory"
 fi
 
-# 6. Git hooks: point core.hooksPath at tracked hook directory so the
+# 4. Git hooks: point core.hooksPath at tracked hook directory so the
 #    pre-push audit check travels with the repo. Idempotent.
 if git -C "$WORKSPACE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
   current_path="$(git -C "$WORKSPACE_DIR" config --get core.hooksPath || true)"
@@ -105,25 +91,7 @@ if git -C "$WORKSPACE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
   fi
 fi
 
-# 7. AGENTS.md size guard — Codex silently truncates at 32 KiB.
-AGENTS_SIZE=$(wc -c < "$WORKSPACE_DIR/AGENTS.md" | tr -d ' ')
-if [ "$AGENTS_SIZE" -gt 30720 ]; then
-  echo "WARN: AGENTS.md is ${AGENTS_SIZE} bytes — approaching Codex 32 KiB hard cap. Trim or split."
-fi
-
-# 8. Codex project trust reminder (first-run only — check for trust marker).
-CODEX_TRUST_MARKER="$WORKSPACE_DIR/.codex/.trusted"
-if [ ! -f "$CODEX_TRUST_MARKER" ]; then
-  echo ""
-  echo "── Codex setup ────────────────────────────────────────────────────────"
-  echo "  Codex project hooks (.codex/hooks.json) require explicit trust to fire."
-  echo "  In Codex, run: /trust  (or equivalent trust command for your version)"
-  echo "  Once trusted, hooks enforce branch protection and brevity rules."
-  echo "  Touch '$CODEX_TRUST_MARKER' to suppress this reminder."
-  echo "────────────────────────────────────────────────────────────────────────"
-fi
-
-# 9. Marky: canonical reader for long Claude output (ADR-003).
+# 5. Marky: canonical reader for long Claude output (ADR-003).
 #    macOS + Homebrew only. Non-fatal — Marky is UX, not load-bearing.
 if [ "$(uname -s)" = "Darwin" ] && command -v brew >/dev/null 2>&1; then
   if command -v marky >/dev/null 2>&1; then

@@ -46,20 +46,10 @@ esac
 # --- Build-artifact sync ---
 workspace_root="$(git rev-parse --show-toplevel)"
 
-# Sync .agent-skills/ → .agents/skills/ so Codex always has up-to-date skills committed
-if [ -d "$workspace_root/.agent-skills" ]; then
-  mkdir -p "$workspace_root/.agents/skills"
-  rsync -a --delete "$workspace_root/.agent-skills/" "$workspace_root/.agents/skills/" 2>/dev/null || \
-    echo "[pre-commit] WARN: rsync .agents/skills/ failed — skills may be stale"
-  git add "$workspace_root/.agents/skills/" 2>/dev/null || true
-fi
-
-# Regenerate .codex/agents/*.toml from canonical sources
-if command -v python3 >/dev/null 2>&1; then
-  python3 "$workspace_root/scripts/generate-codex-agents.py" >/dev/null 2>&1 || \
-    echo "[pre-commit] WARN: TOML generation failed — .codex/agents/ may be stale"
-  git add "$workspace_root/.codex/agents/" 2>/dev/null || true
-fi
+# Sync skills + regenerate Codex TOML from canonical sources
+bash "$workspace_root/scripts/generate-codex-agents.sh" >/dev/null 2>&1 || \
+  echo "[pre-commit] WARN: generate-codex-agents.sh failed — .codex/agents/ and .agents/skills/ may be stale"
+git add "$workspace_root/.agents/skills/" "$workspace_root/.codex/agents/" 2>/dev/null || true
 
 # --- Hygiene guard ---
 # Pattern 1: Linear card IDs.
