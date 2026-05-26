@@ -92,7 +92,7 @@
     ]
   },
   "enabledPlugins": {},
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "voice": {
     "enabled": true,
     "mode": "hold"
