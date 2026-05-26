@@ -17,6 +17,8 @@ Anything that contradicts either file is a defect, not an exception. Consult the
 
 Everything here must survive a fresh-machine clone + `bash .claude/setup.sh`. No local-only state, no tokens, no manual MCP setup when a connector exists.
 
+**Codex first-run:** project hooks (`.codex/hooks.json`) require explicit project trust before they fire. After cloning, run the Codex trust command so `enforce-feature-branch.sh` and `block-protected-push.sh` are active.
+
 Tests every change must pass:
 
 1. **Fresh-machine.** Clone + setup.sh + `git submodule update --init --recursive` = full working state.

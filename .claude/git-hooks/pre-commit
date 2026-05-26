@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# pre-commit — branch protection + content hygiene.
+# pre-commit — branch protection + content hygiene + build-artifact sync.
 #
-# Two enforcement layers:
+# Three enforcement layers:
 #
 # 1. Branch protection: refuses commits to protected branches.
 #    (defense-in-depth alongside pre-push)
@@ -14,7 +14,11 @@
 #      b. tmp/ path references. tmp/ is an ephemeral render buffer.
 #         Never link to tmp/ files from committed docs.
 #
-# Scope: staged .md/.mdx files, excluding:
+# 3. Build-artifact sync: regenerates .codex/agents/*.toml and syncs
+#    .agents/skills/ from .agent-skills/ before each commit. Ensures
+#    committed artifacts are never stale relative to their sources.
+#
+# Scope for hygiene: staged .md/.mdx files, excluding:
 #   .claude/          — hooks and skills legitimately document these patterns
 #   memory/short-term/20*/  — daily/weekly episodic entries (card IDs expected)
 #   */_archive/       — archived content, not forward-looking
@@ -24,7 +28,7 @@
 # /check-stable-docs-leaks to sweep the full workspace for those.
 #
 # Wired via `git config core.hooksPath .claude/git-hooks` (setup.sh).
-# --no-verify is forbidden by policy. See workspace CLAUDE.md.
+# --no-verify is forbidden by policy. See workspace AGENTS.md.
 
 set -u
 
@@ -34,10 +38,18 @@ case "$branch" in
   main|master|development|dev|production)
     echo "[pre-commit] ✗ refused — committing to protected branch '$branch' is not allowed."
     echo "             Create a feature branch first: git checkout -b omraneah/<name>"
-    echo "             --no-verify forbidden. See workspace CLAUDE.md."
+    echo "             --no-verify forbidden. See workspace AGENTS.md."
     exit 1
     ;;
 esac
+
+# --- Build-artifact sync ---
+workspace_root="$(git rev-parse --show-toplevel)"
+
+# Sync skills + regenerate Codex TOML from canonical sources
+bash "$workspace_root/scripts/generate-codex-agents.sh" >/dev/null 2>&1 || \
+  echo "[pre-commit] WARN: generate-codex-agents.sh failed — .codex/agents/ and .agents/skills/ may be stale"
+git add "$workspace_root/.agents/skills/" "$workspace_root/.codex/agents/" 2>/dev/null || true
 
 # --- Hygiene guard ---
 # Pattern 1: Linear card IDs.
@@ -51,8 +63,8 @@ fail=0
 while IFS= read -r file; do
   # Only check markdown files
   case "$file" in *.md|*.mdx) ;; *) continue ;; esac
-  # Skip: .claude/ (hook/skill implementation files document these patterns)
-  case "$file" in .claude/*) continue ;; esac
+  # Skip: .claude/ and .agents/skills/ (hook/skill implementation files document these patterns)
+  case "$file" in .claude/*|.agents/skills/*|.agent-skills/*) continue ;; esac
   # Skip: short-term episodic entries (daily/weekly, card IDs are expected)
   case "$file" in memory/short-term/20*) continue ;; esac
   # Skip: archived content
@@ -85,7 +97,7 @@ if [ "$fail" -eq 1 ]; then
   echo "  Linear card IDs → replace with descriptive text."
   echo "  tmp/ references → tmp/ is ephemeral, never link to it in stable docs."
   echo "  Run /check-stable-docs-leaks to sweep the full workspace for existing violations."
-  echo "  --no-verify forbidden. See workspace CLAUDE.md."
+  echo "  --no-verify forbidden. See workspace AGENTS.md."
   exit 1
 fi
 

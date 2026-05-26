@@ -10,7 +10,7 @@
 set -euo pipefail
 
 INPUT="$(cat)"
-PROMPT="$(printf '%s' "$INPUT" | jq -r '.prompt // empty' 2>/dev/null || true)"
+PROMPT=$(printf '%s' "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('prompt',''))" 2>/dev/null || true)
 
 if [ -z "$PROMPT" ]; then
   exit 0
