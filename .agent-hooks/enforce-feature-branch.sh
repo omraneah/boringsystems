@@ -2,6 +2,7 @@
 # Block file edits on protected branches.
 # Forces feature-branch discipline for any Write/Edit/NotebookEdit operation.
 # Companion to block-protected-push.sh — same protected list, applied earlier.
+# Shared across all agents — stateless, no agent-specific env vars required.
 
 INPUT=$(cat)
 FILE_PATH=$(echo "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('tool_input',{}).get('file_path',''))" 2>/dev/null)
@@ -10,10 +11,10 @@ if [ -z "$FILE_PATH" ]; then
   exit 0
 fi
 
-# Personal-skills are workspace infrastructure — always editable regardless of branch.
+# Canonical skills are always editable regardless of branch.
 # Quick skill iteration should never require a feature branch.
 case "$FILE_PATH" in
-  */.claude/personal-skills/*|*/personal-skills/*)
+  */.agent-skills/*)
     exit 0
     ;;
 esac

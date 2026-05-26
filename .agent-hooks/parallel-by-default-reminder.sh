@@ -2,6 +2,7 @@
 # UserPromptSubmit hook — when a prompt likely contains multiple non-conflicting
 # tasks, inject a one-line reminder that the default execution shape is parallel:
 # multiple Agent calls / Bash calls in a single message.
+# Shared across all agents — stateless, no agent-specific env vars required.
 #
 # See: memory/feedback_parallel_by_default.md
 # Provenance: 2026-04-25 session, after Ahmed asked for the default to be flipped.

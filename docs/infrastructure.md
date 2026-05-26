@@ -2,7 +2,7 @@
 
 ## Skills
 
-Skills live in two scopes. Cross-project skills (useful in every repo) live at `.claude/personal-skills/` and are surfaced globally via the `~/.claude/skills` symlink. Project-scoped skills live at `<project>/.claude/skills/` and only load when Claude is launched from that project.
+Skills live in two scopes. Cross-project skills (useful in every repo) live at `.agent-skills/` (canonical, agent-agnostic) and are surfaced to Claude Code via the `~/.claude/skills` symlink and to Codex via a copy at `.agents/skills/` (synced by `setup.sh`). Project-scoped skills live at `<project>/.claude/skills/` and only load when Claude Code is launched from that project.
 
 | Skill                       | Scope         | User-invocable | Auto-invokes                                                               |
 | --------------------------- | ------------- | -------------- | -------------------------------------------------------------------------- |
@@ -30,22 +30,35 @@ Skills live in two scopes. Cross-project skills (useful in every repo) live at `
 | `/verify-home`              | boringsystems | yes            | after any change to home layout, redirects, or selection flags             |
 | `/check-constraints`        | boringsystems | yes            | before writing structural code (i18n, auth, caching, redirects)            |
 
-**The scope rule** (DECISIONS.md 2026-04-21): no duplication across scopes. If a skill needs to work in two projects, either hoist it up or accept that Claude must be launched from the right project. Launch discipline > file duplication.
+**The scope rule** (DECISIONS.md 2026-04-21): no duplication across scopes. If a skill needs to work in two projects, either hoist it up or accept that the agent must be launched from the right project. Launch discipline > file duplication.
+
+**Write target:** always `.agent-skills/<name>/SKILL.md`. Never `~/.claude/skills/` (symlink) or `.agents/skills/` (generated copy). The `enforce-feature-branch.sh` hook is pre-configured to bypass `.agent-skills/` writes — no branch needed when creating skills.
 
 ## Hooks
 
-Hooks are shell commands wired into Claude Code events. They run deterministically — CLAUDE.md is advisory, hooks are enforcement. All hooks live at `.claude/hooks/`.
+Hooks are shell commands wired into agent events. They run deterministically — `AGENTS.md`/`CLAUDE.md` are advisory, hooks are enforcement.
 
-| Hook | Event | Effect |
-|---|---|---|
-| `session-start.sh` | SessionStart (async) | Pulls `main`/`development` if session opens on a base branch |
-| `block-protected-push.sh` | PreToolUse (Bash) | Blocks `git push origin main/master/dev/production` |
-| `auto-commit.sh` | Stop (async) | Auto-commits + pushes if dirty, on feature branches only. Skips if last commit was within `AUTO_CHECKPOINT_DEBOUNCE` (default 1800s) OR if more than `AUTO_CHECKPOINT_DIRTY_THRESHOLD` files are modified (default 10 — signals active multi-step work) |
-| `post-edit-typecheck.sh` | PostToolUse (Edit, Write on .ts/.astro) | Runs `astro check` / `tsc --noEmit` in background; reports errors |
-| `parallel-by-default-reminder.sh` | UserPromptSubmit | Reminds Claude to parallelize independent tool calls when a multi-task prompt is detected |
-| `gtm-nudge.sh` | Stop (async) | Periodic reminder to capture GTM signal via `/gtm-sync` |
+Two tiers:
 
-**Hook discipline.** Hooks must be idempotent, fast, and never block the user-visible response path. Long-running work goes to `async: true`. Hooks that need to surface findings write to a known location (e.g. `/tmp/claude-<session>/notices.log`) rather than `echo`-ing into Claude's stream.
+| Tier | Location | Who uses it | Scripts |
+|---|---|---|---|
+| Shared (stateless) | `.agent-hooks/` | Claude Code + Codex | `block-protected-push.sh`, `enforce-feature-branch.sh`, `brevity-reminder.sh`, `parallel-by-default-reminder.sh` |
+| Claude-specific (lifecycle) | `.claude/hooks/` | Claude Code only | `session-start.sh`, `auto-commit.sh`, `post-edit-typecheck.sh`, `gtm-nudge.sh` |
+
+| Hook | Location | Event | Effect |
+|---|---|---|---|
+| `session-start.sh` | `.claude/hooks/` | SessionStart (async) | Pulls `main`/`development` if session opens on a base branch; runs `setup.sh` |
+| `block-protected-push.sh` | `.agent-hooks/` | PreToolUse (Bash) | Blocks `git push origin main/master/dev/production` |
+| `enforce-feature-branch.sh` | `.agent-hooks/` | PreToolUse (Edit\|Write) | Enforces feature branch before edits; bypasses `.agent-skills/` |
+| `auto-commit.sh` | `.claude/hooks/` | Stop (async) | Auto-commits + pushes if dirty, on feature branches only. Skips if last commit was within `AUTO_CHECKPOINT_DEBOUNCE` (default 1800s) OR if more than `AUTO_CHECKPOINT_DIRTY_THRESHOLD` files are modified (default 10 — signals active multi-step work) |
+| `post-edit-typecheck.sh` | `.claude/hooks/` | Stop (async) | Runs `astro check` / `tsc --noEmit` in background; reports errors |
+| `parallel-by-default-reminder.sh` | `.agent-hooks/` | UserPromptSubmit | Reminds the agent to parallelize independent tool calls |
+| `brevity-reminder.sh` | `.agent-hooks/` | UserPromptSubmit | Reinforces executive-register brevity rule |
+| `gtm-nudge.sh` | `.claude/hooks/` | Stop (async) | Periodic reminder to capture GTM signal via `/gtm-sync` |
+
+**Codex hook paths** use `bash -c 'bash "$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/<script>.sh"'` — self-resolving, machine-agnostic. Defined in `.codex/hooks.json`.
+
+**Hook discipline.** Hooks must be idempotent, fast, and never block the user-visible response path. Long-running work goes to `async: true`. Hooks that need to surface findings write to a session-scoped file rather than `echo`-ing into the agent's stream.
 
 ## Setup on a new machine
 
@@ -56,10 +69,12 @@ git submodule update --init --recursive
 bash .claude/setup.sh
 ```
 
-`setup.sh` creates three symlinks:
-- `~/.claude/skills` → `.claude/personal-skills/`
-- `~/.claude/settings.json` → `.claude/settings.json`
-- `~/.claude/projects/-Users-ahmedomrane-Workspace/memory/` → `memory/` (workspace root)
+`setup.sh` is idempotent and runs automatically via `session-start.sh` each session. It:
+- Symlinks `~/.claude/skills` → `.agent-skills/`
+- Syncs `.agent-skills/` → `.agents/skills/` (Codex skill path)
+- Generates `.codex/agents/*.toml` from personas + frontmatter (`scripts/generate-codex-agents.py`)
+- Symlinks `~/.claude/settings.json` → `.claude/settings.json`
+- Symlinks `~/.claude/projects/-Users-ahmedomrane-Workspace/memory/` → `memory/` (workspace root)
 
 `settings.local.json` is gitignored — it is Claude's runtime permission cache, not config.
 

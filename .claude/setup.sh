@@ -1,6 +1,7 @@
 #!/bin/bash
 # setup.sh — wire ~/.claude/ to this workspace on a new machine.
 # Run once after cloning: bash /path/to/Workspace/.claude/setup.sh
+# Also run by session-start.sh to keep the harness in sync each session.
 
 set -e
 
@@ -13,7 +14,7 @@ MEMORY_DST="$CLAUDE_DIR/projects/$(echo "$WORKSPACE_DIR" | tr '/' '-')/memory"
 
 echo "Workspace: $WORKSPACE_DIR"
 
-# 1. Skills: single directory symlink
+# 1. Skills: symlink ~/.claude/skills → .agent-skills/ (canonical cross-agent location)
 if [ -L "$CLAUDE_DIR/skills" ]; then
   echo "skills symlink already exists — skipping"
 elif [ -d "$CLAUDE_DIR/skills" ]; then
@@ -22,14 +23,29 @@ elif [ -d "$CLAUDE_DIR/skills" ]; then
   BACKUP="$CLAUDE_DIR/skills.bak.$(date +%Y%m%d-%H%M%S)"
   echo "Backing up existing skills/ → $(basename "$BACKUP")"
   mv "$CLAUDE_DIR/skills" "$BACKUP"
-  ln -s "$WORKSPACE_DIR/.claude/personal-skills" "$CLAUDE_DIR/skills"
-  echo "Created: ~/.claude/skills → personal-skills/"
+  ln -s "$WORKSPACE_DIR/.agent-skills" "$CLAUDE_DIR/skills"
+  echo "Created: ~/.claude/skills → .agent-skills/"
 else
-  ln -s "$WORKSPACE_DIR/.claude/personal-skills" "$CLAUDE_DIR/skills"
-  echo "Created: ~/.claude/skills → personal-skills/"
+  ln -s "$WORKSPACE_DIR/.agent-skills" "$CLAUDE_DIR/skills"
+  echo "Created: ~/.claude/skills → .agent-skills/"
 fi
 
-# 2. Settings: symlink ~/.claude/settings.json to workspace canonical
+# 2. Sync skills to Codex path (.agents/skills/) — copy, not symlink (Codex cloud VMs)
+CODEX_SKILLS_DIR="$WORKSPACE_DIR/.agents/skills"
+if [ -d "$WORKSPACE_DIR/.agent-skills" ]; then
+  mkdir -p "$CODEX_SKILLS_DIR"
+  rsync -a --delete "$WORKSPACE_DIR/.agent-skills/" "$CODEX_SKILLS_DIR/"
+  echo "Synced: .agent-skills/ → .agents/skills/"
+fi
+
+# 3. Generate Codex agent TOML files from canonical personas
+if command -v python3 >/dev/null 2>&1; then
+  python3 "$WORKSPACE_DIR/scripts/generate-codex-agents.py"
+else
+  echo "WARN: python3 not found — skipping Codex TOML generation"
+fi
+
+# 4. Settings: symlink ~/.claude/settings.json to workspace canonical
 SETTINGS_SRC="$WORKSPACE_DIR/.claude/settings.json"
 SETTINGS_DST="$CLAUDE_DIR/settings.json"
 if [ -L "$SETTINGS_DST" ]; then
@@ -44,7 +60,7 @@ else
   echo "Created: ~/.claude/settings.json → .claude/settings.json"
 fi
 
-# 3. Memory: symlink Claude Code's auto-memory location to workspace memory tier root
+# 5. Memory: symlink Claude Code's auto-memory location to workspace memory tier root
 if [ -L "$MEMORY_DST" ]; then
   EXISTING_TARGET="$(readlink "$MEMORY_DST")"
   if [ "$EXISTING_TARGET" = "$MEMORY_SRC" ]; then
@@ -63,7 +79,7 @@ else
   echo "Created: $MEMORY_DST → workspace/memory"
 fi
 
-# 4. Git hooks: point core.hooksPath at tracked hook directory so the
+# 6. Git hooks: point core.hooksPath at tracked hook directory so the
 #    pre-push audit check travels with the repo. Idempotent.
 if git -C "$WORKSPACE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
   current_path="$(git -C "$WORKSPACE_DIR" config --get core.hooksPath || true)"
@@ -75,7 +91,7 @@ if git -C "$WORKSPACE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
   fi
 fi
 
-# 5. Marky: canonical reader for long Claude output (ADR-003).
+# 7. Marky: canonical reader for long Claude output (ADR-003).
 #    macOS + Homebrew only. Non-fatal — Marky is UX, not load-bearing.
 if [ "$(uname -s)" = "Darwin" ] && command -v brew >/dev/null 2>&1; then
   if command -v marky >/dev/null 2>&1; then

@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/Users/ahmedomrane/Workspace/.codex/hooks/block-protected-push.sh'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/block-protected-push.sh\"'"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/Users/ahmedomrane/Workspace/.codex/hooks/enforce-feature-branch.sh'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/enforce-feature-branch.sh\"'"
           }
         ]
       }
@@ -25,11 +25,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/Users/ahmedomrane/Workspace/.codex/hooks/parallel-by-default-reminder.sh'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/parallel-by-default-reminder.sh\"'"
           },
           {
             "type": "command",
-            "command": "bash '/Users/ahmedomrane/Workspace/.codex/hooks/brevity-reminder.sh'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/brevity-reminder.sh\"'"
           }
         ]
       }

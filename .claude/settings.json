@@ -41,7 +41,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-protected-push.sh\""
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.agent-hooks/block-protected-push.sh\""
           }
         ]
       },
@@ -50,7 +50,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/enforce-feature-branch.sh\""
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.agent-hooks/enforce-feature-branch.sh\""
           }
         ]
       }
@@ -60,11 +60,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/parallel-by-default-reminder.sh\""
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.agent-hooks/parallel-by-default-reminder.sh\""
           },
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/brevity-reminder.sh\""
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.agent-hooks/brevity-reminder.sh\""
           }
         ]
       }
