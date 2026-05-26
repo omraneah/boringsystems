@@ -1,0 +1,38 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/block-protected-push.sh\"'"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/enforce-feature-branch.sh\"'"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/parallel-by-default-reminder.sh\"'"
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/brevity-reminder.sh\"'"
+          }
+        ]
+      }
+    ]
+  }
+}
