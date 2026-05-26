@@ -15,18 +15,25 @@ MEMORY_DST="$CLAUDE_DIR/projects/$(echo "$WORKSPACE_DIR" | tr '/' '-')/memory"
 echo "Workspace: $WORKSPACE_DIR"
 
 # 1. Skills: symlink ~/.claude/skills → .agent-skills/ (canonical cross-agent location)
-if [ -L "$CLAUDE_DIR/skills" ]; then
-  echo "skills symlink already exists — skipping"
-elif [ -d "$CLAUDE_DIR/skills" ]; then
-  # Timestamped backup so a second fresh-VM run (or any re-entry into
-  # this branch) cannot silently destroy a prior backup of vendor skills.
-  BACKUP="$CLAUDE_DIR/skills.bak.$(date +%Y%m%d-%H%M%S)"
+SKILLS_SRC="$WORKSPACE_DIR/.agent-skills"
+SKILLS_DST="$CLAUDE_DIR/skills"
+if [ -L "$SKILLS_DST" ]; then
+  EXISTING_TARGET="$(readlink "$SKILLS_DST")"
+  if [ "$EXISTING_TARGET" = "$SKILLS_SRC" ]; then
+    echo "skills symlink already correct — skipping"
+  else
+    echo "Updating skills symlink: $EXISTING_TARGET → $SKILLS_SRC"
+    rm "$SKILLS_DST"
+    ln -s "$SKILLS_SRC" "$SKILLS_DST"
+  fi
+elif [ -d "$SKILLS_DST" ]; then
+  BACKUP="$SKILLS_DST.bak.$(date +%Y%m%d-%H%M%S)"
   echo "Backing up existing skills/ → $(basename "$BACKUP")"
-  mv "$CLAUDE_DIR/skills" "$BACKUP"
-  ln -s "$WORKSPACE_DIR/.agent-skills" "$CLAUDE_DIR/skills"
+  mv "$SKILLS_DST" "$BACKUP"
+  ln -s "$SKILLS_SRC" "$SKILLS_DST"
   echo "Created: ~/.claude/skills → .agent-skills/"
 else
-  ln -s "$WORKSPACE_DIR/.agent-skills" "$CLAUDE_DIR/skills"
+  ln -s "$SKILLS_SRC" "$SKILLS_DST"
   echo "Created: ~/.claude/skills → .agent-skills/"
 fi
 
@@ -35,21 +42,28 @@ CODEX_SKILLS_DIR="$WORKSPACE_DIR/.agents/skills"
 if [ -d "$WORKSPACE_DIR/.agent-skills" ]; then
   mkdir -p "$CODEX_SKILLS_DIR"
   rsync -a --delete "$WORKSPACE_DIR/.agent-skills/" "$CODEX_SKILLS_DIR/"
-  echo "Synced: .agent-skills/ → .agents/skills/"
+  echo "Synced: .agent-skills/ → .agents/skills/ ($(ls "$CODEX_SKILLS_DIR" | wc -l | tr -d ' ') skills)"
 fi
 
 # 3. Generate Codex agent TOML files from canonical personas
 if command -v python3 >/dev/null 2>&1; then
   python3 "$WORKSPACE_DIR/scripts/generate-codex-agents.py"
 else
-  echo "WARN: python3 not found — skipping Codex TOML generation"
+  echo "WARN: python3 not found — skipping Codex TOML generation (committed copies still active)"
 fi
 
 # 4. Settings: symlink ~/.claude/settings.json to workspace canonical
 SETTINGS_SRC="$WORKSPACE_DIR/.claude/settings.json"
 SETTINGS_DST="$CLAUDE_DIR/settings.json"
 if [ -L "$SETTINGS_DST" ]; then
-  echo "settings symlink already exists — skipping"
+  EXISTING_TARGET="$(readlink "$SETTINGS_DST")"
+  if [ "$EXISTING_TARGET" = "$SETTINGS_SRC" ]; then
+    echo "settings symlink already correct — skipping"
+  else
+    echo "Updating settings symlink: $EXISTING_TARGET → $SETTINGS_SRC"
+    rm "$SETTINGS_DST"
+    ln -s "$SETTINGS_SRC" "$SETTINGS_DST"
+  fi
 elif [ -f "$SETTINGS_DST" ]; then
   echo "Backing up existing settings.json → settings.json.bak"
   mv "$SETTINGS_DST" "$SETTINGS_DST.bak"
@@ -91,7 +105,25 @@ if git -C "$WORKSPACE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
   fi
 fi
 
-# 7. Marky: canonical reader for long Claude output (ADR-003).
+# 7. AGENTS.md size guard — Codex silently truncates at 32 KiB.
+AGENTS_SIZE=$(wc -c < "$WORKSPACE_DIR/AGENTS.md" | tr -d ' ')
+if [ "$AGENTS_SIZE" -gt 30720 ]; then
+  echo "WARN: AGENTS.md is ${AGENTS_SIZE} bytes — approaching Codex 32 KiB hard cap. Trim or split."
+fi
+
+# 8. Codex project trust reminder (first-run only — check for trust marker).
+CODEX_TRUST_MARKER="$WORKSPACE_DIR/.codex/.trusted"
+if [ ! -f "$CODEX_TRUST_MARKER" ]; then
+  echo ""
+  echo "── Codex setup ────────────────────────────────────────────────────────"
+  echo "  Codex project hooks (.codex/hooks.json) require explicit trust to fire."
+  echo "  In Codex, run: /trust  (or equivalent trust command for your version)"
+  echo "  Once trusted, hooks enforce branch protection and brevity rules."
+  echo "  Touch '$CODEX_TRUST_MARKER' to suppress this reminder."
+  echo "────────────────────────────────────────────────────────────────────────"
+fi
+
+# 9. Marky: canonical reader for long Claude output (ADR-003).
 #    macOS + Homebrew only. Non-fatal — Marky is UX, not load-bearing.
 if [ "$(uname -s)" = "Darwin" ] && command -v brew >/dev/null 2>&1; then
   if command -v marky >/dev/null 2>&1; then
