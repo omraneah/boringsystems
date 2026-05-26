@@ -825,3 +825,16 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-26 — Agent-Agnostic Harness: DRY Canonical Layer for Claude Code + Codex
+
+**Context:** Codex CLI installed alongside Claude Code. Codex auto-migrated `.claude/` config, duplicating hooks, agents, and skills into `.codex/`. Two agents, two sources of truth, no DRY structure. Needed: a single canonical layer both agents consume, no symlinks (breaks on cloud VMs), laptop-agnostic (fresh clone + setup.sh = full working state for either agent).
+
+**Decision:** Introduced three canonical, agent-agnostic directories at workspace root: `.agent-skills/` (skills, replaces `.claude/personal-skills/`), `.agent-personas/` (full persona body markdown, single source for both agents), `.agent-hooks/` (stateless shared hooks). Claude Code consumes these via `@file` imports and `$CLAUDE_PROJECT_DIR`-based hook paths. Codex consumes via `scripts/generate-codex-agents.py` (inlines personas into TOML) and `git rev-parse`-based hook paths. `AGENTS.md` becomes the single canonical workspace instruction doc; `CLAUDE.md` becomes a thin `@AGENTS.md` + addenda wrapper. `setup.sh` runs rsync + TOML generation each session to keep Codex in sync.
+
+**Why:** Symlink-based sharing breaks on cloud VMs and Codex ephemeral environments. `@file` imports are supported in Claude Code agent bodies but not in Codex TOML `developer_instructions` — generation script bridges the gap. `AGENTS.md` is the industry-standard cross-agent instruction file (read natively by Codex, Cursor, Windsurf, Amp, Devin). Committed TOML artifacts satisfy the cloud-agent test (agent starts with full config from checkout, no setup.sh required). Two hook tiers (shared stateless in `.agent-hooks/`, Claude-specific lifecycle in `.claude/hooks/`) avoid contaminating Codex with hooks that depend on `$CLAUDE_PROJECT_DIR`.
+
+**Expected outcome:** A single edit to a persona file, hook, or skill is immediately available to Claude Code (via @file) and available to Codex after next session-start (via setup.sh). No manual copy-pasting. Fresh-clone + setup.sh works for either agent. Cloud Codex works from committed artifacts without setup.sh.
+**Actual outcome:** *(pending)*
+
+---
