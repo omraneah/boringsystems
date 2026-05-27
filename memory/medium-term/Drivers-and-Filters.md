@@ -74,6 +74,7 @@ Out-conditions. If a filter fires, the engagement is out — regardless of how c
 | **Team-leadership-as-main-mandate** | This period. Influence over authority. Out — even when the offer is well-shaped. |
 | **Engineering-as-only-surface** | Laptop + screen only. Out. The work must touch people, systems, decisions — not just the editor. |
 | **Founder-level risk ownership** (Shape B specific) | Carrying business outcome, market fit, runway risk on a fractional engagement. Contained risk only. Out. |
+| **Low-governance without NF binding-agent** | Early-stage / founder-led / structurally unbraked contexts without an NF co-founder or sponsor. Out. ENTJ only clears with explicit brakes + demonstrated F-development. ESFP never clears. |
 
 The two-week rule applies (see [[Engagement-Validity-Filter]] § two-week rule): if a filter starts firing inside an engagement, exit planning begins.
 

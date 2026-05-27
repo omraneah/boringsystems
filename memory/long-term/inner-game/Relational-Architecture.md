@@ -132,6 +132,9 @@ Two consecutive weeks of drift on any of the five → correct immediately.
 - Sponsor relationships are Layer-2-or-deeper; if they don't graduate beyond pure-utility, that's a signal.
 - A client who treats me as execution-capacity violates the no-extraction principle. Exit.
 - A client who shows real care about the work AND the relationship is Layer-2-eventual.
+- In high-challenge / low-governance contexts, the binding agent is shared conceptual frame + values-coherence. The relationship must hold at the level of meaning and relational integrity, not only mission, charisma, or power-balance. Where governance is weak, the person-system has to carry what the org-system cannot.
+- NF co-founders / sponsors are therefore structural in early-stage or founder-led contexts without brakes. ENFJ, INFJ, and INFP shapes can bind through meaning and relational integrity in a register where I can operate at parity or stronger.
+- Mature / governed contexts dilute archetype cost because the system carries more weight. Early-stage contexts concentrate archetype cost because proximity and power are less buffered.
 
 ### In family
 
@@ -173,6 +176,6 @@ Aligned with the `I-AM.md § Relational architecture` non-negotiable: the relati
 - Path Doctrine (necessary conditions reference relational architecture) → `Path-Doctrine.md`
 - Identity & Exit Doctrine (life-level exit triggers, relationship categories) → `../../medium-term/operational-doctrine/Identity-and-Exit-Doctrine.md`
 - Engagement Validity Filter (connectedness dimension) → `../../medium-term/operational-doctrine/Engagement-Validity-Filter.md`
+- Trait Architecture (N/F binding and type-level fit) → `Trait-Architecture.md`
 - Work Hygiene Doctrine (weekly check pattern) → `../../medium-term/operational-doctrine/Work-Hygiene-Doctrine.md`
 - Relational Altitude OS (sponsor-conversation operational discipline) → `../../medium-term/operational-doctrine/Relational-Altitude-OS.md`
-
