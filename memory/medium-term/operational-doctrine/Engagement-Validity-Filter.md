@@ -31,6 +31,23 @@ Apply at three altitudes:
 2. **In-engagement altitude.** When already in a path, check (monthly cadence is enough): which dimensions are being silently traded off? If body, place, connectedness, family, sleep, or own-things-accumulation are degrading — the engagement is drifting toward the failure shape, even if the work itself remains interesting.
 3. **Decision-pressure altitude.** When pressure to commit fast appears (recruiter inbound, founder pitch, deadline framing), the failure shape most often slips in through the dimension being optimized in the moment. The fix is not "decide faster" but "check across all dimensions before deciding."
 
+## Mutual-fit detection, not negotiated sale
+
+Inbound and fractional conversations are not sales calls to win. They are mutual-fit probes.
+
+The operating tactic:
+
+1. Let the other side narrate its own frame fully: dream, urgency, operating model, hidden assumptions.
+2. Treat non-resistance as diagnostic, not consent. Listening does not mean enlistment.
+3. Seed structural constraints inside their frame: scope, risk ownership, cadence, execution ownership, exit gates.
+4. Watch the response.
+
+**Good signal:** they metabolize the constraints and update the operating frame.
+
+**Bad signal:** they interpret constraints as resistance, betrayal, or a hurdle to overcome.
+
+The goal is convergence, not persuasion. If convergence does not happen smoothly, the answer is not better selling; the answer is no engagement.
+
 ## The opposite shape — what alignment looks like
 
 A healthy engagement pays across multiple dimensions simultaneously:
