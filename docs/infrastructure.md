@@ -60,6 +60,8 @@ Two tiers:
 
 **Codex command approvals** live in `.codex/rules/default.rules` and are installed additively into the Codex runtime rules file by `bash .codex/setup.sh`. Keep only workspace workflow approvals here; do not commit personal one-off approvals. Codex setup is workspace-scoped; do not add user-home or broader-root project setup.
 
+Git workflow approvals in `.codex/rules/default.rules` cover recurring non-destructive project operations: run Codex workspace setup, stage, commit, push, fetch, fast-forward pull, switch to `main`, create feature branches, safe merged-branch deletion with `git branch -d`, executable-bit tracking, and submodule init. Do not add destructive forms (`git reset`, `git checkout --`, `git branch -D`) to the rules file.
+
 **Hook discipline.** Hooks must be idempotent, fast, and never block the user-visible response path. Long-running work goes to `async: true`. Hooks that need to surface findings write to a session-scoped file rather than `echo`-ing into the agent's stream.
 
 ## Setup on a new machine
