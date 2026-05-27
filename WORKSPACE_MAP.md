@@ -41,7 +41,7 @@ Ephemeral. Not persistent, not tracked as project state.
 - `.agent-skills/` — cross-agent skills. Canonical write target; `~/.claude/skills/` symlinks here. Codex consumes the committed `.agents/skills/` copy. Bypass the feature-branch hook by design.
 - `.agent-personas/` — persona body markdown for each sub-agent. Used by `.claude/agents/*.md` (via `@` import) AND `scripts/generate-codex-agents.sh` (inlined into Codex TOML).
 - `.agent-hooks/` — stateless shared hooks (no agent-specific env vars). Used by both Claude Code and Codex: `enforce-feature-branch.sh`, `block-protected-push.sh`, `brevity-reminder.sh`, `parallel-by-default-reminder.sh`.
-- `.agent-permissions/` — canonical permission policy. Agent-specific permission files are adapters generated/validated from here.
+- `.agent-permissions/` — canonical permission policy for shell workflow and connector tools. Agent-specific permission files are adapters generated/validated from here.
 - `scripts/generate-codex-agents.sh` — generates `.codex/agents/*.toml` from `.claude/agents/*.md` (frontmatter) + `.agent-personas/*.md` (body). Run before commit by `.claude/git-hooks/pre-commit`.
 
 ### Claude Code–specific
