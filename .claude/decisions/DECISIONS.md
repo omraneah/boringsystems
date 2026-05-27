@@ -856,3 +856,12 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-27 — Branch deletion permission boundary
+**Context:** Codex asked for approval before `git branch -d <feature>` during merged-branch cleanup. That operation is ordinary local cleanup and should not prompt, but the guardrails around deletion needed to be explicit.
+**Decision:** Local merged feature-branch deletion with `git branch -d <feature>` is part of ordinary workspace workflow and is pre-approved. Agents must never delete protected branches (`main`, `master`, `development`, `dev`, `production`), must never force-delete with `git branch -D`, and must never delete remote branches (`git push origin --delete ...` or delete refspecs). Remote cleanup is Ahmed-owned. Enforcement lives in `.agent-hooks/block-protected-push.sh`; policy lives in `.agent-permissions/README.md` and `docs/infrastructure.md`.
+**Why:** The safety boundary is not "ask before deleting any branch." The safety boundary is "only delete local non-protected branches safely, after merge verification." Asking for permission on safe local cleanup burns operator attention; allowing protected or remote deletion would create real blast radius.
+**Expected outcome:** Git cleanup proceeds without prompts for local merged feature branches, while protected and remote branch deletion are blocked across agents.
+**Actual outcome:** *(pending)*
+
+---

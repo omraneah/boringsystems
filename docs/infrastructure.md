@@ -62,7 +62,9 @@ Two tiers:
 
 Codex command approvals are installed additively into the Codex runtime rules file by `bash .codex/setup.sh`. Keep only workspace workflow approvals in the canonical permission policy; do not commit personal one-off approvals. Codex setup is workspace-scoped; do not add user-home or broader-root project setup.
 
-Git workflow approvals in `.agent-permissions/command-prefixes.rules` cover recurring non-destructive project operations: run Codex workspace setup, stage, commit, push, fetch, fast-forward pull, switch to `main`, create feature branches, safe merged-branch deletion with `git branch -d`, executable-bit tracking, and submodule init. Do not add destructive forms (`git reset`, `git checkout --`, `git branch -D`) to the canonical policy.
+Git workflow approvals in `.agent-permissions/command-prefixes.rules` cover recurring non-destructive project operations: run Codex workspace setup, stage, commit, push, fetch, fast-forward pull, switch to `main`, create feature branches, safe merged-branch deletion with `git branch -d`, executable-bit tracking, and submodule init. Do not add destructive forms (`git reset`, `git checkout --`, `git branch -D`, remote branch deletion) to the canonical policy.
+
+Branch deletion policy: agents may delete merged local feature branches with `git branch -d`. Agents must never delete protected branches (`main`, `master`, `development`, `dev`, `production`) and must never delete remote branches. Remote branch cleanup is Ahmed-owned.
 
 Claude MCP connector allowlist entries live in `.agent-permissions/claude-mcp-allow.txt`. Linear read/write tools used by card lifecycle skills are ordinary workspace workflow and belong there. Airtable write tools remain excluded unless deliberately re-approved; read/search tools are allowed.
 

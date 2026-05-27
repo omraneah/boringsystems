@@ -102,7 +102,8 @@ Two skills, two scopes:
 
 **`/github-cleanup`** — fires per merged PR
 - Syncs `main` (`--ff-only`)
-- Deletes the merged feature branch (`-d`, never `-D`)
+- Deletes the merged feature branch locally (`-d`, never `-D`)
+- Never deletes remote branches; Ahmed owns remote branch cleanup
 - Triggered by: "merged, clean up" / "PR merged, sync main" / similar
 - May fire multiple times in a session (once per merged PR)
 

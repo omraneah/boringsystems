@@ -47,7 +47,7 @@ Operate in the current working directory. If the merged PR was in a submodule an
 1. **Identify the feature branch.** `git branch --show-current`. If it's a protected branch (`main`, `master`, `development`, `dev`, `production`), stop — nothing to clean up. Tell Ahmed and ask which branch he meant.
 2. **Check it's actually merged.** `git fetch origin main` then `git log HEAD..origin/main --oneline | grep <branch>` — the merge commit should reference the feature branch. If you cannot verify the merge, stop and ask Ahmed. Never delete a branch you cannot verify was merged.
 3. **Switch and sync.** `git checkout main && git pull --ff-only`. Fast-forward only — if main has diverged locally, fail loudly. Local main should never have commits ahead of origin (Ahmed never commits to main).
-4. **Delete the feature branch locally.** `git branch -d <branch>`. Never `-D`. If `-d` refuses, the branch is not fully merged — report and stop.
+4. **Delete the feature branch locally.** `git branch -d <branch>`. Never `-D`. Never delete the remote branch. If `-d` refuses, the branch is not fully merged — report and stop.
 5. **Confirm clean state.** `git status -s` should be empty; `git branch --show-current` should be `main`.
 
 ## Output shape
@@ -63,6 +63,7 @@ No recap. No improvement proposals. No narration of intermediate steps. If anyth
 ## Guardrails
 
 - **Never force-delete.** `git branch -d` only.
+- **Never delete remote branches.** No `git push origin --delete`, no delete refspecs. Ahmed owns remote cleanup.
 - **Never push to main.** This skill is read-only from the network's perspective on main.
 - **Never fabricate verification.** If `git log HEAD..origin/main` does not show the merge, stop and ask.
 - **Single-PR scope.** Don't try to clean up multiple branches in one invocation. If Ahmed has merged two PRs and wants both cleaned, run twice.
