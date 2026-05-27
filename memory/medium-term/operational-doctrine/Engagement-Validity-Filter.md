@@ -35,6 +35,10 @@ Apply at three altitudes:
 
 Inbound and fractional conversations are not sales calls to win. They are mutual-fit probes.
 
+The tactic activates only after a credible trust signal exists: sponsor-level conversation, warm intro, meaningful prior filtering, or enough earned context that Ahmed is no longer proving basic competence. At that altitude, the posture flips: Ahmed is there to be sold on the opportunity, not to sell himself.
+
+The competence premise is already handled. These opportunities should be less complex than what Ahmed can handle; technical overqualification is the point, not the problem. The live question is trust, incentives, scope, and whether the sponsor's world can integrate Ahmed's constraints without turning them into a power contest.
+
 The operating tactic:
 
 1. Let the other side narrate its own frame fully: dream, urgency, operating model, hidden assumptions.
