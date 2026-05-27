@@ -14,9 +14,10 @@
 #      b. tmp/ path references. tmp/ is an ephemeral render buffer.
 #         Never link to tmp/ files from committed docs.
 #
-# 3. Build-artifact sync: regenerates .codex/agents/*.toml and syncs
-#    .agents/skills/ from .agent-skills/ before each commit. Ensures
-#    committed artifacts are never stale relative to their sources.
+# 3. Build-artifact sync: regenerates .codex/agents/*.toml, syncs
+#    .agents/skills/ from .agent-skills/, and syncs permission adapters
+#    from .agent-permissions/ before each commit. Ensures committed artifacts
+#    are never stale relative to their sources.
 #
 # Scope for hygiene: staged .md/.mdx files, excluding:
 #   .claude/          — hooks and skills legitimately document these patterns
@@ -50,6 +51,11 @@ workspace_root="$(git rev-parse --show-toplevel)"
 bash "$workspace_root/scripts/generate-codex-agents.sh" >/dev/null 2>&1 || \
   echo "[pre-commit] WARN: generate-codex-agents.sh failed — .codex/agents/ and .agents/skills/ may be stale"
 git add "$workspace_root/.agents/skills/" "$workspace_root/.codex/agents/" 2>/dev/null || true
+
+# Sync agent-specific permission adapters from canonical policy
+bash "$workspace_root/.agent-permissions/sync.sh" >/dev/null 2>&1 || \
+  echo "[pre-commit] WARN: permission sync failed — agent permission adapters may be stale"
+git add "$workspace_root/.codex/rules/default.rules" 2>/dev/null || true
 
 # --- Hygiene guard ---
 # Pattern 1: Linear card IDs.

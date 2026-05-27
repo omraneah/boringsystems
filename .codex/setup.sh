@@ -7,7 +7,7 @@ set -e
 
 WORKSPACE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CODEX_DIR="${CODEX_HOME:-$HOME/.codex}"
-RULES_SRC="$WORKSPACE_DIR/.codex/rules/default.rules"
+RULES_SRC="$WORKSPACE_DIR/.agent-permissions/command-prefixes.rules"
 RULES_DST="$CODEX_DIR/rules/default.rules"
 
 echo "Workspace: $WORKSPACE_DIR"

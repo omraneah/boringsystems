@@ -847,3 +847,12 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-27 — Canonical permission policy above agent adapters
+**Context:** Codex git workflow approvals were added directly to `.codex/rules/default.rules`, while Claude Code carried broad tool-class permissions in `.claude/settings.json`. That solved the local Codex prompt loop but left no shared policy layer, so the two agents could drift and future agents would not know where to add ordinary workflow permissions.
+**Decision:** Added `.agent-permissions/` as the canonical permission policy surface. Recurring command-prefix permissions live in `.agent-permissions/command-prefixes.rules`; Claude MCP connector permissions live in `.agent-permissions/claude-mcp-allow.txt`. Codex consumes shell approvals through `.codex/rules/default.rules` and installs them via `.codex/setup.sh`; connector access is through Codex apps/connectors. Claude Code is synced/validated against the same policy through `.claude/settings.json` plus `.agent-hooks/`. The pre-commit hook now syncs/validates permission adapters from `.agent-permissions/`.
+**Why:** Agent-agnostic permissions are policy-first, adapter-second. Claude and Codex expose different permission primitives, so identical files are the wrong target; equivalent policy enforced through each platform's native mechanism is the right target.
+**Expected outcome:** Ordinary workspace git/browser/setup operations stop prompting repeatedly in Codex, Linear card-lifecycle operations are pre-authorized in Claude Code, Claude and Codex remain aligned on permission intent, and future agents get a clear onboarding rule: update `.agent-permissions/` first, then generate/validate their adapter.
+**Actual outcome:** *(pending)*
+
+---
