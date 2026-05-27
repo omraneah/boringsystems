@@ -1,30 +1,33 @@
 #!/bin/bash
 # UserPromptSubmit hook — when a prompt likely contains multiple non-conflicting
 # tasks, inject a one-line reminder that the default execution shape is parallel:
-# multiple Agent calls / Bash calls in a single message.
-# Shared across all agents — stateless, no agent-specific env vars required.
+# multiple Agent / Bash / Write calls in a single message.
 #
-# See: memory/feedback_parallel_by_default.md
+# Agent-agnostic output contract: hookSpecificOutput.additionalContext, always
+# exit 0 (Codex treats non-zero as a hook failure). Reads the prompt from stdin
+# when the agent provides it; degrades silently (no reminder) if it doesn't.
+# See: memory/short-term/feedback/stable/feedback_parallel_by_default.md
 # Provenance: 2026-04-25 session, after Ahmed asked for the default to be flipped.
 
-set -euo pipefail
+INPUT="$(cat 2>/dev/null || true)"
+PROMPT="$(printf '%s' "$INPUT" | python3 -c "import sys,json
+try:
+    print(json.load(sys.stdin).get('prompt',''))
+except Exception:
+    pass" 2>/dev/null || true)"
 
-INPUT="$(cat)"
-PROMPT=$(printf '%s' "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('prompt',''))" 2>/dev/null || true)
+[ -z "$PROMPT" ] && exit 0
 
-if [ -z "$PROMPT" ]; then
-  exit 0
-fi
+# Heuristic signals for multi-task prompts. Count occurrences (grep -o) so a
+# single-line multi-task prompt still fires. Threshold 2 keeps single-task quiet.
+SIGNAL="$(printf '%s' "$PROMPT" | grep -oiE 'and then|\balso\b|in parallel|simultaneously|at the same time|^[[:space:]]*[0-9]+\.' | wc -l | tr -d ' ')"
+[ "${SIGNAL:-0}" -ge 2 ] || exit 0
 
-# Heuristic signals for multi-task prompts. Count occurrences (not matching
-# lines) so a single-line multi-task prompt still fires. Threshold of 2 keeps
-# single-task prompts quiet so the reminder doesn't become noise.
-SIGNAL=$(printf '%s' "$PROMPT" | grep -oiE 'and then|\balso\b|in parallel|paralyz|simultaneously|at the same time|^[[:space:]]*[0-9]+\.' | wc -l | tr -d ' ' || true)
+MSG='[parallel-by-default] Multi-task prompt detected. Default to parallel execution: independent Agent calls + Bash calls + Write calls in a SINGLE message (multiple tool_use blocks run concurrently). Worktrees are only for explicit conflict-isolation requests — same-tree parallel is the default.'
 
-if [ "${SIGNAL:-0}" -ge 2 ]; then
-  cat <<'EOF'
-[parallel-by-default] Multi-task prompt detected. Default to parallel execution: independent Agent calls + Bash calls + Write calls in a SINGLE message (multiple tool_use blocks run concurrently). Worktrees are only for explicit conflict-isolation requests — same-tree parallel is the default. See memory/feedback_parallel_by_default.md.
-EOF
-fi
+python3 - "$MSG" <<'PY' 2>/dev/null || true
+import json, sys
+print(json.dumps({"hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "additionalContext": sys.argv[1]}}))
+PY
 
 exit 0
