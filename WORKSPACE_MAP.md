@@ -51,12 +51,14 @@ Ephemeral. Not persistent, not tracked as project state.
   - `hooks/` — Claude-specific lifecycle hooks: `session-start.sh`, `auto-commit.sh`, `post-edit-typecheck.sh`, `gtm-nudge.sh`.
   - `agents/` — thin wrappers: frontmatter (description, model, effort, tools) + `@.agent-personas/<name>.md`.
   - `decisions/DECISIONS.md` — chronological decision log (via `/log-decision`).
-  - `setup.sh` — idempotent harness setup: skills symlink, Codex skill sync, TOML generation, settings symlink, memory symlink, git hooks, Marky.
+  - `setup.sh` — idempotent Claude Code setup: skills symlink, settings symlink, memory symlink, git hooks, Marky.
 
 ### Codex-specific
 
 - `.codex/agents/*.toml` — generated; do not edit by hand. Source: `.claude/agents/*.md` + `.agent-personas/*.md`.
 - `.codex/hooks.json` — Codex hook config; uses `git rev-parse --show-toplevel` for machine-agnostic paths.
+- `.codex/setup.sh` — Codex runtime setup. Installs workspace-owned command approvals additively into `~/.codex/rules/default.rules`.
+- `.codex/rules/default.rules` — workspace-owned Codex command approvals. Do not put personal one-off approvals here.
 - `.agents/skills/` — Codex skill copy, synced by `setup.sh`. Do not edit; `.agent-skills/` is the source.
 
 ---

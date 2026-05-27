@@ -58,6 +58,8 @@ Two tiers:
 
 **Codex hook paths** use `bash -c 'bash "$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/<script>.sh"'` — self-resolving, machine-agnostic. Defined in `.codex/hooks.json`.
 
+**Codex command approvals** live in `.codex/rules/default.rules` and are installed additively into `~/.codex/rules/default.rules` by `bash .codex/setup.sh`. Keep only workspace workflow approvals here; do not commit personal one-off approvals.
+
 **Hook discipline.** Hooks must be idempotent, fast, and never block the user-visible response path. Long-running work goes to `async: true`. Hooks that need to surface findings write to a session-scoped file rather than `echo`-ing into the agent's stream.
 
 ## Setup on a new machine

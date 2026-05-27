@@ -17,7 +17,7 @@ Anything that contradicts either file is a defect, not an exception. Consult the
 
 Everything here must survive a fresh-machine clone + `bash .claude/setup.sh`. No local-only state, no tokens, no manual MCP setup when a connector exists.
 
-**Codex first-run:** project hooks (`.codex/hooks.json`) require explicit project trust before they fire. After cloning, run the Codex trust command so `enforce-feature-branch.sh` and `block-protected-push.sh` are active.
+**Codex first-run:** project hooks (`.codex/hooks.json`) require explicit project trust before they fire. After cloning, run the Codex trust command so `enforce-feature-branch.sh` and `block-protected-push.sh` are active, then run `bash .codex/setup.sh` so workspace command approvals are installed.
 
 Tests every change must pass:
 
@@ -60,6 +60,7 @@ Closed loop:
 | `.agent-skills/` | Canonical skill definitions (SKILL.md format). Shared across all agents. Synced to agent-specific paths by setup.sh. | Canonical. New skills write here. |
 | `.agent-personas/` | Canonical agent persona definitions (markdown). Source of truth for all sub-agent personalities. | Canonical. Edit here; setup.sh regenerates agent-specific formats. |
 | `.agent-hooks/` | Stateless, agent-agnostic enforcement hooks (shell scripts). Registered by each agent's hook config. | Shared. Changes here propagate to all agents automatically. |
+| `.codex/` | Codex-specific hooks, generated agents, and setup/rules for Codex runtime behaviour. | Codex. Runtime config must be repo-owned here, not only in `~/.codex/`. |
 | `Enakl/` | Archived past project context. | Read-only. Never modify. |
 | `cross-stack-architecture-starter-pack/` | Distilled architectural principles. ARDs are non-negotiable boundaries. | Read-only. Consult before structural decisions. |
 | `boringsystems/` | Personal site — engineering leadership case files. Astro, Vercel. | Active project. |
