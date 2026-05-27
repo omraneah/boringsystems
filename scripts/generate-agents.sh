@@ -76,8 +76,11 @@ for persona_path in "$PERSONAS"/*.md; do
   } > "$CLAUDE_AGENTS/${name}.md"
 
   # --- Codex adapter: TOML ---
-  if printf '%s' "$body" | grep -qF '"""'; then
-    echo "ERROR: persona $name body contains \"\"\" which breaks TOML basic strings" >&2; exit 1
+  # Body goes in a TOML literal multiline string ('''), which preserves content
+  # verbatim — no backslash or double-quote escaping needed. Only constraint:
+  # the body must not itself contain the ''' delimiter.
+  if printf '%s' "$body" | grep -qF "'''"; then
+    echo "ERROR: persona $name body contains ''' which breaks TOML literal strings" >&2; exit 1
   fi
   description_escaped="$(printf '%s' "$description" | sed 's/\\/\\\\/g; s/"/\\"/g')"
   {
@@ -85,9 +88,9 @@ for persona_path in "$PERSONAS"/*.md; do
     printf 'name = "%s"\n' "$name"
     printf 'description = "%s"\n' "$description_escaped"
     printf 'model_reasoning_effort = "%s"\n' "$effort"
-    printf 'developer_instructions = """\n'
+    printf "developer_instructions = '''\n"
     printf '%s\n' "$body"
-    printf '"""\n'
+    printf "'''\n"
   } > "$CODEX_AGENTS/${name}.toml"
 
   echo "  ${name}: .claude/agents/${name}.md + .codex/agents/${name}.toml"

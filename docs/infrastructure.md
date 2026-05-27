@@ -22,6 +22,11 @@ Skills live in two scopes. Cross-project skills (useful in every repo) live at `
 | `/convene-board`            | cross-project | yes            | on frame-level decisions, structural unease                                |
 | `/signal-recap`             | cross-project | yes            | on natural-language recap-and-defer signals                                |
 | `/check-stable-docs-leaks`  | cross-project | yes            | before opening a PR that touches stable docs                               |
+| `/check-linear-card-paths`  | cross-project | yes            | after a memory/doc/skill rename, to catch stale Linear card path refs      |
+| `/hygiene-review`           | cross-project | no             | before any commit (auto-invoked by `/commit` on non-trivial changes)       |
+| `/pre-start`                | cross-project | yes            | before any multi-file/structural change or card pickup (Gate 1 proposal)   |
+| `/declare-ready`            | cross-project | yes            | pre-handoff audit trail; transitions the active card to In Review          |
+| `/log-inbound`              | cross-project | yes            | on LinkedIn recruiter-exchange capture to Airtable                         |
 | `/audit-fix`                | boringsystems | yes            | when `npm audit` shows high/critical                                       |
 | `/gtm-sync`                 | cross-project | yes            | on go-to-market signal capture                                             |
 | `/article-capture`          | boringsystems | yes            | when a conversation produces publishable insight                           |
@@ -42,16 +47,16 @@ Two tiers:
 
 | Tier | Location | Who uses it | Scripts |
 |---|---|---|---|
-| Shared (stateless) | `.agents/hooks/` | Claude Code + Codex | `block-protected-push.sh`, `enforce-feature-branch.sh`, `brevity-reminder.sh`, `parallel-by-default-reminder.sh` |
-| Claude-specific (lifecycle) | `.claude/hooks/` | Claude Code only | `session-start.sh`, `auto-commit.sh`, `post-edit-typecheck.sh`, `gtm-nudge.sh` |
+| Shared (stateless) | `.agents/hooks/` | Claude Code + Codex | `block-protected-push.sh`, `enforce-feature-branch.sh`, `brevity-reminder.sh`, `parallel-by-default-reminder.sh`, `auto-commit.sh`, `post-edit-typecheck.sh`, `pull-base-branch.sh` |
+| Claude-specific (lifecycle) | `.claude/hooks/` | Claude Code only | `session-start.sh`, `gtm-nudge.sh` |
 
 | Hook | Location | Event | Effect |
 |---|---|---|---|
 | `session-start.sh` | `.claude/hooks/` | SessionStart (async) | Pulls `main`/`development` if session opens on a base branch; runs `setup.sh` |
 | `block-protected-push.sh` | `.agents/hooks/` | PreToolUse (Bash) | Blocks `git push origin main/master/dev/production` |
 | `enforce-feature-branch.sh` | `.agents/hooks/` | PreToolUse (Edit\|Write) | Enforces feature branch before edits; bypasses `.agents/skills/` |
-| `auto-commit.sh` | `.claude/hooks/` | Stop (async) | Auto-commits + pushes if dirty, on feature branches only. Skips if last commit was within `AUTO_CHECKPOINT_DEBOUNCE` (default 1800s) OR if more than `AUTO_CHECKPOINT_DIRTY_THRESHOLD` files are modified (default 10 — signals active multi-step work) |
-| `post-edit-typecheck.sh` | `.claude/hooks/` | Stop (async) | Runs `astro check` / `tsc --noEmit` in background; reports errors |
+| `auto-commit.sh` | `.agents/hooks/` | Stop | Stages tracked changes (`git add -u`), commits, and detaches the push so neither agent blocks. Feature branches only. Skips if last commit was within `AUTO_CHECKPOINT_DEBOUNCE` (default 1800s) OR more than `AUTO_CHECKPOINT_DIRTY_THRESHOLD` files are modified (default 10 — signals active multi-step work) |
+| `post-edit-typecheck.sh` | `.agents/hooks/` | Stop | Runs `astro check` / `tsc --noEmit` in background; reports errors |
 | `parallel-by-default-reminder.sh` | `.agents/hooks/` | UserPromptSubmit | Reminds the agent to parallelize independent tool calls |
 | `brevity-reminder.sh` | `.agents/hooks/` | UserPromptSubmit | Reinforces executive-register brevity rule |
 | `gtm-nudge.sh` | `.claude/hooks/` | Stop (async) | Periodic reminder to capture GTM signal via `/gtm-sync` |
@@ -127,7 +132,7 @@ Before setting up any MCP server manually (`.mcp.json`, API keys, env vars):
 
 Services with direct connectors (never set up manually): **Linear, GitHub, Gmail, Notion, Google Calendar, Google Drive.** These are OAuth-managed by Anthropic, account-scoped, and work in every session — including cloud and mobile — automatically.
 
-Full rule: `memory/medium-term/feedback/stable/feedback_mcp_connectors.md`.
+Full rule: `memory/short-term/feedback/stable/feedback_mcp_connectors.md`.
 
 ## Decision registry
 

@@ -38,6 +38,10 @@ if [ "$DIRTY_COUNT" -gt "$DIRTY_THRESHOLD" ]; then
   exit 0
 fi
 
-git add -A
+# Stage tracked changes only — never auto-stage untracked files (a stray
+# secret, debug dump, or scratch file must not be checkpointed unattended).
+git add -u
 git commit -m "chore: auto-checkpoint" 2>/dev/null || exit 0
-git push origin "$BRANCH" 2>/dev/null || true
+# Detach the push so neither Claude (async) nor Codex (synchronous Stop) blocks
+# the turn on the network round-trip. The local commit already captured the work.
+( git push origin "$BRANCH" >/dev/null 2>&1 & )
