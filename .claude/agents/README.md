@@ -31,7 +31,7 @@ Specialized expert personas Ahmed can switch into for focused conversations acro
 >
 > **After each substantive session with a persona, Ahmed should ask himself: did this voice serve me, or did it get in the way?** Iterate the agent file based on the answer. Don't preserve a voice that isn't working — rewrite it. Personas evolve as Ahmed's way of working with them evolves; the goal is fit, not consistency.
 
-> **Source of truth is `.agents/personas/<name>.md`.** The files in this folder (`.claude/agents/*.md`) and in `.codex/agents/*.toml` are **generated** by `scripts/generate-agents.sh` and re-staged by pre-commit. Never hand-edit them — your change will be overwritten on the next commit.
+> **Source of truth is `.agents/personas/<name>.md`.** The files in this folder (`.claude/agents/*.md`) are **symlinks** to those personas — Claude reads `.md` directly, so there is no copy. The Codex adapters (`.codex/agents/*.toml`) are **generated** from the same personas by `scripts/generate-agents.sh` (re-staged by pre-commit). Never hand-edit the symlinks or the TOML — edit the persona.
 
 ## How to iterate a persona
 

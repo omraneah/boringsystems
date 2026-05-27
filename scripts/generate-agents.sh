@@ -5,9 +5,12 @@
 # Single source of truth:
 #   .agents/personas/<name>.md  — YAML frontmatter (name, description, model,
 #                                 effort, tools) + persona body.
-# Generated adapters (do not hand-edit):
-#   .claude/agents/<name>.md    — Claude subagent: frontmatter + inlined body.
-#   .codex/agents/<name>.toml   — Codex subagent: name/description/effort + body.
+# Per-agent adapters (do not hand-edit):
+#   .claude/agents/<name>.md    — SYMLINK to the canonical persona. Claude reads
+#                                 .md directly, so no copy is generated — the
+#                                 persona file IS the Claude subagent file.
+#   .codex/agents/<name>.toml   — GENERATED. Codex needs TOML, so this is a real
+#                                 transform: name/description/effort + body.
 #
 # Skills are NOT copied here: .agents/skills/ is canonical and read natively by
 # Codex; Claude reads it through the ~/.claude/skills symlink (see .claude/setup.sh).
@@ -54,28 +57,20 @@ for persona_path in "$PERSONAS"/*.md; do
     echo "ERROR: $persona_path has no frontmatter" >&2; exit 1; }
 
   description="$(fm_field description "$persona_path")"
-  model="$(fm_field model "$persona_path")"
   effort_raw="$(fm_field effort "$persona_path")"
-  tools="$(fm_field tools "$persona_path")"
   effort="$(map_effort "$effort_raw")"
 
   # Body = everything after the closing (second) ---, leading blank lines trimmed.
   body="$(awk 'BEGIN{c=0} /^---$/{if(c<2){c++; next}} c>=2{print}' "$persona_path" \
     | awk 'NF{p=1} p{print}')"
 
-  # --- Claude adapter: frontmatter + inlined body ---
-  {
-    printf -- '---\n'
-    printf 'name: %s\n' "$name"
-    printf 'description: %s\n' "$description"
-    printf 'model: %s\n' "$model"
-    printf 'effort: %s\n' "$effort_raw"
-    printf 'tools: %s\n' "$tools"
-    printf -- '---\n\n'
-    printf '%s\n' "$body"
-  } > "$CLAUDE_AGENTS/${name}.md"
+  # --- Claude adapter: symlink to the canonical persona ---
+  # Claude reads markdown directly and the persona file already IS a valid
+  # subagent file (frontmatter + body). A relative, in-repo symlink keeps a
+  # single source of truth, survives clone/cloud, and respects symlink hygiene.
+  ln -sfn "../../.agents/personas/${name}.md" "$CLAUDE_AGENTS/${name}.md"
 
-  # --- Codex adapter: TOML ---
+  # --- Codex adapter: TOML (real transform — Codex needs TOML, not markdown) ---
   # Body goes in a TOML literal multiline string ('''), which preserves content
   # verbatim — no backslash or double-quote escaping needed. Only constraint:
   # the body must not itself contain the ''' delimiter.
@@ -93,8 +88,8 @@ for persona_path in "$PERSONAS"/*.md; do
     printf "'''\n"
   } > "$CODEX_AGENTS/${name}.toml"
 
-  echo "  ${name}: .claude/agents/${name}.md + .codex/agents/${name}.toml"
+  echo "  ${name}: .claude/agents/${name}.md (symlink) + .codex/agents/${name}.toml"
   generated=$((generated + 1))
 done
 
-echo "Generated $generated agent adapter pairs from .agents/personas/"
+echo "Wired $generated personas → Claude symlinks + generated Codex TOML"

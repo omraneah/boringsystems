@@ -51,7 +51,7 @@ Ephemeral. Not persistent, not tracked as project state.
 - `.claude/` — settings, hooks, agent wrappers, decisions, git-hooks, setup.
   - `settings.json` — shared hooks point to `.agents/hooks/`; Claude-specific lifecycle hooks stay in `.claude/hooks/`.
   - `hooks/` — Claude-specific lifecycle hooks: `session-start.sh`, `gtm-nudge.sh`.
-  - `agents/` — generated; do not edit by hand. Frontmatter + inlined body, built from `.agents/personas/<name>.md`.
+  - `agents/` — **symlinks** to `.agents/personas/<name>.md` (Claude reads `.md` directly, so no copy). Edit the persona, not these. `scripts/generate-agents.sh` keeps the symlinks in sync.
   - `decisions/DECISIONS.md` — chronological decision log (via `/log-decision`).
   - `setup.sh` — idempotent Claude Code setup: skills symlink, settings symlink, memory symlink, git hooks, Marky.
 
