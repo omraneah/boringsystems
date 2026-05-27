@@ -2,7 +2,7 @@
 
 ## Skills
 
-Skills live in two scopes. Cross-project skills (useful in every repo) live at `.agent-skills/` (canonical, agent-agnostic) and are surfaced to Claude Code via the `~/.claude/skills` symlink and to Codex via the committed copy at `.agents/skills/`. Project-scoped skills live at `<project>/.claude/skills/` and only load when Claude Code is launched from that project.
+Skills live in two scopes. Cross-project skills (useful in every repo) live at `.agents/skills/` (canonical, agent-agnostic). Codex reads this path natively; Claude Code reads it via the `~/.claude/skills` symlink. One source, two readers — no copy. Project-scoped skills live at `<project>/.claude/skills/` and only load when Claude Code is launched from that project.
 
 | Skill                       | Scope         | User-invocable | Auto-invokes                                                               |
 | --------------------------- | ------------- | -------------- | -------------------------------------------------------------------------- |
@@ -32,7 +32,7 @@ Skills live in two scopes. Cross-project skills (useful in every repo) live at `
 
 **The scope rule** (DECISIONS.md 2026-04-21): no duplication across scopes. If a skill needs to work in two projects, either hoist it up or accept that the agent must be launched from the right project. Launch discipline > file duplication.
 
-**Write target:** always `.agent-skills/<name>/SKILL.md`. Never `~/.claude/skills/` (symlink) or `.agents/skills/` (generated copy). The `enforce-feature-branch.sh` hook is pre-configured to bypass `.agent-skills/` writes — no branch needed when creating skills.
+**Write target:** always `.agents/skills/<name>/SKILL.md` (canonical). Never `~/.claude/skills/` — that is the Claude-facing symlink, not the source. The `enforce-feature-branch.sh` hook is pre-configured to bypass `.agents/skills/` writes — no branch needed when creating skills.
 
 ## Hooks
 
@@ -42,31 +42,31 @@ Two tiers:
 
 | Tier | Location | Who uses it | Scripts |
 |---|---|---|---|
-| Shared (stateless) | `.agent-hooks/` | Claude Code + Codex | `block-protected-push.sh`, `enforce-feature-branch.sh`, `brevity-reminder.sh`, `parallel-by-default-reminder.sh` |
+| Shared (stateless) | `.agents/hooks/` | Claude Code + Codex | `block-protected-push.sh`, `enforce-feature-branch.sh`, `brevity-reminder.sh`, `parallel-by-default-reminder.sh` |
 | Claude-specific (lifecycle) | `.claude/hooks/` | Claude Code only | `session-start.sh`, `auto-commit.sh`, `post-edit-typecheck.sh`, `gtm-nudge.sh` |
 
 | Hook | Location | Event | Effect |
 |---|---|---|---|
 | `session-start.sh` | `.claude/hooks/` | SessionStart (async) | Pulls `main`/`development` if session opens on a base branch; runs `setup.sh` |
-| `block-protected-push.sh` | `.agent-hooks/` | PreToolUse (Bash) | Blocks `git push origin main/master/dev/production` |
-| `enforce-feature-branch.sh` | `.agent-hooks/` | PreToolUse (Edit\|Write) | Enforces feature branch before edits; bypasses `.agent-skills/` |
+| `block-protected-push.sh` | `.agents/hooks/` | PreToolUse (Bash) | Blocks `git push origin main/master/dev/production` |
+| `enforce-feature-branch.sh` | `.agents/hooks/` | PreToolUse (Edit\|Write) | Enforces feature branch before edits; bypasses `.agents/skills/` |
 | `auto-commit.sh` | `.claude/hooks/` | Stop (async) | Auto-commits + pushes if dirty, on feature branches only. Skips if last commit was within `AUTO_CHECKPOINT_DEBOUNCE` (default 1800s) OR if more than `AUTO_CHECKPOINT_DIRTY_THRESHOLD` files are modified (default 10 — signals active multi-step work) |
 | `post-edit-typecheck.sh` | `.claude/hooks/` | Stop (async) | Runs `astro check` / `tsc --noEmit` in background; reports errors |
-| `parallel-by-default-reminder.sh` | `.agent-hooks/` | UserPromptSubmit | Reminds the agent to parallelize independent tool calls |
-| `brevity-reminder.sh` | `.agent-hooks/` | UserPromptSubmit | Reinforces executive-register brevity rule |
+| `parallel-by-default-reminder.sh` | `.agents/hooks/` | UserPromptSubmit | Reminds the agent to parallelize independent tool calls |
+| `brevity-reminder.sh` | `.agents/hooks/` | UserPromptSubmit | Reinforces executive-register brevity rule |
 | `gtm-nudge.sh` | `.claude/hooks/` | Stop (async) | Periodic reminder to capture GTM signal via `/gtm-sync` |
 
 **Codex hook paths** use `bash -c 'bash "$(git rev-parse --show-toplevel 2>/dev/null || pwd)/<script>"'` — self-resolving, machine-agnostic. Defined in `.codex/hooks.json`. Codex SessionStart runs `.codex/setup.sh` after the workspace is trusted.
 
-**Canonical permissions** live in `.agent-permissions/`. Agent-specific files are adapters, not policy sources. Claude Code expresses the policy through `.claude/settings.json` tool-class + connector permissions plus `.agent-hooks/`; Codex expresses shell approvals through `.codex/rules/default.rules` generated from `.agent-permissions/command-prefixes.rules` and connector access through platform apps/connectors.
+**Canonical permissions** live in `.agents/permissions/`. Agent-specific files are adapters, not policy sources. Claude Code expresses the policy through `.claude/settings.json` tool-class + connector permissions plus `.agents/hooks/`; Codex expresses shell approvals through `.codex/rules/default.rules` generated from `.agents/permissions/command-prefixes.rules` and connector access through platform apps/connectors.
 
 Codex command approvals are installed additively into the Codex runtime rules file by `bash .codex/setup.sh`. Keep only workspace workflow approvals in the canonical permission policy; do not commit personal one-off approvals. Codex setup is workspace-scoped; do not add user-home or broader-root project setup.
 
-Git workflow approvals in `.agent-permissions/command-prefixes.rules` allow the `git` command family broadly for Codex, matching Claude Code's broad `Bash` permission. Do not reintroduce per-command Git approval prompts. Git is normal workspace workflow; protection belongs in hooks.
+Git workflow approvals in `.agents/permissions/command-prefixes.rules` allow the `git` command family broadly for Codex, matching Claude Code's broad `Bash` permission. Do not reintroduce per-command Git approval prompts. Git is normal workspace workflow; protection belongs in hooks.
 
 Protected-branch policy: agents must never push to, force-push to, or delete protected branches (`main`, `master`, `development`, `dev`, `production`) locally or remotely. If a protected branch is involved, stop and surface the risk. All other Git commands are pre-authorized normal workflow.
 
-Claude MCP connector allowlist entries live in `.agent-permissions/claude-mcp-allow.txt`. Linear read/write tools used by card lifecycle skills are ordinary workspace workflow and belong there. Airtable write tools remain excluded unless deliberately re-approved; read/search tools are allowed.
+Claude MCP connector allowlist entries live in `.agents/permissions/claude-mcp-allow.txt`. Linear read/write tools used by card lifecycle skills are ordinary workspace workflow and belong there. Airtable write tools remain excluded unless deliberately re-approved; read/search tools are allowed.
 
 **Hook discipline.** Hooks must be idempotent, fast, and never block the user-visible response path. Long-running work goes to `async: true`. Hooks that need to surface findings write to a session-scoped file rather than `echo`-ing into the agent's stream.
 
@@ -91,11 +91,11 @@ bash .codex/setup.sh
 ```
 
 Claude Code setup is idempotent and runs automatically via `.claude/hooks/session-start.sh` each session. It:
-- Symlinks `~/.claude/skills` → `.agent-skills/`
+- Symlinks `~/.claude/skills` → `.agents/skills/`
 - Symlinks `~/.claude/settings.json` → `.claude/settings.json`
 - Symlinks `~/.claude/projects/-Users-ahmedomrane-Workspace/memory/` → `memory/` (workspace root)
 
-Codex setup is idempotent and runs automatically via `.codex/hooks.json` SessionStart after the workspace is trusted. It installs workspace-owned Codex rules only. Codex agents and skills are committed artifacts generated from the canonical workspace sources; cloud Codex has them from the checkout.
+Codex setup is idempotent and runs automatically via `.codex/hooks.json` SessionStart after the workspace is trusted. It installs workspace-owned Codex rules only. Codex reads skills from `.agents/skills/` and personas from `.codex/agents/*.toml` (committed, generated from `.agents/personas/` by `scripts/generate-agents.sh`); cloud Codex has everything from the checkout.
 
 `settings.local.json` is gitignored — it is Claude's runtime permission cache, not config.
 

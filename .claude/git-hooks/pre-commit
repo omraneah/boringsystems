@@ -14,10 +14,10 @@
 #      b. tmp/ path references. tmp/ is an ephemeral render buffer.
 #         Never link to tmp/ files from committed docs.
 #
-# 3. Build-artifact sync: regenerates .codex/agents/*.toml, syncs
-#    .agents/skills/ from .agent-skills/, and syncs permission adapters
-#    from .agent-permissions/ before each commit. Ensures committed artifacts
-#    are never stale relative to their sources.
+# 3. Build-artifact sync: regenerates the per-agent persona adapters
+#    (.claude/agents/*.md and .codex/agents/*.toml) from .agents/personas/, and
+#    syncs permission adapters from .agents/permissions/ before each commit.
+#    Ensures committed artifacts are never stale relative to their sources.
 #
 # Scope for hygiene: staged .md/.mdx files, excluding:
 #   .claude/          — hooks and skills legitimately document these patterns
@@ -47,13 +47,13 @@ esac
 # --- Build-artifact sync ---
 workspace_root="$(git rev-parse --show-toplevel)"
 
-# Sync skills + regenerate Codex TOML from canonical sources
-bash "$workspace_root/scripts/generate-codex-agents.sh" >/dev/null 2>&1 || \
-  echo "[pre-commit] WARN: generate-codex-agents.sh failed — .codex/agents/ and .agents/skills/ may be stale"
-git add "$workspace_root/.agents/skills/" "$workspace_root/.codex/agents/" 2>/dev/null || true
+# Regenerate per-agent persona adapters from canonical .agents/personas/
+bash "$workspace_root/scripts/generate-agents.sh" >/dev/null 2>&1 || \
+  echo "[pre-commit] WARN: generate-agents.sh failed — .claude/agents/ and .codex/agents/ may be stale"
+git add "$workspace_root/.claude/agents/" "$workspace_root/.codex/agents/" 2>/dev/null || true
 
 # Sync agent-specific permission adapters from canonical policy
-bash "$workspace_root/.agent-permissions/sync.sh" >/dev/null 2>&1 || \
+bash "$workspace_root/.agents/permissions/sync.sh" >/dev/null 2>&1 || \
   echo "[pre-commit] WARN: permission sync failed — agent permission adapters may be stale"
 git add "$workspace_root/.codex/rules/default.rules" 2>/dev/null || true
 
@@ -69,8 +69,8 @@ fail=0
 while IFS= read -r file; do
   # Only check markdown files
   case "$file" in *.md|*.mdx) ;; *) continue ;; esac
-  # Skip: .claude/ and .agents/skills/ (hook/skill implementation files document these patterns)
-  case "$file" in .claude/*|.agents/skills/*|.agent-skills/*) continue ;; esac
+  # Skip: .claude/ and .agents/ (hook/skill/persona implementation files document these patterns)
+  case "$file" in .claude/*|.agents/*) continue ;; esac
   # Skip: short-term episodic entries (daily/weekly, card IDs are expected)
   case "$file" in memory/short-term/20*) continue ;; esac
   # Skip: archived content

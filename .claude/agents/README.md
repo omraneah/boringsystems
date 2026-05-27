@@ -31,20 +31,23 @@ Specialized expert personas Ahmed can switch into for focused conversations acro
 >
 > **After each substantive session with a persona, Ahmed should ask himself: did this voice serve me, or did it get in the way?** Iterate the agent file based on the answer. Don't preserve a voice that isn't working — rewrite it. Personas evolve as Ahmed's way of working with them evolves; the goal is fit, not consistency.
 
+> **Source of truth is `.agents/personas/<name>.md`.** The files in this folder (`.claude/agents/*.md`) and in `.codex/agents/*.toml` are **generated** by `scripts/generate-agents.sh` and re-staged by pre-commit. Never hand-edit them — your change will be overwritten on the next commit.
+
 ## How to iterate a persona
 
-1. Open the agent file directly (`.claude/agents/<name>.md`).
+1. Open the persona source: `.agents/personas/<name>.md`.
 2. Adjust the **Who you are** section (backstory, reference anchors), the **How you show up** section (voice, defaults), or the **Operating constraints** section (what they refuse / what governs them).
-3. The `@imports` block lists what the agent preloads. Move heavy files to "read on demand" if startup feels slow.
-4. Commit the change in its own small PR — easier to roll back if the new voice is worse.
+3. Frontmatter (description, model, effort, tools) lives at the top of the same file. `@imports` in the body preload substrate — Claude resolves them; Codex treats them as literal text. Move heavy files to "read on demand" if startup feels slow.
+4. Run `bash scripts/generate-agents.sh` (or just commit — pre-commit runs it) to rebuild both adapters.
+5. Commit the change in its own small PR — easier to roll back if the new voice is worse.
 
 ## Adding a new persona
 
-1. Write `.claude/agents/<name>.md` following the structure of the existing three.
-2. Frontmatter: `name`, `description` (third-person, when-to-invoke), `model: opus`, `tools: Read, Edit, Write, Bash, Grep, Glob, WebSearch, WebFetch` (or a subset if the persona shouldn't touch the repo).
+1. Write `.agents/personas/<name>.md` following the structure of an existing one.
+2. Frontmatter: `name`, `description` (third-person, when-to-invoke), `model: opus`, `effort`, `tools: Read, Edit, Write, Bash, Grep, Glob, WebSearch, WebFetch` (or a subset if the persona shouldn't touch the repo).
 3. Body sections: identity / how they show up / what governs them / operating constraints / what they're for / what they're NOT for / output style.
-4. Use `@imports` for files the persona should preload as substrate.
-5. Update this README's table.
+4. Use `@imports` in the body for files the persona should preload as substrate.
+5. Run `bash scripts/generate-agents.sh` and update this README's table.
 
 ## Design principles (for whoever rewrites these)
 
