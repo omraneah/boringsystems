@@ -10,6 +10,7 @@ When a discrete unit of work finishes, run `/commit` (or equivalent) and push to
 
 **How to apply:**
 - After finishing a task (skill created, file written, fix shipped, etc.), commit + push immediately. Don't end the turn with "want me to commit?".
+- Git commands are pre-authorized normal workflow. Do not ask permission for Git operations on feature branches.
 - Always on a feature branch. Never main, master, development, dev, production. (Already enforced by hook, but bake it into the default flow — branch first if currently on a protected branch.)
 - The `/commit` skill already pushes to the current feature branch — just run it.
 - If currently on a protected branch, create a sensibly-named feature branch first (e.g., `omraneah/<short-task-name>`), then commit + push.

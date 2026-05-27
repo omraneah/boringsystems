@@ -6,6 +6,8 @@
 
 Enforcement: `.claude/hooks/block-protected-push.sh` blocks any such push at the shell level. The rule is not advisory — the hook intercepts it. If a push is ever needed to a protected branch, it is a conscious decision Ahmed makes manually, not something Claude does.
 
+Git commands are pre-authorized normal workflow for agents. Claude Code gets this through broad `Bash`; Codex gets this through broad `prefix_rule(pattern=["git"], decision="allow")`. Do not ask Ahmed for permission to run Git unless the command touches a protected branch or bypasses hooks.
+
 ## Branch-per-concern
 
 - One feature branch per distinct concern. If a session accumulates more than three concerns, split.
@@ -32,8 +34,8 @@ When Ahmed signals a merge has happened ("merged, pull and delete", "we're done"
 ## Never
 
 - Never skip hooks (`--no-verify`, `--no-gpg-sign`, etc.) unless Ahmed explicitly asks.
-- Never force-push unless explicitly asked. Never force-push to a protected branch under any circumstance.
-- Never force-delete a branch (`-D`). Use `-d`; if it refuses, investigate.
+- Never force-push to a protected branch under any circumstance.
+- Never delete a protected branch locally or remotely.
 - Never `git reset --hard` without Ahmed's explicit consent.
 - Never commit files that likely contain secrets. Warn if Ahmed asks to commit one.
 
