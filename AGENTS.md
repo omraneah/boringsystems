@@ -61,10 +61,10 @@ Closed loop:
 | Folder | Purpose | Access |
 |--------|---------|--------|
 | `memory/` | Tiered memory: long-term constitutional + identity, medium-term current direction, short-term episodic record. Auto-loaded by the active agent. | Source of truth. Edit via consolidation flow + drift-detection skills. |
-| `.agent-skills/` | Canonical skill definitions (SKILL.md format). Shared across all agents. Claude reads through setup symlink; Codex reads committed generated copy under `.agents/skills/`. | Canonical. New skills write here. |
-| `.agent-personas/` | Canonical agent persona definitions (markdown). Source of truth for all sub-agent personalities. | Canonical. Edit here; setup.sh regenerates agent-specific formats. |
-| `.agent-hooks/` | Stateless, agent-agnostic enforcement hooks (shell scripts). Registered by each agent's hook config. | Shared. Changes here propagate to all agents automatically. |
-| `.agent-permissions/` | Canonical permission policy for ordinary workspace workflow. Agent-specific permission files are adapters. | Canonical. Update here first. |
+| `.agents/skills/` | Canonical skill definitions (SKILL.md format). Shared across all agents. Codex reads this path natively; Claude reads it through the `~/.claude/skills` setup symlink. | Canonical. New skills write here. |
+| `.agents/personas/` | Canonical sub-agent persona definitions: YAML frontmatter (description, model, effort, tools) + body. Single source for all sub-agent personalities. | Canonical. Edit here; the generator builds each agent's format. |
+| `.agents/hooks/` | Stateless, agent-agnostic enforcement hooks (shell scripts). Registered by each agent's hook config. | Shared. Changes here propagate to all agents automatically. |
+| `.agents/permissions/` | Canonical permission policy for ordinary workspace workflow. Agent-specific permission files are adapters. | Canonical. Update here first. |
 | `.codex/` | Codex-specific hooks, generated agents, and setup/rules for Codex runtime behaviour. | Codex. Runtime config must be repo-owned here, not only accepted as local runtime state. |
 | `Enakl/` | Archived past project context. | Read-only. Never modify. |
 | `cross-stack-architecture-starter-pack/` | Distilled architectural principles. ARDs are non-negotiable boundaries. | Read-only. Consult before structural decisions. |
@@ -75,11 +75,11 @@ Closed loop:
 
 ## Non-negotiable rules
 
-- **Never push to protected branches.** `main`, `master`, `development`, `dev`, `production`. Enforced by `.agent-hooks/block-protected-push.sh`.
-- **Git is pre-authorized workflow.** Do not ask permission for Git commands on feature branches. Claude Code carries this through broad `Bash`; Codex carries it through `.agent-permissions/command-prefixes.rules` with `prefix_rule(pattern=["git"], decision="allow")`. The guardrail is protected branches: never push to, force-push to, or delete `main`, `master`, `development`, `dev`, or `production`.
-- **Never edit on protected branches.** Same protected list. Before the first edit of a session, check the current branch in the relevant repo (workspace or submodule) and create a feature branch (`omraneah/<short-task-name>`) if needed. Reuse an existing session feature branch — do not create siblings. Edits are pre-authorized; no permission prompts. Enforced by `.agent-hooks/enforce-feature-branch.sh`. Full rule: `memory/short-term/feedback/stable/feedback_auto_edit_on_feature_branch.md`.
+- **Never push to protected branches.** `main`, `master`, `development`, `dev`, `production`. Enforced by `.agents/hooks/block-protected-push.sh`.
+- **Git is pre-authorized workflow.** Do not ask permission for Git commands on feature branches. Claude Code carries this through broad `Bash`; Codex carries it through `.agents/permissions/command-prefixes.rules` with `prefix_rule(pattern=["git"], decision="allow")`. The guardrail is protected branches: never push to, force-push to, or delete `main`, `master`, `development`, `dev`, or `production`.
+- **Never edit on protected branches.** Same protected list. Before the first edit of a session, check the current branch in the relevant repo (workspace or submodule) and create a feature branch (`omraneah/<short-task-name>`) if needed. Reuse an existing session feature branch — do not create siblings. Edits are pre-authorized; no permission prompts. Enforced by `.agents/hooks/enforce-feature-branch.sh`. Full rule: `memory/short-term/feedback/stable/feedback_auto_edit_on_feature_branch.md`.
 - **Never open PRs.** The agent pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request`.
-- **New skills write to `.agent-skills/`.** Skills always go to `Workspace/.agent-skills/<name>/SKILL.md` (canonical shared path). Writing to `.agent-skills/` is pre-authorized — no feature branch required. Agent-specific copies are generated/committed from that source. Full rule: `memory/short-term/feedback/stable/feedback_skills_canonical_path.md`.
+- **New skills write to `.agents/skills/`.** Skills always go to `Workspace/.agents/skills/<name>/SKILL.md` (canonical shared path). Writing to `.agents/skills/` is pre-authorized — no feature branch required. Codex reads this path natively; Claude reads it via the `~/.claude/skills` symlink — no copies. Full rule: `memory/short-term/feedback/stable/feedback_skills_canonical_path.md`.
 - **Connector-first MCP.** Use your agent platform's native connector for Linear, GitHub, Gmail, Notion, Google Calendar, Google Drive. Never manual auth when a connector exists.
 - **Platform features first, custom code second.** Before reimplementing anything structural (i18n, auth, redirects, caching), check framework docs for native support.
 - **Never modify `Enakl/` or `cross-stack-architecture-starter-pack/`** without explicit instruction.

@@ -5,11 +5,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.codex/setup.sh\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.codex/setup.sh\" || echo \"WARN: .codex/setup.sh failed — continuing session\"'"
           },
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/pull-base-branch.sh\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/pull-base-branch.sh\"'"
           }
         ]
       }
@@ -20,7 +20,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/block-protected-push.sh\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/block-protected-push.sh\"'"
           }
         ]
       },
@@ -29,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/enforce-feature-branch.sh\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/enforce-feature-branch.sh\"'"
           }
         ]
       }
@@ -39,11 +39,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/parallel-by-default-reminder.sh\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/parallel-by-default-reminder.sh\"'"
           },
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/brevity-reminder.sh\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/brevity-reminder.sh\"'"
           }
         ]
       }
@@ -53,11 +53,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/auto-commit.sh\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/auto-commit.sh\"'"
           },
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/post-edit-typecheck.sh\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/post-edit-typecheck.sh\"'"
           }
         ]
       }

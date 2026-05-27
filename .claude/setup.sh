@@ -15,8 +15,8 @@ MEMORY_DST="$CLAUDE_DIR/projects/$(echo "$WORKSPACE_DIR" | tr '/' '-')/memory"
 
 echo "Workspace: $WORKSPACE_DIR"
 
-# 1. Skills: symlink ~/.claude/skills → .agent-skills/ (canonical cross-agent location)
-SKILLS_SRC="$WORKSPACE_DIR/.agent-skills"
+# 1. Skills: symlink ~/.claude/skills → .agents/skills/ (canonical cross-agent location)
+SKILLS_SRC="$WORKSPACE_DIR/.agents/skills"
 SKILLS_DST="$CLAUDE_DIR/skills"
 if [ -L "$SKILLS_DST" ]; then
   EXISTING_TARGET="$(readlink "$SKILLS_DST")"
@@ -32,10 +32,10 @@ elif [ -d "$SKILLS_DST" ]; then
   echo "Backing up existing skills/ → $(basename "$BACKUP")"
   mv "$SKILLS_DST" "$BACKUP"
   ln -s "$SKILLS_SRC" "$SKILLS_DST"
-  echo "Created: ~/.claude/skills → .agent-skills/"
+  echo "Created: ~/.claude/skills → .agents/skills/"
 else
   ln -s "$SKILLS_SRC" "$SKILLS_DST"
-  echo "Created: ~/.claude/skills → .agent-skills/"
+  echo "Created: ~/.claude/skills → .agents/skills/"
 fi
 
 # 2. Settings: symlink ~/.claude/settings.json to workspace canonical

@@ -17,7 +17,7 @@ bash "$PROJ_DIR/.claude/setup.sh" >"$SETUP_LOG" 2>&1 \
   || echo "WARN: setup.sh failed — check $SETUP_LOG"
 
 # Pull base branch (shared logic)
-bash "$PROJ_DIR/.agent-hooks/pull-base-branch.sh"
+bash "$PROJ_DIR/.agents/hooks/pull-base-branch.sh"
 
 # Surface type-check failures from last session
 REPO_NAME=$(basename "$PROJ_DIR")

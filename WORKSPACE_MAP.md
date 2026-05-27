@@ -38,29 +38,29 @@ Ephemeral. Not persistent, not tracked as project state.
 ### Canonical (agent-agnostic)
 
 - `AGENTS.md` — workspace instructions. Industry-standard, read natively by Codex / Cursor / Windsurf / Amp / Devin. Claude Code imports via `@AGENTS.md` in `CLAUDE.md`. Single source of truth for all non-agent-specific rules.
-- `.agent-skills/` — cross-agent skills. Canonical write target; `~/.claude/skills/` symlinks here. Codex consumes the committed `.agents/skills/` copy. Bypass the feature-branch hook by design.
-- `.agent-personas/` — persona body markdown for each sub-agent. Used by `.claude/agents/*.md` (via `@` import) AND `scripts/generate-codex-agents.sh` (inlined into Codex TOML).
-- `.agent-hooks/` — stateless shared hooks (no agent-specific env vars). Used by both Claude Code and Codex: `enforce-feature-branch.sh`, `block-protected-push.sh`, `brevity-reminder.sh`, `parallel-by-default-reminder.sh`.
-- `.agent-permissions/` — canonical permission policy for shell workflow and connector tools. Agent-specific permission files are adapters generated/validated from here.
-- `scripts/generate-codex-agents.sh` — generates `.codex/agents/*.toml` from `.claude/agents/*.md` (frontmatter) + `.agent-personas/*.md` (body). Run before commit by `.claude/git-hooks/pre-commit`.
+- `.agents/` — the single canonical shared tree. Everything agent-agnostic lives here; `.claude/` and `.codex/` are pure adapters that read or are generated from it.
+  - `.agents/skills/` — cross-agent skills, canonical write target. Codex reads natively; `~/.claude/skills/` symlinks here for Claude. Bypasses the feature-branch hook by design. No per-agent copies.
+  - `.agents/personas/` — sub-agent definitions: YAML frontmatter (description, model, effort, tools) + body. Single source; `scripts/generate-agents.sh` builds both adapters from it.
+  - `.agents/hooks/` — stateless shared hooks (no agent-specific env vars). Registered by both Claude Code and Codex: `enforce-feature-branch.sh`, `block-protected-push.sh`, `brevity-reminder.sh`, `parallel-by-default-reminder.sh`, `auto-commit.sh`, `post-edit-typecheck.sh`, `pull-base-branch.sh`.
+  - `.agents/permissions/` — canonical permission policy for shell workflow and connector tools. Agent-specific permission files are adapters generated/validated from here via `sync.sh`.
+- `scripts/generate-agents.sh` — generates `.claude/agents/*.md` AND `.codex/agents/*.toml` from `.agents/personas/*.md`. Run before commit by `.claude/git-hooks/pre-commit`.
 
 ### Claude Code–specific
 
 - `CLAUDE.md` — thin wrapper: `@AGENTS.md` + Claude Code addenda (skills invocation, sub-agents, connectors, hooks path).
 - `.claude/` — settings, hooks, agent wrappers, decisions, git-hooks, setup.
-  - `settings.json` — shared hooks point to `.agent-hooks/`; Claude-specific lifecycle hooks stay in `.claude/hooks/`.
-  - `hooks/` — Claude-specific lifecycle hooks: `session-start.sh`, `auto-commit.sh`, `post-edit-typecheck.sh`, `gtm-nudge.sh`.
-  - `agents/` — thin wrappers: frontmatter (description, model, effort, tools) + `@.agent-personas/<name>.md`.
+  - `settings.json` — shared hooks point to `.agents/hooks/`; Claude-specific lifecycle hooks stay in `.claude/hooks/`.
+  - `hooks/` — Claude-specific lifecycle hooks: `session-start.sh`, `gtm-nudge.sh`.
+  - `agents/` — **symlinks** to `.agents/personas/<name>.md` (Claude reads `.md` directly, so no copy). Edit the persona, not these. `scripts/generate-agents.sh` keeps the symlinks in sync.
   - `decisions/DECISIONS.md` — chronological decision log (via `/log-decision`).
   - `setup.sh` — idempotent Claude Code setup: skills symlink, settings symlink, memory symlink, git hooks, Marky.
 
 ### Codex-specific
 
-- `.codex/agents/*.toml` — generated; do not edit by hand. Source: `.claude/agents/*.md` + `.agent-personas/*.md`.
+- `.codex/agents/*.toml` — generated; do not edit by hand. Source: `.agents/personas/*.md`.
 - `.codex/hooks.json` — Codex hook config; uses `git rev-parse --show-toplevel` for machine-agnostic paths. Runs `.codex/setup.sh` on SessionStart once the workspace is trusted.
 - `.codex/setup.sh` — Codex runtime setup. Installs workspace-owned command approvals additively into Codex's runtime rules file.
-- `.codex/rules/default.rules` — Codex command-approval adapter generated from `.agent-permissions/command-prefixes.rules`. Do not edit by hand.
-- `.agents/skills/` — committed Codex skill copy. Do not edit; `.agent-skills/` is the source.
+- `.codex/rules/default.rules` — Codex command-approval adapter generated from `.agents/permissions/command-prefixes.rules`. Do not edit by hand.
 
 ---
 
