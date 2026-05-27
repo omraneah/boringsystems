@@ -29,14 +29,16 @@ CODEX_AGENTS="$WORKSPACE/.codex/agents"
 [ -d "$PERSONAS" ] || { echo "ERROR: $PERSONAS not found" >&2; exit 1; }
 mkdir -p "$CLAUDE_AGENTS" "$CODEX_AGENTS"
 
-# Codex accepts: low medium high xhigh. "max" → xhigh.
+# Codex accepts: low medium high xhigh. "max" → xhigh. Unknown/empty → medium
+# (NOT xhigh — a typo must not silently select the most expensive setting) with
+# a loud warning so the bad value gets noticed and fixed.
 map_effort() {
   case "$1" in
     max|xhigh) echo "xhigh" ;;
     high)      echo "high"  ;;
     medium)    echo "medium" ;;
     low)       echo "low"   ;;
-    *)         echo "xhigh" ;;
+    *)         echo "WARN: unknown effort '$1' → defaulting to medium" >&2; echo "medium" ;;
   esac
 }
 

@@ -69,8 +69,10 @@ fail=0
 while IFS= read -r file; do
   # Only check markdown files
   case "$file" in *.md|*.mdx) ;; *) continue ;; esac
-  # Skip: .claude/ and .agents/ (hook/skill/persona implementation files document these patterns)
-  case "$file" in .claude/*|.agents/*) continue ;; esac
+  # Skip: .claude/ and .agents/{skills,hooks}/ — these legitimately document the
+  # forbidden patterns (the leak-check skill, hooks). Personas + permissions are
+  # still scanned.
+  case "$file" in .claude/*|.agents/skills/*|.agents/hooks/*) continue ;; esac
   # Skip: short-term episodic entries (daily/weekly, card IDs are expected)
   case "$file" in memory/short-term/20*) continue ;; esac
   # Skip: archived content
