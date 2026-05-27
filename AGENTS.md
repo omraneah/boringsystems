@@ -76,6 +76,7 @@ Closed loop:
 ## Non-negotiable rules
 
 - **Never push to protected branches.** `main`, `master`, `development`, `dev`, `production`. Enforced by `.agent-hooks/block-protected-push.sh`.
+- **Git is pre-authorized workflow.** Do not ask permission for Git commands on feature branches. Claude Code carries this through broad `Bash`; Codex carries it through `.agent-permissions/command-prefixes.rules` with `prefix_rule(pattern=["git"], decision="allow")`. The guardrail is protected branches: never push to, force-push to, or delete `main`, `master`, `development`, `dev`, or `production`.
 - **Never edit on protected branches.** Same protected list. Before the first edit of a session, check the current branch in the relevant repo (workspace or submodule) and create a feature branch (`omraneah/<short-task-name>`) if needed. Reuse an existing session feature branch — do not create siblings. Edits are pre-authorized; no permission prompts. Enforced by `.agent-hooks/enforce-feature-branch.sh`. Full rule: `memory/short-term/feedback/stable/feedback_auto_edit_on_feature_branch.md`.
 - **Never open PRs.** The agent pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request`.
 - **New skills write to `.agent-skills/`.** Skills always go to `Workspace/.agent-skills/<name>/SKILL.md` (canonical shared path). Writing to `.agent-skills/` is pre-authorized — no feature branch required. Agent-specific copies are generated/committed from that source. Full rule: `memory/short-term/feedback/stable/feedback_skills_canonical_path.md`.

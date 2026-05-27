@@ -27,10 +27,12 @@ Submodule URLs in `.gitmodules` must always be **HTTPS** (not SSH) — required 
 **Never push to: `main`, `master`, `development`, `dev`, `production`.**
 
 Enforced by two hooks:
-- `block-protected-push.sh` (PreToolUse/Bash) — blocks the push shell command
+- `block-protected-push.sh` (PreToolUse/Bash) — blocks protected-branch push, force-push, and deletion commands
 - `enforce-feature-branch.sh` (PreToolUse/Edit|Write|NotebookEdit) — blocks edits when on a protected branch
 
 If a protected-branch push is ever needed, Ahmed does it manually. Claude never does.
+
+Git commands are pre-authorized normal workflow. Claude expresses this through broad `Bash`; Codex expresses it through broad `prefix_rule(pattern=["git"], decision="allow")`. Do not ask Ahmed for Git-command permission unless the command would touch a protected branch or bypass hooks.
 
 ---
 
@@ -102,8 +104,8 @@ Two skills, two scopes:
 
 **`/github-cleanup`** — fires per merged PR
 - Syncs `main` (`--ff-only`)
-- Deletes the merged feature branch locally (`-d`, never `-D`)
-- Never deletes remote branches; Ahmed owns remote branch cleanup
+- Deletes the merged feature branch locally
+- Never deletes protected branches
 - Triggered by: "merged, clean up" / "PR merged, sync main" / similar
 - May fire multiple times in a session (once per merged PR)
 
@@ -134,7 +136,7 @@ The workspace bump closes the loop. Never leave submodule pointers uncommitted a
 | Hook | Event | What it does |
 |---|---|---|
 | `session-start.sh` | SessionStart (async) | Pulls `main`/`development` if session opens on a base branch |
-| `block-protected-push.sh` | PreToolUse (Bash) | Blocks `git push origin <protected-branch>` |
+| `block-protected-push.sh` | PreToolUse (Bash) | Blocks protected-branch push, force-push, and deletion |
 | `enforce-feature-branch.sh` | PreToolUse (Edit/Write/NotebookEdit) | Blocks edits when on a protected branch |
 | `auto-commit.sh` | Stop (async) | Auto-commits + pushes; debounced; feature branches only |
 | `post-edit-typecheck.sh` | PostToolUse (Edit/Write on .ts/.astro) | Runs `astro check` / `tsc --noEmit` in background |

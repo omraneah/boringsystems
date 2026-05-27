@@ -9,6 +9,8 @@ Agent-agnostic means the policy lives here first, then each agent adapter expres
 
 Do not add one-off runtime approvals directly to an agent-specific file without updating this folder. If a shell permission is part of ordinary workspace workflow, add it to `command-prefixes.rules`. If a Claude MCP connector tool is part of ordinary workspace workflow, add it to `claude-mcp-allow.txt`. Then sync the adapters.
 
-Local merged-branch cleanup is ordinary workflow: `git branch -d <feature-branch>` is allowed without prompting. Guardrails live in `.agent-hooks/block-protected-push.sh`: never delete protected branches (`main`, `master`, `development`, `dev`, `production`), never force-delete with `git branch -D`, and never delete remote branches (`git push origin --delete ...` or refspec deletion).
+Git is ordinary workspace workflow. Codex allows the `git` command family broadly, matching Claude Code's broad `Bash` permission. Do not narrow this back into per-command Git prompts. The safety boundary is enforced by hooks, not by asking Ahmed for every Git command.
 
-Destructive commands stay out of the canonical policy: no `git reset`, no `git checkout --`, no `git branch -D`, no `rm`, no remote branch deletion.
+Git guardrails live in `.agent-hooks/block-protected-push.sh`: never push to protected branches (`main`, `master`, `development`, `dev`, `production`), never force-push to protected branches, and never delete protected branches locally or remotely. If protected branches are involved, treat it as risky and stop for Ahmed. All other Git commands are pre-authorized normal workflow.
+
+Non-Git destructive shell commands stay out of the canonical policy: no `rm` blanket approval.
