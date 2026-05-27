@@ -58,9 +58,11 @@ Two tiers:
 
 **Codex hook paths** use `bash -c 'bash "$(git rev-parse --show-toplevel 2>/dev/null || pwd)/<script>"'` — self-resolving, machine-agnostic. Defined in `.codex/hooks.json`. Codex SessionStart runs `.codex/setup.sh` after the workspace is trusted.
 
-**Codex command approvals** live in `.codex/rules/default.rules` and are installed additively into the Codex runtime rules file by `bash .codex/setup.sh`. Keep only workspace workflow approvals here; do not commit personal one-off approvals. Codex setup is workspace-scoped; do not add user-home or broader-root project setup.
+**Canonical permissions** live in `.agent-permissions/`. Agent-specific files are adapters, not policy sources. Claude Code expresses the policy through `.claude/settings.json` tool-class permissions plus `.agent-hooks/`; Codex expresses it through `.codex/rules/default.rules` generated from `.agent-permissions/command-prefixes.rules`.
 
-Git workflow approvals in `.codex/rules/default.rules` cover recurring non-destructive project operations: run Codex workspace setup, stage, commit, push, fetch, fast-forward pull, switch to `main`, create feature branches, safe merged-branch deletion with `git branch -d`, executable-bit tracking, and submodule init. Do not add destructive forms (`git reset`, `git checkout --`, `git branch -D`) to the rules file.
+Codex command approvals are installed additively into the Codex runtime rules file by `bash .codex/setup.sh`. Keep only workspace workflow approvals in the canonical permission policy; do not commit personal one-off approvals. Codex setup is workspace-scoped; do not add user-home or broader-root project setup.
+
+Git workflow approvals in `.agent-permissions/command-prefixes.rules` cover recurring non-destructive project operations: run Codex workspace setup, stage, commit, push, fetch, fast-forward pull, switch to `main`, create feature branches, safe merged-branch deletion with `git branch -d`, executable-bit tracking, and submodule init. Do not add destructive forms (`git reset`, `git checkout --`, `git branch -D`) to the canonical policy.
 
 **Hook discipline.** Hooks must be idempotent, fast, and never block the user-visible response path. Long-running work goes to `async: true`. Hooks that need to surface findings write to a session-scoped file rather than `echo`-ing into the agent's stream.
 

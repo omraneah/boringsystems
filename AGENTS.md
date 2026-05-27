@@ -64,6 +64,7 @@ Closed loop:
 | `.agent-skills/` | Canonical skill definitions (SKILL.md format). Shared across all agents. Claude reads through setup symlink; Codex reads committed generated copy under `.agents/skills/`. | Canonical. New skills write here. |
 | `.agent-personas/` | Canonical agent persona definitions (markdown). Source of truth for all sub-agent personalities. | Canonical. Edit here; setup.sh regenerates agent-specific formats. |
 | `.agent-hooks/` | Stateless, agent-agnostic enforcement hooks (shell scripts). Registered by each agent's hook config. | Shared. Changes here propagate to all agents automatically. |
+| `.agent-permissions/` | Canonical permission policy for ordinary workspace workflow. Agent-specific permission files are adapters. | Canonical. Update here first. |
 | `.codex/` | Codex-specific hooks, generated agents, and setup/rules for Codex runtime behaviour. | Codex. Runtime config must be repo-owned here, not only accepted as local runtime state. |
 | `Enakl/` | Archived past project context. | Read-only. Never modify. |
 | `cross-stack-architecture-starter-pack/` | Distilled architectural principles. ARDs are non-negotiable boundaries. | Read-only. Consult before structural decisions. |
