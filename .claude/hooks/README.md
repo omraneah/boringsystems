@@ -1,15 +1,18 @@
-# .claude/hooks/ — Claude Code lifecycle hooks
+# .claude/hooks/ — Claude Code-specific lifecycle hooks
 
-These hooks are **Claude Code-specific**. They cannot be made agent-agnostic because they depend on:
-
-- `CLAUDE_PROJECT_DIR` / `CLAUDE_ENV_FILE` — environment variables only Claude Code injects
-- Lifecycle events (SessionStart, Stop, PostEditFile) that Codex and other agents do not support
+These hooks are **Claude Code-only**. They depend on `CLAUDE_PROJECT_DIR` / `CLAUDE_ENV_FILE`
+(env vars only Claude Code injects) or on Claude-specific infrastructure (`~/.claude/`).
 
 | File | Event | Purpose |
 |------|-------|---------|
-| `session-start.sh` | SessionStart | Runs setup.sh, pulls base branch, surfaces last type-check failures |
-| `post-edit-typecheck.sh` | Stop | Runs `astro check` / `tsc --noEmit` on feature branches after edits |
-| `auto-commit.sh` | Stop | Auto-checkpoints uncommitted work (debounced, protected branches excluded) |
-| `gtm-nudge.sh` | Stop | Nudges to run /gtm-sync when session touched GTM territory |
+| `session-start.sh` | SessionStart | Exports CLAUDE_ENV_FILE, runs setup.sh, calls pull-base-branch, surfaces typecheck summary |
+| `gtm-nudge.sh` | Stop | Scans Claude transcripts (`~/.claude/projects/`) for GTM keywords — inherently Claude-specific |
 
-**Enforcement hooks** (branch protection, brevity, parallel reminder) are agent-agnostic and live in `../.agent-hooks/` — both Claude Code (`settings.json`) and Codex (`../.codex/hooks.json`) point there.
+**Shared hooks** (agent-agnostic, registered by both Claude Code and Codex) live in `../.agent-hooks/`:
+- `pull-base-branch.sh` — SessionStart: pull base branch on session open
+- `auto-commit.sh` — Stop: auto-checkpoint uncommitted work
+- `post-edit-typecheck.sh` — Stop: run type check, write summary for next session
+- `block-protected-push.sh` — PreToolUse: block pushes to protected branches
+- `enforce-feature-branch.sh` — PreToolUse: block edits on protected branches
+- `brevity-reminder.sh` — UserPromptSubmit: brevity nudge
+- `parallel-by-default-reminder.sh` — UserPromptSubmit: parallel execution nudge
