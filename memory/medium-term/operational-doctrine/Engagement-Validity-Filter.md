@@ -42,6 +42,14 @@ The operating tactic:
 3. Seed structural constraints inside their frame: scope, risk ownership, cadence, execution ownership, exit gates.
 4. Watch the response.
 
+The frame-inheritance mechanic:
+
+- Let them narrate their world.
+- Avoid early resistance.
+- Identify the live load-bearing assumptions.
+- Introduce constraints as structural facts, not opposition.
+- Let their frame continue, but with Ahmed's operating boundaries now embedded inside it.
+
 **Good signal:** they metabolize the constraints and update the operating frame.
 
 **Bad signal:** they interpret constraints as resistance, betrayal, or a hurdle to overcome.

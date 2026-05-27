@@ -148,7 +148,11 @@ The call moved the opportunity from abstract probe to live calibration, but did 
 **Tactic that worked.**
 Ahmed did not replace their frame upfront. He let Maxime and Louis narrate the dream and operating model, then seeded structural constraints into their frame: freelancer is not an over-engaged part-time employee; no long-term main-dev role; no founder-grade risk ownership; foundations can be externalized, but the core AI/product asset belongs inside Exeko.
 
+The mechanic: let them narrate their world, avoid early resistance, identify the live load-bearing assumptions, introduce constraints as structural facts rather than opposition, then let their frame continue with Ahmed's operating boundaries embedded inside it.
+
 **Read.** The founder dream is not the issue. The issue is whether the founder treats Ahmed's listening as enlistment. Maxime adjusted when the constraints landed; that keeps the conversation open until Angelina is tested.
+
+**Calibration score.** 9/10. The tactic works especially well on Maxime-like founder energy because direct frame replacement would trigger persuasion mode; constraint-seeding lets him incorporate Ahmed's frame as his own realism. Remaining risk: if constraints land too late, the founder may emotionally register Ahmed as inside the dream before the boundary is visible. In this call, the constraints landed early enough.
 
 ---
 
