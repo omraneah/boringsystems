@@ -1,16 +1,17 @@
 #!/bin/bash
-# setup.sh — wire Codex runtime config to this workspace on a new machine.
-# Installs workspace-owned command approval rules into ~/.codex without replacing
-# user/global approvals.
+# setup.sh — wire Codex runtime config for this workspace only.
+# Installs workspace-owned command approval rules into Codex's runtime rules file
+# without replacing existing approvals. Source of truth stays in this repo.
 
 set -e
 
 WORKSPACE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-CODEX_DIR="$HOME/.codex"
+CODEX_DIR="${CODEX_HOME:-$HOME/.codex}"
 RULES_SRC="$WORKSPACE_DIR/.codex/rules/default.rules"
 RULES_DST="$CODEX_DIR/rules/default.rules"
 
 echo "Workspace: $WORKSPACE_DIR"
+echo "Scope: this workspace checkout only"
 
 if [ ! -f "$RULES_SRC" ]; then
   echo "No Codex rules file found at $RULES_SRC — skipping"

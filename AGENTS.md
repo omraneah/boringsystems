@@ -13,15 +13,19 @@ Two workspace-root files hold the governing rules everything below is downstream
 
 Anything that contradicts either file is a defect, not an exception. Consult them whenever a rule below feels arbitrary or whenever a new pattern is being introduced.
 
-## Top constraint — Laptop-agnostic by default
+## Top constraint — Agent-agnostic and hardware-agnostic by default
 
-Everything here must survive a fresh-machine clone + `bash .claude/setup.sh`. No local-only state, no tokens, no manual MCP setup when a connector exists.
+Everything here must survive a fresh-machine clone + the active agent's own setup path. No local-only state, no tokens, no manual MCP setup when a connector exists.
 
-**Codex first-run:** project hooks (`.codex/hooks.json`) require explicit project trust before they fire. After cloning, run the Codex trust command so `enforce-feature-branch.sh` and `block-protected-push.sh` are active, then run `bash .codex/setup.sh` so workspace command approvals are installed.
+**Agent setup ownership:**
+- **Claude Code:** `.claude/hooks/session-start.sh` runs `.claude/setup.sh` on SessionStart. Claude-specific setup belongs under `.claude/`.
+- **Codex:** `.codex/hooks.json` runs `.codex/setup.sh` on SessionStart after the workspace is trusted. Codex-specific setup belongs under `.codex/`.
+- **No cross-agent setup edits:** never make Codex depend on `.claude/setup.sh`, and never make Claude Code depend on `.codex/setup.sh`.
+- **Workspace-scoped only:** Codex is configured for this workspace checkout, not for `/Users/<user>` or any broader home-directory root.
 
 Tests every change must pass:
 
-1. **Fresh-machine.** Clone + setup.sh + `git submodule update --init --recursive` = full working state.
+1. **Fresh-machine.** Clone + active-agent setup + `git submodule update --init --recursive` = full working state.
 2. **Cloud-agent.** A cloud agent has everything it needs *in the checkout* — skills, docs, config.
 3. **No-token.** No `gh auth login`, no API keys, no manual MCP. Use your agent platform's native connectors.
 4. **Committed-or-it-doesn't-exist.** Hooks, skills, settings, memory, decisions — version-controlled or it isn't real.
@@ -57,10 +61,10 @@ Closed loop:
 | Folder | Purpose | Access |
 |--------|---------|--------|
 | `memory/` | Tiered memory: long-term constitutional + identity, medium-term current direction, short-term episodic record. Auto-loaded by the active agent. | Source of truth. Edit via consolidation flow + drift-detection skills. |
-| `.agent-skills/` | Canonical skill definitions (SKILL.md format). Shared across all agents. Synced to agent-specific paths by setup.sh. | Canonical. New skills write here. |
+| `.agent-skills/` | Canonical skill definitions (SKILL.md format). Shared across all agents. Claude reads through setup symlink; Codex reads committed generated copy under `.agents/skills/`. | Canonical. New skills write here. |
 | `.agent-personas/` | Canonical agent persona definitions (markdown). Source of truth for all sub-agent personalities. | Canonical. Edit here; setup.sh regenerates agent-specific formats. |
 | `.agent-hooks/` | Stateless, agent-agnostic enforcement hooks (shell scripts). Registered by each agent's hook config. | Shared. Changes here propagate to all agents automatically. |
-| `.codex/` | Codex-specific hooks, generated agents, and setup/rules for Codex runtime behaviour. | Codex. Runtime config must be repo-owned here, not only in `~/.codex/`. |
+| `.codex/` | Codex-specific hooks, generated agents, and setup/rules for Codex runtime behaviour. | Codex. Runtime config must be repo-owned here, not only accepted as local runtime state. |
 | `Enakl/` | Archived past project context. | Read-only. Never modify. |
 | `cross-stack-architecture-starter-pack/` | Distilled architectural principles. ARDs are non-negotiable boundaries. | Read-only. Consult before structural decisions. |
 | `boringsystems/` | Personal site — engineering leadership case files. Astro, Vercel. | Active project. |
@@ -73,7 +77,7 @@ Closed loop:
 - **Never push to protected branches.** `main`, `master`, `development`, `dev`, `production`. Enforced by `.agent-hooks/block-protected-push.sh`.
 - **Never edit on protected branches.** Same protected list. Before the first edit of a session, check the current branch in the relevant repo (workspace or submodule) and create a feature branch (`omraneah/<short-task-name>`) if needed. Reuse an existing session feature branch — do not create siblings. Edits are pre-authorized; no permission prompts. Enforced by `.agent-hooks/enforce-feature-branch.sh`. Full rule: `memory/short-term/feedback/stable/feedback_auto_edit_on_feature_branch.md`.
 - **Never open PRs.** The agent pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request`.
-- **New skills write to `.agent-skills/`.** Skills always go to `Workspace/.agent-skills/<name>/SKILL.md` (canonical shared path). Writing to `.agent-skills/` is pre-authorized — no feature branch required. Setup.sh syncs to agent-specific paths. Full rule: `memory/short-term/feedback/stable/feedback_skills_canonical_path.md`.
+- **New skills write to `.agent-skills/`.** Skills always go to `Workspace/.agent-skills/<name>/SKILL.md` (canonical shared path). Writing to `.agent-skills/` is pre-authorized — no feature branch required. Agent-specific copies are generated/committed from that source. Full rule: `memory/short-term/feedback/stable/feedback_skills_canonical_path.md`.
 - **Connector-first MCP.** Use your agent platform's native connector for Linear, GitHub, Gmail, Notion, Google Calendar, Google Drive. Never manual auth when a connector exists.
 - **Platform features first, custom code second.** Before reimplementing anything structural (i18n, auth, redirects, caching), check framework docs for native support.
 - **Never modify `Enakl/` or `cross-stack-architecture-starter-pack/`** without explicit instruction.

@@ -2,7 +2,7 @@
 
 ## Skills
 
-Skills live in two scopes. Cross-project skills (useful in every repo) live at `.agent-skills/` (canonical, agent-agnostic) and are surfaced to Claude Code via the `~/.claude/skills` symlink and to Codex via a copy at `.agents/skills/` (synced by `setup.sh`). Project-scoped skills live at `<project>/.claude/skills/` and only load when Claude Code is launched from that project.
+Skills live in two scopes. Cross-project skills (useful in every repo) live at `.agent-skills/` (canonical, agent-agnostic) and are surfaced to Claude Code via the `~/.claude/skills` symlink and to Codex via the committed copy at `.agents/skills/`. Project-scoped skills live at `<project>/.claude/skills/` and only load when Claude Code is launched from that project.
 
 | Skill                       | Scope         | User-invocable | Auto-invokes                                                               |
 | --------------------------- | ------------- | -------------- | -------------------------------------------------------------------------- |
@@ -56,9 +56,9 @@ Two tiers:
 | `brevity-reminder.sh` | `.agent-hooks/` | UserPromptSubmit | Reinforces executive-register brevity rule |
 | `gtm-nudge.sh` | `.claude/hooks/` | Stop (async) | Periodic reminder to capture GTM signal via `/gtm-sync` |
 
-**Codex hook paths** use `bash -c 'bash "$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/<script>.sh"'` — self-resolving, machine-agnostic. Defined in `.codex/hooks.json`.
+**Codex hook paths** use `bash -c 'bash "$(git rev-parse --show-toplevel 2>/dev/null || pwd)/<script>"'` — self-resolving, machine-agnostic. Defined in `.codex/hooks.json`. Codex SessionStart runs `.codex/setup.sh` after the workspace is trusted.
 
-**Codex command approvals** live in `.codex/rules/default.rules` and are installed additively into `~/.codex/rules/default.rules` by `bash .codex/setup.sh`. Keep only workspace workflow approvals here; do not commit personal one-off approvals.
+**Codex command approvals** live in `.codex/rules/default.rules` and are installed additively into the Codex runtime rules file by `bash .codex/setup.sh`. Keep only workspace workflow approvals here; do not commit personal one-off approvals. Codex setup is workspace-scoped; do not add user-home or broader-root project setup.
 
 **Hook discipline.** Hooks must be idempotent, fast, and never block the user-visible response path. Long-running work goes to `async: true`. Hooks that need to surface findings write to a session-scoped file rather than `echo`-ing into the agent's stream.
 
@@ -68,15 +68,26 @@ Two tiers:
 git clone https://github.com/omraneah/workspace.git ~/Workspace
 cd ~/Workspace
 git submodule update --init --recursive
+```
+
+Claude Code:
+
+```bash
 bash .claude/setup.sh
 ```
 
-`setup.sh` is idempotent and runs automatically via `session-start.sh` each session. It:
+Codex:
+
+```bash
+bash .codex/setup.sh
+```
+
+Claude Code setup is idempotent and runs automatically via `.claude/hooks/session-start.sh` each session. It:
 - Symlinks `~/.claude/skills` → `.agent-skills/`
-- Syncs `.agent-skills/` → `.agents/skills/` (Codex skill path)
-- Generates `.codex/agents/*.toml` from personas + frontmatter (`scripts/generate-codex-agents.py`)
 - Symlinks `~/.claude/settings.json` → `.claude/settings.json`
 - Symlinks `~/.claude/projects/-Users-ahmedomrane-Workspace/memory/` → `memory/` (workspace root)
+
+Codex setup is idempotent and runs automatically via `.codex/hooks.json` SessionStart after the workspace is trusted. It installs workspace-owned Codex rules only. Codex agents and skills are committed artifacts generated from the canonical workspace sources; cloud Codex has them from the checkout.
 
 `settings.local.json` is gitignored — it is Claude's runtime permission cache, not config.
 
