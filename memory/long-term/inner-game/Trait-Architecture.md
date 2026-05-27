@@ -155,9 +155,23 @@ The AI-leverage composition is part of the core trait architecture, not a produc
 
 The type aligns with the trait cluster in §1 — introversion-leaning, intuition-driven pattern density, thinking-driven need for coherence, judging-driven structural systematizing. MBTI is shorthand; the substantive description is the trait cluster.
 
+### N/F binding in low-governance contexts
+
+In high-challenge / low-governance contexts, the binding agent that determines whether collaboration works is **shared conceptual frame (N) + values-coherence (F)**.
+
+Power-balance, charisma, and shared mission are not enough. They can create motion, but they do not create a stable relational substrate when the environment has few structural brakes.
+
+The durable pattern:
+- Shared N gives parity on abstraction, structure, and second-order consequences.
+- Shared or mature F gives parity on meaning, relational integrity, and non-extractive commitment.
+- Without both, the system asks me to compensate through dominance games, emotional translation, or sensory-chaos tolerance. Those are wrong-shaped costs.
+
+This is not a preference for temperament similarity. It is a structural fit condition in contexts where governance cannot carry the weight.
+
 ---
 
 ## Pointers
 
 - Being layer (canonical) → `../I-AM.md`
 - Depth-expansion of immovable core, conscious trajectory, blind spots, upgrades → `Meta-Identity-Constitution.md`
+- Relational binding in work contexts → `Relational-Architecture.md`

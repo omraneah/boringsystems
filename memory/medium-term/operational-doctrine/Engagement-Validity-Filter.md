@@ -59,6 +59,18 @@ If the failure shape is detected at in-engagement altitude, the response is:
 
 For Shape B engagements (fractional / freelance), the contained-risk-vs-founder-risk principle is the upstream failure to refuse. Canonical home: [[Engagement-Shapes]] § Shape B contained-risk principle. Wrong-shape Shape B engagements fire the single-dimension trap by intensifying ownership without upside.
 
+## Low-governance relational fit
+
+High-challenge / low-governance contexts need a binding agent the structure cannot provide. The filter is **shared conceptual frame (N) + values-coherence (F)**.
+
+Operational rules:
+
+- **Require NF co-founder or sponsor** in early-stage, founder-led, or structurally unbraked contexts. ENFJ, INFJ, and INFP shapes can carry meaning + relational integrity as the binding layer.
+- **ENTJ is contextual.** ENTJ + governance + peers + brakes can be a high-functioning complement. ENTJ + early-stage + no brakes + me as sole counterweight fails by structure: I lose the power game because I do not want to play it and they do.
+- **ENTJ early-stage only clears with explicit brakes:** real board, co-founder counterweight, peer structure, and demonstrated F-development. Rare; more plausible in metabolized second-time founders. Recent data point: White Bird CPTO conversation, May 2026.
+- **ESFP is a hard no.** The mismatch is fundamental: immediate sensory/emotional processing under load amplifies noise, image-management, and in-the-moment chaos. Mature systems dilute the cost but do not dissolve the body cost of proximity.
+- **Mature / governed contexts reduce archetype weight.** The system carries more of the relationship risk; detection is faster and proximity is less structurally concentrated.
+
 ## Cross-references
 
 - I AM (north star) → `../../long-term/I-AM.md`
@@ -66,6 +78,7 @@ For Shape B engagements (fractional / freelance), the contained-risk-vs-founder-
 - Engagement shapes (Shape A and Shape B — the two surfaces this filter qualifies) → [[Engagement-Shapes]]
 - Path Doctrine (necessary conditions for the 2-3yr sprint) → `../../long-term/inner-game/Path-Doctrine.md`
 - Relational Architecture (depth-expansion of relational North Star) → `../../long-term/inner-game/Relational-Architecture.md`
+- Trait Architecture (N/F binding and psychological type fit) → `../../long-term/inner-game/Trait-Architecture.md`
 - Identity & Exit Doctrine (life-level exit triggers) → `Identity-and-Exit-Doctrine.md`
 - Work Hygiene Doctrine (clean / dirty work distinction) → `Work-Hygiene-Doctrine.md`
 - State & Guardrails OS (regulation kit) → `State-and-Guardrails-OS.md`
