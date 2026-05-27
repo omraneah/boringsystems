@@ -1,6 +1,6 @@
 ---
 name: consolidate-week
-description: Run the weekly memory consolidation flow. Reads last week's daily entries, proposes promotions (short→medium, medium→long), demotions, drift flags, and deletions. Ahmed reviews each proposal; decisions append to memory/short-term/<this-week>/consolidation.md. Trigger automatically via SessionStart Monday detection (per long-term feedback rule), or manually with /consolidate-week. Three sections in the consolidation file: my consolidation (Claude), your decisions (Ahmed), actions taken (final state).
+description: "Run the weekly memory consolidation flow. Reads last week's daily entries, proposes promotions (short→medium, medium→long), demotions, drift flags, and deletions. Ahmed reviews each proposal; decisions append to this week's consolidation.md. Trigger automatically on Monday SessionStart, or manually with /consolidate-week."
 model: opus
 effort: high
 user-invocable: true

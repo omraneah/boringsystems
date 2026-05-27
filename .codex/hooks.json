@@ -1,5 +1,15 @@
 {
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/pull-base-branch.sh\"'"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
@@ -30,6 +40,20 @@
           {
             "type": "command",
             "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/brevity-reminder.sh\"'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/auto-commit.sh\"'"
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agent-hooks/post-edit-typecheck.sh\"'"
           }
         ]
       }

@@ -74,12 +74,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/auto-commit.sh\"",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.agent-hooks/auto-commit.sh\"",
             "async": true
           },
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-edit-typecheck.sh\"",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.agent-hooks/post-edit-typecheck.sh\"",
             "async": true
           },
           {
