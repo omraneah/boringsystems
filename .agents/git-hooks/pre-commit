@@ -7,12 +7,15 @@
 #    (defense-in-depth alongside pre-push)
 #
 # 2. Content hygiene: checks ADDED lines in staged markdown files for
-#    two forbidden patterns:
-#      a. Linear card IDs (BOR-32, LIN-123, etc.) in stable docs.
+#    three forbidden patterns:
+#      1. Linear card IDs (BOR-32, LIN-123, etc.) in stable docs.
 #         Cards are project-management ephemera — they change state, get closed,
 #         and rot inside stable docs that outlive the card. Replace with text.
-#      b. tmp/ path references. tmp/ is an ephemeral render buffer.
+#      2. tmp/ path references. tmp/ is an ephemeral render buffer.
 #         Never link to tmp/ files from committed docs.
+#      3. Long-term tier transient content (memory/long-term/**.md only):
+#         year markers, "currently", "recently", phase-bound phrases. Body
+#         only — YAML frontmatter is skipped wholly.
 #
 # 3. Build-artifact sync: regenerates the per-agent persona adapters
 #    (.claude/agents/*.md and .codex/agents/*.toml) from .agents/personas/, and
@@ -64,6 +67,10 @@ git add "$workspace_root/.codex/rules/default.rules" 2>/dev/null || true
 # teams are created (e.g., APP-[0-9]+).
 CARD_ID_PATTERN='BOR-[0-9]+|LIN-[0-9]+'
 
+# Pattern 2: tmp/ path references.
+# tmp/ is the ephemeral render buffer (wiped at session boundaries). Never link
+# to tmp/ files from committed docs — the link rots within hours.
+
 # Pattern 3 (long-term tier only): date markers + transient phrases.
 # Long-term memory holds timeless inner-game / identity / north-star content.
 # Every sentence must hold in 2+ years. Date-anchored or phase-bound content
@@ -76,10 +83,10 @@ fail=0
 while IFS= read -r file; do
   # Only check markdown files
   case "$file" in *.md|*.mdx) ;; *) continue ;; esac
-  # Skip: .claude/ and .agents/{skills,hooks}/ — these legitimately document the
-  # forbidden patterns (the leak-check skill, hooks). Personas + permissions are
-  # still scanned.
-  case "$file" in .claude/*|.agents/skills/*|.agents/hooks/*) continue ;; esac
+  # Skip: .claude/, .agents/{skills,hooks,git-hooks}/ — these legitimately
+  # document or implement the forbidden patterns (leak-check skill, hooks, this
+  # very pre-commit hook). Personas + permissions are still scanned.
+  case "$file" in .claude/*|.agents/skills/*|.agents/hooks/*|.agents/git-hooks/*) continue ;; esac
   # Skip: short-term episodic entries (daily/weekly, card IDs are expected)
   case "$file" in memory/short-term/20*) continue ;; esac
   # Skip: archived content
@@ -106,18 +113,61 @@ while IFS= read -r file; do
   fi
 
   # Check for long-term tier transient content.
-  # Scope: memory/long-term/**.md files only. Skip the frontmatter
-  # last_reviewed: field which is allowed to carry a date for audit.
+  # Scope: memory/long-term/**.md files only. Skips the YAML frontmatter block
+  # wholly (everything between the opening --- on line 1 and the closing ---).
+  # Frontmatter carries audit metadata (last_reviewed, horizon, companion_to,
+  # codified, seeded, etc.) that legitimately includes dates and is out of
+  # scope. Body content is wholly in scope.
   case "$file" in
     memory/long-term/*)
-      # Strip frontmatter last_reviewed: line from the added diff before scanning.
-      filtered_added="$(echo "$added" | grep -vE '^\+(last_reviewed|date|codified):' || true)"
-      lt_hits="$(echo "$filtered_added" | grep -iE "$LONG_TERM_TRANSIENT_PATTERN" || true)"
-      if [ -n "$lt_hits" ]; then
+      # Determine frontmatter end line from the staged blob. If the file does
+      # not open with '---', frontmatter_end=0 (entire file is body).
+      first_line="$(git show ":$file" 2>/dev/null | head -1 || true)"
+      if [ "$first_line" = "---" ]; then
+        frontmatter_end="$(git show ":$file" 2>/dev/null | awk '/^---$/{n++; if (n==2) {print NR; exit}}')"
+        [ -z "$frontmatter_end" ] && frontmatter_end=0
+      else
+        frontmatter_end=0
+      fi
+
+      # Extract added-line numbers in new-file coordinates from -U0 hunks.
+      # Hunk header form: @@ -x[,y] +a[,b] @@  where a = first added line,
+      # b = added-line count (default 1 if omitted).
+      lt_violation=""
+      while IFS= read -r hunk_line; do
+        # Parse '+a[,b]' from '@@ -... +a[,b] @@'
+        plus_part="$(echo "$hunk_line" | sed -n 's/^@@ [^+]*+\([0-9]*\(,[0-9]*\)\{0,1\}\).*/\1/p')"
+        [ -z "$plus_part" ] && continue
+        start_line="${plus_part%%,*}"
+        if [ "$plus_part" = "$start_line" ]; then
+          count=1
+        else
+          count="${plus_part#*,}"
+        fi
+        [ "$count" = "0" ] && continue
+
+        # Read the actual added lines from the hunk body (the +-prefixed lines
+        # immediately following this header, until the next @@).
+        end_line=$((start_line + count - 1))
+        cur=$start_line
+        while [ $cur -le $end_line ]; do
+          # Pull line $cur from the staged blob
+          body_line="$(git show ":$file" 2>/dev/null | sed -n "${cur}p" || true)"
+          if [ $cur -gt $frontmatter_end ]; then
+            if echo "$body_line" | grep -iqE "$LONG_TERM_TRANSIENT_PATTERN"; then
+              lt_violation="${lt_violation}    line ${cur}: ${body_line}
+"
+            fi
+          fi
+          cur=$((cur + 1))
+        done
+      done < <(git diff --cached -U0 -- "$file" | grep '^@@')
+
+      if [ -n "$lt_violation" ]; then
         echo "[pre-commit] ✗ long-term tier transient content added: $file"
-        echo "$lt_hits" | head -5 | sed 's/^/    /'
+        printf '%s' "$lt_violation" | head -5
         echo "    Long-term holds content that must hold in 2+ years."
-        echo "    Generalize (e.g. 'recently' → remove; '2026' → remove) or move to medium-term/short-term."
+        echo "    Generalize (e.g. 'recently' → remove; year markers → remove) or move to medium-term/short-term."
         echo "    Rule: memory/short-term/feedback/stable/feedback_long_term_tier_purity.md"
         fail=1
       fi
