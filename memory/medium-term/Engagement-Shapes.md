@@ -86,6 +86,22 @@ Early-stage founders implicitly want the second. That's the shape that gets refu
 
 The convergence point is not Ahmed's project. He is contributing in a defined way. That is the honest frame.
 
+#### Named anti-pattern — intéressement / delayed-promise upside
+
+A specific recurring shape of the founder-grade-incentive ask: the founder offers **intéressement** (profit-sharing, future equity, "we will recognize your contribution when we figure out the structure," upside-to-be-defined-later). It arrives in soft, warm language — usually after the engagement scope has been discussed and the founder senses the resource envelope cannot attract the operator they actually want.
+
+**Why it must be refused on Shape B engagements.**
+- Delayed-promise upside on a freelance / fractional engagement = founder-grade incentive structurally, regardless of label. The operator does not have founder authority, founder visibility, founder cap-table protection, or founder time horizon — but is being asked to behave as if they did.
+- The teaser is the buyer's signal that the structural envelope (budget × cadence × authority) does not match the ambition. The teaser does not fix the mismatch; it conceals it.
+- Accepting intéressement transfers reputational risk to the operator without transferring authority. If the project fails, the operator carries the "fractional CTO who couldn't deliver" narrative; if it succeeds, the upside materialization depends on founder discretion at a future date — the worst risk-reward shape available.
+
+**The refusal.**
+- **Hard no, lifetime.** Not "we can discuss it later"; not "if the engagement extends"; not "in the right structure." The intéressement teaser is the named anti-pattern; the answer is no.
+- Refuse structurally, not personally: the operator is not founder-shaped on this engagement, so founder-shaped incentives cannot apply. Same logic as refusing founder-grade risk.
+- The refusal preserves the relationship; accepting the teaser does not. Founders who later realize they got founder-grade ownership for fractional money tend to write the operator out of the narrative, not in.
+
+**Data point.** Exeko.ai via Deepika, May 2026. Maxime floated "vision d'intéressement vis-à-vis des personnes qui nous rejoignent" mid-call. Ahmed addressed it structurally via the "core asset reste en interne" framing (refusing founder-grade ownership of the AI asset), which closed the door without naming the refusal as personal.
+
 ### Re-audit as exit mechanism (Shape B, studio-routed)
 
 When the studio that introduced the engagement is also the entity that produced the initial audit, the **re-audit at a milestone gate becomes the natural exit mechanism**. The studio re-runs the audit at month-N against the foundations work delivered. If the delta is material, the conversation continues. If not, the studio (not Ahmed) tells the founder the foundations aren't ready for the next phase — and Ahmed exits clean without being the bad-news messenger. Build this in from the start.
