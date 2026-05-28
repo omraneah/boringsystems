@@ -27,6 +27,6 @@ Long-term memory (`memory/long-term/`) is the north star — identity profile, d
   - Episodic events, daily decisions → short-term (e.g. `memory/short-term/<week>/<date>.md`)
   - Audit dates / codification metadata → frontmatter, not body content
 - **The test:** if a 2028 reader would say "wait, what current company?" or "what 2026 pricing?" — the content is in the wrong tier. Move or generalize.
-- **At commit time:** the pre-commit hook `.claude/git-hooks/pre-commit` lints staged `memory/long-term/**.md` files for date markers and transient phrases. If it flags, the content needs generalization or relocation to a lower tier before commit. `--no-verify` forbidden per workspace policy.
+- **At commit time:** the pre-commit hook `.agents/git-hooks/pre-commit` lints staged `memory/long-term/**.md` files for date markers and transient phrases. If it flags, the content needs generalization or relocation to a lower tier before commit. `--no-verify` forbidden per workspace policy.
 
 **Companion rule:** [[feedback_no_short_term_state_in_medium_term_docs]] applies the same principle one tier down — medium-term holds rules and structures that outlive a single session/sprint but may be phase-bound; short-term carries the live episodic state.
