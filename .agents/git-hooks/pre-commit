@@ -28,7 +28,7 @@
 # pre-existing violations in unmodified lines do not block the commit — run
 # /check-stable-docs-leaks to sweep the full workspace for those.
 #
-# Wired via `git config core.hooksPath .claude/git-hooks` (setup.sh).
+# Wired via `git config core.hooksPath .agents/git-hooks` (each agent's setup.sh).
 # --no-verify is forbidden by policy. See workspace AGENTS.md.
 
 set -u
