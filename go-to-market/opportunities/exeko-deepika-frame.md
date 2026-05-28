@@ -128,6 +128,32 @@ The 20 % is real if **all** of the following hold simultaneously:
 
 This is not negotiable. Each non-negotiable that gets softened triples the entanglement risk on the next.
 
+### Calibration after Maxime + Louis call
+
+The call moved the opportunity from abstract probe to live calibration, but did not clear the gates.
+
+**What improved.**
+- Maxime accepted that the existing code can be rewritten, refactored, or thrown away if that is the fastest path.
+- He understood the single-junior-dev bottleneck and the value of paying more for senior acceleration.
+- He did not push back when Ahmed separated foundations / V0 work from the core AI product asset.
+- Louis's frame softened toward short-term rails and foundations rather than pure co-direction fantasy.
+
+**What remains unresolved.**
+- Angelina was absent. She is the load-bearing read because she holds the CTO-ish/product-tech role.
+- Deepika margin transparency is still unresolved.
+- Payment terms still need to be decoupled from BPI milestones.
+- The 2-3 days/week, autonomous, hands-in-code framing can still drift into main-dev replacement.
+- The execution owner after foundations is unresolved: Nicolas coached, Nicolas sidelined, senior dev hired, or another path.
+
+**Tactic that worked.**
+Ahmed did not replace their frame upfront. He let Maxime and Louis narrate the dream and operating model, then seeded structural constraints into their frame: freelancer is not an over-engaged part-time employee; no long-term main-dev role; no founder-grade risk ownership; foundations can be externalized, but the core AI/product asset belongs inside Exeko.
+
+The mechanic: let them narrate their world, avoid early resistance, identify the live load-bearing assumptions, introduce constraints as structural facts rather than opposition, then let their frame continue with Ahmed's operating boundaries embedded inside it.
+
+**Read.** The founder dream is not the issue. The issue is whether the founder treats Ahmed's listening as enlistment. Maxime adjusted when the constraints landed; that keeps the conversation open until Angelina is tested.
+
+**Calibration score.** 9/10. The tactic works especially well on Maxime-like founder energy because direct frame replacement would trigger persuasion mode; constraint-seeding lets him incorporate Ahmed's frame as his own realism. Remaining risk: if constraints land too late, the founder may emotionally register Ahmed as inside the dream before the boundary is visible. In this call, the constraints landed early enough.
+
 ---
 
 ## Starter-pack as conversation artifact
