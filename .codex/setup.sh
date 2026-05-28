@@ -31,4 +31,27 @@ while IFS= read -r rule || [ -n "$rule" ]; do
   fi
 done < "$RULES_SRC"
 
+if [ -f "$WORKSPACE_DIR/.codex/hooks.json" ] && [ -x "$WORKSPACE_DIR/.agents/hooks/enforce-feature-branch.sh" ] && [ -x "$WORKSPACE_DIR/.agents/hooks/block-protected-push.sh" ]; then
+  echo "Codex hook audit: hooks.json present; guard scripts executable."
+fi
+
+TMPDIR="$(mktemp -d "${TMPDIR:-/tmp}/codex-hook-smoke.XXXXXX" 2>/dev/null || true)"
+if [ -n "$TMPDIR" ]; then
+  trap 'rm -rf "$TMPDIR"' EXIT
+  git -C "$TMPDIR" init -q 2>/dev/null || true
+  git -C "$TMPDIR" checkout -b main -q 2>/dev/null || true
+  touch "$TMPDIR/README.md"
+  git -C "$TMPDIR" add README.md 2>/dev/null || true
+  git -C "$TMPDIR" -c user.email=codex-smoke@example.com -c user.name=CodexSmoke commit -m init -q 2>/dev/null || true
+
+  EDIT_SMOKE="$(printf '%s' "{\"cwd\":\"$TMPDIR\",\"tool_input\":{\"command\":\"*** Begin Patch\n*** Update File: README.md\n@@\n-test\n+test2\n*** End Patch\"}}" | bash "$WORKSPACE_DIR/.agents/hooks/enforce-feature-branch.sh" 2>/dev/null || true)"
+  PUSH_SMOKE="$(printf '%s' '{"tool_input":{"cmd":"git push origin main"}}' | bash "$WORKSPACE_DIR/.agents/hooks/block-protected-push.sh" 2>/dev/null || true)"
+
+  if printf '%s\n' "$EDIT_SMOKE" | grep -q '"permissionDecision":"deny"' && printf '%s\n' "$PUSH_SMOKE" | grep -q '"permissionDecision":"deny"'; then
+    echo "Codex hook smoke: protected-branch guard responds to VM-style inputs."
+  else
+    echo "WARN: Codex hook smoke did not observe expected deny output."
+  fi
+fi
+
 echo "Codex setup complete."
