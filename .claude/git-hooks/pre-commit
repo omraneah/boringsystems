@@ -64,6 +64,13 @@ git add "$workspace_root/.codex/rules/default.rules" 2>/dev/null || true
 # teams are created (e.g., APP-[0-9]+).
 CARD_ID_PATTERN='BOR-[0-9]+|LIN-[0-9]+'
 
+# Pattern 3 (long-term tier only): date markers + transient phrases.
+# Long-term memory holds timeless inner-game / identity / north-star content.
+# Every sentence must hold in 2+ years. Date-anchored or phase-bound content
+# fails the test by default and belongs in medium-term or short-term.
+# Rule source: memory/short-term/feedback/stable/feedback_long_term_tier_purity.md
+LONG_TERM_TRANSIENT_PATTERN='\b20[0-9][0-9]\b|\brecently\b|\bcurrently\b|\bright now\b|\blast (week|month|year|quarter)\b|\bthis (week|month|year|quarter)\b|\bnext (week|month|year|quarter)\b|\bpast (few |several )?(week|month|year|quarter)s?\b|\bover the past\b|\bin the coming\b'
+
 fail=0
 
 while IFS= read -r file; do
@@ -97,6 +104,25 @@ while IFS= read -r file; do
     echo "$tmp_hits" | head -5 | sed 's/^/    /'
     fail=1
   fi
+
+  # Check for long-term tier transient content.
+  # Scope: memory/long-term/**.md files only. Skip the frontmatter
+  # last_reviewed: field which is allowed to carry a date for audit.
+  case "$file" in
+    memory/long-term/*)
+      # Strip frontmatter last_reviewed: line from the added diff before scanning.
+      filtered_added="$(echo "$added" | grep -vE '^\+(last_reviewed|date|codified):' || true)"
+      lt_hits="$(echo "$filtered_added" | grep -iE "$LONG_TERM_TRANSIENT_PATTERN" || true)"
+      if [ -n "$lt_hits" ]; then
+        echo "[pre-commit] ✗ long-term tier transient content added: $file"
+        echo "$lt_hits" | head -5 | sed 's/^/    /'
+        echo "    Long-term holds content that must hold in 2+ years."
+        echo "    Generalize (e.g. 'recently' → remove; '2026' → remove) or move to medium-term/short-term."
+        echo "    Rule: memory/short-term/feedback/stable/feedback_long_term_tier_purity.md"
+        fail=1
+      fi
+      ;;
+  esac
 
 done < <(git diff --cached --name-only --diff-filter=ACM)
 

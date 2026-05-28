@@ -59,7 +59,31 @@ deny_for_path() {
   BRANCH="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null)"
   case "$BRANCH" in
     main|master|development|dev|production)
-      REASON="Edits forbidden on protected branch '$BRANCH' in $REPO_ROOT. Create a feature branch first (e.g. 'git -C $REPO_ROOT checkout -b omraneah/<short-task-name>') and retry. If a feature branch already exists for this session in this repo, switch to it — do not create siblings."
+      # Auto-recovery: never block on protected-branch edits; instead, switch to
+      # (or create) the day's session branch and let the edit proceed. The
+      # blocking error has been replaced by silent self-healing because the
+      # branch name is deterministic (one per day per repo) and edits on
+      # protected branches are forbidden by policy anyway — switching IS the
+      # correct action.
+      #
+      # Branch name convention: omraneah/session-YYYY-MM-DD (matches the
+      # documented multi-concern session form in
+      # feedback_auto_edit_on_feature_branch.md).
+      AUTO_BRANCH="omraneah/session-$(date +%Y-%m-%d)"
+      if git -C "$REPO_ROOT" rev-parse --verify "$AUTO_BRANCH" >/dev/null 2>&1; then
+        if git -C "$REPO_ROOT" checkout "$AUTO_BRANCH" >/dev/null 2>&1; then
+          printf '[enforce-feature-branch] switched %s: %s → %s (auto-recovery)\n' "$REPO_ROOT" "$BRANCH" "$AUTO_BRANCH" >&2
+          return 1
+        fi
+      else
+        if git -C "$REPO_ROOT" checkout -b "$AUTO_BRANCH" >/dev/null 2>&1; then
+          printf '[enforce-feature-branch] created %s on %s (auto-recovery from %s)\n' "$AUTO_BRANCH" "$REPO_ROOT" "$BRANCH" >&2
+          return 1
+        fi
+      fi
+      # Fallback: only block if branch creation/checkout itself failed
+      # (working tree dirty, lock contention, etc.). Surface the real reason.
+      REASON="Edits forbidden on protected branch '$BRANCH' in $REPO_ROOT — auto-recovery to '$AUTO_BRANCH' failed (working tree dirty or branch creation refused). Resolve manually: 'git -C $REPO_ROOT checkout -b omraneah/<short-task-name>' and retry."
       return 0
       ;;
   esac
