@@ -129,7 +129,7 @@ Using Enakl precedent + starter-pack methodology, what Month 1 actually delivers
 ## Cross-references
 
 - Doctrine → `memory/medium-term/operational-doctrine/Fractional-Engagement-Guardrails.md`
-- Frame map for the call → `go-to-market/opportunities/exeko-deepika-frame.md`
+- Frame map for the call → `go-to-market/opportunities/exeko/frame.md`
 - Episodic record → `memory/short-term/2026-W20/2026-05-14.md`
 - Audit sources (Deepika PDF synthesis + BPI annexe Excel) — kept ephemerally in render buffer; key findings inlined above.
 - Enakl architecture body → `Enakl/cross-stack-workspace/architecture/`

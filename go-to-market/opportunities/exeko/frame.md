@@ -260,4 +260,4 @@ No negotiation, no scope expansion, no rate concession. The next opportunity is 
 - Doctrine this maps to → `memory/medium-term/operational-doctrine/Fractional-Engagement-Guardrails.md`
 - Universal upstream filter → `memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md`
 - Today's episodic record → `memory/short-term/2026-W20/2026-05-14.md`
-- Audit source documents (PDF synthesis + BPI annexe Excel) — kept ephemerally in render buffer; key findings extracted into this frame map and `exeko-deepika-transferability.md`.
+- Audit source documents (PDF synthesis + BPI annexe Excel) — kept ephemerally in render buffer; key findings extracted into this frame map and `transferability.md`.

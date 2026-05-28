@@ -27,7 +27,6 @@
       "mcp__claude_ai_Linear__save_issue"
     ]
   },
-  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {
@@ -96,6 +95,7 @@
       }
     ]
   },
+  "model": "opus",
   "enabledPlugins": {},
   "effortLevel": "xhigh",
   "voice": {
