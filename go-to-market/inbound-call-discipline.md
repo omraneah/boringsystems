@@ -91,3 +91,61 @@ The frame protects against the wrong engagement, not just the wrong price. Walk 
 - The conversation lives in Zone 3 of `credibility-map.md` (manager-of-managers at scale, hyperscale ops, deep-tech specialist depth) — refer out rather than push uphill.
 
 Walking with care and curiosity preserves the relationship for a future conversation. Most "no" outcomes from this discipline return as "yes" outcomes 6–18 months later under different conditions.
+
+---
+
+## Pivot-recovery move — when the originally-pitched role isn't a fit
+
+When a recruiter or buyer declines on shape-mismatch (typically "you're a strong candidate but not the archetype for this specific mandate"), the default operator reflex is to absorb the no and disengage. That reflex wastes the funnel slot the conversation has already earned.
+
+The pivot-recovery move:
+
+1. **Take the decline at face value.** Don't argue the shape diagnosis — if it's accurate, arguing weakens the relationship. If it's inaccurate, arguing won't change it.
+2. **Scan the buyer's open inventory.** Most companies running a senior search have more than one role open at a time. The role you were first pitched for is often not the role that actually fits you.
+3. **Surface the actual fit unprompted.** One line. Name the specific other role. Explain in one sentence why it maps to your last two roles or to a direction you've decided to move toward.
+4. **Attach the body-of-work artifact.** Link the case-study, the public write-up, the GitHub corpus — whatever artifact best demonstrates that the actual fit is real. The artifact does the positioning work the verbal pitch cannot.
+5. **Ask to be routed.** Not "what do you think?" — "let me know if it makes sense to route me there."
+
+What this preserves:
+
+- The recruiter's trust capital. They selected you once; the move tells them their first read was directionally right, just role-mismatched.
+- Your funnel slot. The conversation continues without restarting from cold-DM.
+- Your sovereignty. You're not chasing — you're redirecting toward the actual fit you already know exists.
+
+What it tests:
+
+- **Is the recruiter selecting on fit or arbitraging on rate?** A fit-selector re-routes. An arbitrager goes silent. Either answer is useful.
+- **Does the company actually have role-fluidity at senior levels?** Some companies do; some are slot-locked. The response tells you.
+
+**Data point.** Vibe.co, May 2026. Erwan Michel (Principal Technical Recruiter) declined Director of Product Analytics with accurate shape diagnosis (*"hybrid Data/Systems/Product-minded builder, not pure Product Analytics Director archetype"*). Ahmed identified AI Lead Developer Experience open at Vibe, sent one-line repositioning email + BoringSystems case-study link in same thread. Erwan agreed to route. Re-screening conducted, hiring manager interview confirmed.
+
+---
+
+## Body-of-work-as-positioning
+
+The most efficient positioning artifact is not a pitch; it is a public case-study, write-up, or codified corpus that demonstrates the work has already been done. When redirecting a recruiter or buyer toward a different role or a different scope, link the artifact rather than describing the experience.
+
+Why it outperforms verbal positioning:
+
+- **Asynchronous.** The buyer reads on their own schedule, at depth, without the social pressure of an interview clock.
+- **Self-contained.** The artifact carries the context, the structure, the numbers, the lessons — the buyer doesn't have to reconstruct them from a pitch.
+- **Defensible.** A public artifact with a date, a domain, and a named author is harder to dismiss than a claim made in a conversation.
+- **Compound.** The same artifact serves multiple opportunities across multiple buyers; each conversation invests in the artifact, not in re-pitching the same story.
+
+Operational rules:
+
+- **Build the artifact before you need it.** Case-studies written *for* a specific conversation read as marketing. Case-studies written from accumulated work and shared when relevant read as evidence.
+- **One link per redirect, not a portfolio dump.** The buyer should be able to read one artifact in 5-10 minutes and update their read of you. A portfolio overwhelms; a single targeted link converts.
+- **The artifact must match the redirect direction, not the original ask.** When pivoting from Role A to Role B, the artifact should evidence Role-B-shaped work, not Role-A-adjacent work.
+- **Ship the artifact before you arrive.** The hiring manager who reads it before the next call enters the conversation already partially convinced; the conversation can move past basic credibility-establishment to substance.
+
+**Data point.** Vibe.co, May 2026. BoringSystems case-study `engineering-ai-adoption-on-a-live-platform` sent to Erwan during the pivot-recovery move. By the second screening call Erwan named Ahmed's positioning verbatim back to him — the case-study had done the positioning work the verbal pitch could not.
+
+---
+
+## Cross-references
+
+- `offers.md` — engagement shapes A / B and the surfaces this discipline protects
+- `credibility-map.md` — zone-of-fit reading for walk-or-push decisions
+- `memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md` — the upstream filter that overrides this discipline when triggered
+- `memory/medium-term/Engagement-Shapes.md` — Shape B contained-risk principle + intéressement anti-pattern
