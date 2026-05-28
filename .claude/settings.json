@@ -95,6 +95,7 @@
       }
     ]
   },
+  "model": "opus",
   "enabledPlugins": {},
   "effortLevel": "xhigh",
   "voice": {
