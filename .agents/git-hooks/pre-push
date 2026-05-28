@@ -2,8 +2,10 @@
 # pre-push — block workspace push when any npm-capable submodule reports
 # high/critical vulnerabilities.
 #
-# Wired via `git config core.hooksPath .claude/git-hooks` (installed by
-# .claude/setup.sh). Tracked in-repo so hook config travels with clones.
+# Wired via `git config core.hooksPath .agents/git-hooks` (installed by each
+# agent's setup.sh). Tracked in-repo so hook config travels with clones.
+# Git hooks are agent-agnostic: git itself invokes them regardless of which
+# agent committed/pushed, so they live under .agents/ not .claude/ or .codex/.
 #
 # Per-submodule simple-git-hooks pre-push already protects each subproject's
 # own push. This hook catches the case where the workspace is pointer-bumping

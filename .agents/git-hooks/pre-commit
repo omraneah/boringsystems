@@ -1,0 +1,188 @@
+#!/usr/bin/env bash
+# pre-commit — branch protection + content hygiene + build-artifact sync.
+#
+# Three enforcement layers:
+#
+# 1. Branch protection: refuses commits to protected branches.
+#    (defense-in-depth alongside pre-push)
+#
+# 2. Content hygiene: checks ADDED lines in staged markdown files for
+#    three forbidden patterns:
+#      1. Linear card IDs (BOR-32, LIN-123, etc.) in stable docs.
+#         Cards are project-management ephemera — they change state, get closed,
+#         and rot inside stable docs that outlive the card. Replace with text.
+#      2. tmp/ path references. tmp/ is an ephemeral render buffer.
+#         Never link to tmp/ files from committed docs.
+#      3. Long-term tier transient content (memory/long-term/**.md only):
+#         year markers, "currently", "recently", phase-bound phrases. Body
+#         only — YAML frontmatter is skipped wholly.
+#
+# 3. Build-artifact sync: regenerates the per-agent persona adapters
+#    (.claude/agents/*.md and .codex/agents/*.toml) from .agents/personas/, and
+#    syncs permission adapters from .agents/permissions/ before each commit.
+#    Ensures committed artifacts are never stale relative to their sources.
+#
+# Scope for hygiene: staged .md/.mdx files, excluding:
+#   .claude/          — hooks and skills legitimately document these patterns
+#   memory/short-term/20*/  — daily/weekly episodic entries (card IDs expected)
+#   */_archive/       — archived content, not forward-looking
+#
+# Only added lines are checked (lines starting with + in the diff). This means
+# pre-existing violations in unmodified lines do not block the commit — run
+# /check-stable-docs-leaks to sweep the full workspace for those.
+#
+# Wired via `git config core.hooksPath .agents/git-hooks` (each agent's setup.sh).
+# --no-verify is forbidden by policy. See workspace AGENTS.md.
+
+set -u
+
+# --- Protected branch guard ---
+branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
+case "$branch" in
+  main|master|development|dev|production)
+    echo "[pre-commit] ✗ refused — committing to protected branch '$branch' is not allowed."
+    echo "             Create a feature branch first: git checkout -b omraneah/<name>"
+    echo "             --no-verify forbidden. See workspace AGENTS.md."
+    exit 1
+    ;;
+esac
+
+# --- Build-artifact sync ---
+workspace_root="$(git rev-parse --show-toplevel)"
+
+# Regenerate per-agent persona adapters from canonical .agents/personas/
+bash "$workspace_root/scripts/generate-agents.sh" >/dev/null 2>&1 || \
+  echo "[pre-commit] WARN: generate-agents.sh failed — .claude/agents/ and .codex/agents/ may be stale"
+git add "$workspace_root/.claude/agents/" "$workspace_root/.codex/agents/" 2>/dev/null || true
+
+# Sync agent-specific permission adapters from canonical policy
+bash "$workspace_root/.agents/permissions/sync.sh" >/dev/null 2>&1 || \
+  echo "[pre-commit] WARN: permission sync failed — agent permission adapters may be stale"
+git add "$workspace_root/.codex/rules/default.rules" 2>/dev/null || true
+
+# --- Hygiene guard ---
+# Pattern 1: Linear card IDs.
+# Explicit team prefixes avoid false positives with technical standards (UTF-8,
+# SHA-256, ISO-8601, etc.). Add new team prefix patterns here when new Linear
+# teams are created (e.g., APP-[0-9]+).
+CARD_ID_PATTERN='BOR-[0-9]+|LIN-[0-9]+'
+
+# Pattern 2: tmp/ path references.
+# tmp/ is the ephemeral render buffer (wiped at session boundaries). Never link
+# to tmp/ files from committed docs — the link rots within hours.
+
+# Pattern 3 (long-term tier only): date markers + transient phrases.
+# Long-term memory holds timeless inner-game / identity / north-star content.
+# Every sentence must hold in 2+ years. Date-anchored or phase-bound content
+# fails the test by default and belongs in medium-term or short-term.
+# Rule source: memory/short-term/feedback/stable/feedback_long_term_tier_purity.md
+LONG_TERM_TRANSIENT_PATTERN='\b20[0-9][0-9]\b|\brecently\b|\bcurrently\b|\bright now\b|\blast (week|month|year|quarter)\b|\bthis (week|month|year|quarter)\b|\bnext (week|month|year|quarter)\b|\bpast (few |several )?(week|month|year|quarter)s?\b|\bover the past\b|\bin the coming\b'
+
+fail=0
+
+while IFS= read -r file; do
+  # Only check markdown files
+  case "$file" in *.md|*.mdx) ;; *) continue ;; esac
+  # Skip: .claude/, .agents/{skills,hooks,git-hooks}/ — these legitimately
+  # document or implement the forbidden patterns (leak-check skill, hooks, this
+  # very pre-commit hook). Personas + permissions are still scanned.
+  case "$file" in .claude/*|.agents/skills/*|.agents/hooks/*|.agents/git-hooks/*) continue ;; esac
+  # Skip: short-term episodic entries (daily/weekly, card IDs are expected)
+  case "$file" in memory/short-term/20*) continue ;; esac
+  # Skip: archived content
+  case "$file" in */_archive/*|*_archive/*) continue ;; esac
+
+  # Extract only added lines from the staged diff
+  added="$(git diff --cached -- "$file" | grep '^+' | grep -v '^+++' 2>/dev/null || true)"
+  [ -z "$added" ] && continue
+
+  # Check for Linear card IDs
+  card_hits="$(echo "$added" | grep -E "$CARD_ID_PATTERN" || true)"
+  if [ -n "$card_hits" ]; then
+    echo "[pre-commit] ✗ Linear card ID added to stable doc: $file"
+    echo "$card_hits" | head -5 | sed 's/^/    /'
+    fail=1
+  fi
+
+  # Check for tmp/ path references
+  tmp_hits="$(echo "$added" | grep -E '\btmp/[a-zA-Z0-9_/.-]+' || true)"
+  if [ -n "$tmp_hits" ]; then
+    echo "[pre-commit] ✗ tmp/ reference added to committed file: $file"
+    echo "$tmp_hits" | head -5 | sed 's/^/    /'
+    fail=1
+  fi
+
+  # Check for long-term tier transient content.
+  # Scope: memory/long-term/**.md files only. Skips the YAML frontmatter block
+  # wholly (everything between the opening --- on line 1 and the closing ---).
+  # Frontmatter carries audit metadata (last_reviewed, horizon, companion_to,
+  # codified, seeded, etc.) that legitimately includes dates and is out of
+  # scope. Body content is wholly in scope.
+  case "$file" in
+    memory/long-term/*)
+      # Determine frontmatter end line from the staged blob. If the file does
+      # not open with '---', frontmatter_end=0 (entire file is body).
+      first_line="$(git show ":$file" 2>/dev/null | head -1 || true)"
+      if [ "$first_line" = "---" ]; then
+        frontmatter_end="$(git show ":$file" 2>/dev/null | awk '/^---$/{n++; if (n==2) {print NR; exit}}')"
+        [ -z "$frontmatter_end" ] && frontmatter_end=0
+      else
+        frontmatter_end=0
+      fi
+
+      # Extract added-line numbers in new-file coordinates from -U0 hunks.
+      # Hunk header form: @@ -x[,y] +a[,b] @@  where a = first added line,
+      # b = added-line count (default 1 if omitted).
+      lt_violation=""
+      while IFS= read -r hunk_line; do
+        # Parse '+a[,b]' from '@@ -... +a[,b] @@'
+        plus_part="$(echo "$hunk_line" | sed -n 's/^@@ [^+]*+\([0-9]*\(,[0-9]*\)\{0,1\}\).*/\1/p')"
+        [ -z "$plus_part" ] && continue
+        start_line="${plus_part%%,*}"
+        if [ "$plus_part" = "$start_line" ]; then
+          count=1
+        else
+          count="${plus_part#*,}"
+        fi
+        [ "$count" = "0" ] && continue
+
+        # Read the actual added lines from the hunk body (the +-prefixed lines
+        # immediately following this header, until the next @@).
+        end_line=$((start_line + count - 1))
+        cur=$start_line
+        while [ $cur -le $end_line ]; do
+          # Pull line $cur from the staged blob
+          body_line="$(git show ":$file" 2>/dev/null | sed -n "${cur}p" || true)"
+          if [ $cur -gt $frontmatter_end ]; then
+            if echo "$body_line" | grep -iqE "$LONG_TERM_TRANSIENT_PATTERN"; then
+              lt_violation="${lt_violation}    line ${cur}: ${body_line}
+"
+            fi
+          fi
+          cur=$((cur + 1))
+        done
+      done < <(git diff --cached -U0 -- "$file" | grep '^@@')
+
+      if [ -n "$lt_violation" ]; then
+        echo "[pre-commit] ✗ long-term tier transient content added: $file"
+        printf '%s' "$lt_violation" | head -5
+        echo "    Long-term holds content that must hold in 2+ years."
+        echo "    Generalize (e.g. 'recently' → remove; year markers → remove) or move to medium-term/short-term."
+        echo "    Rule: memory/short-term/feedback/stable/feedback_long_term_tier_purity.md"
+        fail=1
+      fi
+      ;;
+  esac
+
+done < <(git diff --cached --name-only --diff-filter=ACM)
+
+if [ "$fail" -eq 1 ]; then
+  echo ""
+  echo "  Linear card IDs → replace with descriptive text."
+  echo "  tmp/ references → tmp/ is ephemeral, never link to it in stable docs."
+  echo "  Run /check-stable-docs-leaks to sweep the full workspace for existing violations."
+  echo "  --no-verify forbidden. See workspace AGENTS.md."
+  exit 1
+fi
+
+exit 0

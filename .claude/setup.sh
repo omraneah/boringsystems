@@ -79,15 +79,17 @@ else
   echo "Created: $MEMORY_DST → workspace/memory"
 fi
 
-# 4. Git hooks: point core.hooksPath at tracked hook directory so the
-#    pre-push audit check travels with the repo. Idempotent.
+# 4. Git hooks: point core.hooksPath at the agent-agnostic tracked hook
+#    directory so the pre-commit + pre-push checks travel with the repo and
+#    fire regardless of which agent runs git. Idempotent. Migrates from the
+#    old Claude-only path if present.
 if git -C "$WORKSPACE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
   current_path="$(git -C "$WORKSPACE_DIR" config --get core.hooksPath || true)"
-  if [ "$current_path" = ".claude/git-hooks" ]; then
+  if [ "$current_path" = ".agents/git-hooks" ]; then
     echo "git hooks path already wired — skipping"
   else
-    git -C "$WORKSPACE_DIR" config core.hooksPath .claude/git-hooks
-    echo "Configured: core.hooksPath → .claude/git-hooks"
+    git -C "$WORKSPACE_DIR" config core.hooksPath .agents/git-hooks
+    echo "Configured: core.hooksPath → .agents/git-hooks (was: ${current_path:-unset})"
   fi
 fi
 

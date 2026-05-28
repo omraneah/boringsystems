@@ -35,6 +35,19 @@ if [ -f "$WORKSPACE_DIR/.codex/hooks.json" ] && [ -x "$WORKSPACE_DIR/.agents/hoo
   echo "Codex hook audit: hooks.json present; guard scripts executable."
 fi
 
+# Git hooks: point core.hooksPath at the agent-agnostic tracked hook
+# directory. Idempotent. Git hooks fire regardless of which agent runs git,
+# so this must be wired by each agent's own setup independently.
+if git -C "$WORKSPACE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
+  current_path="$(git -C "$WORKSPACE_DIR" config --get core.hooksPath || true)"
+  if [ "$current_path" = ".agents/git-hooks" ]; then
+    echo "git hooks path already wired — skipping"
+  else
+    git -C "$WORKSPACE_DIR" config core.hooksPath .agents/git-hooks
+    echo "Configured: core.hooksPath → .agents/git-hooks (was: ${current_path:-unset})"
+  fi
+fi
+
 TMPDIR="$(mktemp -d "${TMPDIR:-/tmp}/codex-hook-smoke.XXXXXX" 2>/dev/null || true)"
 if [ -n "$TMPDIR" ]; then
   trap 'rm -rf "$TMPDIR"' EXIT
