@@ -91,3 +91,108 @@ The frame protects against the wrong engagement, not just the wrong price. Walk 
 - The conversation lives in Zone 3 of `credibility-map.md` (manager-of-managers at scale, hyperscale ops, deep-tech specialist depth) — refer out rather than push uphill.
 
 Walking with care and curiosity preserves the relationship for a future conversation. Most "no" outcomes from this discipline return as "yes" outcomes 6–18 months later under different conditions.
+
+---
+
+## Pivot-recovery move — when the originally-pitched role isn't a fit
+
+When a recruiter or buyer declines on shape-mismatch (typically "you're a strong candidate but not the archetype for this specific mandate"), the default operator reflex is to absorb the no and disengage. That reflex wastes the funnel slot the conversation has already earned.
+
+The pivot-recovery move:
+
+1. **Take the decline at face value.** Don't argue the shape diagnosis — if it's accurate, arguing weakens the relationship. If it's inaccurate, arguing won't change it.
+2. **Scan the buyer's open inventory.** Most companies running a senior search have more than one role open at a time. The role you were first pitched for is often not the role that actually fits you.
+3. **Surface the actual fit unprompted.** One line. Name the specific other role. Explain in one sentence why it maps to your last two roles or to a direction you've decided to move toward.
+4. **Attach the body-of-work artifact.** Link the case-study, the public write-up, the GitHub corpus — whatever artifact best demonstrates that the actual fit is real. The artifact does the positioning work the verbal pitch cannot.
+5. **Ask to be routed.** Not "what do you think?" — "let me know if it makes sense to route me there."
+
+What this preserves:
+
+- The recruiter's trust capital. They selected you once; the move tells them their first read was directionally right, just role-mismatched.
+- Your funnel slot. The conversation continues without restarting from cold-DM.
+- Your sovereignty. You're not chasing — you're redirecting toward the actual fit you already know exists.
+
+What it tests:
+
+- **Is the recruiter selecting on fit or arbitraging on rate?** A fit-selector re-routes. An arbitrager goes silent. Either answer is useful.
+- **Does the company actually have role-fluidity at senior levels?** Some companies do; some are slot-locked. The response tells you.
+
+**Data point.** Vibe.co, May 2026. Erwan Michel (Principal Technical Recruiter) declined Director of Product Analytics with accurate shape diagnosis (*"hybrid Data/Systems/Product-minded builder, not pure Product Analytics Director archetype"*). Ahmed identified AI Lead Developer Experience open at Vibe, sent one-line repositioning email + BoringSystems case-study link in same thread. Erwan agreed to route. Re-screening conducted, hiring manager interview confirmed.
+
+---
+
+## Constraint-up-the-chain pivot — when the artifact is wrong-shape but the role is right
+
+Sibling to the pivot-recovery move, but reversed. The pivot-recovery move flips the *role* when the role is wrong-shape. The constraint-up-the-chain pivot flips the *artifact* (test, scope, deliverable, success criterion) when the artifact is wrong-shape but the role is right.
+
+Recognize the shape:
+
+- The role has been discussed at length with a sponsor (hiring manager, head of function) and lands at the correct altitude.
+- A downstream artifact — test technique, scoping document, deliverable shape, success criterion — arrives that is structurally misaligned with the role as discussed (e.g. an IC-coding test on a change-leadership role; a hands-on ML/LLM exercise on a governance + adoption role).
+- Walking on the artifact wastes the funnel slot the role conversation earned. Accepting the artifact pretends the role is something it isn't.
+
+The move:
+
+1. **Name the mismatch in writing, not in conversation.** Email leaves a paper trail; the intermediary (recruiter, studio) can forward it verbatim upward. Keep the message short, structural, and dispassionate.
+2. **Anchor the mismatch in the prior conversation.** The sponsor has already given the role's real shape; reference that, not your preferences. *"Le test diverge sensiblement des enjeux abordés avec [sponsor]"* moves the burden of reconciliation to the sponsor, not to you.
+3. **Ask for the next-altitude conversation before any commitment.** Not "send me a different test" — "I'd prefer an échange with [next-altitude sponsor: CDO, VP Eng, founder] to clarify the périmètre of the role from their point of view, before going further." This skin-in-the-game move (per principle #2) escalates correctly.
+4. **Preserve the door.** Close with *"if there's a real fit, I'll do the test or another one later"* — refuses the current artifact, keeps the role conversation open.
+5. **Let the buyer reformulate.** The right outcome is the buyer producing a new artifact that matches the role. If they double-down on the original artifact, the role is structurally different from what was discussed — walk.
+
+What this tests:
+
+- **Does the sponsor still own the role's shape, or has it been delegated to a process that doesn't match?** A sponsor who reformulates the artifact within hours of the constraint being named confirms the role is real.
+- **Does the company flex artifact-to-candidate when fit is strong, or does it standardize across all candidates regardless?** The first signal compounds; the second signals process-rigidity.
+
+**Data point.** Free (Iliad), May 2026. Test technique for "Senior Vibe Coder" arrived shaped for ML/LLM Engineer hands-on, diverging from the change-leadership scope agreed with Julien (Head of Engineering). Ahmed declined in writing, anchored the mismatch in the Julien conversation, asked for échange with CDO before going further. Recruiter relayed to Julien within 42 minutes; Julien reformulated the artifact as a qualitative expert-user analysis of Free's internal LLM tool (CodeX) — right altitude for the role. Constraint-up-the-chain pivot executed clean.
+
+---
+
+## Sponsor-chain incompleteness — discovery gate
+
+When more than one altitude is named in the sponsor chain (e.g. hiring manager + CDO + CIO + direction) but only one has been engaged in conversation, treat the unsurfaced altitudes as a discovery gate, not a process detail.
+
+What it tells you:
+
+- **The role's mandate may be unclear inside the buying organization.** If the CDO is named as a stakeholder but never enters the conversation, the role's ownership at group altitude is contested, ambiguous, or unowned.
+- **The hiring manager may be hedging.** Phrases like *"à voir comment on positionne, c'est possible que ce soit lui"* signal the sponsor has not yet earned the authority to commit, or is preserving optionality between owners.
+- **The artifact / test stage may delay the unsurfaced altitudes.** Standardized tests can be a way for a non-decision-maker to gate without escalating.
+
+The move:
+
+- Name the unsurfaced altitudes in conversation: *"qui est dans le débrief?"* / *"quel niveau de profondeur cherchez-vous : exécutif ou technique?"* / *"quand est-ce que [CDO/CIO/founder] entre dans la conversation?"*
+- Don't accept "we'll see" as a steady-state answer. The unsurfaced sponsor must surface before the commitment-level conversation, not after.
+- If the unsurfaced altitudes never surface, the role is either smaller in scope than framed, or organizationally unowned. Either way, walk before committing.
+
+---
+
+## Body-of-work-as-positioning
+
+The most efficient positioning artifact is not a pitch; it is a public case-study, write-up, or codified corpus that demonstrates the work has already been done. When redirecting a recruiter or buyer toward a different role or a different scope, link the artifact rather than describing the experience.
+
+Why it outperforms verbal positioning:
+
+- **Asynchronous.** The buyer reads on their own schedule, at depth, without the social pressure of an interview clock.
+- **Self-contained.** The artifact carries the context, the structure, the numbers, the lessons — the buyer doesn't have to reconstruct them from a pitch.
+- **Defensible.** A public artifact with a date, a domain, and a named author is harder to dismiss than a claim made in a conversation.
+- **Compound.** The same artifact serves multiple opportunities across multiple buyers; each conversation invests in the artifact, not in re-pitching the same story.
+
+Operational rules:
+
+- **Build the artifact before you need it.** Case-studies written *for* a specific conversation read as marketing. Case-studies written from accumulated work and shared when relevant read as evidence.
+- **One link per redirect, not a portfolio dump.** The buyer should be able to read one artifact in 5-10 minutes and update their read of you. A portfolio overwhelms; a single targeted link converts.
+- **The artifact must match the redirect direction, not the original ask.** When pivoting from Role A to Role B, the artifact should evidence Role-B-shaped work, not Role-A-adjacent work.
+- **Ship the artifact before you arrive.** The hiring manager who reads it before the next call enters the conversation already partially convinced; the conversation can move past basic credibility-establishment to substance.
+
+**Data points.**
+- Vibe.co, May 2026 — BoringSystems case-study `engineering-ai-adoption-on-a-live-platform` sent to Erwan during the pivot-recovery move. By the second screening call Erwan named Ahmed's positioning verbatim back to him.
+- Free (Iliad), May 2026 — Same case-study surfaced to David in the initial recruiter call, then offered for internal team review. The artifact accompanied the conversation from intake forward.
+
+---
+
+## Cross-references
+
+- `offers.md` — engagement shapes A / B and the surfaces this discipline protects
+- `credibility-map.md` — zone-of-fit reading for walk-or-push decisions
+- `memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md` — the upstream filter that overrides this discipline when triggered
+- `memory/medium-term/Engagement-Shapes.md` — Shape B contained-risk principle + intéressement anti-pattern
