@@ -18,7 +18,7 @@
 # Tools: pure bash + jq (JSON stdin parse) + grep + sed. No Python.
 
 INPUT="$(cat 2>/dev/null || true)"
-COMMAND="$(printf '%s' "$INPUT" | jq -r '.tool_input.command // ""' 2>/dev/null || true)"
+COMMAND="$(printf '%s' "$INPUT" | jq -r '.tool_input.command // .tool_input.cmd // ""' 2>/dev/null || true)"
 
 # Strip "..." and '...' so quoted MENTIONS don't false-positive.
 SCAN="$(printf '%s' "$COMMAND" | sed -e 's/"[^"]*"/ /g' -e "s/'[^']*'/ /g")"
