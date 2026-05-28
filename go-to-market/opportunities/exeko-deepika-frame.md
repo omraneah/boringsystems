@@ -154,6 +154,46 @@ The mechanic: let them narrate their world, avoid early resistance, identify the
 
 **Calibration score.** 9/10. The tactic works especially well on Maxime-like founder energy because direct frame replacement would trigger persuasion mode; constraint-seeding lets him incorporate Ahmed's frame as his own realism. Remaining risk: if constraints land too late, the founder may emotionally register Ahmed as inside the dream before the boundary is visible. In this call, the constraints landed early enough.
 
+### Post-call session — body check and structural read (2026-05-28)
+
+**New information surfaced or sharpened.**
+- Nicolas is a stagiaire, not employed dev. Internship ends late 2026. Recasts dev-replacement authority and continuity question — no employment overhang, but no scaffolding commitment either.
+- Budget structure: Exeko pays Deepika ~1000 €/d; Ahmed receives 800 €/d; ~200 €/d studio margin. 2-3 days/week max, 3 already tight on cash.
+- API endpoint count: 357 routes / 0 real users. Compared to Ahmed's < 100 routes on a 3-year live multi-stakeholder mobility system, this is 3.5× endpoint surface for ~0× traction. Signal of architecture unconstrained by reality + AI-velocity-without-discipline = endpoint sprawl as default failure mode of this stack shape.
+- Maxime's "intéressement" teaser confirmed: delayed-promise upside ask in soft wrapping. **Hard no on freelance, lifetime** — promoted to [[Engagement-Shapes]] § Shape B contained-risk as named anti-pattern.
+
+**Density-of-collapsed-problems read.**
+- Refonte + V0 marché + AI core asset + dev decision + go-to-market — compressed into one 2-3 d/wk slot.
+- No dev capable in interne → high probability of becoming main executor → reputation risk both ways.
+- Cash constrained + ambition unbounded + no traction to discipline scope = expectations-management nightmare.
+- Pattern promoted to [[Engagement-Validity-Filter]] § walk criteria: **density-of-collapsed-problems + thin-leverage = walk signal**.
+
+**Body check.**
+- Leaning out based on current info and progress.
+- Letting it go unless shape emerges cleanly without push from Ahmed's end.
+- Relationship with Louis is the actual outcome — feels building. That is the most important asset, independent of Exeko outcome.
+
+### Pre-lunch email to Louis (sent 2026-05-28)
+
+Pre-read shared with Louis before 3 June lunch (Louis + Nicolas Mégarbane parallel candidate + Ahmed). Structural elements of the email:
+
+- Côté + : Maxime saisit les subtilités tech, projet sincère, forme malléable.
+- Côté risque : vision dense, timeline comprimée, pas de dev capable en interne pour porter l'exécution, pas de cash pour accélérer avec un senior. Beaucoup de risque concentré sur quiconque prendra la mission.
+- Scoping + expectation-management work named as critical pre-engagement step.
+- **Free product session offer** with founders — operationalized as discovery instrument (~2 booked next week on other early-stage). Exposes Ahmed's method, what he brings, where his limits stand (no operational, vision, or narrative risk ownership — those stay internal). Helps founders shape a collaboration that fits them.
+- Two pistes:
+  1. Mission scopée — refonte sur la base de l'audit, livrable défini, MVP final cadré.
+  2. Accompagnement ouvert sur quelques semaines/mois en pilotage — cadrer collaboration, faire monter ou remplacer l'ingénieur en place, commencer refonte. Engagement sur la trajectoire, pas sur un livrable figé.
+- Non-negotiable: dev capable en interne pour assurer le rythme et la continuité de l'exécution. Sans ça, le risque devient porté par la relation, pas par le contrat.
+
+**Relationship framing.** Louis invited Nicolas Mégarbane to the lunch = selecting on fit, not arbitraging rates. Peer-grade move. Email pre-read serves the lunch, not Ahmed's pitch — Louis can route Nicolas without losing face. The relationship with Louis (and Deepika as long-arc network node) is the engagement that compounds beyond Exeko.
+
+### Intermediary-routing observation
+
+Starter pack sent to Louis (intermediary), not directly to Maxime. Louis owns the relationship + delivery risk with Maxime; Ahmed stays one-degree-removed.
+
+Pattern named for doctrine: **intermediary-bears-more-risk routing** — when a studio/intermediary owns the founder relationship, route critical artifacts (playbook, audit-grade content) through them to preserve one-degree-removed exposure. Queued for `inbound-call-discipline.md` next consolidation.
+
 ---
 
 ## Starter-pack as conversation artifact

@@ -88,6 +88,28 @@ If the failure shape is detected at in-engagement altitude, the response is:
 
 For Shape B engagements (fractional / freelance), the contained-risk-vs-founder-risk principle is the upstream failure to refuse. Canonical home: [[Engagement-Shapes]] § Shape B contained-risk principle. Wrong-shape Shape B engagements fire the single-dimension trap by intensifying ownership without upside.
 
+## Density-of-collapsed-problems + thin-leverage (walk signal)
+
+When a buyer compresses many unsolved problems into a single mandate ("we need a fractional CTO") and lacks the resources to attract the right shape of operator for the actual problem-set, the engagement compounds risk for whoever accepts.
+
+**Shape of the trap.**
+- Many distinct problems (refonte + go-to-market + AI core asset + dev decision + product alignment) collapsed into one slot.
+- Resource envelope too thin to afford the right operator at the right cadence (e.g. budget cap forces 2-3 d/wk when the work demands 5).
+- Buyer compensates with delayed-promise upside (intéressement, equity-once-we-figure-it-out, co-direction language) — see [[Engagement-Shapes]] § Shape B contained-risk.
+- No traction to discipline scope. Without users, every direction looks equally important; nothing forces prioritization.
+
+**Why it fails by structure.**
+- The operator who accepts becomes the de-facto main executor regardless of how the engagement was framed.
+- Reputation risk flows both ways: if the operator leaves before resolution, the buyer's narrative is "the CTO didn't deliver"; if the operator stays, the single-dimension trap (per § The archetype) fires across body / time / network / positioning.
+- The intermediary (if any) absorbs relational friction first but cannot rebalance the structural mismatch.
+
+**The walk move.**
+- Refuse the compression. Offer to scope a tightly-bounded first mission OR a time-boxed pilotage engagement that re-discovers the actual problem-set before any commitment.
+- Free product session with the founders is the canonical pre-engagement instrument when the scope is malleable — exposes the operator's method, what they bring, where their limits stand. See `go-to-market/inbound-call-discipline.md`.
+- If the scoping work itself surfaces refusal of the constraints, walk with the relationship preserved; the buyer keeps the scoping artifact, the operator keeps the network.
+
+**Data point.** Exeko.ai via Deepika, May 2026. 357 API routes / 0 real users + 1 stagiaire + ~1000 €/d to studio with 200 €/d margin + 2-3 d/wk cap + intéressement teaser + dense ambition (V0 + AI core + refonte + dev decision + GTM) = textbook collapsed-problems + thin-leverage shape. Resolved by structuring the mission before engagement (pre-lunch email proposing two scoped pistes + non-negotiable internal-dev condition) rather than accepting compressed ask.
+
 ## Low-governance relational fit
 
 High-challenge / low-governance contexts need a binding agent the structure cannot provide. The filter is **shared conceptual frame (N) + values-coherence (F)**.
@@ -96,7 +118,7 @@ Operational rules:
 
 - **Require NF co-founder or sponsor** in early-stage, founder-led, or structurally unbraked contexts. ENFJ, INFJ, and INFP shapes can carry meaning + relational integrity as the binding layer.
 - **ENTJ is contextual.** ENTJ + governance + peers + brakes can be a high-functioning complement. ENTJ + early-stage + no brakes + me as sole counterweight fails by structure: I lose the power game because I do not want to play it and they do.
-- **ENTJ early-stage only clears with explicit brakes:** real board, co-founder counterweight, peer structure, and demonstrated F-development. Rare; more plausible in metabolized second-time founders. Recent data point: White Bird CPTO conversation, May 2026.
+- **ENTJ early-stage only clears with explicit brakes:** real board, co-founder counterweight, peer structure, and demonstrated F-development. Rare; more plausible in metabolized second-time founders **or in metabolized senior corporate operators** (track record + governance + developed F). Data points: White Bird CPTO conversation (failure shape — ENTJ early-stage, no brakes) and Generali Cognitive Factory conversation (cleared shape — ENTJ + COMEX-tracked governance + N+1 ex-SocGen sponsor + N+2 COMEX peer structure + developed F), both May 2026.
 - **ESFP is a hard no.** The mismatch is fundamental: immediate sensory/emotional processing under load amplifies noise, image-management, and in-the-moment chaos. Mature systems dilute the cost but do not dissolve the body cost of proximity.
 - **Mature / governed contexts reduce archetype weight.** The system carries more of the relationship risk; detection is faster and proximity is less structurally concentrated.
 
