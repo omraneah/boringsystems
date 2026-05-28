@@ -190,9 +190,69 @@ Operational rules:
 
 ---
 
+---
+
+## Three-phase pull-mode structure
+
+The instruments below sit inside a three-phase frame. Full doctrine: `memory/medium-term/operational-doctrine/Pull-Mode-Strategy.md`. Summary:
+
+- **Phase 1 — oral, in the room.** Spectator stance + discovery + mirror frame back + seed 2-4 non-negotiable constraints + read response + close without revealing commitment. Catches frame-controllers (walk) and surfaces founder-grade reflexes.
+- **Phase 2 — written, post-call.** Operator makes the next move. Sharpen constraints in writing. Name the structural trap to the intermediary explicitly. Offer a probe instrument (free product session, scoping artifact). Force two-piste choice. Buyer either re-cuts to fit or self-eliminates.
+- **Phase 3 — win-win negotiation, inside the engagement scope.** Activated only after phase 2 produces a buyer who has metabolized the reformulation. Negotiate terms (scope, time, cognitive load, authority, exit gates), not rate. BATNA never softens. The close is the buyer asking to buy.
+
+The three-response taxonomy at phase 1:
+
+| Response | Operator type | Outcome |
+|---|---|---|
+| Frame restoration via fiction or soft-denial + re-assertion | Frame-controller (sophisticated control-ENTJ in low-governance) | Walk. No phase 2. |
+| Metabolization + one founder-grade reflex | Honest constraint-metabolizer with founder-grade default | Defuse structurally in phase 1; watch in phase 2; if reflex repeats → walk |
+| Metabolization + structural concretization | Aligned operator (governance present, developed F) | Continue. Phase 2 sharpens remaining structural questions. |
+
+Data points: Whitebird (restoration → walk), Exeko (reflex → defuse+watch), Generali (concretization → continue), Vibe (metabolization → continue). May 2026.
+
+---
+
+## Named instruments — phase 2
+
+### Constraint-sharpening in writing
+
+Restate phase-1 constraints harder, in writing, as structural facts. Writing creates a paper trail the intermediary can forward verbatim upward. Forces the buying organization to confront the structural shape before lunch / next meeting.
+
+**Data point.** Exeko / Louis pre-lunch email 2026-05-28. Constraints restated in writing: "beaucoup de risque concentré sur quiconque prendra la mission" + "scoping + expectation-management critical pre-engagement" + non-negotiable on dev confirmé en interne. Louis response: "on va réfléchir, on en reparle mercredi" — correct shape, buyer absorbing.
+
+### Named-trap-to-intermediary
+
+When a structural trap is real and concentrated on the next operator, **name it to the intermediary explicitly on the table**. The intermediary either acknowledges (re-cuts the engagement) or pretends (which a competent intermediary can't sustain). Forces structural reformulation without making it personal.
+
+**Data point.** Exeko / Louis email 2026-05-28. "Beaucoup de risque concentré sur quiconque prendra la mission" — risk asymmetry named directly to Louis. Forced Louis to absorb the structural read rather than route past it.
+
+### Two-pistes structure
+
+Present 2 scoped options. Force choice. **Don't ask permission to engage.** *"Either A or B; in both cases, [non-negotiable]."* Removes the implicit "or we could discuss other shapes" — the conversation continues only inside one of the two pistes you offered.
+
+**Data point.** Exeko / Louis email 2026-05-28. Two pistes: mission scopée OR pilotage ouvert sur trajectoire. Both with same non-negotiable (dev confirmé en interne).
+
+### Free product session as probe instrument
+
+A 1-2 hour session with the founders, free, with **named limits** (no operational / vision / narrative risk ownership stays internal). Exposes Ahmed's method, what he brings, where his limits stand. Helps the buyer shape the collaboration that fits them. The act of offering it AND naming the limits is the probe — not a giveaway.
+
+**Data point.** Exeko / Louis email 2026-05-28. Free product session offered with explicit risk-ownership boundary. Offered as discovery instrument, not as bid-discount.
+
+---
+
+## ESFP-detection via AI double-check
+
+Per `memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md` § Low-governance relational fit: **ESFP archetype bypasses the constraint-response diagnostic** because they perform warmth. The signal is hidden in tone, body language, emotional sub-text — not in explicit response to seeded constraints.
+
+**Operational rule.** When the operator's gut signals "something off but I can't name it" + the verbal exchange reads clean + the warmth feels performative or covert-contract-shaped → run an AI double-check on the call transcript. Surface the pattern that the rational read missed. ESFP is a lifetime hard no; detection precedes acceptance.
+
+---
+
 ## Cross-references
 
 - `offers.md` — engagement shapes A / B and the surfaces this discipline protects
 - `credibility-map.md` — zone-of-fit reading for walk-or-push decisions
-- `memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md` — the upstream filter that overrides this discipline when triggered
-- `memory/medium-term/Engagement-Shapes.md` — Shape B contained-risk principle + intéressement anti-pattern
+- `memory/medium-term/operational-doctrine/Pull-Mode-Strategy.md` — the three-phase doctrine these instruments live inside
+- `memory/medium-term/operational-doctrine/Engagement-Validity-Filter.md` — the upstream filter that overrides this discipline when triggered + ENTJ/ESFP/N-over-S detection rules
+- `memory/medium-term/Engagement-Shapes.md` — Shape B contained-risk principle + intéressement anti-pattern + money-as-shape-health-signal
+- `memory/long-term/inner-game/Anchored-Stance.md` — the inner posture these instruments express

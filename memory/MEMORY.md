@@ -32,6 +32,7 @@
 `long-term/inner-game/Relational-Architecture.md` — depth-expansion of the I-AM Relational architecture section. Diversity layers, exit protocols, application across domains.
 `long-term/inner-game/Trait-Architecture.md` — descriptive read on the wiring underneath the I AM (trait cluster, founder-archetype mismatch, wiring vs. trauma-adaptation, AI-leverage composition, psychological type).
 `long-term/inner-game/Surrender-Doctrine.md` — operational depth of the surrender practice. Singer-rooted: "I can handle it," the 3-second pause, signal/noise discrimination, traps at altitude, current-phase reduced-exposure posture. Living, enriched across sessions.
+`long-term/inner-game/Anchored-Stance.md` — the inner posture underneath the [[Pull-Mode-Strategy]]. Playing without performing. Asset-holder by default. Freedom over capture. The natural strategy that emerged after the three-year tuition. Conditional substrate named (runway, identity-not-foreclosed, body-level memory, doctrine, BATNA). Codified 2026-05-28.
 
 > **Being → Doing → Having.** The long-term tier holds the BEING. The being attracts the rest.
 
@@ -48,7 +49,7 @@
 `medium-term/Drivers-and-Filters.md` — **Auto-loaded.** Operational center for this next step: eight drivers (what pulls), ten filters (what disqualifies), position synthesis (the narrow middle). Codified 2026-05-20. The qualification layer upstream of every engagement decision.
 `medium-term/Engagement-Shapes.md` — **Auto-loaded.** The two operational surfaces: Shape A (mandate inside a company, with A.1 full-time CPTO/CTPO sub-shape carrying load-bearing wariness caveat) and Shape B (fractional / freelance via warm network, with B.1 fractional CTO/CPO and B.2 transformation freelance sub-shapes). Includes contained-risk principle.
 `medium-term/current-context.md` — current life-phase context, geography, market specifics, re-entry posture. On-demand.
-`medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Engagement Validity Filter. On-demand.
+`medium-term/operational-doctrine/` — operational discipline: state regulation, work hygiene, exit triggers, recovery markers, relational altitude, Engagement Validity Filter, **Pull-Mode-Strategy** (three-phase discovery doctrine). On-demand. Pull-Mode-Strategy loads when any inbound / engagement / discovery conversation is active; pairs with [[Anchored-Stance]] (long-term) and [[Engagement-Validity-Filter]] (universal filter).
 `medium-term/market/` — operational market doctrine: sales-mode tactics, visibility OS, pre-funnel aesthetic filter. On-demand.
 `medium-term/projects/` — project metadata (advisory board composition, etc.). On-demand.
 

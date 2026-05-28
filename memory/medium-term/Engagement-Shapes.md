@@ -136,6 +136,37 @@ Both shapes are valid. The shape that satisfies the [[Drivers-and-Filters]] AND 
 
 ---
 
+## Money as shape-health signal, not primary negotiation variable
+
+A doctrinal distinction that governs all comp / rate / equity conversations in both shapes.
+
+**The rule.**
+- Money is the **last** variable to land in negotiation, not the first.
+- Money is a **signal** of engagement-shape health, not the leverage being optimized.
+- Negotiate **terms** (scope, time, cognitive load, authority, exit gates) — not rate.
+- If the shape requires more engagement than the envelope allows, **reduce scope or walk; don't bargain rate**.
+
+**Why.**
+- At Ahmed's altitude, French CDI market for senior tech-product roles segments cleanly:
+  - 60-90k = squad-execution / IC-heavy / capture-shaped
+  - 100-130k = real mandate without authority-leverage premium
+  - 150k+ = either real C-tier with structural levers OR enslavement-shaped
+- A 20-30% money increase doesn't compensate for a 2x life-capture. The asymmetric returns are felt-math, not abstract.
+- Money as primary variable invites haggling over the wrong thing. Money as shape-signal forces the conversation to the structural fit; the rate sorts itself when the shape is right.
+
+**Operational instrument — pricing-anchor.**
+"Around X, depends on the mandate" (per the Generali / Yousra exchange, 100k baseline). Works with aligned operators (signals integrated calibration, invites mandate-clarification). **Calibrate to operator:** with frame-controllers, the same line invites downward negotiation — anchor harder or refuse the conversation until shape is set.
+
+**Engagement-level corollary.**
+- More engagement needed than envelope allows → ask for more.
+- More not available → reduce scope.
+- Scope can't be reduced → walk.
+- At no point: bargain rate against shape.
+
+**Cross-reference.** Full operational doctrine on negotiation phases: [[Pull-Mode-Strategy]] § Phase 3 — Win-win negotiation with BATNA-anchored walk.
+
+---
+
 ## Closing non-fits cleanly
 
 When a scope is clearly misaligned (e.g., pure execution in an unfamiliar stack, founder-grade incentive request on a Shape B engagement), close it honestly and early:
