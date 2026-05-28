@@ -88,6 +88,32 @@ If the failure shape is detected at in-engagement altitude, the response is:
 
 For Shape B engagements (fractional / freelance), the contained-risk-vs-founder-risk principle is the upstream failure to refuse. Canonical home: [[Engagement-Shapes]] § Shape B contained-risk principle. Wrong-shape Shape B engagements fire the single-dimension trap by intensifying ownership without upside.
 
+## Mandate-altitude vs reporting-altitude mismatch
+
+When the mandate's scope ambition (group-wide transformation, cross-business-unit change leadership, organization-wide tooling adoption) exceeds the reporting altitude of the role (a slot one or more rungs below the sponsor responsible for that group-wide layer), the engagement is structurally at risk independent of mandate quality.
+
+**Shape of the trap.**
+- Sponsor frames the mandate at the **group / cross-org altitude**: "transformer la manière dont les développeurs travaillent au niveau du groupe," "AI-first across the engineering organization," "porter la roadmap chez les pays."
+- Role reports to a function-head one level below the group owner (Head of X reporting to CXO; Lead Y reporting to VP Z), not to the group-altitude sponsor directly.
+- Group-level sponsor (CDO, CIO, CEO) is named as stakeholder but not yet engaged in conversation.
+- Implicit assumption: the function-head will *negotiate* the group-wide authority over time. Often this never crystallizes.
+
+**Why it fails by structure.**
+- The role-holder is held accountable for an outcome (group-wide change) whose primary lever (cross-org authority) is not in their reporting line. The function-head sponsor cannot delegate authority they do not own.
+- The unsurfaced group-altitude sponsor's priorities may diverge from the function-head's. The role becomes a proxy battleground without contractual protection.
+- Wins at the team/function altitude (where the role can actually move) get reframed as insufficient against the group ambition — the success-criteria asymmetry compounds.
+
+**Mitigations to require before accepting.**
+- Explicit **dotted-line to the group-altitude sponsor** (CDO, CIO, founder) named in the role description and surfaced in conversation before commitment.
+- Or, **co-ownership of the group-wide layer** named contractually — the role is positioned as the *operator* of the group-altitude transformation, with the group sponsor as accountable.
+- Or, **scope re-cut at hire-time**: the role is initially scoped to one business unit / one entity, with group expansion as a follow-on phase explicitly contracted.
+
+**Walk signal.** If the group-altitude sponsor refuses to enter the conversation before commitment, or if the function-head sponsor cannot articulate the dotted-line / co-ownership / scope-cut mitigation in writing, the structural mismatch is unresolved and the engagement compounds risk asymmetrically on the role-holder.
+
+**Distinct from density-of-collapsed-problems** (next section): density-of-collapsed-problems is about *resource adequacy* vs the ambition. Mandate-altitude vs reporting-altitude is about *organizational authority* vs the ambition. Both can co-occur; the mitigations differ.
+
+**Data point.** Free (Iliad), May 2026. "Senior Vibe Coder" role reports to Head of Engineering inside the DataX team, but mandate is group-wide AI adoption across ~350 engineers and ~10-15K-person multi-country group. CDO (Alexis, group-wide) named as stakeholder but not yet engaged. Hiring manager hedged ("à voir comment on positionne"). Group-wide ambition with group structure described as "auto-organisation, contours flous, autonomie marquée, ligne de coordination groupe légère." Mitigation requirement surfaced as discovery gate before commitment.
+
 ## Density-of-collapsed-problems + thin-leverage (walk signal)
 
 When a buyer compresses many unsolved problems into a single mandate ("we need a fractional CTO") and lacks the resources to attract the right shape of operator for the actual problem-set, the engagement compounds risk for whoever accepts.

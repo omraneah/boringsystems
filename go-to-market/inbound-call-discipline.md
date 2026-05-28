@@ -121,6 +121,51 @@ What it tests:
 
 ---
 
+## Constraint-up-the-chain pivot — when the artifact is wrong-shape but the role is right
+
+Sibling to the pivot-recovery move, but reversed. The pivot-recovery move flips the *role* when the role is wrong-shape. The constraint-up-the-chain pivot flips the *artifact* (test, scope, deliverable, success criterion) when the artifact is wrong-shape but the role is right.
+
+Recognize the shape:
+
+- The role has been discussed at length with a sponsor (hiring manager, head of function) and lands at the correct altitude.
+- A downstream artifact — test technique, scoping document, deliverable shape, success criterion — arrives that is structurally misaligned with the role as discussed (e.g. an IC-coding test on a change-leadership role; a hands-on ML/LLM exercise on a governance + adoption role).
+- Walking on the artifact wastes the funnel slot the role conversation earned. Accepting the artifact pretends the role is something it isn't.
+
+The move:
+
+1. **Name the mismatch in writing, not in conversation.** Email leaves a paper trail; the intermediary (recruiter, studio) can forward it verbatim upward. Keep the message short, structural, and dispassionate.
+2. **Anchor the mismatch in the prior conversation.** The sponsor has already given the role's real shape; reference that, not your preferences. *"Le test diverge sensiblement des enjeux abordés avec [sponsor]"* moves the burden of reconciliation to the sponsor, not to you.
+3. **Ask for the next-altitude conversation before any commitment.** Not "send me a different test" — "I'd prefer an échange with [next-altitude sponsor: CDO, VP Eng, founder] to clarify the périmètre of the role from their point of view, before going further." This skin-in-the-game move (per principle #2) escalates correctly.
+4. **Preserve the door.** Close with *"if there's a real fit, I'll do the test or another one later"* — refuses the current artifact, keeps the role conversation open.
+5. **Let the buyer reformulate.** The right outcome is the buyer producing a new artifact that matches the role. If they double-down on the original artifact, the role is structurally different from what was discussed — walk.
+
+What this tests:
+
+- **Does the sponsor still own the role's shape, or has it been delegated to a process that doesn't match?** A sponsor who reformulates the artifact within hours of the constraint being named confirms the role is real.
+- **Does the company flex artifact-to-candidate when fit is strong, or does it standardize across all candidates regardless?** The first signal compounds; the second signals process-rigidity.
+
+**Data point.** Free (Iliad), May 2026. Test technique for "Senior Vibe Coder" arrived shaped for ML/LLM Engineer hands-on, diverging from the change-leadership scope agreed with Julien (Head of Engineering). Ahmed declined in writing, anchored the mismatch in the Julien conversation, asked for échange with CDO before going further. Recruiter relayed to Julien within 42 minutes; Julien reformulated the artifact as a qualitative expert-user analysis of Free's internal LLM tool (CodeX) — right altitude for the role. Constraint-up-the-chain pivot executed clean.
+
+---
+
+## Sponsor-chain incompleteness — discovery gate
+
+When more than one altitude is named in the sponsor chain (e.g. hiring manager + CDO + CIO + direction) but only one has been engaged in conversation, treat the unsurfaced altitudes as a discovery gate, not a process detail.
+
+What it tells you:
+
+- **The role's mandate may be unclear inside the buying organization.** If the CDO is named as a stakeholder but never enters the conversation, the role's ownership at group altitude is contested, ambiguous, or unowned.
+- **The hiring manager may be hedging.** Phrases like *"à voir comment on positionne, c'est possible que ce soit lui"* signal the sponsor has not yet earned the authority to commit, or is preserving optionality between owners.
+- **The artifact / test stage may delay the unsurfaced altitudes.** Standardized tests can be a way for a non-decision-maker to gate without escalating.
+
+The move:
+
+- Name the unsurfaced altitudes in conversation: *"qui est dans le débrief?"* / *"quel niveau de profondeur cherchez-vous : exécutif ou technique?"* / *"quand est-ce que [CDO/CIO/founder] entre dans la conversation?"*
+- Don't accept "we'll see" as a steady-state answer. The unsurfaced sponsor must surface before the commitment-level conversation, not after.
+- If the unsurfaced altitudes never surface, the role is either smaller in scope than framed, or organizationally unowned. Either way, walk before committing.
+
+---
+
 ## Body-of-work-as-positioning
 
 The most efficient positioning artifact is not a pitch; it is a public case-study, write-up, or codified corpus that demonstrates the work has already been done. When redirecting a recruiter or buyer toward a different role or a different scope, link the artifact rather than describing the experience.
@@ -139,7 +184,9 @@ Operational rules:
 - **The artifact must match the redirect direction, not the original ask.** When pivoting from Role A to Role B, the artifact should evidence Role-B-shaped work, not Role-A-adjacent work.
 - **Ship the artifact before you arrive.** The hiring manager who reads it before the next call enters the conversation already partially convinced; the conversation can move past basic credibility-establishment to substance.
 
-**Data point.** Vibe.co, May 2026. BoringSystems case-study `engineering-ai-adoption-on-a-live-platform` sent to Erwan during the pivot-recovery move. By the second screening call Erwan named Ahmed's positioning verbatim back to him — the case-study had done the positioning work the verbal pitch could not.
+**Data points.**
+- Vibe.co, May 2026 — BoringSystems case-study `engineering-ai-adoption-on-a-live-platform` sent to Erwan during the pivot-recovery move. By the second screening call Erwan named Ahmed's positioning verbatim back to him.
+- Free (Iliad), May 2026 — Same case-study surfaced to David in the initial recruiter call, then offered for internal team review. The artifact accompanied the conversation from intake forward.
 
 ---
 
