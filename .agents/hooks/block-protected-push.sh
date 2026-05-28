@@ -1,65 +1,80 @@
 #!/bin/bash
 # PreToolUse (Bash) hook — block protected-branch Git operations.
 #
-# The block contract differs by agent, so we detect which one is running:
+# Output contract differs by agent (CLAUDE_PROJECT_DIR signals Claude):
 #   Claude Code  → exit 2 + reason on stderr. Blocks RELIABLY even when the Bash
 #                  tool is in permissions.allow. (A hookSpecificOutput
 #                  permissionDecision is IGNORED when the tool is pre-allowed —
-#                  anthropics/claude-code#4669, #18312 — so we must use exit 2.)
+#                  anthropics/claude-code#4669, #18312.)
 #   Codex/other  → hookSpecificOutput.permissionDecision="deny" + exit 0. Codex
 #                  treats a non-zero exit as a hook FAILURE, not a block.
-# Detection: Claude Code sets CLAUDE_PROJECT_DIR in the hook env; Codex does not.
-# Stateless — no other agent-specific state.
+#
+# Precision: quoted spans are stripped so a protected operation MENTIONED inside
+# a commit message or quoted arg does not false-positive. Protected-name matches
+# are anchored within the SAME statement as the `git push` / `git branch -d`
+# they refer to (statements split on ; && || | newline). So
+# `git checkout main && git branch -d feature` is allowed.
+#
+# Tools: pure bash + jq (JSON stdin parse) + grep + sed. No Python.
 
 INPUT="$(cat 2>/dev/null || true)"
-COMMAND="$(printf '%s' "$INPUT" | python3 -c "import sys,json
-try:
-    print(json.load(sys.stdin).get('tool_input',{}).get('command',''))
-except Exception:
-    pass" 2>/dev/null || true)"
+COMMAND="$(printf '%s' "$INPUT" | jq -r '.tool_input.command // ""' 2>/dev/null || true)"
 
-PROTECTED="main|master|development|dev|production"
+# Strip "..." and '...' so quoted MENTIONS don't false-positive.
+SCAN="$(printf '%s' "$COMMAND" | sed -e 's/"[^"]*"/ /g' -e "s/'[^']*'/ /g")"
 
-# Strip quoted spans ("…" and '…') before matching, so a protected push merely
-# MENTIONED inside a quoted argument (e.g. a `git commit -m` message that talks
-# about `git push origin main`) does not false-positive. Real executed pushes —
-# including chained forms `cd x && git push …`, `true; git push …` — sit outside
-# quotes and are still caught.
-SCAN="$(printf '%s' "$COMMAND" | python3 -c "import sys,re
-s=sys.stdin.read()
-print(re.sub(r'\"[^\"]*\"|'+chr(39)+r'[^'+chr(39)+r']*'+chr(39), ' ', s))" 2>/dev/null || printf '%s' "$COMMAND")"
+# Split into statements via parameter expansion. Order matters: && and || before
+# single | so the multi-char separators are consumed first.
+STMTS="${SCAN//&&/$'\n'}"
+STMTS="${STMTS//||/$'\n'}"
+STMTS="${STMTS//;/$'\n'}"
+STMTS="${STMTS//|/$'\n'}"
 
-deny() {
+PROT_RE='main|master|development|dev|production'
+REASON=""
+
+while IFS= read -r stmt; do
+  [ -z "$stmt" ] && continue
+
+  # --- git push <…> checks within this statement ---
+  if grep -qE '(^|[^A-Za-z0-9_])git[[:space:]]+push\b' <<< "$stmt"; then
+    if grep -qE "\borigin[[:space:]]+($PROT_RE)\b" <<< "$stmt"; then
+      REASON="Direct push to a protected branch is forbidden. Create a feature branch and open a PR instead."
+      break
+    fi
+    if grep -qE '(-f\b|--force\b|--force-with-lease\b)' <<< "$stmt" && grep -qE "\b($PROT_RE)\b" <<< "$stmt"; then
+      REASON="Force-pushing to a protected branch is forbidden."
+      break
+    fi
+    if grep -qE "(--delete|:)[[:space:]]*($PROT_RE)\b" <<< "$stmt"; then
+      REASON="Deleting protected branches on the remote is forbidden."
+      break
+    fi
+  fi
+
+  # --- git branch -d/-D <…> arg-check: protected name must appear as an ARG ---
+  if grep -qE '(^|[^A-Za-z0-9_])git[[:space:]]+branch[[:space:]]+-[dD]\b' <<< "$stmt"; then
+    args="$(printf '%s' "$stmt" | sed -E 's/.*-[dD][[:space:]]+//')"
+    for tok in $args; do
+      case "$tok" in
+        -*) continue ;;
+        main|master|development|dev|production)
+          REASON="Deleting protected branches locally is forbidden. Protected: main, master, development, dev, production."
+          break 2
+          ;;
+      esac
+    done
+  fi
+done <<< "$STMTS"
+
+if [ -n "$REASON" ]; then
   if [ -n "${CLAUDE_PROJECT_DIR:-}" ]; then
-    printf '%s\n' "$1" >&2
+    printf '%s\n' "$REASON" >&2
     exit 2
   fi
-  python3 - "$1" <<'PY' 2>/dev/null || true
-import json, sys
-print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": sys.argv[1]}}))
-PY
+  ESCAPED="$(printf '%s' "$REASON" | sed 's/\\/\\\\/g; s/"/\\"/g')"
+  printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"%s"}}\n' "$ESCAPED"
   exit 0
-}
-
-# Match `git push` after any command boundary (whole command, quotes stripped),
-# so chained forms (`cd x && git push origin main`, `true; git push …`) are
-# caught, not just commands that start with `git push`.
-has_push() { printf '%s' "$SCAN" | grep -qE '(^|[^[:alnum:]_])git[[:space:]]+push\b'; }
-
-if has_push && printf '%s' "$SCAN" | grep -qE "origin[[:space:]]+($PROTECTED)\b"; then
-  deny "Direct push to a protected branch is forbidden. Create a feature branch and open a PR instead."
-fi
-
-if has_push && printf '%s' "$SCAN" | grep -qE '(-f|--force|--force-with-lease)' && printf '%s' "$SCAN" | grep -qE "\b($PROTECTED)\b"; then
-  deny "Force-pushing to a protected branch is forbidden."
-fi
-
-if printf '%s' "$SCAN" | grep -qE '(^|[^[:alnum:]_])git[[:space:]]+branch[[:space:]]+-[dD]\b' && printf '%s' "$SCAN" | grep -qE "\b($PROTECTED)\b"; then
-  deny "Deleting protected branches locally is forbidden. Protected: main, master, development, dev, production."
-fi
-
-if has_push && printf '%s' "$SCAN" | grep -qE "(--delete|:)[[:space:]]*($PROTECTED)\b"; then
-  deny "Deleting protected branches on the remote is forbidden."
 fi
 
 exit 0

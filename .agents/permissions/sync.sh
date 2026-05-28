@@ -1,5 +1,6 @@
 #!/bin/bash
 # Sync canonical workspace permissions into agent-specific adapters.
+# Pure bash + jq. No Python.
 
 set -e
 
@@ -14,55 +15,35 @@ if [ ! -f "$CANONICAL_RULES" ]; then
   exit 1
 fi
 
+# Codex shell-rules adapter: byte-copy when stale.
 mkdir -p "$(dirname "$CODEX_RULES")"
 if [ ! -f "$CODEX_RULES" ] || ! cmp -s "$CANONICAL_RULES" "$CODEX_RULES"; then
   cp "$CANONICAL_RULES" "$CODEX_RULES"
 fi
 
-python3 - "$CLAUDE_SETTINGS" <<'PY'
-import json
-import sys
+# Validate Claude settings has the required tool-class entries.
+REQUIRED=(Bash Edit Write NotebookEdit)
+MISSING=()
+for tool in "${REQUIRED[@]}"; do
+  if ! jq -e --arg t "$tool" '(.permissions.allow // []) | index($t) != null' "$CLAUDE_SETTINGS" >/dev/null 2>&1; then
+    MISSING+=("$tool")
+  fi
+done
+if [ ${#MISSING[@]} -gt 0 ]; then
+  echo "ERROR: $CLAUDE_SETTINGS missing permissions.allow entries: ${MISSING[*]}"
+  exit 1
+fi
 
-settings_path = sys.argv[1]
-required = {"Bash", "Edit", "Write", "NotebookEdit"}
-
-with open(settings_path, "r", encoding="utf-8") as f:
-    settings = json.load(f)
-
-allowed = set(settings.get("permissions", {}).get("allow", []))
-missing = sorted(required - allowed)
-
-if missing:
-    print(f"ERROR: {settings_path} missing permissions.allow entries: {', '.join(missing)}")
-    sys.exit(1)
-PY
-
-python3 - "$CLAUDE_SETTINGS" "$CLAUDE_MCP_ALLOW" <<'PY'
-import json
-import sys
-
-settings_path, allow_path = sys.argv[1], sys.argv[2]
-
-with open(settings_path, "r", encoding="utf-8") as f:
-    settings = json.load(f)
-
-with open(allow_path, "r", encoding="utf-8") as f:
-    required = [line.strip() for line in f if line.strip() and not line.startswith("#")]
-
-allowed = settings.setdefault("permissions", {}).setdefault("allow", [])
-seen = set(allowed)
-changed = False
-
-for tool in required:
-    if tool not in seen:
-        allowed.append(tool)
-        seen.add(tool)
-        changed = True
-
-if changed:
-    with open(settings_path, "w", encoding="utf-8") as f:
-        json.dump(settings, f, indent=2)
-        f.write("\n")
-PY
+# Inject any missing MCP allowlist entries from the canonical list.
+if [ -f "$CLAUDE_MCP_ALLOW" ]; then
+  while IFS= read -r tool || [ -n "$tool" ]; do
+    [ -z "$tool" ] && continue
+    case "$tool" in \#*) continue ;; esac
+    if ! jq -e --arg t "$tool" '(.permissions.allow // []) | index($t) != null' "$CLAUDE_SETTINGS" >/dev/null 2>&1; then
+      tmp="$(mktemp)"
+      jq --arg t "$tool" '.permissions.allow += [$t]' "$CLAUDE_SETTINGS" > "$tmp" && mv "$tmp" "$CLAUDE_SETTINGS"
+    fi
+  done < "$CLAUDE_MCP_ALLOW"
+fi
 
 echo "Agent permissions synced."
