@@ -155,8 +155,7 @@ Hooks are enforcement, not advisory. CLAUDE.md rules are advisory. If they confl
 | `/pr` | Manual | Verify branch, push if needed, construct PR URL, draft title/body, auto-open |
 | `/github-cleanup` | "merged, clean up" | Sync main, delete feature branch |
 | `/wrap-session` | Session end | Stop dev servers + reflective recap |
-| `/check-stable-docs-leaks` | Before PR touching stable docs | Sweeps for transient references in stable docs |
-| `/check-linear-card-paths` | When renaming files | Checks for broken paths in open Linear card descriptions |
+| `/check-leaks --docs` | Before PR touching stable docs | Sweeps for transient references in stable docs; `--cards` variant checks broken paths after renames |
 | `/arch-review` | New module / API / structural change | Reviews against architectural principles |
 
 ---

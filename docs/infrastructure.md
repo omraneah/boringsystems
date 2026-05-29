@@ -21,8 +21,7 @@ Skills live in two scopes. Cross-project skills (useful in every repo) live at `
 | `/card-against-pattern`     | cross-project | yes            | before creating multi-deliverable Linear cards                             |
 | `/convene-board`            | cross-project | yes            | on frame-level decisions, structural unease                                |
 | `/signal-recap`             | cross-project | yes            | on natural-language recap-and-defer signals                                |
-| `/check-stable-docs-leaks`  | cross-project | yes            | before opening a PR that touches stable docs                               |
-| `/check-linear-card-paths`  | cross-project | yes            | after a memory/doc/skill rename, to catch stale Linear card path refs      |
+| `/check-leaks`              | cross-project | yes            | `--docs`: sweep stable docs before PR; `--cards`: catch stale card path refs after rename |
 | `/hygiene-review`           | cross-project | no             | before any commit (auto-invoked by `/commit` on non-trivial changes)       |
 | `/pre-start`                | cross-project | yes            | before any multi-file/structural change or card pickup (Gate 1 proposal)   |
 | `/declare-ready`            | cross-project | yes            | pre-handoff audit trail; transitions the active card to In Review          |
