@@ -21,8 +21,12 @@ PROJ_DIR="$(git rev-parse --show-toplevel 2>/dev/null)"
 # --- ISO week helpers ---
 # Current ISO week (YYYY-Www)
 current_week="$(date +%Y-W%V 2>/dev/null || true)"
-# Last ISO week
-last_week="$(date -d '7 days ago' +%Y-W%V 2>/dev/null || true)"
+# Last ISO week — GNU/Linux uses date -d; BSD/macOS uses date -j -v (Fix 2).
+if date --version >/dev/null 2>&1; then
+  last_week="$(date -d '7 days ago' +%Y-W%V 2>/dev/null || true)"
+else
+  last_week="$(date -j -v-7d +%Y-W%V 2>/dev/null || true)"
+fi
 
 # Fall back silently if date arithmetic is unavailable
 [ -z "$current_week" ] && exit 0

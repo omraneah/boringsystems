@@ -199,7 +199,9 @@ check_h4_dead_references() {
 
   while IFS= read -r rel; do
     case "$rel" in *.md|*.mdx) ;; *) continue ;; esac
-    # Skip implementation files (they reference paths that may not exist)
+    # Scanned: all .md/.mdx including .agents/personas/ (personas carry the densest
+    # @-import load and are the whole point of this check — Fix 3).
+    # Skip only: implementation/infra dirs and ephemeral/archived files.
     case "$rel" in .agents/skills/*|.agents/hooks/*|.agents/git-hooks/*|.claude/*) continue ;; esac
     # Skip episodic and archives
     case "$rel" in memory/short-term/20*|*/_archive/*|*_archive/*) continue ;; esac
@@ -210,6 +212,8 @@ check_h4_dead_references() {
     file_dir="$(dirname "$workspace_root/$rel")"
 
     # @-imports: @<path> at start or after whitespace (not @http, not @email-style)
+    # Portable replacement for GNU-only grep -oP '(?:^|\s)@(?!http|[a-z]+\.)\K...'
+    # Uses grep -E to find candidate lines, then awk to extract the token (Fix 1).
     local at_violations=""
     while IFS= read -r import_path; do
       [ -z "$import_path" ] && continue
@@ -217,9 +221,23 @@ check_h4_dead_references() {
       if [ ! -e "$resolved" ]; then
         at_violations="${at_violations}    @-import not found: @${import_path}\n"
       fi
-    done < <(grep -oP '(?:^|\s)@(?!http|[a-z]+\.)\K[A-Za-z_.][A-Za-z0-9_./-]+' "$path" 2>/dev/null || true)
+    done < <(grep -E '(^|[[:space:]])@[A-Za-z_.][A-Za-z0-9_./-]+' "$path" 2>/dev/null \
+      | awk '{
+          for (i=1; i<=NF; i++) {
+            if ($i ~ /^@[A-Za-z_.][A-Za-z0-9_./-]+$/) {
+              tok = substr($i, 2)
+              if (tok ~ /^http/) { next }
+              # skip email-style: first path segment is word.tld (e.g. user.domain)
+              split(tok, parts, "/")
+              if (parts[1] ~ /^[a-z]+\./) { next }
+              print tok
+            }
+          }
+        }' || true)
 
     # Relative markdown links: [text](path) — skip http/https/# anchors/mailto
+    # Portable replacement for GNU-only grep -oP '\[[^\]]*\]\(\K[^)]+' (Fix 1).
+    # Uses grep -E to find candidate lines, then awk to extract the URL token.
     local link_violations=""
     while IFS= read -r link_target; do
       [ -z "$link_target" ] && continue
@@ -234,7 +252,16 @@ check_h4_dead_references() {
       if [ ! -e "$resolved" ]; then
         link_violations="${link_violations}    broken link: [...]($link_target)\n"
       fi
-    done < <(grep -oP '\[[^\]]*\]\(\K[^)]+' "$path" 2>/dev/null || true)
+    done < <(grep -E '\[[^]]*\]\([^)]+\)' "$path" 2>/dev/null \
+      | awk '{
+          line = $0
+          while (match(line, /\[[^]]*\]\([^)]*\)/)) {
+            chunk = substr(line, RSTART, RLENGTH)
+            paren = index(chunk, "(")
+            print substr(chunk, paren+1, length(chunk)-paren-1)
+            line = substr(line, RSTART + RLENGTH)
+          }
+        }' || true)
 
     if [ -n "$at_violations" ] || [ -n "$link_violations" ]; then
       echo "[pre-commit] H4 ✗ dead references in: $rel"
