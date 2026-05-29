@@ -26,7 +26,7 @@ If a future session genuinely needs Vercel guidance, fetch the current Vercel do
 
 ## Why
 
-- **Token attention is the binding constraint.** The Model × Effort × Lane matrix (see `.claude/decisions/DECISIONS.md` 2026-04-26 entry) is about reclaiming attention for the right work. A plugin that loads 30 skills and pattern-matches on every Bash call across every session is the immediate counter-example — it taxes every prompt for a benefit that materializes on a small fraction.
+- **Token attention is the binding constraint.** The Model × Effort × Lane matrix (see `memory/decisions/DECISIONS.md` 2026-04-26 entry) is about reclaiming attention for the right work. A plugin that loads 30 skills and pattern-matches on every Bash call across every session is the immediate counter-example — it taxes every prompt for a benefit that materializes on a small fraction.
 - **Deploy is solved by the platform.** GitHub → Vercel auto-deploy is the deploy story. There is no hand-rolled CI step or manual `vercel deploy` in the regular path. The plugin solves a problem we don't have.
 - **Docs over training data.** When Vercel work does come up, the official docs are accurate by definition; the plugin's bundled knowledge is a snapshot that drifts. WebFetch on demand is more reliable than the plugin's canned guidance.
 

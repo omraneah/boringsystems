@@ -51,13 +51,12 @@ Stable docs (READMEs, MEMORY.md, CLAUDE.md, skill files, ADRs, decision registry
 
 - **Before opening a PR** that touches any stable doc — manual invocation.
 - **On natural-language triggers**: "check for leaks", "stable doc audit", "lint stable docs", "check leaks before PR".
-- **Optionally** wired as a pre-commit hook for PRs that modify `memory/**/README.md`, `memory/MEMORY.md`, `CLAUDE.md`, `.agents/skills/*/SKILL.md`, or `docs/adr-*.md`.
+- **Optionally** wired as a pre-commit hook for PRs that modify `memory/**/README.md`, `memory/MEMORY.md`, `CLAUDE.md`, `.agents/skills/*/SKILL.md`, or `docs/architecture/adr-*.md`.
 
 ### What counts as a stable doc (the sweep target)
 
 ```
 CLAUDE.md
-WORKSPACE_MAP.md
 META-PRINCIPLES.md
 ENGINEERING-PRINCIPLES.md
 memory/README.md
@@ -67,9 +66,11 @@ memory/medium-term/README.md
 memory/short-term/feedback/README.md
 memory/short-term/README.md
 .agents/skills/*/SKILL.md
-docs/adr-*.md
-docs/*.md (any architecture / infrastructure doc)
-.claude/decisions/DECISIONS.md (with carve-out — see below)
+docs/architecture/adr-*.md
+docs/governance/*.md
+docs/agent-ops/*.md
+docs/*.md (any top-level doc)
+memory/decisions/DECISIONS.md (with carve-out — see below)
 ```
 
 `memory/short-term/feedback/stable/*.md` and `memory/short-term/feedback/in-flight/*.md` are also stable in nature; include them.
@@ -82,7 +83,7 @@ Daily short-term entries (`memory/short-term/<week>/<date>.md`) are NOT stable �
 
 Regex: `BOR-[0-9]+|LIN-[0-9]+|linear\.app/[a-z]+/issue/`
 
-Any match in a stable doc is a leak. Exception: Linear references in commit messages, in PR descriptions, and in the body of `.claude/decisions/DECISIONS.md` are acceptable historical record. The rule applies to forward-looking stable docs, not historical decision logs.
+Any match in a stable doc is a leak. Exception: Linear references in commit messages, in PR descriptions, and in the body of `memory/decisions/DECISIONS.md` are acceptable historical record. The rule applies to forward-looking stable docs, not historical decision logs.
 
 #### Pattern 2 — `tmp/` path references
 
@@ -216,7 +217,7 @@ If stale references found:
 - description:34 — memory/medium-term/operational-doctrine/Enakl-Derailment-Archetype.md (does not exist; possible rename → Engagement-Validity-Filter.md)
 
 [BOR-NN] <title>
-- comment 2026-05-01 — docs/adr-002-old-name.md (does not exist)
+- comment 2026-05-01 — docs/architecture/adr-002-old-name.md (does not exist)
 
 Fix manually via Linear UI, or re-invoke with --fix to attempt rename-resolution lookups.
 ```

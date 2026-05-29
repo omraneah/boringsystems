@@ -16,6 +16,6 @@ The codification target depends on what the pattern touches:
 - **Reasoning-heavy checklist** → a skill (cross-project: `.claude/personal-skills/`; project-scoped: `<project>/.claude/skills/`).
 - **Behavioral rule** → a memory entry (feedback type) and/or one line in CLAUDE.md.
 - **Architectural constraint** → `docs/constraints.md` in the project, and a decision log entry.
-- **Governance decision** → `.claude/decisions/DECISIONS.md` via `/log-decision`.
+- **Governance decision** → `memory/decisions/DECISIONS.md` via `/log-decision`.
 
 Never invent a new codification location to avoid the existing ones. The choice is always one of the five above.

@@ -90,7 +90,7 @@ Live-reload as Claude writes follow-ups
 
 - Skill: `.claude/personal-skills/render/SKILL.md`
 - Memory rule: `.claude/projects/-Users-ahmedomrane-Workspace/memory/feedback_render_long_output.md`
-- Decision log: `.claude/decisions/DECISIONS.md` (2026-04-28 entry)
+- Decision log: `memory/decisions/DECISIONS.md` (2026-04-28 entry)
 - Companion rule: `feedback_tmp_as_ram.md` (write half), `feedback_no_recap_after_link.md` (output discipline)
 - Marky upstream: [github.com/GRVYDEV/marky](https://github.com/GRVYDEV/marky)
 - Install path: `brew tap GRVYDEV/tap && brew install --cask GRVYDEV/tap/marky && xattr -cr /Applications/Marky.app`

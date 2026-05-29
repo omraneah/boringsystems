@@ -153,7 +153,7 @@ check_h3_root_file_cap() {
   # Explicitly permitted root-level non-dotfiles
   local -a ALLOWLIST=(
     AGENTS.md CLAUDE.md README.md META-PRINCIPLES.md
-    ENGINEERING-PRINCIPLES.md WORKSPACE_MAP.md
+    ENGINEERING-PRINCIPLES.md
   )
 
   while IFS= read -r rel; do
@@ -346,12 +346,13 @@ check_h7_transient_refs() {
     case "$rel" in *.md|*.mdx) ;; *) continue ;; esac
     # Scope: stable docs only (mirror /check-stable-docs-leaks targets)
     case "$rel" in
-      CLAUDE.md|WORKSPACE_MAP.md|META-PRINCIPLES.md|ENGINEERING-PRINCIPLES.md|\
+      CLAUDE.md|META-PRINCIPLES.md|ENGINEERING-PRINCIPLES.md|\
       memory/README.md|memory/MEMORY.md|\
       memory/long-term/README.md|memory/medium-term/README.md|\
       memory/short-term/README.md|memory/short-term/feedback/README.md|\
       memory/short-term/feedback/stable/*.md|memory/short-term/feedback/in-flight/*.md|\
-      docs/*.md|.claude/decisions/DECISIONS.md) ;;
+      docs/*.md|docs/architecture/*.md|docs/governance/*.md|docs/governance/patterns/*.md|docs/agent-ops/*.md|\
+      memory/decisions/DECISIONS.md) ;;
       # Skip implementation and episodic files
       .agents/skills/*|.agents/hooks/*|.agents/git-hooks/*|.claude/hooks/*|\
       memory/short-term/20*|*/_archive/*|*_archive/*) continue ;;
@@ -402,6 +403,7 @@ check_h0_hygiene() {
   while IFS= read -r file; do
     case "$file" in *.md|*.mdx) ;; *) continue ;; esac
     case "$file" in .claude/*|.agents/skills/*|.agents/hooks/*|.agents/git-hooks/*) continue ;; esac
+    case "$file" in memory/decisions/DECISIONS.md) continue ;; esac  # decision log: card IDs are historical record
     case "$file" in memory/short-term/20*) continue ;; esac
     case "$file" in */_archive/*|*_archive/*) continue ;; esac
 

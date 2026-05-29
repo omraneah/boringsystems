@@ -6,7 +6,7 @@
 
 ## Context
 
-The workspace had three operational agents — `gtm-strategist` (Naomi), `principal-engineer` (Daniel), `career-coach` (Hadi) — each loaded with substantial strategic context via `@imports`: `memory/`, `go-to-market/`, `cross-stack-architecture-starter-pack/`, identity and inner-game documents. The pattern was deliberate: agents that inhabit the substrate respond in-domain rather than generically. ADR was logged at `.claude/decisions/DECISIONS.md` 2026-04-24.
+The workspace had three operational agents — `gtm-strategist` (Naomi), `principal-engineer` (Daniel), `career-coach` (Hadi) — each loaded with substantial strategic context via `@imports`: `memory/`, `go-to-market/`, `cross-stack-architecture-starter-pack/`, identity and inner-game documents. The pattern was deliberate: agents that inhabit the substrate respond in-domain rather than generically. ADR was logged at `memory/decisions/DECISIONS.md` 2026-04-24.
 
 In a 2026-04-25 session, Ahmed asked the three agents to weigh in on a content-vs-relational GTM question. All three independently returned the same verdict — "stay course on relational, don't shift to content-first." The convergence felt clean. Ahmed identified it as a structural problem rather than a useful signal: the agents had each read the GTM doctrine, the Re-Entry Doctrine, and the leverage profile, then concluded what those documents already prescribed. They were not capable of challenging the frame, because the frame was their substrate.
 
@@ -80,7 +80,7 @@ The board can be invoked solo (one lens for one question) or in parallel ("conve
 
 - Triggered: 2026-04-25, after a content-vs-relational GTM session where operational agents converged on the existing doctrine.
 - Selected by: Ahmed, with personas refined by Claude.
-- Codified in: `memory/feedback_two_tier_agents.md`, `memory/project_advisory_board.md`, this ADR, and `.claude/decisions/DECISIONS.md`.
+- Codified in: `memory/feedback_two_tier_agents.md`, `memory/project_advisory_board.md`, this ADR, and `memory/decisions/DECISIONS.md`.
 - Implementation lives in: `.claude/agents/advisor-1.md` through `advisor-6.md`, `.claude/agents/release-companion.md`, `.claude/personal-skills/convene-board/SKILL.md`.
 
 ## Revisit triggers

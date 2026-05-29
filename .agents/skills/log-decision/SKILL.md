@@ -8,7 +8,7 @@ disable-model-invocation: false
 allowed-tools: Bash(echo *), Bash(cat *), Bash(date *), Write, Edit
 ---
 
-Append a new entry to `.claude/decisions/DECISIONS.md` (workspace-relative).
+Append a new entry to `memory/decisions/DECISIONS.md` (workspace-relative).
 
 Use this format exactly:
 
