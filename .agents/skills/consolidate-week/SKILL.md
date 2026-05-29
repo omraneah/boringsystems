@@ -39,6 +39,22 @@ Especially `memory/medium-term/current-arc.md`. The arc is what consolidation mi
 
 Skim other medium-term files for any that no longer fit, or any short-term observation that has stabilized into them.
 
+## Step 3b — Feedback corpus pruning quota check
+
+Before writing proposals, count the current feedback files and assess against the 15–20 target range.
+
+```bash
+find memory/short-term/feedback/stable memory/short-term/feedback/in-flight -name "*.md" | wc -l
+```
+
+Then for each feedback file, note: is this rule stable/crystallized enough to promote into a `memory/medium-term/project-management/` SOP section? Or is it redundant / superseded / no longer active?
+
+**Target:** 15–20 feedback files total across `stable/` + `in-flight/`. Above 20 = overcrowded; propose at least one crystallization or deletion this run.
+
+**Crystallization** = a feedback rule is mature enough to be folded into a permanent SOP section in `memory/medium-term/project-management/workspace-workflow.md`, `linear-sop.md`, or `github-sop.md`. Once the SOP section exists, the feedback file can be archived (never deleted outright).
+
+**Ahmed decides gate:** always propose, never auto-execute. Surface the count, surface ≥1 candidate, wait for Ahmed's decision before moving any file.
+
 ## Step 4 — Propose (write the file)
 
 Write `memory/short-term/<this-week>/consolidation.md` with this structure:
@@ -67,6 +83,12 @@ Write `memory/short-term/<this-week>/consolidation.md` with this structure:
 
 ### Current-arc update proposed
 - [diff against current-arc.md]
+
+### Feedback corpus pruning (from Step 3b)
+- Current count: N files (stable: X, in-flight: Y). Target: 15–20.
+- Status: [within target | OVER TARGET — N above ceiling]
+- Crystallization candidate(s): [rule name → proposed SOP section]
+- Deletion/archive candidate(s): [rule name → rationale]
 ```
 
 ## Step 5 — Hand to Ahmed
@@ -109,6 +131,8 @@ After consolidation, check if there are any short-term week folders older than c
 - Do not link to Linear cards or `tmp/` files in the consolidation file or in chat output (stable-doc reference rules).
 - Do not delete anything. Archive instead.
 - Do not recap the consolidation file in chat — the file is the recap.
+- **Do not skip the pruning quota check (Step 3b).** Even if the count is within target, surface it. The count is signal, not noise — the corpus re-accretes silently without it.
+- **Do not auto-crystallize.** Propose → Ahmed decides → then move/edit files. Never silently fold a feedback rule into an SOP without surfacing it first.
 
 ## Edge cases
 
