@@ -61,11 +61,11 @@ Two skills, one directive and one proactive:
 - `/whence` — operator asks where Claude pulled the current claim from. Claude reports tier + source + bias risk + confidence in one paragraph.
 - `/divergence-check` — Claude fires on detected frustration / loss-of-fit / correction loops / live-contradicting-long-term. Pauses, surfaces the suspected drift, asks one clarifying question, offers to record under today's short-term entry.
 
-The proactive trigger is wired by a long-term feedback rule (`feedback_fire_divergence_check_on_frustration`) — skills don't self-trigger; the rule is what makes the immune system actually fire.
+The proactive trigger is wired by a behavioural rule now graduated to `docs/agent-ops/collaboration.md` § Divergence detection — skills don't self-trigger; the rule is what makes the immune system actually fire.
 
 ### Closed-loop consolidation
 
-`/consolidate-week` skill, fired on Monday session start per `feedback_consolidate_week_on_monday_session_start`. v1 ships this as a behavioural rule (faster, easier to debug); promote to a hard SessionStart hook in v2 if missed in practice.
+`/consolidate-week` skill, fired on Monday session start per `memory/README.md` § Consolidation — weekly cadence. v1 ships this as a behavioural rule (faster, easier to debug); promote to a hard SessionStart hook in v2 if missed in practice.
 
 The consolidation file (`short-term/<this-week>/consolidation.md`, talks about last week) has three sections populated in order: my consolidation (Claude's proposals), your decisions (operator's verdicts), actions taken (final state).
 
@@ -148,7 +148,7 @@ Files live at `/Users/<user>/Workspace/memory/` (workspace root, version-control
 - Deprecation of legacy `llm-context-2026/`: PRs #41 + #42.
 - Codified in: `memory/README.md`, `memory/MEMORY.md`, `memory/long-term/README.md`, `memory/medium-term/README.md`, `memory/medium-term/feedback/README.md`, `memory/short-term/README.md`, this ADR, `memory/decisions/DECISIONS.md`.
 - Skills implementing the architecture: `.claude/personal-skills/whence/`, `.claude/personal-skills/divergence-check/`, `.claude/personal-skills/consolidate-week/`.
-- Behavioural rules wiring the loops: `memory/medium-term/feedback/in-flight/feedback_fire_divergence_check_on_frustration.md`, `memory/medium-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md`.
+- Behavioural rules wiring the loops: graduated to `docs/agent-ops/collaboration.md` § Divergence detection (divergence-check trigger) and `memory/README.md` § Consolidation — weekly cadence (Monday consolidate-week rule).
 
 ## Revisit triggers
 

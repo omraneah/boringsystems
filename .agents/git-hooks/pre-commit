@@ -276,7 +276,7 @@ check_h4_dead_references() {
 # ============================================================
 # H5 — No non-.sh standalone scripts
 # Block newly-added *.py|*.rb|*.js|*.ts outside app/submodule dirs.
-# Rule source: memory/short-term/feedback/stable/feedback_bash_only_scripts.md
+# Rule source: AGENTS.md § Non-negotiable rules ("Bash for all scripts")
 # Exempt: personal-apps/, boringsystems/, node_modules/, lab/, cross-stack-*/
 # ============================================================
 check_h5_bash_only_scripts() {
@@ -292,7 +292,7 @@ check_h5_bash_only_scripts() {
     echo "[pre-commit] H5 ✗ standalone non-.sh script not allowed: $rel"
     echo "             Policy: new scripts must be .sh. For JSON-emission edge cases,"
     echo "             use inline python3 -c inside a .sh with a comment explaining why."
-    echo "             Rule: memory/short-term/feedback/stable/feedback_bash_only_scripts.md"
+    echo "             Rule: AGENTS.md § Non-negotiable rules (\"Bash for all scripts\")"
     eval "$fail_ref=1"
   done < <(git diff --cached --diff-filter=A --name-only)
 }
@@ -468,7 +468,7 @@ check_h0_hygiene() {
           printf '%b' "$lt_violation" | head -5
           echo "    Long-term holds content that must hold in 2+ years."
           echo "    Generalize or move to medium-term/short-term."
-          echo "    Rule: memory/short-term/feedback/stable/feedback_long_term_tier_purity.md"
+          echo "    Rule: memory/README.md § Tier definitions (long-term: 2+ year horizon)"
           eval "$fail_ref=1"
         fi
         ;;

@@ -52,7 +52,7 @@ When a new observation contradicts an existing medium-term or long-term doc, the
 2. Ahmed decides which version wins.
 3. The losing version is explicitly invalidated (edited out or archived), never silently overwritten.
 
-**Rule source:** `docs/governance/knowledge-governance.md` § G11
+**Rule source:** `memory/README.md` § Consolidation — weekly cadence (two-lane model: staged moves are Ahmed-gated, never silent).
 
 ---
 
