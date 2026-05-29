@@ -10,6 +10,10 @@
           {
             "type": "command",
             "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/pull-base-branch.sh\"'"
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/decay-nag.sh\"'"
           }
         ]
       }
@@ -39,11 +43,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/parallel-by-default-reminder.sh\"'"
-          },
-          {
-            "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/brevity-reminder.sh\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/reminders.sh\"'"
           }
         ]
       }
