@@ -59,7 +59,7 @@ deny_for_path() {
   BRANCH="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null)"
   case "$BRANCH" in
     main|master|development|dev|production)
-      REASON="Edits forbidden on protected branch '$BRANCH' in $REPO_ROOT. Create a feature branch first: 'git -C $REPO_ROOT checkout -b omraneah/<short-task-name>' (or 'omraneah/session-$(date +%Y-%m-%d)' for multi-concern session work). See memory/short-term/feedback/stable/feedback_auto_edit_on_feature_branch.md."
+      REASON="Edits forbidden on protected branch '$BRANCH' in $REPO_ROOT. Create a feature branch first: 'git -C $REPO_ROOT checkout -b omraneah/<short-task-name>' (or 'omraneah/session-$(date +%Y-%m-%d)' for multi-concern session work). See docs/agent-ops/github-sop.md § Auto-edit on feature branch."
       return 0
       ;;
   esac
