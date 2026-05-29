@@ -146,7 +146,7 @@ Files live at `/Users/<user>/Workspace/memory/` (workspace root, version-control
 - Implementation: 10-phase plan in one xhigh session, PR #39.
 - Refinement: feedback-as-medium-term-sub-tier with stable/in-flight split, PR #40 (after audit critique).
 - Deprecation of legacy `llm-context-2026/`: PRs #41 + #42.
-- Codified in: `memory/README.md`, `memory/MEMORY.md`, `memory/long-term/README.md`, `memory/medium-term/README.md`, `memory/medium-term/feedback/README.md`, `memory/short-term/README.md`, this ADR, `memory/decisions/DECISIONS.md`.
+- Codified in: `memory/README.md`, `memory/MEMORY.md`, `memory/long-term/README.md`, `memory/medium-term/README.md`, `memory/short-term/feedback/README.md`, `memory/short-term/README.md`, this ADR, `memory/decisions/DECISIONS.md`.
 - Skills implementing the architecture: `.agents/skills/whence/`, `.agents/skills/divergence-check/`, `.agents/skills/consolidate-week/`.
 - Behavioural rules wiring the loops: graduated to `docs/agent-ops/collaboration.md` § Divergence detection (divergence-check trigger) and `memory/README.md` § Consolidation — weekly cadence (Monday consolidate-week rule).
 

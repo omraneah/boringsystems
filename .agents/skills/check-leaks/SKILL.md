@@ -122,7 +122,7 @@ Examples of what this catches:
 
 Carve-outs:
 - `memory/decisions/DECISIONS.md` (historical record — references to old paths are provenance)
-- Fenced code blocks where the path is clearly illustrative (paired with a comment or adjacent resolving path)
+- Illustrative paths written with angle-bracket placeholders (`<name>`), globs (`*`/`?`), or double-backticks — not single-backtick concrete paths
 - Episodic daily entries
 
 This is the check that would have caught all the refs Task D (BOR-55 stale-ref sweep) fixed.
@@ -134,7 +134,7 @@ This is the check that would have caught all the refs Task D (BOR-55 stale-ref s
 3. **Filter exceptions:**
    - Linear refs in `DECISIONS.md` historical entries: skip.
    - `tmp-cleanup` skill self-referencing `tmp/`: skip.
-   - Pattern 5: paths inside fenced code blocks that are clearly illustrative (skip if adjacent resolving path exists).
+   - Pattern 5: illustrative paths using `<placeholders>`, globs, or double-backticks are skipped; concrete single-backtick paths that don't resolve are flagged.
 4. **Report findings:** if any leaks, surface them grouped by pattern + file. If clean, one-line confirmation.
 5. **Optional fix mode:** if invoked with `--fix` or "fix the leaks", attempt sed-replacements per pattern (Linear → remove, tmp → remove, deprecated `@-imports` → updated path, Pattern 5 dead refs → updated path or removal). Stop and ask if a fix is ambiguous.
 
@@ -207,7 +207,7 @@ Extract every path-shaped substring → for each, check whether it resolves unde
 
 **Carve-outs:**
 - Skip URLs (`https://...`, `mailto:`, etc.).
-- Skip references inside fenced code blocks where they're clearly illustrative (e.g. an example of *what an old path used to look like*). Heuristic: if the path appears in a fenced block AND there's a sibling resolving path nearby, skip.
+- Skip illustrative paths written as `<placeholders>`, with globs, or in double-backticks. Concrete single-backtick paths ARE checked — use a placeholder or a real path in examples.
 - Skip `tmp/...` paths — those are render-buffer-by-design.
 
 ### Steps

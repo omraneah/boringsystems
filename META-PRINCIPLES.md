@@ -40,7 +40,7 @@ The agentic system observes itself, surfaces deviations, and proposes refinement
 
 The master decides what gets codified. The system never silently mutates long-term context (per principle 1) and never lets the same problem fire three times. Self-improvement is suggested, not performed unilaterally. The loop must close, and the system is responsible for closing it.
 
-→ `docs/agent-ops/workspace-workflow.md` § Twice-is-a-pattern, `docs/agent-ops/github-sop.md` § Post-merge cleanup
+→ `docs/agent-ops/workspace-workflow.md` § Twice-is-a-pattern, `docs/agent-ops/github-sop.md` § Post-merge workflow
 
 ## 5. Protect the master's cognition
 

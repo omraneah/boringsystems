@@ -411,7 +411,7 @@ check_h7_transient_refs() {
 #   - Daily/weekly episodic entries (memory/short-term/20*)
 #   - Archives
 #   - The pre-commit hook itself (self-referential)
-#   - Paths inside fenced code blocks that start with # or are clearly illustrative
+#   - Illustrative paths: angle-bracket placeholders (<name>), globs (* ?), or double-backticks
 # ============================================================
 check_h8_prose_path_refs() {
   local workspace_root="$1"
@@ -427,6 +427,8 @@ check_h8_prose_path_refs() {
 
     local path="$workspace_root/$rel"
     [ -f "$path" ] || continue
+    local file_dir
+    file_dir="$(dirname "$path")"
 
     # Only check ADDED lines
     local added
@@ -449,7 +451,15 @@ check_h8_prose_path_refs() {
       case "$token" in *\<*|*\>*|*\**|*\?*) continue ;; esac
       # Skip obvious non-paths (version strings, semver, etc.)
       case "$token" in [0-9]*) continue ;; esac
-      local resolved="$workspace_root/$token"
+      # Resolve like H4: rooted → workspace_root; ./ or ../ → the file's dir;
+      # otherwise try workspace-root first, then the file's own dir
+      # (covers root-relative `memory/...` AND file-relative `inner-game/...`).
+      local resolved
+      case "$token" in
+        /*)       resolved="$workspace_root$token" ;;
+        ./*|../*) resolved="$file_dir/$token" ;;
+        *)        if [ -e "$workspace_root/$token" ]; then resolved="$workspace_root/$token"; else resolved="$file_dir/$token"; fi ;;
+      esac
       if [ ! -e "$resolved" ]; then
         violations="${violations}    dead prose ref: \`$token\`\n"
       fi
