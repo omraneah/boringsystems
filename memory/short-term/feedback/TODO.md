@@ -9,13 +9,15 @@ Decided + executed work lives in `.claude/decisions/DECISIONS.md` (search "2026-
 ## Pending — Constitutional-shaped → long-term
 
 - `stable/feedback_laptop_agnostic.md` → long-term doctrine candidate (it's an invariant, not a protocol). Promote in next consolidation.
-- `stable/feedback_collaboration.md` → evaluate: pair-audit with Ahmed.
 
 ---
 
 ## File count target
 
-Target: 15-20 total files in `feedback/`. Trajectory tracked via `.claude/decisions/DECISIONS.md` (search "2026-05-20" entries).
+Target: 15-20 total files in `feedback/`. Current: 35 (29 stable + 6 in-flight) after BOR-52/A3 condensation (2026-05-29).
+Previous: 42 (35 stable + 7 in-flight). Condensed 11 files → 4 via BOR-52/A3.
+
+Trajectory tracked via `.claude/decisions/DECISIONS.md` (search "2026-05-20" entries).
 
 Primary mechanism: crystallization (protocols → workspace-workflow.md SOP sections, or project-specific docs).
 Secondary: condensation (related files → single principle).

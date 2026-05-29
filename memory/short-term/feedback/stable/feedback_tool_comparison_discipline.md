@@ -1,8 +1,10 @@
 ---
-name: Avoid tool-comparison-as-decoration when scope is "just ship"
-description: When operator's stated scope is minimal — "stupid website," "basic," "simple," "just ship," "replaceable later" — drop comparison frames and ship the obvious choice. Multi-axis comparison tables for decisions where the choice is obvious are decoration that burns operator attention without producing signal.
+name: Tool Comparison Discipline
+description: When scope is minimal ("just ship"), drop comparison work. When writing articles, structure by category not by tool name. Both prevent comparison-as-decoration.
 type: feedback
 ---
+
+## Part 1 — Minimal scope: ship the obvious choice
 
 **When operator phrases scope as minimal / small / throwaway / replaceable, drop comparison work and ship the obvious choice.** Do not run head-to-head tables. Do not enumerate axes. Do not survey the field.
 
@@ -27,9 +29,16 @@ This is downstream of meta-principle #5 (protect the master's cognition). Compar
 6. **Recovery move when caught:** acknowledge the over-elaboration directly, drop the comparison, ship the choice. Don't defend the table.
 
 **What this feedback is NOT:**
-
 - Not a ban on all comparison work. Real tradeoffs at material scope still warrant analysis.
 - Not a ban on naming alternatives. "X over Y because Z" in one line is fine.
 - Not a ban on surfacing risks. Genuine risks always surface, regardless of scope.
 
 The bar: would a reasonable operator at this scope make a different decision because of this comparison? If no, drop it.
+
+## Part 2 — Articles: categories first, tools as examples
+
+When comparing tools or products in an article, structure by category, not by individual tool. Name tools as examples within each category rather than making individual tool rows the organizing principle of a comparison.
+
+**Why:** Categories age well; per-tool comparison tables become stale as features, pricing, and availability change. The operator's real decision is which category fits their situation — not which of eight named products to pick. A table of tools with pricing columns will be wrong in 12 months; a category frame stays true.
+
+**How to apply:** Structure as: category heading → what this category does → ceiling/tradeoffs → when to use it → "(e.g., X, Y)" as inline examples. If a compact reference exists, category is the row key, not the tool name. Avoid per-tool minutiae (pricing, feature checkboxes) that will drift. Can name 1–2 representative tools per category as orientation anchors — but they are examples, not the subject. Apply this pattern to any article that compares solutions in a space (auth, infra, observability, etc.).
