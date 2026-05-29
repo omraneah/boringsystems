@@ -78,6 +78,32 @@ No asking, every time. If a Linear card covers this work, the card also gets an 
 
 ---
 
+## Commit and push — pre-authorized workflow
+
+When a discrete unit of work finishes, commit and push to a feature branch without asking permission first. This is the default close-out for any completed task.
+
+**Why:** Asking each time creates friction on a workflow that's already settled.
+
+- After finishing a task, commit + push immediately. Don't end the turn with "want me to commit?".
+- Git commands on feature branches are pre-authorized normal workflow.
+- If currently on a protected branch, create `omraneah/<short-task-name>` first, then commit + push.
+- Claude pushes; Ahmed opens the PR. That boundary never changes.
+
+## Auto-edit on feature branch — never ask
+
+Editing files in this workspace is pre-authorized on feature branches. Do not ask permission to use Edit, Write, or NotebookEdit.
+
+1. Before the first edit of any session, check current branch: `git -C <repo-root> rev-parse --abbrev-ref HEAD`
+2. If on a protected branch (`main`, `master`, `development`, `dev`, `production`), create a feature branch first.
+3. If a feature branch already exists for this session, reuse it. Do not create siblings.
+4. Submodule edits follow the same rule for the submodule's own branch.
+
+## Batch permission for multi-file edit sweeps
+
+Present the full plan at the start of a multi-file edit pass (which files, what changes, why). Ask once. Execute in a batch. Only interrupt mid-stream when something genuinely surprising surfaces that changes the plan.
+
+---
+
 ## Commit discipline
 
 **Format:** `<type>: <imperative subject>`

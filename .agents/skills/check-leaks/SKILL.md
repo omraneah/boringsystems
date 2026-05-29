@@ -73,7 +73,7 @@ docs/*.md (any top-level doc)
 memory/decisions/DECISIONS.md (with carve-out — see below)
 ```
 
-`memory/short-term/feedback/stable/*.md` and `memory/short-term/feedback/in-flight/*.md` are also stable in nature; include them.
+`memory/short-term/feedback/*.md` files are also stable in nature; include them.
 
 Daily short-term entries (`memory/short-term/<week>/<date>.md`) are NOT stable — they are episodic record. Skip them.
 
@@ -231,7 +231,7 @@ Optional. For each stale reference:
 
 ### Rate-limit handling
 
-Linear MCP rate-limits unpredictably (per `feedback_retry_silently_on_transient_platform_errors.md`). When `list_issues` / `get_issue` / `list_comments` hits a rate limit:
+Linear MCP rate-limits unpredictably (per `docs/agent-ops/collaboration.md` § Retry silently on transient platform errors). When `list_issues` / `get_issue` / `list_comments` hits a rate limit:
 - First retry: same call.
 - Second retry: smaller batch (fewer cards per page, narrower filter).
 - Third route-around: process the cards already fetched; surface the unprocessed list as a follow-up.

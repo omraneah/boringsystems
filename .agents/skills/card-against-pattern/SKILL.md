@@ -49,4 +49,4 @@ Only fire `save_issue` after explicit confirmation, unless the user has set auto
 
 The 2026-04-26 model × effort × lane session created three Linear cards when only two were intended (one work-tracker + one article series). Cleanup required cancelling two cards and creating a consolidation card. The fix is upstream: check for the container pattern before creating, not after.
 
-See also: `memory/feedback_card_fanout_discipline.md`.
+See also: `memory/medium-term/project-management/linear-sop.md` § Card creation — multi-deliverable work.

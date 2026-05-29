@@ -131,7 +131,7 @@ Before setting up any MCP server manually (`.mcp.json`, API keys, env vars):
 
 Services with direct connectors (never set up manually): **Linear, GitHub, Gmail, Notion, Google Calendar, Google Drive.** These are OAuth-managed by Anthropic, account-scoped, and work in every session — including cloud and mobile — automatically.
 
-Full rule: `memory/short-term/feedback/stable/feedback_mcp_connectors.md`.
+Full rule: `memory/medium-term/project-management/workspace-workflow.md` § Connector-first MCP.
 
 ## Decision registry
 

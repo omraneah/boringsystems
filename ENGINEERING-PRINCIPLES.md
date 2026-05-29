@@ -28,6 +28,9 @@ Share plans early for non-trivial work. Prefer small, reviewable changes — spl
 
 Small, well-named units. Explicit types. No magic numbers. KISS and YAGNI — simplest solution that meets the requirement, no speculative complexity, no premature future-proofing. DRY — single source of truth, no duplicated logic across layers or repos. Every line of code and every dependency is a liability; add only when the benefit clearly outweighs the long-term cost.
 
+- **Platform features first (DRY/YAGNI application):** Before writing structural code — i18n routing, redirects, auth, caching, routing middleware, state management, forms — check the framework's official docs for native support first. Custom reimplementation of a framework feature is almost always wrong: it diverges from upgrade paths, misses affordances the framework provides, and duplicates logic that will drift. Check the framework docs (not memory), then `<project>/docs/constraints.md`, then decide. See also §1 (Architecture and Boundaries) — framework boundaries are non-negotiable.
+- **Shared infrastructure once the pattern is proven (DRY applied to reuse):** When a capability appears in ≥2 places, build the reusable artifact once — then the specific consumers. This is the twice-is-a-pattern rule applied to infrastructure: do not build shared infra speculatively on the first use; do not duplicate on the second. One-off inline implementations are rework. Before writing the first instance, ask "is this the only place this will live?" If the answer is anything weaker than a firm yes, plan for abstraction on the second use.
+
 ## 6. Documentation and Traceability
 
 Document non-obvious decisions and the rationale behind them. Commit messages explain what and why, not just what changed. History should be reviewable and debuggable months later.

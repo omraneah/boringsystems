@@ -10,14 +10,14 @@
 
 1. **Read every file in `long-term/` and `long-term/inner-game/`.** These are the north star — identity profile, distilled identity content (including `Path-Doctrine.md` for the 2-3yr sprint shape, `Relational-Architecture.md` for the depth-expansion of the relational North Star). Load fully every session. Weighted highest in routing.
 2. **Read all three files in `medium-term/project-management/`.** These are structural SOPs that govern every session — `workspace-workflow.md` (all collaboration flows, autonomy gradient, skill checklist), `linear-sop.md` (card rules and lifecycle), `github-sop.md` (branch rules and PR flow). Load fully. Weighted above short-term/feedback in conflicts (protocol wins over correction).
-3. **Read every file in `short-term/feedback/stable/` and `short-term/feedback/in-flight/`.** Active behavioural rules — how Claude has been told to operate. Always auto-loads (both sub-folders). Feedback is the live discipline layer; it lives in short-term because Ahmed consolidates on top of it weekly. The `stable/` vs `in-flight/` split is for audit purposes only; both are equally in-scope at runtime.
+3. **Read every `.md` file in `short-term/feedback/`.** Active behavioural rules — how Claude has been told to operate. Always auto-loads. Feedback is the live discipline layer; it lives in short-term because Ahmed consolidates on top of it weekly. The folder is now flat (no stable/in-flight split) — see `short-term/feedback/README.md` for the routing tree.
 4. **Read `medium-term/current-arc.md`.** The current-direction snapshot for the re-stabilization phase (July → December 2026). Bridges short-term reality and long-term north star.
 5. **Read `medium-term/Drivers-and-Filters.md`.** The operational center for this next step: eight drivers, ten filters, position synthesis. Codified 2026-05-20. Upstream of every engagement decision.
 6. **Read `medium-term/Engagement-Shapes.md`.** The two valid surface shapes: Shape A (mandate inside a company, with A.1 full-time CPTO/CTPO sub-shape — load-bearing wariness caveat), Shape B (fractional / freelance via warm network, with B.1 fractional CTO/CPO and B.2 transformation freelance sub-shapes).
 7. **Read `short-term/current-arc.md`.** The active 2-month plan (May → end June 2026). Bound to the current-chapter-closing window.
 8. **Read `short-term/extraction-os.md`.** Proof-asset extraction discipline (2-month bound, transition-period).
 9. **Read all `.md` files in `short-term/<this-week>/` and `short-term/<last-week>/`.** Continuity. Decisions, state, conflicts from the past two weeks.
-10. **If today is Monday**, follow `short-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md` — fire `/consolidate-week` if this week's consolidation hasn't been written yet.
+10. **If today is Monday**, check if this week's `short-term/<this-week>/consolidation.md` exists and has today's date. If not, fire `/consolidate-week`.
 11. **Other medium-term files load on demand** when the work touches their topic (positioning, doctrine, project state, etc.).
 12. **Do not read `short-term/_archive/`** unless Ahmed explicitly points to a week.
 13. **Do not read `memory/_outdated/`** unless explicitly directed. This folder holds files superseded by the 2026-05-20 distillation pass, retained for reference only.
@@ -59,8 +59,7 @@ The interpretive layer between short-term episodic record and long-term constitu
 
 ## SHORT-TERM — Episodic Running Record + Active Discipline
 
-`short-term/feedback/stable/` — behavioural rules that have crystallized but haven't been promoted to long-term doctrine yet. **Auto-loaded.** Ahmed consolidates on top of these weekly.
-`short-term/feedback/in-flight/` — behavioural rules tied to current workflow / specific tooling / recent corrections. **Auto-loaded.**
+`short-term/feedback/` — behavioural rules in staging (flat folder, no stable/in-flight split). **Auto-loaded.** Rules graduate out over time via the routing tree in `feedback/README.md`.
 `short-term/current-arc.md` — active 2-month plan (May → end June 2026). Bound to current-chapter-closing window. Auto-loaded.
 `short-term/extraction-os.md` — Proof-asset extraction discipline (2-month bound, transition-period). Auto-loaded.
 `short-term/<YYYY-Www>/` — daily entries, ISO week folders. Current + last 3 weeks active.
@@ -74,13 +73,13 @@ Daily entry format: chronological with timestamps. Decisions, state, conflicts. 
 ## DRIFT DETECTION (the immune system)
 
 - **`/whence`** — directive. Ahmed asks where Claude pulled a claim from. Claude reports tier + source + bias risk.
-- **`/divergence-check`** — proactive. Claude fires on detected frustration / loss-of-fit. Surfaces suspected drift. See `short-term/feedback/in-flight/feedback_fire_divergence_check_on_frustration.md` for trigger conditions.
+- **`/divergence-check`** — proactive. Claude fires on detected frustration / loss-of-fit. Surfaces suspected drift. Trigger conditions: "no", "you're missing me", same correction twice in session, response lands wrong. See `docs/agent-ops/collaboration.md` § Divergence detection.
 
 ---
 
 ## WEEKLY CONSOLIDATION (the closed loop)
 
-- **`/consolidate-week`** — auto-fires Mondays per `short-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md`. Reads last week's daily entries + feedback, proposes promotions / demotions / drift-flags, Ahmed decides, results recorded in this week's `consolidation.md`.
+- **`/consolidate-week`** — fire on Monday session start if this week's consolidation hasn't been written yet (SESSION-START step 10). Reads last week's daily entries + feedback, proposes promotions / demotions / drift-flags, Ahmed decides, results recorded in this week's `consolidation.md`.
 
 ---
 
