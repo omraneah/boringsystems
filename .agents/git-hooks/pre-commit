@@ -1,29 +1,41 @@
 #!/usr/bin/env bash
 # pre-commit — branch protection + content hygiene + build-artifact sync.
 #
-# Three enforcement layers:
+# Enforcement layers:
 #
 # 1. Branch protection: refuses commits to protected branches.
 #    (defense-in-depth alongside pre-push)
 #
-# 2. Content hygiene: checks ADDED lines in staged markdown files for
-#    three forbidden patterns:
-#      1. Linear card IDs (BOR-32, LIN-123, etc.) in stable docs.
-#         Cards are project-management ephemera — they change state, get closed,
-#         and rot inside stable docs that outlive the card. Replace with text.
-#      2. tmp/ path references. tmp/ is an ephemeral render buffer.
-#         Never link to tmp/ files from committed docs.
-#      3. Long-term tier transient content (memory/long-term/**.md only):
-#         year markers, "currently", "recently", phase-bound phrases. Body
-#         only — YAML frontmatter is skipped wholly.
+# 2. Build-artifact sync: regenerates per-agent persona adapters and permission
+#    adapters before each commit to keep them in sync with canonical sources.
 #
-# 3. Build-artifact sync: regenerates the per-agent persona adapters
-#    (.claude/agents/*.md and .codex/agents/*.toml) from .agents/personas/, and
-#    syncs permission adapters from .agents/permissions/ before each commit.
-#    Ensures committed artifacts are never stale relative to their sources.
+# 3. Content hygiene (original three checks — H0 series):
+#    H0a. Linear card IDs in stable docs.
+#    H0b. tmp/ path references in stable docs.
+#    H0c. Long-term tier transient content (year markers, phase phrases).
+#
+# 4. Governance enforcement (new checks — H1-H7):
+#    H1. Always-loaded file size ceiling (AGENTS.md, CLAUDE.md, MEMORY.md):
+#        warn ≥160 lines, block >200 lines.
+#    H2. Doc size ceiling (memory/, docs/ *.md):
+#        warn >300 lines, block >1000 lines.
+#    H3. Root-file-count cap: block newly-added root-level tracked files
+#        not in the allowlist.
+#    H4. Dead-reference / @-import drift: resolve @-imports and relative
+#        markdown links in staged *.md files; block unresolved.
+#    H5. No non-.sh standalone scripts: block newly-added *.py|*.rb|*.js|*.ts
+#        outside app/submodule dirs.
+#    H6. Duplication heuristic (WARN only): normalize rule-statement headings
+#        in feedback/ files; warn on collisions.
+#    H7. Transient-ref sweep: runs check-leaks patterns on staged stable docs
+#        (mirrors /check-stable-docs-leaks for deprecated @-import paths and
+#        PR number references).
 #
 # Scope for hygiene: staged .md/.mdx files, excluding:
 #   .claude/          — hooks and skills legitimately document these patterns
+#   .agents/skills/   — skill files document patterns (incl. check-leaks skill)
+#   .agents/hooks/    — hooks document these patterns
+#   .agents/git-hooks/— this very file
 #   memory/short-term/20*/  — daily/weekly episodic entries (card IDs expected)
 #   */_archive/       — archived content, not forward-looking
 #
@@ -36,148 +48,454 @@
 
 set -u
 
-# --- Protected branch guard ---
-branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
-case "$branch" in
-  main|master|development|dev|production)
-    echo "[pre-commit] ✗ refused — committing to protected branch '$branch' is not allowed."
-    echo "             Create a feature branch first: git checkout -b omraneah/<name>"
-    echo "             --no-verify forbidden. See workspace AGENTS.md."
-    exit 1
-    ;;
-esac
+# ============================================================
+# H_BRANCH — Protected branch guard
+# ============================================================
+check_protected_branch() {
+  local branch
+  branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
+  case "$branch" in
+    main|master|development|dev|production)
+      echo "[pre-commit] ✗ refused — committing to protected branch '$branch' is not allowed."
+      echo "             Create a feature branch first: git checkout -b omraneah/<name>"
+      echo "             --no-verify forbidden. See workspace AGENTS.md."
+      exit 1
+      ;;
+  esac
+}
 
-# --- Build-artifact sync ---
+# ============================================================
+# Build-artifact sync
+# ============================================================
+sync_build_artifacts() {
+  local workspace_root="$1"
+
+  # Regenerate per-agent persona adapters from canonical .agents/personas/
+  bash "$workspace_root/scripts/generate-agents.sh" >/dev/null 2>&1 || \
+    echo "[pre-commit] WARN: generate-agents.sh failed — .claude/agents/ and .codex/agents/ may be stale"
+  git add "$workspace_root/.claude/agents/" "$workspace_root/.codex/agents/" 2>/dev/null || true
+
+  # Sync agent-specific permission adapters from canonical policy
+  bash "$workspace_root/.agents/permissions/sync.sh" >/dev/null 2>&1 || \
+    echo "[pre-commit] WARN: permission sync failed — agent permission adapters may be stale"
+  git add "$workspace_root/.codex/rules/default.rules" 2>/dev/null || true
+}
+
+# ============================================================
+# H1 — Always-loaded file size ceiling
+# AGENTS.md, CLAUDE.md, memory/MEMORY.md: warn ≥160, block >200
+# ============================================================
+check_h1_always_loaded_ceiling() {
+  local workspace_root="$1"
+  local fail_ref="$2"
+  local WARN_AT=160
+  local BLOCK_AT=200
+
+  for f in AGENTS.md CLAUDE.md memory/MEMORY.md; do
+    local path="$workspace_root/$f"
+    [ -f "$path" ] || continue
+    local lines
+    lines="$(wc -l < "$path")"
+    if [ "$lines" -gt "$BLOCK_AT" ]; then
+      echo "[pre-commit] H1 ✗ always-loaded file too large (${lines} lines > ${BLOCK_AT} block threshold): $f"
+      echo "             These files load every turn — distill or split content below ${BLOCK_AT} lines."
+      eval "$fail_ref=1"
+    elif [ "$lines" -ge "$WARN_AT" ]; then
+      echo "[pre-commit] H1 ⚠ always-loaded file approaching ceiling (${lines} lines, warn ≥${WARN_AT}): $f"
+      echo "             Consider distilling before it crosses ${BLOCK_AT}."
+    fi
+  done
+}
+
+# ============================================================
+# H2 — Doc size ceiling
+# memory/ and docs/ *.md: warn >300 lines, block >1000
+# Calibrated against current corpus: workspace-workflow.md is ~340 → warn only.
+# ============================================================
+check_h2_doc_size() {
+  local workspace_root="$1"
+  local fail_ref="$2"
+  local WARN_AT=300
+  local BLOCK_AT=1000
+
+  # Only check staged files
+  while IFS= read -r rel; do
+    case "$rel" in *.md|*.mdx) ;; *) continue ;; esac
+    # Scope: memory/ and docs/ only
+    case "$rel" in memory/*|docs/*) ;; *) continue ;; esac
+    # Skip episodic entries and archives
+    case "$rel" in memory/short-term/20*|*/_archive/*|*_archive/*) continue ;; esac
+
+    local path="$workspace_root/$rel"
+    [ -f "$path" ] || continue
+    local lines
+    lines="$(wc -l < "$path")"
+    if [ "$lines" -gt "$BLOCK_AT" ]; then
+      echo "[pre-commit] H2 ✗ doc exceeds hard size limit (${lines} lines > ${BLOCK_AT}): $rel"
+      echo "             Split into smaller focused documents."
+      eval "$fail_ref=1"
+    elif [ "$lines" -gt "$WARN_AT" ]; then
+      echo "[pre-commit] H2 ⚠ doc is large (${lines} lines > ${WARN_AT} warn threshold): $rel"
+      echo "             Consider splitting or distilling."
+    fi
+  done < <(git diff --cached --name-only --diff-filter=ACM)
+}
+
+# ============================================================
+# H3 — Root-file-count cap
+# Block newly-ADDED root-level tracked files not in the allowlist.
+# Allowlist: named stable files + all dotfiles (.gitignore, .gitmodules etc.)
+# Submodule commit pointers are automatically skipped (type=commit).
+# ============================================================
+check_h3_root_file_cap() {
+  local fail_ref="$1"
+
+  # Explicitly permitted root-level non-dotfiles
+  local -a ALLOWLIST=(
+    AGENTS.md CLAUDE.md README.md META-PRINCIPLES.md
+    ENGINEERING-PRINCIPLES.md WORKSPACE_MAP.md
+  )
+
+  while IFS= read -r rel; do
+    # Only root-level: no slash in path
+    case "$rel" in */*) continue ;; esac
+
+    # Dotfiles always allowed (.gitignore, .gitmodules, .tool-versions, etc.)
+    case "$rel" in .*) continue ;; esac
+
+    # Submodule pointers (type=commit) and tree entries are allowed
+    local ftype
+    ftype="$(git cat-file -t ":$rel" 2>/dev/null || echo "missing")"
+    case "$ftype" in commit|tree) continue ;; esac
+
+    # Check against explicit allowlist
+    local allowed=0
+    for allowed_name in "${ALLOWLIST[@]}"; do
+      if [ "$rel" = "$allowed_name" ]; then
+        allowed=1
+        break
+      fi
+    done
+
+    if [ "$allowed" -eq 0 ]; then
+      echo "[pre-commit] H3 ✗ new root-level file not in allowlist: $rel"
+      echo "             Root files bloat the workspace root. Place in an appropriate subfolder."
+      echo "             To permit this file, add it to the H3 ALLOWLIST in .agents/git-hooks/pre-commit."
+      eval "$fail_ref=1"
+    fi
+  done < <(git diff --cached --diff-filter=A --name-only)
+}
+
+# ============================================================
+# H4 — Dead-reference / @-import drift
+# For staged *.md: extract @-imports and relative markdown links;
+# block on unresolved paths. Skips absolute URLs, anchors-only refs.
+# Does NOT re-implement /check-stable-docs-leaks; complements it by
+# resolving filesystem paths (not just pattern matching).
+# ============================================================
+check_h4_dead_references() {
+  local workspace_root="$1"
+  local fail_ref="$2"
+
+  while IFS= read -r rel; do
+    case "$rel" in *.md|*.mdx) ;; *) continue ;; esac
+    # Scanned: all .md/.mdx including .agents/personas/ (personas carry the densest
+    # @-import load and are the whole point of this check — Fix 3).
+    # Skip only: implementation/infra dirs and ephemeral/archived files.
+    case "$rel" in .agents/skills/*|.agents/hooks/*|.agents/git-hooks/*|.claude/*) continue ;; esac
+    # Skip episodic and archives
+    case "$rel" in memory/short-term/20*|*/_archive/*|*_archive/*) continue ;; esac
+
+    local path="$workspace_root/$rel"
+    [ -f "$path" ] || continue
+    local file_dir
+    file_dir="$(dirname "$workspace_root/$rel")"
+
+    # @-imports: @<path> at start or after whitespace (not @http, not @email-style)
+    # Portable replacement for GNU-only grep -oP '(?:^|\s)@(?!http|[a-z]+\.)\K...'
+    # Uses grep -E to find candidate lines, then awk to extract the token (Fix 1).
+    local at_violations=""
+    while IFS= read -r import_path; do
+      [ -z "$import_path" ] && continue
+      local resolved="$workspace_root/$import_path"
+      if [ ! -e "$resolved" ]; then
+        at_violations="${at_violations}    @-import not found: @${import_path}\n"
+      fi
+    done < <(grep -E '(^|[[:space:]])@[A-Za-z_.][A-Za-z0-9_./-]+' "$path" 2>/dev/null \
+      | awk '{
+          for (i=1; i<=NF; i++) {
+            if ($i ~ /^@[A-Za-z_.][A-Za-z0-9_./-]+$/) {
+              tok = substr($i, 2)
+              if (tok ~ /^http/) { next }
+              # skip email-style: first path segment is word.tld (e.g. user.domain)
+              split(tok, parts, "/")
+              if (parts[1] ~ /^[a-z]+\./) { next }
+              print tok
+            }
+          }
+        }' || true)
+
+    # Relative markdown links: [text](path) — skip http/https/# anchors/mailto
+    # Portable replacement for GNU-only grep -oP '\[[^\]]*\]\(\K[^)]+' (Fix 1).
+    # Uses grep -E to find candidate lines, then awk to extract the URL token.
+    local link_violations=""
+    while IFS= read -r link_target; do
+      [ -z "$link_target" ] && continue
+      case "$link_target" in http*|https*|"#"*|mailto*) continue ;; esac
+      local link_path="${link_target%%#*}"
+      [ -z "$link_path" ] && continue
+      local resolved
+      case "$link_path" in
+        /*) resolved="$workspace_root$link_path" ;;
+        *)  resolved="$file_dir/$link_path" ;;
+      esac
+      if [ ! -e "$resolved" ]; then
+        link_violations="${link_violations}    broken link: [...]($link_target)\n"
+      fi
+    done < <(grep -E '\[[^]]*\]\([^)]+\)' "$path" 2>/dev/null \
+      | awk '{
+          line = $0
+          while (match(line, /\[[^]]*\]\([^)]*\)/)) {
+            chunk = substr(line, RSTART, RLENGTH)
+            paren = index(chunk, "(")
+            print substr(chunk, paren+1, length(chunk)-paren-1)
+            line = substr(line, RSTART + RLENGTH)
+          }
+        }' || true)
+
+    if [ -n "$at_violations" ] || [ -n "$link_violations" ]; then
+      echo "[pre-commit] H4 ✗ dead references in: $rel"
+      [ -n "$at_violations" ] && printf '%b' "$at_violations" | head -5
+      [ -n "$link_violations" ] && printf '%b' "$link_violations" | head -5
+      echo "             Fix or remove references before committing."
+      eval "$fail_ref=1"
+    fi
+  done < <(git diff --cached --name-only --diff-filter=ACM)
+}
+
+# ============================================================
+# H5 — No non-.sh standalone scripts
+# Block newly-added *.py|*.rb|*.js|*.ts outside app/submodule dirs.
+# Rule source: memory/short-term/feedback/stable/feedback_bash_only_scripts.md
+# Exempt: personal-apps/, boringsystems/, node_modules/, lab/, cross-stack-*/
+# ============================================================
+check_h5_bash_only_scripts() {
+  local fail_ref="$1"
+
+  while IFS= read -r rel; do
+    case "$rel" in *.py|*.rb|*.js|*.ts) ;; *) continue ;; esac
+    # Exempt app/submodule/lab directories
+    case "$rel" in
+      personal-apps/*|boringsystems/*|node_modules/*|lab/*|cross-stack-architecture-starter-pack/*)
+        continue ;;
+    esac
+    echo "[pre-commit] H5 ✗ standalone non-.sh script not allowed: $rel"
+    echo "             Policy: new scripts must be .sh. For JSON-emission edge cases,"
+    echo "             use inline python3 -c inside a .sh with a comment explaining why."
+    echo "             Rule: memory/short-term/feedback/stable/feedback_bash_only_scripts.md"
+    eval "$fail_ref=1"
+  done < <(git diff --cached --diff-filter=A --name-only)
+}
+
+# ============================================================
+# H6 — Duplication heuristic (WARN only, never blocks)
+# Normalize and hash H2+ headings across feedback/ *.md files.
+# Warn on exact-normalized collisions. Best-effort: grep+awk only.
+# ============================================================
+check_h6_duplication_heuristic() {
+  local workspace_root="$1"
+
+  local feedback_dir="$workspace_root/memory/short-term/feedback"
+  [ -d "$feedback_dir" ] || return 0
+
+  # Collect all H2+ headings, normalize (lowercase, strip non-alnum, collapse spaces),
+  # and report duplicates.
+  local dups
+  dups="$(
+    find "$feedback_dir" -name "*.md" -not -name "README.md" -not -name "TODO.md" \
+    | xargs grep -h '^## ' 2>/dev/null \
+    | sed 's/^## *//' \
+    | tr '[:upper:]' '[:lower:]' \
+    | sed 's/[^a-z0-9 ]//g; s/  */ /g; s/^ //; s/ $//' \
+    | sort | uniq -d
+  )"
+
+  if [ -n "$dups" ]; then
+    echo "[pre-commit] H6 ⚠ duplicate rule headings across feedback/ files (non-blocking):"
+    echo "$dups" | head -5 | sed 's/^/    /'
+    echo "             Consider merging at next /consolidate-week run."
+  fi
+}
+
+# ============================================================
+# H7 — Transient-ref sweep (complements /check-stable-docs-leaks)
+# Checks staged stable docs for: deprecated @-import paths, PR number refs.
+# Linear card IDs and tmp/ refs are already covered by H0a/H0b.
+# ============================================================
+check_h7_transient_refs() {
+  local workspace_root="$1"
+  local fail_ref="$2"
+
+  # Deprecated @-import prefixes — add here when a folder is deprecated
+  local -a DEPRECATED_AT_IMPORTS=(
+    "llm-context-2026/"
+    ".claude/projects/-Users-ahmedomrane-Workspace/memory/"
+  )
+
+  while IFS= read -r rel; do
+    case "$rel" in *.md|*.mdx) ;; *) continue ;; esac
+    # Scope: stable docs only (mirror /check-stable-docs-leaks targets)
+    case "$rel" in
+      CLAUDE.md|WORKSPACE_MAP.md|META-PRINCIPLES.md|ENGINEERING-PRINCIPLES.md|\
+      memory/README.md|memory/MEMORY.md|\
+      memory/long-term/README.md|memory/medium-term/README.md|\
+      memory/short-term/README.md|memory/short-term/feedback/README.md|\
+      memory/short-term/feedback/stable/*.md|memory/short-term/feedback/in-flight/*.md|\
+      docs/*.md|.claude/decisions/DECISIONS.md) ;;
+      # Skip implementation and episodic files
+      .agents/skills/*|.agents/hooks/*|.agents/git-hooks/*|.claude/hooks/*|\
+      memory/short-term/20*|*/_archive/*|*_archive/*) continue ;;
+      # All other files: skip
+      *) continue ;;
+    esac
+
+    # Only check ADDED lines
+    local added
+    added="$(git diff --cached -- "$rel" | grep '^+' | grep -v '^+++' 2>/dev/null || true)"
+    [ -z "$added" ] && continue
+
+    # Deprecated @-import paths
+    for dep_path in "${DEPRECATED_AT_IMPORTS[@]}"; do
+      local dep_hits
+      dep_hits="$(echo "$added" | grep -F "@$dep_path" || true)"
+      if [ -n "$dep_hits" ]; then
+        echo "[pre-commit] H7 ✗ deprecated @-import path added to stable doc: $rel"
+        echo "$dep_hits" | head -3 | sed 's/^/    /'
+        echo "             @$dep_path is deprecated. Update the reference."
+        eval "$fail_ref=1"
+      fi
+    done
+
+    # PR number references in stable docs
+    local pr_hits
+    pr_hits="$(echo "$added" | grep -E '\bPR #[0-9]+|/pull/[0-9]+\b' || true)"
+    if [ -n "$pr_hits" ]; then
+      echo "[pre-commit] H7 ✗ PR number reference added to stable doc: $rel"
+      echo "$pr_hits" | head -3 | sed 's/^/    /'
+      echo "             Stable docs must not contain transient PR numbers."
+      eval "$fail_ref=1"
+    fi
+
+  done < <(git diff --cached --name-only --diff-filter=ACM)
+}
+
+# ============================================================
+# H0 — Original hygiene checks (Linear IDs, tmp/, long-term purity)
+# ============================================================
+check_h0_hygiene() {
+  local fail_ref="$1"
+
+  local CARD_ID_PATTERN='BOR-[0-9]+|LIN-[0-9]+'
+  # Long-term tier: content that must hold in 2+ years. Date/phase anchors fail.
+  local LONG_TERM_TRANSIENT_PATTERN='\b20[0-9][0-9]\b|\brecently\b|\bcurrently\b|\bright now\b|\blast (week|month|year|quarter)\b|\bthis (week|month|year|quarter)\b|\bnext (week|month|year|quarter)\b|\bpast (few |several )?(week|month|year|quarter)s?\b|\bover the past\b|\bin the coming\b'
+
+  while IFS= read -r file; do
+    case "$file" in *.md|*.mdx) ;; *) continue ;; esac
+    case "$file" in .claude/*|.agents/skills/*|.agents/hooks/*|.agents/git-hooks/*) continue ;; esac
+    case "$file" in memory/short-term/20*) continue ;; esac
+    case "$file" in */_archive/*|*_archive/*) continue ;; esac
+
+    local added
+    added="$(git diff --cached -- "$file" | grep '^+' | grep -v '^+++' 2>/dev/null || true)"
+    [ -z "$added" ] && continue
+
+    # H0a — Linear card IDs
+    local card_hits
+    card_hits="$(echo "$added" | grep -E "$CARD_ID_PATTERN" || true)"
+    if [ -n "$card_hits" ]; then
+      echo "[pre-commit] H0a ✗ Linear card ID added to stable doc: $file"
+      echo "$card_hits" | head -5 | sed 's/^/    /'
+      eval "$fail_ref=1"
+    fi
+
+    # H0b — tmp/ path references
+    local tmp_hits
+    tmp_hits="$(echo "$added" | grep -E '\btmp/[a-zA-Z0-9_/.-]+' || true)"
+    if [ -n "$tmp_hits" ]; then
+      echo "[pre-commit] H0b ✗ tmp/ reference added to committed file: $file"
+      echo "$tmp_hits" | head -5 | sed 's/^/    /'
+      eval "$fail_ref=1"
+    fi
+
+    # H0c — long-term tier transient content (frontmatter-aware)
+    case "$file" in
+      memory/long-term/*)
+        local first_line
+        first_line="$(git show ":$file" 2>/dev/null | head -1 || true)"
+        local frontmatter_end=0
+        if [ "$first_line" = "---" ]; then
+          frontmatter_end="$(git show ":$file" 2>/dev/null | awk '/^---$/{n++; if (n==2) {print NR; exit}}')"
+          [ -z "$frontmatter_end" ] && frontmatter_end=0
+        fi
+
+        local lt_violation=""
+        while IFS= read -r hunk_line; do
+          local plus_part
+          plus_part="$(echo "$hunk_line" | sed -n 's/^@@ [^+]*+\([0-9]*\(,[0-9]*\)\{0,1\}\).*/\1/p')"
+          [ -z "$plus_part" ] && continue
+          local start_line="${plus_part%%,*}"
+          local count
+          if [ "$plus_part" = "$start_line" ]; then count=1; else count="${plus_part#*,}"; fi
+          [ "$count" = "0" ] && continue
+          local end_line=$((start_line + count - 1))
+          local cur=$start_line
+          while [ $cur -le $end_line ]; do
+            local body_line
+            body_line="$(git show ":$file" 2>/dev/null | sed -n "${cur}p" || true)"
+            if [ $cur -gt $frontmatter_end ]; then
+              if echo "$body_line" | grep -iqE "$LONG_TERM_TRANSIENT_PATTERN"; then
+                lt_violation="${lt_violation}    line ${cur}: ${body_line}\n"
+              fi
+            fi
+            cur=$((cur + 1))
+          done
+        done < <(git diff --cached -U0 -- "$file" | grep '^@@')
+
+        if [ -n "$lt_violation" ]; then
+          echo "[pre-commit] H0c ✗ long-term tier transient content added: $file"
+          printf '%b' "$lt_violation" | head -5
+          echo "    Long-term holds content that must hold in 2+ years."
+          echo "    Generalize or move to medium-term/short-term."
+          echo "    Rule: memory/short-term/feedback/stable/feedback_long_term_tier_purity.md"
+          eval "$fail_ref=1"
+        fi
+        ;;
+    esac
+  done < <(git diff --cached --name-only --diff-filter=ACM)
+}
+
+# ============================================================
+# Main
+# ============================================================
+check_protected_branch
+
 workspace_root="$(git rev-parse --show-toplevel)"
-
-# Regenerate per-agent persona adapters from canonical .agents/personas/
-bash "$workspace_root/scripts/generate-agents.sh" >/dev/null 2>&1 || \
-  echo "[pre-commit] WARN: generate-agents.sh failed — .claude/agents/ and .codex/agents/ may be stale"
-git add "$workspace_root/.claude/agents/" "$workspace_root/.codex/agents/" 2>/dev/null || true
-
-# Sync agent-specific permission adapters from canonical policy
-bash "$workspace_root/.agents/permissions/sync.sh" >/dev/null 2>&1 || \
-  echo "[pre-commit] WARN: permission sync failed — agent permission adapters may be stale"
-git add "$workspace_root/.codex/rules/default.rules" 2>/dev/null || true
-
-# --- Hygiene guard ---
-# Pattern 1: Linear card IDs.
-# Explicit team prefixes avoid false positives with technical standards (UTF-8,
-# SHA-256, ISO-8601, etc.). Add new team prefix patterns here when new Linear
-# teams are created (e.g., APP-[0-9]+).
-CARD_ID_PATTERN='BOR-[0-9]+|LIN-[0-9]+'
-
-# Pattern 2: tmp/ path references.
-# tmp/ is the ephemeral render buffer (wiped at session boundaries). Never link
-# to tmp/ files from committed docs — the link rots within hours.
-
-# Pattern 3 (long-term tier only): date markers + transient phrases.
-# Long-term memory holds timeless inner-game / identity / north-star content.
-# Every sentence must hold in 2+ years. Date-anchored or phase-bound content
-# fails the test by default and belongs in medium-term or short-term.
-# Rule source: memory/short-term/feedback/stable/feedback_long_term_tier_purity.md
-LONG_TERM_TRANSIENT_PATTERN='\b20[0-9][0-9]\b|\brecently\b|\bcurrently\b|\bright now\b|\blast (week|month|year|quarter)\b|\bthis (week|month|year|quarter)\b|\bnext (week|month|year|quarter)\b|\bpast (few |several )?(week|month|year|quarter)s?\b|\bover the past\b|\bin the coming\b'
+sync_build_artifacts "$workspace_root"
 
 fail=0
 
-while IFS= read -r file; do
-  # Only check markdown files
-  case "$file" in *.md|*.mdx) ;; *) continue ;; esac
-  # Skip: .claude/, .agents/{skills,hooks,git-hooks}/ — these legitimately
-  # document or implement the forbidden patterns (leak-check skill, hooks, this
-  # very pre-commit hook). Personas + permissions are still scanned.
-  case "$file" in .claude/*|.agents/skills/*|.agents/hooks/*|.agents/git-hooks/*) continue ;; esac
-  # Skip: short-term episodic entries (daily/weekly, card IDs are expected)
-  case "$file" in memory/short-term/20*) continue ;; esac
-  # Skip: archived content
-  case "$file" in */_archive/*|*_archive/*) continue ;; esac
-
-  # Extract only added lines from the staged diff
-  added="$(git diff --cached -- "$file" | grep '^+' | grep -v '^+++' 2>/dev/null || true)"
-  [ -z "$added" ] && continue
-
-  # Check for Linear card IDs
-  card_hits="$(echo "$added" | grep -E "$CARD_ID_PATTERN" || true)"
-  if [ -n "$card_hits" ]; then
-    echo "[pre-commit] ✗ Linear card ID added to stable doc: $file"
-    echo "$card_hits" | head -5 | sed 's/^/    /'
-    fail=1
-  fi
-
-  # Check for tmp/ path references
-  tmp_hits="$(echo "$added" | grep -E '\btmp/[a-zA-Z0-9_/.-]+' || true)"
-  if [ -n "$tmp_hits" ]; then
-    echo "[pre-commit] ✗ tmp/ reference added to committed file: $file"
-    echo "$tmp_hits" | head -5 | sed 's/^/    /'
-    fail=1
-  fi
-
-  # Check for long-term tier transient content.
-  # Scope: memory/long-term/**.md files only. Skips the YAML frontmatter block
-  # wholly (everything between the opening --- on line 1 and the closing ---).
-  # Frontmatter carries audit metadata (last_reviewed, horizon, companion_to,
-  # codified, seeded, etc.) that legitimately includes dates and is out of
-  # scope. Body content is wholly in scope.
-  case "$file" in
-    memory/long-term/*)
-      # Determine frontmatter end line from the staged blob. If the file does
-      # not open with '---', frontmatter_end=0 (entire file is body).
-      first_line="$(git show ":$file" 2>/dev/null | head -1 || true)"
-      if [ "$first_line" = "---" ]; then
-        frontmatter_end="$(git show ":$file" 2>/dev/null | awk '/^---$/{n++; if (n==2) {print NR; exit}}')"
-        [ -z "$frontmatter_end" ] && frontmatter_end=0
-      else
-        frontmatter_end=0
-      fi
-
-      # Extract added-line numbers in new-file coordinates from -U0 hunks.
-      # Hunk header form: @@ -x[,y] +a[,b] @@  where a = first added line,
-      # b = added-line count (default 1 if omitted).
-      lt_violation=""
-      while IFS= read -r hunk_line; do
-        # Parse '+a[,b]' from '@@ -... +a[,b] @@'
-        plus_part="$(echo "$hunk_line" | sed -n 's/^@@ [^+]*+\([0-9]*\(,[0-9]*\)\{0,1\}\).*/\1/p')"
-        [ -z "$plus_part" ] && continue
-        start_line="${plus_part%%,*}"
-        if [ "$plus_part" = "$start_line" ]; then
-          count=1
-        else
-          count="${plus_part#*,}"
-        fi
-        [ "$count" = "0" ] && continue
-
-        # Read the actual added lines from the hunk body (the +-prefixed lines
-        # immediately following this header, until the next @@).
-        end_line=$((start_line + count - 1))
-        cur=$start_line
-        while [ $cur -le $end_line ]; do
-          # Pull line $cur from the staged blob
-          body_line="$(git show ":$file" 2>/dev/null | sed -n "${cur}p" || true)"
-          if [ $cur -gt $frontmatter_end ]; then
-            if echo "$body_line" | grep -iqE "$LONG_TERM_TRANSIENT_PATTERN"; then
-              lt_violation="${lt_violation}    line ${cur}: ${body_line}
-"
-            fi
-          fi
-          cur=$((cur + 1))
-        done
-      done < <(git diff --cached -U0 -- "$file" | grep '^@@')
-
-      if [ -n "$lt_violation" ]; then
-        echo "[pre-commit] ✗ long-term tier transient content added: $file"
-        printf '%s' "$lt_violation" | head -5
-        echo "    Long-term holds content that must hold in 2+ years."
-        echo "    Generalize (e.g. 'recently' → remove; year markers → remove) or move to medium-term/short-term."
-        echo "    Rule: memory/short-term/feedback/stable/feedback_long_term_tier_purity.md"
-        fail=1
-      fi
-      ;;
-  esac
-
-done < <(git diff --cached --name-only --diff-filter=ACM)
+check_h1_always_loaded_ceiling "$workspace_root" fail
+check_h2_doc_size "$workspace_root" fail
+check_h3_root_file_cap fail
+check_h4_dead_references "$workspace_root" fail
+check_h5_bash_only_scripts fail
+check_h6_duplication_heuristic "$workspace_root"   # warn-only, never sets fail
+check_h7_transient_refs "$workspace_root" fail
+check_h0_hygiene fail
 
 if [ "$fail" -eq 1 ]; then
   echo ""
+  echo "  Fix the above before committing."
   echo "  Linear card IDs → replace with descriptive text."
   echo "  tmp/ references → tmp/ is ephemeral, never link to it in stable docs."
   echo "  Run /check-leaks --docs to sweep the full workspace for existing violations."

@@ -49,7 +49,7 @@ When Ahmed says any variant of "render this with Marky", "render this outside th
 
 **Why:** `tmp/` is deliberately ephemeral. The convention is "default fate is deletion." Anything that matters must escape tmp/ proactively, not reactively. Reactive escape (after a wipe) means recovery work and loses fidelity.
 
-**The canonical incident this rule prevents:** during the v1 tiered-memory restructure session, the live build narrative was written to `tmp/restructure-narrative.md`. Claude knew it mattered for the boringsystems article (captured the risk in a Linear card note). But Claude did not promote the file to a permanent home. A SessionStart event fired between turns, the auto-wipe hook deleted the file, and Claude had to reconstruct the content from session memory when briefing the article-writing sub-agent. Quality survived; that was luck. Don't rely on luck.
+**The canonical incident this rule prevents:** during the v1 tiered-memory restructure session, the live build narrative was written to a `tmp/` scratch file. Claude knew it mattered for the boringsystems article (captured the risk in a Linear card note). But Claude did not promote the file to a permanent home. A SessionStart event fired between turns, the auto-wipe hook deleted the file, and Claude had to reconstruct the content from session memory when briefing the article-writing sub-agent. Quality survived; that was luck. Don't rely on luck.
 
 **How to apply:**
 

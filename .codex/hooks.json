@@ -10,6 +10,10 @@
           {
             "type": "command",
             "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/pull-base-branch.sh\"'"
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.agents/hooks/decay-nag.sh\"'"
           }
         ]
       }

@@ -14,8 +14,8 @@ Decided + executed work lives in `.claude/decisions/DECISIONS.md` (search "2026-
 
 ## File count target
 
-Target: 15-20 total files in `feedback/`. Current: 35 (29 stable + 6 in-flight) after BOR-52/A3 condensation (2026-05-29).
-Previous: 42 (35 stable + 7 in-flight). Condensed 11 files → 4 via BOR-52/A3.
+Target: 15-20 total files in `feedback/`. Current: 35 (29 stable + 6 in-flight) after the 2026-05-29 feedback-condensation pass.
+Previous: 42 (35 stable + 7 in-flight). Condensed 11 files → 4 in that pass.
 
 Trajectory tracked via `.claude/decisions/DECISIONS.md` (search "2026-05-20" entries).
 
