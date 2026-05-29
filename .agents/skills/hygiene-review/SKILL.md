@@ -1,6 +1,6 @@
 ---
 name: hygiene-review
-description: Pre-commit self-review gate. Runs /check-stable-docs-leaks to enforce the no-Linear-IDs / no-tmp-refs rule, then scans staged files to determine which project-specific skills must still run before commit. Blocks if leaks exist or required project skills are unresolved. Auto-invoked by /commit on any non-trivial change.
+description: Pre-commit self-review gate. Runs /check-leaks (--docs surface) to enforce the no-Linear-IDs / no-tmp-refs rule, then scans staged files to determine which project-specific skills must still run before commit. Blocks if leaks exist or required project skills are unresolved. Auto-invoked by /commit on any non-trivial change.
 user-invocable: true
 model: sonnet
 effort: medium
@@ -24,16 +24,16 @@ Do not announce the skill invocation. Produce the review output directly.
 
 ## Steps
 
-### Step 1 — Run /check-stable-docs-leaks
+### Step 1 — Run /check-leaks --docs
 
-Invoke `/check-stable-docs-leaks` on the full workspace. Report its output inline.
+Invoke `/check-leaks --docs` on the full workspace. Report its output inline.
 
 If it surfaces any leaks:
 - List each violation with file + line.
 - **Block.** Do not proceed past this step. Fix leaks first, then re-run.
 
 If it passes:
-- Record: `✓ check-stable-docs-leaks — clean`
+- Record: `✓ check-leaks --docs — clean`
 - Continue.
 
 ### Step 2 — Identify staged files and project context
@@ -71,7 +71,7 @@ For each required skill:
 ## Hygiene review — [scope]
 
 Leak check:
-- /check-stable-docs-leaks: [PASS / BLOCKED — N violations]
+- /check-leaks --docs: [PASS / BLOCKED — N violations]
 
 Project skills:
 - [project]: /[skill]: [run + outcome | required — not yet run | not applicable]
@@ -91,6 +91,6 @@ If BLOCKED: list exactly what needs to be fixed or run. Do not pass a blocked re
 
 ## Reference
 
-- Stable docs definition and leak patterns: `/check-stable-docs-leaks` skill
+- Stable docs definition and leak patterns: `/check-leaks` skill (Surface A = `--docs`)
 - Per-flow skill checklist: `memory/medium-term/project-management/workspace-workflow.md` §Per-flow skill checklist
 - Project-specific skills: each project's `CLAUDE.md` §Project-scoped skills

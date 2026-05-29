@@ -12,6 +12,6 @@ type: feedback
 
 **How to apply:**
 - Before saying "done", "complete", "clean", or any closure language: run the relevant check (build passes, grep returns empty, file state matches expectation, no leaks in stable docs).
-- If the check tooling exists (`/declare-ready`, `/check-stable-docs-leaks`, `astro build`, `git status`), invoke it. Don't skip.
+- If the check tooling exists (`/declare-ready`, `/check-leaks --docs`, `astro build`, `git status`), invoke it. Don't skip.
 - If the check takes more than a few seconds: still run it. The cost of a correction round is higher.
 - Exception: explicitly time-boxed exploratory tasks where "done" means "explored to scope" — but even then, surface what's unverified.

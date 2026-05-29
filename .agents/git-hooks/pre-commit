@@ -29,7 +29,7 @@
 #
 # Only added lines are checked (lines starting with + in the diff). This means
 # pre-existing violations in unmodified lines do not block the commit — run
-# /check-stable-docs-leaks to sweep the full workspace for those.
+# /check-leaks --docs to sweep the full workspace for those.
 #
 # Wired via `git config core.hooksPath .agents/git-hooks` (each agent's setup.sh).
 # --no-verify is forbidden by policy. See workspace AGENTS.md.
@@ -180,7 +180,7 @@ if [ "$fail" -eq 1 ]; then
   echo ""
   echo "  Linear card IDs → replace with descriptive text."
   echo "  tmp/ references → tmp/ is ephemeral, never link to it in stable docs."
-  echo "  Run /check-stable-docs-leaks to sweep the full workspace for existing violations."
+  echo "  Run /check-leaks --docs to sweep the full workspace for existing violations."
   echo "  --no-verify forbidden. See workspace AGENTS.md."
   exit 1
 fi
