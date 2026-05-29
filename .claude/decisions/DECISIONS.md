@@ -874,3 +874,12 @@ The soft quarantine is the laptop-agnostic default — folder lives in the works
 **Actual outcome:** *(pending)*
 
 ---
+
+## 2026-05-29 — Leave github-cleanup and tmp-cleanup as separate skills
+**Context:** BOR-53 harness simplification B required auditing whether `/github-cleanup` (~70 lines) and `/tmp-cleanup` (~45 lines) should be merged into one skill, following the same logic that merged `/check-stable-docs-leaks` + `/check-linear-card-paths` into `/check-leaks`. The check-pair merge was justified because both had identical shape and could share a surface flag. The cleanup pair was audited against the same criterion.
+**Decision:** Leave `/github-cleanup` and `/tmp-cleanup` as separate skills. Do not merge.
+**Why:** The two skills fire on categorically different triggers and surfaces. `/github-cleanup` fires on post-merge git events and operates on git branches; `/tmp-cleanup` fires on explicit operator demand and operates on the filesystem render buffer. Merging muddies the invoke-when-X contract. The check-pair was mergeable (same question, two data surfaces); the cleanup pair is two unrelated mechanical actions triggered by two unrelated events. Trigger-clarity wins over line-count savings.
+**Expected outcome:** Both skills remain individually invocable. No accidental cross-invocation.
+**Actual outcome:** *(pending)*
+
+---
