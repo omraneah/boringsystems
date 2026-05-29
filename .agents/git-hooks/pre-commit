@@ -350,7 +350,7 @@ check_h7_transient_refs() {
       memory/README.md|memory/MEMORY.md|\
       memory/long-term/README.md|memory/medium-term/README.md|\
       memory/short-term/README.md|memory/short-term/feedback/README.md|\
-      memory/short-term/feedback/stable/*.md|memory/short-term/feedback/in-flight/*.md|\
+      memory/short-term/feedback/*.md|\
       docs/*.md|docs/architecture/*.md|docs/governance/*.md|docs/governance/patterns/*.md|docs/agent-ops/*.md|\
       memory/decisions/DECISIONS.md) ;;
       # Skip implementation and episodic files

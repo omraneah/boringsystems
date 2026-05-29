@@ -31,7 +31,7 @@ Safe to execute without Ahmed's review because nothing is lost and no signal is 
 
 Requires Ahmed's explicit approval before execution:
 
-- **Feedback graduation**: promoting a feedback rule from `memory/short-term/feedback/` into a `memory/medium-term/project-management/` SOP section. Commit convention: `distill: graduate <rule-name> → <sop-file>`.
+- **Feedback graduation**: promoting a feedback rule from `memory/short-term/feedback/` into a `docs/agent-ops/` SOP section. Commit convention: `distill: graduate <rule-name> → <sop-file>`.
 - **Signal-deleting moves**: any operation that removes content from its home without a recoverable copy elsewhere (e.g. removing a feedback file before its rule is represented in a SOP).
 - **Identity/doctrine touches**: any edit to `memory/long-term/` or `memory/medium-term/` doctrine files.
 - **Tier promotions**: moving an observation from short-term to medium-term, or medium-term to long-term.
@@ -85,7 +85,7 @@ find memory/short-term/feedback -name "*.md" \
   -not -name "README.md" -not -name "TODO.md" | wc -l
 ```
 
-For each feedback file: is this rule mature enough to graduate into a `memory/medium-term/project-management/` SOP section? Is it redundant or superseded?
+For each feedback file: is this rule mature enough to graduate into a `docs/agent-ops/` SOP section? Is it redundant or superseded?
 
 **Target:** ≤5 feedback files (post-graduation thin staging). Above 5 = overcrowded; propose at least one graduation this run.
 
@@ -175,15 +175,15 @@ For Mechanical prune commits, use the `distill:` convention:
 - `git commit -m "distill: prune week-<NN> raw dailies after consolidation"`
 
 For Staged graduation commits:
-- Update the target SOP file to absorb the rule
-- `git rm memory/short-term/feedback/<lane>/<rule-file>.md`
+- Update the target SOP file in `docs/agent-ops/` to absorb the rule
+- `git rm memory/short-term/feedback/<rule-file>.md`
 - `git commit -m "distill: graduate <rule-name> → <sop-file>"`
 
 Append under `## Actions taken`:
 
 ```markdown
 ## Actions taken
-- [Staged] Graduated `[rule description]` into `memory/medium-term/project-management/<sop>`.
+- [Staged] Graduated `[rule description]` into `docs/agent-ops/<sop>`.
 - [Staged] Promoted `[item description]` to medium-term: `<destination folder>`.
 - [Mechanical] Pruned week-NN raw dailies (consolidation.md present): <N files removed>.
 - Updated current-arc.md: `<short diff summary>`.

@@ -27,7 +27,7 @@ Do not announce the skill invocation. Produce the declaration directly.
 
 1. **Identify the scope.** What branch or set of files is being declared ready? Use `git branch --show-current` and `git diff --name-only HEAD` or take the argument.
 
-2. **Check the per-flow skill checklist.** From `memory/medium-term/project-management/workspace-workflow.md` §Per-flow skill checklist: which skills should have run for this flow type?
+2. **Check the per-flow skill checklist.** From `docs/agent-ops/workspace-workflow.md` §Per-flow skill checklist: which skills should have run for this flow type?
 
 3. **List skills run.** For each skill that ran post-execution: name, outcome (PASS / PASS WITH WARNINGS / FIX-level findings fixed / finding deferred with explicit reason).
 
@@ -87,5 +87,5 @@ PR: [covers X. Ahmed attention needed on Y / no additional attention needed]
 
 ## Reference
 
-Per-flow skill checklist: `memory/medium-term/project-management/workspace-workflow.md` §Per-flow skill checklist
-Card lifecycle: `memory/medium-term/project-management/linear-sop.md` §Card lifecycle
+Per-flow skill checklist: `docs/agent-ops/workspace-workflow.md` §Per-flow skill checklist
+Card lifecycle: `docs/agent-ops/linear-sop.md` §Card lifecycle

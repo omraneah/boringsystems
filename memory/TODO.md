@@ -10,7 +10,7 @@ This file uses the workspace TODO.md convention: improvement notes placed close 
 
 `short-term/feedback/` holds 46 behavioral rules. Many are actually structured protocols disguised as behavioral corrections — they belong in mid-term SOPs, not as individual feedback files.
 
-The crystallization path: short-term/feedback → rewrite as SOP section → place in `medium-term/project-management/workspace-workflow.md` → convert feedback file to thin pointer → archive during next audit pass.
+The crystallization path: short-term/feedback → rewrite as SOP section → place in `docs/agent-ops/workspace-workflow.md` → convert feedback file to thin pointer → archive during next audit pass.
 
 See `short-term/feedback/TODO.md` for the candidate list.
 
@@ -23,9 +23,9 @@ The target is ~15-20 feedback files total (down from 46). The reduction comes fr
 The `medium-term/` tier has two structurally different kinds of content:
 
 **Protocol-shaped** (governs every session, auto-load):
-- `project-management/workspace-workflow.md`
-- `project-management/linear-sop.md`
-- `project-management/github-sop.md`
+- `docs/agent-ops/workspace-workflow.md`
+- `docs/agent-ops/linear-sop.md`
+- `docs/agent-ops/github-sop.md`
 
 **Context-shaped** (situational, load on demand):
 - `current-arc.md`, `current-context.md`
@@ -33,7 +33,7 @@ The `medium-term/` tier has two structurally different kinds of content:
 - `market/`
 - `projects/`
 
-This distinction is operational today but not formally documented. Over time, as more feedback crystallizes into mid-term, the `project-management/` folder will grow. When it reaches 5+ files, consider whether a dedicated sub-structure is needed.
+This distinction is operational today but not formally documented. The operating SOPs now live in `docs/agent-ops/` (moved from `project-management/`). Over time, as more feedback crystallizes into the SOPs, `docs/agent-ops/` may grow. When it reaches 8+ files, consider whether a dedicated sub-structure is needed.
 
 ---
 
@@ -48,4 +48,4 @@ The weighting order was corrected 2026-05-03: mid-term SOPs now sit above short-
 
 ## README folder map (minor)
 
-`memory/README.md` folder map doesn't show `project-management/` as a subfolder of `medium-term/`. Update it when the mid-term structure stabilizes.
+`memory/README.md` folder map still shows `project-management/` stub entry — update to reflect that folder is removed and SOPs moved to `docs/agent-ops/`.

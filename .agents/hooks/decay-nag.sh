@@ -68,8 +68,7 @@ fi
 FEEDBACK_THRESHOLD=20
 if [ -d "$PROJ_DIR/memory/short-term/feedback" ]; then
   feedback_count=0
-  for f in "$PROJ_DIR/memory/short-term/feedback/stable/"*.md \
-            "$PROJ_DIR/memory/short-term/feedback/in-flight/"*.md; do
+  for f in "$PROJ_DIR/memory/short-term/feedback/"*.md; do
     [ -f "$f" ] || continue
     case "$(basename "$f")" in README.md|TODO.md) continue ;; esac
     feedback_count=$((feedback_count + 1))

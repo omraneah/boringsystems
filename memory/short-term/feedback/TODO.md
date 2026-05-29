@@ -19,6 +19,6 @@ Previous: 42 (35 stable + 7 in-flight). Condensed 11 files → 4 in that pass.
 
 Trajectory tracked via `memory/decisions/DECISIONS.md` (search "2026-05-20" entries).
 
-Primary mechanism: crystallization (protocols → workspace-workflow.md SOP sections, or project-specific docs).
+Primary mechanism: crystallization (protocols → `docs/agent-ops/workspace-workflow.md` SOP sections, or project-specific docs).
 Secondary: condensation (related files → single principle).
 Tertiary: garbage collection (situation changed, tooling changed, operator changed).

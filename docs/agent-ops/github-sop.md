@@ -48,6 +48,18 @@ Git commands are pre-authorized normal workflow. Claude expresses this through b
 
 ---
 
+## Sub-agent worktree & branch discipline
+
+When dispatching sub-agents that commit code (especially with `isolation: worktree`), three failure modes have recurred — codify against them:
+
+- **Branch off `origin/main`, explicitly.** A worktree inherits whatever HEAD the main checkout was on at spawn — often a stale session branch. The agent's first step must be `git fetch origin` then `git checkout -b <branch> origin/main`. Never branch new work off an unmerged feature branch or an unsynced base. (Recurred: an enforcement branch cut from a pre-merge base hit avoidable conflicts.)
+- **Verify the pushed branch carries the work.** A worktree auto-creates a `worktree-<id>` branch; commits can land there instead of the intended `omraneah/<task>` branch, and the push then ships an empty feature branch. After an agent reports "pushed," confirm `git rev-parse origin/<branch>` is non-empty and matches the work. (Recurred: graduation commits stranded on the worktree auto-branch; pushed branch was empty.)
+- **Relative paths inside worktrees.** Absolute `/Users/...` or `/home/...` paths bypass worktree isolation and edit the live checkout. Agents use repo-relative paths or `$PWD`.
+- **Scoped `git add`.** `git add -A` can sweep `.claude/worktrees/` into the index as stray refs. That path is gitignored; prefer `git add <paths>` or `git add -u`.
+- **Check submodule pointer before commit** — it can drift when working across branches.
+
+---
+
 ## Division of labor — PR workflow
 
 | Step | Owner |

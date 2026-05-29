@@ -32,7 +32,7 @@ memory/
 │   ├── Engagement-Shapes.md   ← Shape A (incl. A.1) + Shape B (auto-load)
 │   ├── market/                ← Sales-Mode-Tactics, Visibility-OS, pre-funnel-filter
 │   ├── operational-doctrine/  ← EVF, Identity-and-Exit, State-and-Guardrails, etc.
-│   ├── project-management/    ← workspace-workflow, linear-sop, github-sop (auto-load)
+│   ├── (project-management/ removed — SOPs moved to docs/agent-ops/)
 │   └── projects/              ← advisory-board metadata
 └── short-term/            ← episodic record + active discipline
     ├── README.md
@@ -51,7 +51,7 @@ memory/
 | Tier | Horizon | What goes here | Lives in |
 |---|---|---|---|
 | **Long-term** | Years | Identity profile, identity-constitution depth-expansion, path doctrine, relational architecture, surrender doctrine, trait architecture. North star. | `long-term/` |
-| **Medium-term** | 1–6 months, evolving | Phase narrative (`current-arc.md`), geography + market context (`current-context.md`), drivers + filters (`Drivers-and-Filters.md`), engagement shapes (`Engagement-Shapes.md`), market doctrine, operational doctrine, project-management SOPs, project metadata. Auto-loaded: `current-arc.md`, `Drivers-and-Filters.md`, `Engagement-Shapes.md`, and all `project-management/` files. Rest on demand. | `medium-term/` |
+| **Medium-term** | 1–6 months, evolving | Phase narrative (`current-arc.md`), geography + market context (`current-context.md`), drivers + filters (`Drivers-and-Filters.md`), engagement shapes (`Engagement-Shapes.md`), market doctrine, operational doctrine, project metadata. Auto-loaded: `current-arc.md`, `Drivers-and-Filters.md`, `Engagement-Shapes.md`. Operating SOPs moved to `docs/agent-ops/` (still auto-loaded). Rest on demand. | `medium-term/` |
 | **Short-term** | ≤4 weeks episodic + active discipline | Daily entries, weekly consolidation, active feedback rules, current 2-month plan, extraction discipline. | `short-term/` |
 
 ## On feedback
@@ -70,9 +70,9 @@ Auto-loads with the rest of the discipline layer (long-term + current-arc + this
 | Tier | What auto-loads every turn |
 |---|---|
 | Long-term | Full content (north star, weighted highest) |
-| Medium-term — `project-management/workspace-workflow.md` | Full content (collaboration SOP — governs every session) |
-| Medium-term — `project-management/linear-sop.md` | Full content (card rules — governs every session) |
-| Medium-term — `project-management/github-sop.md` | Full content (branch rules — governs every session) |
+| `docs/agent-ops/workspace-workflow.md` | Full content (collaboration SOP — governs every session) |
+| `docs/agent-ops/linear-sop.md` | Full content (card rules — governs every session) |
+| `docs/agent-ops/github-sop.md` | Full content (branch rules — governs every session) |
 | Medium-term — `current-arc.md` | Full content (phase narrative) |
 | Medium-term — `Drivers-and-Filters.md` | Full content (operational center for this next step) |
 | Medium-term — `Engagement-Shapes.md` | Full content (the two valid surface shapes) |
@@ -89,7 +89,7 @@ In order of weight, descending:
 
 1. **Live conversation** — always overrides stale docs (article principle #1: corpus is malleable). The user in the room is the canonical signal.
 2. **Long-term** — north star (identity). When live conversation contradicts long-term, this is potential identity drift. **Stop and surface.**
-3. **Mid-term — project-management SOPs** (`workspace-workflow.md`, `linear-sop.md`, `github-sop.md`) — crystallized structural protocols. A protocol wins over a raw behavioral correction. When a feedback rule contradicts a mid-term SOP, the SOP is authoritative unless Ahmed explicitly overrides.
+3. **Operating SOPs** (`docs/agent-ops/workspace-workflow.md`, `linear-sop.md`, `github-sop.md`) — crystallized structural protocols. A protocol wins over a raw behavioral correction. When a feedback rule contradicts an operating SOP, the SOP is authoritative unless Ahmed explicitly overrides.
 4. **Short-term / feedback** — the live behavioural discipline.
 5. **Current week of short-term** — present-moment context.
 6. **Last week of short-term** — continuity.
