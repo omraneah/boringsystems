@@ -32,8 +32,8 @@ This single rule resolves every ambiguity in the workspace/sub-project architect
 ```
 Workspace/
 ├── CLAUDE.md                      — workspace identity + cross-project rules
-├── DECISIONS.md                   — workspace infrastructure decisions only
 ├── memory/
+│   ├── decisions/DECISIONS.md     — workspace infrastructure decisions only
 │   ├── long-term/                 — identity, north star (loads every session)
 │   ├── medium-term/               — direction, doctrine (on-demand)
 │   └── short-term/
@@ -41,10 +41,10 @@ Workspace/
 │       ├── feedback/in-flight/    — active corrections (auto-loads)
 │       └── YYYY-Www/              — episodic record
 ├── docs/
-│   └── workspace-structure.md    — this file
-└── .claude/
-    ├── skills/                    — cross-project skills
-    └── git-hooks/                 — workspace enforcement hooks
+│   ├── architecture/             — ADRs
+│   ├── governance/               — workspace structure, tier map, patterns
+│   └── agent-ops/                — infrastructure, collaboration, git workflow
+└── .agents/                       — canonical skills, hooks, personas, permissions
 
 boringsystems/ (git submodule)
 ├── CLAUDE.md                      — project rules, self-contained (no workspace refs)
@@ -63,8 +63,8 @@ boringsystems/ (git submodule)
 | Identity, north star | `memory/long-term/` (workspace) | Markdown, version-controlled |
 | Behavioral rules (how Claude works) | `memory/short-term/feedback/` (workspace) | Feedback memory files |
 | Current direction | `memory/medium-term/` (workspace) | Markdown, on-demand |
-| Workspace infrastructure decisions | `DECISIONS.md` (workspace) | Flat chronological log |
-| Code/architecture decisions | `docs/adr-*.md` (project) | Structured ADR per decision |
+| Workspace infrastructure decisions | `memory/decisions/DECISIONS.md` | Flat chronological log |
+| Code/architecture decisions | `docs/architecture/adr-*.md` (workspace) / `<project>/docs/adr-*.md` (project) | Structured ADR per decision |
 | Process choreography | `docs/workflow.md` (project) | SOP format |
 | Project rules | `CLAUDE.md` (project) | Self-contained, no upward refs |
 
@@ -72,11 +72,11 @@ boringsystems/ (git submodule)
 
 ## DECISIONS.md scope (critical)
 
-`DECISIONS.md` at workspace level is for **workspace infrastructure decisions only** — choices about the workspace setup, tooling, process architecture, and meta-level rules that apply across all projects.
+`memory/decisions/DECISIONS.md` at workspace level is for **workspace infrastructure decisions only** — choices about the workspace setup, tooling, process architecture, and meta-level rules that apply across all projects.
 
 It is **not** for:
 - Behavioral corrections → those go to `memory/short-term/feedback/`
-- Code/architecture decisions → those go to project ADRs in `docs/adr-*.md`
+- Code/architecture decisions → those go to workspace ADRs in `docs/architecture/adr-*.md` or project ADRs in `<project>/docs/adr-*.md`
 
 The historical entries in DECISIONS.md predate this scope clarification and remain as-is. The discipline applies going forward.
 

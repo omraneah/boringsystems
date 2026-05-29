@@ -64,7 +64,7 @@ Use `mcp__claude_ai_Linear__save_issue` with:
 
 After creating the card, check if any of the following apply and note them in the reply:
 
-- A related decision log entry exists in `.claude/decisions/` — mention the file path
+- A related decision log entry exists in `memory/decisions/` — mention the file path
 - A memory file was created or updated this session — confirm it's indexed in `MEMORY.md`
 - A related Linear card already exists — surface it so Ahmed can link them manually
 

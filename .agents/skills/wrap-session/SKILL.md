@@ -105,10 +105,10 @@ Walk the session through these lenses to identify candidates:
 - **Patterns that repeated.** Same shape of work appearing more than once → propose a skill, doc section, or memory entry.
 - **Skills that should exist.** Checklist run manually more than twice → propose a new skill. Be explicit about scope (`personal-skills/` vs. `<project>/.claude/skills/`).
 - **Hooks.** Behaviour that should run automatically on a trigger (pre-commit, post-merge, SessionStart) → propose a `settings.json` hook. Real shell hooks, not skill invocations.
-- **ADRs.** Non-trivial architectural choice made (collection shape, redirect strategy, dependency rejection) → propose an ADR under `docs/adr-NNN-<topic>.md`. 3-sigfig numbering.
+- **ADRs.** Non-trivial architectural choice made (collection shape, redirect strategy, dependency rejection) → propose an ADR under `docs/architecture/adr-NNN-<topic>.md`. 3-sigfig numbering.
 - **Doc updates.** Architecture / toolchain / design docs that now misrepresent reality → flag the exact file and line.
 - **Memory entries.** Feedback / project / reference memories Claude should carry into future sessions. Use only the shapes defined in the auto-memory system prompt.
-- **Decisions to log.** Anything for `.claude/decisions/DECISIONS.md` via `/log-decision`.
+- **Decisions to log.** Anything for `memory/decisions/DECISIONS.md` via `/log-decision`.
 
 Then triage ruthlessly. A candidate passes the bar to be **surfaced** only if at least one of these holds:
 

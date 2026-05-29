@@ -146,7 +146,7 @@ Files live at `/Users/<user>/Workspace/memory/` (workspace root, version-control
 - Implementation: 10-phase plan in one xhigh session, PR #39.
 - Refinement: feedback-as-medium-term-sub-tier with stable/in-flight split, PR #40 (after audit critique).
 - Deprecation of legacy `llm-context-2026/`: PRs #41 + #42.
-- Codified in: `memory/README.md`, `memory/MEMORY.md`, `memory/long-term/README.md`, `memory/medium-term/README.md`, `memory/medium-term/feedback/README.md`, `memory/short-term/README.md`, this ADR, `.claude/decisions/DECISIONS.md`.
+- Codified in: `memory/README.md`, `memory/MEMORY.md`, `memory/long-term/README.md`, `memory/medium-term/README.md`, `memory/medium-term/feedback/README.md`, `memory/short-term/README.md`, this ADR, `memory/decisions/DECISIONS.md`.
 - Skills implementing the architecture: `.claude/personal-skills/whence/`, `.claude/personal-skills/divergence-check/`, `.claude/personal-skills/consolidate-week/`.
 - Behavioural rules wiring the loops: `memory/medium-term/feedback/in-flight/feedback_fire_divergence_check_on_frustration.md`, `memory/medium-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md`.
 

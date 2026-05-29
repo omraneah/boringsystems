@@ -1,7 +1,7 @@
 # Memory — Architecture & Governance
 
 > The tiered memory system that drives every Claude Code conversation in this workspace.
-> Implements principle #3 of `META-PRINCIPLES.md`. Architecture rationale, alternatives considered, and revisit triggers in `docs/adr-004-tiered-memory-architecture.md`.
+> Implements principle #3 of `META-PRINCIPLES.md`. Architecture rationale, alternatives considered, and revisit triggers in `docs/architecture/adr-004-tiered-memory-architecture.md`.
 
 ## Purpose
 
@@ -181,4 +181,4 @@ This memory architecture is the dogfood of the workspace meta-principles:
 References:
 
 - `META-PRINCIPLES.md` (workspace root) — the workspace-level meta-principle declaration.
-- `docs/adr-004-tiered-memory-architecture.md` — the ADR for this architecture's design rationale, alternatives considered, consequences, and revisit triggers.
+- `docs/architecture/adr-004-tiered-memory-architecture.md` — the ADR for this architecture's design rationale, alternatives considered, consequences, and revisit triggers.

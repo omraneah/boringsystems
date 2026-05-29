@@ -100,4 +100,4 @@ Full rules in `README.md`.
 ## REFERENCES
 
 - `META-PRINCIPLES.md` (workspace root) — the tiered-memory principle this folder implements.
-- `docs/adr-004-tiered-memory-architecture.md` — the ADR for this architecture (design rationale, alternatives, revisit triggers).
+- `docs/architecture/adr-004-tiered-memory-architecture.md` — the ADR for this architecture (design rationale, alternatives, revisit triggers).

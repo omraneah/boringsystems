@@ -2,7 +2,7 @@
 
 Ahmed Omrane's primary workspace. All projects live here.
 
-Start-of-session routing: `WORKSPACE_MAP.md` (project map). Detail docs under `docs/`. Memory architecture: `memory/README.md` (human governance) + `memory/MEMORY.md` (machine entry, auto-loaded).
+Detail docs under `docs/` (thematic subdirs: `architecture/`, `governance/`, `agent-ops/`). Workspace layout in `docs/governance/workspace-structure.md`. Memory architecture: `memory/README.md` (human governance) + `memory/MEMORY.md` (machine entry, auto-loaded).
 
 ## Read first — Principles
 
@@ -73,6 +73,15 @@ Closed loop:
 | `go-to-market/` | Operational positioning — LinkedIn copy, freelance offers, market hypotheses, inbound signals. Evolves weekly. | Active. Edit via `/gtm-sync`. |
 | `tmp/` | Render buffer — long agent-generated analysis lands here for Marky reading. NOT for memory: episodic record goes to `memory/short-term/`. | Ephemeral. Folder tracked, contents ignored, wiped at session boundaries. |
 
+## Project routing
+
+| Project | Routing |
+|---|---|
+| `personal-apps/` | Entry: `AGENTS.md` + `CLAUDE.md`. Apps under `apps/` (first: `pollen-tracker`). |
+| `boringsystems/` | No routing index. Start at `package.json` and `src/`. Palette: `src/styles/global.css`. |
+| `cross-stack-architecture-starter-pack/` | ARDs at root. Use `/arch-review` for lightweight checks. |
+| `Enakl/` | Read-only. Sub-apps: `analytics/`, `backend/`, `cloud-infra/`, `driver-app/`, `rider-app/`. |
+
 ## Non-negotiable rules
 
 - **Never push to protected branches** (`main`, `master`, `development`, `dev`, `production`) → `memory/short-term/feedback/stable/feedback_git_workflow_discipline.md`
@@ -108,14 +117,14 @@ Closed loop:
 | Topic | File |
 |---|---|
 | Memory architecture (tiered: long/medium/short) | `memory/README.md` |
-| Collaboration tone, scope discipline, code comment rules | `docs/collaboration.md` |
-| Git workflow, branch rules, PR handoff, post-merge cleanup | `docs/git-workflow.md` |
-| Skills, hooks, setup, MCP, decisions, memory | `docs/infrastructure.md` |
+| Collaboration tone, scope discipline, code comment rules | `docs/agent-ops/collaboration.md` |
+| Git workflow, branch rules, PR handoff, post-merge cleanup | `docs/agent-ops/git-workflow.md` |
+| Skills, hooks, setup, MCP, decisions, memory | `docs/agent-ops/infrastructure.md` |
 | Model × Effort × Lane matrix — defaults per task dimension | `memory/medium-term/project-management/workspace-workflow.md` § Model and effort defaults |
-| Enforcement-tier template (local-first pre-push audit, reuse across projects) | `docs/patterns/local-first-enforcement.md` |
-| Which ARDs apply at which tier per project | `docs/ard-tier-map.md` |
+| Enforcement-tier template (local-first pre-push audit, reuse across projects) | `docs/governance/patterns/local-first-enforcement.md` |
+| Which ARDs apply at which tier per project | `docs/governance/ard-tier-map.md` |
 | Per-project stack + conventions | `<project>/AGENTS.md` and `<project>/docs/` |
-| Workspace structure — layer ownership, what lives where | `docs/workspace-structure.md` · when this topic is active, also read `memory/medium-term/project-management/github-sop.md` and `memory/medium-term/project-management/linear-sop.md` |
+| Workspace structure — layer ownership, what lives where | `docs/governance/workspace-structure.md` · when this topic is active, also read `memory/medium-term/project-management/github-sop.md` and `memory/medium-term/project-management/linear-sop.md` |
 | Git collaboration — branch rules, PR flow, commit discipline, hooks, post-merge | `memory/medium-term/project-management/github-sop.md` |
 | Work tracking — Linear card rules, lifecycle, multi-deliverable patterns | `memory/medium-term/project-management/linear-sop.md` |
 | Collaboration workflow SOP — all flows, autonomy gradient, per-flow skill checklist | `memory/medium-term/project-management/workspace-workflow.md` (**auto-loaded every session**) |

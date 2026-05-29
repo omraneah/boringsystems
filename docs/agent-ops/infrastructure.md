@@ -135,7 +135,7 @@ Full rule: `memory/short-term/feedback/stable/feedback_mcp_connectors.md`.
 
 ## Decision registry
 
-`.claude/decisions/DECISIONS.md` — chronological log of architectural, workflow, configuration, and infrastructure decisions. Updated automatically via `/log-decision` after every significant decision. Format documented in the file header.
+`memory/decisions/DECISIONS.md` — chronological log of architectural, workflow, configuration, and infrastructure decisions. Updated automatically via `/log-decision` after every significant decision. Format documented in the file header.
 
 ## Memory system
 
@@ -145,6 +145,6 @@ Tiered file-based memory at `memory/` (workspace root, version-controlled, symli
 - `memory/medium-term/` — current direction (`current-arc.md`), market doctrine, project arcs, advisory board, plus the `feedback/` sub-tier (active behavioural rules, split into `stable/` and `in-flight/` for audit purposes; both auto-loaded).
 - `memory/short-term/` — daily entries, weekly consolidation files. Current week + last week auto-loaded for continuity. Older weeks archived in `_archive/`.
 
-The auto-loaded surface is `memory/MEMORY.md` (machine entry, ~80 lines) — session-start protocol + tier descriptions + drift / consolidation pointers. Human governance lives in `memory/README.md`. Architecture rationale + alternatives + revisit triggers in `docs/adr-004-tiered-memory-architecture.md`.
+The auto-loaded surface is `memory/MEMORY.md` (machine entry, ~80 lines) — session-start protocol + tier descriptions + drift / consolidation pointers. Human governance lives in `memory/README.md`. Architecture rationale + alternatives + revisit triggers in `docs/architecture/adr-004-tiered-memory-architecture.md`.
 
 Drift detection: `/whence` (operator-fired) + `/divergence-check` (Claude-fired). Closed loop: `/consolidate-week` on Monday session start.

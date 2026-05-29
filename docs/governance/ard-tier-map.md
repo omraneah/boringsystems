@@ -9,7 +9,7 @@ Reconciliation between `cross-stack-architecture-starter-pack`'s ARDs and the en
 | Tier | What it means | When to use |
 |---|---|---|
 | **T0 — Principle-only** | Rule written in project `CLAUDE.md`; no automation; relies on agent/author discipline. | Read-only docs, archived projects. |
-| **T1 — Local-first** | Pre-commit + pre-push hooks; tracked structural-integrity script; ADR documenting the tier + upgrade trigger. | Solo, pre-revenue, no prod state. See `docs/patterns/local-first-enforcement.md`. |
+| **T1 — Local-first** | Pre-commit + pre-push hooks; tracked structural-integrity script; ADR documenting the tier + upgrade trigger. | Solo, pre-revenue, no prod state. See `docs/governance/patterns/local-first-enforcement.md`. |
 | **T2 — CI-gated** | Same checks as T1 + GitHub Actions / equivalent on PR. Security scans, test suites, deploy gates. | Multi-committer, public repo, first paying customer, prod state. |
 | **T3 — Full SaaS enforcement** | T2 + audit logs, SLOs, system-level health gates, incident-response ties. | Multi-tenant production SaaS. |
 
@@ -41,7 +41,7 @@ Active content site, solo, pre-revenue. Astro 5 + Vercel. No DB.
 
 Active. Next.js 16 + Tailwind 4. See `personal-apps/AGENTS.md` + `CLAUDE.md` for current state.
 
-Not yet tiered explicitly. Candidate to adopt T1 using `docs/patterns/local-first-enforcement.md` as the template.
+Not yet tiered explicitly. Candidate to adopt T1 using `docs/governance/patterns/local-first-enforcement.md` as the template.
 
 ### cross-stack-architecture-starter-pack — **N/A (source of truth)**
 

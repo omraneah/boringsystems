@@ -40,7 +40,7 @@ When Ahmed says any variant of "render this with Marky", "render this outside th
 
 **Cross-references:**
 - Skill: `.agents/skills/render/SKILL.md`
-- ADR: `docs/adr-003-marky-as-canonical-reader.md`
+- ADR: `docs/architecture/adr-003-marky-as-canonical-reader.md`
 - Voice-drift rule: `feedback_voice_dictation_disambiguation.md`
 
 ## Part 3 — Promote tmp/ Artifacts Before Session Boundary
