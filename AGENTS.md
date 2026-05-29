@@ -31,7 +31,7 @@ Tests every change must pass:
 4. **Committed-or-it-doesn't-exist.** Hooks, skills, settings, memory, decisions — version-controlled or it isn't real.
 5. **Symlink hygiene.** Symlinks from `~/` into a tracked workspace path are fine (reproducible via setup.sh). Symlinks from the repo out to the host are not.
 
-Full rule: `memory/short-term/feedback/stable/feedback_laptop_agnostic.md`.
+Full rule: `docs/governance/knowledge-governance.md` § G10.
 
 ## Who Ahmed is
 
@@ -43,7 +43,7 @@ Full profile: `memory/long-term/I-AM.md`, `memory/medium-term/current-context.md
 
 Memory is tiered into three horizons (`memory/long-term/`, `memory/medium-term/`, `memory/short-term/`), with weekly consolidation as the closed-loop correction mechanism. `memory/MEMORY.md` is the auto-loaded machine entry every turn; `memory/README.md` is the human governance doc. Implements meta-principle #3.
 
-**Feedback in short-term.** Behavioural rules (`feedback_*.md` files) live in `memory/short-term/feedback/`, split across two audit-only sub-folders: `stable/` (rules that have crystallized) and `in-flight/` (rules tied to current workflow / specific tooling / recent corrections). Feedback lives in short-term because Ahmed consolidates on top of it weekly. Both auto-load every session, so the discipline layer is always in scope. The split is for audit purposes (which rules to interrogate first); runtime behaviour is unified. See `memory/short-term/feedback/README.md` for the lifecycle.
+**Feedback in short-term.** Behavioural rules (`feedback_*.md` files) live in `memory/short-term/feedback/` (flat — no stable/in-flight split). Feedback is a staging area: every rule graduates (hook > ENG-principle > SOP > behavior-doc > governance doc > delete) or is deleted. Auto-loads every session. See `memory/short-term/feedback/README.md` for the routing tree and lifecycle.
 
 **Project-management SOPs in medium-term.** `memory/medium-term/project-management/` holds three structural SOPs that auto-load every session: `workspace-workflow.md` (collaboration flows, autonomy gradient, skill checklist), `linear-sop.md` (card rules), `github-sop.md` (branch rules). These are weighted above short-term/feedback in conflict resolution — a crystallized protocol wins over a raw behavioral correction. Feedback rules crystallize into these SOPs over time via consolidation; see `memory/short-term/feedback/TODO.md` for the candidate list.
 
@@ -84,34 +84,34 @@ Closed loop:
 
 ## Non-negotiable rules
 
-- **Never push to protected branches** (`main`, `master`, `development`, `dev`, `production`) → `memory/short-term/feedback/stable/feedback_git_workflow_discipline.md`
-- **Git is pre-authorized workflow** — no permission prompts for Git on feature branches → `memory/short-term/feedback/stable/feedback_git_workflow_discipline.md`
-- **Never edit on protected branches** — check branch first; create `omraneah/<task>` if needed; reuse the session branch → `memory/short-term/feedback/stable/feedback_git_workflow_discipline.md`
+- **Never push to protected branches** (`main`, `master`, `development`, `dev`, `production`) → `memory/medium-term/project-management/github-sop.md` § Protected branches
+- **Git is pre-authorized workflow** — no permission prompts for Git on feature branches → `memory/medium-term/project-management/github-sop.md` § Commit and push
+- **Never edit on protected branches** — check branch first; create `omraneah/<task>` if needed; reuse the session branch → `memory/medium-term/project-management/github-sop.md` § Auto-edit on feature branch
 - **Never open PRs** — agent pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request` → `memory/medium-term/project-management/workspace-workflow.md` § PR handoff
-- **New skills write to `.agents/skills/`** → `memory/short-term/feedback/stable/feedback_skills_canonical_path.md`
-- **Connector-first MCP** — use the platform native connector; never manual auth → `memory/short-term/feedback/stable/feedback_mcp_connectors.md`
-- **Platform features first, custom code second** → `memory/short-term/feedback/stable/feedback_platform_features_first.md`
+- **New skills write to `.agents/skills/`** → `memory/medium-term/project-management/workspace-workflow.md` § Skills canonical path
+- **Connector-first MCP** — use the platform native connector; never manual auth → `memory/medium-term/project-management/workspace-workflow.md` § Connector-first MCP
+- **Platform features first, custom code second** → `ENGINEERING-PRINCIPLES.md` § 9
 - **Never modify `Enakl/` or `cross-stack-architecture-starter-pack/`** without explicit instruction. (AGENTS.md only — no standalone file.)
-- **Twice-is-a-pattern** — same manual task twice → codify before the third time → `memory/short-term/feedback/stable/feedback_twice_is_a_pattern.md`
+- **Twice-is-a-pattern** — same manual task twice → codify before the third time → `memory/medium-term/project-management/workspace-workflow.md` § Twice-is-a-pattern
 - **Max three concerns per session** — wider scope → split into separate branches → `memory/medium-term/project-management/workspace-workflow.md` § Scope discipline
 - **Lane-change announcement** → `memory/medium-term/project-management/workspace-workflow.md` § Parallel and lane-change protocols
 - **Parallel-agent recap** → `memory/medium-term/project-management/workspace-workflow.md` § Parallel and lane-change protocols
-- **No recap after link** → `memory/short-term/feedback/stable/feedback_output_discipline.md`
-- **Long analysis goes to `tmp/`, not chat** → `memory/short-term/feedback/in-flight/feedback_tmp_and_render_discipline.md`
-- **Executive summary first** → `memory/short-term/feedback/stable/feedback_exec_summary_first.md`
-- **Card-fanout discipline** → `memory/short-term/feedback/stable/feedback_card_fanout_discipline.md`
-- **Linear cards must be self-contained** → `memory/short-term/feedback/stable/feedback_linear_cards_self_contained.md`
+- **No recap after link** → `docs/agent-ops/collaboration.md` § No recap after link
+- **Long analysis goes to `tmp/`, not chat** → `memory/medium-term/project-management/workspace-workflow.md` § tmp/ workspace short-term RAM
+- **Executive summary first** → `docs/agent-ops/collaboration.md` § Executive summary first
+- **Card-fanout discipline** → `memory/medium-term/project-management/linear-sop.md` § Card creation — multi-deliverable work
+- **Linear cards must be self-contained** → `memory/medium-term/project-management/linear-sop.md` § Card creation — what must be in every card
 - **Linear card lifecycle** (creating + working + in-review transitions) → `memory/medium-term/project-management/workspace-workflow.md` § Card creation flow + § Card pickup flow
-- **Retry silently on transient platform errors** → `memory/short-term/feedback/stable/feedback_retry_silently_on_transient_platform_errors.md`
+- **Retry silently on transient platform errors** → `docs/agent-ops/collaboration.md` § Retry silently
 - **PR push surfaces three artifacts** (summary + URL + `open <url>`) → `memory/medium-term/project-management/workspace-workflow.md` § PR handoff
-- **Drift detection** — fire `/divergence-check` on frustration; answer `/whence` with tier+source+bias-risk → `memory/short-term/feedback/in-flight/feedback_fire_divergence_check_on_frustration.md`
-- **Weekly consolidation** — fire `/consolidate-week` on Monday if not yet done → `memory/short-term/feedback/in-flight/feedback_consolidate_week_on_monday_session_start.md`
-- **Never push with high or critical npm vulnerabilities** → `memory/medium-term/project-management/github-sop.md` § Pre-push audit
-- **Harness work goes under `.agents/`**, never `.claude/` or `.codex/` → `memory/short-term/feedback/stable/feedback_harness_work_under_agents.md`
-- **Medium-term docs contain rules, never state** → `memory/short-term/feedback/stable/feedback_no_short_term_state_in_medium_term_docs.md`
+- **Drift detection** — fire `/divergence-check` on frustration; answer `/whence` with tier+source+bias-risk → `docs/agent-ops/collaboration.md` § Divergence detection
+- **Weekly consolidation** — fire `/consolidate-week` on Monday if not yet done → `memory/MEMORY.md` § SESSION-START step 10 (enforced by H8 nag)
+- **Never push with high or critical npm vulnerabilities** → `memory/medium-term/project-management/github-sop.md` § npm security
+- **Harness work goes under `.agents/`**, never `.claude/` or `.codex/` → `memory/medium-term/project-management/workspace-workflow.md` § Harness work
+- **Medium-term docs contain rules, never state** — enforced by H7 (transient-ref hook)
 - **TODO.md convention** — backlog lives in `TODO.md` at the parent level of where it applies → `memory/medium-term/project-management/workspace-workflow.md` § TODO.md files
-- **Executive register — no essays** → `memory/short-term/feedback/stable/feedback_output_discipline.md`
-- **Bash for all scripts** → `memory/short-term/feedback/stable/feedback_bash_only_scripts.md`
+- **Executive register — no essays** → `docs/agent-ops/collaboration.md` § Tone and output
+- **Bash for all scripts** — enforced by H5 (bash-only hook)
 ## Detail — read these when the topic matters
 
 | Topic | File |

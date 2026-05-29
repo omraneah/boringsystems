@@ -36,10 +36,8 @@ memory/
 │   └── projects/              ← advisory-board metadata
 └── short-term/            ← episodic record + active discipline
     ├── README.md
-    ├── feedback/          ← active behavioural rules (auto-loaded)
-    │   ├── README.md
-    │   ├── stable/        ← rules that have crystallized; promotion candidates
-    │   └── in-flight/     ← rules tied to current workflow / tooling
+    ├── feedback/          ← behavioural rules staging area (auto-loaded, flat)
+    │   └── README.md      ← routing tree + graduation lifecycle
     ├── current-arc.md     ← active 2-month plan (auto-loaded)
     ├── extraction-os.md   ← Proof-asset extraction discipline (auto-loaded)
     ├── <YYYY-Www>/        ← week folder
@@ -58,18 +56,14 @@ memory/
 
 ## On feedback
 
-Feedback is the catch-all category for behavioural rules Ahmed has surfaced but hasn't yet structured into a more durable form. It lives in `short-term/feedback/` because **Ahmed consolidates on top of it weekly** — feedback rules are part of the running record, not stable doctrine.
+Feedback is the staging area for behavioural rules Ahmed has surfaced. It lives in `short-term/feedback/` because **Ahmed consolidates on top of it weekly** — feedback rules are part of the running record, not stable doctrine.
 
 - Every behavioural rule starts here.
-- Over time, recurring patterns get **condensed** (multiple feedback files merging into a single principle), **promoted** to long-term constitutional or medium-term doctrine, or **archived** (when no longer relevant).
+- Rules graduate out to their permanent home (hook, engineering principle, SOP, behavior doc, governance doc) or are deleted when fully subsumed or hook-enforced.
+- The folder is **flat** (no stable/in-flight split). The routing tree in `feedback/README.md` serves the audit function that the split used to serve.
 - This shaping happens during weekly consolidation, audit passes, or whenever Ahmed names a structuring move.
 
-The split between `stable/` and `in-flight/` is for audit purposes only:
-
-- `stable/` — rules that have crystallized; promotion candidates next.
-- `in-flight/` — rules tied to current workflow / tooling / recent corrections; still being interrogated.
-
-Both auto-load with the rest of the discipline layer (long-term + current-arc + this/last week of short-term) so the rules are always in scope.
+Auto-loads with the rest of the discipline layer (long-term + current-arc + this/last week of short-term) so rules are always in scope.
 
 ## Auto-load policy
 

@@ -1,104 +1,57 @@
-# Feedback — Active Behavioural Rules
+# Feedback — Staging Area for Behavioural Rules
 
-> Every behavioural rule lives here first. By design temporary — feedback is mid-horizon by nature: too active to be long-term invariant, too durable to be short-term episodic.
-> Auto-loaded every session (both `stable/` and `in-flight/`). See `../../README.md` for full architecture.
+> **Feedback is a staging area, not a permanent home.** Every rule that lands here must eventually graduate — to a hook, an engineering principle, a SOP, a behavior doc, a long-term governance note, or deletion. Rules that have completed their staging graduate out; this folder stays thin.
 
-## Two sub-folders
+---
 
-```
-feedback/
-├── README.md          ← this file
-├── stable/            ← rules that have held across domains and time. Constitutional in flavour.
-│                        Candidates for promotion to long-term doctrine, but not yet promoted.
-└── in-flight/         ← rules tied to current workflow / specific tooling / recent corrections.
-                         Genuinely evolving. Most likely to be condensed or archived.
-```
+## The routing tree (graduation paths)
 
-The split is for **audit purposes**, not for differential auto-load behaviour. Both folders auto-load every session — discipline is unified. The distinction tells the operator at a glance which rules to interrogate first when doing a deliberate audit pass.
+When a rule is ready to graduate, route it to its ONE permanent home:
 
-### `stable/`
+| Exit | Home | Examples |
+|---|---|---|
+| **Hook** (automatable, deterministic) | `.agents/git-hooks/` or `.agents/hooks/` | bash-only-scripts (H5), at-import drift (H4), transient-ref (H7) |
+| **Engineering principle** | `ENGINEERING-PRINCIPLES.md` (additive) | infrastructure-first, platform-features-first |
+| **SOP** (workflow/process protocol) | `memory/medium-term/project-management/workspace-workflow.md`, `github-sop.md`, or `linear-sop.md` | twice-is-a-pattern, verify-before-done, commit-push-no-ask, card-fanout |
+| **Behavior doc** (non-automatable communication/behaviour) | `docs/agent-ops/collaboration.md` | exec-summary-first, retry-silently, vocabulary, divergence-check |
+| **Long-term governance** | `docs/governance/knowledge-governance.md` (additive) | laptop-agnostic checklist, living-doctrine-append |
+| **Delete** | (no home needed) | Rules fully enforced by a live hook or fully subsumed by a promoted SOP |
 
-A rule belongs here when it has held across multiple domains, multiple weeks, and feels constitutional in flavour even though its file shape is still feedback (not yet promoted into a doctrine file or into `META-PRINCIPLES.md`).
+Rules in this folder are auto-loaded every session. Keep the folder thin — the smaller the surface, the more reliably each rule fires.
 
-Examples of what `stable/` looks like in practice:
-- Workspace invariants (laptop-agnostic, PR-creation discipline, MCP connector-only)
-- Anti-patterns Claude must avoid (no recap after link, no premature mass replacement)
-- Communication discipline that doesn't change (lane-change announcement, parallel-agent recap)
-- Identity-rooted preferences that have been consistent (collaboration tone)
+---
 
-These are eligible for promotion to long-term during a deliberate audit pass (not weekly consolidation — different cognitive mode).
+## What lives here now
 
-### `in-flight/`
+Files remaining in `feedback/` are deferred boringsystems-scoped graduations that need a submodule-scoped pass:
 
-A rule belongs here when it is tied to current workflow, specific tooling, or a recent correction whose long-term shape isn't clear yet.
+- `feedback_tool_comparison_discipline.md` — DEFER: boringsystems article-discipline + minimal-scope discipline.
+- `feedback_planning_snapshot_before_flags.md` — DEFER: boringsystems review-skill output shape.
 
-Examples of what `in-flight/` looks like in practice:
-- Rules tied to a specific skill that may change (e.g. consolidate-week trigger, divergence-check trigger)
-- Workflow conventions for tooling that may be replaced (render-long-output, tmp-as-ram)
-- Workspace conventions still being shaped (post-merge workflow, model effort matrix)
-- Discipline patterns still being calibrated (brief approval gate, batch permission)
-
-These are most likely to be **condensed** (multiple in-flight rules merged into a single stable principle) or **archived** (when no longer relevant).
-
-## What feedback is
-
-Feedback is the catch-all for rules Ahmed has surfaced but hasn't yet structured into a more durable form. *"Things I didn't structure yet that could be structured later."*
-
-Each rule lives in its own file, frontmattered, with a `Why:` and `How to apply:` section so future-Claude can judge edge cases.
+---
 
 ## Lifecycle
 
-Feedback evolves on the fly in a feedback loop:
-
 ```
-[Surfaced]      ← Ahmed gives the correction or validation
+[Surfaced]  ← Ahmed gives the correction or validation
    ↓
-[Codified]      ← Claude writes a feedback_*.md file in in-flight/, usually within the same turn
+[Codified]  ← feedback_*.md written here, usually within the same turn
    ↓
-[Held]          ← Auto-loaded every session, applied across work
+[Held]      ← auto-loaded every session, applied across work
    ↓
-[Reviewed]      ← Weekly consolidation surfaces patterns; deliberate audits do larger restructuring
-   ↓
-[Resolved]      ← Promoted to long-term doctrine, condensed into a single principle, or archived
+[Graduated] ← routed to permanent home, file deleted
 ```
 
-Resolution paths:
+New rules → write here first. Default to `feedback_<short-name>.md`, snake_case. Include **Why** and **How to apply** so future-Claude can judge edge cases.
 
-- **Promotion to long-term.** When a `stable/` rule has held across domains and time and become identity-shaped (vs operationally-shaped), it earns long-term status. Reframed as part of the constitution. Happens during deliberate audit passes, not weekly consolidation.
-- **Condensation.** When multiple feedback files cover related ground (often visible across the `stable/` and `in-flight/` boundary), they merge into a single principle that captures the cluster. The originals get archived; the condensed version may stay in feedback or promote.
-- **Archival.** When a rule is no longer relevant (the situation changed, the operator changed, the tooling changed), it moves to `_archive/` (or just gets removed if pre-merge). Healthy feedback culture is more about deletion than promotion.
-
-## When to write a feedback file
-
-When Ahmed gives a correction OR confirms a non-obvious approach worked. Don't only save corrections — save validations too. Both shape future behaviour.
-
-Default destination: `in-flight/`. Only `stable/` if the rule is being captured because it is already known to be constitutional (rare — most rules earn `stable/` status over time, not on day one).
-
-Include in the body:
-
-- The rule itself (one sentence in bold)
-- **Why:** the reason Ahmed gave (often a past incident or strong preference)
-- **How to apply:** when/where this rule kicks in, including edge cases
-
-Knowing *why* lets future-Claude judge edge cases instead of blindly following the rule.
+---
 
 ## Auto-load
 
-**Full content every session, both sub-folders.** Read at the same time as long-term and current-arc.md.
+Full content of this folder every session. The folder is now flat (no `stable/` or `in-flight/` split).
 
-## File naming
+---
 
-`feedback_<short-name>.md` — snake_case, descriptive of the rule. The frontmatter `name:` field is the canonical title.
+## Where lifecycle history lives after graduation
 
-## Where lifecycle history lives after resolution
-
-When a feedback file is resolved (crystallized into the harness, promoted to long-term doctrine, deleted as subsumed, or archived), the source file is removed but the **per-rule lifecycle is preserved** in `memory/decisions/DECISIONS.md` as a **lifecycle table** inside the corresponding decision entry. Each table row captures: given date (first commit), stabilization date (in-flight → stable promotion, or "(never promoted)"), resolution kind (crystallized / promoted / deleted / archived), and the canonical surface the rule now lives at.
-
-To find any resolved rule's history: search `DECISIONS.md` for the resolution entry (e.g., `grep -n "Crystallize article-discipline" memory/decisions/DECISIONS.md`) — the table lives in that entry. The `/log-decision` skill enforces this format for any decision that touches feedback rules.
-
-## Companion: weekly consolidation + deliberate audit
-
-- **Weekly consolidation** (`/consolidate-week`, fired Mondays per a feedback rule that lives here) handles small deltas — surfacing drift candidates from the past week's daily entries, proposing minor moves.
-- **Deliberate audit passes** (separate cognitive mode, separate session, often a Linear card) handle the bigger restructuring — promotion of `stable/` rules to long-term, condensation of clusters, garbage collection.
-
-Without both loops, feedback would accumulate without resolution. The two work as a pair.
+When a feedback file graduates, the source file is deleted but the per-rule lifecycle is preserved in `memory/decisions/DECISIONS.md` as a lifecycle table in the corresponding decision entry.

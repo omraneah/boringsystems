@@ -40,4 +40,4 @@ This rule is non-negotiable. If you find yourself protecting lab time at the cos
 
 Created 2026-04-26 from a session with the strategic advisory board (round 2, after a corrected brief). The session resolved that the 90/10 split is sound, the probe is worth running, and the original protections (folder + timer + verbal "no attachment") were naive. The board's endorsed replacement protections live in `PROTECTIONS.md`.
 
-The architectural decision was logged in the workspace decision registry (`/Users/ahmedomrane/Workspace/.claude/decisions/DECISIONS.md`) on the same date.
+The architectural decision was logged in the workspace decision registry (`memory/decisions/DECISIONS.md`) on the same date.

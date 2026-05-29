@@ -73,7 +73,7 @@ docs/*.md (any top-level doc)
 memory/decisions/DECISIONS.md (with carve-out — see below)
 ```
 
-`memory/short-term/feedback/stable/*.md` and `memory/short-term/feedback/in-flight/*.md` are also stable in nature; include them.
+`memory/short-term/feedback/*.md` files are also stable in nature; include them.
 
 Daily short-term entries (`memory/short-term/<week>/<date>.md`) are NOT stable — they are episodic record. Skip them.
 

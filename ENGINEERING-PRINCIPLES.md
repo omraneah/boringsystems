@@ -38,6 +38,25 @@ Test behaviour that matters. Leave tests better than you found them (boy-scout r
 
 ---
 
+## 8. Infrastructure First
+
+When adding a capability that will appear in more than one place, build the reusable artifact first — then the specific content or page that uses it. One-off inline implementations are rework.
+
+**How to apply:** Before writing the first instance, ask "is this the only place this will live?" If the answer is anything weaker than a firm yes, build the typed registry / helper / plugin first. Do not over-apply: if the thing is genuinely one-of-one, inline it. The rule is "abstract when reuse is likely," not "abstract preemptively."
+
+## 9. Platform Features First
+
+Before writing structural code — i18n routing, redirects, auth, caching, routing middleware, state management, forms — **check the framework's official docs for native support first.** Custom reimplementation of a framework feature is almost always wrong: it diverges from upgrade paths, misses affordances the framework provides, and duplicates logic that will drift.
+
+**Check sequence:**
+1. Search the framework's official docs. Not memory — the docs. Framework APIs change faster than training data.
+2. Check `<project>/docs/constraints.md` — the "never do X" list may already forbid the custom path.
+3. If the framework has a native version: use it. If it doesn't fit, document the gap in an ADR, then build custom.
+
+**Domains to always check before writing custom code:** routing/i18n/redirects, authentication, database access, caching, forms, state management, SEO metadata, image/font optimization.
+
+---
+
 ## Reference
 
 - Full text: `cross-stack-architecture-starter-pack/engineering-practices-boundaries.md`

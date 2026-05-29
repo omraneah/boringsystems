@@ -19,14 +19,9 @@ Plus the active 2-month plan and Enakl-extraction discipline (which are short-te
 
 ## Subfolders
 
-### `feedback/` — active behavioural rules (auto-loaded)
+### `feedback/` — behavioural rules staging area (auto-loaded)
 
-How Claude has been told to operate. Every behavioural rule starts here. Over time, rules condense, get promoted to long-term constitutional or medium-term doctrine, or archive. **Always auto-loaded.**
-
-- `feedback/stable/` — rules that have crystallized; promotion candidates.
-- `feedback/in-flight/` — rules tied to current workflow / specific tooling / recent corrections.
-
-The split is for audit purposes only; runtime behaviour is unified. See `feedback/README.md` for the lifecycle.
+Behavioural rules in staging. Every rule graduates to a permanent home (hook, SOP, behavior doc, engineering principle, governance doc) or is deleted when subsumed. **Always auto-loaded.** Flat folder — no stable/in-flight split. See `feedback/README.md` for the routing tree and lifecycle.
 
 ### `<YYYY-Www>/` — weekly daily entry folders
 
@@ -88,7 +83,7 @@ Multiple sessions same day → append timestamp section, don't overwrite.
 
 | Sub-area | Auto-load behaviour |
 |---|---|
-| `feedback/stable/` + `feedback/in-flight/` | Full content every turn |
+| `feedback/` | Full content every turn |
 | `current-arc.md` | Full content every turn |
 | `extraction-os.md` | Full content every turn |
 | Current week + last week | Full content (continuity) |

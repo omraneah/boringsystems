@@ -88,4 +88,4 @@ PR: [covers X. Ahmed attention needed on Y / no additional attention needed]
 ## Reference
 
 Per-flow skill checklist: `memory/medium-term/project-management/workspace-workflow.md` §Per-flow skill checklist
-Card lifecycle: `memory/short-term/feedback/in-flight/feedback_linear_card_lifecycle.md`
+Card lifecycle: `memory/medium-term/project-management/linear-sop.md` §Card lifecycle

@@ -37,8 +37,7 @@ Workspace/
 │   ├── long-term/                 — identity, north star (loads every session)
 │   ├── medium-term/               — direction, doctrine (on-demand)
 │   └── short-term/
-│       ├── feedback/stable/       — crystallized behavioral rules (auto-loads)
-│       ├── feedback/in-flight/    — active corrections (auto-loads)
+│       ├── feedback/              — behavioral rules staging area (auto-loads, flat)
 │       └── YYYY-Www/              — episodic record
 ├── docs/
 │   ├── architecture/             — ADRs

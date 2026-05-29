@@ -338,3 +338,106 @@ When pointing to a principle or protocol, point first to its workspace-root decl
 ### Feedback crystallization path
 
 Short-term feedback rules crystallize into mid-term SOPs when they describe a protocol (not just a behavioral correction). The crystallization target is this file. After a rule crystallizes into a section here, the corresponding feedback file becomes a thin pointer and is archived in the next audit pass. See `memory/short-term/feedback/TODO.md` for the candidate list.
+
+---
+
+## Twice-is-a-pattern — codify before the third time
+
+When the same manual task happens twice in a single session — running the same grep, writing the same boilerplate, executing the same git sequence, doing the same FR+EN mirror edit — **stop before the third time** and propose codification: a skill, a hook, a doc section, or a memory entry.
+
+**Why:** Every system improvement that lags the pattern by 2–3 PRs wastes compound interest. The skill's value starts when written, not when the pattern was first recognized.
+
+**How to apply:** After completing a task, one-beat check: "has this shape appeared before in this session?" If yes, name the pattern and propose the smallest durable form. Do not wait for session-close — propose mid-session. Ahmed picks (codify now vs. park). The proposal is the discipline.
+
+Codification targets by what the pattern touches:
+- **Deterministic shell sequence** → hook or shell script under `.agents/`
+- **Reasoning-heavy checklist** → a skill under `.agents/skills/`
+- **Behavioral rule** → a feedback file + one line in AGENTS.md
+- **Architectural constraint** → `docs/constraints.md` + decision log entry
+- **Governance decision** → `memory/decisions/DECISIONS.md` via `/log-decision`
+
+Never invent a new codification location to avoid the existing ones.
+
+---
+
+## Verify before claiming done
+
+**Never declare a task done without running the actual verification step.** "Done" means verified, not executed.
+
+Before saying "done", "complete", "clean", or any closure language: run the relevant check (build passes, grep returns empty, file state matches expectation). If the check tooling exists (`/declare-ready`, `/check-leaks --docs`, `astro build`, `git status`), invoke it. Don't skip.
+
+Exception: explicitly time-boxed exploratory tasks where "done" means "explored to scope" — even then, surface what's unverified.
+
+---
+
+## /declare-ready is the mandatory pre-handoff gate
+
+Never ask Ahmed to review a PR until `/declare-ready` has run to completion:
+- All required skills run and PASS
+- Card transitioned to In Review
+- Executive summary posted as a card comment
+
+If Ahmed has to point out a missed step, the collaboration has failed. Ahmed's review should begin at the PR, not at correcting Claude's process.
+
+`/declare-ready` is the last thing that runs before `/pr`. It is not optional. If the card can't be identified, surface that explicitly — don't silently skip.
+
+---
+
+## Connector-first MCP — never manual auth
+
+All tool authentication goes through claude.ai connectors. Never suggest manual token-based auth. This covers both MCP servers and CLI tools.
+
+**Services with direct connectors** (never set up manually): Linear, GitHub, Gmail, Google Calendar, Google Drive, Notion — and anything else visible in claude.ai Connectors.
+
+**How to apply:**
+- When Ahmed asks to connect a tool, check if it's in claude.ai Connectors first. If yes, use it.
+- For GitHub: use `mcp__github__*` tools. Never `gh` CLI, never `gh auth login`.
+- For Linear: use the Linear MCP connector. Never `linear-cli` or API keys.
+- Manual setup is only acceptable after explicit confirmation that no connector exists.
+
+---
+
+## Skills canonical path — `.agents/skills/`
+
+New skills go directly to `Workspace/.agents/skills/<name>/SKILL.md`. Never use `~/.claude/skills/` as a write target (it is a symlink — resolve it to the canonical source before writing).
+
+`~/.claude/skills` is a symlink into `Workspace/.agents/skills/`. Writing to the symlink instead of the canonical source obscures version control. No exceptions.
+
+---
+
+## Harness work goes under `.agents/` — never `.claude/` or `.codex/`
+
+Any harness component that must fire regardless of which agent is active (hooks, skills, personas, permissions, git-hooks) lives in `.agents/`. `.claude/` and `.codex/` hold ONLY per-agent adapters.
+
+**Categorization rule:**
+- `.agents/hooks/` — tool-call hooks (PreToolUse, PostToolUse, etc.)
+- `.agents/git-hooks/` — git-invoked hooks (pre-commit, pre-push)
+- `.agents/skills/` — canonical skill definitions
+- `.agents/personas/` — canonical sub-agent personas
+- `.agents/permissions/` — canonical permission policy
+- `.claude/`, `.codex/` — per-agent adapters only
+
+**Test before commit:** "If Codex ran this workspace tomorrow, would the harness behavior I just added still fire?" If no, the work is in the wrong place.
+
+---
+
+## tmp/ — workspace short-term RAM
+
+### Part 1 — Long output goes to tmp/, not chat
+
+When Claude generates more than roughly 400 words of dense analysis the user will read in full, write it to `tmp/<descriptive-name>.md` at the workspace root and reference the path in chat. Do not dump it inline.
+
+What counts as "long": multi-section analyses, comparison tables, structured option breakdowns, verbatim drafts before approval, reference dumps the user is going to read once and discard.
+
+What does NOT go in `tmp/`: short answers (one to a few paragraphs), anything going directly to a final home (article, memory, Linear, ADR), code being edited.
+
+Assume nothing in `tmp/` persists across sessions. Default fate is deletion. Promote explicitly when Ahmed signals it matters.
+
+### Part 2 — Promote tmp/ artifacts before session boundary
+
+When you generate something in `tmp/` that matters beyond the current turn — load-bearing analysis, raw material for an article, anything you or Ahmed will reference later — promote it to a permanent home BEFORE any session-boundary event. "I'll move it later" is the failure mode this rule exists to prevent.
+
+Promotion targets:
+- Raw material for a deferred work item → paste as a comment on the relevant Linear card
+- Decisions / state worth keeping → `memory/short-term/<this-week>/<today>.md`
+- Artifacts that belong in a project repo → commit them in that repo

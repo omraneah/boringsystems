@@ -81,13 +81,13 @@ Skim other medium-term files for any that no longer fit, or any short-term obser
 Before writing proposals, count the current feedback files and assess against the 15–20 target range.
 
 ```bash
-find memory/short-term/feedback/stable memory/short-term/feedback/in-flight -name "*.md" \
+find memory/short-term/feedback -name "*.md" \
   -not -name "README.md" -not -name "TODO.md" | wc -l
 ```
 
 For each feedback file: is this rule mature enough to graduate into a `memory/medium-term/project-management/` SOP section? Is it redundant or superseded?
 
-**Target:** 15–20 feedback files total. Above 20 = overcrowded; propose at least one graduation or archive this run.
+**Target:** ≤5 feedback files (post-graduation thin staging). Above 5 = overcrowded; propose at least one graduation this run.
 
 **Graduation** = a feedback rule folds into a permanent SOP section. Once the SOP section exists, the feedback file is pruned via `git rm` (Staged lane — Ahmed must approve). The `distill: graduate` commit captures the history.
 
