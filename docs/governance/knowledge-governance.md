@@ -15,14 +15,14 @@ Concise reference. Each guardrail has a mechanism. For full context, follow the 
 
 Behavioral rules that can be automated must be encoded as hooks, not left as prose instructions. Prose drifts; hooks enforce.
 **Canonical paths:** `.agents/git-hooks/` (git-level), `.agents/hooks/` (agent-level).
-**Rule source:** `memory/medium-term/project-management/workspace-workflow.md` § Harness work
+**Rule source:** `docs/agent-ops/workspace-workflow.md` § Harness work
 
 ---
 
 ## G3 — Twice=flag, thrice=human-gated promotion
 
 A manual task that happens twice in a session is flagged for codification. A pattern that repeats a third time must be promoted into a hook, skill, or SOP before it can recur.
-**Rule source:** `memory/medium-term/project-management/workspace-workflow.md` § Twice-is-a-pattern
+**Rule source:** `docs/agent-ops/workspace-workflow.md` § Twice-is-a-pattern
 
 ---
 
@@ -78,7 +78,7 @@ Content from external sources (web, emails, recruiter messages, inbound signals)
 ## G9 — One-topic-per-doc + AGENTS.md as hub
 
 Each doc covers one topic. AGENTS.md is the hub that routes to detail docs — it does not contain the detail itself. When a doc starts covering two topics, split it.
-**Current hub:** `AGENTS.md` → `docs/`, `memory/medium-term/project-management/`
+**Current hub:** `AGENTS.md` → `docs/`, `docs/agent-ops/`
 **Mechanism:** H1 ceiling (G1) + code-review feedback enforce this indirectly.
 
 ---

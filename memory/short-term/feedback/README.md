@@ -12,7 +12,7 @@ When a rule is ready to graduate, route it to its ONE permanent home:
 |---|---|---|
 | **Hook** (automatable, deterministic) | `.agents/git-hooks/` or `.agents/hooks/` | bash-only-scripts (H5), at-import drift (H4), transient-ref (H7) |
 | **Engineering principle** | `ENGINEERING-PRINCIPLES.md` (additive) | infrastructure-first, platform-features-first |
-| **SOP** (workflow/process protocol) | `memory/medium-term/project-management/workspace-workflow.md`, `github-sop.md`, or `linear-sop.md` | twice-is-a-pattern, verify-before-done, commit-push-no-ask, card-fanout |
+| **SOP** (workflow/process protocol) | `docs/agent-ops/workspace-workflow.md`, `docs/agent-ops/github-sop.md`, or `docs/agent-ops/linear-sop.md` | twice-is-a-pattern, verify-before-done, commit-push-no-ask, card-fanout |
 | **Behavior doc** (non-automatable communication/behaviour) | `docs/agent-ops/collaboration.md` | exec-summary-first, retry-silently, vocabulary, divergence-check |
 | **Long-term governance** | `docs/governance/knowledge-governance.md` (additive) | laptop-agnostic checklist, living-doctrine-append |
 | **Delete** | (no home needed) | Rules fully enforced by a live hook or fully subsumed by a promoted SOP |

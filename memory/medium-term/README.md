@@ -57,7 +57,7 @@ If yes → medium-term.
 | `current-arc.md` | Full content every turn |
 | `Drivers-and-Filters.md` | Full content every turn (operational center for this next step) |
 | `Engagement-Shapes.md` | Full content every turn (the two surface shapes) |
-| `project-management/` | Full content every turn (structural SOPs) |
+| `docs/agent-ops/` (workspace-workflow, linear-sop, github-sop) | Full content every turn (operating SOPs — moved out of medium-term) |
 | Everything else | Routing reference only in `MEMORY.md`; full content on demand |
 
 ## The interpretive role

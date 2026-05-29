@@ -45,7 +45,7 @@ Memory is tiered into three horizons (`memory/long-term/`, `memory/medium-term/`
 
 **Feedback in short-term.** Behavioural rules (`feedback_*.md` files) live in `memory/short-term/feedback/` (flat — no stable/in-flight split). Feedback is a staging area: every rule graduates (hook > ENG-principle > SOP > behavior-doc > governance doc > delete) or is deleted. Auto-loads every session. See `memory/short-term/feedback/README.md` for the routing tree and lifecycle.
 
-**Project-management SOPs in medium-term.** `memory/medium-term/project-management/` holds three structural SOPs that auto-load every session: `workspace-workflow.md` (collaboration flows, autonomy gradient, skill checklist), `linear-sop.md` (card rules), `github-sop.md` (branch rules). These are weighted above short-term/feedback in conflict resolution — a crystallized protocol wins over a raw behavioral correction. Feedback rules crystallize into these SOPs over time via consolidation; see `memory/short-term/feedback/TODO.md` for the candidate list.
+**Operating SOPs in `docs/agent-ops/` (auto-loaded every session).** Three structural SOPs govern every session: `workspace-workflow.md` (collaboration flows, autonomy gradient, skill checklist), `linear-sop.md` (card rules), `github-sop.md` (branch rules). Weighted above short-term/feedback in conflict resolution — a crystallized protocol wins over a raw behavioral correction. Feedback rules crystallize into these SOPs over time via consolidation; see `memory/short-term/feedback/TODO.md` for the candidate list.
 
 Drift-detection (immune system):
 
@@ -84,32 +84,32 @@ Closed loop:
 
 ## Non-negotiable rules
 
-- **Never push to protected branches** (`main`, `master`, `development`, `dev`, `production`) → `memory/medium-term/project-management/github-sop.md` § Protected branches
-- **Git is pre-authorized workflow** — no permission prompts for Git on feature branches → `memory/medium-term/project-management/github-sop.md` § Commit and push
-- **Never edit on protected branches** — check branch first; create `omraneah/<task>` if needed; reuse the session branch → `memory/medium-term/project-management/github-sop.md` § Auto-edit on feature branch
-- **Never open PRs** — agent pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request` → `memory/medium-term/project-management/workspace-workflow.md` § PR handoff
-- **New skills write to `.agents/skills/`** → `memory/medium-term/project-management/workspace-workflow.md` § Skills canonical path
-- **Connector-first MCP** — use the platform native connector; never manual auth → `memory/medium-term/project-management/workspace-workflow.md` § Connector-first MCP
+- **Never push to protected branches** (`main`, `master`, `development`, `dev`, `production`) → `docs/agent-ops/github-sop.md` § Protected branches
+- **Git is pre-authorized workflow** — no permission prompts for Git on feature branches → `docs/agent-ops/github-sop.md` § Commit and push
+- **Never edit on protected branches** — check branch first; create `omraneah/<task>` if needed; reuse the session branch → `docs/agent-ops/github-sop.md` § Auto-edit on feature branch
+- **Never open PRs** — agent pushes; Ahmed opens. No `gh pr create`, no `mcp__github__create_pull_request` → `docs/agent-ops/workspace-workflow.md` § PR handoff
+- **New skills write to `.agents/skills/`** → `docs/agent-ops/workspace-workflow.md` § Skills canonical path
+- **Connector-first MCP** — use the platform native connector; never manual auth → `docs/agent-ops/workspace-workflow.md` § Connector-first MCP
 - **Platform features first, custom code second** → `ENGINEERING-PRINCIPLES.md` § 9
 - **Never modify `Enakl/` or `cross-stack-architecture-starter-pack/`** without explicit instruction. (AGENTS.md only — no standalone file.)
-- **Twice-is-a-pattern** — same manual task twice → codify before the third time → `memory/medium-term/project-management/workspace-workflow.md` § Twice-is-a-pattern
-- **Max three concerns per session** — wider scope → split into separate branches → `memory/medium-term/project-management/workspace-workflow.md` § Scope discipline
-- **Lane-change announcement** → `memory/medium-term/project-management/workspace-workflow.md` § Parallel and lane-change protocols
-- **Parallel-agent recap** → `memory/medium-term/project-management/workspace-workflow.md` § Parallel and lane-change protocols
+- **Twice-is-a-pattern** — same manual task twice → codify before the third time → `docs/agent-ops/workspace-workflow.md` § Twice-is-a-pattern
+- **Max three concerns per session** — wider scope → split into separate branches → `docs/agent-ops/workspace-workflow.md` § Scope discipline
+- **Lane-change announcement** → `docs/agent-ops/workspace-workflow.md` § Parallel and lane-change protocols
+- **Parallel-agent recap** → `docs/agent-ops/workspace-workflow.md` § Parallel and lane-change protocols
 - **No recap after link** → `docs/agent-ops/collaboration.md` § No recap after link
-- **Long analysis goes to `tmp/`, not chat** → `memory/medium-term/project-management/workspace-workflow.md` § tmp/ workspace short-term RAM
+- **Long analysis goes to `tmp/`, not chat** → `docs/agent-ops/workspace-workflow.md` § tmp/ workspace short-term RAM
 - **Executive summary first** → `docs/agent-ops/collaboration.md` § Executive summary first
-- **Card-fanout discipline** → `memory/medium-term/project-management/linear-sop.md` § Card creation — multi-deliverable work
-- **Linear cards must be self-contained** → `memory/medium-term/project-management/linear-sop.md` § Card creation — what must be in every card
-- **Linear card lifecycle** (creating + working + in-review transitions) → `memory/medium-term/project-management/workspace-workflow.md` § Card creation flow + § Card pickup flow
+- **Card-fanout discipline** → `docs/agent-ops/linear-sop.md` § Card creation — multi-deliverable work
+- **Linear cards must be self-contained** → `docs/agent-ops/linear-sop.md` § Card creation — what must be in every card
+- **Linear card lifecycle** (creating + working + in-review transitions) → `docs/agent-ops/workspace-workflow.md` § Card creation flow + § Card pickup flow
 - **Retry silently on transient platform errors** → `docs/agent-ops/collaboration.md` § Retry silently
-- **PR push surfaces three artifacts** (summary + URL + `open <url>`) → `memory/medium-term/project-management/workspace-workflow.md` § PR handoff
+- **PR push surfaces three artifacts** (summary + URL + `open <url>`) → `docs/agent-ops/workspace-workflow.md` § PR handoff
 - **Drift detection** — fire `/divergence-check` on frustration; answer `/whence` with tier+source+bias-risk → `docs/agent-ops/collaboration.md` § Divergence detection
 - **Weekly consolidation** — fire `/consolidate-week` on Monday if not yet done → `memory/MEMORY.md` § SESSION-START step 10 (enforced by H8 nag)
-- **Never push with high or critical npm vulnerabilities** → `memory/medium-term/project-management/github-sop.md` § npm security
-- **Harness work goes under `.agents/`**, never `.claude/` or `.codex/` → `memory/medium-term/project-management/workspace-workflow.md` § Harness work
+- **Never push with high or critical npm vulnerabilities** → `docs/agent-ops/github-sop.md` § npm security
+- **Harness work goes under `.agents/`**, never `.claude/` or `.codex/` → `docs/agent-ops/workspace-workflow.md` § Harness work
 - **Medium-term docs contain rules, never state** — enforced by H7 (transient-ref hook)
-- **TODO.md convention** — backlog lives in `TODO.md` at the parent level of where it applies → `memory/medium-term/project-management/workspace-workflow.md` § TODO.md files
+- **TODO.md convention** — backlog lives in `TODO.md` at the parent level of where it applies → `docs/agent-ops/workspace-workflow.md` § TODO.md files
 - **Executive register — no essays** → `docs/agent-ops/collaboration.md` § Tone and output
 - **Bash for all scripts** — enforced by H5 (bash-only hook)
 ## Detail — read these when the topic matters
@@ -118,16 +118,15 @@ Closed loop:
 |---|---|
 | Memory architecture (tiered: long/medium/short) | `memory/README.md` |
 | Collaboration tone, scope discipline, code comment rules | `docs/agent-ops/collaboration.md` |
-| Git workflow, branch rules, PR handoff, post-merge cleanup | `docs/agent-ops/git-workflow.md` |
 | Skills, hooks, setup, MCP, decisions, memory | `docs/agent-ops/infrastructure.md` |
-| Model × Effort × Lane matrix — defaults per task dimension | `memory/medium-term/project-management/workspace-workflow.md` § Model and effort defaults |
+| Model × Effort × Lane matrix — defaults per task dimension | `docs/agent-ops/workspace-workflow.md` § Model and effort defaults |
 | Enforcement-tier template (local-first pre-push audit, reuse across projects) | `docs/governance/patterns/local-first-enforcement.md` |
 | Which ARDs apply at which tier per project | `docs/governance/ard-tier-map.md` |
 | Per-project stack + conventions | `<project>/AGENTS.md` and `<project>/docs/` |
-| Workspace structure — layer ownership, what lives where | `docs/governance/workspace-structure.md` · when this topic is active, also read `memory/medium-term/project-management/github-sop.md` and `memory/medium-term/project-management/linear-sop.md` |
-| Git collaboration — branch rules, PR flow, commit discipline, hooks, post-merge | `memory/medium-term/project-management/github-sop.md` |
-| Work tracking — Linear card rules, lifecycle, multi-deliverable patterns | `memory/medium-term/project-management/linear-sop.md` |
-| Collaboration workflow SOP — all flows, autonomy gradient, per-flow skill checklist | `memory/medium-term/project-management/workspace-workflow.md` (**auto-loaded every session**) |
+| Workspace structure — layer ownership, what lives where | `docs/governance/workspace-structure.md` · when this topic is active, also read `docs/agent-ops/github-sop.md` and `docs/agent-ops/linear-sop.md` |
+| Git collaboration — branch rules, PR flow, commit discipline, hooks, post-merge | `docs/agent-ops/github-sop.md` |
+| Work tracking — Linear card rules, lifecycle, multi-deliverable patterns | `docs/agent-ops/linear-sop.md` |
+| Collaboration workflow SOP — all flows, autonomy gradient, per-flow skill checklist | `docs/agent-ops/workspace-workflow.md` (**auto-loaded every session**) |
 
 ## Strategic routing
 

@@ -9,7 +9,7 @@
 ## SESSION-START PROTOCOL
 
 1. **Read every file in `long-term/` and `long-term/inner-game/`.** These are the north star — identity profile, distilled identity content (including `Path-Doctrine.md` for the 2-3yr sprint shape, `Relational-Architecture.md` for the depth-expansion of the relational North Star). Load fully every session. Weighted highest in routing.
-2. **Read all three files in `medium-term/project-management/`.** These are structural SOPs that govern every session — `workspace-workflow.md` (all collaboration flows, autonomy gradient, skill checklist), `linear-sop.md` (card rules and lifecycle), `github-sop.md` (branch rules and PR flow). Load fully. Weighted above short-term/feedback in conflicts (protocol wins over correction).
+2. **Read all three files in `docs/agent-ops/`.** These are structural SOPs that govern every session — `workspace-workflow.md` (all collaboration flows, autonomy gradient, skill checklist), `linear-sop.md` (card rules and lifecycle), `github-sop.md` (branch rules and PR flow). Load fully. Weighted above short-term/feedback in conflicts (protocol wins over correction).
 3. **Read every `.md` file in `short-term/feedback/`.** Active behavioural rules — how Claude has been told to operate. Always auto-loads. Feedback is the live discipline layer; it lives in short-term because Ahmed consolidates on top of it weekly. The folder is now flat (no stable/in-flight split) — see `short-term/feedback/README.md` for the routing tree.
 4. **Read `medium-term/current-arc.md`.** The current-direction snapshot for the re-stabilization phase (July → December 2026). Bridges short-term reality and long-term north star.
 5. **Read `medium-term/Drivers-and-Filters.md`.** The operational center for this next step: eight drivers, ten filters, position synthesis. Codified 2026-05-20. Upstream of every engagement decision.
@@ -42,9 +42,9 @@
 
 ## MEDIUM-TERM — Current Direction
 
-`medium-term/project-management/workspace-workflow.md` — **Auto-loaded.** Cross-project collaboration SOP: all flow types (research, card creation, card pickup, code change, structural change), autonomy gradient, per-flow skill checklist. Governs every session.
-`medium-term/project-management/linear-sop.md` — **Auto-loaded.** How we manage Linear: card rules, lifecycle, board structure, known limitations.
-`medium-term/project-management/github-sop.md` — **Auto-loaded.** How we manage GitHub: branch rules, PR division of labor, commit discipline, hooks, submodule workflow.
+`docs/agent-ops/workspace-workflow.md` — **Auto-loaded.** Cross-project collaboration SOP: all flow types (research, card creation, card pickup, code change, structural change), autonomy gradient, per-flow skill checklist. Governs every session. (Moved out of `medium-term/` to `docs/agent-ops/` — path change only, policy unchanged.)
+`docs/agent-ops/linear-sop.md` — **Auto-loaded.** How we manage Linear: card rules, lifecycle, board structure, known limitations.
+`docs/agent-ops/github-sop.md` — **Auto-loaded.** How we manage GitHub: branch rules, PR division of labor, commit discipline, hooks, submodule workflow.
 `medium-term/current-arc.md` — six-month re-stabilization plan (July → December 2026). Auto-loaded.
 `medium-term/Drivers-and-Filters.md` — **Auto-loaded.** Operational center for this next step: eight drivers (what pulls), ten filters (what disqualifies), position synthesis (the narrow middle). Codified 2026-05-20. The qualification layer upstream of every engagement decision.
 `medium-term/Engagement-Shapes.md` — **Auto-loaded.** The two operational surfaces: Shape A (mandate inside a company, with A.1 full-time CPTO/CTPO sub-shape carrying load-bearing wariness caveat) and Shape B (fractional / freelance via warm network, with B.1 fractional CTO/CPO and B.2 transformation freelance sub-shapes). Includes contained-risk principle.
@@ -53,7 +53,7 @@
 `medium-term/market/` — operational market doctrine: sales-mode tactics, visibility OS, pre-funnel aesthetic filter. On-demand.
 `medium-term/projects/` — project metadata (advisory board composition, etc.). On-demand.
 
-The interpretive layer between short-term episodic record and long-term constitutional anchors. The `project-management/` sub-folder is structural (governs every session) and therefore auto-loads; the rest of medium-term is contextual and loads on demand.
+The interpretive layer between short-term episodic record and long-term constitutional anchors. The three operating SOPs (workspace-workflow, linear-sop, github-sop) moved to `docs/agent-ops/` and still auto-load every session; the rest of medium-term is contextual and loads on demand.
 
 ---
 

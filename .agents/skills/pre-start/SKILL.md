@@ -27,7 +27,7 @@ Do not announce the skill invocation. Produce the plan directly.
 ## Steps
 
 1. **Identify the flow type.** One of: `code-change`, `structural-change`, `card-pickup`, `research`.
-2. **Read the relevant SOP.** For code/structural: `memory/medium-term/project-management/workspace-workflow.md` + the project's `docs/workflow.md`. For card pickup: fetch the card in full (description + all comments). For research: none required.
+2. **Read the relevant SOP.** For code/structural: `docs/agent-ops/workspace-workflow.md` + the project's `docs/workflow.md`. For card pickup: fetch the card in full (description + all comments). For research: none required.
 3. **Read domain docs.** For boringsystems code changes: `docs/constraints.md` + domain-relevant doc (analytics, i18n, etc.). For card pickup: any doc the card's start-of-session protocol names. Do not infer from CLAUDE.md alone.
 4. **Produce the plan artifact:**
 
@@ -63,4 +63,4 @@ Ready to proceed?
 
 ## Reference
 
-Full flow definitions and autonomy gradient: `memory/medium-term/project-management/workspace-workflow.md`
+Full flow definitions and autonomy gradient: `docs/agent-ops/workspace-workflow.md`

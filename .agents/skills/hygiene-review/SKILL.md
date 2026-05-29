@@ -92,5 +92,5 @@ If BLOCKED: list exactly what needs to be fixed or run. Do not pass a blocked re
 ## Reference
 
 - Stable docs definition and leak patterns: `/check-leaks` skill (Surface A = `--docs`)
-- Per-flow skill checklist: `memory/medium-term/project-management/workspace-workflow.md` §Per-flow skill checklist
+- Per-flow skill checklist: `docs/agent-ops/workspace-workflow.md` §Per-flow skill checklist
 - Project-specific skills: each project's `CLAUDE.md` §Project-scoped skills
