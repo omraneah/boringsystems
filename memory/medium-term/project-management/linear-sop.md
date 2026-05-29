@@ -113,7 +113,7 @@ Container patterns are discovered live via `/card-against-pattern` — the skill
 - Cards are durable shared state — keep them current; update on state changes
 - Cross-reference sibling cards explicitly in bundled work
 - Use `get_issue` (not session memory) to audit a card after creation
-- Run `/check-linear-card-paths` when renaming workspace files that cards reference
+- Run `/check-leaks --cards` when renaming workspace files that cards reference
 
 **Never:**
 - Set a card's status to anything other than Triage on creation — Ahmed routes

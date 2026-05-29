@@ -39,9 +39,9 @@
 #   memory/short-term/20*/  — daily/weekly episodic entries (card IDs expected)
 #   */_archive/       — archived content, not forward-looking
 #
-# Only added/modified lines are checked (lines starting with + in the diff).
-# Pre-existing violations in unmodified lines do not block the commit — run
-# /check-stable-docs-leaks to sweep the full workspace for those.
+# Only added lines are checked (lines starting with + in the diff). This means
+# pre-existing violations in unmodified lines do not block the commit — run
+# /check-leaks --docs to sweep the full workspace for those.
 #
 # Wired via `git config core.hooksPath .agents/git-hooks` (each agent's setup.sh).
 # --no-verify is forbidden by policy. See workspace AGENTS.md.
@@ -497,8 +497,8 @@ if [ "$fail" -eq 1 ]; then
   echo ""
   echo "  Fix the above before committing."
   echo "  Linear card IDs → replace with descriptive text."
-  echo "  tmp/ references → tmp/ is ephemeral, never link from stable docs."
-  echo "  Run /check-stable-docs-leaks for a full workspace sweep."
+  echo "  tmp/ references → tmp/ is ephemeral, never link to it in stable docs."
+  echo "  Run /check-leaks --docs to sweep the full workspace for existing violations."
   echo "  --no-verify forbidden. See workspace AGENTS.md."
   exit 1
 fi

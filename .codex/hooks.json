@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.codex/setup.sh\" || echo \"WARN: .codex/setup.sh failed — continuing session\"'"
+            "command": "bash -c 'bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.codex/setup.sh\" || echo \"WARN: .codex/setup.sh failed \u2014 continuing session\"'"
           },
           {
             "type": "command",

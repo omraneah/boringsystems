@@ -91,6 +91,8 @@ For each feedback file: is this rule mature enough to graduate into a `memory/me
 
 **Graduation** = a feedback rule folds into a permanent SOP section. Once the SOP section exists, the feedback file is pruned via `git rm` (Staged lane — Ahmed must approve). The `distill: graduate` commit captures the history.
 
+**Ahmed-decides gate:** always propose, never auto-execute. Surface the count, surface ≥1 candidate, and wait for Ahmed's decision before moving any file.
+
 ## Step 4 — Lane assignment (before writing proposals)
 
 Classify every proposed action into Mechanical or Staged before touching any file:
@@ -199,8 +201,8 @@ After consolidation, check if there are week folders older than current + last 3
 - Do not use `_archive/` folders. Prune = `git rm` — git history is the archive.
 - Do not run Mechanical prune before the Staged lane has classified all observations.
 - Do not recap the consolidation file in chat — the file is the recap.
-- **Do not skip the pruning quota check (Step 3b).** The count re-accretes silently without it.
-- **Do not auto-graduate.** Propose → Ahmed decides → then move/edit files.
+- **Do not skip the pruning quota check (Step 3b).** Surface the count even if within target — it's signal, not noise; the corpus re-accretes silently without it.
+- **Do not auto-graduate.** Propose → Ahmed decides → then move/edit files. Never silently fold a feedback rule into an SOP without surfacing it first.
 
 ## Edge cases
 

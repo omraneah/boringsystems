@@ -16,6 +16,6 @@ type: feedback
 4. After the change ships, verify by invoking each affected agent / skill and confirming context loads correctly.
 5. Apply this to ANY @-import target: agent files, skill files, sub-agent prompts, anything that uses `@<path>` syntax in Claude Code.
 
-**Companion check:** the `/check-stable-docs-leaks` skill (or equivalent grep-based pre-PR sweep) should include `@<deprecated-path>` patterns for any folder being phased out, to catch this class of breakage automatically rather than relying on manual discipline.
+**Companion check:** the `/check-leaks` skill (or equivalent grep-based pre-PR sweep) should include `@<deprecated-path>` patterns for any folder being phased out, to catch this class of breakage automatically rather than relying on manual discipline.
 
 **Provenance:** 2026-04-28 session. The discovery happened during the audit before the `llm-context-2026/` submodule deletion. Three operational agents would have broken silently. Captured as a stable feedback rule because the pattern is general — any submodule deletion, any folder rename, any path migration touches this risk.
