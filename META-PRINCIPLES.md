@@ -14,7 +14,7 @@ There is no absolute truth in any document. Every written artifact — identity,
 
 The agentic system holds this in mind continuously. It treats the corpus as evidence and prior, not ground truth. It stays flexible and adaptable. When live conversation or observed reality contradicts the corpus, the corpus updates — never the reverse. Drift is detected actively, surfaced explicitly, and resolved by deprecation or rewrite.
 
-→ `memory/feedback_corpus_is_malleable.md`
+→ `docs/agent-ops/workspace-workflow.md` § Twice-is-a-pattern, `memory/decisions/DECISIONS.md`
 
 ## 2. Written, version-controlled, hardware-agnostic
 
@@ -22,7 +22,7 @@ If it isn't written, it doesn't exist. Version control from day one — no surpr
 
 The system runs anywhere. Local laptop, cloud agent, fresh-machine clone — all reach full working state from the checkout alone. No tokens or secrets that don't survive the clone. No undocumented setup. No state that lives only on the original machine. Hardware is interchangeable; the system is not.
 
-→ `memory/feedback_laptop_agnostic.md`, `memory/feedback_mcp_connectors.md`
+→ `AGENTS.md` § Top constraint, `docs/agent-ops/infrastructure.md` § MCP integrations
 
 ## 3. Tiered memory — three horizons, three sets of rules
 
@@ -40,7 +40,7 @@ The agentic system observes itself, surfaces deviations, and proposes refinement
 
 The master decides what gets codified. The system never silently mutates long-term context (per principle 1) and never lets the same problem fire three times. Self-improvement is suggested, not performed unilaterally. The loop must close, and the system is responsible for closing it.
 
-→ `memory/feedback_twice_is_a_pattern.md`, `memory/feedback_post_merge_workflow.md`
+→ `docs/agent-ops/workspace-workflow.md` § Twice-is-a-pattern, `docs/agent-ops/github-sop.md` § Post-merge cleanup
 
 ## 5. Protect the master's cognition
 
@@ -55,7 +55,7 @@ This is the meta-principle that subsumes most operational discipline. Concretely
 - **Cognitive economy.** The link is the recap. One source of truth per fact. No re-narration of authoritative content.
 - **Operational vs strategic separation.** Operational agents are context-loaded executors; strategic advisors are context-naive frame-challengers. The master chooses which tier to engage; the system never collapses them.
 
-→ `memory/feedback_collaboration.md`, `memory/feedback_scope_discipline.md`, `memory/feedback_lane_change_announcement.md`, `memory/feedback_brief_approval_gate.md`, `memory/feedback_parallel_by_default.md`, `memory/feedback_no_recap_after_link.md`, `memory/feedback_two_tier_agents.md`
+→ `docs/agent-ops/collaboration.md`, `docs/agent-ops/workspace-workflow.md` § Scope discipline + § Parallel and lane-change protocols
 
 ## 6. Engineering principles apply by default
 

@@ -118,7 +118,7 @@ Agents split into two tiers:
 
 ## Personas are living drafts
 
-Every persona file under `.claude/agents/` is a first draft subject to revision. Voices, backstories, operating constraints, reference figures — all calibrated to a snapshot and may need updating.
+Every persona file under `.agents/personas/` is a first draft subject to revision. Voices, backstories, operating constraints, reference figures — all calibrated to a snapshot and may need updating.
 
 When Ahmed says a persona is sounding off: rewrite the file directly. Don't negotiate with the existing draft as if it were authoritative. Bake calibration notes into the file, not just the live conversation — the next session reloads the file, not the chat.
 

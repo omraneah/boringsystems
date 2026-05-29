@@ -9,7 +9,7 @@ allowed-tools: Bash(git *), Bash(open *)
 argument-hint: "[optional: PR title override]"
 ---
 
-Prepare everything Ahmed needs to open a PR on GitHub. **Claude never creates the PR itself** — that is Ahmed's manual step. See `memory/feedback_pr_creation.md` for the rule.
+Prepare everything Ahmed needs to open a PR on GitHub. **Claude never creates the PR itself** — that is Ahmed's manual step. See `docs/agent-ops/workspace-workflow.md` § PR handoff for the rule.
 
 ## Steps
 

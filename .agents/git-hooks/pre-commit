@@ -30,6 +30,11 @@
 #    H7. Transient-ref sweep: runs check-leaks patterns on staged stable docs
 #        (mirrors /check-stable-docs-leaks for deprecated @-import paths and
 #        PR number references).
+#    H8. Bare-path prose references: backtick-quoted file paths in prose that
+#        look like workspace files but don't resolve — e.g. `feedback_x.md`,
+#        `memory/some/file.md`. Covers stable docs + .agents/skills|hooks files
+#        (previously exempt from H4). This is the check that catches graduated
+#        feedback_ file refs left in skill and stable-doc prose.
 #
 # Scope for hygiene: staged .md/.mdx files, excluding:
 #   .claude/          — hooks and skills legitimately document these patterns
@@ -391,6 +396,86 @@ check_h7_transient_refs() {
 }
 
 # ============================================================
+# H8 — Bare-path prose references to nonexistent workspace files
+#
+# Catches: backtick-quoted paths in prose that look like workspace files
+# but don't resolve — e.g. `feedback_x.md`, `memory/some/file.md`.
+# This is what H4 misses (H4 only checks @-imports and markdown links).
+#
+# Scope: stable docs + .agents/skills/* + .agents/hooks/* files (staged).
+# These dirs were previously exempt; now included so skill/hook files
+# can't silently carry stale feedback_ or path refs.
+#
+# Exemptions:
+#   - memory/decisions/DECISIONS.md (historical record)
+#   - Daily/weekly episodic entries (memory/short-term/20*)
+#   - Archives
+#   - The pre-commit hook itself (self-referential)
+#   - Paths inside fenced code blocks that start with # or are clearly illustrative
+# ============================================================
+check_h8_prose_path_refs() {
+  local workspace_root="$1"
+  local fail_ref="$2"
+
+  while IFS= read -r rel; do
+    case "$rel" in *.md|*.mdx) ;; *) continue ;; esac
+    # Skip exemptions
+    case "$rel" in
+      memory/decisions/DECISIONS.md|\
+      memory/short-term/20*|*/_archive/*|*_archive/*) continue ;;
+    esac
+
+    local path="$workspace_root/$rel"
+    [ -f "$path" ] || continue
+
+    # Only check ADDED lines
+    local added
+    added="$(git diff --cached -- "$rel" | grep '^+' | grep -v '^+++' 2>/dev/null || true)"
+    [ -z "$added" ] && continue
+
+    # Extract backtick-quoted tokens that look like workspace paths.
+    # Only checks PATH-PREFIXED references (containing /) — bare filenames
+    # are ambiguous (could resolve under any folder) and are too noisy.
+    # Target: `memory/some/file.md`, `docs/arch/adr-001.md`, etc.
+    # Uses awk to pull content between backticks, then filters.
+    local violations=""
+    while IFS= read -r token; do
+      [ -z "$token" ] && continue
+      # Must contain a slash — path-like (bare filenames skip)
+      case "$token" in */*) ;; *) continue ;; esac
+      # Skip http URLs, anchors, email
+      case "$token" in http*|"#"*|*@*) continue ;; esac
+      # Skip tokens that are clearly just examples (contain angle-brackets or globs)
+      case "$token" in *\<*|*\>*|*\**|*\?*) continue ;; esac
+      # Skip obvious non-paths (version strings, semver, etc.)
+      case "$token" in [0-9]*) continue ;; esac
+      local resolved="$workspace_root/$token"
+      if [ ! -e "$resolved" ]; then
+        violations="${violations}    dead prose ref: \`$token\`\n"
+      fi
+    done < <(echo "$added" \
+      | awk '{
+          line = $0
+          # Extract content between backticks
+          while (match(line, /`[^`]+`/)) {
+            token = substr(line, RSTART+1, RLENGTH-2)
+            print token
+            line = substr(line, RSTART + RLENGTH)
+          }
+        }' \
+      | grep -E '\.(md|sh|json|yaml|yml|txt|toml|rules)$' \
+      || true)
+
+    if [ -n "$violations" ]; then
+      echo "[pre-commit] H8 ✗ dead prose path reference(s) in: $rel"
+      printf '%b' "$violations" | head -5
+      echo "             Remove or update references to files that no longer exist."
+      eval "$fail_ref=1"
+    fi
+  done < <(git diff --cached --name-only --diff-filter=ACM)
+}
+
+# ============================================================
 # H0 — Original hygiene checks (Linear IDs, tmp/, long-term purity)
 # ============================================================
 check_h0_hygiene() {
@@ -493,6 +578,7 @@ check_h4_dead_references "$workspace_root" fail
 check_h5_bash_only_scripts fail
 check_h6_duplication_heuristic "$workspace_root"   # warn-only, never sets fail
 check_h7_transient_refs "$workspace_root" fail
+check_h8_prose_path_refs "$workspace_root" fail
 check_h0_hygiene fail
 
 if [ "$fail" -eq 1 ]; then

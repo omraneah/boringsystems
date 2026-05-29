@@ -49,7 +49,7 @@ Weight order, descending: live conversation > long-term > medium-term/feedback >
 
 Asymmetric rule for long-term:
 
-- Constitutional rules (operationally invariant, e.g. `feedback_laptop_agnostic`): trust the rule unless live persistently contradicts.
+- Constitutional rules (operationally invariant, e.g. the laptop-agnostic / fresh-machine rule): trust the rule unless live persistently contradicts.
 - Identity-rooted rules (`user_profile`, distilled inner-game): default to live and surface the divergence. Identity is the most movable thing in this whole architecture.
 
 For low-stakes conflicts: default to live, flag for next consolidation. For identity / strategy / north-star conflicts: stop, surface, ask before acting.
@@ -147,8 +147,48 @@ Files live at `/Users/<user>/Workspace/memory/` (workspace root, version-control
 - Refinement: feedback-as-medium-term-sub-tier with stable/in-flight split, PR #40 (after audit critique).
 - Deprecation of legacy `llm-context-2026/`: PRs #41 + #42.
 - Codified in: `memory/README.md`, `memory/MEMORY.md`, `memory/long-term/README.md`, `memory/medium-term/README.md`, `memory/medium-term/feedback/README.md`, `memory/short-term/README.md`, this ADR, `memory/decisions/DECISIONS.md`.
-- Skills implementing the architecture: `.claude/personal-skills/whence/`, `.claude/personal-skills/divergence-check/`, `.claude/personal-skills/consolidate-week/`.
+- Skills implementing the architecture: `.agents/skills/whence/`, `.agents/skills/divergence-check/`, `.agents/skills/consolidate-week/`.
 - Behavioural rules wiring the loops: graduated to `docs/agent-ops/collaboration.md` § Divergence detection (divergence-check trigger) and `memory/README.md` § Consolidation — weekly cadence (Monday consolidate-week rule).
+
+---
+
+## Amendment — 2026-05-20: Feedback model superseded (flat short-term, SOPs relocated)
+
+The feedback tier described in this ADR (medium-term sub-tier, `stable/` + `in-flight/` split, auto-load from both sub-folders) was superseded in full by a May 2026 restructure. The original design is preserved above as historical rationale; the live model is:
+
+### Feedback is now flat in `memory/short-term/feedback/`
+
+| ADR-004 design | Live model (as of 2026-05-20) |
+|---|---|
+| memory/medium-term/feedback/stable/ (deleted) | — |
+| memory/medium-term/feedback/in-flight/ (deleted) | — |
+| Medium-term feedback/ sub-tier, stable/in-flight split (audit-only) | **Flat** `memory/short-term/feedback/` — single flat folder, no split |
+| Feedback auto-loads from both stable/ + in-flight/ | Feedback auto-loads from `memory/short-term/feedback/` directly |
+| Feedback lifecycle: in-flight → stable → long-term promotion | Feedback lifecycle: codified here → graduated to hook/SOP/doc/long-term → deleted |
+
+**Why the change:** The stable/in-flight split added cognitive overhead without runtime value (both auto-loaded, weighted equally). Flattening into short-term aligns feedback with its true nature — a staging area for rules that have not yet earned a permanent home. It also removes the false equivalence between feedback rules and medium-term direction docs.
+
+### Three structural SOPs moved to `docs/agent-ops/`
+
+The three auto-loaded operating protocols that were building up in `memory/medium-term/` were relocated to `docs/agent-ops/` as first-class SOP files:
+
+| Old location (deleted) | New location |
+|---|---|
+| memory/medium-term/project-management/workspace-workflow.md | `docs/agent-ops/workspace-workflow.md` |
+| memory/medium-term/project-management/linear-sop.md | `docs/agent-ops/linear-sop.md` |
+| memory/medium-term/ (git-workflow + github-sop merged) | `docs/agent-ops/github-sop.md` |
+
+These files still auto-load every session (per `memory/MEMORY.md` session-start step 2). Relocation is path-change only; governance and policy are unchanged.
+
+### Conflict resolution order corrected
+
+ADR-004's conflict resolution weight order had medium-term below short-term/feedback. Corrected 2026-05-03: crystallized SOPs in mid-term win over raw behavioral corrections in short-term. Live order: `live conversation > long-term > mid-term (SOPs) > short-term/feedback > current week > last week`.
+
+### Symlink architecture note
+
+The `memory/` symlink from `~/.claude/projects/<path>/memory/` to the workspace root `memory/` folder (described in ADR-004 § Symlink architecture) remains valid for Claude Code. Codex and cloud agents read `memory/` directly from the checkout — no symlink needed.
+
+---
 
 ## Revisit triggers
 

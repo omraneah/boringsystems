@@ -151,7 +151,7 @@ If 2–3 items were surfaced, pick the single highest-leverage one and name it. 
 
 - **Never fabricate.** If the session context is thin, produce a short recap. Do not invent improvements to pad the output.
 - **Prefer proposals over actions.** Part 3 proposes. It does not execute. Ahmed picks.
-- **If Ahmed says "do everything" or picks items to implement**, branch out into the relevant repos (one feature branch per repo), commit, push, and surface PR-creation URLs per the `/pr` skill. Never open PRs directly — Ahmed does that (`memory/feedback_pr_creation.md`).
+- **If Ahmed says "do everything" or picks items to implement**, branch out into the relevant repos (one feature branch per repo), commit, push, and surface PR-creation URLs per the `/pr` skill. Never open PRs directly — Ahmed does that. See `docs/agent-ops/workspace-workflow.md` § PR handoff.
 - **Don't re-do `/github-cleanup`'s work.** This skill assumes per-PR cleanup already happened. If the working tree is dirty or a feature branch is still checked out, surface and ask.
 - **Daily entry is a file write, not a chat recap.** Part 2 writes to disk; Part 3 surfaces in chat. Don't conflate them — they serve different audiences (future-self continuity vs. operator's current review).
 

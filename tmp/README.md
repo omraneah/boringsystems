@@ -17,4 +17,4 @@ If something in `tmp/` matters, Ahmed says so explicitly. That's when it moves t
 
 Output greater than ~400 words of dense analysis the user will read in full → write to `tmp/<descriptive-name>.md`, reference the path in chat. Don't dump long blocks inline.
 
-Full rule: `memory/feedback_tmp_as_ram.md`.
+Full rule: `docs/agent-ops/workspace-workflow.md` § tmp/ workspace short-term RAM.

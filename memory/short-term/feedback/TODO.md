@@ -2,23 +2,22 @@
 
 Known limitations specific to `memory/short-term/feedback/`. Concerns spanning multiple tiers live in `memory/TODO.md`.
 
-Decided + executed work lives in `memory/decisions/DECISIONS.md` (search "2026-05-20"). This file holds only the **remaining backlog**.
+Decided + executed work lives in `memory/decisions/DECISIONS.md`. This file holds only the **remaining backlog**.
 
 ---
 
 ## Pending — Constitutional-shaped → long-term
 
-- `stable/feedback_laptop_agnostic.md` → long-term doctrine candidate (it's an invariant, not a protocol). Promote in next consolidation.
+- `feedback_planning_snapshot_before_flags.md` and `feedback_tool_comparison_discipline.md` — DEFER: boringsystems-scoped graduations. Need a submodule-scoped pass.
 
 ---
 
 ## File count target
 
-Target: 15-20 total files in `feedback/`. Current: 35 (29 stable + 6 in-flight) after the 2026-05-29 feedback-condensation pass.
-Previous: 42 (35 stable + 7 in-flight). Condensed 11 files → 4 in that pass.
+Target: 15-20 total files in `feedback/`. Current: 4 (flat folder, no stable/in-flight split) as of 2026-05-29.
 
-Trajectory tracked via `memory/decisions/DECISIONS.md` (search "2026-05-20" entries).
+Previous state before the May 2026 restructure: `stable/` + `in-flight/` split under `memory/medium-term/feedback/`. That split is gone. Feedback is now a flat staging area in `memory/short-term/feedback/`.
 
-Primary mechanism: crystallization (protocols → `docs/agent-ops/workspace-workflow.md` SOP sections, or project-specific docs).
+Primary graduation mechanism: crystallization (protocols → `docs/agent-ops/workspace-workflow.md` SOP sections, or project-specific docs).
 Secondary: condensation (related files → single principle).
 Tertiary: garbage collection (situation changed, tooling changed, operator changed).
