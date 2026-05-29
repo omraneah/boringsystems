@@ -109,15 +109,34 @@ Maintain a list of deprecated paths to grep for. Initial list:
 
 Add to the list whenever a folder is deprecated.
 
+#### Pattern 5 — Bare-path prose references to nonexistent workspace files
+
+Regex: backtick-quoted tokens matching `feedback_*.md`, or path-like strings containing `/` that resolve to nothing under the workspace root.
+
+Examples of what this catches:
+- `` `feedback_x.md` `` (deleted feedback file still cited by name)
+- `` `memory/medium-term/old-path.md` `` (file renamed but prose ref not updated)
+- `` `memory/project_advisory_board.md` `` (pre-consolidation file still cited)
+
+**Scope:** this pattern also applies to `.agents/skills/*` and `.agents/hooks/*` files — these were previously excluded from prose-ref scanning but are stable-in-practice and carry the densest prose references to other workspace files.
+
+Carve-outs:
+- `memory/decisions/DECISIONS.md` (historical record — references to old paths are provenance)
+- Illustrative paths written with angle-bracket placeholders (`<name>`), globs (`*`/`?`), or double-backticks — not single-backtick concrete paths
+- Episodic daily entries
+
+This is the check that would have caught all the refs Task D (BOR-55 stale-ref sweep) fixed.
+
 ### Steps
 
-1. **Build the sweep targets list** (use the patterns above).
-2. **Run the four pattern checks** in parallel via `grep -rn`. Capture output per pattern.
+1. **Build the sweep targets list** (use the patterns above). Scope includes `.agents/skills/*` and `.agents/hooks/*` for Pattern 5 (prose path refs).
+2. **Run the five pattern checks** in parallel via `grep -rn`. Capture output per pattern.
 3. **Filter exceptions:**
    - Linear refs in `DECISIONS.md` historical entries: skip.
    - `tmp-cleanup` skill self-referencing `tmp/`: skip.
+   - Pattern 5: illustrative paths using `<placeholders>`, globs, or double-backticks are skipped; concrete single-backtick paths that don't resolve are flagged.
 4. **Report findings:** if any leaks, surface them grouped by pattern + file. If clean, one-line confirmation.
-5. **Optional fix mode:** if invoked with `--fix` or "fix the leaks", attempt sed-replacements per pattern (Linear → remove, tmp → remove, deprecated `@-imports` → updated path). Stop and ask if a fix is ambiguous.
+5. **Optional fix mode:** if invoked with `--fix` or "fix the leaks", attempt sed-replacements per pattern (Linear → remove, tmp → remove, deprecated `@-imports` → updated path, Pattern 5 dead refs → updated path or removal). Stop and ask if a fix is ambiguous.
 
 ### Output shape
 
@@ -188,7 +207,7 @@ Extract every path-shaped substring → for each, check whether it resolves unde
 
 **Carve-outs:**
 - Skip URLs (`https://...`, `mailto:`, etc.).
-- Skip references inside fenced code blocks where they're clearly illustrative (e.g. an example of *what an old path used to look like*). Heuristic: if the path appears in a fenced block AND there's a sibling resolving path nearby, skip.
+- Skip illustrative paths written as `<placeholders>`, with globs, or in double-backticks. Concrete single-backtick paths ARE checked — use a placeholder or a real path in examples.
 - Skip `tmp/...` paths — those are render-buffer-by-design.
 
 ### Steps

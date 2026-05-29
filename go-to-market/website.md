@@ -61,7 +61,7 @@ Attention allocation reflects that: **LinkedIn first, site second.** When the tw
 
 ### Decisions — do not relitigate
 
-- Domain stays `boringsystems.app`. Functions as pre-funnel aesthetic filter. Counterweight to an otherwise warm stack. (Logged: `.claude/decisions/DECISIONS.md` 2026-05-01.)
+- Domain stays `boringsystems.app`. Functions as pre-funnel aesthetic filter. Counterweight to an otherwise warm stack. (Logged: `memory/decisions/DECISIONS.md` 2026-05-01.)
 - P2 is the conversion persona. P1 is peer-share — no revenue expected.
 - Voice-target-per-piece. Never write for both at once.
 - "How to work with me" doorway visible from the home page through scaffolding.

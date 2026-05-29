@@ -61,7 +61,7 @@ The approval gate (next step) is the catch-all for editorial that survived this 
 
 If Ahmed corrects the draft, re-draft with the corrections, show again, wait again. The gate fires every iteration, not just the first.
 
-**Why:** The brief IS the determining variable. Sub-agents respond honestly to what they're given. A wrong frame produces a confident-but-wrong unanimous diagnosis — corrupting the credibility of the entire instrument. Approval cost is low; misframe cost is high. See `memory/feedback_brief_approval_gate.md` for the precedent that codified this rule.
+**Why:** The brief IS the determining variable. Sub-agents respond honestly to what they're given. A wrong frame produces a confident-but-wrong unanimous diagnosis — corrupting the credibility of the entire instrument. Approval cost is low; misframe cost is high. See `docs/agent-ops/collaboration.md` § Advisor brief craft for the rule.
 
 ### 3. Invoke all six advisors in parallel
 
@@ -101,7 +101,7 @@ When Ahmed continues the conversation after the synthesis (going deeper into one
 
 ## Hard rules
 
-- **Never fire on first draft.** The approval gate (Step 2) is non-negotiable. The brief IS the determining variable; show it before sending, every time. See `memory/feedback_brief_approval_gate.md`.
+- **Never fire on first draft.** The approval gate (Step 2) is non-negotiable. The brief IS the determining variable; show it before sending, every time. See `docs/agent-ops/collaboration.md` § Advisor brief craft.
 - **Editorial-stripping at draft time.** Strip interpretive adjectives before showing the draft. The gate is the second line of defense, not the first.
 - **No advisor reads context files.** Each advisor's persona file already enforces this; the brief reinforces it. If an advisor's response references context they shouldn't have, flag it as a calibration drift to address.
 - **Same brief to all six.** No tailoring per advisor. The lens is what differs, not the prompt.

@@ -142,8 +142,8 @@ Full rule: `docs/agent-ops/workspace-workflow.md` § Connector-first MCP.
 Tiered file-based memory at `memory/` (workspace root, version-controlled, symlinked from `~/.claude/projects/...`). Three horizons:
 
 - `memory/long-term/` — identity profile, distilled identity-constitution content. Auto-loaded fully every session.
-- `memory/medium-term/` — current direction (`current-arc.md`), market doctrine, project arcs, advisory board, plus the `feedback/` sub-tier (active behavioural rules, split into `stable/` and `in-flight/` for audit purposes; both auto-loaded).
-- `memory/short-term/` — daily entries, weekly consolidation files. Current week + last week auto-loaded for continuity. Older weeks archived in `_archive/`.
+- `memory/medium-term/` — current direction (`current-arc.md`), market doctrine, project arcs, advisory board. No feedback sub-tier here (see short-term below).
+- `memory/short-term/` — daily entries, weekly consolidation files, and `feedback/` (active behavioural rules in a flat folder; auto-loaded every session). Current week + last week auto-loaded for continuity. Older weeks archived in `_archive/`.
 
 The auto-loaded surface is `memory/MEMORY.md` (machine entry, ~80 lines) — session-start protocol + tier descriptions + drift / consolidation pointers. Human governance lives in `memory/README.md`. Architecture rationale + alternatives + revisit triggers in `docs/architecture/adr-004-tiered-memory-architecture.md`.
 

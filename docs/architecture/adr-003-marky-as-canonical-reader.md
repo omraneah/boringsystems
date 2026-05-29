@@ -6,7 +6,7 @@
 
 ## Context
 
-The `tmp/` folder was codified on 2026-04-27 as workspace short-term RAM (`feedback_tmp_as_ram.md`, merged in PR #37). The rule: when Claude generates more than ~400 words of dense analysis the user will read in full, write it to `tmp/<name>.md` and reference the path. Folder tracked, contents gitignored, wiped at session boundaries.
+The `tmp/` folder was codified on 2026-04-27 as workspace short-term RAM (rule now lives in `docs/agent-ops/workspace-workflow.md` § tmp/ workspace short-term RAM). The rule: when Claude generates more than ~400 words of dense analysis the user will read in full, write it to `tmp/<name>.md` and reference the path. Folder tracked, contents gitignored, wiped at session boundaries.
 
 That rule fixed the *write* half of the problem. It did not address the *read* half. Once content lived in `tmp/`, Ahmed still had to:
 
@@ -46,14 +46,14 @@ Live-reload as Claude writes follow-ups
 |---|---|---|
 | Reader | Marky (Homebrew tap `GRVYDEV/tap`) | Native renderer, live-watch on `tmp/` |
 | Storage | `~/Workspace/tmp/` | Workspace short-term RAM (existing) |
-| Verb | `/render` skill (`.claude/personal-skills/render/SKILL.md`) | One-step: verbatim write + open |
-| Rule | `feedback_render_long_output.md` | Trigger phrases, voice-drift handling, fallback path |
+| Verb | `/render` skill (`.agents/skills/render/SKILL.md`) | One-step: verbatim write + open |
+| Rule | Graduated to `docs/agent-ops/collaboration.md` and `docs/agent-ops/workspace-workflow.md` | Trigger phrases, voice-drift handling, fallback path |
 
-**Trigger phrases that auto-fire `/render`:** "render this with Marky", "render outside the terminal", "go render this", "open this in Marky", "render the last answer", "render that". Voice-to-text drift on the proper noun ("Marquee", "Markey", "Marki") resolved inline per `feedback_voice_dictation_disambiguation.md`.
+**Trigger phrases that auto-fire `/render`:** "render this with Marky", "render outside the terminal", "go render this", "open this in Marky", "render the last answer", "render that". Voice-to-text drift on the proper noun ("Marquee", "Markey", "Marki") resolved inline per `docs/agent-ops/collaboration.md` § Voice-dictation disambiguation.
 
 **Default scope:** the last substantive assistant message. Ahmed can override ("render the linear table", "render the recap") to scope to earlier content in the conversation.
 
-**Output discipline:** one line, path only — `Rendered → tmp/<slug>.md`. No content recap. The link IS the recap, per `feedback_no_recap_after_link.md`.
+**Output discipline:** one line, path only — `Rendered → tmp/<slug>.md`. No content recap. The link IS the recap, per `docs/agent-ops/collaboration.md` § No recap after link.
 
 ## Why
 
@@ -61,7 +61,7 @@ Live-reload as Claude writes follow-ups
 - **Solved problem, off the shelf.** Marky was shipped specifically for this workflow in April 2026. Building it ourselves would have been ~100 lines of Next.js + websockets + react-markdown — and would have lacked Mermaid, KaTeX, fuzzy search, syntax highlighting. The build path was strictly inferior to adoption.
 - **Free, open, native, light.** ~15 MB Tauri binary. No subscription, no electron bloat, no App Store opacity. Matches every constraint Ahmed named (free, AI-frontier-built, Mac-native, lightweight).
 - **Verb normalisation.** Ahmed will say "render this" frequently. Without a skill, every invocation is re-derivation: pick a slug, write, open, confirm. With the skill, it's one trigger phrase. The skill is the difference between a rule that holds and a rule that erodes.
-- **ARM-native + brew tap = laptop-agnostic.** Workspace's top constraint is fresh-machine reproducibility (`feedback_laptop_agnostic.md`). The install path is `brew tap GRVYDEV/tap && brew install --cask GRVYDEV/tap/marky` — survives clone-and-setup. The tap is captured in this ADR for `setup.sh` to pick up if Ahmed wants the install automated. Caveat: the binary is currently unsigned (Apple developer review pending), requiring a one-time `xattr -cr /Applications/Marky.app` to clear the Gatekeeper quarantine.
+- **ARM-native + brew tap = laptop-agnostic.** Workspace's top constraint is fresh-machine reproducibility (see `AGENTS.md` § Top constraint and `docs/governance/knowledge-governance.md` § G10). The install path is `brew tap GRVYDEV/tap && brew install --cask GRVYDEV/tap/marky` — survives clone-and-setup. The tap is captured in this ADR for `setup.sh` to pick up if Ahmed wants the install automated. Caveat: the binary is currently unsigned (Apple developer review pending), requiring a one-time `xattr -cr /Applications/Marky.app` to clear the Gatekeeper quarantine.
 
 ## Consequences
 
@@ -88,9 +88,8 @@ Live-reload as Claude writes follow-ups
 
 ## References
 
-- Skill: `.claude/personal-skills/render/SKILL.md`
-- Memory rule: `.claude/projects/-Users-ahmedomrane-Workspace/memory/feedback_render_long_output.md`
+- Skill: `.agents/skills/render/SKILL.md`
 - Decision log: `memory/decisions/DECISIONS.md` (2026-04-28 entry)
-- Companion rule: `feedback_tmp_as_ram.md` (write half), `feedback_no_recap_after_link.md` (output discipline)
+- Companion rules (graduated): `docs/agent-ops/workspace-workflow.md` (tmp-as-RAM rule), `docs/agent-ops/collaboration.md` § No recap after link
 - Marky upstream: [github.com/GRVYDEV/marky](https://github.com/GRVYDEV/marky)
 - Install path: `brew tap GRVYDEV/tap && brew install --cask GRVYDEV/tap/marky && xattr -cr /Applications/Marky.app`

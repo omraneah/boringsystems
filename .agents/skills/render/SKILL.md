@@ -69,7 +69,7 @@ One line. Path only. Example:
 Rendered → tmp/linear-board-read.md
 ```
 
-No recap of what was rendered. The link IS the recap (workspace rule: feedback_no_recap_after_link).
+No recap of what was rendered. The link IS the recap. See `docs/agent-ops/collaboration.md` § No recap after link.
 
 ## Edge cases
 

@@ -80,8 +80,8 @@ The board can be invoked solo (one lens for one question) or in parallel ("conve
 
 - Triggered: 2026-04-25, after a content-vs-relational GTM session where operational agents converged on the existing doctrine.
 - Selected by: Ahmed, with personas refined by Claude.
-- Codified in: `memory/feedback_two_tier_agents.md`, `memory/project_advisory_board.md`, this ADR, and `memory/decisions/DECISIONS.md`.
-- Implementation lives in: `.claude/agents/advisor-1.md` through `advisor-6.md`, `.claude/agents/release-companion.md`, `.claude/personal-skills/convene-board/SKILL.md`.
+- Codified in: this ADR and `memory/decisions/DECISIONS.md` (2026-04-25 entry). Original feedback files (feedback_two_tier_agents.md, memory/project_advisory_board.md — both since deleted) have graduated; living reference is `memory/medium-term/projects/advisory-board.md`.
+- Implementation lives in: `.agents/personas/advisor-1.md` through `advisor-6.md`, `.agents/personas/release-companion.md` (canonical source); `.claude/agents/` and `.codex/agents/` hold generated adapter copies. Skill: `.agents/skills/convene-board/SKILL.md`.
 
 ## Revisit triggers
 
