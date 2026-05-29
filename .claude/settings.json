@@ -64,11 +64,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.agents/hooks/parallel-by-default-reminder.sh\""
-          },
-          {
-            "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.agents/hooks/brevity-reminder.sh\""
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.agents/hooks/reminders.sh\""
           }
         ]
       }
