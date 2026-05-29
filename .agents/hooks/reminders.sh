@@ -5,7 +5,7 @@
 # Both reminders land in hookSpecificOutput.additionalContext (Claude + Codex).
 # Always exit 0 — Codex treats non-zero as a hook FAILURE.
 # Tools: pure bash + jq + grep + sed. No Python.
-# See: docs/agent-ops/collaboration.md § Output discipline
+# See: docs/agent-ops/collaboration.md § Tone and output
 #      memory/medium-term/project-management/workspace-workflow.md § Parallel
 
 # --- Brevity reminder (every turn) ---

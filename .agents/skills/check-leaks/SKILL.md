@@ -231,7 +231,7 @@ Optional. For each stale reference:
 
 ### Rate-limit handling
 
-Linear MCP rate-limits unpredictably (per `docs/agent-ops/collaboration.md` § Retry discipline). When `list_issues` / `get_issue` / `list_comments` hits a rate limit:
+Linear MCP rate-limits unpredictably (per `docs/agent-ops/collaboration.md` § Retry silently on transient platform errors). When `list_issues` / `get_issue` / `list_comments` hits a rate limit:
 - First retry: same call.
 - Second retry: smaller batch (fewer cards per page, narrower filter).
 - Third route-around: process the cards already fetched; surface the unprocessed list as a follow-up.
