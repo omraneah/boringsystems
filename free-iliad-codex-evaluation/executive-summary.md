@@ -1,6 +1,6 @@
 # codeX — Executive Summary
 
-External expert read after a short hands-on window (~4h). Detail and method in `methodology-and-findings.md`.
+External expert read from using codeX inside my own working setup across three short sessions. Detail and method in `methodology-and-findings.md`.
 
 **What's good**
 - Interaction quality holds up against the frontier tools I use daily — on what I tested.
@@ -27,4 +27,8 @@ External expert read after a short hands-on window (~4h). Detail and method in `
 - Spend the first quarter on one team, one indexed-context skill, one routing default, and a metric — not a company-wide rollout.
 
 **Honest limit**
-- ~4 hours, no human-performance baseline — so this is an experienced read, not a quantified benchmark. The quantifiable version (agent vs senior-engineer on a known refactor) is the next-step I'd build, not something I claim here.
+- A short, time-boxed exploration with no human-performance baseline — so this is a qualitative, intuition-based read, not a quantified benchmark. The quantifiable version (agent vs senior engineer on a known refactor) is the next step I'd build, not something I claim here.
+
+---
+
+*Produced with AI, steered by me — nothing written by hand. This summary and the methodology document were done with Claude Code (where I hold this context most fully); the three use-case deliverables were done with codeX, in my own working flow.*
