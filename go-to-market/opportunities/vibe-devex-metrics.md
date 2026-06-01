@@ -21,7 +21,13 @@ A ≤6-engineer team shipping **>90% AI-generated code**, assessed across ~18 mo
 - **De-risked through churn.** One engineer left (Mehdi), two joined (Azedine, Elias); team size held. Critically, work **de-concentrated**: H1-2025 leaned on one dominant contributor (Yacine, 316 commits); H1-2026 load spread evenly across five. Key-person risk down.
 - **Feature delivery held flat while rework fell.** The truest feature signal — **PR-merges into `development`** — was **steady** H1-25 → H1-26 (backend ~13/week both halves; apps +8%). But raw **commits/week fell 20–41%** and **prod releases fell**. Same features shipped, with **fewer commits per feature and fewer, larger prod batches** — i.e. **less thrash, not less delivery.**
 
-**Net read:** H1-2025 was high-volume, high-rework, key-person-dependent early adoption. H1-2026 delivered the **same feature throughput** with near-zero rollback, less churn, and a distributed team. **AI adoption bought efficiency, quality, and resilience at constant feature velocity.**
+**Two-phase arc (the honest framing):**
+- **Phase 1 — speed (2024 → early 2025):** cycle collapsed 2 weeks → 1 week, ~2–3× throughput, no added headcount, no added PMs. Banked *last year* — the figure sold to investors.
+- **Phase 2 — quality at held speed (2025 → 2026):** bug load more than halved, rollbacks −60%, test coverage <20% → ~70%, mobile zero reverts in 17 months. *This year's* story.
+
+The Jan-2025+ git window mostly captures Phase 2 — which is exactly why feature-velocity reads *flat*: the speedup had already plateaued. Attribute cleanly: **speed = Phase 1, quality = Phase 2.** Merging them is the one way the story breaks under scrutiny.
+
+**Net read:** H1-2025 was high-volume, high-rework, key-person-dependent early adoption. H1-2026 delivered the **same feature throughput** with near-zero rollback, less churn, more tests, and a distributed team. **AI adoption bought efficiency, quality, and resilience at constant feature velocity.**
 
 > **⚠️ Frame velocity precisely.** Feature-merge rate was **sustained, not increased** — and raw commit/release *counts fell* (batching + reduced rework). So don't claim "we shipped more"; claim **"same feature output, far less rework and rollback."** The separate "2–3× velocity" figure is a **scope-normalized cycle-time** story (same sprint objectives in half the time) — not derivable from git counts. Lead on **feature-velocity-held + rework-down + rollback-down + risk-down.**
 
@@ -140,6 +146,19 @@ Cells = PR-merges to dev that month (per-week rate).
 | cloud-infra | 0.0 | 0.7 | new (infra extracted 2026) |
 
 **The decisive contrast:** feature-merge velocity was **held constant** across the two halves — while raw commits/week and prod-release counts both *fell*. The team produced the **same volume of merged features** with **fewer commits per feature** (less rework) and **fewer rollbacks** (better quality). Prod-release count dropping just means H1-2026 shipped in **fewer, larger, cleaner batches**. This is the efficiency dividend of the matured harness: constant output, less waste.
+
+---
+
+## 3c. Testing growth (quality investment)
+
+Test-*file* ratio from git (test files ÷ source files). Two master snapshots: 2025-06-27 vs 2026-05-29.
+
+| surface | test files (2025-06 → 2026-05) | test:source ratio |
+|---|---|---|
+| backend-api | 86 → 243 (**×2.8**) | 17% → 32% |
+| backoffice | 7 → 51 (**×7.3**) | 2% → 13% |
+
+**Caveat:** this is test-file ratio, not line coverage. The "<20% → ~70% coverage" figure is a **Sonar/jest dashboard number**, not git-derivable — cite it as your own metric. Git corroborates the **direction** hard: testing roughly tripled on the API and went from near-absent to a real suite on backoffice.
 
 ---
 
