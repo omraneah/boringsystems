@@ -34,8 +34,15 @@ The principle: **compare like-for-like against something I've already mastered, 
 
 ## Findings (running)
 
-- **Area 1 — collaboration:** interaction quality holds up against the frontier tools I use daily on what I tested; a credible everyday working partner; runs cleanly inside a sophisticated harness.
-- **Areas 2–3:** in progress / time-permitting.
+### Assessment 1 — codeX on the harness
+
+I pointed codeX at a deliberately complex workspace — modules, skills, agents/personas, layered harness wiring, MCP connectors, permissions — and asked it to make sense of it. It showed a genuinely good understanding and can clearly work within it: thorough guidance, sensible use of web search to fill gaps, and concrete suggestions for making the harness usable even without its native triggers/hooks. Solid work — something I'd personally use and build on.
+
+The caveat: it drifted into noisy territory — estimating how long each improvement would take, chasing a few rabbit holes — so the output needs double-checking. But as a first read, and as a likely-solid application once the harness is properly prepared, it's genuinely strong. (codeX's own write-up: `../harness-assessment.md`.)
+
+### Other areas
+
+- **Article authoring under the harness, and a real engineering task:** in progress / time-permitting.
 - **Framework-level read:** the tool cleared the bar I could test; the leverage is in the operating system around it — context, governance, routing — not the model.
 
 ## Learnings
