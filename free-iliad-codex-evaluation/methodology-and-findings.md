@@ -37,11 +37,11 @@ This is a **qualitative, intuition-based read — not a quantified benchmark.** 
 
 ### How I worked on it (three sessions)
 
-1. **~1 hour** — set up the config and explored the CLI to get a feel for it, comparing it intuitively against what I'm used to with Claude Code.
-2. **~2–3 hours** — went deeper: worked as if the CLI were my primary tool instead of Claude Code, built a real understanding, and prepared the methodology — how I'd test it and run my own workflows (across Claude Code and codeX) to produce something useful to share.
-3. **~2–3 hours** — finished the remaining use cases and wrapped up.
+1. **Session 1 (~1 hour)** — set up the config and explored the CLI to get a feel for it, comparing it intuitively against Claude Code.
+2. **Session 2 (~3–4 hours — this write-up)** — decided the methodology and executed the first pieces: the harness/context use case, plus the assessment write-up and structure.
+3. **Session 3 (~3–4 hours, expected)** — finish the remaining use cases (the article and the code) and wrap up.
 
-I was mostly assessing, so I did not push every use case to its final outcome.
+I was mostly assessing, so I haven't pushed every use case to its final outcome yet.
 
 ## How to read the findings
 
@@ -74,4 +74,6 @@ In progress / time-permitting. *(codeX's output: `codex-assessment/code-assessme
 
 ## How this was produced
 
-The executive summary and this document were produced with **Claude Code** — my choice, because that's where I hold this context most fully. The three use-case deliverables were produced with **codeX**, using my own current flow. **Nothing here was written by hand** — all of it is AI-produced, steered by me.
+The executive summary and this document were produced with **Claude Code** — my choice, because that's where I hold this context most fully. The three use-case deliverables were produced with **codeX**, using my own current flow.
+
+I drove all of it **by voice — dictated through Wispr Flow, with light corrections — not typed.** So nothing here was hand-written at either end: the inputs were spoken, the production was AI. That's deliberate; it's the workflow I'm assessing.

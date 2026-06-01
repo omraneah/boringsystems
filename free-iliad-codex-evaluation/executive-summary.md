@@ -48,4 +48,4 @@ A **barbell strategy** for agentic coding, with one owned layer underneath both 
 
 ---
 
-*Produced with AI, steered by me — nothing written by hand. This summary and the methodology document were done with Claude Code (where I hold this context most fully); the three use-case deliverables were done with codeX, in my own working flow.*
+*Produced with AI and steered by me by voice — dictated via Wispr Flow, not typed. This summary and the methodology document were done with Claude Code (where I hold this context most fully); the three use-case deliverables were done with codeX, in my own working flow.*
