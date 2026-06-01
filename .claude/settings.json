@@ -27,6 +27,7 @@
       "mcp__claude_ai_Linear__save_issue"
     ]
   },
+  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
@@ -96,7 +97,6 @@
       }
     ]
   },
-  "model": "opus",
   "enabledPlugins": {},
   "effortLevel": "xhigh",
   "voice": {
@@ -104,6 +104,7 @@
     "mode": "hold"
   },
   "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
