@@ -55,7 +55,7 @@ codeX picked up a deliberately complex workspace — modules, skills, agents, ha
 
 ### 2. codeX on an article
 
-In progress. *(codeX's output: `codex-assessment/writing-assessment.md`.)*
+In progress. Run as a one-shot, head-to-head test — the same agent-agnostic prompt given to a Claude Code agent and to codeX, each in its own worktree, both deployed as separate Vercel previews. *(Shared prompt: `article-head-to-head-prompt.md` · codeX's output: `codex-assessment/writing-assessment.md`.)*
 
 ### 3. codeX on code
 
