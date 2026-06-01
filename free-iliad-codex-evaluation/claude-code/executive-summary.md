@@ -1,77 +1,52 @@
-# Executive Summary — Evaluating the Internal Coding Agent
+# codeX — Evaluation & Recommendations
 
-**Author:** Ahmed Omrane · **Date:** 2026-06-01 · **Scope:** the CLI agent only
-
-> **The tool cleared the bar I could test; the binding constraint is the operating system around it, not the model.** In a focused expert session the CLI's interaction quality was competitive with the frontier tools. That is *not* a full verdict — sustained code-generation under load is untested, and it's the gating unknown before any rollout call. But nothing I saw suggests the model is why adoption stalled. The likelier constraint is governance, routing, and ownership — which is an org-design problem, and a solvable one.
+**External expert-user assessment** · Ahmed Omrane · 2026-06-01 · prepared for the Free / Iliad team
 
 ---
 
-## What I tested — and what I didn't
+## Context
 
-**Tested:** the internal **CLI agent** (built on the open-source `opencode` harness, self-hosted model), driven as an expert user for a focused session, compared against my daily tools — Claude Code (primary), Codex (periodic), Cursor (current team tool). I exercised **interaction quality**: reasoning, exchange cadence, instruction-following.
+Free gave me a codeX access token and a setup guide to connect the tool to an IDE or CLI. codeX is Iliad's internal LLM coding agent, built in-house by the DataX / AI-tooling team and served on Scaleway. The brief, as framed: *the product is meant to be improved, and an outside view — as both a user and a technical expert — is what's useful; the assessment is my analysis and recommendations*, debriefed with the LLM team or with engineering leadership.
 
-**Not tested (named blockers, not footnotes):**
-- **Code-generation under load** — multi-file refactors, long-context coherence, agentic tool-loop reliability. This is the single most important input to an adoption decision and it is still open.
-- **Average-engineer usage** — I steer models well; the relevant question is how it performs for a median engineer on a gnarly module.
-- The self-hosted **Mistral** variant and the **IDE plugin** — and the plugin may be the surface most engineers would actually use, so the CLI may not be the adoption-relevant artifact.
+So this is an evaluation-and-direction exercise, not a coding exam. I treated it that way.
 
-A short expert session is enough to say "the interaction quality is real." It is not enough to say "the tool is good." I'm holding the verdict to the evidence.
+## Scope — what I tested, and what I deliberately did not
 
----
+- **Tested:** the **CLI** surface, as an expert user, over a focused hands-on window.
+- **Not tested:** the IDE plugin and the alternate (Mistral) model. The plugin in particular may be the surface most engineers actually use day to day.
 
-## The thesis — where this should go
+This is a first, honest read calibrated to what I exercised — not an ultimate verdict on the platform. Where I have signal I'll say so plainly; where I don't, I'll say that too.
 
-### 1. Run both — but as a costed cost-structure decision, not a slogan.
-- A **self-hosted agent** trades near-zero *marginal* cost for a real *fixed* cost — GPU/inference infra, ops, and a harness owner. "No per-token cost" is not "free"; it's capex+opex traded for token spend.
-- **Frontier provider tools** (Claude Code, Codex) are pure marginal cost — pay per use for the hard, judgment-dense work.
-- The internal tool is the **substrate** (high-volume executor); frontier is **burst capacity** (the reasoning when it matters). **Below some monthly-usage threshold, dual-tier loses to single-tier frontier.** That break-even is the number to compute before committing — I haven't, and neither should anyone, without real usage data.
+## Method — comparative, with the harness held constant
 
-### 2. The hard part is routing — and it's a tool problem, not a doc.
-Work splits on two independent axes — **task volume** and **judgment-density / blast-radius** (irreversibility, cross-cutting impact, novelty). A five-line auth or schema change can be the hardest decision of the week. So there is no single boundary to "route on," and the boundary is often invisible mid-task. A rule in a governance doc can't fix a real-time perception failure — docs are read once and ignored.
+The evaluation is **comparative, not absolute**. I ran the same work through **codeX** and through **Claude Code** (my daily reference tool), with **both loaded into my own engineering harness** — an indexed architecture corpus, shared rules, and reusable skills. Holding the harness constant isolates the variable that matters: any difference reflects the *engine*, not the scaffolding around it.
 
-**The fix is a tool-level affordance:** default to the frontier model on ambiguity / high blast-radius / low confidence, and let the cheap tier own the genuinely routine. Mis-routing — cheap tool silently failing on the hard work, engineer concluding "AI doesn't work" — is a concrete, observable adoption-killer and a likely contributor to stalled adoption.
+Three evaluation areas, in increasing demand on the tool:
 
-### 3. The durable value lives in the harness, not the model.
-Models churn; the **operating system around the tool** compounds: project context indexed for every agent (e.g. an architecture-decision corpus plus a skill that runs an architectural review against it), shared rules, common skills and commands. It's portable across models and zero-marginal-cost to reuse.
+1. **General agentic collaboration** — codeX as an everyday operator: reasoning, discussion, drafting files and code. *Is it a credible thinking-and-working partner?*
+2. **Developer workflow under a governed harness** — authoring a real article inside a live Astro project, governed by my rules and skills. *Does it hold up inside a sophisticated, governed workflow?*
+3. **A real engineering task — head-to-head** *(time-permitting)* — a concrete code change executed by codeX and by Claude Code on the same harness. *Code generation under load.* This is the most expensive area to run well; I may cut it rather than do it shallowly, and I'll flag that openly.
 
-**Honest constraint:** this layer is *harder* to make binding on the internal tool. The `opencode` harness has the day-to-day tools (skills, MCP, git-hooks) but lacks pre-action enforcement hooks (session-start, pre-tool) — so governance on it is **advisory, not enforced**, unless that enforcement layer is built. The governance story is therefore currently *stronger on the frontier side*. That gap is a scoped engineering item, not a wish.
-
-### 4. Adoption is a sequenced bet with a kill-criterion — not a switch, not an excuse.
-I won't diagnose why adoption stalled without usage telemetry. I'll state it as a falsifiable bet instead:
-
-> If we add routing-on-ambiguity + one indexed-context skill to **one willing team** and instrument it, and weekly-active usage still flatlines in **4–6 weeks**, then the constraint is the tool/model and I'm wrong. If usage compounds, it was org-design.
-
-Won at the **team** level first (the lead gates the team), then the individual. Pick the pilot lead deliberately — willing and resourced, because exploring a tool is a tax on engineer attention, not a free trial.
+**Authorship is part of the method.** This executive summary was written by **Claude Code**. Each per-area assessment was written by **codeX itself**, on the same task. Same work, two engines, in their own words — so the comparison is something you can read directly, not just take on my word.
 
 ---
 
-## Recommendation — make the first "yes" cheap and measurable
+## Headline
 
-**Don't buy a tool; fund the operating system around one.** Minimal first increment:
-- **~0.5 FTE owner, one quarter, one willing team.**
-- Build **one** indexed-context skill (architectural review against an ADR corpus) + a **routing default** (escalate-to-frontier on ambiguity).
-- **Success metric, set up front:** that team's weekly-active usage + a measured task-split (rework rate, review-comment density, % sessions completed).
-- **Go/no-go gate** at quarter end before any wider rollout. A failed gate stops the program; it doesn't loop forever.
+On the surface I tested, **codeX is a credible tool — the interaction quality holds up against the frontier tools I use daily.** The open question that gates any rollout decision is sustained code generation under load, which is exactly what area 3 is built to probe. But nothing I've seen so far points to the *tool* as the reason adoption has been hard. The harder, more valuable problem is the operating system around it — context, governance, and routing — which is an organizational build, not a model choice.
 
-**If that investment isn't on the table:** keep the internal tool available for exploration, let individuals pair it with a frontier tool of their choice, and expect no compounding — without the operating system, the value stays on the table. Leadership owns that trade-off.
+## What this points to (the recommendation)
 
-**For a telecom specifically:** the strongest standalone case for the self-hosted tool isn't cost — it's **data residency** (sensitive code never leaves the perimeter). Where that constraint binds, the internal tool wins outright regardless of the routing economics.
+1. **Don't pick a model — build the layer that compounds.** The durable advantage is not which model is hosted (models churn); it's the harness: indexed project context, shared rules, a small set of high-leverage skills (e.g. an architectural-review skill that runs against your own decision records). That layer is portable across models and is where adoption actually sticks.
 
----
+2. **Plan for two tiers, deliberately.** A self-hosted tool like codeX is the right **substrate** for high-volume work at near-zero marginal cost; a frontier tool (Claude Code, Codex) is the right **burst capacity** for the judgment-dense work that carries most of the value. The catch is **routing**: the boundary between "routine" and "judgment-dense" is invisible mid-task, so it can't live in a document — it has to be a tool-level default (escalate to the stronger model on ambiguity or high blast-radius). For a telecom, data residency is a second, independent reason the self-hosted tier earns its place.
 
-## What I'd challenge in my own read (open questions)
+3. **Prove it on one team, with a metric.** Adoption is won team-by-team — the lead gates the team. The cheapest honest next step: one willing team, one quarter, one indexed-context skill plus a routing default, instrumented (weekly-active usage, rework rate). A go/no-go gate at the end. If usage compounds, it was the operating system; if it flatlines, the constraint is the tool — and that's a test worth running rather than a debate worth having.
 
-- The volume/value split is illustrative, not measured — needs validation against tagged real tasks.
-- "Run both" adds cost and a switching tax. Worth it only above the break-even and only if the harness can span both tools (escalation = model-swap, not tool-swap). That's testable; I haven't tested it.
-- I measured interaction quality, not code-gen under load (see `code-assessment.md`) — that probe could move the verdict.
-- Hosting cost/throughput, current adoption numbers, and whether shared rules/context exist today are unknown to me and would sharpen everything.
+## Limits of this read
 
-## My personal verdict
-
-For my own work I'd run it as the **high-volume executor under a frontier reasoner — not standalone.** That's the honest read, no hedge.
-
----
+A focused CLI session is enough to judge interaction quality; it is not enough to judge production code generation, average-engineer experience, or the IDE surface. Treat the recommendation as a direction the evidence points to, to be confirmed by the head-to-head in area 3 — not a closed verdict.
 
 ## Method note
 
-Produced **with AI agents** — Claude Code and the internal tool itself — which is the point: a working demonstration of the engineer-steers-the-agent workflow. The thesis, sequencing, and judgment are mine; a second pass with Claude was used to *attack* the argument from a principal-engineer, market, and skeptical-leader lens before shipping — not just to draft it.
+This report was produced with AI — Claude Code for this summary, codeX for the assessments it authored — which is the point: it is a working demonstration of the engineer-steers-the-agent workflow the role is about. The judgment, the experimental design, and the thesis are mine; the agents compressed the production.
