@@ -19,4 +19,6 @@ An outside expert-user read on codeX (Iliad's internal LLM coding agent — CLI,
 
 ## The environment it was tested against
 
-Tiered memory · a custom harness (rules, skills, enforcement) · an agent-agnostic architecture with separate Claude Code and Codex configs · a live Astro website · real project code · starter-pack architectural documents (ADRs).
+Tiered memory · a custom harness (rules, skills, enforcement) · an agent-agnostic architecture with separate Claude Code and Codex configs · a live Astro website ([boringsystems.app](https://boringsystems.app)) · real project code · starter-pack architectural documents ([cross-stack-architecture-starter-pack](https://github.com/omraneah/cross-stack-architecture-starter-pack)).
+
+The website and the starter pack are public; the rest of the environment is private.

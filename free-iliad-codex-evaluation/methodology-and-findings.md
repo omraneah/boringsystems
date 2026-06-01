@@ -13,9 +13,11 @@ I exercised it against my own working environment. You receive these files, not 
 - **Tiered memory** — long / medium / short horizons, with weekly consolidation.
 - **A custom harness** — codified rules, skills, and enforcement around the agents.
 - **An agent-agnostic architecture** — one setup that works across agents, with separate configs for Claude Code and Codex.
-- **A live website** — my own Astro blog.
-- **Real project code**, and my **starter-pack architectural documents** (ADRs).
+- **A live website** — my own Astro blog, [boringsystems.app](https://boringsystems.app) *(public)*.
+- **Real project code**, and my **starter-pack architectural documents** — [cross-stack-architecture-starter-pack](https://github.com/omraneah/cross-stack-architecture-starter-pack) *(public)*.
 - Plus go-to-market material and the other day-to-day work I keep here.
+
+The website and the starter pack are public; everything else in the environment is private.
 
 ## Problem
 
