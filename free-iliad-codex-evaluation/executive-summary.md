@@ -13,13 +13,15 @@ External expert read from using codeX inside my own working setup across three s
 - Article authoring under the harness, and harder limits.
 
 **What's shaky / watch**
+- Model behavior — the gap that matters most: vs a frontier model (Opus 4.8), a higher tendency to invent detail (fake precision like a "10–18 hour" estimate it never built against; an invented "Mistral" hosting claim in a file that elsewhere names the model Qwen), to cut corners (producing the *shape* of a thorough assessment before doing the work that makes it true), and to over-assert points never discussed (marking a tool's hooks "✅ Native" untested). Compounds into drift over long, judgment-dense sessions. It self-corrected when explicitly asked to critique its own prior output — but does not catch it unprompted.
 - Routing: the cheap-vs-strong-model boundary is invisible mid-task; mis-routing is a real adoption-killer.
 - Governance on the open-source harness is advisory, not enforced (no native pre-action hooks).
 - Self-hosted trails the frontier on hard reasoning; "no per-token cost" is not "free."
 
 **What I recommend**
 - Build the harness/governance layer — indexed context, shared rules, a few high-leverage skills. It's the compounding, model-portable asset; the model choice churns.
-- Plan two tiers: codeX as substrate for volume, a frontier tool as burst capacity for judgment-dense work, with routing as a tool-level default.
+- Plan two tiers: codeX as substrate for volume, a frontier tool as burst capacity for judgment-dense work, with routing as a tool-level default. The model-behavior gap above is the reason the tiering is non-optional, not a nicety.
+- Run codeX with tighter verification loops than a frontier tool: earlier "prove it" gates, smaller scope per session, test-result-before-synthesis. This is a governance default, not operator babysitting.
 - Prove it on one willing team for a quarter — instrumented, with a go/no-go gate.
 
 ## Strategic read — how I'd play this (if I joined)
