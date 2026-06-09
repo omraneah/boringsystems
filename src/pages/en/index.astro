@@ -43,6 +43,7 @@ const laneLabels: Record<'writing' | 'work' | 'building', string> = {
     <div class="hero-content">
       <h1 class="hero-heading">Systems that scale.<br />Judgment that holds.</h1>
       <p class="hero-sub">Engineering leadership under constraint. Case files and frameworks from the inside.</p>
+      <p class="hero-thesis"><a href="/en/thesis/">Why "boring" →</a></p>
     </div>
     <div class="hero-visual">
       <img src="/flywheel-logo.svg" alt="" aria-hidden="true" class="hero-logo" />
@@ -109,6 +110,22 @@ const laneLabels: Record<'writing' | 'work' | 'building', string> = {
     color: var(--text-muted);
     max-width: 480px;
     line-height: 1.7;
+  }
+
+  .hero-thesis {
+    margin-top: var(--space-sm);
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+  }
+
+  .hero-thesis a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .hero-thesis a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .hero-visual {

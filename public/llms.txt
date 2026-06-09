@@ -19,8 +19,16 @@ Ahmed Omrane. France-based. 15+ years in engineering leadership. Past: CTO at En
 LinkedIn: https://www.linkedin.com/in/omrane-ahmed/
 Medium: https://medium.com/@ahmedomrane
 
+## The thesis
+
+One claim every piece on the site is an instance of: leverage compounds when rules are explicit and enforcement is structural; it decays when rules are implicit and enforcement is one person's attention. Stated at https://boringsystems.app/en/thesis
+
 ## Key pieces (recommended entry points for LLMs)
 
+- [Engineering AI Adoption on a Live Platform](https://boringsystems.app/en/work/engineering-ai-adoption-on-a-live-platform): Case file — zero to 90% AI-generated code in 14 months on a live platform, with quality guardrails, differentiated mentoring, and governance timed to the adoption curve.
+- [Untangling Auth Layer Boundaries in a Running System](https://boringsystems.app/en/work/untangling-auth-layer-boundaries-in-a-running-system): Case file — decomposing auth into distinct layers on a running system, separating provider entanglement from domain logic, building enterprise federation on clean foundations.
+- [The Agent Harness That Runs 80% of My Work](https://boringsystems.app/en/building/the-harness-i-actually-run): The concrete, reproducible instantiation of the orchestration doctrine — file tree, skills, personas, hooks, tiered memory, all in version control.
+- [Why AI Agents Need Disposable Databases](https://boringsystems.app/en/writing/why-ai-agents-need-disposable-databases): Storage/compute separation reaching transactional databases — why agents need ephemeral, scale-to-zero databases, and the economics behind it.
 - [Agentic AI Orchestration — 7 Operating Principles](https://boringsystems.app/en/writing/orchestration-principles-that-outlive-the-model): Seven operating principles for running multi-agent systems that don't collapse under load or ambiguity. The canonical reference for Ahmed's orchestration framework.
 - [The Harness Behind the Agent](https://boringsystems.app/en/writing/harness-behind-the-agent): How to build an AI orchestration harness that preserves operator judgment while compressing execution cycles.
 - [Engineering Practice Boundaries — One Bar for Engineers and AI](https://boringsystems.app/en/writing/engineering-principles-that-outlive-the-stack): Seven cross-stack engineering dimensions that apply equally to human engineers and AI coding agents.
