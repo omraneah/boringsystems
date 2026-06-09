@@ -187,5 +187,3 @@ The substrate now compounds. The next model upgrade adds throughput without dist
 The transition described here did not break the system, did not produce backlash, and did not depend on any single tool surviving. The substrate it produced — codified rules, multi-agent governance, a mentoring path for resisters, clear KPIs visible across the team — is portable across stacks, across teams, and across the next wave of models. The cross-cutting principles for change of this shape — when to act, how to anchor, what to protect — are crystallized separately in *[Change Injection: Shaping Systems Without Collapse](/en/archive/s2-p2-change-injection)*.
 
 The playbook this case file demonstrates in practice is in *[Change Management for Operators: A Battle-Tested Playbook from Three Runs](/en/writing/the-ai-adoption-playbook-for-engineering-teams)*. The two are paired: this one is the proof, that one is the bar.
-
-How the result above was measured — the metrics that resisted gaming, and the ones I threw out — is in *[The AI-Adoption Metrics That Survived Contact](/en/writing/the-ai-adoption-metrics-that-survived-contact)*, the measurement companion to this case file.

@@ -128,5 +128,3 @@ Les frameworks construits par les consultants décrivent la forme depuis l'exté
 La mécanique — quoi faire quand le senior team member est à deux mois de mentoring et ne tient toujours pas la barre ; quoi faire quand le saboteur escalade ; quand ajouter la gouvernance et quand attendre ; quand parler et quand laisser le travail parler — vit à l'intérieur du run.
 
 C'est un playbook issu de trois runs, trois vagues et trois configurations de sponsor. Il a tenu sur chacune. Le case file compagnon — *[Engineering AI Adoption on a Live Platform](/fr/work/engineering-ai-adoption-on-a-live-platform)* — le montre de bout en bout sur une surface.
-
-Comment le run d'adoption IA a été mesuré — les métriques qui ont survécu au contact, et celles que j'ai rejetées comme truquables — c'est dans *[Les métriques d'adoption IA qui ont survécu au contact](/fr/writing/the-ai-adoption-metrics-that-survived-contact)*.
