@@ -39,6 +39,7 @@ const laneLabelsFr: Record<'writing' | 'work' | 'building', string> = {
     <div class="hero-content">
       <h1 class="hero-heading">Des systèmes qui scalent.<br />Un jugement qui tient.</h1>
       <p class="hero-sub">Le leadership technique sous contrainte. Études de cas et cadres de l'intérieur.</p>
+      <p class="hero-thesis"><a href="/fr/thesis/">Pourquoi « boring » →</a></p>
     </div>
     <div class="hero-visual">
       <img src="/flywheel-logo.svg" alt="" aria-hidden="true" class="hero-logo" />
@@ -105,6 +106,22 @@ const laneLabelsFr: Record<'writing' | 'work' | 'building', string> = {
     color: var(--text-muted);
     max-width: 480px;
     line-height: 1.7;
+  }
+
+  .hero-thesis {
+    margin-top: var(--space-sm);
+    font-family: var(--font-ui);
+    font-size: var(--size-sm);
+  }
+
+  .hero-thesis a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .hero-thesis a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .hero-visual {

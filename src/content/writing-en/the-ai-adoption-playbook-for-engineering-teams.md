@@ -128,3 +128,5 @@ Frameworks built by consultants describe the shape of change from outside the wo
 The mechanic — what to do when the senior team member is two months into mentoring and the bar still is not holding; what to do when the saboteur escalates; when to add governance and when to wait; when to talk and when to let the work speak — lives inside the running.
 
 This is one playbook from three runs, three waves, and three sponsor configurations. It held in each. The companion case file — *[Engineering AI Adoption on a Live Platform](/en/work/engineering-ai-adoption-on-a-live-platform)* — shows it end-to-end on one surface.
+
+How the AI-adoption run was measured — the metrics that survived contact, and the gameable ones I rejected — is in *[The AI-Adoption Metrics That Survived Contact](/en/writing/the-ai-adoption-metrics-that-survived-contact)*.
