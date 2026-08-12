@@ -1,0 +1,204 @@
+---
+title: "Le jour où mon principe de memory a rencontré ma memory"
+description: "Visite guidée d'un restructure de tiered memory — du scratchpad non géré, en passant par le dossier vaguement organisé, jusqu'à un système à trois tiers avec consolidation hebdomadaire et drift detection. La pièce dogfood un principe que j'avais déjà publié."
+date: 2026-04-28
+highlight: true
+featured: true
+order: 1
+---
+
+import LeadMagnet from '@/components/LeadMagnet.astro';
+
+## Contexte
+
+J'ai publié [Agentic AI Orchestration — 7 principes opérationnels](/fr/writing/orchestration-principles-that-outlive-the-model) la semaine d'avant. Le principe #3 dit *la memory est tiered — trois horizons, trois jeux de règles*. Short-lived, mid-lived, long-lived. Chacun avec sa propre discipline d'écriture, son propre modèle de décroissance, son propre pattern d'accès. Je l'ai écrit avec assurance.
+
+Puis j'ai regardé mon propre dossier memory et j'ai découvert que je violais le principe depuis des mois.
+
+Voici la pièce qui a corrigé ça. Un building case file : ce que la memory non gérée coûte vraiment, ce que le terrain intermédiaire vous donne, et à quoi ressemble un système correctement tiered une fois que vous prenez la peine de le construire. Avec l'arborescence, le mécanisme de closed loop, et les morceaux que ça fait mal d'admettre.
+
+Si vous avez un dossier de notes `feedback_*.md`, un seul gros `MEMORY.md`, ou un scratchpad que vous ne relisez jamais — c'est pour vous.
+
+---
+
+## État 0 — Non géré
+
+La plupart des opérateurs partent d'ici. J'y étais depuis des mois. La forme :
+
+- Un dossier plat de petits fichiers. Une quarantaine dans mon cas. Chacun une correction, une préférence, un état projet, un fait de profil, un pointeur de référence.
+- Un fichier d'index auto-chargé en haut — `MEMORY.md` — que l'agent lit au session start et qu'il suit jusqu'au fichier détail pertinent quand un sujet remonte.
+- Peut-être un autre dossier quelque part avec du contexte stratégique : docs d'identité, market lens, matériel de positioning. Lu on demand, pas auto-chargé.
+
+Ça marche. Un temps. Le compounding commence à échouer quand le dossier dépasse la trentaine de fichiers. Symptômes, dans l'ordre où ils sont apparus chez moi :
+
+- **Règles constitutionnelles et état projet mélangés.** *Ne jamais push sur main* vivait dans le même dossier que *le lead-magnet asset lance dans deux semaines*. Le premier ne change jamais. Le second change chaque semaine. Les lire à la même priorité fait que l'agent traite les notes projet fluides avec la même autorité qu'une règle dure, et traite une règle dure avec la même fragilité qu'une note projet.
+- **Identity drift, caché.** Un `user_profile.md` écrit il y a six mois décrivait une personne qui n'existait plus. J'avais bougé — autres goals, autre positioning, autre mode opératoire. L'agent continuait d'ancrer ses décisions sur le profil périmé. Je poussais en retour ; l'agent déférait à la conversation live ; le fichier restait inchangé pour la session suivante, où le cycle recommençait.
+- **Contexte périmé, utilisé avec assurance.** Un watch-memo écrit en février disait « évaluer engagement-shape X mi-juin ». L'agent le surfaçait en novembre comme s'il était live. La note avait décrue ; le système ne le savait pas.
+- **Aucune cadence de consolidation.** Aucun moment programmé où je relisais ce que j'avais écrit, jugeais ce qui était encore vrai, et élaguais. Donc le dossier accrétait. Chaque session ajoutait ; rien ne sortait.
+- **Aucun moyen de demander *où as-tu pris ça ?*** Quand l'agent faisait une affirmation confiante qui ne sonnait pas comme moi, je n'avais aucun outil pour rétro-tracer quel fichier (ou quel chat de quelle session) en était la source. Je devais chercher à la main, fichier par fichier.
+
+Le coût cumulé, c'est le pire mode d'échec de l'opérateur : le système *semble* chargé de contexte, l'agent *répond* avec assurance, et les réponses dérivent progressivement loin de la position actuelle réelle de l'opérateur. Le temps qu'on s'en aperçoive, le drift a des mois de profondeur.
+
+---
+
+## État 1 — Vaguement géré
+
+La plupart des opérateurs qui détectent le problème atterrissent ici. La forme :
+
+- Le même dossier plat, mais avec une convention de nommage. `feedback_*.md` pour les règles de collaboration. `project_*.md` pour l'état projet. `user_*.md` pour les faits d'identité. `reference_*.md` pour les pointeurs.
+- Un index qui groupe par préfixe. L'agent charge l'index, trouve la famille pertinente, lit le fichier.
+- Peut-être — si vous avez été discipliné — un dossier séparé pour le matériel stratégique que vous traitez comme load-bearing, pas surchargé par le chat.
+
+C'est mieux. C'est insuffisant.
+
+La convention de nommage, c'est de la cosmétique structurelle posée sur un seul tier. L'agent traite toujours chaque fichier comme autoritaire-au-chargement. Il n'y a pas de modèle de décroissance — un `project_*.md` écrit en mars est lu en octobre avec le même poids qu'une règle `feedback_*.md` écrite la semaine dernière. Il n'y a pas de cadence de consolidation — le dossier continue d'accréter. Il n'y a pas de drift detection — quand la conversation live contredit un fichier, le fichier gagne en général par inertie.
+
+Le principe qui fait que ça échoue, c'est celui que j'avais déjà écrit : **promouvoir de l'éphémère vers le long terme corrompt la doctrine ; démouvoir des faits porteurs vers le chat les perd.** Un système à un seul tier ne peut pas honorer ça — chaque fichier est dans le même tier par définition. Le nommage, c'est de la taxonomie, pas de l'architecture.
+
+C'est l'état depuis lequel j'avais publié l'article sur les principes d'orchestration. C'est le gap que la pièce que vous lisez ferme.
+
+---
+
+## État 2 — Bien géré : trois tiers, deux skills, un loop hebdomadaire
+
+L'état final a quatre pièces mobiles. Les tiers sont la structure. Les drift skills sont le système immunitaire. La consolidation hebdomadaire est le closed loop. L'index `MEMORY.md` est la load policy qui lie tout ça.
+
+### L'arborescence
+
+```
+memory/
+├── README.md                          ← governance : tiers, conflits, decay, GC
+├── MEMORY.md                          ← auto-load léger + protocole de session-start
+├── long-term/                         ← constitutionnel, identité, principes codifiés
+│   ├── README.md
+│   ├── principles/
+│   ├── identity/
+│   └── workspace-rules/
+├── medium-term/                       ← en évolution : drafts de doctrine, memos projet, GTM
+│   ├── README.md
+│   ├── current-arc.md                 ← un paragraphe : où en est l'opérateur maintenant
+│   ├── workflow-conventions/
+│   └── doctrine-in-flight/
+└── short-term/                        ← épisodique : entrées hebdo + quotidiennes
+    ├── README.md
+    ├── <ISO-week>/
+    │   ├── <ISO-date>.md              ← quotidien : décisions, état, conflits
+    │   └── consolidation.md           ← hebdo : mes propositions / vos décisions / actions
+    └── _archive/                      ← semaines plus anciennes, sorties du scope actif
+```
+
+Trois propriétés de ce layout font un vrai travail. **Un** : chaque tier a son propre dossier, son propre README, sa propre cadence d'écriture. Long-term s'édite à la main, lentement. Medium-term évolue avec les arcs projet. Short-term s'écrit tout seul à chaque session. **Deux** : chaque tier a son propre modèle de décroissance. Long-term est présumé stable ; les réécritures sont conscientes. Medium-term est présumé en évolution ; les updates sont la routine. Short-term est présumé éphémère ; la consolidation hebdomadaire est ce qui en sauve quoi que ce soit. **Trois** : le README de chaque tier définit les règles de déprécation et le comportement de résolution de conflit. Quand quelque chose contredit autre chose, la règle du qui-gagne est écrite, pas improvisée.
+
+### La load policy de MEMORY.md
+
+L'entrée auto-chargée est courte — environ quatre-vingts lignes. Elle contient le protocole de session-start, pas le contenu :
+
+- Lire tout `long-term/` (petit dossier, lent à changer — le coût est borné).
+- Lire `medium-term/current-arc.md` (un paragraphe, fixe la direction actuelle).
+- Lire les `short-term/<week>/` de cette semaine et de la semaine dernière (contexte récent).
+- Si on est lundi et que la `consolidation.md` de cette semaine n'existe pas encore, déclencher `/consolidate-week`.
+
+Le reste de `medium-term/` est chargé on demand quand le sujet remonte. C'est la moitié conservatrice de *protéger la cognition de l'opérateur* : charger la couche load-bearing avec empressement, charger la couche contextuelle paresseusement.
+
+### Les drift skills — le système immunitaire
+
+Deux skills portent la charge de drift detection. Ils sont délibérément en paire : un directif, un proactif.
+
+- **`/whence`** — directif. L'opérateur demande à l'agent où il a pris l'affirmation ou le comportement courant. L'agent rapporte : tier (long / medium / short / conversation live), source (dossier, doc, ou « live »), risque de biais introduit, confiance. Un paragraphe. Utilisé quand une affirmation sonne off.
+- **`/divergence-check`** — proactif. L'agent le déclenche sur des signaux de frustration détectée, des boucles de correction, ou « tu me rates ». Il fait pause, surface la dérive suspectée entre conversation live et memory tracée, pose une question de clarification, et propose d'enregistrer la divergence dans l'entrée short-term du jour pour la consolidation de la semaine prochaine.
+
+Les deux skills ensemble rendent le tier long-term *sûr à avoir*. Sans eux, un fichier long-term périmé est un échec silencieux qui se compose. Avec eux, un fichier périmé s'annonce la première fois qu'il est utilisé et est mis en file pour review.
+
+### La consolidation hebdomadaire — le closed loop
+
+C'est la partie qui transforme la memory d'un artifact statique en système vivant. Le skill `/consolidate-week`, déclenché lundi au session start (ou on demand) :
+
+- Lit les entrées short-term quotidiennes de la semaine dernière.
+- Propose des promotions (short → medium, medium → long), des démotions, des drift flags, des suppressions.
+- L'opérateur review chaque proposition — accepter, rejeter, différer.
+- La `consolidation.md` de la semaine enregistre trois sections : *ma consolidation* (ce que l'agent a proposé), *vos décisions* (ce que l'opérateur a accepté), *actions taken* (ce qui a changé dans l'arborescence).
+- Les semaines plus anciennes basculent automatiquement dans `_archive/`.
+
+La cadence est la codification de *le système se corrige lui-même*. Sans un moment hebdomadaire fixe, le closed loop ne ferme pas — le drift s'accumule entre tiers, l'éphémère fuite dans le long-term, et l'architecture redécroît vers l'état non géré.
+
+---
+
+## À quoi ressemble vraiment la migration
+
+Chiffres concrets du build v1 sur mon propre dossier.
+
+- **37 fichiers plats** migrés dans les tiers. 16 vers long-term (règles constitutionnelles + profil d'identité + ton de collaboration). 17 vers medium-term (workflow conventions + doctrine en évolution + arcs projet actifs). 4 vers short-term `_needs-consolidation/` (état projet actif en attente de décision de tier).
+- **14 fichiers distillés** depuis un dossier de contexte stratégique séparé (`llm-context-2026/`) vers les tiers. Docs d'identité vers long-term. Market et positioning vers medium-term. Matériel transition borné dans le temps remplacé par un paragraphe dans `current-arc.md`. Originaux laissés intacts et marqués legacy.
+- **38 fichiers obsolètes supprimés** au cutover. Récupérables depuis l'historique git, mais plus chargés.
+- **3 nouveaux skills** câblés : `/whence`, `/divergence-check`, `/consolidate-week`.
+- **2 nouvelles règles comportementales** ajoutées dans long-term : déclencher `/divergence-check` quand de la frustration est détectée ; déclencher `/consolidate-week` au session start du lundi si la consolidation de cette semaine n'a pas été écrite.
+- **4 README de governance** écrits : un par tier plus la racine.
+- **1 édit de `setup.sh`** pour repointer le symlink auto-memory de l'ancien dossier plat vers la nouvelle racine de tiers, idempotemment.
+- **10 commits, une session xhigh.**
+
+Le travail d'architecture est surtout du thinking. La migration elle-même prend quelques heures.
+
+---
+
+## Les morceaux durs
+
+Sans aseptiser. Quatre choses ont mordu pendant le build.
+
+**La distillation est lossy.** Reframer du contenu pendant qu'il bouge entre tiers — surtout depuis un dossier de contexte stratégique structuré vers le système de tiers — perd de la nuance. La mitigation qui a marché : reframing léger seulement, un header « Origin » sur chaque fichier distillé qui pointe vers la source, originaux préservés inchangés à leur ancienne place, et un audit profond différé en pièce de travail séparée. *Ne pas essayer de combiner la migration et l'interrogation post-migration.* Ce sont des modes mentaux différents ; les bundler produit de mauvais résultats dans les deux.
+
+**Fuites de governance dans les README.** Les premiers drafts des README de tiers référençaient des noms de fichiers spécifiques, linkaient vers des surfaces de project management, et pointaient vers des dossiers éphémères. Les trois sont faux : les docs stables ne devraient référencer que des dossiers et concepts stables, jamais des fichiers transitoires ou des systèmes externes. La règle qui a émergé : *si la chose que vous linkez peut bouger ou disparaître dans un trimestre, ne la linkez pas depuis un doc stable.* Référencez le dossier, la catégorie, le principe — pas l'artifact.
+
+**Glitches opérationnels.** Des symlinks ont résolu à travers un parent symlink existant et créé des références circulaires dans les nouveaux dossiers de skills. Des sous-dossiers vides ont été droppés après `git rm` de placeholders `.gitkeep`. Petits, les deux. Coûteux en temps, les deux. Le travail d'architecture est surtout du thinking, mais les petites surprises filesystem-et-git coûtent des minutes que vous n'aviez pas budgétées.
+
+**Le contenu d'identité dérive plus vite que les règles constitutionnelles.** C'est le risque headline. Le tier long-term est censé être la couche la plus stable du système. Mais le matériel d'identité dans long-term — qui est l'opérateur, ce qu'il optimise, comment il se présente — c'est exactement la couche qui change le plus vite dans une phase de transition. Les règles constitutionnelles (jamais push sur main, MCP par connectors uniquement) sont stables. Le matériel d'identité peut déjà être périmé au moment où il atterrit dans long-term. La discipline qui gère ça : ne pas ancrer de décisions stratégiques sur du contenu long-term hérité jusqu'à ce qu'un audit différé re-lise chaque fichier long-term contre le mode opératoire actuel. Jusqu'à ce que cet audit soit fait, le tier long-term est provisoire.
+
+---
+
+## Les principes, dogfoodés
+
+Chaque tier et chaque mécanisme ci-dessus est une conséquence d'un des sept principes d'orchestration. Mappage :
+
+- *Le corpus est malléable* — la drift detection fait que la conversation live override les docs périmés en sécurité, au lieu de laisser les docs périmés override la conversation live silencieusement.
+- *Écrit, versionné, portable* — la memory vit à la racine du workspace, git-tracked, symlinkée vers l'emplacement de lecture de l'agent, setup machine fraîche géré par un script.
+- *La memory est tiered* — toute la structure de `memory/`.
+- *Le système se corrige lui-même* — `/consolidate-week` plus les deux drift skills.
+- *Protéger la cognition de l'opérateur* — auto-load policy conservatrice, README scannables, routing précis, pas de récap de fichier quand une référence de dossier suffit.
+
+L'architecture, c'est les principes rendus physiques. C'est tout le point du dogfooding : le principe arrête d'être de la prose et devient un dossier qu'on peut `ls`.
+
+---
+
+## Par où commencer, aujourd'hui
+
+N'essayez pas de scaffolder l'ensemble d'un coup. Le séquençage compte plus que la complétude.
+
+1. **Commencez par recenser ce que vous avez.** Avant de designer les tiers, trouvez chaque surface memory-shaped dans votre workspace. Dossiers d'auto-memory. Scratchpads. Docs de doctrine. Notes éparpillées. Fichiers de principes. README qui font office de memory. Listez. L'exploration est l'étape gating — la structure qui colle à votre point de départ n'est pas la structure qui collait au mien.
+
+2. **Draftez les trois README de tiers avant de bouger un fichier.** Définitions des tiers, règles de déprécation, résolution de conflit, modèle de décroissance. Montrez les drafts à vous-même, dormez dessus, éditez-les, puis approuvez-les. Les README sont la governance — les avoir justes fait que la migration s'écrit toute seule.
+
+3. **Migrez par batches, avec checkpoints explicites.** Pas de bulk-move. Une catégorie à la fois — règles constitutionnelles d'abord, puis identité, puis workflow conventions, puis état projet. Confirmez chaque batch avant le suivant. Un bulk move qu'on ne peut pas facilement annuler est un mauvais move.
+
+4. **Câblez les drift skills avant la consolidation hebdomadaire.** Les drift skills sont le système immunitaire ; ils rendent le tier long-term sûr à *avoir* avant que vous commenciez à demander à l'agent de s'y engager. La consolidation hebdomadaire fonctionne par-dessus un système qui détecte déjà la dérive ; l'ordre compte.
+
+5. **Écrivez la première entrée short-term le jour même.** Le format est chronologique avec timestamps — décisions, état, conflits. Surtout les conflits : les divergences depuis n'importe quel tier alimentent la consolidation hebdomadaire. La première entrée seed le loop.
+
+6. **Cutover avec `setup.sh` qui édite le symlink.** Bouger d'abord, linker ensuite. Le cutover est réversible jusqu'à ce que vous supprimiez l'ancien dossier ; supprimez seulement après qu'une session entière a tourné proprement sur le nouveau.
+
+C'est un weekend. Le système grandit depuis le loop après — depuis le drift que vous attrapez, les patterns que vous consolidez, le contenu que vous prunez. Laissez l'architecture vous dire ce dont elle a besoin.
+
+---
+
+## Note de clôture
+
+J'avais publié le principe et je le violais encore. Ce n'est pas inhabituel — la plupart des principes que les opérateurs écrivent sont ceux qu'ils sont au plus près de violer. La raison pour laquelle ce case file est dans le building lane et pas dans le writing lane, c'est que le principe seul ne suffisait pas ; l'architecture devait exister sur disque avant que je puisse faire confiance au principe en pratique.
+
+La version que je fais tourner aujourd'hui, c'est la v1. L'audit différé surfacera probablement du drift dans le tier long-term que la migration v1 n'a pas attrapé. La consolidation hebdomadaire surfacera de l'éphémère qui aurait dû être démoté, et des faits porteurs qui auraient dû être promus. La version que je ferai tourner dans trois mois ne ressemblera pas à celle-ci. C'est le point.
+
+Si vous voulez un prompt prêt à coller qui guide votre propre Claude Code à travers ce restructure — exploration d'abord, puis drafts de tiers, puis migration en batches, puis drift skills, puis consolidation hebdomadaire, puis cutover — laissez votre email ci-dessous. Un seul email retour avec le prompt. Pas de liste, pas de séquence.
+
+<LeadMagnet
+  assetSlug="tiered-memory-restructure-prompt"
+  lang="fr"
+  articleTitle="Le jour où mon principe de memory a rencontré ma memory"
+  articleUrl="https://boringsystems.app/fr/building/the-day-my-memory-principle-met-my-memory"
+/>

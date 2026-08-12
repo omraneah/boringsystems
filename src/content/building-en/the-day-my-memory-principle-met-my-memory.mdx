@@ -1,0 +1,204 @@
+---
+title: "The Day My Memory Principle Met My Memory"
+description: "A field tour of a tiered-memory restructure — from unmanaged scratchpad, through loosely-managed folder, to a three-tier system with weekly consolidation and drift detection. The piece dogfoods a principle I had already published."
+date: 2026-04-28
+highlight: true
+featured: true
+order: 1
+---
+
+import LeadMagnet from '@/components/LeadMagnet.astro';
+
+## Context
+
+I published [Agentic AI Orchestration — 7 Operating Principles](/en/writing/orchestration-principles-that-outlive-the-model) the week before this piece. Principle #3 is *memory is tiered — three horizons, three sets of rules*. Short-lived, mid-lived, long-lived. Each with its own write discipline, its own decay model, its own access pattern. I wrote it with confidence.
+
+Then I looked at my own memory folder and discovered I had been violating the principle for months.
+
+This is the piece that fixed it. A building-lane case file: what unmanaged memory actually costs, what the loose-management middle ground gets you, and what a properly tiered system looks like when you bother to build it. With the file tree, the closed-loop mechanism, and the parts that hurt to admit.
+
+If you have a folder of `feedback_*.md` notes, a single big `MEMORY.md`, or a scratchpad you never re-read — this is for you.
+
+---
+
+## State 0 — Unmanaged
+
+Most operators start here. I was here for months. The shape:
+
+- A flat folder of small files. Forty-ish in my case. Each one a correction, a preference, a project state, a profile fact, a reference pointer.
+- An auto-loaded index file at the top — `MEMORY.md` — that the agent reads at session start and follows to the relevant detail file when a topic comes up.
+- Maybe a separate folder somewhere with strategic context: identity docs, market lens, positioning material. Read on demand, not auto-loaded.
+
+This works. For a while. The compounding starts to fail when the folder grows past about thirty files. Symptoms, in order of how they showed up for me:
+
+- **Constitutional rules and project state mixed together.** *Never push to main* sat in the same folder as *the lead-magnet asset launches in two weeks*. The first never changes. The second changes weekly. Reading them at the same priority means the agent treats fluid project notes with the same authority as a hard rule, and treats a hard rule with the same fragility as a project note.
+- **Identity drift, hidden.** A `user_profile.md` written six months ago described a person who no longer exists. I had moved on — different goals, different positioning, different operating mode. The agent kept anchoring decisions on the stale profile. I would push back; the agent would defer to the live conversation; the file stayed unchanged for the next session, where the cycle repeated.
+- **Stale context, used with confidence.** A watch-memo I had written in February said "evaluate engagement-shape X by mid-June." The agent surfaced it in November as if it were live. The note had decayed; the system didn't know.
+- **No consolidation rhythm.** I had no scheduled moment where I read what I had written, judged what was still true, and pruned. So the folder accreted. Every session added; nothing left.
+- **No way to ask *where did you get that?*** When the agent made a confident claim that didn't sound like me, I had no tool to backtrace which file (or which session's chat) it came from. I had to hunt manually, file by file.
+
+The cumulative cost is the operator's worst failure mode: the system *feels* loaded with context, the agent *answers* with confidence, and the answers gradually drift from the operator's actual current position. By the time you notice, the drift is months deep.
+
+---
+
+## State 1 — Loosely-managed
+
+Most operators who notice the problem land here. The shape:
+
+- The same flat folder, but with a naming convention. `feedback_*.md` for collaboration rules. `project_*.md` for project state. `user_*.md` for identity facts. `reference_*.md` for pointers.
+- An index that groups by prefix. The agent loads the index, finds the relevant family, reads the file.
+- Maybe — if you've been disciplined — a separate folder for strategic material that you treat as load-bearing, not chat-overrideable.
+
+This is better. It's not enough.
+
+The naming convention is structural cosmetics on top of a single tier. The agent still treats every file as authoritative-on-load. There's no decay model — a `project_*.md` written in March is read in October with the same weight as a `feedback_*.md` rule written last week. There's no consolidation rhythm — the folder still accretes. There's no drift detection — when the live conversation contradicts a file, the file usually wins by inertia.
+
+The principle that makes this fail is the one I had already written: **promoting ephemera into long-term corrupts the doctrine; demoting load-bearing facts into chat loses them.** A one-tier system can't honor that — every file is in the same tier by definition. The naming is taxonomy, not architecture.
+
+This was the state I had published the orchestration article from. That's the gap the piece you're reading closes.
+
+---
+
+## State 2 — Well-managed: three tiers, two skills, one weekly loop
+
+The end-state has four moving parts. The tiers are the structure. The drift skills are the immune system. The weekly consolidation is the closed loop. The `MEMORY.md` index is the load policy that ties them together.
+
+### The file tree
+
+```
+memory/
+├── README.md                          ← governance: tiers, conflicts, decay, GC
+├── MEMORY.md                          ← lean auto-load + session-start protocol
+├── long-term/                         ← constitutional, identity, codified principles
+│   ├── README.md
+│   ├── principles/
+│   ├── identity/
+│   └── workspace-rules/
+├── medium-term/                       ← evolving: doctrine drafts, project memos, GTM
+│   ├── README.md
+│   ├── current-arc.md                 ← one paragraph: where the operator is now
+│   ├── workflow-conventions/
+│   └── doctrine-in-flight/
+└── short-term/                        ← episodic: weekly + daily entries
+    ├── README.md
+    ├── <ISO-week>/
+    │   ├── <ISO-date>.md              ← daily: decisions, state, conflicts
+    │   └── consolidation.md           ← weekly: my proposals / your decisions / actions
+    └── _archive/                      ← older weeks, rolled out of active scope
+```
+
+Three properties of this layout do real work. **One**: each tier has its own folder, its own README, its own write cadence. Long-term gets edited by hand, slowly. Medium-term evolves with project arcs. Short-term writes itself per session. **Two**: each tier has a separate decay model. Long-term is presumed stable; rewrites are conscious. Medium-term is presumed evolving; updates are routine. Short-term is presumed ephemeral; the weekly consolidation is what saves anything from it. **Three**: the README at each tier defines the deprecation rules and the conflict-resolution behavior. When something contradicts something else, the rule of which-wins is written down, not improvised.
+
+### The MEMORY.md load policy
+
+The auto-loaded entry point is short — about eighty lines. It contains the session-start protocol, not the content:
+
+- Read all of `long-term/` (small folder, slow-changing — the cost is bounded).
+- Read `medium-term/current-arc.md` (one paragraph, sets the current direction).
+- Read this week's and last week's `short-term/<week>/` (recent context).
+- If today is Monday and this week's `consolidation.md` doesn't exist yet, fire `/consolidate-week`.
+
+The rest of `medium-term/` is loaded on demand when the topic comes up. That's the conservative half of *protect the operator's cognition*: load the load-bearing layer eagerly, load the contextual layer lazily.
+
+### The drift skills — the immune system
+
+Two skills carry the drift-detection load. They are deliberately a pair: one directive, one proactive.
+
+- **`/whence`** — directive. The operator asks the agent where it pulled the current claim or behaviour from. The agent reports: tier (long / medium / short / live conversation), source (folder, doc, or "live"), bias risk this introduces, confidence. One paragraph. Used when a claim sounds off.
+- **`/divergence-check`** — proactive. The agent fires it on detected frustration, correction loops, or "you're missing me" signals. It pauses, surfaces the suspected drift between live conversation and tracked memory, asks one clarifying question, and offers to record the divergence in today's short-term entry for next week's consolidation.
+
+The two skills together make the long-term tier safe to *have*. Without them, a stale long-term file is a silent failure that compounds. With them, a stale file announces itself the first time it gets used and gets queued for review.
+
+### The weekly consolidation — the closed loop
+
+This is the part that turns memory from a static artifact into a living system. The `/consolidate-week` skill, fired Monday at session start (or on demand):
+
+- Reads last week's daily short-term entries.
+- Proposes promotions (short → medium, medium → long), demotions, drift flags, deletions.
+- The operator reviews each proposal — accept, reject, defer.
+- The week's `consolidation.md` records three sections: *my consolidation* (what the agent proposed), *your decisions* (what the operator accepted), *actions taken* (what changed in the file tree).
+- Older weeks rotate to `_archive/` automatically.
+
+The cadence is the codification of *the system corrects itself*. Without a fixed weekly moment, the closed loop doesn't close — drift accumulates between tiers, ephemera leaks into long-term, and the architecture decays back toward the unmanaged state.
+
+---
+
+## What the migration actually looks like
+
+Concrete numbers from the v1 build of my own folder.
+
+- **37 flat files** migrated into tiers. 16 to long-term (constitutional rules + identity profile + collaboration tone). 17 to medium-term (workflow conventions + evolving doctrine + active project arcs). 4 to short-term `_needs-consolidation/` (active project state pending tier-decision).
+- **14 files distilled** from a separate strategic-context folder (`llm-context-2026/`) into the tiers. Identity docs to long-term. Market and positioning to medium-term. Time-bounded transition material replaced by one paragraph in `current-arc.md`. Originals left untouched and marked legacy.
+- **38 obsolete files deleted** at cutover. Recoverable from git history, but no longer loaded.
+- **3 new skills** wired: `/whence`, `/divergence-check`, `/consolidate-week`.
+- **2 new behavioural rules** added to long-term: fire `/divergence-check` when frustration is detected; fire `/consolidate-week` on Monday session start if this week's consolidation hasn't been written.
+- **4 governance READMEs** written: one per tier plus the root.
+- **1 `setup.sh` edit** to re-point the auto-memory symlink from the old flat folder to the new tier root, idempotently.
+- **10 commits, one xhigh session.**
+
+The architecture work is mostly thinking. The migration itself is a few hours.
+
+---
+
+## The hard parts
+
+Not sanitizing this. Four things bit during the build.
+
+**Distillation is lossy.** Reframing content as it moves between tiers — especially from a structured strategic-context folder into the tier system — loses nuance. The mitigation that worked: light reframing only, an "Origin" header on every distilled file pointing back to the source, originals preserved unchanged in their old location, and a deferred deep audit booked as a separate piece of work. *Don't try to combine the migration and the post-migration interrogation.* They are different mental modes; bundling them produces bad results in both.
+
+**Governance leaks in the READMEs.** First drafts of the tier READMEs referenced specific filenames, linked to project-management surfaces, and pointed at ephemeral folders. All three are wrong: stable docs should reference only stable folders and concepts, never transient files or external systems. The rule that emerged: *if the thing you're linking to could move or disappear in a quarter, don't link to it from a stable doc.* Reference the folder, the category, the principle — not the artifact.
+
+**Operational glitches.** Symlinks resolved through an existing parent symlink and created circular references inside the new skill directories. Empty subfolders dropped after `git rm` of `.gitkeep` placeholders. Both small. Both ate real time. The architecture work is mostly thinking, but small filesystem-and-git surprises cost minutes you didn't budget for.
+
+**Identity content drifts faster than constitutional rules.** This is the headline risk. The long-term tier is supposed to be the most stable layer of the system. But the identity material in long-term — who the operator is, what they're optimizing for, how they show up — is exactly the layer that's actually changing fastest in a transition phase. The constitutional rules (never push to main, MCP via connectors only) are stable. The identity material may already be stale at the moment it lands in long-term. The discipline that handles this: do not anchor strategic decisions on inherited long-term content until a deferred audit re-reads each long-term file against the current operating mode. Until that audit completes, the long-term tier is provisional.
+
+---
+
+## The principles, dogfooded
+
+Each tier and each mechanism above is a consequence of one of the seven orchestration principles. Mapped:
+
+- *The corpus is malleable* — drift detection makes live conversation override stale docs safely, instead of letting stale docs override live conversation silently.
+- *Written, versioned, portable* — memory lives at workspace root, git-tracked, symlinked into the agent's read location, fresh-machine setup handled by a script.
+- *Memory is tiered* — the entire structure of `memory/`.
+- *The system corrects itself* — `/consolidate-week` plus the two drift skills.
+- *Protect the operator's cognition* — auto-load policy is conservative, READMEs are scannable, routing is precise, no recap of files when a folder reference will do.
+
+The architecture is the principles, made physical. That's the whole point of dogfooding: the principle stops being prose and becomes a folder you can `ls`.
+
+---
+
+## Where to start, if you're starting today
+
+Don't try to scaffold the whole thing upfront. The sequencing matters more than the completeness.
+
+1. **Survey what you have first.** Before designing tiers, find every memory-shaped surface in your workspace. Auto-memory folders. Scratchpads. Doctrine docs. Scattered notes. Principle files. README files acting as memory. List them. The exploration is the gating step — the structure that fits your starting state is not the structure that fitted mine.
+
+2. **Draft the three tier READMEs before moving any file.** Tier definitions, deprecation rules, conflict resolution, decay model. Show the drafts to yourself, sleep on them, edit them, then approve them. The READMEs are the governance — getting them right means the migration writes itself.
+
+3. **Migrate in batches, with explicit checkpoints.** Don't bulk-move. Take one category at a time — constitutional rules first, then identity, then workflow conventions, then project state. Confirm each batch before the next. A bulk move you can't easily reverse is a bad move.
+
+4. **Wire the drift skills before the weekly consolidation.** The drift skills are the immune system; they make the long-term tier safe to *have* before you start asking the agent to commit to it. Weekly consolidation works on top of a system that already detects drift; the order matters.
+
+5. **Write the first short-term entry the same day.** The format is chronological with timestamps — decisions, state, conflicts. Especially conflicts: divergences from any tier feed weekly consolidation. The first entry seeds the loop.
+
+6. **Cut over with `setup.sh` editing the symlink.** Move first, link second. The cutover is reversible until you delete the old folder; delete only after a full session has run cleanly on the new one.
+
+That's a weekend. The system grows from the loop after that — from drift you catch, patterns you consolidate, content you prune. Let the architecture tell you what it needs.
+
+---
+
+## Closing note
+
+I had published the principle and was still violating it. That's not unusual — most of the principles operators write down are the ones they're closest to violating. The reason this case file is in the building lane and not the writing lane is that the principle alone wasn't enough; the architecture had to exist on disk before I could trust the principle in practice.
+
+The version I'm running today is v1. The deferred audit will probably surface drift in the long-term tier that the v1 migration didn't catch. The weekly consolidation will surface ephemera that should have been demoted, and load-bearing facts that should have been promoted. The version I run in three months will not look like this one. That is the point.
+
+If you want a ready-to-paste prompt that walks your own Claude Code through this restructure — exploration first, then tier drafts, then migration in batches, then drift skills, then weekly consolidation, then cutover — drop your email below. One email back with the prompt. No list, no sequence.
+
+<LeadMagnet
+  assetSlug="tiered-memory-restructure-prompt"
+  lang="en"
+  articleTitle="The Day My Memory Principle Met My Memory"
+  articleUrl="https://boringsystems.app/en/building/the-day-my-memory-principle-met-my-memory"
+/>

@@ -4,6 +4,14 @@
 // `body` is the confirmation email sent to subscribers when the asset is
 // ready to auto-deliver. When `body` is a placeholder (asset not finalised
 // yet), Ahmed receives the notification and sends the real asset manually.
+//
+// Long prompt bodies (>~30 lines) live in their own file under
+// `src/lib/prompts/` and are imported here. Short bodies stay inline.
+
+import {
+  TIERED_MEMORY_RESTRUCTURE_PROMPT_EN,
+  TIERED_MEMORY_RESTRUCTURE_PROMPT_FR,
+} from '@/lib/prompts/tiered-memory-restructure';
 
 export type Lang = 'en' | 'fr';
 
@@ -109,6 +117,73 @@ export const LEAD_MAGNETS: Record<string, LeadMagnetAsset> = {
           '',
           '— Ahmed',
           'boringsystems.app',
+        ].join('\n'),
+      },
+    },
+  },
+  'tiered-memory-restructure-prompt': {
+    slug: 'tiered-memory-restructure-prompt',
+    title: {
+      en: 'The Tiered-Memory Restructure Prompt',
+      fr: 'Le prompt de restructure de tiered memory',
+    },
+    description: {
+      en: 'A ready-to-paste prompt for Claude Code that walks your own agent through the tiered-memory restructure described in the case file — exploration first, then tier drafts, then migration in batches, then drift skills, then weekly consolidation, then cutover. Six phases, explicit checkpoints, no bulk-move.',
+      fr: 'Un prompt prêt à coller dans Claude Code qui guide votre propre agent à travers le restructure de tiered memory décrit dans le case file — exploration d\'abord, puis drafts de tiers, puis migration en batches, puis drift skills, puis consolidation hebdomadaire, puis cutover. Six phases, checkpoints explicites, aucun bulk-move.',
+    },
+    buttonLabel: {
+      en: 'Send me the prompt',
+      fr: 'Envoyez-moi le prompt',
+    },
+    prompt: {
+      en: 'Drop your email and I\'ll send you the prompt. One email, no list, no follow-up sequence.',
+      fr: 'Laissez votre email et je vous envoie le prompt. Un seul email, pas de liste, pas de séquence.',
+    },
+    confirmation: {
+      en: {
+        subject: 'Your Tiered-Memory Restructure Prompt',
+        body: [
+          'Thanks for reaching out. The full prompt is below — paste it into Claude Code at the root of your workspace and let it run.',
+          '',
+          'A few things worth knowing before you start:',
+          '',
+          '— Phase 1 is gating. Do not let the agent skip the exploration. Your starting state is almost certainly different from the reference state, and a tier system designed against the wrong starting state will not survive contact with reality.',
+          '— The drift skills (\\`/whence\\` and \\`/divergence-check\\`) get wired before the weekly consolidation. They are what makes the long-term tier safe to have.',
+          '— The cutover is reversible until you delete the old folder. Run a full session on the new tree before deleting anything.',
+          '',
+          'If you want to send me the agent\'s output at any phase boundary for a second pair of eyes, reply to this email with the diff and I will read it.',
+          '',
+          '— Ahmed',
+          'boringsystems.app',
+          '',
+          '----- BEGIN PROMPT -----',
+          '',
+          TIERED_MEMORY_RESTRUCTURE_PROMPT_EN,
+          '',
+          '----- END PROMPT -----',
+        ].join('\n'),
+      },
+      fr: {
+        subject: 'Votre prompt de restructure de tiered memory',
+        body: [
+          'Merci pour votre message. Le prompt complet est ci-dessous — collez-le dans Claude Code à la racine de votre workspace et laissez-le tourner.',
+          '',
+          'Quelques points utiles avant de démarrer :',
+          '',
+          '— La Phase 1 est gating. Ne laissez pas l\'agent sauter l\'exploration. Votre point de départ est presque sûrement différent de l\'état de référence, et un système de tiers designé contre le mauvais point de départ ne survivra pas au contact avec la réalité.',
+          '— Les drift skills (\\`/whence\\` et \\`/divergence-check\\`) sont câblés avant la consolidation hebdomadaire. Ce sont eux qui rendent le tier long-term sûr à avoir.',
+          '— Le cutover est réversible jusqu\'à ce que vous supprimiez l\'ancien dossier. Faites tourner une session entière sur le nouvel arbre avant de supprimer quoi que ce soit.',
+          '',
+          'Si vous voulez m\'envoyer la sortie de l\'agent à n\'importe quelle frontière de phase pour une deuxième paire d\'yeux, répondez à cet email avec le diff et je le lis.',
+          '',
+          '— Ahmed',
+          'boringsystems.app',
+          '',
+          '----- DÉBUT DU PROMPT -----',
+          '',
+          TIERED_MEMORY_RESTRUCTURE_PROMPT_FR,
+          '',
+          '----- FIN DU PROMPT -----',
         ].join('\n'),
       },
     },
