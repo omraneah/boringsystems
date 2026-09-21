@@ -1,7 +1,7 @@
 # ADR-002 — Home-page selection semantics
 
 **Status:** Accepted — 2026-04-21 · Amended 2026-04-22 (lane rename: Writing / Work / Building / Archive) · Amended 2026-04-22 (Selected Articles band removed; Highlights is the sole content surface on home) · Amended 2026-04-24 (Highlights sort is now `date` desc with `order` asc as tiebreaker; cap raised 3 → 4; publish date rendered inline with lane label on every card)
-**Scope:** `src/pages/{en,fr}/index.astro`, `src/content/config.ts`
+**Scope:** `src/pages/{en,fr}/index.astro`, `src/content.config.ts`
 
 ## Context
 
@@ -64,5 +64,5 @@ Previously capped at three on the thesis that three doors is the right amount fo
 ## Related
 
 - Decision log entries: `2026-04-21 — Home highlights as an ordered vertical stack (no carousel)`, `2026-04-21 — Mandatory date frontmatter`.
-- `src/content/config.ts` — schema definition, now carries semantic comments pointing here.
+- `src/content.config.ts` — schema definition, now carries semantic comments pointing here.
 - `/verify-home` skill — smoke test against the contract defined above.

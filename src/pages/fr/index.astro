@@ -52,7 +52,7 @@ const laneLabelsFr: Record<'writing' | 'work' | 'building', string> = {
         <p class="label section-label">À la une</p>
         <div class="highlight-stack">
           {highlights.map(({ entry, lane }) => (
-            <a href={`/fr/${lane}/${entry.slug.split('/').pop()}`} class="highlight-card">
+            <a href={`/fr/${lane}/${entry.id.split('/').pop()}`} class="highlight-card">
               <span class="highlight-series">{laneLabelsFr[lane]} · {formatDate(entry.data.date, 'fr')}</span>
               <h2 class="highlight-title">{entry.data.title}</h2>
               <p class="highlight-description">{entry.data.description}</p>
