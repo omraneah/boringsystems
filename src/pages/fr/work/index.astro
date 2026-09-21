@@ -25,7 +25,7 @@ const entries = (await getCollection('work-fr'))
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/fr/work/${item.slug.split('/').pop()}`}
+            href={`/fr/work/${item.id.split('/').pop()}`}
             meta={articleMeta(item.body, item.data.date, 'fr')}
           />
         ))}

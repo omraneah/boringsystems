@@ -1,7 +1,9 @@
 export type Lang = 'en' | 'fr';
 
-export function readTime(body: string, lang: Lang = 'en'): string {
-  const words = body.split(/\s+/).filter(Boolean).length;
+// Astro's content-loader entries type `body` as optional — an empty body is
+// a valid (if odd) article, so coerce rather than widen every call site.
+export function readTime(body: string | undefined, lang: Lang = 'en'): string {
+  const words = (body ?? '').split(/\s+/).filter(Boolean).length;
   const mins = Math.max(1, Math.ceil(words / 200));
   return lang === 'fr' ? `${mins} min de lecture` : `${mins} min read`;
 }
@@ -18,7 +20,7 @@ export function formatDate(date: Date | string | undefined, lang: Lang = 'en'): 
 }
 
 export function articleMeta(
-  body: string,
+  body: string | undefined,
   date: Date | string | undefined,
   lang: Lang = 'en',
 ): string {

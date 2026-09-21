@@ -2,7 +2,7 @@
 
 Ahmed Omrane's personal site. Engineering-leadership writing, case studies, live builds, and long-living playbooks.
 
-Built with [Astro 5](https://astro.build) + MDX. Deployed on [Vercel](https://vercel.com). 100% AI-authored code (Claude Code via voice dictation) — architecture and judgment decisions are human.
+Built with [Astro 7](https://astro.build) + MDX. Deployed on [Vercel](https://vercel.com). 100% AI-authored code (Claude Code via voice dictation) — architecture and judgment decisions are human.
 
 Live site: **[boringsystems.app](https://boringsystems.app)**
 
@@ -147,7 +147,7 @@ Automatic on push to `main` via Vercel's GitHub integration. Never push to `main
 
 | Layer | Choice |
 |---|---|
-| Framework | Astro 5 (static + SSR opt-in per route) |
+| Framework | Astro 7 (static + SSR opt-in per route) |
 | Content | Astro Content Collections (Markdown + MDX) |
 | Diagrams | mermaid.js (client-side render from a custom remark plugin — no build-time browser deps) |
 | Hosting | Vercel + Vercel Functions for API routes |

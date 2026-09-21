@@ -17,7 +17,7 @@ This means the effective workflow is: speak a requirement → Claude Code execut
 
 | Layer | Tool | Notes |
 |---|---|---|
-| Framework | Astro 5 | Static by default, SSR opt-in per route |
+| Framework | Astro 7 | Static by default, SSR opt-in per route |
 | Rendering | Hybrid (static + serverless) | All pages prerendered; API routes run as Vercel Functions |
 | Styling | Vanilla CSS with design tokens | CSS variables in `global.css`, no framework |
 | Content | Astro Content Collections | Markdown files in `src/content/` |

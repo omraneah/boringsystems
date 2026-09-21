@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 // Four content lanes — see README.md and docs/target-audiences.md for the
 // editorial taxonomy. Folder name = URL path = collection name (minus the
@@ -19,8 +20,8 @@ import { defineCollection, z } from 'astro:content';
 // Never add ad-hoc frontmatter flags (homePinned, showOnHome, etc.) — widen
 // selection logic in `src/pages/{en,fr}/index.astro` instead.
 
-const article = defineCollection({
-  type: 'content',
+const article = (dir: string) => defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: `./src/content/${dir}` }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -37,8 +38,8 @@ const article = defineCollection({
 
 // Archive: long-living playbooks. No `date` — these are principles, not
 // time-stamped pieces. Series metadata drives grouping on the Archive index.
-const archive = defineCollection({
-  type: 'content',
+const archive = (dir: string) => defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: `./src/content/${dir}` }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -52,12 +53,12 @@ const archive = defineCollection({
 });
 
 export const collections = {
-  'writing-en': article,
-  'writing-fr': article,
-  'work-en': article,
-  'work-fr': article,
-  'building-en': article,
-  'building-fr': article,
-  'archive-en': archive,
-  'archive-fr': archive,
+  'writing-en': article('writing-en'),
+  'writing-fr': article('writing-fr'),
+  'work-en': article('work-en'),
+  'work-fr': article('work-fr'),
+  'building-en': article('building-en'),
+  'building-fr': article('building-fr'),
+  'archive-en': archive('archive-en'),
+  'archive-fr': archive('archive-fr'),
 };

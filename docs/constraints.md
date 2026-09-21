@@ -77,7 +77,7 @@ The `/check-constraints` skill runs through this file whenever a structural chan
 
 ## Dependencies
 
-- **Check framework-native support before adding a dep.** Astro 5 and Next.js 16 cover most "I need a library for…" needs natively: i18n, redirects, image optimization, font loading, caching, analytics, content collections, RSS, sitemap, proxy/middleware. Read the official docs first. If a native feature exists, use it. Only add a dep when the framework genuinely has no answer.
+- **Check framework-native support before adding a dep.** Astro 7 and Next.js 16 cover most "I need a library for…" needs natively: i18n, redirects, image optimization, font loading, caching, analytics, content collections, RSS, sitemap, proxy/middleware. Read the official docs first. If a native feature exists, use it. Only add a dep when the framework genuinely has no answer.
 
 - **Never pin to a package that hasn't been updated in >12 months** without flagging it. Stale deps are future security/compat debt.
 

@@ -1,6 +1,6 @@
 ---
 import Article from '@/layouts/Article.astro';
-import { getCollection } from 'astro:content';
+import { getCollection , render } from 'astro:content';
 import { readTime, formatDate } from '@/lib/article-meta';
 
 export async function getStaticPaths() {
@@ -8,13 +8,13 @@ export async function getStaticPaths() {
   return entries.map(entry => ({
     // Subfolders under the collection root are grouping-only; URL slug is
     // the file basename only. See docs/constraints.md "Content".
-    params: { slug: entry.slug.split('/').pop() },
+    params: { slug: entry.id.split('/').pop() },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <Article

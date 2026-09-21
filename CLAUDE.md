@@ -1,10 +1,10 @@
 # boringsystems — Project Context
 
-Ahmed's engineering-leadership site. Astro 5, deployed on Vercel.
+Ahmed's engineering-leadership site. Astro 7, deployed on Vercel.
 
 ## Stack
 
-Astro 5 · MDX · Vanilla CSS with design tokens · Vercel adapter · Resend (transactional email) · Neon (when state is needed) · mermaid.js (client-side rendered from a custom remark plugin).
+Astro 7 · MDX · Vanilla CSS with design tokens · Vercel adapter · Resend (transactional email) · Neon (when state is needed) · mermaid.js (client-side rendered from a custom remark plugin).
 
 All code is authored through Claude Code. No manual editing.
 

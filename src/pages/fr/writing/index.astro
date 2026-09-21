@@ -27,7 +27,7 @@ const entries = (await getCollection('writing-fr'))
           <ArticleCard
             title={item.data.title}
             description={item.data.description}
-            href={`/fr/writing/${item.slug.split('/').pop()}`}
+            href={`/fr/writing/${item.id.split('/').pop()}`}
             meta={articleMeta(item.body, item.data.date, 'fr')}
           />
         ))}

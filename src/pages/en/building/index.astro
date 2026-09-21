@@ -26,7 +26,7 @@ const entries = (await getCollection('building-en'))
             <ArticleCard
               title={item.data.title}
               description={item.data.description}
-              href={`/en/building/${item.slug.split('/').pop()}`}
+              href={`/en/building/${item.id.split('/').pop()}`}
               meta={articleMeta(item.body, item.data.date, 'en')}
             />
           ))}
